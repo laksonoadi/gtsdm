@@ -1,0 +1,28 @@
+/* SpryTabbedPanels.css - version 0.4 - Spry Pre-Release 1.6.1 *//* Copyright (c) 2006. Adobe Systems Incorporated. All rights reserved. *//* Horizontal Tabbed Panels * The default style for a TabbedPanels widget places all tab buttons * (left aligned) above the content panel.*//* This is the selector for the main TabbedPanels container. For our * default style, this container does not contribute anything visually, * but it is floated left to make sure that any floating or clearing done * with any of its child elements are contained completely within the * TabbedPanels container, to minimize any impact or undesireable * interaction with other floated elements on the page that may be used * for layout. * * If you want to constrain the width of the TabbedPanels widget, set a * width on the TabbedPanels container. By default, the TabbedPanels widget * expands horizontally to fill up available space. * * The name of the class ("TabbedPanels") used in this selector is not * necessary to make the widget function. You can use any class name you * want to style the TabbedPanels container. */ /* UNTUK BAGIAN FORM INPUT START ------------------------------------------------------------------------------------------------*/.TabbedPanels {	font-family:"Lucida Grande", "Lucida Sans Unicode", Verdana, Arial, Helvetica, sans-serif; font-size:11px; 	margin: 0px; padding: 0px; float: left; clear: none; width: 100%; /* IE Hack to force proper layout when preceded by a paragraph. (hasLayout Bug)*/
+}
+.TabbedPanelsTabGroup { margin: 0px; padding: 0px; }
+.TabbedPanelsTab { position: relative; top: 1px; float: left; padding: 4px 10px; margin: 0px 1px 0px 0px; font: normal 1em tahoma #fff;	list-style: none; border-left: solid 1px #ffffff; border-bottom: solid 1px #0063A5 /* 50C621 */; border-top: solid 1px #ffffff;	border-right: solid 1px #ffffff; -moz-user-select: none; -khtml-user-select: none; cursor: pointer; }
+.TabbedPanelsTabHover { background-color: #215976; color:#fafafa; }
+.TabbedPanelsTabSelected { background-color: #49a2d4; border-bottom: 1px solid #0063A5 /* 50C621 */; color:#fafafa; }
+.TabbedPanelsTab a { color: #fff; text-decoration: none; }
+.TabbedPanelsContentGroup { clear: both; border-left: solid 1px #fff; border-bottom: solid 1px #fff; border-top: solid 3px #215976 /* 50C621 */;	border-right: solid 1px #fff; background-color: #fff; }
+.TabbedPanelsContent { padding: 4px; border-bottom: 1px solid #0063A5 }
+.TabbedPanelsContent  h3{ font: bold 1.0em "Tahoma", verdana, Arial !important; text-align: left; padding-top:5px; }
+.TabbedPanelsContentVisible { }
+.VTabbedPanels .TabbedPanelsTabGroup { float: left; width: 10em; height: 20em; background-color: #488CAF; position: relative;	border-top: solid 1px #999; border-right: solid 1px #999; border-left: solid 1px #CCC; border-bottom: solid 1px #CCC; }
+.VTabbedPanels .TabbedPanelsTab { float: none; margin: 10px; border-top: none; border-left: none; border-right: none; }
+.VTabbedPanels .TabbedPanelsTabSelected { background-color: #488CAF; border-bottom: solid 1px #999; }
+.VTabbedPanels .TabbedPanelsContentGroup { clear: none; float: left; padding: 0px; width: 30em; height: 20em; }/* UNTUK BAGIAN FORM INPUT END ------------------------------------------------------------------------------------------------*//* UNTUK BAGIAN FORM DETAIL START ------------------------------------------------------------------------------------------------*/.TabbedPanels_detail {	font-family:"Lucida Grande", "Lucida Sans Unicode", Verdana, Arial, Helvetica, sans-serif; font-size:11px; 	margin: 0px; padding: 0px; float: left; clear: none; width: 100%; /* IE Hack to force proper layout when preceded by a paragraph. (hasLayout Bug)*/
+}
+.TabbedPanelsTabGroup_detail { margin: 0px; padding: 0px; }
+.TabbedPanelsTab_detail { position: relative; top: 1px; float: left; padding: 4px 10px; margin: 0px 1px 0px 0px; font: normal 1em tahoma #fff;	list-style: none; border-left: solid 1px #ffffff; border-bottom: solid 1px #0063A5 /* 50C621 */; border-top: solid 1px #ffffff;	border-right: solid 1px #ffffff; -moz-user-select: none; -khtml-user-select: none; cursor: pointer; }
+.TabbedPanelsTabHover_detail { background-color: #215976; color:#fafafa; }
+.TabbedPanelsTabSelected_detail { background-color: #49a2d4; border-bottom: 1px solid #0063A5 /* 50C621 */; color:#fafafa; }
+.TabbedPanelsTab_detail a { color: #fff; text-decoration: none; }
+.TabbedPanelsContentGroup_detail { clear: both; border-left: solid 1px #fff; border-bottom: solid 1px #fff; border-top: solid 3px #215976 /* 50C621 */;	border-right: solid 1px #fff; background-color: #fff; }
+.TabbedPanelsContent_detail { padding: 4px; border-bottom: 1px solid #0063A5 }
+.TabbedPanelsContent_detail  h3{ font: bold 1.0em "Tahoma", verdana, Arial !important; text-align: left; padding-top:5px; }
+.VTabbedPanels_detail .TabbedPanelsTabGroup_detail { float: left; width: 10em; height: 20em; background-color: #488CAF; position: relative;	border-top: solid 1px #999; border-right: solid 1px #999; border-left: solid 1px #CCC; border-bottom: solid 1px #CCC; }
+.VTabbedPanels_detail .TabbedPanelsTab_detail { float: none; margin: 10px; border-top: none; border-left: none; border-right: none; }
+.VTabbedPanels_detail .TabbedPanelsTabSelected_detail { background-color: #488CAF; border-bottom: solid 1px #999; }
+.VTabbedPanels_detail .TabbedPanelsContentGroup_detail { clear: none; float: left; padding: 0px; width: 30em; height: 20em; }/* UNTUK BAGIAN FORM DETAIL END ------------------------------------------------------------------------------------------------*/

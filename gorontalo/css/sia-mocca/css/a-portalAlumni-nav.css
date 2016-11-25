@@ -1,0 +1,90 @@
+/* CSS Document */
+#menu1{
+  z-index:999999; 
+  margin:0px;
+  padding:0px;
+  vertical-align:center;
+  font-size: 9pt;
+}
+#menu1 ul{
+  margin:0px 0px 0px 0px;
+  padding-top:5px;
+  width:125px;
+  border-right: solid 1px #e8f6c1;
+  text-align:center;
+  height:25px;
+}
+#menu1 ul li{
+  position:relative;
+}
+#menu1 li ul{
+  position:absolute;
+  left:0px;/*Set 1px less than menu width */ 
+	top:25px;
+  display:block;
+  z-index:999999;
+  width:250px; 
+  margin:0px;
+  padding:0px; 
+  background:#ffffff;
+}
+#menu1 li:hover ul{
+  display:block;
+}
+#menu1 li:hover>ul{
+  visibility:visible
+}
+#menu1 ul ul{
+  visibility:hidden
+}
+/* Fix IE. Hide from IE Mac \*/ 
+* html #menu1 ul li{float:left;height:1%}
+* html #menu1 ul li a{height:1%}
+/* End */ 
+/* Make-up syles */ 
+#menu1 ul, li{
+  margin:0px; 
+  padding:0px;
+}
+/* Styles for Menu Items */ 
+#menu1 ul a{
+  display:block;
+  text-decoration:none;/* IE6 Bug */ 
+	/*padding:3px;*/
+  padding:2px 0 0 0;
+  border-bottom:0;
+  border-left:0; 
+  width:125px; 
+  padding-left:0px;
+}
+/* Sub Menu Styles */ 
+#menu1 li ul a{
+  text-decoration:none;/* IE6 Bug */ 
+	padding-top:5px;
+  width:250px;
+  font-size:12; 
+  font-weight:normal; 
+  padding-left:0px;
+  z-index:999999;
+  text-align:left;
+}
+#menu1 li ul li{
+  /*background-image:none;*/
+  /*background-image: url('../images/navibar-background.gif');*/
+  background-color: #000000; /*#771212;*/
+  border-bottom: solid 1px #e8f6c1;
+  padding-left:0px;
+  margin-left:0px;
+}
+
+#menuList{
+	padding:0px;
+	margin:0px;
+	z-index:999999;
+}
+#menuList li{
+	margin:0px; padding:0px;
+}
+#sidebar{
+	z-index:999999;
+}

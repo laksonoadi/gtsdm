@@ -1,0 +1,207 @@
+#coverArea {
+	background-color: #FFFFFF;
+	text-align: left;
+	overflow: hidden;
+	width: 779px;
+	height: 200px;
+	margin: 0px auto;
+	padding: 0px 0px 0px 0px;
+}
+
+#coverArea-photo {
+	float: left;
+	width: 779px;
+	height: 200px;
+	overflow: hidden;
+	position: absolute;
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+}
+
+#coverArea-photo img {
+	margin: 0px;
+	padding: 0px;
+}
+
+#coverArea-info {
+	background-color: #1f3854;
+	width: 185px;
+	height: 155px;
+	float: left;
+	padding: 0px 0px 0px 0px;
+}
+
+#coverArea-info p {
+	color: #ffffff;
+	margin: 5px 10px;
+	text-align: right;
+}
+
+#coverArea-login {
+	float: right;
+	color: #080807;
+	background-color: #EAF7FD;
+	background-image: url('../images/coverArea-login-bg.gif');
+	overflow: hidden;
+	width: 209px;
+	height: 165px;
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+}
+
+#coverArea-login h2 {
+	color: #333333;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	margin: 20px 0px 20px 20px;
+}
+
+#coverArea-login h3 {
+	color: #ffffff;
+	margin: 7px 0px 0px 25px;
+	font-family: 'Trebuchet MS';
+	font-size: 12pt;
+}
+
+#coverArea-login h4 {
+	color: #ffffff;
+	margin: 0px 0px 0px 25px;
+	font-family: Tahoma, Arial, Geneva, sans-serif;
+	font-size: 7pt;
+	text-transform: uppercase;
+}
+
+#coverArea-login h5 {
+	color: #122d71;
+	margin: 10px 0px 0px 15px;
+	font-family: 'Trebuchet MS';
+	font-size: 8pt;
+}
+
+#coverArea-login h6 {
+	color: #122d71;
+	margin: 10px 0px 0px 15px;
+	font-family: 'Tahoma';
+	font-style: inherit oblique;
+	font-size: 10pt;
+}
+
+#coverArea-login hr {
+	margin: 15px 0px 0px 20px;
+	height: 1px;
+	border-collapse: collapse;
+	border-top: #d1d5d6 1px solid;
+	border-bottom: none;
+	border-left : none;
+	border-right: none;
+	text-align: left;
+}
+
+#coverArea-login form {
+	margin: 0px;
+}
+
+#coverArea-login input {
+	font-family: Tahoma, Arial, Geneva, sans-serif;
+	font-size: 8pt;
+}
+
+#coverArea-login a {
+	color: #080807;
+	text-decoration:none;
+	padding: 10px 0px 0px 10px;
+}
+
+#coverArea-login a:hover {
+	color: #2584BC;
+	text-decoration:underline;
+	padding: 10px 0px 0px 10px;
+}
+
+#coverArea-submitButton {
+	color: #133E79;
+	background-image: url('../images/back-button.gif');
+	background-repeat: repeat-x;
+	font-family: Tahoma, Arial, Geneva, sans-serif;
+	font-size: 8pt;
+	float: left;
+	border: 1px solid #dedfc3;
+	padding: 3px 5px 2px 5px;
+	margin: 0px 0px 0px 1px;
+}
+
+#coverArea-login-info {
+	margin: 2px 20px 10px 15px;
+	overflow: hidden;
+	text-align: right;
+	line-height: 1.5em;
+}
+
+#coverArea-login-info a {
+	color: #122d71;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+#coverArea-login-info a:hover {
+	color: #2588BF;
+}
+
+#coverArea-shadow {
+	width: 750px;
+	height: 5px;
+	background-color: #ffffff;
+	background-image: url('../images/coverArea-shadow.gif');
+	margin: 0px;
+	padding: 0px;
+	clear: both;
+	overflow: hidden;
+}
+
+#coverArea-shadow-right {
+	width: 209px;
+	height: 14px;
+	/*background-color: #7f888b;
+	background-image: url('../images/coverArea-shadow-right.gif');
+	*/margin: 0px;
+	padding: 0px;
+	float: right;
+}
+
+.login-label {
+	width: 60px;
+	float:left;
+	font-weight: bold;
+	vertical-align: middle;
+	margin: 0px 0px 0px 0px;
+	padding: 2px 0px 0px 20px;
+}
+
+.login-button {
+	/*margin: 0px 0px 0px 76px;
+	*/}
+
+.login-form {
+	width: 100px;
+	font-family: Tahoma, Arial, sans-serif;
+	font-size: 8pt;
+	margin: 2px 0px;
+	padding: 0px;
+	border: none !important;
+}
+
+.login_submit{
+	color: #133E79;
+	background-image: url('../images/back-button.gif');
+	background-repeat: repeat-x;
+	font:Tahoma, Arial, Geneva, sans-serif;
+	float:none;
+	border: 1px solid #C3CCDF;
+}
+
+fieldset{
+	border: none;
+	!important;
+	margin: 0px;
+	padding: 0px;
+}

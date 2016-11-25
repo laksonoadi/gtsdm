@@ -1,0 +1,211 @@
+#sidebar {
+	float: right;
+	/*background-image: url('../images/sidebar-bg-top.gif');
+	background-position: left top;
+	background-repeat: no-repeat;*/
+	overflow: hidden;
+	width: 200px;
+	margin: 0px 0px 0px 0px;
+	padding: 10px 0px 0px 8px;
+}
+
+.sidebar-element {
+	color: #3392C0;
+	font-family: Arial, Geneva, sans-serif;
+	font-size: 11px;
+	overflow: hidden;
+	width: 185px;
+	margin: 0px 0px 15px 5px;
+	background-color: #F9F9F9;
+}
+
+.sidebar-element h2 {
+	color: #FFFFFF;
+	border-top: 1px solid #EDECE1;
+	border-bottom: 1px solid #EDECE1;
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-weight: normal;
+	font-size: 14px;
+	margin: 0px;
+	padding: 3px 0px 3px 10px;
+	background-image: url('../images/sidebar-element-top.gif');
+	background-repeat: no-repeat;
+	height: 29px;
+}
+
+.sidebar-element ul {
+	margin: 7px 10px 0px 10px;
+	padding: 7px 0px 10px 0px;
+	list-style-type: none;
+	text-indent: 0px;
+}
+
+.sidebar-element li {
+	color: #666;
+	margin: 0px;
+	text-indent: 0px;
+	display: inline;
+}
+
+.sidebar-element form {
+	margin: 10px 0px;
+	padding: 0px:
+}
+
+.sidebar-element label {
+	margin: 3px 0px 0px 7px;
+	padding: 2px 0px 0px 0px;
+	display: block;
+	float: left;
+	width: 35px;
+}
+
+.sidebar-element input {
+	color: #556525;
+	font-family: Tahoma, Arial, Geneva, sans-serif;
+	font-size: 8pt;
+	float: left;
+	border: 1px solid #dedfc3;
+	padding: 4px 3px;
+	margin: 0px 0px 0px 1px;
+}
+
+.sidebar-element a {
+	color: #63635C;
+	background-image: url('../images/bullet-sidebar-a.gif');
+	background-position: left top;
+	background-repeat: no-repeat;
+	font-weight: normal;
+	text-decoration: none;
+	display: block;
+	padding: 5px 5px 5px 18px;
+	margin: 0px;
+}
+
+.sidebar-element a:hover {
+	color: #597AB8;
+	background-color: #F3F2F2;
+	background-image: url('../images/bullet-sidebar-ahover.gif');
+	background-position: left top;
+	background-repeat: no-repeat;
+	text-decoration: none;
+	border-bottom: 1px solid #ddcfd2;
+	padding: 5px 5px 4px 18px;
+}
+
+input.sidebar-submitButton {
+	color: #556525;
+	font-family: Tahoma, Arial, Geneva, sans-serif;
+	font-size: 8pt;
+	float: left;
+	border: 1px solid #dedfc3;
+	padding: 3px 5px 2px 5px;
+	margin: 0px 0px 0px 1px;
+}
+
+a.sidebarNormal {
+	display: block !important;
+	float: right;
+	background-image: none !important;
+	border: none !important;
+	padding: 0px 10px 0px 0px !important;
+	margin: 0px !important;
+}
+
+a.sidebarNormal:hover {
+	text-decoration: underline:
+}
+
+/* -------------------------------------------------- */
+.sidebar-element-title {
+	background-image: url('../images/sidebar-element-header-back.gif');
+	background-repeat: no-repeat;
+	background-position: top;
+	height: 31px;
+	overflow: hidden;
+}
+
+.sidebar-element-title img {
+	margin: 0px 5px 10px 0px;
+	padding: 0px 0px 10px 0px;
+	float: left;
+}
+
+.sidebar-element-title h2 {
+	color: #74872E;
+	padding: 5px 0px 0px 17px;
+	margin: 0px;
+	font-family: Georgia, 'Trebuchet MS', Tahoma, Arial, Geneva, sans-serif;
+	font-weight: normal;
+	font-size: 12pt:
+}
+
+.sidebar-element-content {
+	color: #444444;
+	padding: 6px 15px 15px 17px;
+}
+
+.sidebar-element-content ul {
+	margin: 0px;
+	padding: 0px;
+	list-style-type: none;
+	text-indent: 0px;
+}
+
+.sidebar-element-content li {
+	color: #666;
+	margin: 5px 0px 10px 0px;
+	text-indent: 0px;
+}
+
+.sidebar-element-content input {
+	font-family: 'Trebuchet MS', Tahoma, Arial, Geneva, sans-serif;
+	font-size: 8pt;
+}
+
+.sidebar-element-content a {
+	color: #74872E;
+	font-weight: normal;
+	text-decoration: none;
+}
+
+.sidebar-element-content a:hover {
+	color: #6f4916;
+	font-weight: bold;
+	text-decoration: none:
+}
+
+.sidebar-element-content form {}
+
+.sidebar-element-content input {
+	font-family: Tahoma, Arial, Geneva, sans-serif;
+	font-size: 8pt;
+	display: inline;
+}
+
+.sidebar-element-content select {
+	font-family: Tahoma, Arial, Geneva, sans-serif;
+	font-size: 8pt;
+}
+
+.sidebar-element-content label {
+	font-family: 'Trebuchet MS',Tahoma, Arial, Geneva, sans-serif;
+	font-size: 8pt;
+	padding-left: 9px;
+	width: 90px;
+}
+
+.sticky {
+	color: #ffffff;
+	background-color: #6f4916;
+	font-size: 6pt;
+	font-weight: bold;
+	width: 12px;
+	height: 3px;
+	padding: 0px 4px;
+	margin: 0px;
+	overflow: hidden;
+}
+
+.button-more {
+}
