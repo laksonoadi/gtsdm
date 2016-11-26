@@ -1,0 +1,194 @@
+<!-- patTemplate:tmpl name="content" -->
+
+<h1>Manajemen Tabel dan Grafik</h1>
+<br/>
+
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+   {ISI_PESAN}
+</div>
+<!-- /patTemplate:tmpl -->
+
+<form class="xhr_form std_form" name="frmUser" id="frmInput" method="post" action="{URL_ACTION}">
+ <table class="table-edit" width="100%">
+      <tr class="subhead">
+         <th colspan="2">{JUDUL} Tabel/Grafik</th>
+      </tr>
+   <tr>
+     <th>Nama *</th>
+     <td><input name="nama" size="50" value="{TABLE_NAMA}"></td>
+   </tr>
+   <tr>
+     <th>Kode PHP *</th>
+   	 <script language="Javascript" type="text/javascript">
+   		// initialisation
+		
+   		editAreaLoader.init({
+   			id: "kode"	// id of the textarea to transform		
+   			,start_highlight: true	// if start with highlight
+   			,allow_resize: "both"
+            ,replace_tab_by_spaces:3
+   			,allow_toggle: false
+   			,language: "en"
+   			,syntax: "php"	
+   		});
+   	 </script>
+     <td>
+          <textarea id="kode" name="kode" cols="80%" rows="15">{TABLE_PHP_CODE}</textarea>
+      </td>
+   </tr>
+   <tr>
+     <th>Jenis </th>
+     <td><select name="graphic"><option value="0">Tabel<option value="1" {SELECT}>Grafik</td>
+   </tr>
+   <tr>
+     <th class="links">Parameter</th>
+   	<script language="Javascript" type="text/javascript">
+   		// initialisation
+		
+   		editAreaLoader.init({
+   			id: "param"	// id of the textarea to transform		
+   			,start_highlight: true	// if start with highlight
+   			,allow_resize: "both"
+            ,replace_tab_by_spaces:3
+   			,allow_toggle: false
+   			,language: "en"
+   			,syntax: "php"	
+   		});
+		
+   	</script>
+     <td><textarea id="param" name="param" cols="80%" rows="20">{TABLE_PARAM}</textarea></td>
+   </tr>
+	<tr class="buttons">
+     <td>&nbsp;</td>
+     <td>
+       <input name="tab_id" type="hidden" value="{TABLE_ID}">
+       <input name="temp" id="temp"type="hidden">
+       <input name="tempParam" id="tempParam" type="hidden">
+       <input name="coba" id="mySubmit" type="button" value="Jalankan" onclick="pindah();formObj.submit()" 
+            class="buttonSubmit" />
+       <input name="simpan" onMouseDown="pindah();" type="submit" value="Simpan" class="buttonSubmit" />
+		 <input name="batal" type="submit" value="Batal" class="buttonSubmit" />
+     </td>
+   </tr>
+ </table>
+</form> 
+<br>
+<div id="formResponse"></div>
+<br>
+
+<div class="dtree" id="dtrees">
+<script type='text/javascript'>
+
+function pindah() {
+	var temp = editAreaLoader.getValue("kode");
+	var tempParam = editAreaLoader.getValue("param");
+	document.getElementById("temp").value = temp;
+	document.getElementById("tempParam").value = tempParam;
+}
+
+var formObj = new DHTMLSuite.form({ formRef:'frmUser',action:'{ACTION}',responseEl:'formResponse'});
+
+function clickTable(nilai) {
+	var que = editAreaLoader.getValue("kode");
+	var queryy;
+	i = nilai.indexOf(':');
+   db = nilai.substring(0,i-1);
+   qu = nilai.substring(i+2,nilai.length);
+   i = qu.indexOf(':');
+   quer =  qu.substring(0,i-1);
+	queryy = que+'//[[query'+nilai+']]//\n'+
+      '$query'+db+quer+' = $rep->GetQueryById('+quer+');\n'+
+      '$array = $rep->RunQuery($query'+db+quer+'["query_sql"], array());\n';
+	editAreaLoader.setValue("kode", queryy);
+}
+
+function clickJenis(nilai) {
+	var que = editAreaLoader.getValue("kode");
+	var graphic;
+	var query;
+	
+	if (nilai=='Bentuk Tabel') {
+      query = que+'$data[\'tabel\'] = $rep->HeaderTable($array);\n'+
+         '//$align = array(\'left\', \'left\', \'right\');\n'+
+         '//$width = array(\'\', \'10%\', \'\');\n'+
+         '//$format = array(\'\', \'\', \'uang\');\n'+
+         '//$separator = array(\'\', \'ya\', \'\');\n'+
+         '//$rowspan = array(\'\', \'ya\', \'\');\n'+
+         '$data[\'tabel\'] .= $rep->DataTable($array, $align, $width, $format, $separator, $rowspan);\n'+
+         '$data[\'tabel\'] .= $rep->FooterTable($array);\n';
+      graphic = 0;
+   } else if (nilai=='Bentuk Grafik Garis') {
+   	query = que+'\n$ydata = array(11,3,8,10,5,1,9,13,5,7);\n\n'+
+         '// Create the graph. These two calls are always required\n'+
+         '$graph = new Graph(300,200,\'auto\');\n'+
+         '$graph->SetScale(\'textlin\');\n\n'+
+         '// Setup margin and titles\n'+
+         '$graph->img->SetMargin(40,20,20,40);\n'+
+         '$graph->title->Set(\'Example 2\');\n'+
+         '$graph->xaxis->title->Set(\'X-title\');\n'+
+         '$graph->yaxis->title->Set(\'Y-title\');\n\n'+
+         '// Create the linear plot\n'+
+         '$lineplot=new LinePlot($ydata);\n\n'+
+         '// Add the plot to the graph\n'+
+         '$graph->Add($lineplot);\n\n'+
+         '// Display the graph\n'+
+         '$graph->Stroke();\n';
+      graphic = 1;
+   } else if (nilai=='Bentuk Grafik Batang') {
+   	query = que+'\n$datay=array(12,8,19,3,10,5);\n\n'+
+         '// Create the graph. These two calls are always required\n'+
+         '$graph = new Graph(300,200,\'auto\');\n'+
+         '$graph->SetScale(\'textlin\');\n\n'+
+         '// Add a drop shadow\n'+
+         '$graph->SetShadow();\n\n'+
+         '// Adjust the margin a bit to make more room for titles\n'+
+         '$graph->img->SetMargin(40,30,20,40);\n\n'+
+         '// Create a bar pot\n'+
+         '$bplot = new BarPlot($datay);\n\n'+
+         '// Adjust fill color\n'+
+         '$bplot->SetFillColor(\'orange\');\n'+
+         '$graph->Add($bplot);\n\n'+
+         '// Setup the titles\n'+
+         '$graph->title->Set(\'A simple bar graph\');\n'+
+         '$graph->xaxis->title->Set(\'X-title\');\n'+
+         '$graph->yaxis->title->Set(\'Y-title\');\n'+
+         '$graph->title->SetFont(FF_FONT1,FS_BOLD);\n'+
+         '$graph->yaxis->title->SetFont(FF_FONT1,FS_BOLD);\n'+
+         '$graph->xaxis->title->SetFont(FF_FONT1,FS_BOLD);\n\n'+
+         '// Display the graph\n'+
+         '$graph->Stroke();';
+      graphic = 1;
+   } else {   
+   	query = que+'\n$data = array(40,60,21,33);\n\n'+
+         '$graph = new PieGraph(330,200,\'auto\');\n'+
+         '$graph->SetShadow();\n\n'+
+         '$graph->title->Set(\'A simple 3D Pie plot\');\n'+
+         '$graph->title->SetFont(FF_FONT1,FS_BOLD);\n\n'+
+         '$p1 = new PiePlot3D($data);\n'+
+         '$p1->ExplodeSlice(1);\n'+
+         '$p1->SetCenter(0.45);\n'+
+         '$graph->Add($p1);\n'+
+         '$graph->Stroke();\n';
+      graphic = 1;
+   }
+	editAreaLoader.setValue("kode", query);
+	document.getElementById("graphic").selected = graphic;
+}
+
+d = new dTree('d');
+d.add(0,-1,'Daftar Variabel');
+
+d.add(1,0,'Daftar Jenis');
+d.add(2,1,'<a href="#" onClick="clickJenis(this.innerHTML)">Bentuk Tabel</a>');
+d.add(3,1,'<a href="#" onClick="clickJenis(this.innerHTML)">Bentuk Grafik Garis</a>');
+d.add(4,1,'<a href="#" onClick="clickJenis(this.innerHTML)">Bentuk Grafik Batang</a>');
+d.add(5,1,'<a href="#" onClick="clickJenis(this.innerHTML)">Bentuk Grafik Pie</a>');
+
+d.add(6,0,'Daftar Query');
+{TABEL}
+document.getElementById('dtrees').innerHTML = d;
+
+</script>
+</div>
+<!-- /patTemplate:tmpl -->

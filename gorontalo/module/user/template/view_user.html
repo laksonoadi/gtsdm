@@ -1,0 +1,91 @@
+<!-- patTemplate:tmpl name="content" -->
+<div class="mainContent-fp-element-full">
+	<div class="mainContent-fp-element-full-head"><h2>MANAJEMEN PENGGUNA</h2></div>
+	<div class="mainContent-fp-element-full-body"> 
+<form method="POST" action="{URL_SEARCH}" class="dataquest xhr_simple_form dest_subcontent-element" id="filterbox">
+   <table class="table-details"  width="100%">
+      <tr>
+         <th colspan="2"><h2><strong>Pencarian</strong></h2></th>
+      </tr>
+      <tr>              
+         <th width="30%"><input type="checkbox" {USER_CHECKED} value="user" name="check[user]">&nbsp; Nama Pengguna</th>
+         <td width="25"><input type="text" name="username" value="{USERNAME}" size="30" /></td>
+      </tr>
+      <tr>         
+         <th><input type="checkbox" {REAL_CHECKED} value="real" name="check[real]">&nbsp; Nama Asli</th>
+         <td><input type="text" name="realname" value="{REALNAME}" size="30" /></td>
+         
+                
+      </tr>
+      <tr>
+         <th>&nbsp;</th>
+         <td>
+            <input type="submit" name="btncari" value=" Tampilkan &raquo;" class="buttonSubmit"/>
+         </td>
+      </tr>
+   </table>
+</form>
+
+<br />
+   
+   <!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+   <div class="{CLASS_PESAN}">
+      {ISI_PESAN}
+   </div>
+   <!-- /patTemplate:tmpl -->
+
+   <table class="table-details"  width="100%">
+      <tr>
+         <th> 	      
+            <!-- patTemplate:gtfwrendermodule module="paging" submodule="paging" action="view" name="paging_top"  / -->
+         </th>
+         <td>
+            <a class="buttonSubmit" href="{USER_URL_ADD}" title="Tambah Data Pengguna" tabindex="2"><img src="images/button-add.gif" alt="" border="0"> Tambah</a>
+         </td>
+      </tr>
+   </table>
+      
+   <table class="table-common" width="96%">
+      <tr>
+         <th width="5">No</th>
+         <th width="93">Aksi</th>
+         <th>Nama Pengguna</th>
+         <th>Nama Asli</th>
+         <th>Group</th>
+         <th>Unit Kerja</th>
+         <th>Status</th>
+      </tr>
+      <!-- patTemplate:tmpl name="data_user" type="condition" conditionvar="USER_EMPTY" -->
+         <!-- patTemplate:sub condition="YES" -->
+         <tr><td colspan="7" align="center"><em>-- Data tidak ditemukan --</em></td></tr>
+         <!-- /patTemplate:sub -->
+         <!-- patTemplate:sub condition="NO" -->
+            <!-- patTemplate:tmpl name="data_user_item" -->
+            <tr class="{USER_CLASS_NAME}">
+               <td align="center">{USER_NUMBER}</td>
+               <td class="links" align="center">
+                  <a class="xhr dest_subcontent-element" href="{USER_URL_EDIT}" title="Ubah"><img src="images/button-edit.gif" alt="Ubah"/></a>
+                  <a class="xhr dest_subcontent-element" href="{USER_URL_DELETE}" title="Hapus"><img src="images/button-delete.gif" alt="Hapus" /></a>                                    
+                  <a class="xhr dest_subcontent-element" href="{USER_URL_UPDATEPASSWORD}" title="Ubah Password" tabindex="2" style="display:{USER_DISPLAY_STATUS}"><img src="images/button-reset_password.gif" alt="Ubah Password"></a>                                   	
+               </td>
+               <td>{USER_USER_NAME}</td>
+               <td>{USER_REAL_NAME}</td>
+               <td>{USER_GROUP_NAME}</td>
+               <td>{USER_UNIT_NAME}</td>
+               <td>{USER_STATUS}</td>
+            </tr>
+            <!-- /patTemplate:tmpl -->
+         <!-- /patTemplate:sub -->
+      <!-- /patTemplate:tmpl -->
+   </table>
+   <br /> 
+   
+   <div class="petunjuk-area">
+      <h4>Petunjuk:</h4>
+      <ul>
+         <li>Pengguna dapat dicari dengan menggunakan nama pengguna ataupun nama asli. </li>
+         <li>Nama pengguna adalah nama yang dipakai untuk login, sedangkan nama asli adalah nama asli pengguna tersebut. </li>
+      </ul>
+   </div>
+</div></div>
+<!-- /patTemplate:tmpl -->

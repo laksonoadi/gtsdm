@@ -1,0 +1,42 @@
+<!-- patTemplate:tmpl name="content" -->
+<h1>Manajemen Tabel/Grafik</h1>
+<br/>
+ <table class="table-details">
+   <tr class="subhead">
+      <th colspan="3">Data Tabel/Grafik</th>
+   </tr>
+   <tr>
+     <th width="20%">Nama</th>
+     <td>{TABLE_NAMA}</td>
+   </tr>
+   <tr>
+     <th>Kode PHP</th>
+   	<script language="Javascript" type="text/javascript">
+   		// initialisation
+		
+   		editAreaLoader.init({
+   			id: "query"	// id of the textarea to transform		
+   			,start_highlight: true	// if start with highlight
+   			,allow_resize: "both"
+   			,is_editable: false
+            ,toolbar:"fullscreen"
+   			,allow_toggle: false
+   			,language: "en"
+   			,syntax: "sql"	
+   		});	
+		
+   	</script>
+     <td><textarea id="query"  cols="100%" rows="20" wrap="on">{TABLE_PHP_CODE}</textarea></td>
+   </tr>
+   <tr>
+     <th width="20%">Jenis</th>
+     <td>{TABLE_JENIS}</td>
+   </tr>
+</table>
+<br>
+<div class="pageBar">
+   <div class="toolbar" >
+      <a class="xhr dest_subcontent-element" href="{BALIK}" title="Kembali"> Kembali </a> 	
+   </div>
+</div>
+<!-- /patTemplate:tmpl -->

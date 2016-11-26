@@ -1,0 +1,58 @@
+<!-- patTemplate:tmpl name="content" -->
+<h1>Manajemen Layout Tabel</h1>
+<br/>
+<!-- patTemplate:tmpl name="err" visibility="hidden" -->
+<table class="table-form"><tr><th><b>Nama harus diisi.</b></th></tr></table>
+<!-- /patTemplate:tmpl -->
+
+<form class="xhr_form std_form" name="frmUser" enctype="multipart/form-data" method="post" 
+   action="<!-- patTemplate:gtfwgeturl module="report" sub="{SUB_MODULE}" action="do" type="html" / -->">
+ <table class="table-edit" width="100%">
+      <tr class="subhead">
+         <th colspan="2">{SUB} Layout Tabel</th>
+      </tr>
+   <tr>
+     <th>Nama Menu *</th>
+     <td><input name="nama" value="{DUMMY_MENU}" size="60"></td>
+   </tr>
+   <tr>
+     <th>Judul Laporan *</th>
+     <td><input name="judul" value="{LAYOUT_JUDUL}" size="60"></td>
+   </tr>
+   <tr>
+     <th>Sub Menu</th>
+     <td><select name="submenu">
+      <!-- patTemplate:tmpl name="list_menu" -->
+      <option value="{DMMENUID}" {SELECT}>{DMMENUNAME}
+      <!-- /patTemplate:tmpl -->
+     </select></td>
+   </tr>
+   <tr>
+     <th>Icon Menu</th>
+     <td><input name="icon" type="file"> <a href="{PATH}{DUMMY_ICON_PATH}">{DUMMY_ICON_PATH}</a></td>
+   </tr>
+   <tr>
+     <th>Urutan Laporan</th>
+     <td><input name="urutan" value="{URUTAN}" size="2"></td>
+   </tr>
+   <tr>
+     <th>Layout</th>
+     <td><select name="layout">
+      <!-- patTemplate:tmpl name="list_layout" -->
+      <option value="{TABLE_ID}" {SELECT}>{TABLE_NAMA}
+      <!-- /patTemplate:tmpl -->
+     </select></td>
+   </tr>
+	<tr class="buttons">
+     <td>&nbsp;</td>
+     <td>
+       <input name="lay_id" type="hidden" value="{LAYOUT_ID}">
+       <input name="icon_old" type="hidden" value="{DUMMY_ICON_PATH}">
+       <input name="simpan" type="submit" value="Simpan" class="buttonSubmit" />
+		 <input name="batal" type="submit" value="Batal" class="buttonSubmit" />
+     </td>
+   </tr>
+ </table>
+</form>
+
+<!-- /patTemplate:tmpl -->

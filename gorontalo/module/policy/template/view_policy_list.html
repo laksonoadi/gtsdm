@@ -1,0 +1,52 @@
+<!-- patTemplate:tmpl name="content" -->
+
+<div class="col-md-12">
+	<h2 class="section-title">Peraturan dan Kebijakan</h2>
+	<div class="line-double"></div>
+	<div class="panel panel-success-solid">
+		<h4 class="panel-heading">
+			<a class="xhr dest_subcontent-element panel-btn-back" href="{URL_BACK}" title="Kembali"><span class="glyphicon glyphicon-arrow-left"></span></a>
+			{SATKER}
+		</h4>
+		<ol class="list-group">
+			<!-- patTemplate:tmpl name="policylist" -->
+			<li class="list-group-item" style="padding:40px !important">
+
+				<h4 class="list-group-item-heading" style="padding-bottom:2px !important;border-bottom:1px solid #ddd !important">{TITLE}</h4>
+				<span class="pull-right" style="font-size:11px !important" >Dokumen <b><i> <!-- patTemplate:var name="JENIS_POLICY" copyFrom="content.jenis_policy" / --> </i> </b></span>
+				<br/>
+				<br/>
+
+				<p class="col-xs-12">{RINGKAS}</p>
+				<span class="col-xs-12">Lampiran Dokumen :</span>
+				<!-- patTemplate:tmpl name="data_file" type="condition" conditionvar="HISTORY_EMPTY" -->
+				<!-- patTemplate:sub condition="YES" -->
+				<p class="list-group-item-text">-- Tidak ada file --</p>
+				<!-- /patTemplate:sub -->
+				<!-- patTemplate:sub condition="NO" -->
+				<!-- patTemplate:tmpl name="policyfilelist" type="condition" conditionvar="IS_DOWNLOAD" -->
+				<!-- patTemplate:sub condition="0" -->
+					<p>{POPUP}<strong>Lihat Dokumen</strong></a>&nbsp;<small>({TANGGAL_UPLOAD})</small></p>
+				<!-- /patTemplate:sub -->
+				<!-- patTemplate:sub condition="1" -->
+
+				<ul class="">
+					<li>
+						<a  target="_blank" href="{FILE}" class=" highslide" title="Download"><span><strong><i>{NAMA}</i></strong>,</span> <small> 
+						<span class="glyphicon glyphicon-floppy-disk"> </span> </a> </small>
+						
+						<small class="text-muted" style="font-size:11px">(diunggah pada {TANGGAL_UPLOAD})</small>
+
+					</li>
+				</ul>
+				<!-- /patTemplate:sub -->
+				<!-- /patTemplate:tmpl -->
+				<!-- /patTemplate:sub -->
+				<!-- /patTemplate:tmpl -->
+			</li>
+			<!-- /patTemplate:tmpl -->
+		</ol>
+	</div>
+</div>
+
+<!-- /patTemplate:tmpl -->
