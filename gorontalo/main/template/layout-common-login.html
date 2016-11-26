@@ -1,0 +1,51 @@
+<!-- patTemplate:tmpl name="body" -->
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="navbar-header">
+        <a class="navbar-brand" rel="home" href="<!-- patTemplate:gtfwgetconfig config="application" name="baseaddress" / -->"></a>
+		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+		</button>
+	</div>
+	<div class="collapse navbar-collapse">
+        <!-- patTemplate:gtfwrendermodule name="menu" module="menu" submodule="menu" action="view" type="html" params="" / -->
+	</div>
+</div>
+
+<div class="page-wrapper">
+    <div id="subcontent-element" class="subcontent-element container-fluid content">
+        <!-- patTemplate:link src="content" / -->
+    </div>
+
+    <div class="petunjuk-area" id="display-form" style="display:none">
+        <h4>Petunjuk :</h4>
+        <ul>
+            <li>Tanda * menunjukkan bahwa field tersebut harus diisi. </li>
+        </ul>
+    </div>
+    <div class="petunjuk-area" id="display-list" style="display:none">
+        <h4>Petunjuk:</h4>
+        <ul>
+            <li>Gunakan tombol <img src="images/button-detail.gif" alt="Detail"/> untuk melihat detail. </li>
+            <li>Gunakan tombol <img src="images/button-edit.gif" alt="Ubah"/> untuk mengubah data. </li>
+            <li>Gunakan tombol <img src="images/button-delete.gif" alt="Delete"/> untuk menghapus data. </li>
+            <li>Gunakan tombol <img src="images/detil.gif" alt="Download SK"/> untuk mendownload Attachment (jika ada). </li>
+        </ul>
+    </div>
+    <script>
+        if ((display_form!='')||(display_list!='')){
+            document.getElementById('display-form').style.display=display_form;
+            document.getElementById('display-list').style.display=display_list;
+        }
+    </script>
+    <div id="loading-box-active" class="busy-indicator" style="visibility:hidden">
+        <div class="animation-icon" >
+        </div>
+    </div>
+
+    <div class="footer"><!-- patTemplate:gtfwgetconfig config="application" name="application_name" / --> - <!-- patTemplate:gtfwgetconfig config="application" name="company_name" / --> &copy; <!-- patTemplate:gtfwgetconfig config="application" name="tahun" / --></div>
+</div>
+<!-- /patTemplate:tmpl -->
