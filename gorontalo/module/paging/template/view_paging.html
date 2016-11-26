@@ -1,0 +1,49 @@
+<!-- patTemplate:tmpl name="content" -->
+   <!-- patTemplate:tmpl name="page_nav" visibility="hidden" -->
+   
+   <div class="pageNav">
+      <!-- patTemplate:tmpl name="page_nav_first" type="condition" conditionvar="IS_AVAIL" -->
+         <!-- patTemplate:sub condition="YES" -->
+            <a href="{FIRST_NAV_URL}" class="{NAV_CLASS} xhr dest_subcontent-element">&lt;&lt;</a>
+         <!-- /patTemplate:sub -->
+         <!-- patTemplate:sub condition="NO" -->
+            &lt;&lt;
+         <!-- /patTemplate:sub -->
+      <!-- /patTemplate:tmpl -->
+
+
+      <!-- patTemplate:tmpl name="page_nav_prev" type="condition" conditionvar="IS_AVAIL" -->
+         <!-- patTemplate:sub condition="YES" -->
+            <a href="{PREV_NAV_URL}" class="{NAV_CLASS} xhr dest_subcontent-element">&lt;</a>
+         <!-- /patTemplate:sub -->
+         <!-- patTemplate:sub condition="NO" -->
+              &lt;
+         <!-- /patTemplate:sub -->
+      <!-- /patTemplate:tmpl -->
+  
+         <!-- patTemplate:tmpl name="page_nav_info" -->
+                  <b>{START_REC_INFO}</b>-<b>{END_REC_INFO}</b> dari <b>{ALL_REC_INFO}</b>
+         <!-- /patTemplate:tmpl -->
+      
+      
+      <!-- patTemplate:tmpl name="page_nav_next" type="condition" conditionvar="IS_AVAIL" -->
+         <!-- patTemplate:sub condition="YES" -->
+            <a href="{NEXT_NAV_URL}" class="{NAV_CLASS} xhr dest_subcontent-element">&gt;</a>
+         <!-- /patTemplate:sub -->
+         <!-- patTemplate:sub condition="NO" -->
+            &gt;
+         <!-- /patTemplate:sub -->
+      <!-- /patTemplate:tmpl -->
+
+      <!-- patTemplate:tmpl name="page_nav_last" type="condition" conditionvar="IS_AVAIL" -->
+         <!-- patTemplate:sub condition="YES" -->
+            <a href="{LAST_NAV_URL}" class="{NAV_CLASS} xhr dest_subcontent-element">&gt;&gt;</a>
+         <!-- /patTemplate:sub -->
+         <!-- patTemplate:sub condition="NO" -->
+            &gt;&gt;
+         <!-- /patTemplate:sub -->
+      <!-- /patTemplate:tmpl -->
+   </div>
+
+   <!-- /patTemplate:tmpl -->
+<!-- /patTemplate:tmpl -->
