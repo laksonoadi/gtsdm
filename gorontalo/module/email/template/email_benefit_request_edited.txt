@@ -1,0 +1,25 @@
+Edited Benefit Request in SSE Human Resource Portal System
+
+Dear Supervisor,
+
+This Employee 
+Name            : {NAMA_PEGAWAI}
+Employee Number : {NIP_PEGAWAI}
+
+Has been changed His/Her data Benefit Request. 
+
+Detailed Informations :
+Number         : {BENEFIT_NUMBER}
+Claim Type     : {BENEFIT_TIPE}
+Claim Date     : {BENEFIT_TANGGAL_KLAIM}
+Medical Date   : {BENEFIT_TANGGAL}
+Place          : {BENEFIT_TEMPAT}
+Medical Reason : {BENEFIT_ALASAN}
+Claim Amount   : Rp. {BENEFIT_TOTAL_KLAIM}
+
+For detailes informations and if you want to approved or rejected this request,
+please log into SSE Human Resource Portal System.
+
+Regards,
+
+HR Mail System

@@ -1,0 +1,57 @@
+<!-- patTemplate:tmpl name="content" -->
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+   {ISI_PESAN}
+</div>
+<br />
+<!-- /patTemplate:tmpl -->
+<div class="mainContent-fp-element-full">
+	<div class="mainContent-fp-element-full-head"><h2>MANAJEMEN AGENDA</h2></div>
+	<div class="mainContent-fp-element-full-body">
+   <h2>&nbsp;&nbsp;Daftar Agenda</h2>
+   <!-- patTemplate:tmpl name="toolbar" -->
+   <table class="table-form" width="100%">
+      <tr>
+         <td colspan="2" class="table-common-links">
+            <a class="xhr dest_subcontent-element " href="{URL_ADD}" title="Tambah Agenda Baru"><img src="images/button-add.gif" alt="Tambah Agenda Baru" />Tambah </a>
+         </td>
+      </tr>
+   </table>
+   <!-- /patTemplate:tmpl -->
+   
+   <!-- patTemplate:gtfwrendermodule module="paging" submodule="Paging" action="view" itemviewed="{ITEM_VIEWED}" totitems="{TOTAL_ITEMS}" pagingurl="{PAGING_URL}" page="{PAGE}" cari="{CARI}" / -->
+   
+   <table class="table-common" width="100%">
+      <tr>
+         <th width="5%">No</th>
+		 <th width="15%">Aksi</th>
+         <th width="25%">Agenda</th>
+         <th width="15%">Penulis</th>
+         <th width="15%">Tanggal</th>
+         <th width="10%">Status</th>
+      </tr>
+      <!-- patTemplate:tmpl name="empty_agenda" visibility="hidden" -->
+      <tr>
+         <td colspan="6" align="center">--Data tidak ditemukan--</td>
+      </tr>
+      <!-- /patTemplate:tmpl -->
+      
+      <!-- patTemplate:tmpl name="list_agenda" visibility="hidden" -->
+      <tr>
+         <td>{NO}</td>
+		 <td class="table-common-links">
+            <a class="xhr dest_subcontent-element " href="{URL_EDIT}"><img src="images/button-edit.gif" alt="" /></a>
+            <a class="xhr dest_subcontent-element " href="{URL_DELETE}"><img src="images/button-delete.gif" alt="" /></a>
+            <a class="xhr dest_subcontent-element " href="{URL_DETAIL}"><img src="images/button-detail.gif" alt="" /></a>
+         </td>
+         <td>{TITLE}</td>
+         <td>{SENDER}</td>
+         <td>{START_DATE}</td>
+         <td>{STATUS}</td>
+      </tr>
+      <!-- /patTemplate:tmpl -->
+   </table>
+   
+   <!-- patTemplate:gtfwrendermodule module="paging" submodule="Paging" action="view" itemviewed="{ITEM_VIEWED}" totitems="{TOTAL_ITEMS}" pagingurl="{PAGING_URL}" page="{PAGE}" cari="{CARI}" / -->
+</div></div>
+<!-- /patTemplate:tmpl -->

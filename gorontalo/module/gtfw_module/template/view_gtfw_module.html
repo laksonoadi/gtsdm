@@ -1,0 +1,42 @@
+<!-- patTemplate:tmpl name="content" -->
+<h1>{LABEL_TITLE}</h1>
+<br />
+
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+   {ISI_PESAN}
+</div>
+<br />
+<!-- /patTemplate:tmpl -->
+<div><h1>{TITLE}</h1></div>
+<h2>LIST MODULE</h2>
+<table class="table-common" width="100%">
+   <tr>
+      <th width="15px">No</th>
+	  <th width="30px">Aksi</th>
+      <th>Module</th>
+	  <th>Jumlah Submodule</th>
+	  <th>Terdaftar</th>
+	  <th>Belum Terdaftar</th>
+   </tr>
+   <!-- patTemplate:tmpl name="data" type="condition" conditionvar="DATA_EMPTY" -->
+      <!-- patTemplate:sub condition="YES" -->
+        <tr><td colspan="3" align="center"><em>-- Data not found --</em></td></tr>
+      <!-- /patTemplate:sub -->
+      <!-- patTemplate:sub condition="NO" -->
+         <!-- patTemplate:tmpl name="data_item" -->
+         <tr class="{CLASS_NAME}">
+            <td align="center" width="15px">{NUMBER}</td>
+            <td class="links">
+               <a class="xhr dest_subcontent-element" href="{URL_DETAIL}" title="Detail Submodul"><img src="images/button-detail.gif" alt="Detail"/></a>
+            </td>
+            <td align="left">{MODULE}</td>
+			<td align="center">{JUMLAH_SUBMODULE}</td>
+			<td align="center">{TERDAFTAR}</td>
+			<td align="center">{BELUM_TERDAFTAR}</td>
+         </tr>
+         <!-- /patTemplate:tmpl -->
+      <!-- /patTemplate:sub -->
+   <!-- /patTemplate:tmpl -->
+</table>
+<!-- /patTemplate:tmpl -->

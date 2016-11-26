@@ -1,0 +1,67 @@
+<!-- patTemplate:tmpl name="content" -->
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+   {ISI_PESAN}
+</div>
+<br />
+<!-- /patTemplate:tmpl -->
+<div class="mainContent-fp-element-full">
+	<div class="mainContent-fp-element-full-head"><h2>MANAJEMEN BERITA</h2></div>
+	<div class="mainContent-fp-element-full-body">
+   <h2>&nbsp;&nbsp;&nbsp;&nbsp;Tambah/Ubah Berita</h2>
+   
+   <!-- patTemplate:tmpl name="message" type="simpleCondition" requiredvars="MESSAGE" -->
+      <h4>{MESSAGE}</h4>  
+   <!-- /patTemplate:tmpl -->
+   
+   <form name="form_berita" id="form_berita" action="<!-- patTemplate:gtfwgeturl module="manajemen_berita" sub="{SUB}" action="view" type="html" / -->" method="post" autocomplete=off enctype="multipart/form-data">
+      <table class="table-details" width="100%">
+         <tr>
+            <th width="20%"><u>Judul</u></th>
+            <td><input type="text" name="title" value="{TITLE}" size="50" /></td>
+         </tr>
+         <tr>
+            <th><u>Artikel</u></th>
+            <td><textarea cols="65" rows="25" name="article" id="isiBerita">{ARTICLE}</textarea></td>
+         </tr>
+         <tr>
+            <th>URL</th>
+            <td><input type="text" name="url" value="{URL}" size="40" /></td>
+         </tr>
+         <tr>
+            <th>Photo</th>
+            <td>
+               <input type="file" name="foto" />
+               <!-- patTemplate:tmpl name="foto" visibility="hidden" -->
+               <br />Photo sebelumnya:{FOTO}
+               <!-- /patTemplate:tmpl -->
+               <br />Ukuran file maksimum adalah {MAX_WIDTH}x{MAX_HEIGHT} piksel dengan format JPG atau PNG
+            </td>
+         </tr>
+         <tr>
+            <th>Judul Foto</th>
+            <td><input type="text" name="caption" value="{CAPTION}" size="40" /></td>
+         </tr>
+         <tr>
+            <th><u>Tanggal Berita</u></th>
+            <td>
+               <!-- patTemplate:gtfwrendermodule module="tanggal" submodule="Tanggal" action="view" name="tanggal_berita" / -->
+               <!--<input type="text" class="input" readonly name="tanggal_berita" value="{DATE}" readonly />
+               <a href="javascript:void(0)" onclick="if(self.gfPop)gfPop.fPopCalendar(document.form_berita.tanggal_berita,null,null);">...</a>-->
+            </td>
+         </tr>
+         <tr>
+            <th>Status</th>
+            <td><input type="checkbox" name="status" value="1" size="40" {CHECKED} /> Aktif</td>
+         </tr>
+         <tr>
+            <td colspan="2">
+               <input type="hidden" name="id" value="{ID}" />
+               <input type="submit" name="action" value="Simpan" />
+               <input type="button" name="action" value="Batal" onclick="location.href='<!-- patTemplate:gtfwgeturl module="manajemen_berita" sub="AdminListBerita" action="view" type="html" / -->';" />
+            </td>
+         </tr>
+      </table>
+   </form>
+</div></div>
+<!-- /patTemplate:tmpl -->

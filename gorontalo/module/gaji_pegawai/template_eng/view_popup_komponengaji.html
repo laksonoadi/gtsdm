@@ -1,0 +1,63 @@
+<!-- patTemplate:tmpl name="content" -->
+<script type='text/javascript'>
+function addKomponenGajiItem(obj,id,kode,nama) {
+
+   var random=Math.floor(Math.random()*666);
+   var tr = document.createElement('tr');
+   var td_kode = document.createElement('td');
+   var td_nama = document.createElement('td');
+   var td_delete = document.createElement('td');
+   var tbodi = document.getElementById("table-komponengaji");
+
+   td_kode.innerHTML = '<input type="hidden" name="data[tambah][id][]" value="' + id + '" /> <input type="hidden" name="data[tambah][kode][]" value="' + kode + '" /> ' + kode;
+   td_nama.innerHTML = '<input type="hidden" name="data[tambah][nama][]" value="' + nama + '" /> ' + nama;
+   td_delete.innerHTML = '<a href="javascript:void(null)" title="Hapus" onclick="hapus_komponen_gaji(this)"><img src="images/button-delete.gif" alt="Hapus" /></a>';
+
+   tr.appendChild(td_kode);
+   tr.appendChild(td_nama);
+   tr.appendChild(td_delete);
+   tbodi.appendChild(tr);
+   /*obj.style.display='none';*/
+  // YAHOO.example.container.myPanel1.hide();
+}
+</script>
+<form method="POST" action="{URL_SEARCH}" class="dataquest xhr_simple_form dest_popup-subcontent" id="filterboxpopup">
+  <table>
+    <tr>
+      <th width="30%">Salary Component</label></th>
+      <td width="40%"><!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="nama"  / --></td>
+      <td>
+        <input type="submit" name="btncari" value=" Search &raquo;" class="buttonSubmit"/>
+      </td>
+    </tr>
+   </table>
+</form>
+<br />
+    <div class="pageBar">
+     <!-- patTemplate:gtfwrendermodule module="paging2" submodule="paging" action="view" name="paging_top"  / -->
+     </div>
+		 <div style="{FR}">
+            <table class="table-common" width="100%">
+      <tr>
+         <th width="5">No</th>
+         <th>Salary's Component</th>
+         <th>Details</th>
+         <th width="31">Select</th>
+      </tr>
+      <!-- patTemplate:tmpl name="data_komponen_gaji" type="condition" conditionvar="DATA_EMPTY" -->
+         <!-- patTemplate:sub condition="YES" -->
+         <tr><td colspan="4" align="center"><em>-- Data tidak ditemukan --</em></td></tr>
+         <!-- /patTemplate:sub -->
+         <!-- patTemplate:sub condition="NO" -->
+            <!-- patTemplate:tmpl name="data_komponen_gaji_item" -->
+            <tr class="{DATA_CLASS_NAME}">
+               <td align="center">{DATA_NUMBER}</td>
+               <td>{DATA_KODE}</td>
+               <td>{DATA_NAMA}</td>
+               <td class="links" align="center">{DATA_SET_PARENT}</td>
+            </tr>
+            <!-- /patTemplate:tmpl -->
+         <!-- /patTemplate:sub -->
+      <!-- /patTemplate:tmpl -->
+   </table></div>
+<!-- /patTemplate:tmpl -->

@@ -1,0 +1,16 @@
+<!-- patTemplate:tmpl name="content" -->
+	<div class="row">
+		<!-- patTemplate:gtfwrendermodule name="header" module="header" submodule="header" action="view" type="html" params="" / -->
+	</div>
+	<h2 class="section-title"><!-- patTemplate:gtfwgetconfig config="application" name="company_name" / --><br/><small><!-- patTemplate:gtfwgetconfig config="application" name="company_city" / --></small></h2>
+	<div class="line-double"></div>
+	<section class="row section-content">
+		<div class="col-md-8">
+			 <!-- patTemplate:gtfwrendermodule name="new_files" module="policy" submodule="PolicyFileSideList" action="view" type="html" params="num=6" / -->
+		</div>
+		<div class="col-md-4">
+			 <!-- patTemplate:gtfwrendermodule name="side_berita" module="berita" submodule="sideBeritaList" action="view" type="html" params="num=3" / -->
+			 <!-- patTemplate:gtfwrendermodule name="side_agenda" module="agenda" submodule="sideAgendaList" action="view" type="html" params="num=3" / -->
+		</div>
+	</section>
+<!-- /patTemplate:tmpl -->

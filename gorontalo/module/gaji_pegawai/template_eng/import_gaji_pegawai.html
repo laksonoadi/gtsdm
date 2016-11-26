@@ -1,0 +1,58 @@
+<!-- patTemplate:tmpl name="content" -->
+
+   <!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+   <div class="notebox-alert">
+      {ISI_PESAN}
+   </div>
+   <br />
+   <!-- /patTemplate:tmpl -->
+   
+   <br />
+    <h1>EMPLOYEE SALARY</h1>
+    <br />
+   <form method="POST" action="{URL_ACTION}" class="xhr_form std_form" id="frmInput" enctype="multipart/form-data" >
+   <table class="table-edit" width="100%">
+   <tr class="subhead">
+      <td colspan="2"><b>Import Salaries</b>
+      </td>
+   </tr>
+   <tr>
+      <td width="25%">Source</td> 
+      <td>
+         <select name="sumber" onchange="showHideFile()">
+            <option value="sdm">gtSdm</option>
+            <option value="file">Excel file</option>
+         </select>
+      </td>
+   </tr>
+   <tr id='rowFile'>
+      <td>
+         File name 
+      </td> 
+      <td>  <input type="file" name="file_excel"/> 
+      </td>
+   </tr>
+   <tr class="buttons">
+      <th>
+      </th>
+      <td>
+         <input type="submit" name="save" value=" Save " class="buttonSubmit" />
+         <input type="submit" name="cancel" value=" Cancel " class="buttonSubmit" />
+      </td>
+   </tr>
+   </table>
+   </form>
+   
+   <br />
+   <script>
+   window.showHideFile = function ()
+   {
+      var ObjForm = document.getElementById('frmInput');
+      var rowFile = document.getElementById('rowFile');
+      if (!ObjForm || !rowFile) return;
+      if (ObjForm['sumber'].value == 'file') rowFile.style.display = '';
+      else rowFile.style.display = 'none';
+   }
+   window.showHideFile();
+   </script>
+<!-- /patTemplate:tmpl -->
