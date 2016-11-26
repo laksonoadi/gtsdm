@@ -1,0 +1,99 @@
+<!-- patTemplate:tmpl name="content" -->
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+   {ISI_PESAN}
+</div>
+<br />
+<!-- /patTemplate:tmpl -->
+<div class="mainContent-fp-element-full">
+	<div class="mainContent-fp-element-full-head"><h2>Employee Organization</h2></div>
+	<div class="mainContent-fp-element-full-body">
+<form method="POST" name="frmInput" action="{URL_ACTION}" class="xhr_form std_form" id="frmInput" enctype="multipart/form-data">
+   <table class="table-details" width="100%" >
+      <tr class="subhead">
+         <th colspan="2">{LABEL_ACTION} {LABEL_INPUT}</th>
+      </tr>
+      
+	  <tr>
+         <th >Organization Name</th>
+         <td>
+         <input type="text" name="nama" value="{INPUT_NAMA}"  size="50" />*
+		   <input name="pegKode" type="hidden" value="{ID}" />
+		   <input name="dataKode" type="hidden" value="{INPUT_ID}" />
+         </td>
+      </tr>
+      <tr>
+         <th>Position</th>
+         <td>
+           <input type="text" name="jabatan" value="{INPUT_JABATAN}"  size="30" />*
+         </td>
+      </tr>
+      <tr>
+         <th >Start Year </th>
+         <td>
+           <input type="text" name="mulai" value="{INPUT_MULAI}"  size="10" />
+         </td>
+      </tr>
+       <tr>
+         <th >End Year </th>
+         <td>
+          <input type="text" name="selesai" value="{INPUT_SELESAI}"  size="10" />
+          <i>Leave blank if still active</i>
+         </td>
+      </tr>
+	  <tr>
+         <th >Upload </th>
+         <td>
+           <input type="file" name="file" size="40"><br />
+				Current file: <a href="{INPUT_LINK_DOWNLOAD}">{INPUT_UPLOAD}</a>
+        <input name="upload" type="hidden" value="{INPUT_UPLOAD}" />
+         </td>
+      </tr>
+      <tr class="buttons">
+         <th>&nbsp;</th>
+         <td>
+            <input name="btnsimpan" value="{LABEL_ACTION} " class="buttonSubmit" type="submit">
+            <input name="btnbatal" value="{BUTTON}" class="buttonSubmit" type="{TYPE}">
+         </td>
+      </tr>
+   </table>
+</form>
+<br />
+<br />
+
+<div class="pageBar">
+<!-- patTemplate:gtfwrendermodule module="paging" submodule="paging" action="view" name="paging_top"  / -->
+</div>
+<table class="table-common" width="96%">
+   <tr>
+      <th width="5px" >No</th>
+      <th >Organization Name </th>
+      <th >Position </th>
+      <th >Start Year </th>
+      <th >End Year </th>
+      <th width="63px" >Action</th>
+   </tr>
+   <!-- patTemplate:tmpl name="data" type="condition" conditionvar="DATA_EMPTY" -->
+      <!-- patTemplate:sub condition="YES" -->
+   <tr><td colspan="10" align="center"><em>-- Data not found --</em></td></tr>
+      <!-- /patTemplate:sub -->
+      <!-- patTemplate:sub condition="NO" -->
+         <!-- patTemplate:tmpl name="data_item" -->
+   <tr class="{ORG_CLASS_NAME}">
+      <td align="center" width="5%">{ORG_NUMBER}</td>
+      <td align="left" width="20%">{ORG_NAMA}</td>
+	  <td align="left">{ORG_JABATAN}</td>
+	  <td align="center">{ORG_MULAI}</td>
+	  <td align="center">{ORG_SELESAI}</td>
+      <td class="links">
+		 <a href="{ORG_LINK_DOWNLOAD_SK}" title="Decree" target="_blank"><img src="images/detil.gif" alt="Decree"/></a>
+         <a class="xhr dest_subcontent-element" href="{ORG_URL_EDIT}" title="Edit"><img src="images/button-edit.gif" alt="Edit"/></a>
+         <a class="xhr dest_subcontent-element" href="{ORG_URL_DELETE}" title="Delete"><img src="images/button-delete.gif" alt="Delete"/></a>
+      </td>
+   </tr>
+         <!-- /patTemplate:tmpl -->
+      <!-- /patTemplate:sub -->
+   <!-- /patTemplate:tmpl -->
+</table>
+</div></div>
+<!-- /patTemplate:tmpl -->

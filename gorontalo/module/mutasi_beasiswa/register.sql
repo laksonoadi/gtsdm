@@ -1,0 +1,16 @@
+INSERT INTO `gtfw_module`(`ModuleId`,`Module`,`LabelModule`,`SubModule`,`Action`,`Type`,`Description`,`Access`,`Show`,`IconPath`,`MenuId`,`ApplicationId`) VALUES ( NULL,'mutasi_beasiswa','[301] ','MutasiBeasiswa','view','html',NULL,'Exclusive','No',NULL,(SELECT MAX(MenuId) FROM `gtfw_menu`),'301');
+INSERT INTO `gtfw_menu`(`MenuId`,`MenuParentId`,`MenuName`,`MenuDefaultModuleId`,`IsShow`,`IconPath`,`MenuOrder`,`ApplicationId`) VALUES ( NULL,'206','Riwayat Beasiswa',( SELECT MAX(ModuleId) FROM `gtfw_module` ),'Yes','bimbingan.gif','12','301');
+INSERT INTO `gtfw_group_menu`(`MenuId`,`MenuName`,`GroupId`,`ParentMenuId`,`MenuOrder`,`MenuMenuId`) VALUES ( NULL,'Riwayat Beasiswa','54','4225','0',(SELECT MAX(MenuId) FROM `gtfw_menu`));
+INSERT INTO `gtfw_group_module`(`GroupId`,`ModuleId`) VALUES ( '54',( SELECT MAX(ModuleId) FROM `gtfw_module` ));
+INSERT INTO `gtfw_module`(`ModuleId`,`Module`,`LabelModule`,`SubModule`,`Action`,`Type`,`Description`,`Access`,`Show`,`IconPath`,`MenuId`,`ApplicationId`) VALUES ( NULL,'mutasi_beasiswa','[301] ','addMutasiBeasiswa','do','html',NULL,'Exclusive','No',NULL,(SELECT MAX(MenuId) FROM `gtfw_menu`),'301');
+INSERT INTO `gtfw_group_module`(`GroupId`,`ModuleId`) VALUES ( '54',( SELECT MAX(ModuleId) FROM `gtfw_module` ));
+INSERT INTO `gtfw_module`(`ModuleId`,`Module`,`LabelModule`,`SubModule`,`Action`,`Type`,`Description`,`Access`,`Show`,`IconPath`,`MenuId`,`ApplicationId`) VALUES ( NULL,'mutasi_beasiswa','[301] ','addMutasiBeasiswa','do','json',NULL,'Exclusive','No',NULL,(SELECT MAX(MenuId) FROM `gtfw_menu`),'301');
+INSERT INTO `gtfw_group_module`(`GroupId`,`ModuleId`) VALUES ( '54',( SELECT MAX(ModuleId) FROM `gtfw_module` ));
+INSERT INTO `gtfw_module`(`ModuleId`,`Module`,`LabelModule`,`SubModule`,`Action`,`Type`,`Description`,`Access`,`Show`,`IconPath`,`MenuId`,`ApplicationId`) VALUES ( NULL,'mutasi_beasiswa','[301] ','updateMutasiBeasiswa','do','html',NULL,'Exclusive','No',NULL,(SELECT MAX(MenuId) FROM `gtfw_menu`),'301');
+INSERT INTO `gtfw_group_module`(`GroupId`,`ModuleId`) VALUES ( '54',( SELECT MAX(ModuleId) FROM `gtfw_module` ));
+INSERT INTO `gtfw_module`(`ModuleId`,`Module`,`LabelModule`,`SubModule`,`Action`,`Type`,`Description`,`Access`,`Show`,`IconPath`,`MenuId`,`ApplicationId`) VALUES ( NULL,'mutasi_beasiswa','[301] ','updateMutasiBeasiswa','do','json',NULL,'Exclusive','No',NULL,(SELECT MAX(MenuId) FROM `gtfw_menu`),'301');
+INSERT INTO `gtfw_group_module`(`GroupId`,`ModuleId`) VALUES ( '54',( SELECT MAX(ModuleId) FROM `gtfw_module` ));
+INSERT INTO `gtfw_module`(`ModuleId`,`Module`,`LabelModule`,`SubModule`,`Action`,`Type`,`Description`,`Access`,`Show`,`IconPath`,`MenuId`,`ApplicationId`) VALUES ( NULL,'mutasi_beasiswa','[301] ','deleteMutasiBeasiswa','do','html',NULL,'Exclusive','No',NULL,(SELECT MAX(MenuId) FROM `gtfw_menu`),'301');
+INSERT INTO `gtfw_group_module`(`GroupId`,`ModuleId`) VALUES ( '54',( SELECT MAX(ModuleId) FROM `gtfw_module` ));
+INSERT INTO `gtfw_module`(`ModuleId`,`Module`,`LabelModule`,`SubModule`,`Action`,`Type`,`Description`,`Access`,`Show`,`IconPath`,`MenuId`,`ApplicationId`) VALUES ( NULL,'mutasi_beasiswa','[301] ','deleteMutasiBeasiswa','do','json',NULL,'Exclusive','No',NULL,(SELECT MAX(MenuId) FROM `gtfw_menu`),'301');
+INSERT INTO `gtfw_group_module`(`GroupId`,`ModuleId`) VALUES ( '54',( SELECT MAX(ModuleId) FROM `gtfw_module` ));

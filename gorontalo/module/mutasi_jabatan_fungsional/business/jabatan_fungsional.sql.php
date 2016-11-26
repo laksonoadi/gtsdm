@@ -1,0 +1,208 @@
+<?php
+
+
+//===GET===
+$sql['get_count_pegawai'] = "
+SELECT 
+   COUNT(pegId) AS total
+FROM 
+   pub_pegawai
+WHERE
+	pegId IS NOT NULL
+";  
+
+$sql['get_data_pegawai']="
+SELECT 
+	pegId as id,
+	pegNama as name,
+	pegKodeResmi as kode,
+	pegAlamat as alamat,
+	pegNoTelp as telp,
+	pegSatwilId as wil,
+	pegFoto as foto,
+	substring(pegTglMasukInstitusi,1,4) as masuk,
+   IF(pktgolStatus='Aktif',CONCAT(pktgolPktgolrId,' - ',pktgolrNama),(select CONCAT(pktgolrId,' - ',pktgolrNama) from sdm_ref_pangkat_golongan where pktgolrId=(select pktgolPktgolrId from sdm_pangkat_golongan where pktgolPegKode=pegId and pktgolStatus='Aktif'))) as pktgol,
+	IF(satkerpegAktif='Aktif',satkerNama,(select satkerNama from pub_satuan_kerja where satkerId=(select satkerpegSatkerId from sdm_satuan_kerja_pegawai where satkerpegPegId=pegId and satkerpegAktif='Aktif'))) as satker,
+	IF(a.jbtnStatus='Aktif',jabstrukrNama,(select jabstrukrNama from sdm_ref_jabatan_struktural where jabstrukrId=(select jbtnJabstrukrId from sdm_jabatan_struktural where jbtnPegKode=pegId and jbtnStatus='Aktif'))) as jabstruk,
+	IF(b.jbtnStatus='Aktif',jabfungrNama,(select jabfungrNama from pub_ref_jabatan_fungsional where jabfungrId=(select jbtnJabfungrId from sdm_jabatan_fungsional where jbtnPegKode=pegId and jbtnStatus='Aktif'))) as jabfung
+FROM
+	pub_pegawai
+	LEFT JOIN sdm_pegawai_detail ON pegdtPegId = pegId
+	LEFT JOIN sdm_pangkat_golongan ON pktgolPegKode=pegId
+   LEFT JOIN sdm_ref_pangkat_golongan ON pktgolrId=pktgolPktgolrId
+   LEFT JOIN sdm_satuan_kerja_pegawai ON satkerpegPegId=pegId
+   LEFT JOIN pub_satuan_kerja ON satkerId=satkerpegSatkerId
+   LEFT JOIN sdm_jabatan_struktural a ON a.jbtnPegKode=pegId
+   LEFT JOIN sdm_ref_jabatan_struktural ON jabstrukrId=a.jbtnJabstrukrId
+   LEFT JOIN sdm_jabatan_fungsional b ON b.jbtnPegKode=pegId
+   LEFT JOIN pub_ref_jabatan_fungsional ON jabfungrId=b.jbtnJabfungrId
+WHERE
+	pegId IS NOT NULL AND pegdtKategori = 'Academic'
+GROUP BY 
+	 pegId
+ORDER BY
+	 pegKodeResmi
+"; 
+
+
+$sql['get_jabatan_detail']="
+SELECT DISTINCT
+	a.jbtnId as id,
+	a.jbtnPegKode as kode,
+	a.jbtnJabfungrId as ref_jab,
+	a.jbtnPktGolId as gol,
+	a.jbtnKompGajiDetSksId as skskode,
+	 d.kompgajidtNama as sksnama,
+	a.jbtnMaxSks as sksmaks,
+	a.jbtnAngkaKredit as ak,
+	a.jbtnTglMulai as mulai,
+	a.jbtnTglSelesai as selesai,
+	a.jbtnSkPjb as sk,
+	a.jbtnSkNmr as sk_no,
+	a.jbtnSkTgl as sk_tgl,
+	a.jbtnStatus as status,
+	a.jbtnSkUpload as upload,
+	b.jabfungrNama as ref_nama,
+	c.pktgolrNama as pkt_nama
+FROM
+	sdm_jabatan_fungsional a
+LEFT JOIN pub_ref_jabatan_fungsional b ON a.jbtnJabfungrId = b.jabfungrId
+LEFT JOIN sdm_ref_pangkat_golongan c ON a.jbtnPktGolId = c.pktgolrId
+LEFT JOIN sdm_ref_komponen_gaji_detail d ON a.jbtnKompGajiDetSksId = d.kompgajidtId
+WHERE
+	a.jbtnId IS NOT NULL
+";
+
+$sql['get_count_jabatan'] = "
+SELECT 
+   COUNT(jbtnId) AS TOTAL
+FROM 
+   sdm_jabatan_fungsional
+WHERE
+	jbtnId IS NOT NULL
+";  
+
+$sql['get_ref_golongan']="
+SELECT
+	pktgolrId as id,
+	CONCAT(pktgolrId,' ',pktgolrNama) as name,
+	pktgolrTingkat as tingkat,
+	pktgolrMasaKerja as kerja
+FROM
+	sdm_ref_pangkat_golongan
+";
+
+$sql['get_ref_jabatan']="
+SELECT
+	jabfungrId as id,
+	jabfungrNama as name,
+	jabfungrJenisrId as jenis,
+	jabfungrTingkat as tingkat
+FROM
+	pub_ref_jabatan_fungsional
+";
+
+$sql['get_id_fung']="
+SELECT 
+   jabfungrKompGajiDetId as 'komp1'
+FROM 
+   pub_ref_jabatan_fungsional
+WHERE 
+   jabfungrId = %s
+";
+
+// DO-----------
+$sql['do_add'] = "
+INSERT INTO 
+   sdm_jabatan_fungsional
+   (jbtnPegKode,jbtnJabfungrId,jbtnPktGolId,jbtnTglMulai,
+   jbtnTglSelesai,jbtnSkPjb,jbtnSkNmr,jbtnSkTgl,jbtnStatus,jbtnSkUpload,
+   jbtnKompGajiDetSksId,jbtnMaxSks,jbtnAngkaKredit)
+VALUES('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s',
+       '%s','%s','%s')  
+";
+
+$sql['do_update'] = "
+UPDATE sdm_jabatan_fungsional
+SET 
+	jbtnPegKode = '%s',
+	jbtnJabfungrId = '%s',
+	jbtnPktGolId = '%s',
+	jbtnTglMulai = '%s',
+	jbtnTglSelesai = '%s',
+	jbtnSkPjb = '%s',
+	jbtnSkNmr = '%s',
+	jbtnSkTgl = '%s',
+	jbtnStatus = '%s',
+	jbtnSkUpload = '%s',
+	jbtnKompGajiDetSksId = '%s',
+  jbtnMaxSks = '%s',
+  jbtnAngkaKredit = '%s'
+WHERE 
+	jbtnId = %s
+";  
+
+$sql['do_delete'] = "
+DELETE FROM
+   sdm_jabatan_fungsional
+WHERE 
+   jbtnId = %s  
+";
+
+$sql['update_status']="
+update 
+	sdm_jabatan_fungsional
+set jbtnStatus = '%s'
+where jbtnId != %s
+";
+
+$sql['get_max_status']="
+select 
+	max(jbtnId) as MAXID,
+	jbtnStatus as STAT
+FROM sdm_jabatan_fungsional
+WHERE jbtnId=(select max(jbtnId) FROM sdm_jabatan_fungsional)
+group by jbtnId
+";
+
+$sql['get_max_id']="
+select 
+	max(jbtnId) as MAXID
+FROM sdm_jabatan_fungsional
+";
+
+$sql['get_id_lain']="
+select 
+	a.jbtnId as 'id',
+	b.jabfungrKompGajiDetId as 'komp1',
+	a.jbtnKompGajiDetSksId as 'komp2'
+FROM 
+  sdm_jabatan_fungsional a
+  LEFT JOIN pub_ref_jabatan_fungsional b ON (b.jabfungrId=a.jbtnJabfungrId)
+where jbtnId != %s AND jbtnPegKode = '%s'
+";
+
+$sql['do_add_komp_mutasi'] = "
+INSERT INTO 
+   sdm_komponen_gaji_pegawai_detail
+   (kompgajipegdtPegId,kompgajipegdtKompgajidtrId,kompgajipegdtTanggal)
+VALUES('%s','%s','%s')
+";
+
+$sql['do_update_komp_mutasi'] = "
+UPDATE sdm_komponen_gaji_pegawai_detail
+SET 
+	kompgajipegdtKompgajidtrId = '%s',
+	kompgajipegdtTanggal = '%s'
+WHERE 
+	kompgajipegdtPegId = %s and kompgajipegdtKompgajidtrId = %s
+";
+
+$sql['do_delete_komp_mutasi'] = "
+DELETE FROM
+   sdm_komponen_gaji_pegawai_detail
+WHERE 
+   kompgajipegdtPegId = %s and kompgajipegdtKompgajidtrId = %s  
+";
+
+?>

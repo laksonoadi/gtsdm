@@ -1,0 +1,92 @@
+<!-- patTemplate:tmpl name="content" -->
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+   {ISI_PESAN}
+</div>
+<br />
+<!-- /patTemplate:tmpl -->
+<div class="mainContent-fp-element-full">
+	<div class="mainContent-fp-element-full-head"><h2>Functional Position</h2></div>
+	<div class="mainContent-fp-element-full-body">
+<br>
+<!-- patTemplate:tmpl name="data" type="condition" conditionvar="DATA_EMPTY" -->
+      <!-- patTemplate:sub condition="YES" -->
+    <h1>Data not found </h1>
+      <!-- /patTemplate:sub -->
+      <!-- patTemplate:sub condition="NO" -->
+         <!-- patTemplate:tmpl name="data_item" -->
+
+   <table class="table-details" width="100%" >
+      <tr class="subhead">
+         <th colspan="2">DATA</th>
+      </tr>
+      
+	  <tr>
+         <th >Functional Position </th>
+         <td>
+           {REF_NAMA}
+         </td>
+      </tr>
+	  <tr>
+         <th >Grade </th>
+         <td>
+           {PKT_GOL}
+         </td>
+      </tr>
+	  <tr>
+         <th >Start Date </th>
+         <td>
+           {ARR_MULAI}
+         </td>
+      </tr>
+	  <tr>
+         <th >End Date </th>
+         <td>
+           {ARR_SELESAI}
+         </td>
+      </tr>
+	  <tr class="subhead">
+		<th colspan="2">SK</th>
+	  </tr>
+	  <tr>
+         <th >Officer</th>
+         <td>
+           {SK}
+         </td>
+      </tr>
+	  <tr>
+         <th >Number </th>
+         <td>
+           {SK_NO}
+         </td>
+      </tr>
+	  <tr>
+         <th >SK Date</th>
+         <td>
+           {ARR_SK_TGL}
+         </td>
+      </tr>
+	  <tr>
+         <th >Status</th>
+         <td>
+           {STATUS}
+         </td>
+      </tr>
+	  <tr>
+         <th >Upload </th>
+         <td>
+           {UPLOAD}
+         </td>
+      </tr>
+      
+   </table>
+
+<!-- /patTemplate:tmpl -->
+      <!-- /patTemplate:sub -->
+   <!-- /patTemplate:tmpl -->
+<br />
+<br />
+<div><a class="xhr dest_subcontent-element" href="{URL_BACK}" title="back">Back</a></div>
+</div></div>
+
+<!-- /patTemplate:tmpl -->

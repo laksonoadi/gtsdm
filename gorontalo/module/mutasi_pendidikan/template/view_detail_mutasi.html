@@ -1,0 +1,119 @@
+<!-- patTemplate:tmpl name="content" -->
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+   {ISI_PESAN}
+</div>
+<br />
+<!-- /patTemplate:tmpl -->
+<div class="mainContent-fp-element-full">
+	<div class="mainContent-fp-element-full-head"><h2>{TITLE}</h2></div>
+	<div class="mainContent-fp-element-full-body">
+<br>
+<!-- patTemplate:tmpl name="data" type="condition" conditionvar="DATA_EMPTY" -->
+      <!-- patTemplate:sub condition="YES" -->
+    <h1>Data tidak ditemukan </h1>
+      <!-- /patTemplate:sub -->
+      <!-- patTemplate:sub condition="NO" -->
+         <!-- patTemplate:tmpl name="data_item" -->
+
+   <table class="table-details" width="100%" >
+      <tr class="subhead">
+         <th colspan="2">DATA</th>
+      </tr>
+      
+	  <tr>
+         <th >Tingkat Pendidikan</th>
+         <td>
+           {DETAIL_JPENDLABEL}
+         </td>
+      </tr>
+	  <tr>
+         <th >Nama Universitas/Sekolah</th>
+         <td>
+           {DETAIL_INSTITUSI}
+         </td>
+      </tr>
+	  <tr>
+         <th >Bidang Studi</th>
+         <td>
+           {DETAIL_JURUSAN}
+         </td>
+      </tr>
+       <tr>
+         <th >Tahun lulus</th>
+         <td>
+           {DETAIL_LULUS}
+         </td>
+      </tr>
+       <tr>
+         <th >Tempat</th>
+         <td>
+           {DETAIL_TEMPAT}
+         </td>
+      </tr>
+       <tr>
+         <th >Dekan/Kepala Sekolah</th>
+         <td>
+           {DETAIL_KEPSEK}
+         </td>
+      </tr> 
+      <tr>
+         <th >Asal Dana</th>
+         <td>
+           {DETAIL_ASDANLABEL}
+         </td>
+      </tr>
+      <tr style="display:none">
+         <th >Pangkat/Golongan Maks</th>
+         <td>
+           {DETAIL_PKTGOLLABEL}
+         </td>
+      </tr>
+      <tr>
+         <th >Status</th>
+         <td>
+           {DETAIL_ISTAMAT}
+         </td>
+      </tr>
+       <tr>
+         <th >Masa Studi</th>
+         <td>
+           {DETAIL_LAMA}&nbsp;Year
+         </td>
+      </tr>
+	  <tr>
+         <th >Mulai</th>
+         <td>
+           {DETAIL_MULAI}
+         </td>
+      </tr>
+	  <tr>
+         <th >Selesai</th>
+         <td>
+           {DETAIL_SELESAI}
+         </td>
+      </tr>
+	  <tr>
+         <th >Keterangan</th>
+         <td>
+           {DETAIL_KET}
+         </td>
+      </tr> 
+	<tr>
+         <th >Dokumen</th>
+         <td>
+           <a href="{DETAIL_LINK_DOWNLOAD_SK}" target="_blank">{DETAIL_UPLOAD}</a>
+         </td>
+      </tr>
+   </table>
+
+<!-- /patTemplate:tmpl -->
+      <!-- /patTemplate:sub -->
+   <!-- /patTemplate:tmpl -->
+<div class="toolbar"> 
+               <a class="xhr dest_subcontent-element " href="{URL_BACK}" title="Kembali" tabindex="2">Kembali</a> 
+            </div>
+</div>
+</div>
+
+<!-- /patTemplate:tmpl -->

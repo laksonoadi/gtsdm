@@ -1,0 +1,117 @@
+<!-- patTemplate:tmpl name="content" -->
+<script name="javaScript" >
+function validasi() {
+		var file=document.getElementById('file').value;
+		var display='{EDITDISPLAY}';
+		if (file==''){
+			alert('File Masih Kosong');
+			document.getElementById('file').focus();
+			return false;
+		}
+		return true;
+   }
+</script>
+<div class="mainContent-fp-element-full">
+	<div class="mainContent-fp-element-full-head"><h2>Manajemen Kebijakan dan Peraturan</h2></div>
+	<div class="mainContent-fp-element-full-body">
+	
+   <h3>Detail Kebijakan dan Peraturan</h3>
+   <!-- patTemplate:tmpl name="message" visibility="hidden" -->
+      <div class="{CSS}">
+        {MESSAGE}
+      </div>
+      <br />
+   <!-- /patTemplate:tmpl -->
+   <table class="table-details" width="100%">
+      <tr>
+         <td colspan="2" class="table-common-links">
+            <a href="{URL_EDIT}"><img src="images/button-edit.gif" alt="" />Edit</a>
+            <a href="{URL_DELETE}"><img src="images/button-delete.gif" alt="" />Delete</a>
+            <a href="{URL_BACK}"><img src="images/button-bukunutup.gif" alt="" />Back</a>
+         </td>
+      </tr>
+	  <tr>
+         <th width="20%">Unit Kerja</th>
+         <td>{SATKERNAMA}</td>
+      </tr>
+      <tr>
+         <th width="20%">Jenis</th>
+         <td>{JNSPOLICYNAMA}</td>
+      </tr>
+      <tr>
+         <th>Nama</th>
+         <td>{POLICYNAMA}</td>
+      </tr>
+      <tr>
+         <th>External Link</th>
+         <td>{POLICYURL}</td>
+      </tr>
+      <tr>
+         <th>Tanggal Input</th>
+         <td>{POLICYTANGGALPOLICY}</td>
+      </tr>
+      <tr>
+         <th>Status</th>
+         <td>{POLICYISAKTIF}</td>
+      </tr>
+   </table>
+   <br />
+   <h3>Policy & Regulation File</h3>
+   <form name="form_file_policy" id="form_file_policy" action="{URL_ACTION}" method="post" autocomplete=off enctype="multipart/form-data">
+      <table class="table-details" width="100%">
+         <tr>
+            <th width="20%">File</th>
+            <td>
+              <input type="file" name="file" id="file" value="{FILEPOLICYFILE}">
+            </td>
+         </tr>
+         <tr>
+            <th width="20%">Status</th>
+            <td><input type="checkbox" name="status" value="1" size="40" {CHECKED} /> Active</td>
+         </tr>
+		 <tr style="display:none">
+            <th width="20%">Is Download</th>
+            <td><input type="checkbox" name="is_download" value="1" size="40" checked /> Yes</td>
+         </tr>
+         <tr>
+            <td colspan="2">
+                <input type="hidden" name="id" id="id" value="{POLICYID}">
+                <input type="hidden" name="file_id" id="file_id" value="{FILEPOLICYID}">
+                <input type="submit" name="upload"  value="Upload" onclick = "return validasi()">
+            </td>
+         </tr>
+      </table>
+   </form>
+   <br />
+   <h3>Daftar File</h3>
+   <table class="table-common" width="96%">
+      <tr>
+         <th>No</th>
+         <th>File</th>
+         <th>Tanggal Upload</th>
+         <th>Status</th>
+		 <!--<th>Visibility Status</th>-->
+         <th width="100px">Aksi</th>
+      </tr>
+      <!-- patTemplate:tmpl name="empty_file_policy" visibility="hidden" -->
+      <tr>
+         <td colspan="5" align="center">--data not found--</td>
+      </tr>
+      <!-- /patTemplate:tmpl -->
+      <!-- patTemplate:tmpl name="list_file_policy" visibility="hidden" -->
+      <tr>
+         <td>{NO}</td>
+         <td>{FILEPOLICYFILE}</td>
+         <td>{FILEPOLICYTGL}</td>
+         <td align="center">{FILEPOLICYSTATUS}</td>
+		 <!--<td align="center">{FILEPOLICYISDOWNLOAD}</td>-->
+         <td class="table-common-links">
+            <a href="{URL_AKTIF}" title="{BUTTON_LABEL}"><img src="images/{BUTTON}.gif" alt="{BUTTON_LABEL}" /></a>
+			<!--<a href="{URL_DOWNLOAD}" title="{BUTTON_LABEL_DOWNLOAD}"><img src="images/{BUTTON_DOWNLOAD}.gif" alt="{BUTTON_LABEL_DOWNLOAD}" /></a>-->
+            <a href="{URL_DELETE}" title="Delete"><img src="images/button-delete.gif" alt="Delete" /></a>
+         </td>
+      </tr>
+      <!-- /patTemplate:tmpl -->
+   </table>
+</div></div>
+<!-- /patTemplate:tmpl -->

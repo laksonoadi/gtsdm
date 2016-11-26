@@ -1,0 +1,59 @@
+<!-- patTemplate:tmpl name="content" -->
+<ul id="menu-list" class="nav navbar-nav navbar-right">
+	  <!-- patTemplate:tmpl name="static_menu" -->
+    <li class="{ACTIVE}"><a href="<!-- patTemplate:gtfwgeturl module="home" sub="home" action="view" type="html" params=""  / -->">Beranda</a></li>
+	  <li class="{NOTACTIVE}"><a href="<!-- patTemplate:gtfwgeturl module="policy" sub="PolicySatuanKerjaList" action="view" type="html" params=""  / -->">Dokumen Kepegawaian</a></li>
+<li class="{NOTACTIVE}"><a href="http://simpeg.gorontalokota.go.id/simpeg/">Login</a></li>
+    <!-- /patTemplate:tmpl -->
+</ul>
+<!-- patTemplate:tmpl name="data_menu" type="condition" conditionvar="DATA_EMPTY" -->
+  <!-- patTemplate:sub condition="YES" -->
+  <!-- /patTemplate:sub -->
+  <!-- patTemplate:sub condition="NO" -->
+    <!-- patTemplate:tmpl name="nav_left" -->
+       <div id="menu1">
+       <ul id="menuList">
+       
+          <li><a href="{LEFT_NAV}" name="submenu" class="xhr dest_subcontent-element">{LEFT_NAV_VALUE}</a>
+          
+        		<!-- patTemplate:tmpl name="sub_nav" visibility="hidden" -->
+        			<ul>
+        			<!-- patTemplate:tmpl name="sub_nav_item" -->
+        				<li><a href="{LEFT_SUB_NAV}" class="xhr dest_subcontent-element">&nbsp;&nbsp;{LEFT_SUB_NAV_VALUE}</a></li>
+        			<!-- /patTemplate:tmpl -->
+        			</ul>
+        		<!-- /patTemplate:tmpl -->
+    		</li>
+      </ul>
+      </div>
+    <!-- /patTemplate:tmpl -->
+    
+    <!-- patTemplatea:tmpl name="logoff" visibility="visible" -->
+    <div id="menu1">
+       <ul id="menuList">
+          <li><a href="<!-- patTemplate:gtfwgeturl module="login_default" sub="logout" action="do" type="html" params=""  / -->"> Logout </a></li>
+       </ul>
+    </div>
+    <!-- /patTemplatea:tmpl -->
+  <!-- /patTemplate:sub -->
+<!-- /patTemplate:tmpl -->
+<script>
+	function HideAllMenu(){
+		id = '{ID_MENU}';
+		arrId = id.split('|');
+		//alert(document.getElementById(arrId[0]).style.displ);
+		var i;
+		for(i=0;i<arrId.length;i++){
+			document.getElementById(arrId[i]).style.display='none';
+		}
+	}
+	
+	function ShowMenu(id){
+		HideAllMenu();
+		document.getElementById(id).style.display='block';
+	}
+</script>
+<script>
+	//HideAllMenu();
+</script>
+<!-- /patTemplate:tmpl -->

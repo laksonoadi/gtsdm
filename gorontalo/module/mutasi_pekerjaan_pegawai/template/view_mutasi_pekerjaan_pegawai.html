@@ -1,0 +1,129 @@
+<!-- patTemplate:tmpl name="content" -->
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+   {ISI_PESAN}
+</div>
+<br />
+<!-- /patTemplate:tmpl -->
+<div class="mainContent-fp-element-full">
+	<div class="mainContent-fp-element-full-head"><h2>{TITLE}</h2></div>
+	<div class="mainContent-fp-element-full-body">
+<form method="POST" name="frmInput" action="{URL_ACTION}" class="xhr_form std_form" id="frmInput" enctype="multipart/form-data">
+   <table class="table-details" width="100%" style="display:{DISPLAY_FORM}">
+      <tr class="subhead">
+         <th colspan="2">
+		  {LABEL_ACTION} {LABEL_INPUT}
+		  <div class="toolbar"> 
+              <a class="xhr dest_subcontent-element " href="{URL_KEMBALI}" title="Kembali" tabindex="2"><img src="images/button-back.gif" alt="">Kembali</a>
+            </div>
+		</th>
+      </tr>
+      <tr>
+         <th >Nama Perusahaan</th>
+         <td>
+         <input type="text" name="nama" value="{INPUT_NAMA}"  size="50" />*
+		   <input name="pegKode" type="hidden" value="{ID}" />
+		   <input name="dataKode" type="hidden" value="{INPUT_ID}" />
+         </td>
+      </tr>
+      <tr>
+         <th>Jabatan</th>
+         <td>
+           <input type="text" name="jabatan" value="{INPUT_JABATAN}"  size="30" />*
+         </td>
+      </tr>
+	  <tr>
+         <th >Tanggung Jawab</th>
+         <td>
+           <textarea name="tanggung_jawab" id="keputusan_atasan" cols="50" rows="5">{INPUT_TANGGUNGJAWAB}</textarea>*
+         </td>
+     </tr>
+      <tr>
+         <th >Tahun Mulai</th>
+         <td>
+           <input type="text" name="mulai" value="{INPUT_MULAI}"  size="5" maxlength="4" />
+         </td>
+      </tr>
+       <tr>
+         <th >Tahun Selesai</th>
+         <td>
+          <input type="text" name="selesai" value="{INPUT_SELESAI}"  size="5" maxlength="4" />
+          <i>Biarkan kosong jika masih aktif</i>
+         </td>
+      </tr>
+	  <tr>
+        <th>Status</th>
+        <td>
+          <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="tipe"  / --> *
+        </td>
+      </tr>
+	  <tr>
+         <th >Upload </th>
+         <td>
+           <input type="file" name="file" size="40"><br />
+				File sebelumnya: <a href="{INPUT_LINK_DOWNLOAD}">{INPUT_UPLOAD}</a>
+        <input name="upload" type="hidden" value="{INPUT_UPLOAD}" />
+         </td>
+      </tr>
+      <tr class="buttons">
+         <th>&nbsp;</th>
+         <td>
+            <input name="btnsimpan" value="{LABEL_ACTION} " class="buttonSubmit" type="submit">
+            <input name="btnbatal" value="{BUTTON}" class="buttonSubmit" type="{TYPE}">
+         </td>
+      </tr>
+   </table>
+</form>
+<br />
+<div class="pageBar" style="display:{DISPLAY_LIST}">
+<!-- patTemplate:gtfwrendermodule module="paging" submodule="paging" action="view" name="paging_top"  / -->
+ <div class="toolbar">
+    <a class="xhr dest_subcontent-element " href="{URL_TAMBAH}" title="Tambah" tabindex="2"><img src="images/button-add.gif" alt="">Tambah</a>
+  </div>
+</div>
+<table class="table-common" width="96%" style="display:{DISPLAY_LIST}">
+   <tr>
+      <th width="5px" >No</th>
+      <th >Nama Perusahaan</th>
+      <th >Jabatan </th>
+	  <th >tanggung Jawab </th>
+      <th >Tahun Mulai</th>
+      <th >Tahun Selesai</th>
+	  <th >Status</th>
+      <th width="63px" >Aksi</th>
+   </tr>
+   <!-- patTemplate:tmpl name="data" type="condition" conditionvar="DATA_EMPTY" -->
+      <!-- patTemplate:sub condition="YES" -->
+   <tr><td colspan="8" align="center"><em>-- Data tidak ditemukan --</em></td></tr>
+      <!-- /patTemplate:sub -->
+      <!-- patTemplate:sub condition="NO" -->
+         <!-- patTemplate:tmpl name="data_item" -->
+   <tr class="{ORG_CLASS_NAME}">
+      <td align="center" width="5%">{ORG_NUMBER}</td>
+      <td align="left">{ORG_NAMA}</td>
+	  <td align="left">{ORG_JABATAN}</td>
+	  <td align="left">{ORG_TANGGUNGJAWAB}</td>
+	  <td align="center">{ORG_MULAI}</td>
+	  <td align="center">{ORG_SELESAI}</td>
+	  <td align="center">{ORG_STATUS}</td>
+      <td class="links">
+		 <div id="tombol_{ORG_NUMBER}">
+         <a class="xhr dest_subcontent-element" href="{ORG_URL_EDIT}" title="Ubah"><img src="images/button-edit.gif" alt="Ubah"/></a>
+         <a class="xhr dest_subcontent-element" href="{ORG_URL_DELETE}" title="Hapus"><img src="images/button-delete.gif" alt="Hapus"/></a>
+		 </div>
+		 <div id="download_{ORG_NUMBER}"><a href="{ORG_LINK_DOWNLOAD_SK}" title="SK" target="_blank"><img src="images/detil.gif" alt="SK"/></a></div>
+		 <script>
+			verifyShow('tombol_{ORG_NUMBER}','&jenis=1&params=sdm_pekerjaan:{ORG_ID}');
+			if ('{ORG_LINK_DOWNLOAD_SK}'==''){var download='download_{ORG_NUMBER}'; document.getElementById(download).style.display='none';}
+		 </script>
+      </td>
+   </tr>
+         <!-- /patTemplate:tmpl -->
+      <!-- /patTemplate:sub -->
+   <!-- /patTemplate:tmpl -->
+</table>
+</div></div>
+<script>
+var display_form='{DISPLAY_FORM}',display_list='{DISPLAY_LIST}';
+</script>
+<!-- /patTemplate:tmpl -->

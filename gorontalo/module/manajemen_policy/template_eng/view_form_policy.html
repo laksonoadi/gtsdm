@@ -1,0 +1,74 @@
+<!-- patTemplate:tmpl name="content" -->
+<script language="javascript" type="text/javascript">
+function cekIsiForm(){
+    
+    var nama=document.getElementById('nama').value;
+    var type=document.getElementById('tipe').selectedIndex;
+    
+    if (type==0) {
+        alert('Policy Type Must be select');
+        document.form_policy.tipe.focus();
+        return false;
+    }else
+    if (nama==''){
+        alert('Policy Name Cannot Empty');
+        document.form_policy.nama.focus();
+        return false;
+    }
+    
+    document.form_policy.actionsave.click();  
+  }
+</script>
+<div class="mainContent-fp-element-full">
+	<div class="mainContent-fp-element-full-head"><h2>Policy Management</h2></div>
+	<div class="mainContent-fp-element-full-body">
+   <h2>&nbsp;&nbsp;&nbsp;&nbsp;{LABEL}</h2>
+   
+   <!-- patTemplate:tmpl name="message" type="simpleCondition" requiredvars="MESSAGE" -->
+      <h4>{MESSAGE}</h4>  
+   <!-- /patTemplate:tmpl -->
+   
+   <form name="form_policy" id="form_policy" action="<!-- patTemplate:gtfwgeturl module="manajemen_policy" sub="{SUB}" action="view" type="html" / -->" method="post" autocomplete=off enctype="multipart/form-data">
+      <table class="table-details" width="100%">
+         <tr>
+            <th width="20%">Policy Type</th>
+            <td>
+              <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="tipe"  / --> *
+            </td>
+         </tr>
+         <tr>
+            <th width="20%">Name</th>
+            <td><input type="text" name="nama" id="nama" value="{POLICYNAMA}" size="50" />*</td>
+         </tr>
+         <tr>
+            <th>Description</th>
+            <td><textarea cols="50" rows="5" name="keterangan">{POLICYKETERANGAN}</textarea></td>
+         </tr>
+         <tr>
+            <th>URL</th>
+            <td><input type="text" name="url" value="{POLICYURL}" size="40" /></td>
+         </tr>
+         <tr>
+            <th>Date Policy</th>
+            <td>
+               <!-- patTemplate:gtfwrendermodule module="tanggal" submodule="Tanggal" action="view" name="tanggal_policy" / -->
+               <!--<input type="text" class="input" readonly name="tanggal_policy" value="{DATE}" readonly />
+               <a href="javascript:void(0)" onclick="if(self.gfPop)gfPop.fPopCalendar(document.form_policy.tanggal_policy,null,null);">...</a>-->
+            </td>
+         </tr>
+         <tr>
+            <th>Status</th>
+            <td><input type="checkbox" name="status" value="1" size="40" {CHECKED} /> Aktif</td>
+         </tr>
+         <tr>
+            <td colspan="2">
+               <input type="hidden" name="id" value="{POLICYID}" />
+               <div style="display:none"><input name="actionsave" id="actionsave" value="Save" class="buttonSubmit" type="submit" ></div>
+               <input type="button" name="actionsaveBohong" value="Save" onclick="cekIsiForm()" />
+               <input type="button" name="action" value="Cancel" onclick="location.href='<!-- patTemplate:gtfwgeturl module="manajemen_policy" sub="AdminListPolicy" action="view" type="html" / -->';" />
+            </td>
+         </tr>
+      </table>
+   </form>
+</div></div>
+<!-- /patTemplate:tmpl -->

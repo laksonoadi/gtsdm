@@ -1,0 +1,38 @@
+<!-- patTemplate:tmpl name="content" -->
+<script>
+	   $(document).ready(function(){
+      $(".xzoom").mouseover(function(){
+            //img = this.getElementsByTagName('img')[0];
+            $(this).animate({height: 90, width: 90,}, 300);
+      });
+      
+      $(".xzoom").mouseout(
+         function(){
+            //img = this.getElementsByTagName('img')[0];
+            $(this).animate({height: 75, width: 75,}, 300);
+      });
+   });
+</script>
+<!-- patTemplate:tmpl name="home" type="condition" conditionvar="IS_HOME" -->
+  <!-- patTemplate:sub condition="NO" -->
+     <!-- patTemplate:tmpl name="content2" -->
+      <div class="sidebar-element" >
+         <h2>Sub Menu</h2>          
+         <ul>
+         <!-- patTemplate:tmpl name="icon_menu" type="SimpleCondition" requiredvars="LINK_URL" -->
+         <li> <a class="xhr dest_subcontent-element" href="{LINK_URL}"><font size=3>{LINK_NAME}</font></a>  </li>
+         <!-- /patTemplate:tmpl -->
+         </ul>        
+      </div>
+  <!-- /patTemplate:tmpl -->
+  <!-- /patTemplate:sub -->
+  <!-- patTemplate:sub condition="YES" -->
+    <div class="sidebar-element">
+          <!-- patTemplate:gtfwrendermodule name="berita_list" module="berita" submodule="sideBeritaList" action="view" type="html" params="" / -->
+    </div>
+    <div class="sidebar-element">
+          <!-- patTemplate:gtfwrendermodule name="agenda" module="agenda" submodule="sideAgendaList" action="view" type="html" params="" / -->
+    </div>
+    <!-- /patTemplate:sub -->
+<!-- /patTemplate:tmpl -->
+<!-- /patTemplate:tmpl -->
