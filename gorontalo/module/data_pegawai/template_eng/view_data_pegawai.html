@@ -1,0 +1,68 @@
+<!-- patTemplate:tmpl name="content" -->
+<h1>{LABEL_TITLE}</h1>
+<br />
+<div><h1>{TITLE}</h1></div><br>
+<form method="POST" action="{URL_SEARCH}" class="dataquest xhr_simple_form dest_subcontent-element" id="filterbox">
+   <table>
+      <tr>
+         <th colspan="2"><h2><strong>Search Data</strong></h2></th>
+      </tr>
+      <tr>              
+         <th width="30%">Employee Number/Name</th>
+         <td colspan='2'><input type="text" name="nip_nama" value="{NIP_NAMA}" size="30" /></td>
+      </tr>
+      <tr>
+         <th>&nbsp;</th>
+         <td>
+            <input type="submit" name="btncari" value=" Search &raquo;" class="buttonSubmit"/>
+         </td>
+      </tr>
+   </table>
+</form>
+<br />
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+   {ISI_PESAN}
+</div>
+<br />
+<!-- /patTemplate:tmpl -->
+
+<div class="pageBar">
+    <div class="toolbar"> 
+		<a class="xhr dest_subcontent-element " href="{URL_ADD}" title="Add" tabindex="2">
+	  <img src="images/button-add.gif" alt="Add"> Add</a> 	
+   </div>
+<!-- patTemplate:gtfwrendermodule module="paging" submodule="paging" action="view" name="paging_top"  / -->
+</div>
+<table class="table-common" width="95%">
+   <tr>
+      <th width="9%">No</th>
+      <th width="10%">Action</th>
+      <th width="90px">Employee Number</th>
+      <th width="80px">Civil Servant Number</th>
+      <th width="130px">Name</th>
+      <th>Address</th>
+   </tr>
+   <!-- patTemplate:tmpl name="data_pegawai" type="condition" conditionvar="PEGAWAI_EMPTY" -->
+      <!-- patTemplate:sub condition="YES" -->
+   <tr><td colspan="6" align="center"><em>-- Data not found --</em></td></tr>
+      <!-- /patTemplate:sub -->
+      <!-- patTemplate:sub condition="NO" -->
+         <!-- patTemplate:tmpl name="data_pegawai_item" -->
+   <tr class="{CLASS_NAME}">
+      <td align="center">{NUMBER}</td>
+      <td class="links">
+         <a class="xhr dest_subcontent-element" href="{URL_DETAIL}" title="Detail"><img src="images/button-detail.gif" alt="Detail"/></a>
+         <a class="xhr dest_subcontent-element" href="{URL_EDIT}" title="Update"><img src="images/button-edit.gif" alt="Update"/></a>
+         <a class="xhr dest_subcontent-element" href="{URL_DELETE}" title="Delete"><img src="images/button-delete.gif" alt="Delete"/></a>
+      </td>
+      <td align="center">{NIP}</td>
+      <td align="center">{KODEINT}</td>
+      <td align="left">{NAMA}</td>
+      <td align="left">{ALAMAT}</td>
+   </tr>
+         <!-- /patTemplate:tmpl -->
+      <!-- /patTemplate:sub -->
+   <!-- /patTemplate:tmpl -->
+</table>
+<!-- /patTemplate:tmpl -->

@@ -1,0 +1,100 @@
+
+<!-- patTemplate:tmpl name="content" -->
+<script language="javascript" type="text/javascript">
+
+function cek() {
+      var date = new Date(); 
+      var d = date.getDate();
+      var m = date.getMonth(); m=m+1;
+      var y = date.getYear(); if (y < 2000) y = y + 1900;
+      
+      var nDay= document.getElementById('tglaju_day').selectedIndex;
+      var nMon= document.getElementById('tglaju_mon').selectedIndex;
+      var nMonLabel= document.getElementById('tglaju_mon').options[nMon].text;
+      var nTahun= document.getElementById('tglaju_year').selectedIndex;
+      var nTahunLabel= document.getElementById('tglaju_year').options[nTahun].text;
+      var Tanggal = nTahunLabel+'-'+nMon+'-'+nDay;
+      var TanggalLabel = nDay+' '+nMonLabel+' '+nTahunLabel;
+      
+      var date2=new Date(); date2.setDate(nDay); date2.setMonth(nMon-1); date2.setYear(parseInt(nTahunLabel));
+      var day = date2.getDay();
+      
+      if (parseInt(nTahunLabel)<y) { alert('Tanggal Lembur Tidak Boleh Kurang Dari Tanggal Sekarang'); return false; } else
+      if ((nMon<m)&&(nTahun>=y)) { alert('Tanggal Lembur Tidak Boleh Kurang Dari Tanggal Sekarang'); return false;} else
+      if ((nDay<d)&&(nMon>=m)&&(nTahun>=y)) { alert('Tanggal Lembur Tidak Boleh Kurang Dari Tanggal Sekarang'); return false;} else
+      if ((day!=0)&&(day!=6)) { alert('Tanggal Lembur Tidak Boleh Saat Hari Kerja'); return false; }
+
+
+      document.frmInput.btnsimpan.click();
+    
+}
+
+function konfirmasi() {
+		if(document.getElementById('btnbatal').value == " Reset "){
+      document.getElementById('btnbatal').type = "reset";
+      document.frmInput.onReset();
+    }else{
+      document.getElementById('btnbatal').type = "submit";
+      document.frmInput.onSubmit();
+    }
+}
+</script>
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+   {ISI_PESAN}
+</div>
+<br />
+<!-- /patTemplate:tmpl -->
+<div class="mainContent-fp-element-full">
+	<div class="mainContent-fp-element-full-head"><h2>{TITLE}</h2></div>
+	<div class="mainContent-fp-element-full-body">
+<form method="POST" name="frmInput" action="{URL_AKSI}" class="xhr_form std_form" id="frmInput" enctype="multipart/form-data">
+   <input type="hidden" name="idPeg" value="{ID}">
+   <input type="hidden" name="lemburId" value="{LEMBURID}">
+   <input type="hidden" name="op" value="{OP}" id="op">
+   <table class="table-details" width="100%" >
+      <tr class="subhead">
+        <th valign="center">{LABEL_ACTION} Overtime Compesation Request Data</th>
+        <th align="right">
+          <div class="toolbar"> 
+          <a class="xhr dest_subcontent-element " href="{URL_BACK}" title="Back" tabindex="2">
+          <img src="images/button-back.gif" alt=""> Back</a> 	
+          </div>
+        </th>
+      </tr>
+      <tr style="display:none">
+        <th width="39%">Overtime Work Number</th>
+        <td>
+          <input type="text" name="no_lembur" size="23" maxlength="20" value="{NO}" readonly="readonly" />
+        </td>
+      </tr>
+      <tr>
+        <th>Overtime Work Date</th>
+        <td>
+          <!-- patTemplate:gtfwrendermodule module="tanggal" submodule="tanggal" action="view" name="tglaju"  / -->
+        </td>
+      </tr>
+      <tr>
+        <th>Overtime Work Reason</th>
+        <td>
+          <input type="text" name="alasan" size="53" maxlength="100" value="{ALASAN}" /> *
+        </td>
+      </tr>
+	    <tr style="display:none">
+        <th>Approved Date</th>
+        <td>
+          <!-- patTemplate:gtfwrendermodule module="tanggal" submodule="tanggal" action="view" name="tglstat"  / -->
+        </td>
+      </tr>
+      <tr class="buttons">
+         <th>&nbsp;</th>
+         <td>
+            <div style="display:none"><input name="btnsimpan" value=" {LABEL_ACTION} " class="buttonSubmit" type="submit"></div>
+			      <input name="btnsimpanBohong" value=" {LABEL_ACTION} " class="buttonSubmit" type="button" onClick="cek();">
+            <input name="btnbatal" id="btnbatal" value="{BUTTON}" class="buttonSubmit" type="button" onclick="konfirmasi()">
+         </td>
+      </tr>
+   </table>
+</form>
+</div></div>
+<!-- /patTemplate:tmpl -->

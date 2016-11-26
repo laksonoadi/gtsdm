@@ -1,0 +1,322 @@
+
+<!-- patTemplate:tmpl name="content" -->
+<script language="javascript" type="text/javascript">
+
+ function konfirmasi() {
+		if(document.getElementById('btnbatal').value == " Reset "){
+      document.getElementById('btnbatal').type = "reset";
+      document.frmInput.onReset();
+    }else{
+      document.getElementById('btnbatal').type = "submit";
+      document.frmInput.onSubmit();
+    }
+ }
+ 
+  function cekJumlahCuti(){
+    var maksimal_cuti_spesial="{MAKSIMAL_CUTI_SPESIAL}";
+    var maks=maksimal_cuti_spesial.split('/');
+    
+    
+    var tipe=document.getElementById('tipe').selectedIndex;
+    var tipe_spesial=document.getElementById('tipe_cuti_spesial').selectedIndex;
+    var tipe_value=document.getElementById('tipe').options[tipe].value;
+    var tipe_spesial_text=document.getElementById('tipe_cuti_spesial').options[tipe_spesial].text;
+    
+    if (tipe_value==3) {
+        if (document.getElementById('total_ambil').value>maks[tipe_spesial]){
+          alert('For '+tipe_spesial_text.toString()+' Leave Maximal is '+maks[tipe_spesial].toString()+' day');
+          cek=false;
+        }else{
+          cek=true;
+        } 
+    }else
+    if (tipe!=2) { cek=totalAmbilCuti(); } else 
+    if (tipe==2) { cek=totalAmbilCutiKompensasi(); }
+    
+    
+    if (cek==true){
+        document.frmInput.btnsimpan.click();
+    }
+    
+    return false;
+  }
+
+
+
+  function popupTanggal(xurl)
+  {
+      var b=xurl;
+      var win = window.open( xurl, "myWindow","status = 1, height = 25, width = 400, resizable = 0, scrollbars=1" );
+      if (!win.opener) win.opener = window.self;
+  };
+  
+  function js_next(form,url) {
+  	var url = url+'&days='+form.days.value;
+      location.href = url;
+  }
+  
+  function cekTanggal(tanggal) {
+     var sum = 0;
+     var temp;
+     /*tbd = document.getElementById('table-tanggal');
+     
+     for(i=1; i<tbd.childNodes.length; i++) {
+        
+        date = tbd.childNodes[i].childNodes[0].value;
+        alert(date.toString());
+        alert(tanggal);
+  	    if (date==tanggal){
+  	       return true;
+        }
+     }*/
+     
+     return false;
+ }
+  
+  function IsiTanggal(){
+      var date = new Date(); 
+      var d = date.getDate();
+      var m = date.getMonth(); m=m+1;
+      var y = date.getYear(); if (y < 2000) y = y + 1900;
+      
+      var nDay= document.getElementById('tanggal_day').selectedIndex;
+      var nMon= document.getElementById('tanggal_mon').selectedIndex;
+      var nMonLabel= document.getElementById('tanggal_mon').options[nMon].text;
+      var nTahun= document.getElementById('tanggal_year').selectedIndex;
+      var nTahunLabel= document.getElementById('tanggal_year').options[nTahun].text;
+      var Tanggal = nTahunLabel+'-'+nMon+'-'+nDay;
+      var TanggalLabel = nDay+' '+nMonLabel+' '+nTahunLabel;
+      
+      var date2=new Date(); date2.setDate(nDay); date2.setMonth(nMon-1); date2.setYear(parseInt(nTahunLabel));
+      var day = date2.getDay();
+      
+      if (parseInt(nTahunLabel)<y) { alert('Tanggal Cuti Tidak Boleh Kurang Dari Tanggal Sekarang'); return false; } else
+      if ((nMon<m)&&(nTahun>=y)) { alert('Tanggal Cuti Tidak Boleh Kurang Dari Tanggal Sekarang'); return false;} else
+      if ((nDay<d)&&(nMon>=m)&&(nTahun>=y)) { alert('Tanggal Cuti Tidak Boleh Kurang Dari Tanggal Sekarang'); return false;} else
+      if (day==0) { alert('Tanggal Cuti Yang Anda Pilih Adalah Hari Minggu'); return false; } else 
+      if (cekTanggal(Tanggal)) { alert('Tanggal Cuti Yang Anda Pilih Sudah Dipilih'); return false; }
+      
+       
+      var tampil_tombol_aksi = '<a href="javascript:void(null)" title="Hapus" onclick="hapus_list(this)"><img src="images/button-delete.gif" alt="Hapus" border=0 /></a>';
+      
+  		var tr = document.createElement('tr');
+  		var td_tanggal = document.createElement('td');
+  		var td_aksi = document.createElement('td');
+  		
+  		var tbodi = document.getElementById("table-tanggal");
+  		
+  		td_aksi.className = 'links';
+  		td_aksi.width = 15;
+  		td_aksi.innerHTML = '<input type="hidden" name="data[id][]" value="" /><input type="hidden" name="data[tanggal][]" value="'+Tanggal+'" />\n'+tampil_tombol_aksi;
+  		td_tanggal.innerHTML = TanggalLabel;
+  		
+  		tr.appendChild(td_tanggal);
+  		tr.appendChild(td_aksi);
+  		tbodi.appendChild(tr);
+  		//var tes=document.getElementById('total_ambil').value;
+  		document.getElementById('total_ambil').value++;
+  }
+  
+  function hapus_list(obj)
+  {		
+  		obj.parentNode.parentNode.parentNode.removeChild(obj.parentNode.parentNode);
+  		tes=document.getElementById('total_ambil').value;
+  		document.getElementById('total_ambil').value=tes-1;
+  }
+  	
+  function totalAmbilCuti() {
+       var temp;
+    	 if (document.getElementById('total_ambil').value>document.getElementById('sisa_cuti').value) {
+    	      alert('Pengambilan Cuti Reguler Anda Melebihi Sisa Cuti Reguler Anda');
+    	      return false;
+       }
+       return true;
+  }
+  
+  function totalAmbilCutiKompensasi() {
+       var temp;
+       tbd = document.getElementById('table-tanggal');
+       tes=document.getElementById('total_ambil').value;
+       
+    	 if (document.getElementById('total_ambil').value>document.getElementById('sisa_cuti_kompensasi').value) {
+    	      alert('Pengambilan Cuti Kompensasi Anda Melebihi Sisa Cuti Kompensasi Anda');
+    	      return false;
+       }
+       return true;
+  }
+  
+  function bukaTipeSpesial() {
+       var tipe = document.getElementById('tipe');
+       var tcs = document.getElementById('tipe_cuti_spesial');
+       var ns = document.getElementById('non_spesial');
+       var s = document.getElementById('spesial');
+       if (tipe.options[tipe.selectedIndex].value==3){
+          tcs.style.display='';
+          //s.style.display='';
+          //ns.style.display='none';
+       }else{
+          tcs.style.display='none';
+          //ns.style.display='';
+          //s.style.display='none';
+       }
+  }
+
+</script>
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+   {ISI_PESAN}
+</div>
+<br />
+<!-- /patTemplate:tmpl -->
+<div class="mainContent-fp-element-full">
+	<div class="mainContent-fp-element-full-head"><h2>{TITLE}</h2></div>
+	<div class="mainContent-fp-element-full-body">
+<form method="POST" name="frmInput" action="{URL_AKSI}" class="xhr_form std_form" id="frmInput" enctype="multipart/form-data">
+   <input type="hidden" name="idPeg" value="{ID}">
+   <input type="hidden" name="op" value="{OP}" id="op">
+   <table class="table-details" width="100%" >
+      <tr class="subhead">
+        <th colspan="2" valign="center">{LABEL_ACTION} Leave Request Data</th>
+      </tr>
+      <tr style="display:none">
+        <th width="39%">Leave Number</th>
+        <td>
+          <input type="text" name="no_cuti" size="23" maxlength="20" value="{NO_CUTI}" readonly="readonly" />
+        </td>
+      </tr>
+      <tr>
+        <th width="39%">Leave Remaining</th>
+        <td>
+          {SISA_CUTI}
+          <input type="hidden" name="total_ambil" id="total_ambil" value="{DATA_TOTAL_AMBIL}">
+          <input type="hidden" name="sisa_cuti" id="sisa_cuti" value="{DATA_SISA_CUTI}">
+          <input type="hidden" name="sisa_cuti_kompensasi" id="sisa_cuti_kompensasi" value="{DATA_SISA_CUTI_KOMPENSASI}">
+        </td>
+      </tr>
+      <tr>
+        <th>Leave Type</th>
+        <td>
+          <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="tipe"  / -->
+          <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="tipe_cuti_spesial"  / --> *
+        </td>
+      </tr>
+      <tr><th valign="top">Date Leave</th><td>
+      <div id="non_spesial" style="display:">
+      <table width="80%" id="table-tanggal" cellpadding="0" cellspacing="0">
+      <tr><td><!-- patTemplate:gtfwrendermodule module="tanggal" submodule="tanggal" action="view" name="tanggal"  / --></td><td><input type="button" onClick="IsiTanggal();" value="Add Date"></td></tr>
+      <!-- patTemplate:tmpl name="count_days" type="condition" conditionvar="DAYS_EMPTY" -->
+      <!-- patTemplate:sub condition="YES" -->
+      <!-- /patTemplate:sub -->
+      <!-- patTemplate:sub condition="NO" -->
+            <!-- patTemplate:tmpl name="data_count_days" -->
+            <tr>
+              <td>{TANGGAL_LABEL}</td>
+              <td>
+                <input type="hidden" name="data[id][]" value="{ID}" />
+                <input type="hidden" name="data[tanggal][]" value="{TANGGAL}" />
+                <a href="javascript:void(null)" title="Hapus" onclick="hapus_list(this)"><img src="images/button-delete.gif" alt="Hapus" border=0 /></a>
+              </td>
+            </tr>
+            <!-- /patTemplate:tmpl -->
+         <!-- /patTemplate:sub -->
+      <!-- /patTemplate:tmpl -->
+      </table>
+      </div>
+      <div id="spesial" style="display:none">
+        <!-- patTemplate:gtfwrendermodule module="tanggal" submodule="tanggal" action="view" name="tgl_mulai"  / --> Until 
+        <!-- patTemplate:gtfwrendermodule module="tanggal" submodule="tanggal" action="view" name="tgl_selesai"  / -->
+      </div>
+      </td></tr>
+	   <tr style="display:none">
+        <th>Reduced Leave Quota</th>
+        <td>
+          <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="reduced"  / --> *
+        </td>
+      </tr>
+      <tr>
+        <th>Leave Reason</th>
+        <td> 
+          <textarea name="alasan" cols="65" rows="5">{DATA_ALASAN}</textarea>*
+        </td>
+      </tr>
+      <tr>
+        <th>Work Responsibility</th>
+        <td>
+          <textarea name="tggjwbker" cols="65" rows="5">{DATA_TGGJWBKER}</textarea>
+        </td>
+      </tr>
+      <tr style="display:none">
+        <th>{DATA_LABEL_EMAIL}</th>
+        <td>
+          <textarea name="email_isi" cols="65" rows="5" >{DATA_ISIEMAIL}</textarea>
+          <input type="hidden" name="email_to" value="{DATA_EMAILSUPERVISOR}">
+          <input type="hidden" name="email_cc" value="{DATA_EMAILMOR}">
+          <input type="hidden" name="email_from" value="{DATA_EMAILPEGAWAI}">
+          <input type="hidden" name="stat" value="{DATA_STAT}">
+        </td>
+      </tr>
+      <tr>
+        <th>Send To</th>
+        <td>
+          {DATA_EMAILSUPERVISOR}
+        </td>
+      </tr>
+      <tr>
+        <th>Cc</th>
+        <td>
+          {DATA_EMAILMOR} {DATA_EMAILHRD}
+        </td>
+      </tr>
+      <tr style="display:none">
+        <th>Temporary Charge</th>
+        <td>
+          <input type="text" name="pggjwbsmnt" size="23" maxlength="20" value="{DATA_PGGJWBSMNT}"/>
+        </td>
+      </tr>
+      <tr style="display:none">
+        <th>Temporary Charge Contact</th>
+        <td>
+          <input type="text" name="pggjwbsmntk" size="23" maxlength="20" value="{DATA_PGGJWBSMNTK}"/>
+        </td>
+      </tr>
+	  <tr style="display:none">
+        <th>Status Action</th>
+        <td>
+          <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="status"  / --> *
+        </td>
+      </tr>
+	  <tr style="display:none">
+        <th>Status Date</th>
+        <td>
+          <!-- patTemplate:gtfwrendermodule module="tanggal" submodule="tanggal" action="view" name="tgl_stat"  / -->
+        </td>
+      </tr>
+      <tr class="buttons">
+         <th>&nbsp;</th>
+         <td>
+            <input type="hidden" name="id" value="{DATA_ID}" />
+            <input type="hidden" name="idDelete" value="{DATA_ID}" />
+			      <input type="hidden" name="peg_id" value="{DATA_PEG_ID}" />
+			      <div style="display:none"><input name="btnsimpan" value=" {LABEL_ACTION} " class="buttonSubmit" type="submit"></div>
+				  <input name="btnsimpan" value=" {LABEL_ACTION} " class="buttonSubmit" type="submit">
+			      <!--<input name="btnsimpanBohong" value=" {LABEL_ACTION} " class="buttonSubmit" type="button" onClick="cekJumlahCuti();">-->
+            <input name="btnbatal" id="btnbatal" value="{BUTTON}" class="buttonSubmit" type="button" onclick="konfirmasi()">
+         </td>
+      </tr>
+   </table>
+</form>
+   <table class="table-form" width="100%">
+      <tr>
+         <td class="table-common-links">
+            <a href="{URL_BACK}"><img src="images/button-edit.gif" alt="" />View List</a>
+         </td>
+      </tr>
+   </table>
+   
+   <iframe width=174 height=189 name="gToday:normal:./main/lib/calendar/agenda.js"
+         id="gToday:normal:./main/lib/calendar/agenda.js" src="./main/lib/calendar/ipopeng.htm"
+         scrolling="no" frameborder="0" style="visibility:visible; z-index:999; position:absolute;
+         left:-500px; top:0px;">
+   </iframe>
+</div></div>
+<!-- /patTemplate:tmpl -->
