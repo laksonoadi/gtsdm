@@ -1,0 +1,62 @@
+<!-- patTemplate:tmpl name="content" -->
+<br />
+<h1>REFERENSI SATUAN KERJA</h1>
+<br />
+<form method="POST" name="frm_coa" action="{URL_SEARCH}" class="dataquest xhr_simple_form dest_subcontent-element" id="filterbox">
+   <table>
+      <tr>
+         <th colspan="2"><h2><strong>Pencarian</strong></h2></th>
+      </tr>
+      <tr>
+         <th width="25%">Kata Kunci</th>
+         <td><input type="text" name="input" value="{INPUT}"></td>
+      </tr>
+      <tr>
+         <th>&nbsp;</th>
+         <td>
+            <input type="submit" name="btncari" value=" Proses &raquo;" class="buttonSubmit"/>
+         </td>
+      </tr>
+   </table>
+</form>
+
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+   {ISI_PESAN}
+</div>
+<!-- /patTemplate:tmpl -->
+<div class="pageBar">
+   <!-- patTemplate:gtfwrendermodule module="paging" submodule="paging" action="view" name="paging_top"  / -->
+   <div class="toolbar"> 
+	  <a class="xhr dest_subcontent-element" href="{URL_KEMBALI}" title="Kembali ke Chart" tabindex="2">
+	  Kembali</a>
+	 <a class="xhr dest_subcontent-element " href="{URL_ADD}" title="Tambah" tabindex="2">
+	  <img src="images/button-add.gif" alt=""> Tambah</a>
+   </div>
+</div>
+<table class="table-common" width="100%">
+      <tr>
+         <th width="5">No</th>
+         <th>Unit</th>
+         <th>Nama Unit</th>
+		 <th width="20%">Aksi</th>
+      </tr>
+      <!-- patTemplate:tmpl name="view_satker" type="condition" conditionvar="IS_EMPTY" -->
+         <!-- patTemplate:sub condition="YES" -->
+         <tr><td colspan="4" align="center"><em>-- Data tidak ditemukan --</em></td></tr>
+         <!-- /patTemplate:sub -->
+         <!-- patTemplate:sub condition="NO" -->
+            <!-- patTemplate:tmpl name="list_satker" -->
+            <tr class="{CLASS_NAME}">
+               <td align="center">{NUMBER}</td>
+               <td>{UNITNAME}</td>
+               <td>{SATKERNAMA}</td>
+               <td class='links'><a class="xhr dest_subcontent-element" href="{URL_UBAH}" title="ubah Chart"><img src="images/button-edit.gif" alt="Ubah"/></a>
+			   <a class="xhr dest_subcontent-element" onClick="javascript: return showBoxConfirmDelete('{SATKERID}', '{SATKERNAMA}', '{URL_DELETE_JS}');" href="{URL_DELETE}" title="hapus Chart"><img src="images/button-delete.gif" alt="hapus"/></a>
+			   </td>
+            </tr>
+            <!-- /patTemplate:tmpl -->
+         <!-- /patTemplate:sub -->
+      <!-- /patTemplate:tmpl -->
+   </table>
+<!-- /patTemplate:tmpl -->

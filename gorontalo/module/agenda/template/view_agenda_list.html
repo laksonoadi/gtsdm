@@ -1,0 +1,26 @@
+<!-- patTemplate:tmpl name="content" -->
+<div class="col-md-12" id="list-agenda">
+	<h2 class="section-title">Agenda</h2>
+	<div class="line-double"></div>
+	<section class="row section-content cover">
+		<div class="panel panel-primary-solid">
+			<h4 class="panel-heading">List Agenda</h4>
+			<div class="list-group">
+			<!-- patTemplate:tmpl name="list" type="condition" conditionvar="IS_EMPTY" -->
+			<!-- patTemplate:sub condition="YES" -->
+				<div class="list-group-item text-left">Belum ada agenda</div>
+			<!-- /patTemplate:sub -->
+			<!-- patTemplate:sub condition="NO" -->
+			<!-- patTemplate:tmpl name="item" -->
+				<a class="list-group-item xhr dest_subcontent-element text-left" href="{URL_AGENDA}" title="{TITLE}">
+					<h4 class="list-group-item-heading text-ellipsis-pad" title="{TITLE}">{TITLE}</h4>
+					<small class="list-group-item-text">{DATE_POSTED}</small>
+				</a>
+			<!-- /patTemplate:tmpl -->
+			<!-- /patTemplate:sub -->
+			<!-- /patTemplate:tmpl -->
+			</div>
+		</div>
+	</section>
+</div>
+<!-- /patTemplate:tmpl -->

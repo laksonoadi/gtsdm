@@ -1,0 +1,64 @@
+<!-- patTemplate:tmpl name="content" -->
+<h1>{LABEL_TITLE}</h1>
+<br />
+
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="notebox-alert">
+   {ISI_PESAN}
+</div>
+<!-- /patTemplate:tmpl -->
+<div><h1>{TITLE}</h1></div><br>
+<form method="POST" class="xhr_form std_form" action="{URL_ACTION}" id="frm_input" name="frm_input" >
+   <table class="table-edit" width="100%">
+	  <input type="hidden" name="satkerId" value="{ID}" />
+	  <input type="hidden" name="op" value="{OPERASI}" />
+	  
+		<tr class="subhead">
+			<th colspan="2">{JUDUL} Referensi Satuan Kerja</th>
+			
+		</tr>		
+		<tr>
+			<th width="25%">Induk</th>
+			<td>
+				<!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="satkerLevel"  / -->
+			</td>
+		</tr>
+		<tr>
+			<th width="25%">Unit</th>
+			<td>
+				<!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="satkerUnitId"  / -->
+			</td>
+		</tr>
+		<tr>
+			<th width="25%">Nama </th>
+			<td>
+				<input type="text" name="satkerNama" value="{NAMA_UNIT}" size="40" tabindex='2' /> *  
+			</td>
+		</tr>
+			<tr>
+			<th width="25%">Tipe Struktural</th>
+			<td>
+				<!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="tpstr"  / -->
+			</td>
+		</tr>
+		
+		<tr class="buttons">
+			 <th>&nbsp;   
+			 </th>
+			 <td>
+				<input type="hidden" name="level_id" value="{LEVEL_ID}" />
+				<input type="submit" name="btnsimpan" value=" Simpan " class="buttonSubmit"/>
+				   <input  type="submit"  name="btnbatal" value=" Batal " class="buttonSubmit"/>
+			 </td>
+		</tr>
+   </table>
+</form>
+
+<div class="petunjuk-area">
+   <h4>Keterangan :</h4>
+   <ul>
+      <li>Tanda * menunjukkan bahwa field ini harus diisi.</li>
+	  <li>Tanda ** Diisi tanpa satuan akuntansi
+   </ul>
+</div>
+<!-- /patTemplate:tmpl -->

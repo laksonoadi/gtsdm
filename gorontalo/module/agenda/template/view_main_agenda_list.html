@@ -1,0 +1,20 @@
+<!-- patTemplate:tmpl name="content" -->
+<div class="mainContent-fp-element-full">
+		<div class="mainContent-fp-element-full-head"><h2>Agenda</h2></div>
+		<div class="mainContent-fp-element-full-body">
+      <br>
+      <div class="kabarAlumni-headline">
+            <a class="xhr dest_subcontent-element " href="{URL_AGENDA}"><h2>{TITLE}</h2><br />Tempat : {TEMPAT}<br /> Jam : {MULAI} sampai {SELESAI} <br /> {DATE_POSTED}</a>
+      </div>
+      <div class="kabarAlumni-archive">
+      		  <h3>Agenda sebelumnya</h3>
+      				<ul class="kabarAlumni-archive-ul">
+      				  <!-- patTemplate:tmpl name="agendalist" -->
+                    <li><a class="xhr dest_subcontent-element " href="{URL_BERITA}"><strong>{TITLE}</strong><br />Diposting: {DATE_POSTED}</a></li>
+                <!-- /patTemplate:tmpl -->
+      				</ul>
+      </div>
+      <a class="xhr dest_subcontent-element " href="<!-- patTemplate:gtfwgeturl module="agenda" sub="agendaList" action="view" type="html" params=""  / -->" class="specialButton">Selanjutnya..</a>
+    </div>
+</div>
+<!-- /patTemplate:tmpl --> 

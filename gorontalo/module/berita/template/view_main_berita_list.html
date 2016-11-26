@@ -1,0 +1,22 @@
+<!-- patTemplate:tmpl name="content" -->
+<div class="mainContent-fp-element-full">
+		<div class="mainContent-fp-element-full-head">
+		  <h2>Berita</h2>
+		</div>
+		<div class="mainContent-fp-element-full-body">
+      <br>
+      <div class="kabarAlumni-headline">
+            <a class="xhr dest_subcontent-element " href="{URL_BERITA}"><h2>{TITLE}</h2><p>{RINGKAS}</p><br />{DATE_POSTED}</a>
+      </div>
+      <div class="kabarAlumni-archive">
+      		  <h3>Berita Sebelumnya</h3>
+      				<ul class="kabarAlumni-archive-ul">
+      				  <!-- patTemplate:tmpl name="beritalist" -->
+                    <li><a class="xhr dest_subcontent-element " href="{URL_BERITA}"><strong>{TITLE}</strong><br />{DATE_POSTED}</a></li>
+                <!-- /patTemplate:tmpl -->
+      				</ul>
+      </div>
+      <a class="xhr dest_subcontent-element " href="<!-- patTemplate:gtfwgeturl module="berita" sub="beritaList" action="view" type="html" params=""  / -->" class="specialButton">selanjutnya..</a>
+    </div>
+</div>
+<!-- /patTemplate:tmpl -->
