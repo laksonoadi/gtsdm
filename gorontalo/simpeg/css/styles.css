@@ -1,0 +1,636 @@
+@font-face {
+	font-family: 'Roboto';
+	src: url('../fonts/roboto-webfont.eot'); /* IE9 Compat Modes */
+	src: url('../fonts/roboto-webfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+	url('../fonts/roboto-webfont.woff') format('woff'), /* Modern Browsers */
+	url('../fonts/roboto-webfont.ttf')  format('truetype'), /* Safari, Android, iOS */
+	url('../fonts/roboto-webfont.svg#svgFontName') format('svg'); /* Legacy iOS */
+	font-weight: 400;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Roboto';
+	src: url('../fonts/roboto-light-webfont.eot'); /* IE9 Compat Modes */
+	src: url('../fonts/roboto-light-webfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+	url('../fonts/roboto-light-webfont.woff') format('woff'), /* Modern Browsers */
+	url('../fonts/roboto-light-webfont.ttf')  format('truetype'), /* Safari, Android, iOS */
+	url('../fonts/roboto-light-webfont.svg#svgFontName') format('svg'); /* Legacy iOS */
+	font-weight: 200;
+	font-style: normal;
+}
+
+/* Regular */
+@font-face {
+    font-family: 'Open Sans';
+    src: url('../fonts/OpenSans-Regular-webfont.eot');
+    src: url('../fonts/OpenSans-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/OpenSans-Regular-webfont.woff') format('woff'),
+         url('../fonts/OpenSans-Regular-webfont.ttf') format('truetype'),
+         url('../fonts/OpenSans-Regular-webfont.svg#OpenSansRegular') format('svg');
+    font-weight: normal;
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* Light */
+@font-face {
+    font-family: 'Open Sans';
+    src: url('../fonts/OpenSans-Light-webfont.eot');
+    src: url('../fonts/OpenSans-Light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/OpenSans-Light-webfont.woff') format('woff'),
+         url('../fonts/OpenSans-Light-webfont.ttf') format('truetype'),
+         url('../fonts/OpenSans-Light-webfont.svg#OpenSansLight') format('svg');
+    font-weight: 200;
+    font-style: normal;
+}
+
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding-bottom: 0;
+}
+
+/* Seamless design, borderless */
+#body-application {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    position: relative;
+    margin: 0 auto;
+    padding-bottom: 65px;
+}
+
+#navbar-main {
+    background-image: none;
+    background-color: #ecf0f1;
+	margin-bottom: 0px;
+	border-radius: 0px !important;
+	border-width: 0 0 2px;
+    border-bottom: 2px solid #333;
+	/* position: absolute;
+	top: 0;
+	width: 100%; */
+}
+
+.footer {
+    background-color: #0c1e30;
+    /* background-image: linear-gradient(to bottom, #252525 0px, #121212 100%); */
+    background-repeat: repeat-x;
+    position: absolute;
+    bottom: 0;
+    color: #9d9d9d;
+    width: 100%;
+    height: 65px;
+    padding: 15px 0 15px;
+    overflow: hidden;
+    z-index: 100;
+}
+
+#header-text {
+    margin-left: 0px !important;
+    padding-left: 0px !important;
+    color: #333 !important;
+    font-family: 'Calibri';
+    font-size: 18px;
+    font-variant: small-caps;
+    font-size-adjust: 0.58;
+}
+
+.footer p {
+    font-size: 14px;
+    color: #9d9d9d;
+    /* font-family: Verdana,Arial,Helvetica,sans-serif; */
+    margin-top: 8px;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
+.menu-popover-trigger {
+    color: #666 !important;
+}
+
+.menu-popover-trigger:hover {
+    color: #333 !important;
+}
+
+.menu-popover-trigger:active,
+.menu-popover-trigger:focus {
+    outline: none;
+    color: #666 !important;
+}
+
+.menu-popover-trigger .glyphicon {
+    font-size: 16px;
+    vertical-align: text-bottom;
+}
+
+.menu-popover {
+    min-width: 200px;
+    max-width: 350px;
+    right: 10px;
+    left: auto !important;
+    padding: 0;
+    border-radius: 0;
+}
+
+.menu-popover > .arrow {
+    margin-left: 0 !important;
+    /* left: auto !important;
+    right: 0px; */
+}
+
+.menu-popover .popover.content {
+    overflow-x: hidden;
+}
+
+.popover > .arrow, .popover > .arrow::after {
+    border-style: dashed dashed solid;
+}
+
+.menu-popover .notification-list {
+    max-height: 400px;
+    width: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.notification-title {
+    display: block;
+    padding: 3px 10px;
+    text-align: center;
+    margin: 0 auto;
+    text-decoration: none;
+    color: #7a7a7a;
+    border-bottom: 1px solid #ccc;
+}
+
+.notification-list > a, .notification-item {
+    display: block;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: #428bca;
+}
+
+.notification-list > a:nth-child(n+2), .notification-item:nth-child(n+2) {
+    border-top: 1px solid #eee;
+}
+
+.notification-list > a:hover,
+.notification-list > a:active,
+.notification-list > a:focus {
+    background-color: #f0f0f0;
+    color: #2a6496;
+}
+
+/* Helper classes */
+.no-padding { padding: 0 !important; }
+.no-margin { margin: 0 !important; }
+
+.text-bold { font-weight: bold; }
+.text-semibold { font-weight: 500; }
+.text-uppercase { text-transform: uppercase; }
+.text-lowercase { text-transform: lowercase; }
+.text-capitalize { text-transform: capitalize; }
+
+.text-ellipsis {
+    white-space: nowrap;
+    overflow-x: hidden;
+    text-overflow: "...";
+}
+
+.text-ellipsis-pad {
+    white-space: nowrap;
+    overflow-x: hidden;
+    text-overflow: "...";
+    padding-bottom: 2px; /* To fix letters like p, g, or j (bottom) being cut because of one line nowrap */
+}
+
+.row.row-push-10, .push-10 { margin-bottom: 10px; }
+.row.row-push-15, .push-15 { margin-bottom: 15px; }
+
+.border-sharp { border-radius: 0 !important; }
+
+.display-block { display: block; }
+
+.collapse-toggle { cursor: pointer; }
+
+.img-fit {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+.pre { white-space: pre; }
+
+/* END Helper classes */
+
+.panel:last-child, .list-group:only-child {
+    margin: 0;
+}
+
+#back-to-top {
+    display: block;
+    position: fixed;
+    left: 15%;
+    bottom: 15%;
+    width: 31px;
+    height: 31px;
+    background-color: rgba(0, 0, 0, 0.9);
+    border-radius: 50%;
+    z-index: 9999999; /* Defeat sidebar */
+    cursor: pointer;
+    transition: opacity 0.35s;
+    opacity: 0;
+    pointer-events: none;
+    text-align: center;
+    overflow: hidden;
+}
+
+#back-to-top::after {
+    content: "";
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    border-width: 0 6px 10px;
+    border-style: none dashed solid;
+    border-color: transparent transparent #999;
+}
+
+#back-to-top.btt-visible {
+    opacity: 0.6;
+    pointer-events: auto;
+}
+
+#back-to-top.btt-visible:hover {
+    opacity: 0.9;
+}
+
+#back-to-top.btt-fade {
+    opacity: 0.3;
+}
+
+#back-to-top.btt-disable {
+    opacity: 0 !important;
+    pointer-events: none !important;
+    cursor: default !important;
+    bottom: 20%;
+    transition: opacity 0.2s, bottom 0.3s linear;
+}
+
+#sidebar {
+	z-index: 999;
+	font-family: "Open Sans",Roboto,Arial,sans-serif;
+}
+
+#sidebar a {
+	font-family: "Open Sans",Roboto,Arial,sans-serif;
+	font-weight: 200;
+    font-size: 14px;
+}
+
+#sidebar .sub-menu a {
+    font-size: 13px;
+}
+
+.background-blue {
+	font-family: "Open Sans",Roboto,Verdana,sans-serif;
+    line-height: 1.42857;
+}
+
+#sidebar .background-blue {
+    background-color: #2c3e50;
+}
+
+#sidebar .panel-group {
+	margin-bottom: 0;
+}
+
+#sidebar .panel {
+	border: 0 none;
+	box-shadow: none;
+}
+
+#sidebar #sidebar-top-info {
+    border-bottom: 1px solid #666;
+}
+
+#sidebar #sidebar-top-info > div {
+    height: 46px;
+    padding: 13px 10px 12px;
+    border-radius: 0;
+    border-bottom: 1px solid #222;
+    text-align: center;
+    font-size: 14px;
+}
+
+#sidebar .panel, #sidebar .panel .panel-title, #sidebar .panel .panel-body,
+#subcontent-element .panel, #subcontent-element .panel .panel-title, #subcontent-element .panel .panel-body {
+	border-radius: 0;
+}
+
+#sidebar .sub-menu {
+	margin-top: 0;
+	margin-bottom: 0;
+	padding-left: 0;
+	padding-right: 0;
+}
+
+#sidebar a:focus,
+#sidebar a:active {
+	outline: 0 none;
+}
+
+#sidebar .sub-menu a {
+	padding-left: 20px;
+}
+
+#page-content {
+	padding-left: 0;
+	padding-right: 0;
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+#page-content .background-blue {
+	background-color: #34495e;
+}
+
+#page-content .background-blue.text-big {
+	text-transform: capitalize;
+}
+
+/* Flexbox setup for modern browsers */
+#body-application {
+	display: block; /* Fallback for non-supporting browsers */
+	display: -webkit-flex;
+	display: flex;
+	flex-flow: column nowrap;
+}
+
+#body-application > #content {
+	flex: 1 1 auto; /* Fill the rest of the availabe space */
+	display: -webkit-flex;
+	display: flex;
+	background-color: #fff;
+}
+
+#body-application > #content > #sidebar {
+	/* Now we can make the sidebar fill the remaining height! Yay! */
+	min-height: 100%;
+	background-color: #2c3e50;
+}
+#body-application > #content > #sidebar .sub-menu {
+	background-color: #eee;
+}
+#body-application > #content > #sidebar .sub-menu > li {
+	border-color: #ddd;
+}
+
+.tinyeditor:only-child {
+	margin: 0;
+}
+
+.input-tiny {
+    width: 60px;
+}
+.input-small {
+    width: 90px;
+}
+.input-short {
+    width: 120px;
+}
+.input-middle {
+    width: 200px;
+}
+.input-long {
+    width: 350px;
+}
+.input-very-long {
+    width: 500px;
+}
+
+    /*Now the CSS*/
+* {margin: 0; padding: 0;}
+
+.tree
+{
+    width: 1000px;
+
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.tree ul {
+    padding-top: 20px; position: relative;
+    
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+}
+
+.tree li {
+    float: left; text-align: center;
+    list-style-type: none;
+    position: relative;
+    padding: 20px 5px 0 5px;
+    
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+}
+
+/*We will use ::before and ::after to draw the connectors*/
+
+.tree li::before, .tree li::after{
+    content: '';
+    position: absolute; top: 0; right: 50%;
+    border-top: 1px solid #ccc;
+    width: 50%; height: 20px;
+}
+.tree li:after{
+    right: auto; left: 50%;
+    border-left: 1px solid #ccc;
+}
+
+/*We need to remove left-right connectors from elements without 
+any siblings*/
+.tree li:only-child::after, .tree li:only-child::before {
+    display: none;
+}
+
+/*Remove space from the top of single children*/
+.tree li:only-child{ padding-top: 0;}
+
+/*Remove left connector from first child and 
+right connector from last child*/
+.tree li:first-child::before, .tree li:last-child::after{
+    border: 0 none;
+}
+/*Adding back the vertical connector to the last nodes*/
+.tree li:last-child::before{
+    border-right: 1px solid #ccc;
+    border-radius: 0 5px 0 0;
+    -webkit-border-radius: 0 5px 0 0;
+    -moz-border-radius: 0 5px 0 0;
+}
+.tree li:first-child::after{
+    border-radius: 5px 0 0 0;
+    -webkit-border-radius: 5px 0 0 0;
+    -moz-border-radius: 5px 0 0 0;
+}
+
+/*Time to add downward connectors from parents*/
+.tree ul ul::before{
+    content: '';
+    position: absolute; top: 0; left: 50%;
+    border-left: 1px solid #ccc;
+    width: 0; height: 20px;
+    margin-left: -1px;
+}
+
+.tree li a{
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    text-decoration: none;
+    color: #666;
+    font-family: arial, verdana, tahoma;
+    font-size: 11px;
+    display: inline-block;
+    
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+}
+
+/*Time for some hover effects*/
+/*We will apply the hover effect the the lineage of the element also*/
+.tree li a:hover, .tree li a:hover+ul li a {
+    background: #c8e4f8; color: #000; border: 1px solid #94a0b4;
+}
+/*Connector styles on hover*/
+.tree li a:hover+ul li::after, 
+.tree li a:hover+ul li::before, 
+.tree li a:hover+ul::before, 
+.tree li a:hover+ul ul::before{
+    border-color:  #94a0b4;
+}
+
+li a.just-line {
+    display: none;
+}
+a.just-line + ul {
+    padding-top: 74px;
+}
+a.just-line + ul:before {
+    height: 74px;
+}
+
+
+/* jsTree fix */
+.jstree, .jstree * {
+    box-sizing: content-box;
+}
+
+.jstree li > a:not([href]) {
+    cursor: default;
+}
+
+.jstree-ui .jstree-icon {
+    cursor: default;
+}
+
+.jstree.jstree-classic .jstree-hovered,
+.jstree.jstree-classic .jstree-clicked {
+    padding: 0 1px;
+}
+
+.jstree label {
+    font-weight: normal;
+    margin: 0;
+}
+
+.jstree .jstree-checkbox-raw {
+    display: inline-block;
+    position: relative;
+    top: 2px;
+    margin: 0 3px 0 0;
+    cursor: pointer;
+}
+
+.jstree li[rel="item-disabled"] > a {
+    color: #999;
+}
+
+.jstree li > .item-buttons {
+    display: inline-block;
+    margin-left: 5px;
+    cursor: default;
+    vertical-align: text-top;
+}
+
+.jstree li > .item-buttons::before,
+.jstree li > .item-buttons::after {
+    /* Clearfix */
+    content: " ";
+    display: table;
+    clear: both;
+}
+
+.jstree li > .item-buttons .jstree-icons {
+    /* We don't want the folder icons in the buttons */
+    display: none !important;
+}
+
+.jstree li > .item-buttons a {
+    display: block;
+    float: left;
+    font-size: 12px;
+    color: #555;
+    cursor: pointer;
+    padding: 0 3px;
+    text-decoration: none;
+}
+
+.jstree li > .item-buttons a:hover {
+    color: #09C;
+}
+
+/* CSS fix for Chosen plugin */
+.chosen-container,
+.chosen-container::before,
+.chosen-container::after,
+.chosen-container *,
+.chosen-container *::before,
+.chosen-container *::after {
+    box-sizing: content-box;
+}
+
+.chosen-container-single .chosen-default {
+    color: #666;
+}
+
+/* Enlarge a bit to match Bootstrap's style */
+.chosen-container {
+    margin-top: 2px;
+}
+
+.chosen-container-single .chosen-single {
+    height: 27px;
+    line-height: 28px;
+}
+
+.chosen-container-single .chosen-single div b {
+    background-position: 0 4px;
+}
+
+.chosen-container-single .chosen-single abbr {
+    top: 8px;
+    border-bottom: none;
+}
+
+.color-red { color: red; }

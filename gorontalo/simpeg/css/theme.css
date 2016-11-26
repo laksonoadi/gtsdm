@@ -1,0 +1,64 @@
+/******/
+/*Text*/
+/******/
+
+/*Common text*/
+
+.text-white,
+.text-white a{
+    color: #fff;
+}
+
+.text-black,
+.text-black a{
+    color: #000;
+}
+
+.text-small{
+    font-size: 12px;
+}
+
+.text-medium{
+    font-size: 14px;
+}
+
+.text-big{
+    font-size: 18px;
+}
+
+.text-huge{
+    font-size: 22px;
+}
+
+/*Background*/
+
+
+.background-none{
+    background-color: transparent;
+    background-image: none;
+}
+
+.background-header{
+    background: url('sia-mocca/images/header-bg.gif');
+}
+
+.background-black{
+    background-color: #333333;
+}
+
+.background-white{
+    background-color: #FFF;
+}
+
+.background-blue {
+    background-color: #3B5998;
+    color: #FFF !important;
+}
+
+.background-blue a {
+    color: #fff !important;
+}
+
+.background-blue-light{
+    background-color: #D0DDF7;
+}
