@@ -1,0 +1,134 @@
+<!-- patTemplate:tmpl name="content" -->
+<script language="javascript" type="text/javascript">
+	var xpopup;
+	function centangin_semua(varname, start_num, end_num) {
+		var obj = document.getElementById('cek_all');
+		if(obj.checked == false) {
+			for(i=start_num;i<=end_num;i++) {
+				document.getElementById(varname + i).checked = false;
+			}
+		} else {
+			for(i=start_num;i<=end_num;i++) {
+				document.getElementById(varname + i).checked = true;
+			}
+		}
+	}
+	function show_checkbox (varname, start_num, end_num) {
+		//show check_all checkbox
+		document.getElementById('cek_all').style.display='';
+		//document.getElementById('btnHapus').type="button";
+	}
+	function konfirmasi_delete(varname, start_num, end_num) {
+		//var idDelete = document.getElementById('id_delete').value;
+		for(i=start_num;i<=end_num;i++) {
+			if(document.getElementById(varname + i).checked == true) {
+				//document.getElementById('form_list').submit();
+				document.getElementById('btnHapus').type="submit";
+				document.getElementById('btnHapus').click();
+				return true;
+			}
+		}
+		alert('Silakan beri tanda cek pada minimal 1 data');
+		return false;
+	}
+</script>
+
+<br />
+<h1>OVERTIME WORK DATA</h1>
+<br />
+<table class="table-details" width="100%" >
+	<tr class="subhead">
+		<th colspan="3"><b>Employee Data</b></th>
+	</tr>
+	<tr>
+		<td rowspan="6" width="60px"><img src="upload_file/photo/{FOTO2}" width="100" height="100"></td>
+   </tr>
+   <tr>
+      <td width="120px">Employee Number</td>
+	  <td>{NIP}</td>
+   </tr>
+   <tr>
+      <td>Name</td>
+	  <td>{NAMA}</td>
+   </tr>
+   <tr>
+      <td>Direct Supervisor</td>
+	  <td>{SPV}</td>
+   </tr>
+   <tr>
+      <td>MOR</td>
+	  <td>{MOR}</td>
+   </tr>
+   <tr>
+      <td>Address</td>
+	  <td>{ALAMAT}</td>
+   </tr>
+</table> 
+<br />
+<form method="POST" action="{URL_SEARCH}" class="dataquest xhr_simple_form dest_subcontent-element" id="filterbox">
+   <table>
+      <tr>
+         <th colspan="2"><h2><strong>Search Data</strong></h2></th>
+      </tr>
+  	  <tr>
+    		<th>Overtime Work Approval Status</th>
+    		<td>
+    			<!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="tampilkan" / -->
+        </td>
+    	</tr>
+      <tr>              
+         <th width="30%">&nbsp;</th>
+         <td><input type="submit" name="btncari" value=" Search &raquo;" class="buttonSubmit"/></td>
+      </tr>
+   </table>
+</form>
+
+<br /> 
+   <!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+   <div class="{CLASS_PESAN}">
+      {ISI_PESAN}
+   </div>
+   <br />
+   <!-- /patTemplate:tmpl -->
+   <h2>Overtime Work History Management</h2>
+   <div class="pageBar">
+   <!-- patTemplate:gtfwrendermodule module="paging" submodule="paging" action="view" name="paging_top"  / -->
+      <div class="toolbar"> 
+   		<a class="xhr dest_subcontent-element" href="{URL_KEMBALI}" title="Select Employee" tabindex="2"><img src="images/button-back.gif" alt="Select Employee"> Select Employee</a>
+      <a class="xhr dest_subcontent-element" href="{URL_TAMBAH_LEMBUR}" title="Add Overtime Work Data" tabindex="3"><img src="images/button-add.gif" alt="Overtime Work Data"> Add Overtime Work Data</a>
+	  </div>
+   </div>
+	<table class="table-common" width="800px">
+      <tr>
+         <th width="10%">No</th>
+         <th width="20px">Action</th>
+         <th width="70px">Overtime Work Number</th>
+         <th width="70px">Date</th>
+         <th width="70px">Start Time</th>
+         <th width="90px">Completed Time</th>
+		 <th width="90px">Duration</th>
+         <th width="110px">Status</th>
+      </tr>
+      <!-- patTemplate:tmpl name="data_history" type="condition" conditionvar="HISTORY_EMPTY" -->
+         <!-- patTemplate:sub condition="YES" -->
+         <tr><td colspan="7" align="center"><em>-- Data not found --</em></td></tr>
+         <!-- /patTemplate:sub -->
+         <!-- patTemplate:sub condition="NO" -->
+            <!-- patTemplate:tmpl name="data_history_item" -->
+            <tr class="{DATA_CLASS_NAME}">
+               <td align="center">{DATA_NUMBER}</td>
+               <td class="links" align="center">
+                  <a class="xhr dest_subcontent-element" href="{DATA_URL_DETAIL}" title="Detail"><img src="images/button-detail.gif" alt="Detail"/></a> 
+               </td>
+               <td align="center">{DATA_NO}</td>
+               <td>{DATA_TGLAJU}</td>
+					     <td align="center">{DATA_MULAI}</td>
+               <td align="center">{DATA_SELESAI}</td>
+			   <td align="center">{DATA_DURASI}</td>
+               <td align="center">{DATA_STATUS}</td>
+            </tr>
+            <!-- /patTemplate:tmpl -->
+         <!-- /patTemplate:sub -->
+      <!-- /patTemplate:tmpl -->
+   </table>
+<!-- /patTemplate:tmpl -->

@@ -1,0 +1,104 @@
+
+<!-- patTemplate:tmpl name="content" -->
+<h1>{LABEL_TITLE}</h1>
+<br />
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+   {ISI_PESAN}
+</div>
+<br />
+<!-- /patTemplate:tmpl -->
+<div><h1>{TITLE}</h1></div><br>
+<table class="table-details" width="100%" >
+	<tr class="subhead">
+		<th colspan="3"><b>Employee Data</b></th>
+	</tr>
+	<tr>
+		<td rowspan="6" width="60px"><img src="upload_file/photo/{DATA_FOTO2}" width="100" height="100"></td>
+   </tr>
+   <tr>
+      <td width="120px">Employee Number</td>
+	  <td>{DATA_NIP}</td>
+   </tr>
+   <tr>
+      <td>Name</td>
+	  <td>{DATA_NAMA}</td>
+   </tr>
+   <tr>
+      <td>Direct Supervisor</td>
+	  <td>{DATA_SPV}</td>
+   </tr>
+   <tr>
+      <td>MOR</td>
+	  <td>{DATA_MOR}</td>
+   </tr>
+   <tr>
+      <td>Address</td>
+	  <td>{DATA_ALAMAT}</td>
+   </tr>
+</table> 
+<form method="POST" name="frmInput" action="{URL_AKSI}" class="xhr_form std_form" id="frmInput" enctype="multipart/form-data">
+   <input type="hidden" name="idPeg" value="{DATA_ID}">
+   <table class="table-details" width="100%" >
+      <tr class="subhead">
+        <th colspan="2" valign="center">Overtime Work Data Detail</th>
+      </tr>
+      <tr>
+        <th width="39%">Overtime Work Number</th>
+        <td>
+          {NO}
+        </td>
+      </tr>
+      <tr>
+        <th>Overtime Work Date</th>
+        <td>
+          {AJU}
+        </td>
+      </tr>
+      <tr>
+        <th>Date Submitted</th>
+        <td>
+          {SUBMIT}
+        </td>
+      </tr>
+      <tr>
+        <th>Start Time</th>
+        <td>
+          {MULAI}
+        </td>
+      </tr>
+      <tr>
+        <th>Completed Time</th>
+        <td>
+          {SELESAI}
+        </td>
+      </tr>
+      <tr>
+        <th>Overtime Work Reason</th>
+        <td>
+          {ALASAN}
+        </td>
+      </tr>
+      <tr>
+        <th>Overtime Work Approval Status</th>
+        <td>
+          {STATUS}
+        </td>
+      </tr>
+      <tr>
+        <th>Last Update Status</th>
+        <td>
+          {TGLSTAT}
+        </td>
+      </tr>
+      <tr class="buttons">
+         <td colspan="2" align="right">
+          <div class="toolbar"> 
+          <a class="xhr dest_subcontent-element " href="{URL_BACK}" title="Kembali" tabindex="2">
+          Kembali</a> 	
+          </div>
+         </td>
+      </tr>
+   </table>
+</form>
+<!-- /patTemplate:tmpl -->
