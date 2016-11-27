@@ -1,0 +1,169 @@
+<!-- patTemplate:tmpl name="content" -->
+<!--<h1>{LABEL_TITLE}</h1>-->
+<div class="background-blue padding-10 text-big">{TITLE}</div>
+<div class="padding-10">
+
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="{CLASS_PESAN}">
+            {ISI_PESAN}
+        </div>
+    </div>
+</div>
+<!-- /patTemplate:tmpl -->
+
+<form method="POST" name="frmInput" action="{URL_ACTION}" class="xhr_form std_form" id="frmInput" >
+    <div class="table-responsive">
+      <table class="table">
+      <tr class="background-blue-light">
+         <th colspan="2">{LABEL_ACTION} {LABEL_INPUT}</th>
+      </tr>
+      
+	  <tr>
+         <th width="150">Jabatan Fungsional</th>
+         <td>
+           <input type="text" name="nama" value="{INPUT_NAMA}" size="40" />&nbsp;*
+         </td>
+      </tr>
+	  <tr>
+         <th >Jenis Jabatan Fungsional</th>
+         <td>
+           <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="jenis_jabatan"  / -->
+         </td>
+      </tr>
+	  <tr>
+         <th >Level</th>
+         <td>
+           <input type="text" name="tingkat" value="{INPUT_TINGKAT}"  size="10" />
+         </td>
+      </tr>
+	  <tr>
+         <th >Batas Akhir Pensiun</th>
+         <td>
+           <input type="text" name="pensiun" value="{INPUT_PENSIUN}"  size="10" />
+         </td>
+      </tr>
+	  
+	  <!-- <tr>
+         <th >Komponen Gaji</th>
+         <td>
+           <input type='text' name='gaji_dosen_nama' value='{INPUT_GAJINAMA}' id='gaji_dosen_nama' size="30" readonly />
+            <input type='button' value='...' onclick='javascript: show_pop_up("{URL_POPUP_GAJI}")'/> * -->
+            <input type='hidden' name='gajiKode' value='0' id='gajiKode'/>
+            <!-- <input type='hidden' name='gajiKode' value='{INPUT_GAJIKODE}' id='gajiKode'/> -->
+        <!-- </td>
+      </tr>
+	  
+	  <tr>
+         <th >Maksimal Jumlah SKS (Standar)</th>
+         <td> -->
+           <!-- <input type="text" name="max_sks" value="{INPUT_MAX_SKS}"  size="10" /> -->
+           <input type="hidden" name="max_sks" value="0"  size="10" />
+        <!-- </td>
+      </tr> -->
+      <tr class="background-blue-light">
+        <th></th>
+         <td>
+            <div class="btn-group">
+                <input type="submit" name="btnsimpan" value="{LABEL_ACTION}" class="btn btn-info btn-xs"/>
+                <input type="submit" name="btnbalik" value="Cancel" class="btn btn-warning btn-xs"/>
+            </div>
+         </td>
+      </tr>
+      </table>
+    </div>
+</form>
+
+<div class="panel panel-default">
+    <div class="panel-heading text-big"><strong>Pencarian Data</strong></div>
+    <div class="panel-body">
+        <form method="POST" action="{URL_SEARCH}" class="form-horizontal xhr_simple_form dest_subcontent-element" id="filterbox" role="form">
+            <div class="form-group">
+                <label for="inputCari" class="col-sm-2 control-label">Kata Kunci {LABEL_INPUT}</label>
+                <div class="col-sm-2">
+                    <input type="text" name="cari" value="{CARI}" size="30" id="inputCari"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <input type="hidden" name="btncari" value=" Cari &raquo;" class="buttonSubmit"/>
+                    <button type="submit" class="btn btn-default btn-xs">Cari <span class="glyphicon glyphicon-search"></span></button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<h2>{JUDUL_DATA}</h2>
+
+<div class="row push-down-10">
+    <div class="col-md-12">
+        <!-- patTemplate:gtfwrendermodule module="paging" submodule="paging" action="view" name="paging_top"  / -->
+    </div>
+</div>
+
+<div class="table-responsive">
+<table class="table table-bordered table-hover">
+   <tr>
+      <th width="1%">No</th>
+      <th width="73px">Aksi</th>
+      <th>Jabatan Fungsional</th>
+	  <th>Jenis Jabatan Fungsional</th>
+	  <th>Level</th>
+	  <th>Batas Akhir Pensiun</th>
+<!-- 	  <th>Komponen Gaji</th>
+	  <th>Maksimal Jumlah SKS (Standar)</th>
+ -->
+   </tr>
+   <!-- patTemplate:tmpl name="data" type="condition" conditionvar="DATA_EMPTY" -->
+      <!-- patTemplate:sub condition="YES" -->
+   <tr><td colspan="9" align="center"><em>-- Data tidak ditemukan --</em></td></tr>
+      <!-- /patTemplate:sub -->
+      <!-- patTemplate:sub condition="NO" -->
+         <!-- patTemplate:tmpl name="data_item" -->
+   <tr class="{CLASS_NAME}">
+      <td align="center">{NUMBER}</td>
+      <td>
+        <div class="btn-group">
+            <a class="xhr dest_subcontent-element btn btn-success btn-xs" href="{URL_EDIT}" title="Ubah">
+                <span class="glyphicon glyphicon-pencil"></span>
+            </a>
+            <a class="xhr dest_subcontent-element btn btn-danger btn-xs" onClick="javascript: return showBoxConfirmDelete('{ID}', '{NAMA}', '{URL_DELETE_JS}');" href="{URL_DELETE}" title="Hapus">
+                <span class="glyphicon glyphicon-trash"></span>
+            </a>
+        </div>
+      </td>
+      <td align="left">{NAMA}</td>
+	  <td align="left">{JENIS}</td>
+	  <td align="left">{TINGKAT}</td>
+	  <td align="left">{PENSIUN}</td>
+<!-- 	  <td align="left">{GAJI_NAMA}</td>
+	  <td align="left">{MAX_SKS}</td>
+ -->     
+   </tr>
+         <!-- /patTemplate:tmpl -->
+      <!-- /patTemplate:sub -->
+   <!-- /patTemplate:tmpl -->
+</table>
+</div>
+<script>
+	
+function show_pop_up (url)
+	{
+		//winpopup = showPopup(url, "", 550, 550);
+		winpopup = window.open(url, '_blank', 'width=550,height=550,resizable=yes,scrollbars=yes,right=0;center');
+		winpopup.focus();
+		//winpopup.focus();
+	}
+
+</script>
+<div class="petunjuk-area">
+   <h4>Petunjuk :</h4>
+   <ul>
+      <li>Tanda * menunjukkan bahwa field tersebut harus diisi.</li>
+   </ul>
+</div>
+
+</div>
+<!-- /patTemplate:tmpl -->

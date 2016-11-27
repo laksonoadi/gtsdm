@@ -1,0 +1,22 @@
+Cancellation Benefit Request in SSE Human Resource Portal System
+Dear Supervisor,
+
+This Employee, 
+Name            : {NAMA_PEGAWAI}
+Employee Number : {NIP_PEGAWAI}
+
+Has been Canceled His/Her Benefit Request
+
+Detailed Informations :
+Number         : {BENEFIT_NUMBER}
+Claim Type     : {BENEFIT_TIPE}
+Claim Date     : {BENEFIT_TANGGAL_KLAIM}
+Medical Date   : {BENEFIT_TANGGAL}
+Place          : {BENEFIT_TEMPAT}
+Medical Reason : {BENEFIT_ALASAN}
+Claim Amount   : Rp. {BENEFIT_TOTAL_KLAIM}
+
+
+Regards,
+
+HR Mail System

@@ -1,0 +1,66 @@
+<!-- patTemplate:tmpl name="content" -->
+<div class="background-blue padding-10 text-big">Manajemen Group</div>
+<div class="padding-10">
+
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="notebox-alert">
+            {ISI_PESAN}
+        </div>
+    </div>
+</div>
+<!-- /patTemplate:tmpl -->
+<form method="POST" action="{URL_ACTION}" class="xhr_form std_form" id="frmInput">
+    <div class="table-responsive">
+        <table class="table">
+         <tr class="background-blue-light"> 
+            <th colspan="2">{JUDUL} Group</th>
+         </tr>
+         <tr>
+            <th>Nama Group *</th>
+            <td><input type="text" name="groupname" value="{GROUPNAME}" size="30" notab="1"/></td>
+         </tr>
+         <tr>
+            <th>Deskripsi</th>
+            <td><textarea name="description" cols="65" tabindex="2">{DESKRIPSI}</textarea>
+            <input type="hidden" name="grp" value="{GRP}" /></td>
+         </tr>
+         <tr style="display:none">
+            <th>Unit Kerja *</th>
+            <td>
+         <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="unit_kerja" value="{UNIT_KERJA}" / -->
+            </td>
+         </tr>
+         <tr>
+            <th>Hak Akses</th>
+            <td>
+            <!-- patTemplate:tmpl name="menu" type="condition" conditionvar="MENU_PARENT" -->
+               <!-- patTemplate:sub condition="YES" -->
+               <h2><b>{PARENT_MENU}</b></h2>
+               <!-- /patTemplate:sub -->
+               <!-- patTemplate:sub condition="NO" --> 
+               <input type="checkbox" name=menu[] value="{IDMENU}" {CHECK}/>{MENU}<br>
+               <!-- /patTemplate:sub -->
+            <!-- /patTemplate:tmpl -->      
+            </td>
+         </tr>
+         <tr class="background-blue-light">
+            <th></th>
+            <td>
+                <div class="btn-group">
+                    <input type="submit" name="btnsimpan" value="Save" class="btn btn-info btn-xs"/>
+                    <input type="submit" name="btnbatal" value="Cancel" class="btn btn-warning btn-xs"/>
+                </div>
+            </td>
+         </tr>
+      </table>
+    </div>
+</form>
+<div class="petunjuk-area">
+   <h4>Informasi :</h4>
+   <ul>
+      <li>Tanda * menandakan bahwa field tersebut wajib diisi. </li>
+   </ul>
+</div>
+<!-- /patTemplate:tmpl -->

@@ -1,0 +1,194 @@
+<!-- patTemplate:tmpl name="content" -->
+<script language="javascript" type="text/javascript">
+	var xpopup;
+	function centangin_semua(varname, start_num, end_num) {
+    var obj = document.getElementById('cek_all');		
+		if(obj.checked == false) {
+			for(i=start_num;i<=end_num;i++) {
+				document.getElementById(varname + i).checked = false;
+			}
+		} else {
+			for(i=start_num;i<=end_num;i++) {
+				if (document.getElementById('hidden_' + i).style.display!='none'){
+					document.getElementById(varname + i).checked = true;
+				}
+			}
+		}
+	}
+	function show_checkbox (varname, start_num, end_num) {
+		//show check_all checkbox
+		document.getElementById('cek_all').style.display='';
+		//document.getElementById('btnHapus').type="button";
+	}
+	function konfirmasi_delete(varname, start_num, end_num) {
+		//var idDelete = document.getElementById('id_delete').value;
+		for(i=start_num;i<=end_num;i++) {
+			if(document.getElementById(varname + i).checked == true) {
+				//document.getElementById('form_list').submit();
+				document.getElementById('btnHapus').type="submit";
+				//document.getElementById('btnHapus').click();
+				document.formaneh.onSubmit();
+				return true;
+			}
+		}
+		alert('Please check at least 1 data');
+		return false;
+	}
+	function konfirmasi_update(varname, start_num, end_num) {
+		//var idDelete = document.getElementById('id_delete').value;
+		for(i=start_num;i<=end_num;i++) {
+			if(document.getElementById(varname + i).checked == true) {
+				//document.getElementById('form_list').submit();
+				document.formaneh.action = '{URL_UPDATE}';
+				document.getElementById('btnUpdate').type="submit";
+				//document.getElementById('btnHapus').click();
+				document.formaneh.onSubmit();
+				return true;
+			}
+		}
+		alert('Please check at least 1 data');
+		return false;
+	}
+	document.onload = show_checkbox('gaji_pegawai_id_','{FIRST_NUMBER}','{LAST_NUMBER}');
+	function bukaPopupUnitkerja(xurl) {
+		showPopup(xurl,'List of Work Unit',500, 500);
+		
+	}
+	function resetFormIni() {
+		if(document.getElementById('unitkerja')) document.getElementById('unitkerja').value='';
+		if(document.getElementById('unitkerja_label')) document.getElementById('unitkerja_label').innerHTML='';
+		
+	}
+	/*function coba(){
+	  document.formaneh.action = '{URL_UPDATE}';
+    //alert(document.formaneh.action);
+    document.getElementById('btnUpdate').type="submit";
+		document.formaneh.onSubmit();
+  }*/
+</script>
+<!--  onclick="konfirmasi_delete('gaji_pegawai_id_','{FIRST_NUMBER}','{LAST_NUMBER}', '{URL_DELETE}')"  -->
+<br />
+<h1>GAJI PEGAWAI</h1>
+<br />
+<form method="POST" action="{URL_SEARCH}" class="dataquest xhr_simple_form dest_subcontent-element" id="filterbox">
+   <table>
+      <tr>
+         <th colspan="3"><h2><strong>Pencarian Data</strong></h2></th>
+      </tr>
+      <tr>              
+         <th width="30%">NIP/Nama Pegawai</th>
+         <td><input type="text" name="nip_nama" value="{NIP_NAMA}" size="30" /></td>
+      </tr>
+      <tr>              
+         <th>Unit Kerja</th>
+         <td><!--<input type="text" name="satkerja_label" id="satkerja_label" value="{SATKERJA_LABEL}" size="40" readonly="readonly" />-->
+		  <input type="text" name="satkerja_label" id="satkerja_label" value="{SATKERJA_LABEL}" readonly="readonly" />
+		 <input type="hidden" name="satkerja" id="satkerja" value="{SATKERJA}" />&nbsp;
+		 <input type="button"  name="but_unitkerja" onclick="bukaPopupUnitkerja('{URL_POPUP_UNITKERJA}')" value=" ... " /></td>
+      </tr>
+      <tr>
+         <th>Status Pembayaran</th>
+         <td><!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="jenis"  / --></td>
+      </tr>
+      <tr>
+         <th>Periode</th>
+         <td><!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="periode_bulan"  / -->
+         <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="periode_tahun"  / --></td>
+      </tr>
+      <tr>
+         <th>&nbsp;</th>
+         <td colspan='3'>
+            <input type="submit" name="btncari" value=" Cari &raquo;" class="buttonSubmit"/>
+			<input name="btnReset" value=" Reset " class="buttonSubmit"  type="reset" onclick="resetFormIni()">
+         </td>
+      </tr>
+   </table>
+</form>
+
+<br />
+   
+   <!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+   <div class="{CLASS_PESAN}">
+      {ISI_PESAN}
+   </div>
+   <br />
+   <!-- /patTemplate:tmpl -->
+
+   <form method="POST" action="{URL_DELETE}" name="formaneh" class="xhr_simple_form dest_subcontent-element" id="form_list">
+   <div class="pageBar">
+   <!-- patTemplate:gtfwrendermodule module="paging" submodule="paging" action="view" name="paging_top"  / -->
+      <div class="toolbar"> 
+		<a target="_Blank" href="{URL_EXCEL}" title="Export Excel" tabindex="2"><img src="images/button-excel.gif" alt="Export Excel">Export Excel</a>
+         <!-- <a class="xhr dest_subcontent-element" href="{URL_BUAT_TRANSAKSI}" title="Buat Transaksi" tabindex="2"><img src="images/button-tindaklanjuti.gif" alt="Buat Transaksi"> Buat Transaksi </a>-->
+   		 <!--<a class="xhr dest_subcontent-element" href="{URL_IMPORT}" title="Import Data" tabindex="3"><img src="images/button-print.gif" alt="Import Data"> Import</a>-->
+		 <!--<a class="xhr dest_subcontent-element" href="{URL_REKAP}" title="Data Rekap Gaji" tabindex="4"><img src="images/button-tindaklanjuti.gif" alt="Data Rekap Gaji"> Data Rekap Gaji</a>-->
+		 <!--<input type="button" id="btnPayrollMassal" name="btnPayrollMassal" value="Payroll Massal" class="inputButton" onclick="konfirmasi_payroll('gaji_pegawai_id_','{FIRST_NUMBER}','{LAST_NUMBER}')" />-->
+		 <input type="button" id="btnUpdate" name="btnUpdate" value="Pembayaran" class="inputButton" onclick="konfirmasi_update('gaji_pegawai_id_','{FIRST_NUMBER}','{LAST_NUMBER}')" />
+         <!--<input type="button" id="btnHapus" name="btnHapus" value="Hapus" class="inputButton" onclick="konfirmasi_delete('gaji_pegawai_id_','{FIRST_NUMBER}','{LAST_NUMBER}')" />-->
+    </div>
+   </div>
+   <table class="table-common" width="900px">
+      <tr>
+         <th width="5" rowspan="2">No</th>
+		 <th width="5" rowspan="2"><input type="checkbox" style="display:" name="cek_all" id="cek_all" value="ALL" onclick="centangin_semua('gaji_pegawai_id_','{FIRST_NUMBER}','{LAST_NUMBER}');" /></th>
+         <th width="130px" rowspan="2">Aksi</th>
+         <th rowspan="2">Nomor Pegawai</th>
+         <th rowspan="2">Nama</th>
+         <th rowspan="2" width="120px">Alamat</th>
+         <th width="80px" rowspan="2">Gaji Bersih(Rp)</th>
+		 <th width="80px" rowspan="2">Hutang Karyawan(Rp)</th>
+         <th colspan="2">Periode</th>
+         <th width="35px" rowspan="2">Aktif</th>
+         <th width="35px" rowspan="2">Status Pembayaran</th>
+      </tr>
+	  <tr>
+		<th>Bulan</th>
+		<th>Tahun</th>
+	  </tr>
+      <!-- patTemplate:tmpl name="data_gaji_pegawai" type="condition" conditionvar="GAJIPEGAWAI_EMPTY" -->
+         <!-- patTemplate:sub condition="YES" -->
+         <tr><td colspan="12" align="center"><em>-- Data tidak ditemukan --</em></td></tr>
+         <!-- /patTemplate:sub -->
+         <!-- patTemplate:sub condition="NO" -->
+            <!-- patTemplate:tmpl name="data_gaji_pegawai_item" -->
+            <tr class="{GAJIPEGAWAI_CLASS_NAME}">
+               <td align="center">{GAJIPEGAWAI_NUMBER}</td>
+			   <td align="center">
+					<div id="hidden_{GAJIPEGAWAI_NUMBER}" style="display:{GAJIPEGAWAI_HIDDEN}"><input type="checkbox" name="id[]" id="gaji_pegawai_id_{GAJIPEGAWAI_NUMBER}" value="{GAJIPEGAWAI_ID}" /><input type="hidden" name="name[{GAJIPEGAWAI_ID}]" value="{GAJIPEGAWAI_NAMA}" /></div></td>
+               <td class="links" align="center">
+                  <a class="xhr dest_subcontent-element" href="{GAJIPEGAWAI_URL_EDIT}" title="Ubah"><img src="images/button-edit.gif" alt="Ubah"/></a>      
+                  <a class="xhr dest_subcontent-element" href="{GAJIPEGAWAI_URL_DETIL}" title="Detail"><img src="images/button-detail.gif" alt="Detail"/></a>    
+                  <a class="xhr dest_subcontent-element" href="{GAJIPEGAWAI_URL_HISTORY}" title="History Pembayaran"><img src="images/button-bukubuka.gif" alt="History Pembayaran"/></a>      
+                  {GAJIPEGAWAI_URL_PAYROL}      
+               <input type="hidden" name="periode[]" value="{GAJIPEGAWAI_TAHUN_BULAN}" />
+               <input type="hidden" name="idGaji[]" value="{GAJIPEGAWAI_IDGAJI}" />
+               </td>
+               <td align="center">{GAJIPEGAWAI_NIP}</td>
+               <td>{GAJIPEGAWAI_NAMA}</td>
+               <td>{GAJIPEGAWAI_ALAMAT}</td>
+               <td style="text-align:right;">{GAJIPEGAWAI_GAJI}</td>
+			   <td style="text-align:right;">{GAJIPEGAWAI_HUTANG}</td>
+               <td style="text-align:right;">{GAJIPEGAWAI_PERIODE_BULAN}</td>
+               <td style="text-align:right;">{GAJIPEGAWAI_PERIODE_TAHUN}</td>
+               <td style="text-align:right;">{GAJIPEGAWAI_IS_AKTIF}</td>
+               <td style="text-align:right;">{GAJIPEGAWAI_STATUS}</td>
+            </tr>
+            <!-- /patTemplate:tmpl -->
+         <!-- /patTemplate:sub -->
+      <!-- /patTemplate:tmpl -->
+   </table>
+   </form>
+   <br /> 
+   
+   <table class="table-common" width="300px">
+      <tr class="table-common-even1">
+		<td style="width:150px"><b>Total Pegawai Aktif</b></td><td style="text-align:right;">{TOTAL_PEGAWAI_AKTIF} orang</td>
+      </tr>
+      <tr class="table-common-even1">
+		<td style="width:150px"><b>Total Gaji(1 periode)</b></td><td style="text-align:right;">Rp. {TOTAL}</td>
+      </tr>
+      <!--<tr class="table-common-even1">
+		<td><b>Total Keseluruhan (1 period)</b></td><td style="text-align:right;">Rp. {TOTAL_SELURUH}</td>
+      </tr>-->
+   </table>
+<!-- /patTemplate:tmpl -->

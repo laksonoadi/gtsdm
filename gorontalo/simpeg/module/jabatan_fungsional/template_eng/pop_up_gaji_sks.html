@@ -1,0 +1,105 @@
+<!-- patTemplate:tmpl name="content" -->
+<h1>{LABEL_TITLE}</h1>
+<br />
+<form method="POST" action="{URL_SEARCH}" class="dataquest xhr_simple_form dest_popup-subcontent" id="filterboxpopup">
+   <table>
+      <tr>
+         <th colspan="2"><h2><strong>{LABEL_PENCARIAN}</strong></h2></th>
+      </tr>
+      <tr>              
+         <th width="30%">Component</th>
+         <td><!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="komponen_gaji"  / --></td>
+      </tr>
+      
+      <tr>
+         <th>&nbsp;</th>
+         <td>
+            <input type="submit" name="btncari" value=" Search &raquo;" class="buttonSubmit"/>
+         </td>
+      </tr>
+   </table>
+</form>
+<br />
+<div class="pageBar">
+<!-- patTemplate:gtfwrendermodule module="paging" submodule="paging" action="view" name="paging_top"  / -->
+</div>
+<table class="table-common" width="100%">
+   <tr>
+      <th width="5px">No</th>
+      <th width="5px">Code</th>
+      <th>Component Name</th>
+	  <th>Nominal</th>
+	  <th>Percentage</th>
+      <th width="32px">Action</th>
+   </tr>
+   <!-- patTemplate:tmpl name="data" type="condition" conditionvar="DATA_EMPTY" -->
+      <!-- patTemplate:sub condition="YES" -->
+      <tr><td colspan="6" align="center"><em>-- Data not found --</em></td></tr>
+      <!-- /patTemplate:sub -->
+      <!-- patTemplate:sub condition="NO" -->
+         <!-- patTemplate:tmpl name="data_item" -->
+         <tr class="{DATA_CLASS_NAME}">
+            <td align="center">{DATA_NUMBER}</td>
+            <td align="left">{DATA_KODE}</td>
+            <td>{DATA_NAME}</td>
+			<td align="center">{DATA_NILAI_NOMINAL}</td>
+			<td align="center">{DATA_NILAI_PERSEN}</td>
+            <td class="links">
+               <a title="Select"><img src="images/button-check.gif" alt="select" onclick="javascript:parse_this('{DATA_IDENT}', '{DATA_ID}', '{DATA_NAME}')"/></a> 
+            </td>
+         </tr>
+         <!-- /patTemplate:tmpl -->
+      <!-- /patTemplate:sub -->
+   <!-- /patTemplate:tmpl -->
+</table>
+<script language='javascript'>
+
+function parsing_this(ident, nilai_id, nilai_nama)
+{
+   
+   if(ident == "kompSks"){
+	      if(document.getElementById('sksKode')!==null){
+	   	document.getElementById('sksKode').value = nilai_id;
+		}
+		if(document.getElementById('sks_dosen_nama')!==null){
+	   	document.getElementById('sks_dosen_nama').value = nilai_nama;
+		}
+   }else if(ident == "kompGaji"){
+     if(document.getElementById('gajiKode')!==null){
+	   	document.getElementById('gajiKode').value = nilai_id;
+		}
+		if(document.getElementById('gaji_dosen_nama')!==null){
+	   	document.getElementById('gaji_dosen_nama').value = nilai_nama;
+		}
+   }
+   
+	popupClose();
+	
+	addDetail();
+   focus();
+   
+}
+
+function parse_this(ident, nilai_id, nilai_nama){
+	prnt = window.opener;
+	if(ident == "kompSks"){
+	      if(prnt.document.getElementById('sksKode')!==null){
+	   	prnt.document.getElementById('sksKode').value = nilai_id;
+		}
+		if(prnt.document.getElementById('sks_dosen_nama')!==null){
+	   	prnt.document.getElementById('sks_dosen_nama').value = nilai_nama;
+		}
+   }else if(ident == "kompGaji"){
+     if(prnt.document.getElementById('gajiKode')!==null){
+	   	prnt.document.getElementById('gajiKode').value = nilai_id;
+		}
+		if(prnt.document.getElementById('gaji_dosen_nama')!==null){
+	   	prnt.document.getElementById('gaji_dosen_nama').value = nilai_nama;
+		}
+   }
+   
+	window.opener.focus();
+   window.close();
+}
+</script>
+<!-- /patTemplate:tmpl -->

@@ -1,0 +1,100 @@
+<!-- patTemplate:tmpl name="content" -->
+<script language="javascript" type="text/javascript">
+	
+	function bukaPopupBank(xurl) {
+		showPopup(xurl,'Bank List',500,500);
+		
+	}
+</script>
+<br />
+<h1>GAJI PEGAWAI</h1>
+<br />
+
+   <!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+   <div class="notebox-alert">
+      {ISI_PESAN}
+   </div>
+   <br />
+   <!-- /patTemplate:tmpl -->
+   
+   
+      <table class="table-edit" width="100%">
+         <tr class="subhead">
+            <th colspan="2">Data Gaji Pegawai</th>
+         </tr>
+         <tr>
+            <th width="150">Nomor Pegawai</th>
+            <td>{NIP}</td>
+         </tr>
+         <tr>
+            <th>Unit Kerja</th>
+            <td>{SATKER_UNIT}</td>
+         </tr>
+         <tr>
+            <th>Nama</th>
+            <td>{NAMA}</td>
+         </tr>
+         <tr>
+            <th>Alamat</th>
+            <td>{ALAMAT}</td>
+         </tr>
+         <tr>
+            <th>Nomor HP</th>
+            <td>{HP}</td>
+         </tr>
+         <tr>
+            <th>Nomor Telepon</th>
+            <td>{TELP}</td>
+         </tr>
+         <tr>
+            <th>Nomor Rekening</th>
+            <td>{REKENING}</td>
+         </tr>
+         <tr>
+            <th>Bank</th>
+            <td>{BANK_LABEL}</td>
+         </tr>
+		 <tr>
+            <th>Rekening Bank Penerima</th>
+            <td>{RESIPIEN}</td>
+         </tr>
+         <tr>
+            <th>Kas</th>
+            <td>{IS_CASH}</td>
+         </tr>
+         <tr>
+            <th>Tanggal Pembayaran Gaji</th>
+            <td>{TGL_GAJI}</td>
+         </tr>
+         <tr>
+            <th>Status</th>
+            <td>{IS_AKTIF}</td>
+         </tr>
+         <tr class="subhead">
+            <th colspan="2">Komponen Gaji</th>
+         </tr>
+      <!-- patTemplate:tmpl name="data" type="condition" conditionvar="IS_EMPTY" -->
+         <!-- patTemplate:sub condition="YES" -->
+         <tr><td colspan="2" align="center"><em>-- Data tidak ditemukan --</em></td></tr>
+         <!-- /patTemplate:sub -->
+         <!-- patTemplate:sub condition="NO" -->
+            <!-- patTemplate:tmpl name="data_item" -->
+            <tr class="{DATA_CLASS_NAME}">
+               <td style="padding-left:40px;">{DATA_NAMA}</td>
+               <td>{DATA_NILAI}</td>
+            </tr>
+            <!-- /patTemplate:tmpl -->
+         <!-- /patTemplate:sub -->
+      <!-- /patTemplate:tmpl -->
+         <tr class="subhead">
+            <th colspan="2">
+	<div class="pageBar">
+      <div class="toolbar"> 
+   		<a class="xhr dest_subcontent-element" href="{URL_KEMBALI}" title="Kembali" ><img src="images/button-back.gif" alt="Back"> Kembali</a>
+      </div>
+   </div>			
+			</th>
+         </tr>
+      </table>
+   
+<!-- /patTemplate:tmpl -->

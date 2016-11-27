@@ -1,0 +1,91 @@
+<!-- patTemplate:tmpl name="content" -->
+<script language="javascript" type="text/javascript">
+	var xpopup;
+	function bukaPopupKomp(xurl) {
+		showPopup(xurl,'Component List',500, 500);
+	}
+</script>
+<br />
+<h1>{LABEL_TITLE}</h1>
+
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+   {ISI_PESAN}
+</div>
+<br />
+<!-- /patTemplate:tmpl -->
+<div><h1>{TITLE}</h1></div><br>
+<form method="POST" name="frmInput" action="{URL_AKSI}" class="xhr_form std_form" id="frmInput" >
+<input type="hidden" name="idPang" value="{ID1}">
+<input type="hidden" name="idGapok" value="{ID2}">
+<input type="hidden" name="op" value="{OP}">
+   <table class="table-edit" width="100%">
+      <tr class="subhead">
+         <th colspan="2">{LABEL_ACTION} Referensi Gaji Pokok {PANG}</th>
+      </tr>
+      <tr>
+         <th width="180">Periode Kerja</th>
+         <td>
+           <input type="text" name="masa" value="{MASA}" size="4"/> Tahun&nbsp;*
+         </td>
+      </tr>
+      <tr>
+         <th width="180">Detail Komponen Gaji</th>
+         <td>
+           <input type="text" name="komp_label" id="komp_label" value="{KOMP_LABEL}" size="30" readonly="readonly" />
+           <input type="hidden" name="komp" id="komp" value="{KOMP}" />
+           <input type="button"  name="but_komp" onclick="bukaPopupKomp('{URL_POPUP_KOMP}')" value=" ... " />&nbsp;*
+         </td>
+      </tr>
+      <tr class="buttons">
+         <th>&nbsp;</th>
+         <td>
+            <input name="btnsimpan" value=" {LABEL_ACTION} " class="buttonSubmit" type="submit">
+            <input name="btnbatal" value=" {LABEL_RESET} " class="buttonSubmit" type="submit">
+         </td>
+      </tr>
+   </table>
+</form>
+<br />
+<h2>{JUDUL_DATA}</h2>
+<div class="pageBar">
+<!-- patTemplate:gtfwrendermodule module="paging" submodule="paging" action="view" name="paging_top"  / -->
+  <div class="toolbar"> 
+	<a class="xhr dest_subcontent-element" href="{URL_BACK}" title="Kembali" tabindex="2"><img src="images/button-back.gif" alt="Kembali"> Kembali</a>
+  </div>
+</div>
+<table class="table-common" width="100%">
+   <tr>
+      <th width="15%">No</th>
+      <th width="63px">Aksi</th>
+      <th>Pangkat</th>
+      <th width="65px">Periode Kerja</th>
+      <th>Detail Komponen Gaji</th>
+   </tr>
+   <!-- patTemplate:tmpl name="gaji_pokok" type="condition" conditionvar="DATA_EMPTY" -->
+      <!-- patTemplate:sub condition="YES" -->
+   <tr><td colspan="5" align="center"><em>-- Data tidak ditemukan --</em></td></tr>
+      <!-- /patTemplate:sub -->
+      <!-- patTemplate:sub condition="NO" -->
+         <!-- patTemplate:tmpl name="gaji_pokok_item" -->
+   <tr class="{IN_CLASS_NAME}">
+      <td align="center">{IN_NUMBER}</td>
+      <td class="links">
+         <a class="xhr dest_subcontent-element" href="{IN_URL_EDIT}" title="Update"><img src="images/button-edit.gif" alt="Ubah"/></a>
+         <a class="xhr dest_subcontent-element" href="{IN_URL_DELETE}" title="Delete"><img src="images/button-delete.gif" alt="Hapus"/></a>
+      </td>
+      <td align="left">{IN_PANGKAT}</td>
+      <td align="center">{IN_MASA}</td>
+      <td align="left">{IN_KOMP}</td>
+   </tr>
+         <!-- /patTemplate:tmpl -->
+      <!-- /patTemplate:sub -->
+   <!-- /patTemplate:tmpl -->
+</table>
+<div class="petunjuk-area">
+   <h4>Petunjuk :</h4>
+   <ul>
+      <li>Tanda * menunjukkan bahwa field tersebut harus diisi.</li>
+   </ul>
+</div>
+<!-- /patTemplate:tmpl -->

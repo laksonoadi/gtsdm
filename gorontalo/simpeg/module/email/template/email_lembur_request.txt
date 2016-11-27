@@ -1,0 +1,22 @@
+Overtime Work Request in Human Resource Portal System
+
+Dear HRD,
+
+This Employee, 
+Name            : {NAMA_PEGAWAI}
+Employee Number : {NIP_PEGAWAI}
+
+Has been Requested Overtime Work
+
+Detailed Informations :
+Number : {LEMBUR_NUMBER}
+Date   : {LEMBUR_TANGGAL}
+Time   : {LEMBUR_WAKTU_MULAI} s.d {LEMBUR_WAKTU_SELESAI}
+Reason : {LEMBUR_ALASAN}  
+
+You need to approved or rejected this request,
+please log into Human Resource Portal System.
+
+Regards,
+
+HR Mail System

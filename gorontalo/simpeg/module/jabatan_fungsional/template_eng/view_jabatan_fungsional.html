@@ -1,0 +1,139 @@
+<!-- patTemplate:tmpl name="content" -->
+<h1>{LABEL_TITLE}</h1>
+<br />
+
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+   {ISI_PESAN}
+</div>
+<br />
+<!-- /patTemplate:tmpl -->
+<div><h1>{TITLE}</h1></div><br>
+<form method="POST" name="frmInput" action="{URL_ACTION}" class="xhr_form std_form" id="frmInput" >
+   <table class="table-edit" width="100%" >
+      <tr class="subhead">
+         <th colspan="2">{LABEL_ACTION} {LABEL_INPUT}</th>
+      </tr>
+      
+	  <tr>
+         <th >Functional Position </th>
+         <td>
+           <input type="text" name="nama" value="{INPUT_NAMA}"  size="40" />&nbsp;*
+         </td>
+      </tr>
+	  <tr>
+         <th >Functional Position Type</th>
+         <td>
+           <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="jenis_jabatan"  / -->
+         </td>
+      </tr>
+	  <tr>
+         <th >Level </th>
+         <td>
+           <input type="text" name="tingkat" value="{INPUT_TINGKAT}"  size="10" />
+         </td>
+      </tr>
+	  <tr>
+         <th >Retirement Age Limit </th>
+         <td>
+           <input type="text" name="pensiun" value="{INPUT_PENSIUN}"  size="10" />
+         </td>
+      </tr>
+	  
+	  <tr>
+         <th >Salary's Component</th>
+         <td>
+           <input type='text' name='gaji_dosen_nama' value='{INPUT_GAJINAMA}' id='gaji_dosen_nama' size="30" readonly />
+            <input type='button' value='...' onclick='javascript: show_pop_up("{URL_POPUP_GAJI}")'/> *
+            <input type='hidden' name='gajiKode' value='{INPUT_GAJIKODE}' id='gajiKode'/>
+         </td>
+      </tr>
+	  
+	  <tr>
+         <th >Maximum Course Credit (Default)</th>
+         <td>
+           <input type="text" name="max_sks" value="{INPUT_MAX_SKS}"  size="10" />
+         </td>
+      </tr>
+      <tr class="buttons">
+         <th>&nbsp;</th>
+         <td>
+            <input name="btnsimpan" value=" {LABEL_ACTION} " class="buttonSubmit" type="submit">
+            <input name="btnbalik" value=" Batal " class="buttonSubmit" type="submit">
+         </td>
+      </tr>
+   </table>
+</form>
+<br />
+<form method="POST" action="{URL_SEARCH}" class="dataquest xhr_simple_form dest_subcontent-element" id="filterbox">
+   <table>
+      <tr>
+         <th colspan="2"><h2><strong>{LABEL_PENCARIAN}</strong></h2></th>
+      </tr>
+      <tr>
+         <th width="30%">Keyword {LABEL_INPUT}</th>
+         <td>
+            <input type="text" name="cari" value="{CARI}" size="30"/>
+         </td>
+      </tr>
+      <tr>
+         <th>&nbsp;</th>
+         <td>
+            <input type="submit" name="btncari" value=" Search &raquo;" class="buttonSubmit"/>
+         </td>
+      </tr>
+   </table>
+</form>
+<br />
+<h2>{JUDUL_DATA}</h2>
+<div class="pageBar">
+<!-- patTemplate:gtfwrendermodule module="paging" submodule="paging" action="view" name="paging_top"  / -->
+</div>
+<table class="table-common" width="80%">
+   <tr>
+      <th width="5px">No</th>
+      <th width="63px">Action</th>
+      <th>Functional Position</th>
+	  <th>Functional Position Type</th>
+	  <th>Level</th>
+	  <th>Retirement Age Limit</th>
+	  <th>Salary's Component</th>
+	  <th>Maximum Course Credit</th>
+
+   </tr>
+   <!-- patTemplate:tmpl name="data" type="condition" conditionvar="DATA_EMPTY" -->
+      <!-- patTemplate:sub condition="YES" -->
+   <tr><td colspan="9" align="center"><em>-- Data tidak ditemukan --</em></td></tr>
+      <!-- /patTemplate:sub -->
+      <!-- patTemplate:sub condition="NO" -->
+         <!-- patTemplate:tmpl name="data_item" -->
+   <tr class="{CLASS_NAME}">
+      <td align="center" width="15%">{NUMBER}</td>
+       <td class="links">
+         <a class="xhr dest_subcontent-element" href="{URL_EDIT}" title="Ubah"><img src="images/button-edit.gif" alt="Ubah"/></a>
+         <a class="xhr dest_subcontent-element" onClick="javascript: return showBoxConfirmDelete('{ID}', '{NAMA}', '{URL_DELETE_JS}');" href="{URL_DELETE}" title="Hapus"><img src="images/button-delete.gif" alt="Hapus"/></a>
+      </td>
+      <td align="left">{NAMA}</td>
+	  <td align="left">{JENIS}</td>
+	  <td align="left">{TINGKAT}</td>
+	  <td align="left">{PENSIUN}</td>
+	  <td align="left">{GAJI_NAMA}</td>
+	  <td align="left">{MAX_SKS}</td>
+     
+   </tr>
+         <!-- /patTemplate:tmpl -->
+      <!-- /patTemplate:sub -->
+   <!-- /patTemplate:tmpl -->
+</table>
+<script>
+	
+function show_pop_up (url)
+	{
+		//winpopup = showPopup(url, "", 550, 550);
+		winpopup = window.open(url, '_blank', 'width=550,height=550,resizable=yes,scrollbars=yes,right=0;center');
+		winpopup.focus();
+		//winpopup.focus();
+	}
+
+</script>
+<!-- /patTemplate:tmpl -->

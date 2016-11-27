@@ -1,0 +1,19 @@
+Cancellation Overtime Work Request in Human Resource Portal System
+
+Dear HRD,
+
+This Employee, 
+Name            : {NAMA_PEGAWAI}
+Employee Number : {NIP_PEGAWAI}
+
+Has been Canceled His/Her Overtime Work Request.
+
+Detailed Informations :
+Number : {LEMBUR_NUMBER}
+Date   : {LEMBUR_TANGGAL}
+Time   : {LEMBUR_WAKTU_MULAI} s.d {LEMBUR_WAKTU_SELESAI}
+Reason : {LEMBUR_ALASAN}
+
+Regards,
+
+HR Mail System

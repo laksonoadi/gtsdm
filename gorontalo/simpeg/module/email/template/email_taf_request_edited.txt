@@ -1,0 +1,24 @@
+Edited Travel Request in SSE Human Resource Portal System
+
+Dear Supervisor,
+
+This Employee, 
+Name            : {NAMA_PEGAWAI}
+Employee Number : {NIP_PEGAWAI}
+
+Has been changed His/Her data Travel Request. 
+
+Detailed Informations :
+TAF Number      : {TAF_NUMBER}
+Travel Type     : {TAF_TIPE}
+Purpose         : {TAF_ALASAN}
+Date of Request : {TAF_TGL_AJU}
+Total Days      : {TAF_TOTAL_HARI}
+Total Budget    : {TAF_CURRENCY}{TAF_TOTAL_ANGGARAN}
+
+For more detailed informations and if you want to approved or rejected this request,
+please log into SSE Human Resource Portal System.
+
+Regards,
+
+HR Mail System

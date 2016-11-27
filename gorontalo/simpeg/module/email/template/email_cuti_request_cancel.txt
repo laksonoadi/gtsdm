@@ -1,0 +1,13 @@
+Cancellation Leave Proposal in Human Resource Portal System
+
+Dear HRD,
+
+This Employee, 
+Name            : {NAMA_PEGAWAI}
+Employee Number : {NIP_PEGAWAI}
+
+Has been Canceled His/Her Request leave with number {CUTI_NUMBER} and reason {CUTI_ALASAN}
+
+Regards,
+
+HR Mail System

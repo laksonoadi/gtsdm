@@ -1,0 +1,100 @@
+<!-- patTemplate:tmpl name="content" -->
+<script language="javascript" type="text/javascript">
+	
+	function bukaPopupBank(xurl) {
+		showPopup(xurl,'Bank List',500,500);
+		
+	}
+</script>
+<br />
+<h1>EMPLOYEE SALARY</h1>
+<br />
+
+   <!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+   <div class="notebox-alert">
+      {ISI_PESAN}
+   </div>
+   <br />
+   <!-- /patTemplate:tmpl -->
+   
+   
+      <table class="table-edit" width="100%">
+         <tr class="subhead">
+            <th colspan="2">Employee Salary Data</th>
+         </tr>
+         <tr>
+            <th width="150">Employee Number</th>
+            <td>{NIP}</td>
+         </tr>
+         <tr>
+            <th>Work Unit</th>
+            <td>{SATKER_UNIT}</td>
+         </tr>
+         <tr>
+            <th>Name</th>
+            <td>{NAMA}</td>
+         </tr>
+         <tr>
+            <th>Address</th>
+            <td>{ALAMAT}</td>
+         </tr>
+         <tr>
+            <th>Mobile Number</th>
+            <td>{HP}</td>
+         </tr>
+         <tr>
+            <th>Phone Number</th>
+            <td>{TELP}</td>
+         </tr>
+         <tr>
+            <th>Account Number</th>
+            <td>{REKENING}</td>
+         </tr>
+         <tr>
+            <th>Bank</th>
+            <td>{BANK_LABEL}</td>
+         </tr>
+		 <tr>
+            <th>Bank Account Recipient</th>
+            <td>{RESIPIEN}</td>
+         </tr>
+         <tr>
+            <th>Cash</th>
+            <td>{IS_CASH}</td>
+         </tr>
+         <tr>
+            <th>Salary Payment Date</th>
+            <td>{TGL_GAJI}</td>
+         </tr>
+         <tr>
+            <th>Active Status</th>
+            <td>{IS_AKTIF}</td>
+         </tr>
+         <tr class="subhead">
+            <th colspan="2">Salary Component</th>
+         </tr>
+      <!-- patTemplate:tmpl name="data" type="condition" conditionvar="IS_EMPTY" -->
+         <!-- patTemplate:sub condition="YES" -->
+         <tr><td colspan="2" align="center"><em>-- Data not found --</em></td></tr>
+         <!-- /patTemplate:sub -->
+         <!-- patTemplate:sub condition="NO" -->
+            <!-- patTemplate:tmpl name="data_item" -->
+            <tr class="{DATA_CLASS_NAME}">
+               <td style="padding-left:40px;">{DATA_NAMA}</td>
+               <td>{DATA_NILAI}</td>
+            </tr>
+            <!-- /patTemplate:tmpl -->
+         <!-- /patTemplate:sub -->
+      <!-- /patTemplate:tmpl -->
+         <tr class="subhead">
+            <th colspan="2">
+	<div class="pageBar">
+      <div class="toolbar"> 
+   		<a class="xhr dest_subcontent-element" href="{URL_KEMBALI}" title="Back" ><img src="images/button-back.gif" alt="Back"> Back</a>
+      </div>
+   </div>			
+			</th>
+         </tr>
+      </table>
+   
+<!-- /patTemplate:tmpl -->

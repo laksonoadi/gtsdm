@@ -1,0 +1,129 @@
+<!-- patTemplate:tmpl name="content" -->
+<script language="javascript" type="text/javascript">
+	function centangin_semua(varname, start_num, end_num) {
+		var obj = document.getElementById('cek_all');
+		var ceks;
+		if(obj.checked == false) {
+			for(i=start_num;i<=end_num;i++) {
+				ceks = document.getElementById(varname + i);
+				if(ceks) ceks.checked = false;
+			}
+		} else {
+			for(i=start_num;i<=end_num;i++) {
+				ceks = document.getElementById(varname + i);
+				if(ceks) ceks.checked = true;
+			}
+		}
+	}
+	
+	function getInputForm(){
+      GtfwAjax.replaceContentWithUrl('form-additional','<!-- patTemplate:gtfwgeturl module="pak" sub="inputPak" action="view" type="html" htmlentities="no" / -->&ascomponent=1');
+   }
+</script>
+
+<div class="background-blue padding-10 text-big">REFERENSI {TITLE}</div>
+<div class="padding-10">
+
+<div class="panel panel-default">
+    <div class="panel-heading text-big"><strong>Pencarian Data</strong></div>
+    <div class="panel-body">
+        <form method="POST" action="{URL_SEARCH}" class="form-horizontal xhr_simple_form dest_subcontent-element" id="filterbox" role="form">
+            <div class="form-group">
+                <label for="nip" class="col-sm-2 control-label">Jabatan Struktural</label>
+                <div class="col-sm-10">
+                    <input type="text" name="struktural" value="{NAMA}" size="30" />
+                    <input type="checkbox" {JS_CHECKED} value="js" name="check[js]">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <input type="hidden" name="btncari" value=" Cari &raquo;" class="buttonSubmit"/>
+                    <button type="submit" class="btn btn-default btn-xs">Cari <span class="glyphicon glyphicon-search"></span></button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="{CLASS_PESAN}">
+            {ISI_PESAN}
+        </div>
+    </div>
+</div>
+<!-- /patTemplate:tmpl -->
+
+<div id="form-additional">
+</div>
+
+<form method="POST" action="{URL_DELETE}" id="form_list" class="xhr_simple_form dest_subcontent-element" >
+
+<div class="row push-down-10">
+    <div class="col-md-6">
+        <!-- patTemplate:gtfwrendermodule module="paging" submodule="paging" action="view" name="paging_top"  / -->
+    </div>
+    <div class="col-md-6 text-right">
+    	<!--<a href="javascript:getInputForm();" title="Tambah Data Referensi Penilaian Jabatan Struktural"> /-->
+	    
+            <a class="btn btn-info btn-xs" href="{URL_ADD}" title="Tambah Jabatan Struktural">
+                <span class="glyphicon glyphicon-plus"></span> Tambah
+            </a>
+      
+    	<!--<input type="submit" id="btnHapus" name="btnHapus" value="Hapus" class="inputButton" /> /-->
+    </div>
+</div>
+
+<div class="table-responsive">
+<table class="table table-bordered table-hover">
+   <tr>
+      <!-- <th width="5"><input type="checkbox" name="cek_all" id="cek_all" value="ALL" 
+	  onclick="centangin_semua('id_','{FIRST_NUMBER}','{LAST_NUMBER}');" /></th> /-->
+      <th>No</th>
+      <th width="100px">Aksi</th>
+      <th>Jabatan Struktural</th>
+      <th>Level</th>
+      <th>Batas Akhir Pensiun</th>
+      <th>Jenis Struktur</th>
+      <!-- <th>Komponen Gaji</th> -->  
+   </tr>
+   <!-- patTemplate:tmpl name="data_jabstruk" type="condition" conditionvar="DATA_EMPTY" -->
+      <!-- patTemplate:sub condition="YES" -->
+         <tr><td colspan="7" align="center"><em>-- Data tidak ditemukan --</em></td></tr>
+      <!-- /patTemplate:sub -->
+      <!-- patTemplate:sub condition="NO" -->
+         <!-- patTemplate:tmpl name="data_jabstruk_item" -->
+         <tr class="{JS_CLASS_NAME}">
+            <!-- <td>
+            <input type="checkbox" name="id[]" id="id_{PAK_NUMBER}" value="{PAK_ID}" /> 
+            <input type="hidden" name="name[{PAK_NAMA}]" value="{PAK_NAMA}" /></td> /-->
+            <td align="center">{JS_NO}</td>
+            <td>
+                <div class="btn-group">
+                        <a class="btn btn-primary btn-xs xhr dest_subcontent-element" href="{JS_URL_DETAIL}" title="Detail">
+                                <span class="glyphicon glyphicon-open"></span>
+                        </a>
+                        <a href="{JS_URL_UPDATE}" class="btn btn-success btn-xs" title="Ubah">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                        </a>
+                        <a href="{JS_URL_DELETE}" class="xhr dest_subcontent-element btn btn-danger btn-xs" title="Hapus">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </a> 
+                </div>
+            </td>
+            <td align="left">{JS_NAMA}</td>
+            <td align="center">{JS_TINGKAT}</td>
+            <td align="center">{JS_BATAS}</td>
+            <td align="center">{JS_TIPE}</td>
+            <!-- <td align="left">{JS_KOMPGAJI}</td> -->            
+         </tr>
+         <!-- /patTemplate:tmpl -->         
+      <!-- /patTemplate:sub -->
+   <!-- /patTemplate:tmpl -->
+</table>
+</div>
+</form>
+
+</div>
+<!-- /patTemplate:tmpl -->
