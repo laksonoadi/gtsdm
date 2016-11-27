@@ -1,0 +1,130 @@
+<!-- patTemplate:tmpl name="content" -->
+<!--<h1>{LABEL_TITLE}</h1>-->
+<div id="TOP" class="background-blue padding-10 text-big">Tambah Data Pegawai</div>
+<div class="padding-10">
+<!-- patTemplate:gtfwrendermodule module="profile" submodule="profilebox" action="view" name="profile"  / -->
+
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<script language="javascript" type="text/javascript">
+function Tutup(){
+	document.getElementById('warning_box').style.display='none';
+}
+</script>
+<div class="{CLASS_PESAN}" id="warning_box">
+   {ISI_PESAN} <a href="javascript:Tutup();">&nbsp;[Tutup Pesan]</a>
+</div>
+<!-- /patTemplate:tmpl --> 
+
+<div id="FORMDATA">
+
+<div class="table-responsive">
+    <form method="POST" name="frmInput" action="{URL_ACTION}" class="" id="frmInput" enctype="multipart/form-data">
+        <table class="table" >
+            <tr class="background-blue-light text-big">
+                <th colspan="2">Tambah Mutasi Pangkat/Golongan Pegawai</th>
+            </tr>
+	      <tr>
+             <th width="25%">Status Pegawai</th>
+             <td>
+               <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="jenis_pegawai"  / -->
+		       <input name="pegId" type="hidden" value="{ID}" />
+		       <input name="dataKode" type="hidden" value="{INPUT_ID}" />
+             </td>
+          </tr>
+	      <tr>
+             <th>Pangkat/Golongan *</th>
+             <td>
+               <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="golongan_ref"  / -->
+             </td>
+          </tr>
+	      <tr>
+             <th>TMT</th>
+             <td>
+               <!-- patTemplate:gtfwrendermodule module="tanggal" submodule="Tanggal" action="view" name="tmt" / -->
+             </td>
+          </tr>
+          <tr class="background-blue-light">
+		    <th colspan="2">Keputusan</th>
+	      </tr>
+	      <tr>
+             <th>Tanda tangan </th>
+             <td>
+               <input class="form-control input-middle" type="text" name="pejabat" value="{INPUT_PEJABAT}"  size="30" />
+             </td>
+          </tr>
+	      <tr>
+             <th>Nomor Surat</th>
+             <td>
+               <input class="form-control input-middle" type="text" name="sk_no" value="{INPUT_NOSK}"  size="30" />
+             </td>
+          </tr>
+	      <tr>
+             <th >Tanggal Keputusan</th>
+             <td>
+               <!-- patTemplate:gtfwrendermodule module="tanggal" submodule="Tanggal" action="view" name="tgl_sk" / -->
+             </td>
+          </tr>
+           <tr>
+             <th >Peraturan Dasar </th>
+             <td>
+               <input class="form-control input-middle" type="text" name="dasar" value="{INPUT_DASAR}"  size="50" />
+             </td>
+          </tr>
+          <tr>
+             <th >Tanggal berikutnya</th>
+             <td>
+               <!-- patTemplate:gtfwrendermodule module="tanggal" submodule="Tanggal" action="view" name="tgl_naik" / -->
+             </td>
+          </tr>
+	      <tr>
+             <th>Status Aktif *</th>
+             <td>
+               <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="status"  / -->
+             </td>
+          </tr>
+	      <tr>
+             <th >Upload </th>
+             <td>
+               <input type="file" name="file" size="40">
+             </td>
+          </tr>
+          <tr class="buttons">
+             <th>&nbsp;</th>
+             <td>
+                <div style="display:none"><input name="btnsimpan" value="{LABEL_ACTION} " class="buttonSubmit" type="submit"></div>
+			    <input name="btnsimpanBohong" value="Simpan dan Lanjutkan" class="buttonSubmit btn btn-xs btn-info" type="button" onclick="konfirmasi();">
+                <!-- <input name="btnbatal" value="{BUTTON}" class="buttonSubmit btn btn-xs btn-warning" type="{TYPE}"> -->
+                <a href="{URL_BACK}" class="xhr dest_subcontent-element btn btn-danger btn-xs">Batal</a>
+             </td>
+          </tr>
+        </table>
+    </form>
+</div>
+
+<div class="petunjuk-area">
+   <h4>Petunjuk:</h4>
+   <ul>
+      <li>Tanda * menunjukkan bahwa field tersebut harus diisi. </li>
+   </ul>
+</div>
+
+</div>
+
+</div>
+<script language="javascript" type="text/javascript">
+function konfirmasi() {
+	if (document.getElementById('golongan_ref').value=='') {
+		alert('Anda belum memilih Pangkat/Golongan');
+		document.getElementById('golongan_ref').focus();
+		return false;
+	}
+	
+	document.frmInput.btnsimpan.click();
+}
+
+function Tab(aktif,nonaktif){
+	document.getElementById(aktif).style.display='';
+	document.getElementById(nonaktif).style.display='none';
+}
+</script>
+<!-- /patTemplate:tmpl -->

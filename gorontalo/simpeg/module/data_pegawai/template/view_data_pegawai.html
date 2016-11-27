@@ -1,0 +1,136 @@
+<!-- patTemplate:tmpl name="content" -->
+<!--<h1>{LABEL_TITLE}</h1>-->
+<div class="background-blue padding-10 text-big">{TITLE}</div>
+<div class="padding-10">
+
+<div class="panel panel-default">
+    <div class="panel-heading text-big"><strong>Pencarian Data</strong></div>
+    <div class="panel-body">
+        <form method="POST" action="{URL_SEARCH}" class="form-horizontal xhr_simple_form dest_subcontent-element" id="filterbox" role="form">
+            <div class="form-group">
+                <label for="nip" class="col-sm-2 control-label">NIP/Nama Pegawai</label>
+                <div class="col-sm-2">
+                    <input type="text" name="nip_nama" class="form-control input-sm" id="nip" value="{NIP_NAMA}" size="30" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="status" class="col-sm-2 control-label">Status Pegawai</label>
+                <div class="col-sm-10">
+                    <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="status_kerja"  / -->
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-default btn-xs">Cari <span class="glyphicon glyphicon-search"></span></button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="{CLASS_PESAN}">
+            {ISI_PESAN}
+        </div>
+    </div>
+</div>
+<!-- /patTemplate:tmpl -->
+
+<div class="row push-down-10">
+    <div class="col-md-6">
+        <!-- patTemplate:gtfwrendermodule module="paging" submodule="paging" action="view" name="paging_top"  / -->
+    </div>
+    <div class="col-md-6 text-right">
+        <div class="btn-group">            
+            <!-- <a class="btn btn-default btn-xs" target="_Blank" href="{URL_EXCEL}" title="Export Excel" tabindex="2">
+	            <img src="images/button-excel.gif" alt="Export Excel"> Export Excel
+	        </a> -->
+	         <a class="btn btn-info btn-xs xhr dest_subcontent-element " href="{URL_ADD_WIZARD}" title="Tambah Data Pegawai Lengkap" tabindex="3">
+                <span class="glyphicon glyphicon-plus"></span> Tambah Data Pegawai
+            </a>
+	         <!-- <a class="btn btn-info btn-xs xhr dest_subcontent-element " href="{URL_ADD}" title="Tambah" tabindex="3">
+                <span class="glyphicon glyphicon-plus"></span> Tambah
+            </a>  -->
+            <!--<a class="xhr dest_subcontent-element " href="{URL_CONTRACT}" title="Kontrak Pegawai" tabindex="2">
+            <img src="images/button-forward.gif" alt="">Kontrak Pegawai</a>-->	
+        </div>
+    </div>
+</div>
+<div class="table-responsive">
+    <table class="table table-bordered table-hover">
+        <tr>
+            <th>No</th>
+            <th>Aksi</th>
+            <th>NIP</th>
+            <!--<th width="80px">Nomor Internal</th>-->
+            <th>Nama</th>
+            <th>Pangkat Golongan</th>
+            <th>Satuan Kerja</th>
+            <!--<th>Alamat</th>-->
+        </tr>
+        <!-- patTemplate:tmpl name="data_pegawai" type="condition" conditionvar="PEGAWAI_EMPTY" -->
+            <!-- patTemplate:sub condition="YES" -->
+                <tr><td colspan="7" align="center"><em>-- Data tidak ditemukan --</em></td></tr>
+            <!-- /patTemplate:sub -->
+            <!-- patTemplate:sub condition="NO" -->
+                <!-- patTemplate:tmpl name="data_pegawai_item" -->
+                <tr class="{CLASS_NAME}">
+                    <td align="center">{NUMBER}</td>
+                    <td>
+                        <div class="btn-group">
+                            <a class="btn btn-primary btn-xs xhr dest_subcontent-element" href="{URL_DETAIL}" title="Detail">
+                                <span class="glyphicon glyphicon-open"></span>
+                            </a>
+                            <a class="btn btn-success btn-xs xhr dest_subcontent-element" href="{URL_EDIT}" title="Ubah">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                            </a>
+                            <a class="btn btn-danger btn-xs xhr dest_subcontent-element" href="{URL_DELETE}" title="Hapus">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </a>
+                        </div>
+                    </td>
+                    <td align="center">{NIP}</td>
+                    <!--<td align="center">{KODEINT}</td>-->
+                    <td align="left">{NAMA}</td>
+                    <td align="left">{PKTGOL}</td>
+                    <td align="left">{SATKER}</td>
+                    <!--<td align="left">{ALAMAT}</td>-->
+                </tr>
+                <!-- /patTemplate:tmpl -->
+            <!-- /patTemplate:sub -->
+        <!-- /patTemplate:tmpl -->
+    </table>
+</div>
+<div class="petunjuk-area">
+   <h4>Petunjuk:</h4>
+   <ul>
+      <li>Data yang tidak berwarna (putih) artinya data tersebut telah diverifikasi dan disetujui.</li>
+      <li>Data yang berwarna <span class="item-ver-info item-ver-yellow"></span> (kuning) artinya data tersebut belum diproses/diverifikasi.</li>
+      <li>Data yang berwarna <span class="item-ver-info item-ver-blue"></span> (biru) artinya data tersebut berkasnya belum lengkap untuk verifikasi.</li>
+      <li>Data yang berwarna <span class="item-ver-info item-ver-red"></span> (merah) artinya data tersebut telah diverifikasi dan ditolak.</li>
+   </ul>
+</div>
+</div>
+
+<style>
+.item-ver-info {
+    width: 2ch;
+    height: 2ch;
+    border: 0 none;
+    display: inline-block;
+    margin: 0 1ch;
+    padding: 0;
+    background-color: #fff;
+    vertical-align: middle;
+}
+.item-ver-info.item-ver-red { background-color: rgba(242, 127, 93, 1); }
+.item-ver-info.item-ver-blue { background-color: rgba(152, 222, 255, 1); }
+.item-ver-info.item-ver-yellow { background-color: rgba(250, 240, 79, 1); }
+
+.item-ver-red { background-color: rgba(242, 127, 93, 0.5); }
+.item-ver-blue { background-color: rgba(152, 222, 255, 0.5); }
+.item-ver-yellow { background-color: rgba(250, 240, 79, 0.5); }
+</style>
+<!-- /patTemplate:tmpl -->

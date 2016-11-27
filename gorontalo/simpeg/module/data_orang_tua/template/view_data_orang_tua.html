@@ -1,0 +1,235 @@
+<!-- patTemplate:tmpl name="content" -->
+<div class="background-blue padding-10 text-big">{TITLE}</div>
+<div class="padding-10">
+
+<div class="row">
+   <ul class="nav nav-tabs">
+    <li ><a href="{URL_PGW}" class="xhr dest_subcontent-element">Data Pegawai</a></li>
+    <li><a href="{URL_PSNG}" class="xhr dest_subcontent-element ">Data Pasangan</a></li>
+    <li><a href="{URL_ANAK}" class="xhr dest_subcontent-element ">Data Anak</a></li>
+    <li class="active"><a href="{URL_ORTU}" class="xhr dest_subcontent-element ">Data Orang Tua</a></li>
+    <li><a href="{URL_MERTUA}" class="xhr dest_subcontent-element ">Data Mertua</a></li>
+    <li><a href="{URL_SDR}" class="xhr dest_subcontent-element ">Data Saudara Kandung</a></li>
+  </ul>
+</div>
+
+
+<div class="table-responsive">
+    <table class="table">
+
+      <tr class="background-blue-light">
+          <th colspan="3"><b>Data Pegawai</b></th>
+      </tr>
+
+	<tr>
+		<td rowspan="4" width="60px"><img src="upload_file/photo/{FOTO2}" width="100" height="100"></td>
+   </tr>
+   <tr>
+      <td width="120px">NIP</td>
+	  <td> : {NIP}</td>
+   </tr>
+   <tr>
+      <td>Nama</td>
+	  <td> : {NAMA}</td>
+   </tr>
+   <tr>
+      <td>Alamat</td>
+	  <td> : {ALAMAT}</td>
+   </tr>
+       <tr class="background-blue-light">
+        <th colspan="3" class="text-center">
+
+        <div class="btn-group">
+                     <a class="btn btn-default btn-xs" href="javascript:Tab('LISTDATA','FORMDATA');">
+                            <span class="glyphicon glyphicon-list"></span> Lihat List Data
+                        </a>
+                    
+                        <a class="btn btn-default btn-xs" href="javascript:Tab('FORMDATA','LISTDATA');">
+                            <span class="glyphicon glyphicon-plus"></span> Tambah
+                        </a> 
+                        <a class="xhr dest_subcontent-element btn btn-default btn-xs " href="{URL_BACK}" title="Pilih Pegawai" tabindex="2">
+                            <span class="glyphicon glyphicon-share"></span> Pilih Pegawai
+                        </a> 
+			</div>
+		</th>
+	</tr>
+</table> 
+</div>
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<script language="javascript" type="text/javascript">
+function Tutup(){
+	document.getElementById('warning_box').style.display='none';
+}
+</script>
+<div class="{CLASS_PESAN}" id="warning_box">
+   {ISI_PESAN} <a href="javascript:Tutup();">&nbsp;[Tutup Pesan]</a>
+</div>
+<!-- /patTemplate:tmpl --> 
+<div id="FORMDATA" style="display:none">
+
+<div class="table-responsive">
+<form method="POST" name="frmInput" action="{URL_AKSI}" class="xhr_form std_form" id="frmInput" enctype="multipart/form-data">
+   <input type="hidden" name="idPeg" value="{ID}">
+   <input type="hidden" name="idOrtu" value="{INPUT_ID}">
+   <input type="hidden" name="op" value="{OP}" id="op">
+  <table class="table">
+            <tr class="background-blue-light text-big">
+        <th colspan="2" valign="center">{LABEL_ACTION} Data Orang tua</th>
+      </tr>
+      <tr>
+        <th>Hubungan</th>
+        <td>
+          <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="hub"  / -->
+        </td>
+      </tr>
+      <tr>
+        <th>Nama</th>
+        <td>
+          <input type="text" name="nama" size="20" value="{INPUT_NAMA}"/> *
+        </td>
+      </tr>
+      <tr>
+        <th>Tempat Lahir</th>
+        <td>
+          <input type="text" name="tmpt_lahir" value="{INPUT_TMPT}" size="20" />
+        </td>
+      </tr>
+      <tr>
+        <th>Tanggal Lahir</th>
+        <td>
+          <!-- patTemplate:gtfwrendermodule module="tanggal" submodule="tanggal" action="view" name="tgl_lahir"  / -->  
+			  </td>
+      </tr>
+      <tr>
+        <th>Pekerjaan</th>
+        <td>
+          <input type="text" name="kerja" value="{INPUT_KERJA}" size="20" />
+        </td>
+      </tr>
+	  <tr>
+        <th>Latar Pendidikan</th>
+        <td>
+          <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="educ"  / -->
+        </td>
+      </tr>
+	  <tr>
+        <th>Nomor Telepon</th>
+        <td>
+          <input type="text" name="telp" value="{INPUT_TELP}" size="20" />
+        </td>
+      </tr>
+	  <tr>
+        <th>Meninggal Dunia</th>
+        <td>
+          <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="mati"  / -->
+        </td>
+      </tr>
+      <tr>
+        <th>Keterangan</th>
+        <td>
+          <textarea name="ket" rows=5 cols=37 tabindex='2'>{INPUT_KET}</textarea>  
+        </td>
+      </tr>
+      <tr class="buttons">
+         <th>&nbsp;</th>
+         <td>
+            <input name="btnsimpan" value=" {LABEL_ACTION} " class="buttonSubmit btn-info btn btn-xs" type="submit">
+            <input name="btnbatal" id="btnbatal" value="{BUTTON}" class="buttonSubmit btn-warning btn btn-xs" type="button" onclick="konfirmasi()">
+         </td>
+      </tr>
+   </table>
+</form>
+</div>
+
+<div class="petunjuk-area">
+   <h4>Petunjuk:</h4>
+   <ul>
+      <li>Tanda * menunjukkan bahwa field tersebut harus diisi. </li>
+   </ul>
+</div></div>
+
+<div id="LISTDATA" style="display:">
+<h3>List Data Orang Tua</h3>
+<div class="table-responsive">
+    <table class="table table-bordered table-hover">
+   <tr>
+    <th width="18px">No</th>
+    <th>Aksi</th>
+    <th>Nama</th>
+	  <th>Hubungan</th>
+	  <th>Tanggal Lahir</th>
+	  <th>Pekerjaan</th>
+	  <th>Latar Pendidikan</th>
+	  <!--<th>Nomor Telepon</th>-->
+	  <th>Meninggal Dunia</th>
+   </tr>
+   <!-- patTemplate:tmpl name="data_ortu" type="condition" conditionvar="PEGAWAI_EMPTY" -->
+      <!-- patTemplate:sub condition="YES" -->
+   <tr><td colspan="9" align="center"><em>-- Data tidak ditemukan --</em></td></tr>
+      <!-- /patTemplate:sub -->
+      <!-- patTemplate:sub condition="NO" -->
+         <!-- patTemplate:tmpl name="data_ortu_item" -->
+          <tr class="{ORTU_CLASS_NAME}">
+          <td align="center">{ORTU_NUMBER}</td>
+          <td>
+			<script>verifyShow('tombol_{ORTU_NUMBER}','&jenis=1&params=sdm_orangtua:{ORTU_ID}');</script>
+			<div class="btn-group" id="tombol_{ORTU_NUMBER}">
+			<a class="xhr dest_subcontent-element btn btn-success btn-xs" href="{ORTU_URL_EDIT}" title="Ubah"><span class="glyphicon glyphicon-pencil"></span> 
+      </a>
+
+			<a class="xhr dest_subcontent-element btn btn-danger btn-xs" href="{ORTU_URL_DELETE}" title="Hapus">
+       <span class="glyphicon glyphicon-trash"></span>
+      </a>
+			</div>
+          </td>
+          <td align="left">{ORTU_NAMA}</td>
+          <td align="center">{ORTU_HUB}</td>
+          <td align="center">{ORTU_TGL_LAHIR}</td>
+          <td align="left">{ORTU_KERJA}</td>
+		  <td align="center">{ORTU_EDUC}</td>
+		  <!--<td align="center">{ORTU_TELP}</td>-->
+          <td align="center">{ORTU_MENINGGAL_STATUS}</td>
+          </tr>
+         <!-- /patTemplate:tmpl -->
+      <!-- /patTemplate:sub -->
+   <!-- /patTemplate:tmpl -->
+</table>
+</div>
+
+<div class="petunjuk-area">
+   <h4>Petunjuk:</h4>
+   <ul>
+      <li>Gunakan tombol <span class="glyphicon glyphicon-pencil"></span> untuk mengubah data. </li>
+      <li>Gunakan tombol <span class="glyphicon glyphicon-trash"></span> untuk menghapus data. </li>
+      <li><a href="#TOP" id="link-top">Klik Disini</a> untuk kembali ke atas. </li>
+   </ul>
+</div>
+
+</div>
+<script language="javascript" type="text/javascript">
+function konfirmasi() {
+	if(document.getElementById('btnbatal').value == " Reset "){
+      document.getElementById('btnbatal').type = "reset";
+      document.frmInput.onReset();
+    }else{
+      document.getElementById('btnbatal').type = "submit";
+      document.frmInput.onSubmit();
+    }
+}
+
+function Tab(aktif,nonaktif){
+	document.getElementById(aktif).style.display='';
+	document.getElementById(nonaktif).style.display='none';
+}
+
+function CekAksi(){
+    var dataId2='0'+'{INPUT_ID}';
+	if (dataId2=='0') {
+		Tab('LISTDATA','FORMDATA');
+	}else{
+		Tab('FORMDATA','LISTDATA');
+	}
+}
+CekAksi();
+</script>
+<!-- /patTemplate:tmpl -->

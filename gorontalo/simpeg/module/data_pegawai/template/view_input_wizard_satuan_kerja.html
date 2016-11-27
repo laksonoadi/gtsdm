@@ -1,0 +1,234 @@
+<!-- patTemplate:tmpl name="content" -->
+<script language="javascript" type="text/javascript">
+var xpopup;
+function bukaPopupKomp(xurl) {
+  a=document.getElementById('satker').value;
+  b=xurl+a;
+  showPopup(b,'Employee List',500, 500);
+}
+function setDS() {
+	var status_unit_kerja = document.getElementById('satker').value;
+	var direct_spv = document.getElementById('peg_label_2');
+	var direct_spv_id = document.getElementById('pegId2');
+	var direct_spv_button = document.getElementById('but_peg_2');
+	var direct_spv_work_unit = document.getElementById('sat_label_2');
+	var direct_spv_work_unit_id = document.getElementById('satId2');
+	var mor = document.getElementById('peg_label_1');
+	var mor_id = document.getElementById('pegId1');
+	var mor_button = document.getElementById('but_peg_1');
+	var mor_work_unit = document.getElementById('sat_label_1');	
+	var mor_work_unit_id = document.getElementById('satId1');
+	
+	if (status_unit_kerja == 1 ) {
+		direct_spv.value = 'Board of Trusty (BOT)';
+		direct_spv_value = '-1';
+		//direct_spv_button.style.display = 'none';
+		direct_spv_work_unit.value = 'Board of Trusty (BOT)';
+		direct_spv_work_unit_id.value = '';	
+		
+		mor.value = 'no information';
+		mor_id.value = '';
+		//mor_button.style.display = 'none';
+		mor_work_unit.value = 'no information';
+		mor_work_unit_id.value = '';		 			
+	} else {
+		direct_spv.value = '';
+		direct_spv_id.value = '';
+		//direct_spv_button.style.display = '';
+		direct_spv_work_unit.value = '';
+		direct_spv_work_unit_id.value = '';
+		
+		mor.value = '';
+		mor_id.value = '';
+		//mor_button.style.display = '';
+		mor_work_unit.value = '';
+		mor_work_unit_id.value = '';	
+	}
+		
+}
+</script>
+<div id="TOP" class="background-blue padding-10 text-big">Tambah Data Pegawai</div>
+
+<div class="padding-10">
+<!-- patTemplate:gtfwrendermodule module="profile" submodule="profilebox" action="view" name="profile"  / -->
+
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<script language="javascript" type="text/javascript">
+function Tutup(){
+	document.getElementById('warning_box').style.display='none';
+}
+</script>
+<div class="{CLASS_PESAN}" id="warning_box">
+   {ISI_PESAN} <a href="javascript:Tutup();">&nbsp;[Tutup Pesan]</a>
+</div>
+<!-- /patTemplate:tmpl --> 
+
+<div id="FORMDATA">
+
+<div class="table-responsive">
+    <form method="POST" name="frmInput" action="{URL_ACTION}" enctype="multipart/form-data">
+        <table class="table">
+            <tr class="background-blue-light text-big">
+                <th colspan="2">Tambah Mutasi Unit Kerja Pegawai</th>
+            </tr>
+          <tr>
+              <th width="25%">Pangkat Golongan</th>
+              <td>
+              {PANGGOL}
+              </td>
+            </tr>
+	        <tr>
+              <th width="25%">Unit Kerja *</th>
+              <td>
+	          	<!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="satker"  / -->
+              </td>
+            </tr>
+          <tr style="visibility:hidden">
+              <th width="25%">Garis Koordinasi Unit Kerja</th>
+              <td>
+              <div id="jab_holder">
+              <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="satkerjab"  / -->
+              </div>
+              </td>
+            </tr>
+            <tr>
+              <th width="25%">Jenis Kepegawaian *</th>
+              <td>
+              <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="jenpeg"  / -->
+              </td>
+            </tr>
+	      <tr style="display:none">
+             <th width="180">Supervisor</th>
+             <td>
+               <input type="text" name="peg_label_2" id="peg_label_2" value="{3_NMP}" size="40" readonly="readonly" />
+               <input type="hidden" name="pegId2" id="pegId2" value="{3_IDP}" />
+               <input type="button"  name="but_peg_2" onclick="bukaPopupKomp('{URL_POPUP_PEG_2}')" value=" ... " />&nbsp;*
+             </td>
+          </tr>
+          <tr style="display:none">
+             <th width="180">Unit Kerja supervisor</th>
+             <td>
+               <input type="text" name="sat_label_2" id="sat_label_2" value="{3_NMS}" size="40" readonly="readonly" />
+               <input type="hidden" name="satId2" id="satId2" value="{3_IDS}" />
+             </td>
+          </tr>
+       <tr style="display:none">
+		    <th width="180">MOR</th>
+		    <td>
+			    <input type="text" name="peg_label_1" id="peg_label_1" value="{2_NMP}" size="40" readonly="readonly" />
+			    <input type="hidden" name="pegId1" id="pegId1" value="{2_IDP}" />
+			    <input type="button"  name="but_peg_1" onclick="bukaPopupKomp('{URL_POPUP_PEG_1}')" value=" ... " />&nbsp;*
+		    </td>
+	    </tr>
+	    <tr style="display:none">
+		    <th width="180">Unit Kerja MOR</th>
+		    <td>
+			    <input type="text" name="sat_label_1" id="sat_label_1" value="{2_NMS}" size="40" readonly="readonly" />
+			    <input type="hidden" name="satId1" id="satId1" value="{2_IDS}" />
+		    </td>
+	    </tr>
+	      <tr>
+             <th >Tanggal</th>
+             <td>
+               <!-- patTemplate:gtfwrendermodule module="tanggal" submodule="Tanggal" action="view" name="tmt" / -->
+             </td>
+          </tr>
+          <tr class="background-blue-light">
+		    <th colspan="2">Keputusan</th>
+	      </tr>
+	      <tr>
+             <th >Diputuskan oleh</th>
+             <td>
+               <input class="form-control input-middle" type="text" name="pejabat" value="{INPUT_PEJABAT}"  size="30" />
+             </td>
+          </tr>
+	      <tr>
+             <th >Nomor Surat</th>
+             <td>
+               <input class="form-control input-middle" type="text" name="sk_no" value="{INPUT_NOSK}"  size="30" />
+             </td>
+          </tr>
+	      <tr>
+             <th >Tanggal SK</th>
+             <td>
+               <!-- patTemplate:gtfwrendermodule module="tanggal" submodule="Tanggal" action="view" name="tgl_sk" / -->
+             </td>
+          </tr>
+	      <tr>
+             <th>Status Aktif *</th>
+             <td>
+               <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="status"  / -->
+             </td>
+          </tr>
+	      <tr>
+             <th >Upload </th>
+             <td>
+               <input type="file" name="file" size="40">
+             </td>
+          </tr>
+          <tr>
+             <th>Deskripsi Tugas</th>
+             <td><textarea cols="65" rows="15" name="tugas" id="isiBerita">{KETERANGAN}</textarea></td>
+          </tr>
+          <tr class="buttons">
+             <th>&nbsp;</th>
+             <td>
+                <input type="hidden" name="pegId" id="pegId" value="{ID}" />
+                <input type="hidden" name="pgtgkt" id="pgtgkt" value="{PGTINKAT}" />
+                <input type="hidden" name="dataId" id="dataId" value="{INPUT_ID}" />
+                <div style="display:none"><input name="btnsimpan" value="{LABEL_ACTION} " class="buttonSubmit" type="submit"></div>
+			    <input name="btnsimpanBohong" value="Simpan" class="buttonSubmit btn btn-info btn-xs" type="button" onclick="konfirmasi();">
+                <!-- <input name="btnbatal" value="{BUTTON}" class="buttonSubmit btn btn-warning btn-xs" type="{TYPE}"> -->
+                <a href="{URL_BACK}" class="xhr dest_subcontent-element btn btn-danger btn-xs">Batal</a>
+             </td>
+          </tr>
+        </table>
+    </form>
+</div>
+
+<div class="petunjuk-area">
+   <h4>Petunjuk:</h4>
+   <ul>
+      <li>Tanda * menunjukkan bahwa field tersebut harus diisi. </li>
+   </ul>
+</div>
+
+</div>
+
+</div>
+
+<script language="javascript" type="text/javascript">
+function konfirmasi() {
+	if (document.getElementById('satker').value=='') {
+		alert('Anda belum memilih Satuan Kerja');
+		document.getElementById('satker').focus();
+		return false;
+	}
+	
+	document.frmInput.btnsimpan.click();
+}
+
+function Tab(aktif,nonaktif){
+	document.getElementById(aktif).style.display='';
+	document.getElementById(nonaktif).style.display='none';
+}
+</script>
+<script lang="javascript">
+
+    $(document).ready(
+        function() {
+            $('#satker').change(
+                function() {
+                  var idjab = $(this).val();
+                    // replaceContentWithUrl('jenis_holder','{URL_JENIS}&ascomponent=1&parent='+idjab);
+                     $('#jab_holder').load('{URL_JENIS}&ascomponent=1&parent='+idjab); 
+                     // alert('{URL_JENIS}&ascomponent=1&parent='+idjab);
+                }
+            );
+        }
+    );
+</script>
+<script>
+    var TE_isiBerita = standardTinyEditor('isiBerita');
+</script>
+<!-- /patTemplate:tmpl -->

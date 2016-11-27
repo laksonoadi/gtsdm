@@ -1,0 +1,111 @@
+<!-- patTemplate:tmpl name="content" -->
+<script language="javascript" type="text/javascript">
+	function centangin_semua(varname, start_num, end_num) {
+		var obj = document.getElementById('cek_all');
+		var ceks;
+		if(obj.checked == false) {
+			for(i=start_num;i<=end_num;i++) {
+				ceks = document.getElementById(varname + i);
+				if(ceks) ceks.checked = false;
+			}
+		} else {
+			for(i=start_num;i<=end_num;i++) {
+				ceks = document.getElementById(varname + i);
+				if(ceks) ceks.checked = true;
+			}
+		}
+	}
+	
+	function getInputForm(){
+      GtfwAjax.replaceContentWithUrl('form-additional','<!-- patTemplate:gtfwgeturl module="jabatan_struktural" sub="inputPangkatGolongan" action="view" type="html" htmlentities="no" / -->&ascomponent=1');
+   }
+</script>
+
+<h1>{TITLE}</h1>
+<br />
+<form method="POST" action="{URL_SEARCH}" class="dataquest xhr_simple_form dest_subcontent-element" id="filterbox">
+   <table>
+      <tr>
+         <th colspan="2"><h2><strong>Pencarian Data</strong></h2></th>
+      </tr>
+      <tr>         
+         <th><input type="checkbox" {NIP_CHECKED} value="nip" name="check[nip]">&nbsp; ID Pegawai</th>
+         <td><input type="text" name="t_nip" value="{NIP}" size="30" /></td>    
+      </tr>
+      <tr>         
+         <th><input type="checkbox" {NAMA_CHECKED} value="nama" name="check[nama]">&nbsp; Nama</th>
+         <td><input type="text" name="t_nama" value="{NAMA}" size="30" /></td>    
+      </tr>
+      <tr>
+         <th>&nbsp;</th>
+         <td>
+            <input type="submit" name="btncari" value=" Cari &raquo;" class="buttonSubmit"/>
+         </td>
+      </tr>
+   </table>
+</form>
+
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+   {ISI_PESAN}
+</div>
+<!-- /patTemplate:tmpl -->
+<br />
+
+<div id="form-additional">
+</div>
+
+<form method="POST" action="{URL_DELETE}" id="form_list" class="xhr_simple_form dest_subcontent-element" >
+<div class="pageBar">
+		<div class="toolbar"> 
+	  	<a class="xhr dest_subcontent-element " href="{URL_BACK}" title="Kembali" tabindex="2">
+               <img src="images/button-back.gif" alt="">Kembali</a>	
+   </div>
+		<!-- patTemplate:gtfwrendermodule module="paging" submodule="paging" action="view" name="paging_top"  / -->
+</div>
+
+<table class="table-common" width="700px">
+   <tr>
+      <!-- <th width="5"><input type="checkbox" name="cek_all" id="cek_all" value="ALL" 
+	  onclick="centangin_semua('id_','{FIRST_NUMBER}','{LAST_NUMBER}');" /></th> /-->
+      <th width="8px">No</th>
+      <th width="70px">Id Pegawai</th>
+      <th>Nama</th>
+  	  <th>Tingkat/Golongan</th>
+  	  <!--<th>Work Unit</th>
+  	  <th>Structural Position</th>-->
+	  <th>Tipe Kontrak</th>
+	  <th>Tanggal Masuk</th>
+	  <th>Tanggal Mulai Kontrak</th>
+	  <th>Tanggal Akhir Kontrak</th>
+      <th width="30">Aksi</th>   
+   </tr>
+   <!-- patTemplate:tmpl name="data_kontrak_pegawai" type="condition" conditionvar="DATA_EMPTY" -->
+      <!-- patTemplate:sub condition="YES" -->
+         <tr><td colspan="9" align="center"><em>-- Data tidak ditemukan --</em></td></tr>
+      <!-- /patTemplate:sub -->
+      <!-- patTemplate:sub condition="NO" -->
+         <!-- patTemplate:tmpl name="data_kontrak_pegawai_item" -->
+         <tr class="{PEG_CLASS_NAME}">
+            <td align="center">{PEG_NO}</td>
+            <td align="center"><a href="{PEG_URL_DETAIL}" class="xhr dest_subcontent-element">{PEG_NIP}</a></td>
+            <td align="left">{PEG_NAMA}</td>
+			<td align="left">{PEG_PKTGOL}</td>
+			<!--<td align="left">{PEG_SATKER}</td>
+			<td align="left">{PEG_POSISI}</td>-->
+			<td align="left">{PEG_JENIS_KONTRAK}</td>
+			<td align="left">{PEG_TGL_MASUK}</td>
+			<td align="left">{PEG_TGL_AWAL}</td>
+			<td align="left">{PEG_TGL_AKHIR}</td>
+            <td class="links" align="center">
+               <a href="{PEG_URL_DETAIL}" class="xhr dest_subcontent-element" title="Select Employee">Pilih </a>    
+            </td>
+            
+         </tr>
+         <!-- /patTemplate:tmpl -->         
+      <!-- /patTemplate:sub -->
+   <!-- /patTemplate:tmpl -->
+   
+</table>
+</form>
+<!-- /patTemplate:tmpl -->

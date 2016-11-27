@@ -1,0 +1,233 @@
+<!-- patTemplate:tmpl name="content" -->
+<h1>{LABEL_TITLE}</h1>
+<br />
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="notebox-alert">
+   {ISI_PESAN}
+</div>
+<!-- /patTemplate:tmpl -->
+<div><h1>{TITLE}</h1></div><br>
+   <table class="table-details" width="100%">
+	  
+		<tr class="subhead">
+			<th colspan="2">Data Pegawai</th>
+		</tr>	
+		<!--<tr>
+			<th colspan="2" width="25%"><b>Personal Information</b></th>
+		</tr>-->
+		<tr>
+     <td colspan="2" width="30%"><img src="upload_file/photo/{FOTO2}" width="100" height="100"></td>
+   </tr>
+<!--    <tr>
+      <td width="43%">&nbsp;&nbsp;&nbsp;Nomor Pegawai</td>
+      <td>{NIP}</td>
+		</tr>
+	<tr>
+      <td width="43%">&nbsp;&nbsp;&nbsp;Nomor KTP</td>
+      <td>{KODEGATEACCESS}</td>
+		</tr>
+    <tr>
+			<td width="43%">&nbsp;&nbsp;&nbsp;NIP</td>
+      <td>{KODEINT}</td>
+		</tr>	
+		<tr>
+			<td width="43%">&nbsp;&nbsp;&nbsp;Kode Lain</td>
+      <td>{KODELAIN}</td>
+		</tr>-->
+		<tr>
+			<td width="43%">&nbsp;&nbsp;&nbsp;Nama </td>
+      <td>{GELDEP} {NAMA}, {GELBEL}</td>
+		</tr>
+		<tr>
+			<td width="43%">&nbsp;&nbsp;&nbsp;Tempat & tgl lahir</td>
+      <td>{TMPLAHIR}{TGLLAHIR}</td>
+    </tr>  
+		<tr>
+			<td width="43%">&nbsp;&nbsp;&nbsp;Tipe ID</td>
+      <td>{JNSIDLAIN}</td>
+		</tr>
+    <tr>
+			<td width="43%">&nbsp;&nbsp;&nbsp;Nomor ID</td>
+      <td>{IDLAIN}</td>
+		</tr>
+		<tr>
+			<td width="43%">&nbsp;&nbsp;&nbsp;Jender </td>
+      <td>{JENKEL}</td>
+		</tr>
+	  <tr>
+			<td width="43%">&nbsp;&nbsp;&nbsp;Agama </td>
+      <td>{AGAMA}</td>
+		</tr>
+		<tr>
+			<td width="43%">&nbsp;&nbsp;&nbsp;Status Pernikahan </td>
+      <td>{NIKAH}</td>
+		</tr>
+		<tr>
+			<td width="30%">&nbsp;&nbsp;&nbsp;Kode Pernikahan </td>
+      <td>{KODENIKAH}</td>
+		</tr>
+		
+		<tr>
+			<th colspan="2" width="30%" class="subhead"><b>Data Lain </b></th>
+		</tr>
+		<tr>
+			<td width="43%">&nbsp;&nbsp;&nbsp;Alamat </td>
+      <td>{ALAMAT}</td>
+		</tr>
+		<tr>
+			<td width="43%">&nbsp;&nbsp;&nbsp;Kota </td>
+      <td>{SATWIL}</td>
+		</tr>
+		<tr>
+			<td width="43%">&nbsp;&nbsp;&nbsp;Kode POS </td>
+      <td>{KODEPOS}</td>
+		</tr>
+		<tr>
+			<td width="43%">&nbsp;&nbsp;&nbsp;Nomor Telepon </td>
+      <td>{TELP}</td>
+		</tr>
+		<tr>
+			<td width="43%">&nbsp;&nbsp;&nbsp;Nomor HP </td>
+      <td>{HP}</td>
+		</tr>
+		<tr>
+			<td width="43%">&nbsp;&nbsp;&nbsp;Email </td>
+      <td>{EMAIL}</td>
+		</tr>
+		
+		<tr>
+			<th colspan="2" width="30%" class="subhead"><b>Informasi Medis </b></th>
+		</tr>
+		<tr>
+			<td width="43%">&nbsp;&nbsp;&nbsp;Golongan Darah </td>
+      <td>{GOLDAR}</td>
+		</tr>
+		<tr>
+			<td width="43%">&nbsp;&nbsp;&nbsp;Tinggi Badan </td>
+      <td>{TINGGIBDN}</td>
+		</tr>
+		<tr>
+			<td width="43%">&nbsp;&nbsp;&nbsp;Berat Badan </td>
+      <td>{BERATBDN}</td>
+		</tr>
+		<tr>
+			<td width="43%">&nbsp;&nbsp;&nbsp;Cacat </td>
+      <td>{CACAT}</td>
+		</tr>
+		<tr>
+			<td width="43%">&nbsp;&nbsp;&nbsp;Hobi </td>
+      <td> <p>{HOBI}</p></td>
+<!--		</tr>
+		
+			<tr>
+			<th colspan="2" width="30%" class="subhead"><b>Informasi pegawai ketika rekruitmen</b></th>
+		</tr>
+		<tr>
+			<td width="43%">&nbsp;&nbsp;&nbsp;Tanggal Masuk </td>
+      <td>{TGLMASUK}</td>
+		</tr>
+		<tr>
+			<td width="43%">&nbsp;&nbsp;&nbsp;Lama Bekerja</td>-->
+      <!--<td>{DURASI} <i>year</i></td>-->
+<!--	  		<td>{LAMA_KERJA}</td>
+		</tr>-->
+		<!--<tr>
+			<td width="43%">&nbsp;&nbsp;&nbsp;Civil Servant/Foundation Start Date </td>
+      <td>{PNSTMT}</td>
+		</tr>-->
+<!--		<tr>
+		  <td width="43%">&nbsp;&nbsp;&nbsp;Kategori Pegawai </td>
+      <td>{KATPEG}</td>
+		</tr>
+		<tr>
+		  <td width="43%">&nbsp;&nbsp;&nbsp;Tipe Pegawai</td>
+      <td>{TIPPEG}</td>
+		</tr>
+		<tr>
+		  <td width="43%">&nbsp;&nbsp;&nbsp;Status Pekerjaan </td>
+      <td>{JNSPEGID}</td>
+		</tr>
+		<tr>
+		  <td width="43%">&nbsp;&nbsp;&nbsp;Status Pegawai </td>
+      <td>{STATR}</td>
+		</tr>
+		<tr>
+		  <td width="43%">&nbsp;&nbsp;&nbsp;Bank </td>
+      <td>{BANK}</td>
+		</tr>
+		<tr>
+		  <td width="43%">&nbsp;&nbsp;&nbsp;Nomor Rekening Bank </td>
+      <td>{REKENING}</td>
+		</tr>
+              <tr>
+		  <td width="43%">&nbsp;&nbsp;&nbsp;Rekening Bank Penerima </td>
+      <td>{RESIPIEN}</td>
+		</tr>
+		<tr>
+			<td width="43%">&nbsp;&nbsp;&nbsp;Nomor Jaminan Sosial </td>
+      <td>{NOTASPEN}</td>
+		</tr>
+		<tr>
+			<td width="43%">&nbsp;&nbsp;&nbsp;Nomor Asuransi Kesehatan </td> 
+      <td>{NOASKES}</td>
+		</tr>
+		<tr>
+			<td width="43%">&nbsp;&nbsp;&nbsp;Status NPWP</td>
+            <td>{STATUSNPWP}</td>
+		</tr>
+		<tr>
+			<td width="43%">&nbsp;&nbsp;&nbsp;NPWP </td>
+      <td>{NONPWP}</td>
+		</tr>
+		<tr>
+			<td width="43%">&nbsp;&nbsp;&nbsp;Batas Usia Pensiun </td>
+      <td>{USIAPENS}</td>
+		</tr>-->
+
+		<!--<tr>
+			<td width="43%">&nbsp;&nbsp;&nbsp;Presence Code </td>
+      <td>{KODEABSEN}</td>
+		</tr>-->
+
+<!--              <tr>
+		    <td width="43%">&nbsp;&nbsp;&nbsp;Jabatan Struktural </td>
+                  <td>{JABSTRUK}</td>
+		</tr>
+
+		<tr>
+			<td width="43%">&nbsp;&nbsp;&nbsp;Wilayah Kerja </td>
+      <td>{SATKER}</td>
+		</tr>
+		<tr>
+			<td width="43%">&nbsp;&nbsp;&nbsp;Supervisor </td>
+      <td>{DIRSPV}</td>
+		</tr>
+		<tr>
+			<td width="43%">&nbsp;&nbsp;&nbsp;MOR</td>
+      <td>{MOR}</td>
+		</tr>
+		<tr>
+			<td width="43%">&nbsp;&nbsp;&nbsp;Pangkat </td>
+      <td>{PKTGOL}</td>
+		</tr>
+		
+		<tr>
+			<td width="43%">&nbsp;&nbsp;&nbsp;Jabatan Akademik </td>
+      <td>{JABFUNG}</td>
+		</tr>
+		
+		<tr>
+			<td width="43%">&nbsp;&nbsp;&nbsp;Golongan </td>
+      <td>{LEVEL}</td>
+		</tr>-->
+		
+		<tr>
+			 <td colspan="2" class="subhead">
+				<div class="toolbar"> 
+		    <a class="xhr dest_subcontent-element " href="{URL_ACTION}" title="Kembali" tabindex="2">
+	       <img src="images/button-back.gif" alt="Kembali"> Kembali</a> 	
+        </div>
+			 </td>
+		</tr>
+   </table>
+<!-- /patTemplate:tmpl -->

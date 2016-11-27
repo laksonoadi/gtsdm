@@ -1,0 +1,537 @@
+<!-- patTemplate:tmpl name="content" -->
+<script language="javascript" type="text/javascript">
+    var xpopup;
+    function bukaPopupKomp(xurl) {
+        a=document.getElementById('satker').value;
+        b=xurl+a;
+        showPopup(b,'Employee List',500, 500);
+    }
+    function bukaPopupBank(xurl) {
+        showPopup(xurl,'Bank List',500, 500);
+    }
+    function setDS() {
+        var status_unit_kerja = document.getElementById('satker').value;
+        var direct_spv = document.getElementById('peg_label_2');
+        var direct_spv_id = document.getElementById('pegId2');
+        var direct_spv_button = document.getElementById('but_peg_2');
+        var direct_spv_work_unit = document.getElementById('sat_label_2');
+        var direct_spv_work_unit_id = document.getElementById('satId2');
+        var mor = document.getElementById('peg_label_1');
+        var mor_id = document.getElementById('pegId1');
+        var mor_button = document.getElementById('but_peg_1');
+        var mor_work_unit = document.getElementById('sat_label_1');
+        var mor_work_unit_id = document.getElementById('satId1');
+    
+        if (status_unit_kerja == 1 ) {
+            direct_spv.value = 'Board of Trustees (BOT)';
+            direct_spv_value = '-1';
+            //direct_spv_button.style.display = 'none';
+            direct_spv_work_unit.value = 'Board of Trustees (BOT)';
+            direct_spv_work_unit_id.value = '';
+        
+            mor.value = 'Sampoerna Foundation';
+            mor_id.value = '';
+            //mor_button.style.display = 'none';
+            mor_work_unit.value = 'Sampoerna Foundation';
+            mor_work_unit_id.value = '';
+        } else {
+            direct_spv.value = '';
+            direct_spv_id.value = '';
+            //direct_spv_button.style.display = '';
+            direct_spv_work_unit.value = '';
+            direct_spv_work_unit_id.value = '';
+        
+            mor.value = '';
+            mor_id.value = '';
+            //mor_button.style.display = '';
+            mor_work_unit.value = '';
+            mor_work_unit_id.value = '';
+        }
+        
+    }
+</script>
+<!--<h1>{LABEL_TITLE}</h1>-->
+
+<script type="text/javascript">
+function redirect() {
+    window.location = "{URL_BACK}";
+
+}
+</script>
+
+<div class="background-blue padding-10 text-big">{TITLE} ({JUDUL} Data Pegawai)</div>
+<div class="row">
+    <div class="col-md-3 pull-right"><br/><img src="upload_file/photo/{FOTO2}" class="img-responsive"></div>
+    <div class="col-md-9">
+    <br/>
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="notebox-alert">
+    {ISI_PESAN}
+</div>
+<!-- /patTemplate:tmpl -->
+
+<form method="POST" class="xhr_form std_form" action="{URL_AKSI}" id="frm_input" name="frm_input" enctype="multipart/form-data" >
+    <input type="hidden" name="pegId" value="{ID}" />
+    <input type="hidden" name="op" value="{OPERASI}" />
+    <input type="hidden" name="op1" value="{NIP}" />
+    <table class="table form-group" width="100%">
+        <tr class="background-blue-light">
+            <th colspan="2" width="25%"><b>Informasi Pribadi</b></th>
+        </tr>
+        <tr>
+            <th width="25%">NIP Baru *</th>
+            <td>
+                <input class="form-control" type="text" name="datpegNip" id="nip" value="{NIP}" size="25" tabindex='2' />
+            </td>
+        </tr>
+        <!-- <tr>
+            <th width="25%">NIDN</th>
+            <td>
+                <input class="form-control" type="text" name="datpegKodeLain" value="{KODELAIN}" size="25" tabindex='2' />
+            </td>
+        </tr> -->
+        <tr>
+            <th width="25%">NIP Lama</th>
+            <td>
+                <input class="form-control" type="text" name="datpegKodeInter" value="{KODEINT}" size="25" tabindex='2' />
+            </td>
+        </tr>
+        <!-- <tr>
+            <th width="25%">Nomor Kode Absen</th>
+            <td>
+                <input class="form-control" type="text" name="datpegKodeGateAccess" value="{KODEGATEACCESS}" size="25" tabindex='2' />
+            </td>
+        </tr> -->
+        <tr>
+            <th width="25%">Nama *</th>
+            <td>
+                <input class="form-control" type="text" name="datpegNama" value="{NAMA}" size="40" tabindex='2' />
+            </td>
+        </tr>
+        <tr>
+            <th width="25%">Gelar(Depan)</th>
+            <td>
+                <input class="form-control" type="text" name="datpegGelDep" value="{GELDEP}" size="8" tabindex='2' />
+            </td>
+        </tr>
+        <tr>
+            <th width="25%">Gelar(Belakang)</th>
+            <td>
+                <input class="form-control" type="text" name="datpegGelBel" value="{GELBEL}" size="8" tabindex='2' />
+            </td>
+        </tr>
+        <tr>
+            <th width="25%">Tempat Lahir</th>
+            <td>
+                <input class="form-control" type="text" name="datpegTmpLahir" value="{TMPLAHIR}" size="25" tabindex='2' />
+            </td>
+        </tr>
+        <tr>
+            <th width="25%">Tanggal Lahir</th>
+            <td>
+                <!-- patTemplate:gtfwrendermodule module="tanggal" submodule="tanggal" action="view" name="datpegTglLahir"  / -->
+            </td>
+        </tr>
+        <!-- <tr>
+            <th width="25%">Jenis ID</th>
+            <td>
+                <input class="form-control" type="text" name="datpegJenIdLain" value="{JNSIDLAIN}" size="25" tabindex='2' /> misal KTP, SIM, Passport, KITAS dll
+            </td>
+        </tr> -->
+        <tr>
+            <th width="25%">NIK</th>
+            <td>
+                <input class="form-control" type="text" name="datpegIdLain" value="{IDLAIN}" size="25" tabindex='2' />
+            </td>
+        </tr>
+        <tr>
+            <th width="25%">Nomor SKCK</th>
+            <td>
+                <input class="form-control" type="text" name="datpegSKCK" value="{DATPEGSKCK}" size="25" tabindex='2' />
+            </td>
+        </tr>
+        <tr>
+            <th width="25%">Nomor Karpeg</th>
+            <td>
+                <input class="form-control" type="text" name="pegNoKarpeg" value="{PEGNOKARPEG}" size="25" tabindex='2' />
+            </td>
+        </tr>
+        <tr>
+            <th width="25%">Nomor KPE <br> (Kartu Pegawai Elektronik)</th>
+            <td>
+                <input class="form-control" type="text" name="pegNoKpe" value="{PEGNOKPE}" size="25" tabindex='2' />
+            </td>
+        </tr>
+        <tr>
+            <th width="25%">Jenis Kelamin</th>
+            <td>
+                <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="pegJenkel"  / -->
+            </td>
+        </tr>
+        <tr>
+            <th width="25%">Agama</th>
+            <td>
+                <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="pegAgamaId"  / -->
+            </td>
+        </tr>
+        <!--<tr>
+            <th width="25%">Belief</th>
+            <td>
+                <input class="form-control" type="text" name="datpegKeper" value="{KEPER}" size="25" tabindex='2' />  
+            </td>
+        </tr>-->
+        <tr>
+            <th width="25%">Status Pernikahan</th>
+            <td>
+                <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="pegStatnikahId"  / -->
+            </td>
+        </tr>
+        <tr style="display:none">
+            <th width="25%">Kode Pernikahan</th>
+            <td>
+                <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="kodenik"  / -->
+            </td>
+        </tr>
+        <tr>
+            <th width="25%">Bahasa Yang Dikuasai</th>
+            <td>
+            <!-- patTemplate:tmpl name="bahasa" -->
+                <label class="checkbox-inline">
+                    <input type="checkbox" name="pegdatBahasa[]" value="{ID}" {CHECKED}> {NAME}
+                </label>
+            <!-- /patTemplate:tmpl -->
+            </td>
+        </tr>
+
+        <tr>
+            <th colspan="2" width="25%" class="background-blue-light"><b>Data Lain</b></th>
+        </tr>
+        <tr>
+            <th width="25%">Alamat</th>
+            <td>
+                <textarea class="form-control" class="form-control" name="datpegAlamat" rows=5 cols=37 tabindex='2'>{ALAMAT}</textarea>
+            </td>
+        </tr>
+        <tr>
+            <th width="25%">Kelurahan</th>
+            <td>
+                <input class="form-control" type="text" name="datpegKelurahan" value="{PEGKELURAHAN}" size="8" tabindex='2' />
+            </td>
+        </tr>
+        <tr>
+            <th width="25%">Kecamatan</th>
+            <td>
+                <input class="form-control" type="text" name="datpegKecamatan" value="{PEGKECAMATAN}" size="8" tabindex='2' />
+            </td>
+        </tr>
+        <tr>
+            <th width="25%">Kota</th>
+            <td>
+                <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="pegSatwilId"  / -->
+            </td>
+        </tr>
+        <tr>
+            <th width="25%">Kode Pos</th>
+            <td>
+                <input class="form-control" type="text" name="datpegKodePos" value="{KODEPOS}" size="8" tabindex='2' />
+            </td>
+        </tr>
+        <tr>
+            <th width="25%">Kepemilikan Rumah</th>
+            <td>
+                <label class="radio-inline"><input type="radio" name="datpegKepemilikanRumah" value="YA" {KEPEMILIKAN_RUMAH_YA}>Ya</label>
+                <label class="radio-inline"><input type="radio" name="datpegKepemilikanRumah" value="TIDAK" {KEPEMILIKAN_RUMAH_TIDAK}>Tidak</label>
+            </td>
+        </tr>
+        <tr>
+            <th width="25%">Nomor Telepon</th>
+            <td>
+                <input class="form-control" type="text" name="datpegNoTelp" value="{TELP}" size="25" tabindex='2' />
+            </td>
+        </tr>
+        <tr>
+            <th width="25%">Nomor HP</th>
+            <td>
+                <input class="form-control" type="text" name="datpegNoHp" value="{HP}" size="25" tabindex='2' />
+            </td>
+        </tr>
+        <tr>
+            <th width="25%">Email</th>
+            <td>
+                <input class="form-control" type="text" name="datpegEmail" value="{EMAIL}" size="25" tabindex='2' />
+            </td>
+        </tr>
+
+        <tr>
+            <th colspan="2" width="25%" class="background-blue-light" ><b>Informasi Medis</b></th>
+        </tr>
+        <tr>
+            <th width="25%">Nomor KIR Dokter</th>
+            <td>
+                <input class="form-control" type="text" name="datpegNoKir" value="{DATPEGNOKIR}" size="25" tabindex='2' />
+            </td>
+        </tr>
+        <tr>
+            <th width="25%">Golongan Darah</th>
+            <td>
+                <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="pegGoldrhId"  / -->
+            </td>
+        </tr>
+        <tr>
+            <th width="25%">Tinggi Badan (cm)</th>
+            <td>
+                <input class="form-control" type="text" name="datpegTinggiBdn" value="{TINGGIBDN}" size="5" tabindex='2' /> 
+            </td>
+        </tr>
+        <tr>
+            <th width="25%">Berat Badan (kg)</th>
+            <td>
+                <input class="form-control" type="text" name="datpegBeratBdn" value="{BERATBDN}" size="5" tabindex='2' /> 
+            </td>
+        </tr>
+        <tr>
+            <th width="25%">Cacat</th>
+            <td>
+                <input class="form-control" type="text" name="datpegCacat" value="{CACAT}" size="25" tabindex='2' />
+            </td>
+        </tr>
+        <tr>
+            <th width="25%">Hobi</th>
+            <td>
+                <textarea class="form-control" name="datpegHobi" rows=5 cols=37 tabindex='2'>{HOBI}</textarea>
+            </td>
+        </tr>
+
+        <tr>
+            <th colspan="2" width="25%" class="background-blue-light" ><b>Informasi pegawai ketika Penerimaan</b></th>
+        </tr>
+        <tr>
+            <th width="25%">Tanggal Masuk</th>
+            <td>
+                <!-- patTemplate:gtfwrendermodule module="tanggal" submodule="tanggal" action="view" name="datpegTglMasuk"  / -->
+            </td>
+        </tr>
+        <tr>
+            <th width="25%">TMT CPNS</th>
+            <td>
+                <!-- patTemplate:gtfwrendermodule module="tanggal" submodule="tanggal" action="view" name="datpegCpnsTmt"  / --> * diisi jika statusnya CPNS
+            </td>
+        </tr>
+        <tr>
+            <th width="25%">TMT PNS</th>
+            <td>
+                <!-- patTemplate:gtfwrendermodule module="tanggal" submodule="tanggal" action="view" name="datpegPnsTmt"  / --> * diisi jika statusnya CPNS  
+            </td>
+        </tr>
+        <tr>
+            <th width="25%">Status Kewarganegaraan Pegawai</th>
+            <td>
+                <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="pegStatusWargaNeg"  / -->
+            </td>
+        </tr>
+<!--         <tr>
+            <th width="25%">Kategori Pegawai</th>
+            <td>
+                patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="pegKatPeg"  /
+            </td>
+        </tr> -->
+        <!-- <tr>
+            <th width="25%">Tipe Pegawai</th>
+            <td>
+                !-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="pegTipPeg"  / --
+            </td>
+        </tr> -->
+        
+
+        <tr>
+            <th width="25%">Jenis Jabatan</th>
+            <td>
+                <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="PegJenFungsional"  / -->
+            </td>
+        </tr>
+        
+
+        <!-- <tr>
+            <th>Bank</th>
+            <td>
+                <input class="form-control" type="text" name="bank_label" id="bank_label" value="{BANK_LABEL}" size="40" readonly="readonly" />
+                <input type="hidden" name="bank" id="bank" value="{BANK}" />
+                <! <input type="button"  name="but_bank" onclick="bukaPopupBank('{URL_POPUP_BANK}')" value=" ... " />&nbsp; >
+            </td>
+        </tr> 
+        <tr>
+            <th>Nomor Rekening Bank</th>
+            <td><input type="text" name="rekening" value="{REKENING}" size="40" /></td>
+        </tr>
+        <tr>
+            <th>Rekening Bank Penerima</th>
+            <td><input type="text" name="resipien" value="{RESIPIEN}" size="40" /></td>
+        </tr>  -->
+        <tr>
+            <th width="25%">Nomor Taspen</th>
+            <td>
+                <input class="form-control" type="text" name="datpegNoTaspen" value="{NOTASPEN}" size="25" tabindex='2' />
+            </td>
+        </tr>
+        <tr>
+            <th width="25%">Nomor BPJS/ASKES/Asuransi kesehatan</th>
+            <td>
+                <input class="form-control" type="text" name="datpegNoAskes" value="{NOASKES}" size="25" tabindex='2' />
+            </td>
+        </tr>
+        <tr>
+            <th width="25%">Status Ketersediaan NPWP </th>
+            <td>
+                <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="statusnpwp"  / -->
+            </td>
+        </tr>
+        <tr>
+            <th width="25%">NPWP</th>
+            <td>
+                <input class="form-control" type="text" name="datpegNoNpwp" value="{NONPWP}" size="25" tabindex='2' />
+            </td>
+        </tr>
+        <tr>
+            <th width="25%">Batas Usia Pensiun</th>
+            <td>
+                <input class="form-control" type="text" name="datpegUsiaPens" value="{USIAPENS}" size="5" tabindex='2' />
+            </td>
+        </tr>
+
+        <!--<tr>
+            <th width="25%">ID Card Number</th>
+            <td>
+                <input class="form-control" type="text" name="datpegKodeAbsen" value="{KODEABSEN}" size="25" tabindex='2' /> 
+            </td>
+        </tr>-->
+
+        <tr style="display:none">
+            <th width="25%">Jabatan Struktural</th>
+            <td>
+                <!-- patTemplate:tmpl name="jabatan_1" type="condition" conditionvar="DATA2_EMPTY" -->
+                <!-- patTemplate:sub condition="YES" -->
+                <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="jabstruk"  / -->
+                <!-- /patTemplate:sub -->
+                <!-- patTemplate:sub condition="NO" -->
+                <!-- patTemplate:tmpl name="jabatan_1_item" -->
+                {NAMA}
+                <!-- /patTemplate:tmpl -->
+                <!-- /patTemplate:sub -->
+                <!-- /patTemplate:tmpl -->
+            </td>
+        </tr>
+
+        <tr style="display:none">
+            <th width="25%">Unit Kerja</th>
+            <td>
+                <!-- patTemplate:tmpl name="sat_kerja" type="condition" conditionvar="DATA4_EMPTY" -->
+                <!-- patTemplate:sub condition="YES" -->
+                <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="satker"  / --> *
+                <!-- /patTemplate:sub -->
+                <!-- patTemplate:sub condition="NO" -->
+                <!-- patTemplate:tmpl name="sat_kerja_item" -->
+                {NAMA}
+                <input type="hidden" name="satker" id="satker" value="{ID}" />
+                <!-- /patTemplate:tmpl -->
+                <!-- /patTemplate:sub -->
+                <!-- /patTemplate:tmpl -->
+            </td>
+        </tr>
+        <tr style="display:none">
+            <th width="180">Atasan Langsung</th>
+            <td>
+                <input class="form-control" type="text" name="peg_label_2" id="peg_label_2" value="{3_NMP}" size="40" readonly="readonly" />
+                <input type="hidden" name="pegId2" id="pegId2" value="{3_IDP}" />
+                <input type="button"  name="but_peg_2" onclick="bukaPopupKomp('{URL_POPUP_PEG_2}')" value=" ... " />&nbsp;
+            </td>
+        </tr>
+        <tr style="display:none">
+            <th width="180">Unit Kerja Atasan Langsung</th>
+            <td>
+                <input class="form-control" type="text" name="sat_label_2" id="sat_label_2" value="{3_NMS}" size="40" readonly="readonly" />
+                <input type="hidden" name="satId2" id="satId2" value="{3_IDS}" />
+            </td>
+        </tr>
+        <tr style="display:none">
+            <th width="180">Pimpinan Unit</th>
+            <td>
+                <input class="form-control" type="text" name="peg_label_1" id="peg_label_1" value="{2_NMP}" size="40" readonly="readonly" />
+                <input type="hidden" name="pegId1" id="pegId1" value="{2_IDP}" />
+                <input type="button"  name="but_peg_1" onclick="bukaPopupKomp('{URL_POPUP_PEG_1}')" value=" ... " />&nbsp;
+            </td>
+        </tr>
+        <tr style="display:none">
+            <th width="180">Unit Kerja Pimpinan</th>
+            <td>
+                <input class="form-control" type="text" name="sat_label_1" id="sat_label_1" value="{2_NMS}" size="40" readonly="readonly" />
+                <input type="hidden" name="satId1" id="satId1" value="{2_IDS}" />
+            </td>
+        </tr>
+        <tr style="display:none">
+            <th width="25%">Pangkat/Golongan</th>
+            <td>
+                <!-- patTemplate:tmpl name="pangkat_golongan" type="condition" conditionvar="DATA1_EMPTY" -->
+                <!-- patTemplate:sub condition="YES" -->
+                <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="pktgol"  / -->
+                <!-- /patTemplate:sub -->
+                <!-- patTemplate:sub condition="NO" -->
+                <!-- patTemplate:tmpl name="pangkat_golongan_item" -->
+                {NAMA}
+                <input type="hidden" name="idgol" value="{ID_GOL}">
+                <!-- /patTemplate:tmpl -->
+                <!-- /patTemplate:sub -->
+                <!-- /patTemplate:tmpl -->
+            </td>
+        </tr>
+
+        <tr style="display:none">
+            <th width="25%">Jabatan Akademik</th>
+            <td>
+                <!-- patTemplate:tmpl name="jabatan_2" type="condition" conditionvar="DATA3_EMPTY" -->
+                <!-- patTemplate:sub condition="YES" -->
+                <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="jabfung"  / -->
+                <!-- /patTemplate:sub -->
+                <!-- patTemplate:sub condition="NO" -->
+                <!-- patTemplate:tmpl name="jabatan_2_item" -->
+                {NAMA}
+                <!-- /patTemplate:tmpl -->
+                <!-- /patTemplate:sub -->
+                <!-- /patTemplate:tmpl -->
+            </td>
+        </tr>
+        <tr style="display:none">
+            <th width="25%">Level</th>
+            <td>
+                <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="pegLevelId"  / -->
+            </td>
+        </tr>
+        <tr>
+            <th width="25%">Foto</th>
+            <td>
+                <input type="file" name="file" size="40"><br />
+                File foto sebelumnya: {FOTO}
+                <input name="datpegFoto" type="hidden" value="{FOTO}" />
+            </td>
+        </tr>
+
+        <tr class="buttons">
+            <th>&nbsp;
+            </th>
+            <td>
+                <input type="submit" name="btnsimpan" value=" {JUDUL} " class="btn btn-xs btn-info"/>
+                <input  type="button"  name="btnbatal" value=" Batal " class=" btn btn-xs btn-warning" onclick="redirect()"/>
+            </td>
+        </tr>
+    </table>
+</form>
+
+</div>
+</div>
+
+<div class="petunjuk-area">
+    <h4>Petunjuk :</h4>
+    <ul>
+        <li>Tanda * menandakan bahwa field ini harus diisi.</li>
+    </ul>
+</div>
+<!-- /patTemplate:tmpl -->

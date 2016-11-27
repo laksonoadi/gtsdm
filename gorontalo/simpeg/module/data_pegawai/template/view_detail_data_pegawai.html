@@ -1,0 +1,244 @@
+<!-- patTemplate:tmpl name="content" -->
+<!--<h1>{LABEL_TITLE}</h1>-->
+<div class="background-blue padding-10 text-big">{TITLE}</div>
+
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="notebox-alert">
+   {ISI_PESAN}
+</div>
+<!-- /patTemplate:tmpl -->
+<div class="row" style="padding-top:10px;padding-left:10px">
+	<ul class="nav nav-tabs">
+    <li class="active"><a href="{URL_PGW}" class="xhr dest_subcontent-element">Data Pegawai</a></li>
+    <li><a href="{URL_PSNG}" class="xhr dest_subcontent-element ">Data Pasangan</a></li>
+    <li><a href="{URL_ANAK}" class="xhr dest_subcontent-element ">Data Anak</a></li>
+    <li><a href="{URL_ORTU}" class="xhr dest_subcontent-element ">Data Orang Tua</a></li>
+    <li><a href="{URL_MERTUA}" class="xhr dest_subcontent-element ">Data Mertua</a></li>
+    <li><a href="{URL_SDR}" class="xhr dest_subcontent-element ">Data Saudara Kandung</a></li>
+  </ul>
+</div>
+
+<div class="row">
+    <div class="col-md-3 pull-right"><img src="upload_file/photo/{FOTO2}" class="img-responsive"></div>
+    <div class="col-md-9" style="padding-left:10px">
+        <table class="table" width="100%">
+            <!--<tr>
+		        <th colspan="2" width="25%"><b>Personal Information</b></th>
+	        </tr>-->
+	        <tr>
+		        <td width="43%">&nbsp;&nbsp;&nbsp;NIP Baru</td>
+		        <td>{NIP}</td>
+	        </tr>
+	        <tr>
+		        <td width="43%">&nbsp;&nbsp;&nbsp;NIP Lama</td>
+		        <td>{KODEINT}</td>
+	        </tr>
+	        <tr>
+		        <td width="43%">&nbsp;&nbsp;&nbsp;Nama </td>
+		        <td>{GELDEP} {NAMA}, {GELBEL}</td>
+	        </tr>
+	        <tr>
+		        <td width="43%">&nbsp;&nbsp;&nbsp;Tempat & tgl lahir</td>
+		        <td>{TMPLAHIR}{TGLLAHIR}</td>
+	        </tr>
+	        <tr>
+		        <td width="43%">&nbsp;&nbsp;&nbsp;NIK</td>
+		        <td>{IDLAIN}</td>
+	        </tr>
+	        <tr>
+		        <td width="43%">&nbsp;&nbsp;&nbsp;Nomor SKCK</td>
+		        <td>{SKCK}</td>
+	        </tr>
+	        <tr>
+		        <td width="43%">&nbsp;&nbsp;&nbsp;Nomor Karpeg</td>
+		        <td>{KARPEG}</td>
+	        </tr>
+	        <tr>
+		        <td width="43%">&nbsp;&nbsp;&nbsp;Nomor KPE (Kartu Pegawai Elektronik)</td>
+		        <td>{KPE}</td>
+	        </tr>
+	        <tr>
+		        <td width="43%">&nbsp;&nbsp;&nbsp;Jenis Kelamin</td>
+		        <td>{JENKEL}</td>
+	        </tr>
+	        <tr>
+		        <td width="43%">&nbsp;&nbsp;&nbsp;Agama </td>
+		        <td>{AGAMA}</td>
+	        </tr>
+	        <tr>
+		        <td width="43%">&nbsp;&nbsp;&nbsp;Status Pernikahan </td>
+		        <td>{NIKAH}</td>
+	        </tr>
+	        <tr style="display:none">
+		        <td width="30%">&nbsp;&nbsp;&nbsp;Kode Pernikahan </td>
+		        <td>{KODENIKAH}</td>
+	        </tr>
+	        <tr>
+		        <td width="43%">&nbsp;&nbsp;&nbsp;Bahasa Yang Dikuasai </td>
+		        <td>{BAHASA}</td>
+	        </tr>
+	        <tr>
+		        <th colspan="2" width="30%" class="subhead"><b>Data Lain </b></th>
+	        </tr>
+	        <tr>
+		        <td width="43%">&nbsp;&nbsp;&nbsp;Alamat </td>
+		        <td>{ALAMAT}</td>
+	        </tr>
+	        <tr>
+		        <td width="43%">&nbsp;&nbsp;&nbsp;Kelurahan </td>
+		        <td>{KELURAHAN}</td>
+	        </tr>
+	        <tr>
+		        <td width="43%">&nbsp;&nbsp;&nbsp;Kecamatan </td>
+		        <td>{KECAMATAN}</td>
+	        </tr>
+	        <tr>
+		        <td width="43%">&nbsp;&nbsp;&nbsp;Kota </td>
+		        <td>{SATWIL}</td>
+	        </tr>
+	        <tr>
+		        <td width="43%">&nbsp;&nbsp;&nbsp;Kode POS </td>
+		        <td>{KODEPOS}</td>
+	        </tr>
+	        <tr>
+		        <td width="43%">&nbsp;&nbsp;&nbsp;Kepemilikan Rumah</td>
+		        <td>{RUMAH}</td>
+	        </tr>
+	        <tr>
+		        <td width="43%">&nbsp;&nbsp;&nbsp;Nomor Telepon </td>
+		        <td>{TELP}</td>
+	        </tr>
+	        <tr>
+		        <td width="43%">&nbsp;&nbsp;&nbsp;Nomor HP </td>
+		        <td>{HP}</td>
+	        </tr>
+	        <tr>
+		        <td width="43%">&nbsp;&nbsp;&nbsp;Email </td>
+		        <td>{EMAIL}</td>
+	        </tr>
+	        <tr>
+		        <th colspan="2" width="30%" class="subhead"><b>Informasi Medis </b></th>
+	        </tr>
+	        <tr>
+		        <td width="43%">&nbsp;&nbsp;&nbsp;Nomor KIR Dokter</td>
+		        <td>{KIR}</td>
+	        </tr>
+	        <tr>
+		        <td width="43%">&nbsp;&nbsp;&nbsp;Golongan Darah </td>
+		        <td>{GOLDAR}</td>
+	        </tr>
+	        <tr>
+		        <td width="43%">&nbsp;&nbsp;&nbsp;Tinggi Badan </td>
+		        <td>{TINGGIBDN}</td>
+	        </tr>
+	        <tr>
+		        <td width="43%">&nbsp;&nbsp;&nbsp;Berat Badan </td>
+		        <td>{BERATBDN}</td>
+	        </tr>
+	        <tr>
+		        <td width="43%">&nbsp;&nbsp;&nbsp;Cacat </td>
+		        <td>{CACAT}</td>
+	        </tr>
+	        <tr>
+		        <td width="43%">&nbsp;&nbsp;&nbsp;Hobi </td>
+		        <td><p>{HOBI}</p></td>
+	        </tr>
+	        <tr>
+		        <th colspan="2" width="30%" class="subhead"><b>Informasi pegawai ketika rekruitmen</b></th>
+	        </tr>
+	        <tr>
+		        <td width="43%">&nbsp;&nbsp;&nbsp;Tanggal Masuk </td>
+		        <td>{TGLMASUK}</td>
+	        </tr>
+	        <!--<tr>
+		        <td width="43%">&nbsp;&nbsp;&nbsp;Lama Bekerja</td>
+          		<td>{LAMA_KERJA}</td>
+	        </tr>-->
+	        <tr>
+		        <td width="43%">&nbsp;&nbsp;&nbsp;TMT CPNS </td>
+		        <td>{CPNSTMT}</td>
+	        </tr>
+	        <tr>
+		        <td width="43%">&nbsp;&nbsp;&nbsp;TMT PNS </td>
+		        <td>{PNSTMT}</td>
+	        </tr>
+	        <tr>
+		        <td width="43%">&nbsp;&nbsp;&nbsp;Status Kewarganegaraan Pegawai</td>
+		        <td>{PEGSTATUSWARGANEG}</td>
+	        </tr>
+	        <tr>
+		        <td width="43%">&nbsp;&nbsp;&nbsp;Status Pekerjaan </td>
+		        <td>{JNSPEGID}</td>
+	        </tr>
+	        <tr>
+		        <td width="43%">&nbsp;&nbsp;&nbsp;Status Pegawai </td>
+		        <td>{STATR}</td>
+	        </tr>
+	        <tr>
+		        <td width="43%">&nbsp;&nbsp;&nbsp;Status Kepegawaian </td>
+		        <td>{STAKEPEG}</td>
+	        </tr>
+	        <tr>
+		        <td width="43%">&nbsp;&nbsp;&nbsp;Nomor Taspen</td>
+		        <td>{NOTASPEN}</td>
+	        </tr>
+	        <tr>
+		        <td width="43%">&nbsp;&nbsp;&nbsp;Nomor BPJS/ASKES/Asuransi kesehatan</td> 
+		        <td>{NOASKES}</td>
+	        </tr>
+	        <tr>
+		        <td width="43%">&nbsp;&nbsp;&nbsp;Status NPWP</td>
+                <td>{STATUSNPWP}</td>
+	        </tr>
+	        <tr>
+		        <td width="43%">&nbsp;&nbsp;&nbsp;NPWP </td>
+		        <td>{NONPWP}</td>
+	        </tr>
+	        <tr>
+		        <td width="43%">&nbsp;&nbsp;&nbsp;Batas Usia Pensiun </td>
+		        <td>{USIAPENS}</td>
+	        </tr>
+	        <!--<tr>
+		        <td width="43%">&nbsp;&nbsp;&nbsp;Presence Code </td>
+          <td>{KODEABSEN}</td>
+	        </tr>-->
+
+            <tr style="display:none">
+	            <td width="43%">&nbsp;&nbsp;&nbsp;Jabatan Struktural </td>
+                <td>{JABSTRUK}</td>
+	        </tr>
+	        <tr style="display:none">
+		        <td width="43%">&nbsp;&nbsp;&nbsp;Wilayah Kerja </td>
+		        <td>{SATKER}</td>
+	        </tr>
+	        <tr style="display:none">
+		        <td width="43%">&nbsp;&nbsp;&nbsp;Supervisor </td>
+		        <td>{DIRSPV}</td>
+	        </tr>
+	        <tr style="display:none">
+		        <td width="43%">&nbsp;&nbsp;&nbsp;MOR</td>
+		        <td>{MOR}</td>
+	        </tr>
+	        <tr style="display:none">
+		        <td width="43%">&nbsp;&nbsp;&nbsp;Pangkat </td>
+		        <td>{PKTGOL}</td>
+	        </tr>
+	        <tr style="display:none">
+		        <td width="43%">&nbsp;&nbsp;&nbsp;Jabatan Akademik </td>
+		        <td>{JABFUNG}</td>
+	        </tr>
+	        <tr style="display:none">
+		        <td width="43%">&nbsp;&nbsp;&nbsp;Golongan </td>
+		        <td>{LEVEL}</td>
+	        </tr>
+	        <tr>
+                <td colspan="2" class="background-blue text-right">
+	                <a class="xhr dest_subcontent-element " href="{URL_ACTION}" title="Kembali" tabindex="2">
+	                    <button type="button" class="btn btn-default btn-xs ">Kembali</button>
+                    </a>
+		        </td>
+	        </tr>
+        </table>
+    </div>
+</div>
+<!-- /patTemplate:tmpl -->
