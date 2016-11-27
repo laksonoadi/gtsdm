@@ -1,0 +1,65 @@
+<!-- patTemplate:tmpl name="content" -->
+<br />
+<h1>OTHER ALLOWANCE</h1>
+<br />
+  <table class="table-details" width="100%">
+     <tr class="subhead">
+        <th colspan="2">Other Allowance Detail</th>
+     </tr>
+     <tr>
+        <th width="150">Type</th>
+        <td>{JENIS}</td>
+     </tr>
+     <tr>
+        <th width="150">Description</th>
+        <td>{DESKRIPSI}</td>
+     </tr>
+     <tr>
+        <th>Date</th>
+        <td>{TANGGAL}</td>
+     </tr>
+     <tr>
+        <th>Total</th>
+        <td>Rp {NOMINAL}</td>
+     </tr>
+     
+     <tr class="subhead">
+        <th colspan="2">Employee List</th>
+     </tr>
+     <tr>
+     <td colspan="2">
+     <table class="table-common" width="100%" id="table-komponen" >
+				<tr>
+				 <th width="90px">Employee Number</th>
+				 <th>Name</th>
+				 <th width="110px">Nominal</th>
+				</tr>
+  <!-- patTemplate:tmpl name="data" type="condition" conditionvar="IS_EMPTY" -->
+     <!-- patTemplate:sub condition="YES" -->
+     <tr><td colspan="3" align="center"><em>-- Data not found --</em></td></tr>
+     <!-- /patTemplate:sub -->
+     <!-- patTemplate:sub condition="NO" -->
+        <!-- patTemplate:tmpl name="data_item" -->
+        <tr class="{DATA_CLASS_NAME}">
+           <td style="padding-left:15px;">{DATA_KODE}</td>
+           <td style="padding-left:15px;">{DATA_NAMA}</td>
+           <td style="padding-left:15px;">{DATA_NOMINAL}</td>
+        </tr>
+        <!-- /patTemplate:tmpl -->
+     <!-- /patTemplate:sub -->
+  <!-- /patTemplate:tmpl -->
+  </table>
+  </td>
+  </tr>
+   <tr class="subhead">
+      <th colspan="2">
+	<div class="pageBar">
+      <div class="toolbar"> 
+   		<a class="xhr dest_subcontent-element" href="{URL_KEMBALI}" title="Back" ><img src="images/button-back.gif" alt="Back"> Back</a>
+      </div>
+   </div>			
+			</th>
+         </tr>
+      </table>   
+   <br />   
+<!-- /patTemplate:tmpl -->

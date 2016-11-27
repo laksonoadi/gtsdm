@@ -1,0 +1,50 @@
+<!-- patTemplate:tmpl name="content" -->
+<h1>Potongan Pph</h1>
+<br/>
+
+   <!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+   <div class="notebox-alert">
+      {ISI_PESAN}
+   </div>
+   <br/>
+   <!-- /patTemplate:tmpl -->
+   
+   
+   <form method="POST" action="{URL_ACTION}" class="xhr_form std_form" id="frmInput" >
+   <input type="hidden" name="dataId" value="{DATAID}"  />
+   <input type="hidden" name="page" value="{PAGE}"  />
+      <table class="table-edit" width="100%">
+         <tr class="subhead">
+            <th colspan="2">{JUDUL} Potongan Pph</th>
+         </tr>
+         <tr>
+            <th width="150">Nama</th>
+            <td><input type="text" name="pphrpNama" value="{PPHRP_NAMA}" size="40" notab="2" />&nbsp;*
+         </tr>
+		 <tr>
+            <th width="150">Nominal Maksimum (Rp)</th>
+            <td><input type="text" name="pphrpNominalMax" value="{PPHRP_NOMINAL}" size="40" class="gvFloat" notab="2" />&nbsp;*
+         </tr>
+		 <tr>
+            <th width="150">Urutan</th>
+            <td><input type="text" name="pphrpOrder" value="{PPHRP_ORDER}" size="40" notab="2" />&nbsp;*
+         </tr>
+         <tr class="buttons">
+            <th>&nbsp;
+            </th>
+            <td>
+               <input type="submit" name="btnsimpan" value=" Simpan " class="buttonSubmit"/>
+               <input  type="submit"  name="btnbalik" value=" Batal " class="buttonSubmit"/>
+            </td>
+         </tr>
+      </table>
+   </form>
+   
+   <br/>
+   <div class="petunjuk-area">
+   <h4>Petunjuk:</h4>
+   <ul>
+      <li>Tanda * menunjukkan bahwa field tersebut harus diisi. </li>
+   </ul>
+</div>
+<!-- /patTemplate:tmpl -->

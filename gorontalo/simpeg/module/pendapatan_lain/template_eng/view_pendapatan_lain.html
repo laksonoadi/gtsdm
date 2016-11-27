@@ -1,0 +1,77 @@
+<!-- patTemplate:tmpl name="content" -->
+<br />
+<h1>OTHER ALLOWANCE</h1>
+<br />
+<form method="POST" action="{URL_SEARCH}" class="dataquest xhr_simple_form dest_subcontent-element" id="filterbox">
+   <table>
+      <tr>
+         <th colspan="2"><h2><strong>Search Data</strong></h2></th>
+      </tr>
+      <tr>              
+         <th width="30%">Employee Number/Name</th>
+         <td colspan='2'><input type="text" name="nip_nama" value="{NIP_NAMA}" size="30" /></td>
+      </tr>
+      
+      <tr>
+         <th width="30%">Other Allowance Type</th>
+         <td><!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="jenis"  / --></td>
+      </tr>
+      <tr>
+         <th width="30%">Period</th>
+         <td><!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="periode_bulan"  / -->
+         <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="periode_tahun"  / --></td>
+      </tr>
+      <tr>
+         <th>&nbsp;</th>
+         <td colspan='2'>
+            <input type="submit" name="btncari" value=" Search &raquo;" class="buttonSubmit"/>
+         </td>
+      </tr>
+   </table>
+</form>
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+   <br />
+   <div class="{CLASS_PESAN}">
+      {ISI_PESAN}
+   </div>
+<!-- /patTemplate:tmpl -->
+   <br />
+   <div class="pageBar">
+    <div class="toolbar"> 
+		<a class="xhr dest_subcontent-element " href="{URL_ADD}" title="Add" tabindex="2">
+	  <img src="images/button-add.gif" alt=""> Add</a> 	
+   </div>
+    <!-- patTemplate:gtfwrendermodule module="paging" submodule="paging" action="view" name="paging_top"  / -->
+    </div>
+   <table class="table-common" width="100%">
+   <tr>
+      <th width="18px">No</th>
+      <th width="93px">Action</th>
+      <th width="90px">Other Allowance Type</th>
+      <th>Description</th>
+      <th width="70px">Date</th>
+      <th width="110px">Total</th>
+   </tr>
+   <!-- patTemplate:tmpl name="data_pendapatan" type="condition" conditionvar="NILAI_EMPTY" -->
+      <!-- patTemplate:sub condition="YES" -->
+   <tr><td colspan="6" align="center"><em>-- Data not found --</em></td></tr>
+      <!-- /patTemplate:sub -->
+      <!-- patTemplate:sub condition="NO" -->
+         <!-- patTemplate:tmpl name="data_pendapatan_item" -->
+   <tr class="{NIL_CLASS_NAME}">
+      <td align="center">{NIL_NUMBER}</td>
+      <td class="links">
+         <a class="xhr dest_subcontent-element" href="{NIL_URL_DETAIL}" title="Detail"><img src="images/button-detail.gif" alt="Detail"/></a>
+         <a class="xhr dest_subcontent-element" href="{NIL_URL_EDIT}" title="Update"><img src="images/button-edit.gif" alt="Update"/></a>
+         <a class="xhr dest_subcontent-element" href="{NIL_URL_DELETE}" title="Delete"><img src="images/button-delete.gif" alt="Delete"/></a>
+      </td>
+      <td align="left">{NIL_NAMA}</td>
+      <td align="left">{NIL_DES}</td>
+      <td align="center">{NIL_TGL}</td>
+      <td align="left">{NIL_NOMINAL}</td>
+   </tr>
+         <!-- /patTemplate:tmpl -->
+      <!-- /patTemplate:sub -->
+   <!-- /patTemplate:tmpl -->
+</table>
+<!-- /patTemplate:tmpl -->

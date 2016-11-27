@@ -1,0 +1,156 @@
+<!-- patTemplate:tmpl name="content" -->
+
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="notebox-alert">
+  {ISI_PESAN}
+</div>
+<!-- /patTemplate:tmpl -->
+<br />
+<h1>PENDAPATAN LAIN</h1>
+<br />
+   <form method="POST" action="{URL_ACTION}" class="xhr_form std_form" id="frmInput" >
+   <input type="hidden" name="dataId" value="{ID}"  />
+   <input type="hidden" name="tglId" value="{TGL_ID}"  />
+   <input type="hidden" name="op" value="{OP}"  />
+      <table class="table-edit" width="100%">
+         <tr class="subhead">
+            <th colspan="2">{LABEL_ACTION} Pendapatan Lain</th>
+         </tr>
+         <tr>
+            <th width="150">Jenis Pendapatan Lain</th>
+            <td>
+            <!-- patTemplate:tmpl name="detil_pend" type="condition" conditionvar="PEND_EMPTY" -->
+    					<!-- patTemplate:sub condition="YES" -->
+    					  <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="jenis"  / --> *
+              <!-- /patTemplate:sub -->
+    					<!-- patTemplate:sub condition="NO" -->
+    					<!-- patTemplate:tmpl name="detil_pend_item" -->
+                : {NAMA}
+                <input type="hidden" name="jenis2" value="{ID}">
+              <!-- /patTemplate:tmpl -->
+              <!-- /patTemplate:sub -->
+            <!-- /patTemplate:tmpl -->
+            </td>
+         </tr>
+         <tr>
+            <th>Keterangan</th>
+            <td>
+            <!-- patTemplate:tmpl name="detil_pend_3" type="condition" conditionvar="PEND3_EMPTY" -->
+    					<!-- patTemplate:sub condition="YES" -->
+    					  <input type="text" name="deskripsi" size="40" />&nbsp;*
+              <!-- /patTemplate:sub -->
+    					<!-- patTemplate:sub condition="NO" -->
+    					<!-- patTemplate:tmpl name="detil_pend3_item" -->
+                : {DESKRIPSI}
+              <!-- /patTemplate:tmpl -->
+              <!-- /patTemplate:sub -->
+            <!-- /patTemplate:tmpl -->
+            </td>
+         </tr>
+         <tr>
+            <th>Tanggal</th>
+            <td>
+            <!-- patTemplate:tmpl name="detil_pend_2" type="condition" conditionvar="PEND2_EMPTY" -->
+    					<!-- patTemplate:sub condition="YES" -->
+                <!-- patTemplate:gtfwrendermodule module="tanggal" submodule="tanggal" action="view" name="tanggal"  / -->
+              <!-- /patTemplate:sub -->
+    					<!-- patTemplate:sub condition="NO" -->
+    					<!-- patTemplate:tmpl name="detil_pend2_item" -->
+                : {TANGGAL}
+              <!-- /patTemplate:tmpl -->
+              <!-- /patTemplate:sub -->
+            <!-- /patTemplate:tmpl -->  
+            </td>
+         </tr>
+         <!-- <tr>
+            <th>Total</th>
+            <td>{NOMINAL}</td>
+         </tr> -->
+         
+         
+         <tr>
+    		 <td colspan="2">
+    			<table class="table-common" width="100%" id="table-komponen" >
+    				<tr class="buttons">
+    				 <td colspan="5" class="links" style="border: medium none ;">
+                <input type="button" value="set" onclick="updateNominal();">
+             <a href="javascript:bukaPopupPegawai('{URL_POPUP_PEGAWAI}')" onclick="">
+    				 <img src="images/button-add.gif" alt="">Tambah Pegawai</a>
+    				 </td>
+    				<tr>
+    				 <th width="90px">Nomor Pegawai</th>
+    				 <th>Nama</th>
+    				 <th>Nominal (Rp)</th>
+    				 <th width="7px">&nbsp;</th>	 
+    				</tr>
+    				 
+    				<tbody id="table_pegawai">
+    					<!-- patTemplate:tmpl name="detil_pegawai" type="condition" conditionvar="DATA_EMPTY" -->
+    					<!-- patTemplate:sub condition="YES" --><!-- /patTemplate:sub -->
+    					<!-- patTemplate:sub condition="NO" -->
+    						<!-- patTemplate:tmpl name="data_pegawai_item" -->
+                <tr>
+    							<td>
+    								<input type="hidden" name="data[tambah][id][]" value="{DATA_ID}" /> 
+    								<input type="hidden" name="data[tambah][kode][]" value="{DATA_KODE}" /> {DATA_KODE}
+    							</td>
+    							<td>
+    								<input type="hidden" name="data[tambah][nama][]" value="{DATA_NAMA}" /> {DATA_NAMA}
+    							</td>
+    							<td>
+    								<input type="text" name="data[tambah][nominal][]" id="nominal[]" class="nominal" onkeyup="updateNominal();" value="{DATA_NOMINAL}" onfocus="javascript:document.frmInput.default.value" />
+    							</td>
+    							<td>
+    								<a href="javascript:void(null)" title="Hapus" onclick="hapus_pegawai(this)">
+    								<img src="images/button-delete.gif" alt="Hapus" /></a>
+    							</td>
+    						</tr>
+    						<!-- /patTemplate:tmpl -->
+    					<!-- /patTemplate:sub -->
+    					<!-- /patTemplate:tmpl -->
+    				</tbody>
+    				</tr>
+    			</table>
+    			</td>
+    			
+    		 </tr>
+    		 
+         <tr class="buttons">
+            <th>&nbsp;
+            </th>
+            <td>
+               <input type="submit" name="btnsimpan" value=" {LABEL_ACTION} " class="buttonSubmit"/>
+               <input  type="submit"  name="btnbalik" value=" Batal " class="buttonSubmit"/>
+            </td>
+         </tr>
+      </table>
+   </form>
+   
+   <br/>
+   
+   <div class="petunjuk-area">
+      <h4>Petunjuk :</h4>
+      <ul>
+         <li>Tanda * menunjukkan bahwa field harus disi.</li>
+         <li>Set tombol digunakan untuk mengatur semua bidang nominal.</li>
+      </ul>
+   </div>
+<script type="text/javascript">
+	var xpopup;
+	function bukaPopupPegawai(url) {
+		showPopup(url,'Employee List',500, 500);
+	}
+	
+	function hapus_pegawai(obj) {
+		obj.parentNode.parentNode.parentNode.removeChild(obj.parentNode.parentNode);
+	}
+	
+   function updateNominal() {
+      var sizeofarr = $('input.nominal').length;
+      var firstnom = $('input.nominal').val();
+      $('input.nominal').val(firstnom);
+      //alert(sizeofarr);
+      //alert(firstnom);
+   }
+</script>
+<!-- /patTemplate:tmpl -->

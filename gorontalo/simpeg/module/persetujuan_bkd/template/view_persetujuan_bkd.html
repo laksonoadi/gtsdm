@@ -1,0 +1,660 @@
+<!-- patTemplate:tmpl name="content" -->
+<style>
+.btnTambah { font-family:arial; font-size:16px; border:1px solid #848ebf; height:30px; color:#2e3724; font-weight:bold; background:#fcfff7; cursor:pointer;}
+.btnTambah:hover { color:#525b29; border:1px solid #DBDDC8;}
+</style>
+<script language="javascript" type="text/javascript">
+//
+</script>
+
+
+<div id="TOP"><h1>{TITLE}</h1></div><br>
+<!-- Informasi Pribadi Start -->
+<!-- patTemplate:gtfwrendermodule module="profile" submodule="profilebox" action="view" name="profile"  / -->
+<table class="table-edit" width="100%" >
+	<tr class="subhead">
+		<th colspan="2">
+			<div class="toolbar"> 
+				<a href="javascript:Tab('LISTDATA','FORMDATA');"><img src="images/button-aturan.gif" title="Lihat List Data">Lihat List Data</a>
+				<!-- <a href="javascript:Tab('FORMDATA','LISTDATA');"><img src="images/button-add.gif" title="Form Data">Tambah Data</a>-->
+				<a class="xhr dest_subcontent-element " href="{URL_BACK}" title="Pilih Pegawai" tabindex="2"><img src="images/button-back.gif" alt=""> Pilih Pegawai</a> 
+			</div>
+		</th>
+	</tr>
+</table>
+
+<br />
+
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<script language="javascript" type="text/javascript">
+function Tutup(){
+	document.getElementById('warning_box').style.display='none';
+}
+</script>
+<div class="{CLASS_PESAN}" id="warning_box">
+   {ISI_PESAN} <a href="javascript:Tutup();">&nbsp;[Tutup Pesan]</a>
+</div>
+<!-- /patTemplate:tmpl --> 
+
+<div id="FORMDATA" style="display:none; width:600px;">
+	<form method="POST" action="{URL_ACTION}" name="frmInput" class="" id="frmInput" onSubmit="return cekform(this);" enctype="multipart/form-data">
+	<div class="TabbedPanels" id="tp1">
+	  <ul class="TabbedPanelsTabGroup">
+		<li class="TabbedPanelsTab TabbedPanelsTabSelected">IDENTITAS</li>
+		<li class="TabbedPanelsTab">PENDIDIKAN</li>
+		<li class="TabbedPanelsTab">PENELITIAN</li>
+		<li class="TabbedPanelsTab">PENGABDIAN</li>
+		<li class="TabbedPanelsTab">PENUNJANG</li>
+		<li class="TabbedPanelsTab">PROFESOR</li>
+		<li class="TabbedPanelsTab">KONFIRMASI</li>
+	  </ul>
+	  
+	  <div class="TabbedPanelsContentGroup">
+	  <!------------------------------------------------------- Identitas Dosen Begin ------------------------------------------------------->	
+		<div style="display: block;" class="TabbedPanelsContent TabbedPanelsContentVisible">
+			   <table class="table-edit" width="100%">
+				  <tr class="subhead">
+					 <th colspan="2" style="font-size:15px;">{JUDUL} Identitas Dosen</th>
+				  </tr>
+				  <tr>
+					 <th width="150">No. Sertifikasi</th>
+					 <td> {NOSERTF}</td>
+				  </tr>
+				  <tr>
+					 <th>NIP / NIDN</th>
+					 <td> {NIP} / {NIDN} </td>
+				  </tr>
+				  <tr>
+					 <th>Nama</th>
+					 <td> {NAMA} </td>
+				  </tr>
+				  <tr>
+					 <th>Nama PT</th>
+					 <td> {NAMAPT} </td>
+				  </tr>
+				  <tr>
+					 <th>ALamat PT</th>
+					 <td> {ALAMATPT} </td>
+				  </tr>
+				  <tr>
+					 <th>Fakultas/Departemen</th>
+					 <td> {FAKULTAS} </td>
+				  </tr>
+				  <tr>
+					 <th>Prog. Studi</th>
+					 <td> {PRODI} </td>
+				  </tr>
+				  <tr>
+					 <th>Jab. Fungsional / Gol</th>
+					 <td> {JABFUNG} / {PKTGOL} </td>
+				  </tr>
+				  <tr>
+					 <th>Tempat/Tgl lahir</th>
+					 <td> {TMPLAHIR}, {TGLLAHIR} </td>
+				  </tr>
+				  <tr>
+					 <th>S1</th>
+					 <td> {S1} </td>
+				  </tr>
+				  <tr>
+					 <th>S2</th>
+					 <td> {S2} </td>
+				  </tr>
+				  <tr>
+					 <th>S3</th>
+					 <td> {S3} </td>
+				  </tr>
+				  <tr>
+					 <th>Jenis </th>
+					 <td> {JENIS}</td>
+				  </tr>
+				  <tr>
+					 <th>Bidang Ilmu</th>
+					 <td> 
+							{BIDANGILMU}
+							<input type="hidden" name="bidang" value="{BIDANGILMU}" size="50" maxlength="100" />
+					 </td>
+				  </tr>
+				  <tr>
+					 <th>NO. Telp/HP</th>
+					 <td> {HP} </td>
+				  </tr>
+				  <tr>
+					 <th>Tahun Akd. / Semeseter</th>
+					 <td> {THNAKD} - {SEMESTER} </td>
+				  </tr>
+				  
+				  <!---------------------------------- PILIHAN ASESOR 1 BEGIN ---------------------------------->
+				  <tr class="subhead">
+					 <th style="font-size:12px;padding-top:6px;">Asesor 1</th>
+					 <td>&nbsp;</td>
+				  </tr>
+				  <tr>
+					 <th>NIP</th>
+					 <td> {NIP_1} </td>
+				  </tr>
+				  <tr>
+					 <th>Nama</th>
+					 <td> {NAMA_1} </td>
+				  </tr>
+				  <tr>
+					 <th>Pangkat Dan Gol. Ruang</th>
+					 <td> {PANGKAT_1} </td>
+				  </tr>
+				  <tr>
+					 <th>Jabatan</th>
+					 <td> {JABATAN_1} </td>
+				  </tr>
+				  <tr>
+					 <th>Unit Kerja</th>
+					 <td> {UNIT_KERJA_1} </td>
+				  </tr>
+				  <!---------------------------------- PILIHAN ASESOR 1 END ---------------------------------->
+
+				  <!---------------------------------- PILIHAN ASESOR 2 BEGIN ---------------------------------->
+				  <tr class="subhead">
+					 <th style="font-size:12px;padding-top:6px;">Asesor 2</th>
+					 <td>&nbsp;</td>
+				  </tr>
+				  <tr>
+					 <th>NIP</th>
+					 <td> {NIP_2}</td>
+				  </tr>
+				  <tr>
+					 <th>Nama</th>
+					 <td> {NAMA_2} </td>
+				  </tr>
+				  <tr>
+					 <th>Pangkat Dan Gol. Ruang</th>
+					 <td> {PANGKAT_2} </td>
+				  </tr>
+				  <tr>
+					 <th>Jabatan</th>
+					 <td> {JABATAN_2} </td>
+				  </tr>
+				  <tr>
+					 <th>Unit Kerja</th>
+					 <td> {UNIT_KERJA_2} </td>
+				  </tr>
+				  <!---------------------------------- PILIHAN ASESOR 1 END ---------------------------------->
+
+				  <tr class="subhead">
+					 <th colspan="3"></th>
+				  </tr>
+
+				  <tr>
+					 <th>Tanggal Penilaian</th>
+					 <td>
+						<!-- patTemplate:gtfwrendermodule module="tanggal" submodule="Tanggal" action="view" name="tgl_penilaian" / -->
+					 </td>
+				  </tr>
+
+				  <tr>
+					 <th>Kesimpulan</th>
+					 <td valign="top"> <textarea rows="3" cols="53" name="kesimpulan">{KESIMPULAN}</textarea></td>
+				  </tr>
+
+				  <tr class="buttons_galihsam">
+					<td>&nbsp;</td>
+					<td style="text-align:right;float: right;">
+						<input name="lanjut_pendidikan" value="Selanjutnya &raquo;&raquo;&raquo;" class="" type="button" onclick="javascript:tp1.showPanel(1);" />
+					</td>
+				  </tr>
+			   </table>			
+		</div>
+	  <!------------------------------------------------------- Identitas Dosen End ------------------------------------------------------->	
+		
+		
+	  <!------------------------------------------------------- Pendidikan Begin ------------------------------------------------------->	
+		<div style="display: none;" class="TabbedPanelsContent">
+			   <table class="table-edit" width="100%">
+				  <tr class="subhead" style="font-size:15px;">
+					 <th colspan="2">{JUDUL} Kinerja Bidang Pendidikan</th>
+				  </tr>
+				  <tr>
+					 <td colspan="2" align="center" style="font-size:11px;">
+
+						<table class="table-common" id="table_kegiatan" width="100%" >
+							<tr>
+							  <th width="21%" rowspan="2" style="text-align:center;">Nama Kegiatan</th>
+							  <th colspan="2" style="text-align:center;">Beban Kerja</th>
+							  <th width="16%" rowspan="2" style="text-align:center;">Masa Penugasan</th>
+							  <th colspan="2" style="text-align:center;">Kinerja</th>
+							  <th width="15%" rowspan="2" style="text-align:center;">File</th>
+							  <th width="4%" rowspan="2" style="text-align:center;">Rekomendasi</th>
+						  </tr>
+							<tr>
+								<th width="17%" style="text-align:center;">Bukti Penugasan</th>
+							  <th width="5%" style="text-align:center;">SKS</th>
+							  <th width="17%" style="text-align:center;">Bukti Dokumen</th>
+							  <th width="5%" style="text-align:center;">SKS</th>
+						  </tr>
+						  <tbody id="tbody_penddk_list">
+						  <!-- patTemplate:tmpl name="dataPendidikan" type="condition" conditionvar="DATA_EMPTY" -->
+								<!-- patTemplate:sub condition="NO" -->
+									<!-- patTemplate:tmpl name="data_item_pendidikan" -->
+									<tr class="{CLASS_NAME}">
+										<td>{PENDD_NMKEG}<input type="hidden" value="{PENDD_IDFIX}" name="data[pddk][idPddk][]" /></td>
+										<td>{PENDD_BKBUKTI}</td>
+										<td>{PENDD_BKSKS}</td>
+										<td>{PENDD_MASA}</td>
+										<td>{PENDD_KBUKTI}</td>
+										<td>{PENDD_BKSKS}</td>
+										<td style="text-align:center;">
+											<a class="xhr dest_subcontent-element" href="{PENDD_URL_DOWNLOAD}{PENDD_FILE}" target="_blank" title="Download File : {PENDD_FILE}">
+												<img src="images/detil.gif" alt="download"/>
+											</a>
+										</td>
+										<td class="links">
+											<!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="data[pddk][rekomenPddk][]" id="rekomenPddk"  / -->
+										</td>
+									</tr>
+									<!-- /patTemplate:tmpl -->
+								<!-- /patTemplate:sub -->
+						  <!-- /patTemplate:tmpl -->
+						  </tbody>
+						</table>
+							 					 
+					 </td>
+				  </tr>
+
+
+				  <tr class="buttons_galihsam">
+					<td>
+						<input name="back_dosen" value="&laquo;&laquo;&laquo; Sebelumnya" class="" type="button" onclick="javascript:tp1.showPanel(0);" />
+					</td>
+					<td style="text-align:right;float: right;">
+						<input name="lanjut_penelitian" value="Selanjutnya &raquo;&raquo;&raquo;" class="" type="button" onclick="javascript:tp1.showPanel(2);" />
+					</td>
+				  </tr>
+			   </table>
+		</div>
+	  <!------------------------------------------------------- Pendidikan End ------------------------------------------------------->	
+
+	  
+	  <!------------------------------------------------------- Penelitian Begin ------------------------------------------------------->	
+		<div style="display: none;" class="TabbedPanelsContent">
+			   <table class="table-edit" width="100%">
+				  <tr class="subhead" style="font-size:15px;">
+					 <th colspan="2">{JUDUL} Kinerja Bidang Penelitian</th>
+				  </tr>
+				  <tr>
+					 <td colspan="2" align="center" style="font-size:11px;">
+
+						<table class="table-common" id="table_kegiatan" width="100%" >
+							<tr>
+							  <th width="21%" rowspan="2" style="text-align:center;">Nama Kegiatan</th>
+							  <th colspan="2" style="text-align:center;">Beban Kerja</th>
+							  <th width="16%" rowspan="2" style="text-align:center;">Masa Penugasan</th>
+							  <th colspan="2" style="text-align:center;">Kinerja</th>
+							  <th width="15%" rowspan="2" style="text-align:center;">File</th>
+							  <th width="4%" rowspan="2" style="text-align:center;">Rekomendasi</th>
+						  </tr>
+							<tr>
+								<th width="17%" style="text-align:center;">Bukti Penugasan</th>
+							  <th width="5%" style="text-align:center;">SKS</th>
+							  <th width="17%" style="text-align:center;">Bukti Dokumen</th>
+							  <th width="5%" style="text-align:center;">SKS</th>
+						  </tr>
+						  <tbody id="tbody_penlt_list">
+						  <!-- patTemplate:tmpl name="dataPenelitian" type="condition" conditionvar="DATA_EMPTY" -->
+								<!-- patTemplate:sub condition="NO" -->
+									<!-- patTemplate:tmpl name="data_item_penelitian" -->
+									<tr class="{CLASS_NAME}">
+										<td>{PENLT_NMKEG}<input type="hidden" value="{PENLT_IDFIX}" name="data[penlt][idPenlt][]" /></td>
+										<td>{PENLT_BKBUKTI}</td>
+										<td>{PENLT_BKSKS}</td>
+										<td>{PENLT_MASA}</td>
+										<td>{PENLT_KBUKTI}</td>
+										<td>{PENLT_BKSKS}</td>
+										<td style="text-align:center;">
+											<a class="xhr dest_subcontent-element" href="{PENLT_URL_DOWNLOAD}{PENLT_FILE}" target="_blank" title="Download File : {PENLT_FILE}">
+												<img src="images/detil.gif" alt="download"/>
+											</a>
+										</td>
+										<td class="links">
+											<!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="data[penlt][rekomenPenlt][]" id="rekomenPenlt"  / -->
+										</td>
+									</tr>
+									<!-- /patTemplate:tmpl -->
+								<!-- /patTemplate:sub -->
+						  <!-- /patTemplate:tmpl -->
+						  </tbody>
+						</table>
+							 
+					 </td>
+				  </tr>
+
+
+				  <tr class="buttons_galihsam">
+					<td>
+						<input name="back_pendidikan" value="&laquo;&laquo;&laquo; Sebelumnya" class="" type="button" onclick="javascript:tp1.showPanel(1);" />
+					</td>
+					<td style="text-align:right;float: right;">
+						<input name="lanjut_pengabdian" value="Selanjutnya &raquo;&raquo;&raquo;" class="" type="button" onclick="javascript:tp1.showPanel(3);" />
+					</td>
+				  </tr>
+			   </table>
+		</div>
+	  <!------------------------------------------------------- Penelitian End ------------------------------------------------------->	
+
+
+	  <!------------------------------------------------------- Pengabdian Begin ------------------------------------------------------->	
+		<div style="display: none;" class="TabbedPanelsContent">
+			   <table class="table-edit" width="100%">
+				  <tr class="subhead" style="font-size:15px;">
+					 <th colspan="2">{JUDUL} Kinerja Bidang Pengabdian</th>
+				  </tr>
+				  <tr>
+					 <td colspan="2" align="center" style="font-size:11px;">
+
+						<table class="table-common" id="table_kegiatan" width="100%" >
+							<tr>
+							  <th width="21%" rowspan="2" style="text-align:center;">Nama Kegiatan</th>
+							  <th colspan="2" style="text-align:center;">Beban Kerja</th>
+							  <th width="16%" rowspan="2" style="text-align:center;">Masa Penugasan</th>
+							  <th colspan="2" style="text-align:center;">Kinerja</th>
+							  <th width="15%" rowspan="2" style="text-align:center;">File</th>
+							  <th width="4%" rowspan="2" style="text-align:center;">Rekomendasi</th>
+						  </tr>
+							<tr>
+								<th width="17%" style="text-align:center;">Bukti Penugasan</th>
+							  <th width="5%" style="text-align:center;">SKS</th>
+							  <th width="17%" style="text-align:center;">Bukti Dokumen</th>
+							  <th width="5%" style="text-align:center;">SKS</th>
+						  </tr>
+						  <tbody id="tbody_pengbd_list">
+						  <!-- patTemplate:tmpl name="dataPengabdian" type="condition" conditionvar="DATA_EMPTY" -->
+								<!-- patTemplate:sub condition="NO" -->
+									<!-- patTemplate:tmpl name="data_item_pengabdian" -->
+									<tr class="{CLASS_NAME}">
+										<td>{PENGB_NMKEG}<input type="hidden" value="{PENGB_IDFIX}" name="data[pengb][idPengb][]" /></td>
+										<td>{PENGB_BKBUKTI}</td>
+										<td>{PENGB_BKSKS}</td>
+										<td>{PENGB_MASA}</td>
+										<td>{PENGB_KBUKTI}</td>
+										<td>{PENGB_BKSKS}</td>
+										<td style="text-align:center;">
+											<a class="xhr dest_subcontent-element" href="{PENGB_URL_DOWNLOAD}{PENGB_FILE}" target="_blank" title="Download File : {PENGB_FILE}">
+												<img src="images/detil.gif" alt="download"/>
+											</a>
+										</td>
+										<td class="links">
+											<!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="data[pengb][rekomenPengb][]" id="rekomenPengb"  / -->
+										</td>
+									</tr>
+									<!-- /patTemplate:tmpl -->
+								<!-- /patTemplate:sub -->
+						  <!-- /patTemplate:tmpl -->
+						  </tbody>
+						</table>
+							 
+					 </td>
+				  </tr>
+
+				  <tr class="buttons_galihsam">
+					<td>
+						<input name="back_penelitian" value="&laquo;&laquo;&laquo; Sebelumnya" class="" type="button" onclick="javascript:tp1.showPanel(2);" />
+					</td>
+					<td style="text-align:right;float: right;">
+						<input name="lanjut_penunjang" value="Selanjutnya &raquo;&raquo;&raquo;" class="" type="button" onclick="javascript:tp1.showPanel(4);" />
+					</td>
+				  </tr>
+			   </table>
+		</div>
+	  <!------------------------------------------------------- Pengabdian End ------------------------------------------------------->	
+
+
+	  <!------------------------------------------------------- Penunjang Begin ------------------------------------------------------->	
+		<div style="display: none;" class="TabbedPanelsContent">
+			   <table class="table-edit" width="100%">
+				  <tr class="subhead" style="font-size:15px;">
+					 <th colspan="2">{JUDUL} Kinerja Bidang Penunjang</th>
+				  </tr>
+				  <tr>
+					 <td colspan="2" align="center" style="font-size:11px;">
+
+						<table class="table-common" id="table_kegiatan" width="100%" >
+							<tr>
+							  <th width="21%" rowspan="2" style="text-align:center;">Nama Kegiatan</th>
+							  <th colspan="2" style="text-align:center;">Beban Kerja</th>
+							  <th width="16%" rowspan="2" style="text-align:center;">Masa Penugasan</th>
+							  <th colspan="2" style="text-align:center;">Kinerja</th>
+							  <th width="15%" rowspan="2" style="text-align:center;">File</th>
+							  <th width="4%" rowspan="2" style="text-align:center;">Rekomendasi</th>
+						  </tr>
+							<tr>
+								<th width="17%" style="text-align:center;">Bukti Penugasan</th>
+							  <th width="5%" style="text-align:center;">SKS</th>
+							  <th width="17%" style="text-align:center;">Bukti Dokumen</th>
+							  <th width="5%" style="text-align:center;">SKS</th>
+						  </tr>
+						  <tbody id="tbody_penunj_list">
+						  <!-- patTemplate:tmpl name="dataPenunjang" type="condition" conditionvar="DATA_EMPTY" -->
+								<!-- patTemplate:sub condition="NO" -->
+									<!-- patTemplate:tmpl name="data_item_penunjang" -->
+									<tr class="{CLASS_NAME}">
+										<td>{PENUNJ_NMKEG}<input type="hidden" value="{PENUNJ_IDFIX}" name="data[penunj][idPenunj][]" /></td>
+										<td>{PENUNJ_BKBUKTI}</td>
+										<td>{PENUNJ_BKSKS}</td>
+										<td>{PENUNJ_MASA}</td>
+										<td>{PENUNJ_KBUKTI}</td>
+										<td>{PENUNJ_BKSKS}</td>
+										<td style="text-align:center;">
+											<a class="xhr dest_subcontent-element" href="{PENUNJ_URL_DOWNLOAD}{PENUNJ_FILE}" target="_blank" title="Download File : {PENUNJ_FILE}">
+												<img src="images/detil.gif" alt="download"/>
+											</a>
+										</td>
+										<td class="links">
+											<!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="data[penunj][rekomenPenunj][]" id="rekomenPenunj"  / -->
+										</td>
+									</tr>
+									<!-- /patTemplate:tmpl -->
+								<!-- /patTemplate:sub -->
+						  <!-- /patTemplate:tmpl -->
+						  </tbody>
+						</table>
+							 
+					 </td>
+				  </tr>
+
+				  <tr class="buttons_galihsam">
+					<td>
+						<input name="back_pengabdian" value="&laquo;&laquo;&laquo; Sebelumnya" class="" type="button" onclick="javascript:tp1.showPanel(3);" />
+					</td>
+					<td style="text-align:right;float: right;">
+						<input name="lanjut_profesor" value="Selanjutnya &raquo;&raquo;&raquo;" class="" type="button" onclick="javascript:tp1.showPanel(5);" />
+					</td>
+				  </tr>
+			   </table>
+		</div>
+	  <!------------------------------------------------------- Penunjang End ------------------------------------------------------->	
+
+
+	  <!------------------------------------------------------- Profesor Begin ------------------------------------------------------->	
+		<div style="display: none;" class="TabbedPanelsContent">
+			   <table class="table-edit" width="100%">
+				  <tr class="subhead" style="font-size:15px;">
+					 <th colspan="2">{JUDUL} Kinerja Bidang Profesor</th>
+				  </tr>
+				  <tr>
+					 <td colspan="2" align="center" style="font-size:11px;">
+
+						<table class="table-common" id="table_kegiatan" width="100%" >
+							<tr>
+							  <th width="21%" rowspan="2" style="text-align:center;">Nama Kegiatan</th>
+							  <th colspan="2" style="text-align:center;">Beban Kerja</th>
+							  <th width="16%" rowspan="2" style="text-align:center;">Masa Penugasan</th>
+							  <th colspan="2" style="text-align:center;">Kinerja</th>
+							  <th width="15%" rowspan="2" style="text-align:center;">File</th>
+							  <th width="4%" rowspan="2" style="text-align:center;">Rekomendasi</th>
+						  </tr>
+							<tr>
+								<th width="17%" style="text-align:center;">Bukti Penugasan</th>
+							  <th width="5%" style="text-align:center;">SKS</th>
+							  <th width="17%" style="text-align:center;">Bukti Dokumen</th>
+							  <th width="5%" style="text-align:center;">SKS</th>
+						  </tr>
+						  <tbody id="tbody_prof_list">
+						  <!-- patTemplate:tmpl name="dataProfesor" type="condition" conditionvar="DATA_EMPTY" -->
+								<!-- patTemplate:sub condition="NO" -->
+									<!-- patTemplate:tmpl name="data_item_profesor" -->
+									<tr class="{CLASS_NAME}">
+										<td>{PROF_NMKEG}<input type="hidden" value="{PROF_IDFIX}" name="data[prof][idProf][]" /></td>
+										<td>{PROF_BKBUKTI}</td>
+										<td>{PROF_BKSKS}</td>
+										<td>{PROF_MASA}</td>
+										<td>{PROF_KBUKTI}</td>
+										<td>{PROF_BKSKS}</td>
+										<td style="text-align:center;">
+											<a class="xhr dest_subcontent-element" href="{PROF_URL_DOWNLOAD}{PROF_FILE}" target="_blank" title="Download File : {PROF_FILE}">
+												<img src="images/detil.gif" alt="download"/>
+											</a>
+										</td>
+										<td class="links">
+											<!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="data[prof][rekomenProf][]" id="rekomenProf"  / -->
+										</td>
+									</tr>
+									<!-- /patTemplate:tmpl -->
+								<!-- /patTemplate:sub -->
+						  <!-- /patTemplate:tmpl -->
+						</tbody>
+						</table>
+						
+					 </td>
+				  </tr>
+
+				  <tr class="buttons_galihsam">
+					<td>
+						<input name="back_penunjang" value="&laquo;&laquo;&laquo; Sebelumnya" class="" type="button" onclick="javascript:tp1.showPanel(4);" />
+					</td>
+					<td style="text-align:right;float: right;">
+						<input name="lanjut_konfirmasi" value="Selanjutnya &raquo;&raquo;&raquo;" class="" type="button" onclick="javascript:tp1.showPanel(6);" />
+					</td>
+				  </tr>
+			   </table>
+		</div>
+	  <!------------------------------------------------------- Profesor End ------------------------------------------------------->	
+
+	  <!------------------------------------------------------- Konfirmasi Begin ------------------------------------------------------->	
+		<div style="display: none;" class="TabbedPanelsContent">
+			<input type="hidden" name="pegId" value="{ID}"/>
+			<input type="hidden" name="dataId" value="{DATA_ID_UPDATE}"/>
+			   <table class="table-edit" width="100%">
+				  <tr class="subhead">
+					 <th colspan="2" style="font-size:15px;">Konfirmasi</th>
+				  </tr>
+				  <tr>
+					 <th colspan="2" width="150">
+						 <div style="padding:15px 0px 5px 35px; margin-bottom:10px; background:url(images/alert.gif) left center no-repeat; 
+								color:red; font-weight:bold; font-size:14px;">
+							Apakah anda yakin akan {AKSI} data persetujuan mutasi BKD ?
+						 </div>
+						 <ul class="taskdialog">
+							<li><input name="btnsimpan" value=" {LABEL_ACTION} " type="submit" id="btnsimpan"
+								style="width:100px; height:30px;cursor:pointer; color:#000099;font-size:14px;font-weight:bold;" />
+								<p>Menyimpan data persetujuan pengajuan mutasi BKD.
+								</p>
+							</li>
+
+							<li><input type="button" name="btnbalik" class="buttonSubmit"  value=" Batal " 
+								onclick="window.location.href = '{URL_BALIK}'" style="width:100px; height:30px;cursor:pointer; 
+								color:#000099;font-size:14px;font-weight:bold;" />
+								<p>Batal menyimpan data persetujuan pengajuan mutasi BKD.</p>
+							</li>
+						 </ul>
+					 </th>
+				  </tr>
+				  
+				  <tr class="buttons_galihsam">
+					<td>
+						<input name="back_penunjang" value="&laquo;&laquo;&laquo; Sebelumnya" class="" type="button" onclick="javascript:tp1.showPanel(5);" />
+					</td>
+					<td style="text-align:right;float: right;"></td>
+				  </tr>
+			   </table>
+		</div>
+	  <!------------------------------------------------------- Konfirmasi End ------------------------------------------------------->	
+
+
+	  </div>
+	</div>
+	</form>			
+	</div>
+
+	<script language="JavaScript" type="text/javascript">
+//		var tp1 = new Spry.Widget.TabbedPanels("tp1", { defaultTab: 0 });
+		{TABPANEL}
+	</script>
+
+<div style="clear:both;"></div>   
+
+<div id="LISTDATA" style="display:">
+<h1>History Mutasi Beban Kinerja Dosen</h1><br>
+<table class="table-common" width="700px">
+   <tr>
+      <th width="5px" >No</th>
+      <th>Tahun Akademik</th>
+  	  <th>Semester</th>
+  	  <th width="200px">Jenis</th>
+  	  <th width="100px">Asesor 1</th>
+  	  <th width="100px">Asesor 2</th>
+  	  <th>Tanggal Pengajuan</th>
+  	  <th>Tanggal Penilaian</th>
+  	  <th>Status</th>
+      <th width="120px">Action</th>
+   </tr>
+   <!-- patTemplate:tmpl name="data" type="condition" conditionvar="DATA_EMPTY" -->
+      <!-- patTemplate:sub condition="YES" -->
+        <tr><td colspan="9" align="center"><em>-- Data not found --</em></td></tr>
+      <!-- /patTemplate:sub -->
+      <!-- patTemplate:sub condition="NO" -->
+         <!-- patTemplate:tmpl name="data_item" -->
+         <tr class="{BKD_CLASS_NAME}">
+            <td align="center">{BKD_NUMBER}</td>
+            <td align="center">{BKD_THNAKD}/{BKD_THNAKD_}</td>
+            <td align="center">{BKD_SEMESTER}</td>
+        	  <td align="center">{BKD_JENIS}</td>
+        	  <td align="center">{BKD_ASESOR_1}</td>
+        	  <td align="center">{BKD_ASESOR_2}</td>
+        	  <td align="center">{BKD_TANGGAL_PENGAJUAN}</td>
+        	  <td align="center">{BKD_TANGGAL_PENILAIAN}</td>
+        	  <td align="center">{BKD_STATUS}</td>
+            <td class="links">
+               <a class="xhr dest_subcontent-element" href="{BKD_URL_APPR}" title="Aprprove BKD"><img src="images/button-check.gif" alt="Aprprove BKD"/></a>
+			   <a class="xhr dest_subcontent-element" href="{BKD_URL_DETAIL}" title="Detail"><img src="images/button-detail.gif" alt="Detail"/></a>
+            </td>
+         </tr>
+         <!-- /patTemplate:tmpl -->
+      <!-- /patTemplate:sub -->
+   <!-- /patTemplate:tmpl -->
+</table>
+<div class="petunjuk-area">
+   <h4>Petunjuk:</h4>
+   <ul>
+      <li>Gunakan tombol <img src="images/button-edit.gif" alt="Ubah"/> untuk mengubah data. </li>
+      <li>Gunakan tombol <img src="images/button-delete.gif" alt="Delete"/> untuk menghapus data. </li>
+	  <li>Gunakan tombol <img src="images/button-detail.gif" alt="Detail"/> untuk melihat detail data. </li>
+	  <!-- <li>Gunakan tombol <img src="images/detil.gif" alt="Download SK"/> untuk mendownload SK (jika ada). </li> -->
+	  <li><a href="#TOP" id="link-top">Klik Disini</a> untuk kembali ke atas. </li>
+   </ul>
+</div></div>
+<script language="javascript" type="text/javascript">
+function Tab(aktif,nonaktif){
+	document.getElementById(aktif).style.display='';
+	document.getElementById(nonaktif).style.display='none';
+}
+
+function CekAksi(){
+    var dataId2='0'+'{DATA_ID_UPDATE}';
+	if (dataId2=='0') {
+		Tab('LISTDATA','FORMDATA');
+	}else{
+		Tab('FORMDATA','LISTDATA');
+	}
+}
+CekAksi();
+</script>
+<!-- /patTemplate:tmpl -->
+
+

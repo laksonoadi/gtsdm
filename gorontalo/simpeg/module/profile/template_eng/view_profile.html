@@ -1,0 +1,53 @@
+<!-- patTemplate:tmpl name="content" -->
+<div class="toolbar"> 
+    <a class="xhr dest_subcontent-element" href="{PROFILE_URL_EDIT}" title="Ubah Profil" tabindex="2"><img src="images/button-edit.gif" alt=""> Update Profile</a> 	
+    <a class="xhr dest_subcontent-element" href="{URL_UPDATE_PASSWORD}" title="Ubah Password" tabindex="2"><img src="images/button-reset_password.gif" alt=""> Update Password</a> 	
+</div>
+<h1>User Profile</h1>
+<br/>
+
+   <!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+   <div class="{CLASS_PESAN}">
+      {ISI_PESAN}
+   </div><br/>
+   <!-- /patTemplate:tmpl -->
+   
+   <table class="table-details" width="100%">
+      <tr class="subhead">
+         <th colspan="2">Profile Data</td>
+      </tr>
+      <tr>
+         <th width="100" align="left">Username</th><td> {USERNAME} </td>
+      </tr>
+     <!--  <tr>
+         <th>No Pegawai</th><td> {NO_PEGAWAI}</td>
+      </tr> -->
+      <tr>
+         <th>Full Name</th><td> {PENGGUNA}</td>
+      </tr>
+      <tr>
+         <th>Description</th><td> {DESKRIPSI}</td>
+      </tr>
+      <tr>
+         <th>Status</th><td> {STATUS}</td>
+      </tr>
+      <tr>
+         <th>Group Name</th><td> {NAMA_GROUP}</td>
+      </tr>
+      <tr>
+         <th>Privileges</th>
+         <td> 
+            <!-- patTemplate:tmpl name="list_hak_akses" -->
+            {HAK_AKSES}
+            <!-- /patTemplate:tmpl -->
+         </td>
+      </tr>  
+   </table>
+   
+   <div class="petunjuk-area">
+      <h4>Informations:</h4>
+      <ul>
+         <li>To change your password or profile data, click the "Update Password" button or the "Update Profile" in the top right</li>
+      </ul>
+   </div>
+<!-- /patTemplate:tmpl -->

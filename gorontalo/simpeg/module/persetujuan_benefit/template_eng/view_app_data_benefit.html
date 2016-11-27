@@ -1,0 +1,66 @@
+<!-- patTemplate:tmpl name="content" -->
+<br />
+<h1>BENEFIT CLAIM APPROVAL</h1>
+<br />
+<form method="POST" action="{URL_SEARCH}" class="dataquest xhr_simple_form dest_subcontent-element" id="filterbox">
+   <table>
+      <tr>
+         <th colspan="2"><h2><strong>Search Data</strong></h2></th>
+      </tr>
+  	  <tr>              
+         <th width="30%">Employee Number/Name</th>
+         <td colspan='2'><input type="text" name="nip_nama" value="{NIP_NAMA}" size="30" /></td>
+      </tr>
+      <tr>              
+         <th width="30%">&nbsp;</th>
+         <td><input type="submit" name="btncari" value=" Search &raquo;" class="buttonSubmit"/></td>
+      </tr>
+   </table>
+</form>
+
+<br /> 
+   <!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+   <div class="{CLASS_PESAN}">
+      {ISI_PESAN}
+   </div>
+   <br />
+   <!-- /patTemplate:tmpl -->
+   <div class="pageBar">
+   <!-- patTemplate:gtfwrendermodule module="paging" submodule="paging" action="view" name="paging_top"  / -->
+   </div>
+	<table class="table-common" width="800px">
+      <tr>
+         <th width="5%">No</th>
+         <th width="20px">Action</th>
+		 <th width="70px">Claim Number</th>
+		 <th width="50px">Claim Type</th>
+		 <th width="50px">Employee Number</th>
+		 <th width="100px">Employee</th>
+		 <th width="200px">Working Unit</th> 
+         <th width="70px">Request Date</th>
+         <th width="70px">Status</th>
+      </tr>
+      <!-- patTemplate:tmpl name="data_history" type="condition" conditionvar="HISTORY_EMPTY" -->
+         <!-- patTemplate:sub condition="YES" -->
+         <tr><td colspan="9" align="center"><em>-- Data not found --</em></td></tr>
+         <!-- /patTemplate:sub -->
+         <!-- patTemplate:sub condition="NO" -->
+            <!-- patTemplate:tmpl name="data_history_item" -->
+            <tr class="{DATA_CLASS_NAME}">
+               <td align="center">{DATA_NUMBER}</td>
+               <td class="links" align="center">
+                  <a class="xhr dest_subcontent-element" href="{DATA_URL_DETAIL}" title="Approval Form"><img src="images/button-check.gif" alt="Approval Form"/></a> 
+               </td>
+               <td align="center">{DATA_NO}</td>
+			   <td align="center">{DATA_TIPE_KLAIM}</td>
+			   <td align="center">{DATA_PEG_NIP}</td>
+			   <td>{DATA_PEG_NAMA}</td>
+			   <td>{DATA_SATKER}</td>
+               <td>{DATA_TGL_SUBMIT}</td>
+               <td align="center">{DATA_STATUS}</td>
+            </tr>
+            <!-- /patTemplate:tmpl -->
+         <!-- /patTemplate:sub -->
+      <!-- /patTemplate:tmpl -->
+   </table>
+<!-- /patTemplate:tmpl -->

@@ -1,0 +1,102 @@
+<!-- patTemplate:tmpl name="content" -->
+<script language="javascript" type="text/javascript">
+	function centangin_semua(varname, start_num, end_num) {
+		var obj = document.getElementById('cek_all');
+		var ceks;
+		if(obj.checked == false) {
+			for(i=start_num;i<=end_num;i++) {
+				ceks = document.getElementById(varname + i);
+				if(ceks) ceks.checked = false;
+			}
+		} else {
+			for(i=start_num;i<=end_num;i++) {
+				ceks = document.getElementById(varname + i);
+				if(ceks) ceks.checked = true;
+			}
+		}
+	}
+	function show_checkbox () {
+		if(document.getElementById('cek_all'))
+			document.getElementById('cek_all').style.display='';
+	}
+	document.onload = show_checkbox();
+</script>
+<h1>Income Tax 21 Component</h1>
+<br />
+<form method="POST" action="{URL_SEARCH}" class="dataquest xhr_simple_form dest_subcontent-element" id="filterbox">
+   <table>
+      <tr>
+         <th colspan="2"><h2><strong>Search</strong></h2></th>
+      </tr>
+      <tr>              
+         <th width="30%">Component Name/ Code</th>
+         <td><input type="text" name="pph" value="{PPH}" size="30" /></td>
+      </tr>
+      <tr>
+         <th>&nbsp;</th>
+         <td>
+            <input type="submit" name="btncari" value=" Search &raquo;" class="buttonSubmit"/>
+         </td>
+      </tr>
+   </table>
+</form>
+
+<br />
+   
+   <!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+   <div class="{CLASS_PESAN}">
+      {ISI_PESAN}
+   </div>
+   <!-- /patTemplate:tmpl -->
+
+   <br />
+   <form method="POST" action="{URL_DELETE}" class="xhr_simple_form dest_subcontent-element" id="form_list">
+   <div class="pageBar">
+   <!-- patTemplate:gtfwrendermodule module="paging" submodule="paging" action="view" name="paging_top"  / -->
+      <div class="toolbar"> 
+		<a href="{URL_EXCEL}" title="Export" tabindex="2"><img src="images/button-simpan.gif" alt=""> Export</a>
+   		<a class="xhr dest_subcontent-element" href="{URL_ADD}" title="Add Work Unit Data" tabindex="2"><img src="images/button-add.gif" alt=""> Add</a>
+		<input type="submit" id="btnHapus" name="btnHapus" value="Delete" class="inputButton" />
+      </div>
+   </div>
+   <table class="table-common" width="100%">
+      <tr>
+         <th width="5">No</th>
+		 <th width="5"><input type="checkbox" style="display:none" name="cek_all" id="cek_all" value="ALL" onclick="centangin_semua('pph_id_','{FIRST_NUMBER}','{LAST_NUMBER}');" /></th>
+         <th>Code</th>
+		 <th>Name</th>
+		 <th>Annotation</th>
+         <th width="31">Action</th>
+      </tr>
+      <!-- patTemplate:tmpl name="data_pph" type="condition" conditionvar="PPH_EMPTY" -->
+         <!-- patTemplate:sub condition="YES" -->
+         <tr><td colspan="6" align="center"><em>-- Data not found --</em></td></tr>
+         <!-- /patTemplate:sub -->
+         <!-- patTemplate:sub condition="NO" -->
+            <!-- patTemplate:tmpl name="data_pph_item" -->
+            <tr class="{PPH_CLASS_NAME}">
+               <td align="center">{PPH_NUMBER}</td>
+			   <td align="center">
+					<input type="checkbox" name="id[]" id="pph_id_{PPH_NUMBER}" value="{PPH_PPH_ID}" /><input type="hidden" name="name[{PPH_PPH_ID}]" value="{PPH_PPH_NAMA}" /></td>
+               <td>{PPH_PPH_KODE}</td>
+			   <td>{PPH_PPH_NAMA}</td>
+			   <td>{PPH_PPH_KETERANGAN}</td>
+               <td class="links" align="center">
+                  <a class="xhr dest_subcontent-element" href="{PPH_URL_EDIT}" title="Edit Data"><img src="images/button-edit.gif" alt="Edit"/></a>      
+               </td>
+            </tr>
+            <!-- /patTemplate:tmpl -->
+         <!-- /patTemplate:sub -->
+      <!-- /patTemplate:tmpl -->
+   </table>
+   </form>
+   <br /> 
+<!--   
+   <div class="petunjuk-area">
+      <h4>Petunjuk:</h4>
+      <ul>
+         <li>Tidak perlu ada petunjuk.</li>
+      </ul>
+   </div>
+-->
+<!-- /patTemplate:tmpl -->
