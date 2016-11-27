@@ -1,0 +1,171 @@
+<!-- patTemplate:tmpl name="content" -->
+<!--<h1>{LABEL_TITLE}</h1>-->
+<div id="TOP" class="background-blue padding-10 text-big" style="text-transform:uppercase">{TITLE}</div>
+
+<div class="padding-10">
+
+<!-- patTemplate:gtfwrendermodule module="profile" submodule="profilebox" action="view" name="profile"  / -->
+<div class="table-responsive">
+    <table class="table" >
+	    <tr class="background-blue-light">
+		    <!--<th colspan="3" class="text-center">
+                <div class="btn-group">
+	                    <a class="btn btn-default btn-xs" href="javascript:Tab('LISTDATA','FORMDATA');">
+	                        <span class="glyphicon glyphicon-list"></span> Lihat List Data
+	                    </a>
+		                <a class="btn btn-default btn-xs" href="javascript:Tab('FORMDATA','LISTDATA');">
+	                        <span class="glyphicon glyphicon-plus"></span> Tambah
+                        </a> 
+                        <a class="xhr dest_subcontent-element btn btn-default btn-xs" href="{URL_BACK}" title="Pilih Pegawai" tabindex="2">
+                            <span class="glyphicon glyphicon-share"></span> Pilih Pegawai
+                        </a> 
+                </div>
+		    </th>-->
+	    </tr>
+    </table>
+</div>
+
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<script language="javascript" type="text/javascript">
+function Tutup(){
+	document.getElementById('warning_box').style.display='none';
+}
+</script>
+<div class="{CLASS_PESAN}" id="warning_box">
+   {ISI_PESAN} <a href="javascript:Tutup();">&nbsp;[Tutup Pesan]</a>
+</div>
+<!-- /patTemplate:tmpl --> 
+
+<div id="FORMDATA">
+
+<div class="table-responsive">
+<form method="POST" name="frmInput" action="{URL_ACTION}" class="xhr_form std_form" id="frmInput" enctype="multipart/form-data">
+<input type="hidden" name="kat" value="{KAT}">
+<input type="hidden" name="form_stat" value="analisa_jabatan">
+   <table class="table" >
+      <tr class="background-blue-light">
+         <th colspan="2">{LABEL_INPUT}</th>
+      </tr>
+     <tr>
+         <th>Pangkat/Golongan *</th>
+         <td>
+           <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="golongan_ref"  / -->
+         </td>
+      </tr> 
+	  <tr>
+         <th>Jabatan Struktural *</th>
+         <td>
+           <div class="col-sm-6"><!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="jabs_ref"  / -->
+           </div><div class="col-sm-6"> <i class="pull-left"> Jabatan Saat ini sebagai <b>{NAMA_STRUKTURAL}</b></i> </div>
+		   <input name="pegKode" type="hidden" value="{ID}" />
+		   <input name="dataKode" type="hidden" value="{INPUT_ID}" />
+		   <input name="dataStruk" type="hidden" value="{INPUT_STRUKTURAL}" />
+
+         </td>
+      </tr>
+      <tr>
+         <th >Eselon</th>
+         <td>
+           <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="eselon"  / -->
+         </td>
+      </tr>
+	  <tr>
+         <th >Tanggal Mulai</th>
+         <td>
+           <!-- patTemplate:gtfwrendermodule module="tanggal" submodule="Tanggal" action="view" name="mulai" / -->
+         </td>
+      </tr>
+      <tr>
+         <th >Tanggal Selesai</th>
+         <td>
+           <!-- patTemplate:gtfwrendermodule module="tanggal" submodule="Tanggal" action="view" name="selesai" / -->
+         </td>
+      </tr>
+	  <tr class="background-blue-light">
+		<th colspan="2">Surat Keputusan (SK)</th>
+	  </tr>
+	  <tr>
+         <th >Tanda Tangan</th>
+         <td>
+           <input type="text" name="pejabat" value="{INPUT_PEJABAT}"  size="30" />
+         </td>
+      </tr>
+	  <tr>
+         <th >Nomor Surat</th>
+         <td>
+           <input type="text" name="sk_no" value="{INPUT_NOSK}"  size="30" />
+         </td>
+      </tr>
+	  <tr>
+         <th >Tanggal keputusan</th>
+         <td>
+           <!-- patTemplate:gtfwrendermodule module="tanggal" submodule="Tanggal" action="view" name="tgl_sk" / -->
+         </td>
+      </tr>
+	  <tr>
+         <th>Status *</th>
+         <td>
+           <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="status"  / -->
+           <input name="dataStatus" type="hidden" value="{INPUT_STATUS}" />
+         </td>
+      </tr>
+	  <tr>
+         <th >Upload </th>
+         <td>
+        	<input type="file" name="file" size="40"><br />
+		File sebelumnya: <a href="{INPUT_LINK_DOWNLOAD}">{INPUT_UPLOAD}</a>
+        	<input name="upload" type="hidden" value="{INPUT_UPLOAD}" />
+         </td>
+      </tr>
+      <tr class="buttons">
+         <th>&nbsp;</th>
+         <td>
+            <div style="display:none"><input name="btnsimpan" value="{LABEL_ACTION} " class="buttonSubmit" type="submit"></div>
+			<input name="btnsimpanBohong" value="{LABEL_ACTION} " class="buttonSubmit btn btn-info btn-xs" type="button" onclick="konfirmasi();">
+            <!-- <input name="btnbatal" value="{BUTTON}" class="buttonSubmit btn btn-warning btn-xs" type="{TYPE}"> -->
+				<a class="xhr dest_subcontent-element btn btn-warning btn-xs" href="{URL_BALIK}">Batal</a>
+         </td>
+      </tr>
+   </table>
+</form>
+</div>
+<div class="petunjuk-area">
+   <h4>Petunjuk:</h4>
+   <ul>
+      <li>Tanda * menunjukkan bahwa field tersebut harus diisi. </li>
+   </ul>
+</div></div>
+
+<script language="javascript" type="text/javascript">
+function konfirmasi() {
+	if (document.getElementById('golongan_ref').value=='') {
+		alert('Anda belum memilih Pangkat/Golongan');
+		document.getElementById('golongan_ref').focus();
+		return false;
+	}
+	
+	if (document.getElementById('jabs_ref').value=='') {
+		alert('Anda belum memilih Jabatan Struktural');
+		document.getElementById('jabs_ref').focus();
+		return false;
+	}
+	
+	document.frmInput.btnsimpan.click();
+}
+
+// function Tab(aktif,nonaktif){
+// 	document.getElementById(aktif).style.display='';
+// 	document.getElementById(nonaktif).style.display='none';
+// }
+
+// function CekAksi(){
+//     var dataId2='0'+'{INPUT_ID}';
+// 	if (dataId2=='0') {
+// 		Tab('LISTDATA','FORMDATA');
+// 	}else{
+// 		Tab('FORMDATA','LISTDATA');
+// 	}
+// }
+// CekAksi();
+</script>
+<!-- /patTemplate:tmpl -->
