@@ -1,0 +1,233 @@
+<!-- patTemplate:tmpl name="content" -->
+<h1>{LABEL_TITLE}</h1>
+<br />
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="notebox-alert">
+   {ISI_PESAN}
+</div>
+<!-- /patTemplate:tmpl -->
+<div><h1>{TITLE}</h1></div><br>
+   <table class="table-details" width="100%">
+	  
+		<tr class="subhead">
+			<th colspan="2">Employee Data</th>
+		</tr>	
+		<!--<tr>
+			<th colspan="2" width="25%"><b>Personal Information</b></th>
+		</tr>-->
+		<tr>
+     <td colspan="2" width="30%"><img src="upload_file/photo/{FOTO2}" width="100" height="100"></td>
+   </tr>
+    <tr>
+      <td width="43%">&nbsp;&nbsp;&nbsp;Employee Number</td>
+      <td>{NIP}</td>
+		</tr>
+	<tr>
+      <td width="43%">&nbsp;&nbsp;&nbsp;ID Card Number</td>
+      <td>{KODEGATEACCESS}</td>
+		</tr>
+    <tr>
+			<td width="43%">&nbsp;&nbsp;&nbsp;Civil Servant Number </td>
+      <td>{KODEINT}</td>
+		</tr>	
+		<tr>
+			<td width="43%">&nbsp;&nbsp;&nbsp;Other Code </td>
+      <td>{KODELAIN}</td>
+		</tr>
+		<tr>
+			<td width="43%">&nbsp;&nbsp;&nbsp;Name </td>
+      <td>{GELDEP} {NAMA}, {GELBEL}</td>
+		</tr>
+		<tr>
+			<td width="43%">&nbsp;&nbsp;&nbsp;Place & Date of Birth </td>
+      <td>{TMPLAHIR}{TGLLAHIR}</td>
+    </tr>  
+		<tr>
+			<td width="43%">&nbsp;&nbsp;&nbsp;ID Type </td>
+      <td>{JNSIDLAIN}</td>
+		</tr>
+    <tr>
+			<td width="43%">&nbsp;&nbsp;&nbsp;ID Number</td>
+      <td>{IDLAIN}</td>
+		</tr>
+		<tr>
+			<td width="43%">&nbsp;&nbsp;&nbsp;Gender </td>
+      <td>{JENKEL}</td>
+		</tr>
+	  <tr>
+			<td width="43%">&nbsp;&nbsp;&nbsp;Religion </td>
+      <td>{AGAMA}</td>
+		</tr>
+		<tr>
+			<td width="43%">&nbsp;&nbsp;&nbsp;Marital Status </td>
+      <td>{NIKAH}</td>
+		</tr>
+		<tr>
+			<td width="30%">&nbsp;&nbsp;&nbsp;Marital Code </td>
+      <td>{KODENIKAH}</td>
+		</tr>
+		
+		<tr>
+			<th colspan="2" width="30%" class="subhead"><b>Other Data</b></th>
+		</tr>
+		<tr>
+			<td width="43%">&nbsp;&nbsp;&nbsp;Address </td>
+      <td>{ALAMAT}</td>
+		</tr>
+		<tr>
+			<td width="43%">&nbsp;&nbsp;&nbsp;City </td>
+      <td>{SATWIL}</td>
+		</tr>
+		<tr>
+			<td width="43%">&nbsp;&nbsp;&nbsp;Postal Code </td>
+      <td>{KODEPOS}</td>
+		</tr>
+		<tr>
+			<td width="43%">&nbsp;&nbsp;&nbsp;Phone Number </td>
+      <td>{TELP}</td>
+		</tr>
+		<tr>
+			<td width="43%">&nbsp;&nbsp;&nbsp;Mobile Phone </td>
+      <td>{HP}</td>
+		</tr>
+		<tr>
+			<td width="43%">&nbsp;&nbsp;&nbsp;Email </td>
+      <td>{EMAIL}</td>
+		</tr>
+		
+		<tr>
+			<th colspan="2" width="30%" class="subhead"><b>Medical Information</b></th>
+		</tr>
+		<tr>
+			<td width="43%">&nbsp;&nbsp;&nbsp;Blood Type </td>
+      <td>{GOLDAR}</td>
+		</tr>
+		<tr>
+			<td width="43%">&nbsp;&nbsp;&nbsp;Height </td>
+      <td>{TINGGIBDN}</td>
+		</tr>
+		<tr>
+			<td width="43%">&nbsp;&nbsp;&nbsp;Body Weight </td>
+      <td>{BERATBDN}</td>
+		</tr>
+		<tr>
+			<td width="43%">&nbsp;&nbsp;&nbsp;Disability </td>
+      <td>{CACAT}</td>
+		</tr>
+		<tr>
+			<td width="43%">&nbsp;&nbsp;&nbsp;Hobby </td>
+      <td> <p>{HOBI}</p></td>
+		</tr>
+		
+			<tr>
+			<th colspan="2" width="30%" class="subhead"><b>Employee Information when Acceptance</b></th>
+		</tr>
+		<tr>
+			<td width="43%">&nbsp;&nbsp;&nbsp;Join Date </td>
+      <td>{TGLMASUK}</td>
+		</tr>
+		<tr>
+			<td width="43%">&nbsp;&nbsp;&nbsp;Length of Service</td>
+      <!--<td>{DURASI} <i>year</i></td>-->
+	  		<td>{LAMA_KERJA}</td>
+		</tr>
+		<!--<tr>
+			<td width="43%">&nbsp;&nbsp;&nbsp;Civil Servant/Foundation Start Date </td>
+      <td>{PNSTMT}</td>
+		</tr>-->
+		<tr>
+		  <td width="43%">&nbsp;&nbsp;&nbsp;Employment Category </td>
+      <td>{KATPEG}</td>
+		</tr>
+		<tr>
+		  <td width="43%">&nbsp;&nbsp;&nbsp;Employment Type </td>
+      <td>{TIPPEG}</td>
+		</tr>
+		<tr>
+		  <td width="43%">&nbsp;&nbsp;&nbsp;Employment Status </td>
+      <td>{JNSPEGID}</td>
+		</tr>
+		<tr>
+		  <td width="43%">&nbsp;&nbsp;&nbsp;Employee Status </td>
+      <td>{STATR}</td>
+		</tr>
+		<tr>
+		  <td width="43%">&nbsp;&nbsp;&nbsp;Bank </td>
+      <td>{BANK}</td>
+		</tr>
+		<tr>
+		  <td width="43%">&nbsp;&nbsp;&nbsp;Bank Account Number </td>
+      <td>{REKENING}</td>
+		</tr>
+              <tr>
+		  <td width="43%">&nbsp;&nbsp;&nbsp;Bank Account Recipient </td>
+      <td>{RESIPIEN}</td>
+		</tr>
+		<tr>
+			<td width="43%">&nbsp;&nbsp;&nbsp;Social Security Number </td>
+      <td>{NOTASPEN}</td>
+		</tr>
+		<tr>
+			<td width="43%">&nbsp;&nbsp;&nbsp;Health Insurance Number </td> 
+      <td>{NOASKES}</td>
+		</tr>
+		<tr>
+			<td width="43%">&nbsp;&nbsp;&nbsp;NPWP Availability Status</td>
+            <td>{STATUSNPWP}</td>
+		</tr>
+		<tr>
+			<td width="43%">&nbsp;&nbsp;&nbsp;NPWP </td>
+      <td>{NONPWP}</td>
+		</tr>
+		<tr>
+			<td width="43%">&nbsp;&nbsp;&nbsp;Retirement Age Limit </td>
+      <td>{USIAPENS}</td>
+		</tr>
+
+		<!--<tr>
+			<td width="43%">&nbsp;&nbsp;&nbsp;Presence Code </td>
+      <td>{KODEABSEN}</td>
+		</tr>-->
+
+              <tr>
+		    <td width="43%">&nbsp;&nbsp;&nbsp;Structural Position </td>
+                  <td>{JABSTRUK}</td>
+		</tr>
+
+		<tr>
+			<td width="43%">&nbsp;&nbsp;&nbsp;Working Area </td>
+      <td>{SATKER}</td>
+		</tr>
+		<tr>
+			<td width="43%">&nbsp;&nbsp;&nbsp;Direct Supervisor </td>
+      <td>{DIRSPV}</td>
+		</tr>
+		<tr>
+			<td width="43%">&nbsp;&nbsp;&nbsp;Manager Once Removed </td>
+      <td>{MOR}</td>
+		</tr>
+		<tr>
+			<td width="43%">&nbsp;&nbsp;&nbsp;Grade </td>
+      <td>{PKTGOL}</td>
+		</tr>
+		
+		<tr>
+			<td width="43%">&nbsp;&nbsp;&nbsp;Academic Grade </td>
+      <td>{JABFUNG}</td>
+		</tr>
+		
+		<tr>
+			<td width="43%">&nbsp;&nbsp;&nbsp;Level </td>
+      <td>{LEVEL}</td>
+		</tr>
+		
+		<tr>
+			 <td colspan="2" class="subhead">
+				<div class="toolbar"> 
+		    <a class="xhr dest_subcontent-element " href="{URL_ACTION}" title="Kembali" tabindex="2">
+	        Kembali</a> 	
+        </div>
+			 </td>
+		</tr>
+   </table>
+<!-- /patTemplate:tmpl -->

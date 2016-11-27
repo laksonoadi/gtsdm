@@ -1,0 +1,72 @@
+<!-- patTemplate:tmpl name="content" -->
+<!--<h1>{LABEL_TITLE}</h1>-->
+<div class="background-blue padding-10 text-big">Daftar Pegawai</div>
+<div class="padding-10">
+
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+   {ISI_PESAN}
+</div>
+<br />
+<!-- /patTemplate:tmpl -->
+
+<div class="row push-down-10">
+    <div class="col-md-6">
+        <!-- patTemplate:gtfwrendermodule module="paging" submodule="paging" action="view" name="paging_top"  / -->
+    </div>
+    <div class="col-md-6 text-right">
+            <a class="btn btn-default btn-xs" target="_Blank" href="{URL_EXCEL}" title="Export Excel" tabindex="2">
+	            <img src="images/button-excel.gif" alt="Export Excel"> Cetak Persensi
+	        </a>
+    </div>
+</div>
+
+<div class="table-responsive">
+<table class="table table-bordered table-hover">
+<tr>
+  <th rowspan=2 width="10px">No.</th>
+  <th rowspan=2>Nama</th>
+  <th rowspan=2>NIP</th>
+  <th rowspan=2>Gol</th>
+  <th rowspan=2>Jabatan</th>
+  <!--<th colspan=2>Hadir</th>
+  <th rowspan=2>Keterangan</th>-->
+
+</tr>
+<tr>
+  <!--<th>Jam</th>
+  <th>Tanda Tangan</th> ->
+</tr>
+<tr>
+  <th class=bottom>1</th>
+  <th class=bottom>2</th>
+  <th class=bottom>3</th>
+  <th class=bottom>4</th>
+  <th class=bottom>5</th>
+  <th class=bottom>6</th>
+ <!-- <th class=bottom>7</th>
+  <th class=bottom>8</th> -->
+</tr>
+<!-- patTemplate:tmpl name="duk_individu" type="condition" conditionvar="DATA_EMPTY" -->
+   <!-- patTemplate:sub condition="YES" -->
+    <tr><td align="center" colspan="6">---Data Tidak Ditemukan---</td></tr>
+   <!-- /patTemplate:sub -->
+   <!-- patTemplate:sub condition="NO" -->
+   <!-- patTemplate:tmpl name="duk_individu_item" -->
+     <tr>
+      <td style="{MPG_CLASS_NAME}">{MPG_NO}</td>
+      <td nowrap>{MPG_NAMA}</td>
+      <td nowrap>{MPG_NIP}</td>
+      <td nowrap>{MPG_GOLONGAN}</td>
+      <td nowrap>{MPG_JABATAN}</td>
+      <!--<td nowrap></td>
+      <td nowrap></td>
+      <td nowrap></td> -->
+<!-- /patTemplate:tmpl -->
+<!-- /patTemplate:sub -->
+<!-- /patTemplate:tmpl -->
+</table>
+</div
+
+</div>
+<!-- /patTemplate:tmpl -->

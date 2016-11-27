@@ -1,0 +1,39 @@
+<!-- patTemplate:tmpl name="content" -->
+
+   <!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+   <div class="notebox-alert">
+      {ISI_PESAN}
+   </div>
+   <br />
+   <!-- /patTemplate:tmpl -->
+   
+   <br />
+    <h1>IMPORT DATA KEHADIRAN</h1>
+    <br />
+   <form method="POST" action="{URL_ACTION}" class="xhr_form std_form" id="frmInput" enctype="multipart/form-data" >
+   <table class="table-edit" width="100%">
+   <tr class="subhead">
+      <td colspan="2"><b>Import Data Kehadiran</b>
+      </td>
+   </tr>
+   <tr>
+      <td valign="top">
+         Nama File 
+      </td> 
+      <td><input type="file" name="file"/><br />
+	      <font color="red">Download format file <a target="_blank" href="<!-- patTemplate:gtfwgetconfig config="application" name="baseaddress" / --><!-- patTemplate:gtfwgetconfig config="application" name="basedir" / -->doc/contoh_format_import_absensi.xls">Klik Disini</a> <br><br>
+		  Nama File jangan mengandung spasi!.
+		  </font>
+      </td>
+   </tr>
+   <tr class="buttons">
+      <th>
+      </th>
+      <td>
+         <input type="submit" name="save" value=" Save " class="buttonSubmit" />
+         <input type="submit" name="cancel" value=" Cancel " class="buttonSubmit" />
+      </td>
+   </tr>
+   </table>
+   </form>
+<!-- /patTemplate:tmpl -->

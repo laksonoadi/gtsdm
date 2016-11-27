@@ -1,0 +1,115 @@
+<!-- patTemplate:tmpl name="content" -->
+<script language="javascript" type="text/javascript">
+	var xpopup;
+	function centangin_semua(varname, start_num, end_num) {
+		var obj = document.getElementById('cek_all');
+		if(obj.checked == false) {
+			for(i=start_num;i<=end_num;i++) {
+				document.getElementById(varname + i).checked = false;
+			}
+		} else {
+			for(i=start_num;i<=end_num;i++) {
+				document.getElementById(varname + i).checked = true;
+			}
+		}
+	}
+	function show_checkbox (varname, start_num, end_num) {
+		//show check_all checkbox
+		document.getElementById('cek_all').style.display='';
+		//document.getElementById('btnHapus').type="button";
+	}
+	function konfirmasi_delete(varname, start_num, end_num) {
+		//var idDelete = document.getElementById('id_delete').value;
+		for(i=start_num;i<=end_num;i++) {
+			if(document.getElementById(varname + i).checked == true) {
+				//document.getElementById('form_list').submit();
+				document.getElementById('btnHapus').type="submit";
+				document.getElementById('btnHapus').click();
+				return true;
+			}
+		}
+		alert('Silakan beri tanda cek pada minimal 1 data');
+		return false;
+	}
+</script>
+
+<br />
+<h1>ATTENDANCE DATA RECAPITULATION</h1>
+<br /> 
+<form method="POST" action="{URL_SEARCH}" class="dataquest xhr_simple_form dest_subcontent-element" id="filterbox">
+   <table>
+      <tr>
+         <th colspan="2"><h2><strong>Search Data</strong></h2></th>
+      </tr>
+	    <tr>              
+         <th width="30%">Employee Number/Name</th>
+         <td colspan='2'><input type="text" name="nama" value="{NAMA}" size="30" /></td>
+      </tr>
+      <tr>              
+         <th width="30%">Input Type</th>
+         <td colspan='2'>
+            <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="input_type"  / -->
+         </td>
+      </tr>
+  	  <!--<tr>
+		<th width="30%">Start Period</th>
+		<td><!- patTemplate:gtfwrendermodule module="tanggal" submodule="tanggal" action="view" name="absensiMasukSearch"  / ->
+		</td>
+	  </tr>
+	  <tr>
+	  	<th width="30%">End Period</th>
+		<td><!- patTemplate:gtfwrendermodule module="tanggal" submodule="tanggal" action="view" name="absensiKeluarSearch"  / -></td>
+      <tr>-->             
+         <th width="30%">&nbsp;</th>
+         <td><input type="submit" name="btncari" value=" Search &raquo;" class="buttonSubmit"/></td>
+      </tr>
+   </table>
+</form>
+
+<br /> 
+   <!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+   <div class="{CLASS_PESAN}">
+      {ISI_PESAN}
+   </div>
+   <br />
+   <!-- /patTemplate:tmpl -->
+   <h2>Daily Attendance Recapitulation</h2>
+   <div class="pageBar">
+   <!-- patTemplate:gtfwrendermodule module="paging" submodule="paging" action="view" name="paging_top"  / -->
+      <div class="toolbar"> 
+		<!--<a class="xhr dest_subcontent-element" href="{URL_IMPORT}" title="Import Data" tabindex="3"><img src="images/button-add.gif" alt="Import Data"> Import</a>&nbsp;&nbsp;-->
+		<!--<a class="xhr dest_subcontent-element" href="{URL_HARIAN}" title="Daily Presence Data" tabindex="3"><img src="images/button-check.gif" alt="Daily Presence Data"> Daily Presence Data</a>&nbsp;&nbsp;-->
+		<a class="xhr dest_subcontent-element" href="{URL_ABSENSI_MANUAL}" title="Manually Presence Data" tabindex="3"><img src="images/button-check.gif" alt="Daily Presence Data"> Manually Presence</a>&nbsp;&nbsp;
+		<a href="{URL_EXPORT}" title="Export Data" tabindex="3"><img src="images/icons/export_excel.gif" alt="Export Data"> Export</a>
+	  </div>
+   </div>
+	<table class="table-common" width="800px">
+      <tr>
+         <th width="10%">No</th>
+         <th width="70px">Gate Access Code</th>
+         <th width="120px">Employee Name</th>
+		     <th width="70px">Date</th>
+         <th width="50px">In</th>
+         <th width="50px">Out</th>
+         <th width="40px">Action</th>
+      </tr>
+      <!-- patTemplate:tmpl name="data_absensi" type="condition" conditionvar="ABSENSI_EMPTY" -->
+         <!-- patTemplate:sub condition="YES" -->
+         <tr><td colspan="6" align="center"><em>-- Data not found --</em></td></tr>
+         <!-- /patTemplate:sub -->
+         <!-- patTemplate:sub condition="NO" -->
+            <!-- patTemplate:tmpl name="data_absensi_item" -->
+            <tr class="{DATA_CLASS_NAME}">
+               <td align="center">{DATA_NUMBER}</td>
+               <td>{DATA_GATEACCESS}</td>
+               <td>{DATA_NAMA}</td>
+      			   <td align="center">{DATA_TGL}</td>
+      			   <td align="center">{DATA_MASUK}</td>
+               <td align="center">{DATA_KELUAR}</td>
+               <td class="links" align="center">{DATA_URL_EDIT_MANUAL}{DATA_URL_DELETE_MANUAL}</td>
+            </tr>
+            <!-- /patTemplate:tmpl -->
+         <!-- /patTemplate:sub -->
+      <!-- /patTemplate:tmpl -->
+   </table>
+<!-- /patTemplate:tmpl -->

@@ -1,0 +1,37 @@
+<!-- patTemplate:tmpl name="content" -->
+
+   <!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+   <div class="notebox-alert">
+      {ISI_PESAN}
+   </div>
+   <br />
+   <!-- /patTemplate:tmpl -->
+   
+   <br />
+    <h1>IMPORT DAILY ATTENDANCE DATA</h1>
+    <br />
+   <form method="POST" action="{URL_ACTION}" class="xhr_form std_form" id="frmInput" enctype="multipart/form-data" >
+   <table class="table-edit" width="100%">
+   <tr class="subhead">
+      <td colspan="2"><b>Import Daily Attendance Data</b>
+      </td>
+   </tr>
+   <tr>
+      <td>
+         File name 
+      </td> 
+      <td><input type="file" name="CSV_File"/><br />
+	      must in *.CSV format 
+      </td>
+   </tr>
+   <tr class="buttons">
+      <th>
+      </th>
+      <td>
+         <input type="submit" name="save" value=" Save " class="buttonSubmit" />
+         <input type="submit" name="cancel" value=" Cancel " class="buttonSubmit" />
+      </td>
+   </tr>
+   </table>
+   </form>
+<!-- /patTemplate:tmpl -->
