@@ -1,0 +1,235 @@
+<!-- patTemplate:tmpl name="body" -->
+   
+<!-- <div class="row"> -->
+    <!--Header-->
+    <!--
+    <div class="row" id="header">
+        <div class="col-md-9 col-sm-7 col-xs-8">
+		    <div id="header_logo"></div>
+		    <h4 class="text-white">&nbsp;&nbsp;<!-- patTemplate:gtfwgetconfig config="application" name="company_name" / -->
+	<!--	    </h4>
+        </div>
+        <div class="col-md-3 col-sm-5 col-xs-4 text-small text-white text-right">
+            Hari ini tanggal <!-- patTemplate:gtfwgetconfig config="application" name="now" / -->
+    <!--        <div id="js-alert"></div>
+        </div>
+    </div>-->
+   
+    <!--Navigation-->
+    <nav class="navbar navbar-default" role="navigation" id="navbar-main">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand padding-10" href="<!-- patTemplate:gtfwgeturl module="home" sub="home" action="view" type="html" params="" / -->">
+                    <img src="css/sia-mocca/images/logo.png" class="img-responsive" height="38px" width="38px" style="margin-top:-8px;">
+                </a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="pull-left"><a id="header-text" href="<!-- patTemplate:gtfwgeturl module="dashboard" sub="dashboard" action="view" type="html" params="" / -->"> <!-- patTemplate:gtfwgetconfig config="application" name="application_name" / --> </a></li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right" style="margin-left:15px;">
+               	    <li class="menu-notification">
+                        <a class="menu-popover-trigger" href="#" id="menu-notification">
+                            <span class="glyphicon glyphicon-bell"></span>
+                        </a>
+                    </li>
+			        <li class="menu-profile">
+                        <a class="menu-popover-trigger" href="<!-- patTemplate:gtfwgeturl module="profile" sub="profile" action="view" type="html" params=""  / -->" id="menu-profile">
+                            <span class="glyphicon glyphicon-user"></span>
+                        </a>
+                        <div id="menu-profile-html" class="hidden">
+                            <div><strong><!-- patTemplate:gtfwrendermodule name="user_realname" module="profile" submodule="profileItem" action="view" type="html" params="item=realname" / --></strong></div>
+                            <div><small class="text-muted">Username : <!-- patTemplate:gtfwrendermodule name="user_username" module="profile" submodule="profileItem" action="view" type="html" params="item=username" / --></small></div>
+                            <div class="small"><a class="xhr dest_subcontent-element" href="<!-- patTemplate:gtfwgeturl module="profile" sub="profile" action="view" type="html" params="" / -->">Lihat profil</a></div>
+                            <br/>
+                            <div class="clearfix">
+                                <a class="logout btn btn-default btn-sm pull-right" href="<!-- patTemplate:gtfwgeturl module="login_default" sub="logout" action="do" type="html" params="" / -->">Logout</a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                
+                <form class="navbar-form navbar-right xhr dest_subcontent-element" id="search" action="<!-- patTemplate:gtfwgeturl module="verifikasi_data" sub="pencarianData" action="view" type="html" params="" / -->" autocomplete="off" method="post" role="search">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input  required="required" type="text" name="search_keyword" class="form-control input-sm" placeholder="Search">
+                            <input type="hidden" name="cari" value="cari"/>
+                            <span class="input-group-btn">
+                                <button class="btn btn-default btn-sm" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+                            </span>
+                        </div><!-- /input-group -->
+                    </div>
+                </form>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav><!--Navigation-->
+
+    <div id="loading-box-active" class="busy-indicator" style="visibility:hidden">
+        <div class="animation-icon" ></div>
+    </div>
+    
+    <div id="back-to-top" title="Ke atas"></div>
+   
+    <div class="row" id="content" style="padding-bottom:0px!important">
+	    <!--sidebar-->
+	    <div class="col-md-2 col-sm-3 col-xs-12" id="sidebar">
+            <div id="sidebarContents" class="sidebarContents">
+                <!-- patTemplate:gtfwrendermodule name="menu" module="menu" submodule="menu" action="view" type="html" params="" / -->
+            </div>
+        </div>
+      
+	    <div class="col-md-10 col-sm-9 col-xs-12" id="page-content">
+	        <div class="background-white">
+                <div class="" id="subcontent-element" >
+                <!-- patTemplate:link src="content" / -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+	<div id="notifikasi" class="notifikasi" style="display:none">
+	    <div style="height:20px; background: url(images/popup/popup_header.gif); padding: 5px 0px 0px 12px;">
+		    <b>Notifikasi</b>
+			<img src="images/popup/icon-close.gif" onclick="hideNotifikasi();"style="height: 19px; width: 19px; border-style: none; position: absolute; cursor: pointer; left: 90%; top: 2px;">
+		</div>
+		<div id="notifikasi-body" style="height:380px; overflow: scroll; padding: 2px 5px 5px 12px;"></div>
+	</div>
+    <!-- <div id="footer2" class="footer2"></div> -->
+	<div class="footer" style="text-align:center !important;">
+		<div class="container">
+			<div class="">
+				<p style="color:#fff !important;font-size:12px;font-family:Arial;">
+					<!-- patTemplate:gtfwgetconfig config="application" name="application_name" / --> - <!-- patTemplate:gtfwgetconfig config="application" name="company_name" / --> <!-- patTemplate:gtfwgetconfig config="application" name="company_city" / --> &copy; <!-- patTemplate:gtfwgetconfig config="application" name="tahun" / -->
+				</p>
+			</div>
+		</div>
+	</div>
+<!-- </div> -->
+
+<script language="javascript">	  
+    function showNotifikasi(){
+	    GtfwAjax.replaceContentWithUrl('notifikasi-body', '<!-- patTemplate:gtfwgeturl module="informasi" sub="popupInformasi" action="view" type="html" htmlentities="no" / -->&ascomponent=1&tipe=notifikasi');
+	    
+		GtfwAjax.replaceContentWithUrl('footer2', '<!-- patTemplate:gtfwgeturl module="informasi" sub="popupInformasi" action="view" type="html" htmlentities="no" / -->&ascomponent=1&tipe=ringkasan');
+		document.getElementById('notifikasi').style.display='';
+	}
+				
+	function hideNotifikasi(){
+		document.getElementById('notifikasi').style.display='none';
+	}
+	/* showNotifikasi(); */
+    
+    $(".menu-popover-trigger").click(function(e){
+        e.preventDefault();
+        $(".menu-popover-trigger").not($(this)).popover("hide");
+    });
+    
+    $('#menu-profile').popover({
+        html: true,
+        content: $('#menu-profile-html').remove().html(),
+        template: '<div class="popover menu-popover" role="tooltip"><div class="arrow"></div><div class="popover-content"></div></div>',
+        container: 'body',
+        placement: 'bottom',
+        trigger: 'click',
+        animation: true,
+    });
+    
+    $('#menu-notification').popover({
+        html: true,
+        content: $('#menu-notification-html').remove().html(),
+        template: '<div class="popover menu-popover" role="tooltip"><div class="arrow"></div><div class="popover-content no-padding" id="menu-notification-popover"></div></div>',
+        container: 'body',
+        placement: 'bottom',
+        trigger: 'click',
+        animation: true,
+    });
+    $('#menu-notification').live("shown.bs.popover", function(e){
+        var rand = Math.floor(Math.random() * 999999) + 1;
+        $("#menu-notification-popover .notification-title").after('<div class="text-center btn-sm small text-muted" id="loading'+rand+'">Loading...</div>');
+        $.get('<!-- patTemplate:gtfwgeturl module="informasi" sub="popupInformasi" action="view" type="html" htmlentities="no" / -->&ascomponent=1&tipe=notifikasi&u='+rand, function(data){
+            $("#menu-notification-popover").html(data);
+        });
+    });
+    
+    function updestroyNotifications() {
+        $('#menu-notification').popover("destroy").popover({
+            html: true,
+            content: '<div class="notification-title"><strong>Notifikasi</strong></div>',
+            template: '<div class="popover menu-popover" role="tooltip"><div class="arrow"></div><div class="popover-content no-padding" id="menu-notification-popover"></div></div>',
+            container: 'body',
+            placement: 'bottom',
+            trigger: 'click',
+            animation: true,
+        });
+        var rand = Math.floor(Math.random() * 999999) + 1;
+        $.get('<!-- patTemplate:gtfwgeturl module="informasi" sub="popupInformasi" action="view" type="html" htmlentities="no" / -->&ascomponent=1&tipe=notifikasi&u='+rand, function(data){
+            $('#menu-notification').popover("destroy").popover({
+                html: true,
+                content: data,
+                template: '<div class="popover menu-popover" role="tooltip"><div class="arrow"></div><div class="popover-content no-padding" id="menu-notification-popover"></div></div>',
+                container: 'body',
+                placement: 'bottom',
+                trigger: 'click',
+                animation: true,
+            });
+        });
+    }
+    updestroyNotifications();
+    
+	 /* Update every 3 minutes */
+    var updateTimer = setInterval(function(){
+        updestroyNotifications();
+    }, 1000 * 180);
+    
+    jQuery(document).ready(function($){
+        /* browser window scroll (in pixels) after which the "back to top" link is shown */
+        var offset = 300,
+            /* browser window scroll (in pixels) after which the "back to top" does not use animation (prevent too fast animation) */
+            offset_over = 3000,
+            /* duration of the top scrolling animation (in ms) */
+            scroll_top_duration = 1000,
+            /* grab the "back to top" link */
+            $back_to_top = $('#back-to-top');
+
+        /* hide or show the "back to top" link */
+        $(window).scroll(function(){
+            ( $(this).scrollTop() > offset ) ? $back_to_top.addClass('btt-visible') : $back_to_top.removeClass('btt-visible btt-fade');
+            ( $(this).scrollTop() > offset_over ) ? $back_to_top.addClass('btt-fade') : $back_to_top.removeClass('btt-fade');
+        });
+
+        /* smooth scroll to top */
+        $back_to_top.on('click', function(event){
+            event.preventDefault();
+            var offset_current = $(window).scrollTop();
+            var duration = scroll_top_duration;
+            
+            $back_to_top.addClass('btt-disable');
+            
+            /* Slow animation if too far */
+				/* Consider no animation at all */
+            if(offset_current > offset_over) {
+                /* duration = Math.floor(offset_current / (offset_over/2)) * scroll_top_duration; */
+					 duration = 0;
+            }
+            
+            $('body,html').animate({
+                scrollTop: 0 ,
+                }, duration, function(){
+                    $back_to_top.removeClass('btt-disable');
+                }
+            );
+        });
+    });
+    
+</script>
+<!-- /patTemplate:tmpl -->
