@@ -1,0 +1,73 @@
+<!-- patTemplate:tmpl name="content" -->
+<h1>{LABEL_TITLE}</h1>
+
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+   {ISI_PESAN}
+</div>
+<br />
+<!-- /patTemplate:tmpl -->
+<div><h1>{TITLE}</h1></div><br>
+<form method="POST" action="{URL_SEARCH}" class="dataquest xhr_simple_form dest_subcontent-element" id="filterbox">
+   <table>
+      <tr>
+         <th colspan="2"><h2><strong>Pencarian Data</strong></h2></th>
+      </tr>
+      <tr>              
+         <th width="30%">Jenis Tunjangan Kesehatan</th>
+         <td colspan='2'><input type="text" name="jenis_tunj" value="{JENIS_TUNJ}" size="30" /></td>
+      </tr>
+      <tr>
+         <th>&nbsp;</th>
+         <td>
+            <input type="submit" name="btncari" value=" Cari &raquo;" class="buttonSubmit"/>
+         </td>
+      </tr>
+   </table>
+</form>
+<br />
+
+<div class="pageBar">
+    <div class="toolbar"> 
+		<a class="xhr dest_subcontent-element " href="{URL_ADD}" title="Tambah" tabindex="2">
+	  <img src="images/button-add.gif" alt="Tambah"> Tambah</a> 	
+   </div>
+<!-- patTemplate:gtfwrendermodule module="paging" submodule="paging" action="view" name="paging_top"  / -->
+</div>
+<table class="table-common" width="800px">
+   <tr>
+      <th width="18px">No</th>
+      <th width="63px">Aksi</th>
+      <th width="165px">Jenis Tunjangan Kesehatan</th>
+      <th>Status Pernikahan</th>
+      <th width="83px">Dana Asuransi (Rp)</th>
+      <th width="63px">Dana Asuransi (%)</th>
+      <th width="63px">Maksimal Klaim</th>
+      <th width="63px">Nomor Klaim</th>
+      <th width="63px">Tahun Periode</th>
+   </tr>
+   <!-- patTemplate:tmpl name="data_tunjang" type="condition" conditionvar="TUNJANG_EMPTY" -->
+      <!-- patTemplate:sub condition="YES" -->
+   <tr><td colspan="9" align="center"><em>-- Data tidak ditemukan --</em></td></tr>
+      <!-- /patTemplate:sub -->
+      <!-- patTemplate:sub condition="NO" -->
+         <!-- patTemplate:tmpl name="data_tunjang_item" -->
+   <tr class="{CLASS_NAME}">
+      <td align="center">{NUMBER}</td>
+      <td class="links">
+         <a class="xhr dest_subcontent-element" href="{URL_EDIT}" title="Ubah"><img src="images/button-edit.gif" alt="Ubah"/></a>
+         <a class="xhr dest_subcontent-element" href="{URL_DELETE}" title="Hapus"><img src="images/button-delete.gif" alt="Hapus"/></a>
+      </td>
+      <td align="left">{JENIS}</td>
+      <td align="left">{NIKAH}</td>
+      <td align="center">{PLA_UANG}</td>
+      <td align="center">{PLA_PERSEN}</td>
+      <td align="center">{MAKS}</td>
+      <td align="center">{KLAIM}</td>
+      <td align="center">{PERIODE}</td>
+   </tr>
+         <!-- /patTemplate:tmpl -->
+      <!-- /patTemplate:sub -->
+   <!-- /patTemplate:tmpl -->
+</table>
+<!-- /patTemplate:tmpl -->

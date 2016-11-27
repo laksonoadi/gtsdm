@@ -1,0 +1,53 @@
+<!-- patTemplate:tmpl name="content" -->
+<h1>REFERENCE {TITLE} </h1>
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+   {ISI_PESAN}
+</div>
+<!-- /patTemplate:tmpl -->
+<br />
+
+<form method="POST" action="{URL_ACTION}" id="frmInput" name="frmInput" class="xhr_form std_form">
+   <table class="table-edit" width="100%">
+      <tr class="subhead">
+         <th colspan="2"> {JUDUL} Golongan </th>
+      </tr>
+      <tr>
+         <th width="150">Golongan</th>
+         <td><input type="text" name="pangkat" value="{PANGKAT}" size="10" maxlenght="10" /> *</td>
+      </tr>
+      <tr>
+         <th>Nama Golongan</th>
+         <td><input type="text" name="nama" value="{NAMA}" size="30" maxlengt="50" /> *</td>
+      </tr>
+      <tr>
+         <th>Level</th>
+         <td><input type="text" name="tingkat" value="{TINGKAT}" size="3" maxlengt="2" /></td>
+      </tr>
+      <tr>
+         <th>Periode Kerja</th>
+         <td><input type="text" name="masa" value="{MASA}" size="3" maxlengt="2" /></td>
+      </tr>
+      <tr>
+         <th>Urutan Golongan</th>
+         <td><input type="text" name="urut" value="{URUT}" size="3" maxlengt="2" /> *</td>
+         <input type="hidden" name="id_post" value="{PANGKAT}">
+      </tr>
+      <tr class="buttons">
+         <th>&nbsp;</th>
+         <td>
+            <input type="submit" name="btnsimpan" value="{BUTTONLABEL}" class="buttonSubmit"/>
+            <a href="{URL_KEMBALI}" class="button">Batal</a>
+         </td>
+      </tr>
+   </table>
+</form>
+
+<br />
+<div class="petunjuk-area">
+   <h4>Petunjuk:</h4>
+   <ul>
+      <li>Tanda * menunjukkan bahwa field tersebut harus diisi .</li>
+   </ul>
+</div>
+<!-- /patTemplate:tmpl -->

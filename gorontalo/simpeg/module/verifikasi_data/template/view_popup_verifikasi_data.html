@@ -1,0 +1,26 @@
+<!-- patTemplate:tmpl name="content" -->
+<form method="POST" name="frmInput" action="{URL_ACTION}" class="xhr_simple_form dest_subcontent-element form-horizontal" id="frmInput" enctype="multipart/form-data">
+	<div class="table-responsive">
+   <table class="table">
+	  <tr><th>Jenis Data</th><td>{DATA_JUDUL}</td></tr>
+	  <tr><th>NIP</th><td>{DATA_NIP}</td></tr>
+      <tr><th>Nama Pegawai</th><td>{DATA_NAMA}</td></tr>
+	  <tr><th>Uraian</th><td>{DATA_URAIAN}</td></tr>
+	  <tr><th>Dokumen Penyerta</th><td>{DATA_DOKUMEN}</td></tr>
+	  <tr>
+         <th>Status Data</th>
+         <td><!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="status_data"  / --></td>
+      </tr>
+      <tr>
+         <th>&nbsp;</th>
+         <td>
+			<input type="submit" name="btncari" value=" Verifikasi &raquo;" class="buttonSubmit"/>
+			<input type="hidden" name="id_value" value="{DATA_ID_VALUE}"/>
+			<input type="hidden" name="referensi" value="{DATA_JENIS_DATA}"/>
+			<input type="hidden" name="op" value="update"/>
+         </td>
+      </tr>
+   </table>
+	</div>
+</form>
+<!-- /patTemplate:tmpl -->

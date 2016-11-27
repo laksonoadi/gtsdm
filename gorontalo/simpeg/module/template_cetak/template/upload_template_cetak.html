@@ -1,0 +1,97 @@
+<!-- patTemplate:tmpl name="content" -->
+<div class="background-blue padding-10 text-big" style="text-transform:uppercase">Pengaturan Template Cetak</div>
+<div class="padding-10">
+
+   <!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+   <div class="notebox-alert">
+      {ISI_PESAN}
+   </div>
+   <br/>
+   <!-- /patTemplate:tmpl -->
+   
+   
+   <form method="POST" action="{URL_ACTION}" class="xhr_form dest_subcontent-element" enctype="multipart/form-data"  id="frmInput" >
+   <input type="hidden" name="dataId" value="{DATAID}"  />
+   <input type="hidden" name="page" value="{PAGE}"  />
+   <div class="table-responsive">
+      <table class="table" width="100%">
+         <tr class="background-blue-light">
+            <th colspan="2">{JUDUL} Template </th>
+         </tr>
+         <tr>
+  
+            <th >Nama Template</th>
+            <td>
+               <input class="form-control" type="text" name="nama" value="{TEMPLATE_NAMA}" size="25" maxlength="100" readonly="readonly"/>
+            </td>
+          </tr>
+         <tr>
+            <th >Template Cetak (*.RTF)</th>
+            <td>
+               <input type="file" name="file" size="30" />&nbsp;*
+               <input type="hidden" name="dataId" value="{DATA_ID}" />
+               <input type="hidden" name="template_path" value="{TEMPLATE_PATH}" />
+            </td>
+         </tr>
+   <!-- patTemplate:tmpl name="nama_template" type="condition" conditionvar="TEMPLATE_EMPTY" -->
+         <!-- patTemplate:sub condition="YES" -->
+         <tr>
+            <th>
+              Template Yang Digunakan
+            </th>
+            <td>
+            <!-- patTemplate:tmpl name="tpl_nama_exist" type="condition" conditionvar="TEMPLATE_NOT_FOUND" -->
+               <!-- patTemplate:sub condition="YES" -->
+               :&nbsp;<font color="red">File Template <i>{TEMPLATE_FILE_NAME}</i> Tidak Ditemukan</font>
+               <!-- /patTemplate:sub -->
+               <!-- patTemplate:sub condition="NO" -->
+               :&nbsp;<a href="{TEMPLATE_PATH}" title="Download Template Yang Sedang Digunakan" >{TEMPLATE_FILE_NAME}</a>
+               <!-- /patTemplate:sub -->
+            <!-- /patTemplate:tmpl -->     
+            </td>
+         </tr>      
+         
+            <!-- /patTemplate:sub -->
+           <!-- patTemplate:sub condition="NO" -->
+
+            <!-- /patTemplate:sub -->
+      <!-- /patTemplate:tmpl -->         
+         <tr class="buttons">
+            <th>&nbsp;
+            </th>
+            <td>
+               <input type="submit" class="btn btn-xs btn-info" name="btnsimpan" value=" Simpan " title="Simpan Template" class="buttonSubmit"/>
+               <input  class="btn btn-xs btn-warning" type="submit"  name="btnbalik" value=" Batal " title="Batal Simpan" class="buttonSubmit"/>
+            </td>
+         </tr>
+      </table>
+      </div>
+   </form>
+   <br/>
+   <div class="table-responsive">
+   <table class="table" width="100%">
+      <tr>
+         <th width="5">No</th>
+         <th width="160">Variabel Template Yang Disediakan</th>
+      </tr>
+            <!-- patTemplate:tmpl name="data_template_cetak_item" -->
+            <tr class="{TPL_CLASS_NAME}">
+               <td align="center">{TPL_NUMBER}</td>
+               <td>{TPL_VAR_CETAK_NAMA}</td>
+            </tr>
+            <!-- /patTemplate:tmpl -->
+   </table>
+   </div>
+
+   <div class="petunjuk-area">
+      <h4>Petunjuk:</h4>
+      <ul>
+         <!-- patTemplate:tmpl name="is_default" visibility="hidden" -->
+         <li>Download contoh template: &nbsp;<a href="{URL_CONTOH_TEMPLATE}" title="Download contoh template">{CONTOH_TEMPLATE}</a>. </li>
+            <!-- /patTemplate:tmpl -->
+         <li>Tanda * menunjukkan bahwa field tersebut harus diisi. </li>
+         <li>Variabel pada tempate yang akan di upload harus terdapat dalam daftar variabel template. </li>
+      </ul>
+   </div>
+   </div>
+<!-- /patTemplate:tmpl -->

@@ -1,0 +1,171 @@
+<!-- patTemplate:tmpl name="content" -->
+<script name="javaScript" >
+
+   function updateGroup() {
+      GtfwAjax.replaceContentWithUrl('combo_group', '<!-- patTemplate:gtfwgeturl module="user" sub="comboGroup" action="view" type="html" htmlentities="no" / -->&ascomponent=1&unit=' + document.frmInput.unit_kerja.value);
+   }
+   
+   // function updateSatuanKerja() {
+   //    GtfwAjax.replaceContentWithUrl('combo_satuan_kerja', '<!-- patTemplate:gtfwgeturl module="user" sub="comboSatuanKerja" action="view" type="html" htmlentities="no" / -->&ascomponent=1&unit=' + document.frmInput.unit_kerja.value);
+   // }
+
+</script>
+<div class="background-blue padding-10 text-big">Manajemen Pengguna</div>
+<div class="padding-10">
+
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="notebox-alert">
+            {ISI_PESAN}
+        </div>
+    </div>
+</div>
+<!-- /patTemplate:tmpl -->
+
+<form method="POST" action="{URL_ACTION}" class="xhr_form std_form" id="frmInput" name="frmInput" >
+    <div class="table-responsive">
+      <table class="table">
+         <tr class="background-blue-light">
+            <th colspan="2">{JUDUL} Pengguna</th>
+         </tr>
+         <tr>
+            <th width="150">User Name *</th>
+            <td><input type="text" name="username" value="{USERNAME}" size="25" maxlength="16" {READONLY} />
+            <input type="hidden" name="usr" value="{USR}"  />
+            <input type="hidden" name="user_id" value="{USER_ID}"  />
+            <input type="hidden" name="cari" value="{CARI}"  /></td>
+         </tr>
+         <!-- patTemplate:tmpl name="view_password" visibility="hidden" -->
+         <tr>
+            <th>Password *</th>
+            <td><input type="password" name="password" size="25" maxlength="32" /></td>
+         </tr>
+         <tr>
+            <th>Re-type Password *</th>
+            <td><input type="password" name="retype_password"  size="25" maxlength="32" /></td>
+         </tr>
+         <!-- /patTemplate:tmpl -->
+         <tr style="display:none">
+            <th>Unit Aplikasi *</th>
+            <td>
+				<!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="unit_kerja"  / -->
+            </td>
+         </tr>
+         <tr>
+            <th>Group Aplikasi *</th>
+            <td><div id="combo_group">
+				<!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="group"  / -->
+            </div></td>
+         </tr>
+
+         <tr>
+            <th>Satuan Kerja/Unit Kerja User *</th>
+            <td>
+                <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="satuan_kerja"  / -->
+            </td>
+         </tr>
+
+			<tr style="display:none">
+            <th>Satuan Kerja/Unit Kerja User *</th>
+            <td>
+					<a id="unit_check_all" onclick="checkAll();" class="btn btn-link">[Centang Semua]</a> <a style="margin-left :10px;" id="unit_uncheck_all" onclick="uncheckAll();" class="btn btn-link">[Kosongkan Semua]</a>
+					<!-- <input type="hidden" id="satuan_kerja" name="satuan_kerja" /> -->
+					<span id="unit_tree_list">
+						{UNIT_TREE}
+					</span>
+            </td>
+         </tr>
+         <tr>
+            <th>Nama Asli</th>
+            <td><input type="text" name="realname" value="{REALNAME}" size="35" maxlength="100" /></td>
+         </tr>
+         <tr>
+            <th>Deskripsi</th>
+            <td><textarea name="deskripsi" cols="32">{DESKRIPSI}</textarea></td>
+         </tr>
+         <tr>
+            <th>Status</th>
+            <td><input type="radio" name="status" id="status_yes" value="Yes" {STATUS}/><label for="status_yes">Active<label>
+            <input type="radio" name="status" id="status_no" value="No" {NSTATUS}/><label for="status_no">Not Active<label></td>
+         </tr>
+         <tr class="buttons">
+            <th>
+            </th>
+            <td>
+                <div class="btn-group">
+                    <input type="submit" name="btnsimpan" value="Save" class="btn btn-info btn-xs"/>
+                    <input type="submit" name="btnbalik" value="Cancel" class="btn btn-warning btn-xs"/>
+                </div>
+            </td>
+         </tr>
+      </table>
+    </div>
+</form>
+
+<style>
+	#unit_tree_list * {
+		box-sizing: content-box;
+	}
+	#unit_tree_list li {
+		cursor: default;
+	}
+	#unit_tree_list a {
+		cursor: pointer;
+	}
+</style>
+
+<script lang="javascript">
+    $(document).ready(
+        function() {
+
+                    // var nik         = $(this).attr('data-nik');
+                    // document.getElementById('id4').checked = true;
+
+                    // $('#id'+target).val(nama);
+                    // {SCRIPTJAVA}
+        }
+    );
+
+
+$(function(){
+    
+	$("#unit_tree_list").jstree({
+		"plugins" : [ "themes", "html_data", "checkbox", "ui" ],
+      "themes" : { "theme" : "classic" },
+		"checkbox" : {
+			"checked_parent_open" : true,
+			"real_checkboxes" : true,
+			"real_checkboxes_names" : function(n) { return ["satuan_kerja[]", $(n).data("id")]; }
+		},
+	});
+});
+	 
+function checkAll()
+{
+	$("#unit_tree_list").jstree("check_all");
+}
+
+function uncheckAll()
+{
+	$("#unit_tree_list").jstree("uncheck_all");
+}
+
+function inArray(needle, haystack) {
+    var length = haystack.length;
+    for(var i = 0; i < length; i++) {
+        if(haystack[i] == needle) return true;
+    }
+    return false;
+}
+</script>
+   
+   <div class="petunjuk-area">
+      <h4>Petunjuk:</h4>
+      <ul>
+         <li>Tanda * menandakan bahwa field tersebut wajib diisi. </li>
+         <li>Username digunakan untuk login, sedangkan nama asli adalah name pengguna. </li>
+      </ul>
+   </div>
+</div>
+<!-- /patTemplate:tmpl -->
