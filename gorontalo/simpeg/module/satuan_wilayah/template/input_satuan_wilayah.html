@@ -1,0 +1,67 @@
+<!-- patTemplate:tmpl name="content" -->
+<!--<h1>{LABEL_TITLE}</h1>-->
+<div class="background-blue padding-10 text-big">{TITLE}</div>
+<div class="padding-10">
+
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="{CLASS_PESAN}">
+            {ISI_PESAN}
+        </div>
+    </div>
+</div>
+<!-- /patTemplate:tmpl -->
+
+<form method="POST" class="xhr_form std_form" action="{URL_ACTION}" id="frm_input" name="frm_input" >
+    <div class="table-responsive">
+   <table class="table">
+	  <input type="hidden" name="satwilId" value="{ID}" />
+	  <input type="hidden" name="op" value="{OPERASI}" />
+	  
+		<tr class="background-blue-light">
+			<th colspan="2">{JUDUL} Referensi Satuan Wilayah</th>
+			
+		</tr>		
+		<tr>
+			<th width="25%">Utama</th>
+			<td>
+				<!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="satwilLevel"  / -->
+			</td>
+		</tr>
+		<tr>
+			<th width="25%">Kode</th>
+			<td>
+				<input type="text" name="satwilKode" value="{KODE}" size="20" tabindex='2' /> *
+			</td>
+		</tr>
+		<tr>
+			<th width="25%">Nama</th>
+			<td>
+				<input type="text" name="satwilNama" value="{NAMA}" size="40" tabindex='2' /> *  
+			</td>
+		</tr>
+		
+		<tr class="background-blue-light">
+			<th></th>
+            <td>
+				<input type="hidden" name="level_id" value="{LEVEL_ID}" />
+                <div class="btn-group">
+                    <input type="submit" name="btnsimpan" value="Save" class="btn btn-info btn-xs"/>
+                    <input type="submit" name="btnbatal" value="Cancel" class="btn btn-warning btn-xs"/>
+                </div>
+            </td>
+		</tr>
+   </table>
+   </div>
+</form>
+
+<div class="petunjuk-area">
+   <h4>Petunjuk :</h4>
+   <ul>
+      <li>Tanda * menunjukkan bahwa field tersebut harus diisi.</li>
+   </ul>
+</div>
+
+</div>
+<!-- /patTemplate:tmpl -->

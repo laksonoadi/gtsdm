@@ -1,0 +1,58 @@
+<!-- patTemplate:tmpl name="content" -->
+<h1>{LABEL_TITLE}</h1>
+<br />
+
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="notebox-alert">
+   {ISI_PESAN}
+</div>
+<!-- /patTemplate:tmpl -->
+<div><h1>{TITLE}</h1></div><br>
+<form method="POST" class="xhr_form std_form" action="{URL_ACTION}" id="frm_input" name="frm_input" >
+   <table class="table-edit" width="100%">
+	  <input type="hidden" name="satwilId" value="{ID}" />
+	  <input type="hidden" name="op" value="{OPERASI}" />
+	  
+		<tr class="subhead">
+			<th colspan="2">{JUDUL} Unit Area Reference</th>
+			
+		</tr>		
+		<tr>
+			<th width="25%">Main</th>
+			<td>
+				<!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="satwilLevel"  / -->
+			</td>
+		</tr>
+		<tr>
+			<th width="25%">Code</th>
+			<td>
+				<input type="text" name="satwilKode" value="{KODE}" size="20" tabindex='2' /> *
+			</td>
+		</tr>
+		<tr>
+			<th width="25%">Name</th>
+			<td>
+				<input type="text" name="satwilNama" value="{NAMA}" size="40" tabindex='2' /> *  
+			</td>
+		</tr>
+		
+		<tr class="buttons">
+			 <th>&nbsp;   
+			 </th>
+			 <td>
+				<input type="hidden" name="level_id" value="{LEVEL_ID}" />
+				<input type="submit" name="btnsimpan" value=" Add " class="buttonSubmit"/>
+				   <input  type="submit"  name="btnbatal" value=" Cancel " class="buttonSubmit"/>
+			 </td>
+		</tr>
+   </table>
+</form>
+
+<div class="petunjuk-area">
+   <h4>Information :</h4>
+   <ul>
+      <li>The sign * indicates that this field must be filled.</li>
+	  <li>The sign ** filled without a sign of the accounting
+   </ul>
+</div>
+<!-- /patTemplate:tmpl -->
