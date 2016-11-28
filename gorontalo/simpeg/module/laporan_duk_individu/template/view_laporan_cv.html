@@ -1,0 +1,135 @@
+<!-- patTemplate:tmpl name="content" -->
+<script language="javascript" type="text/javascript">
+	function centangin_semua(varname, start_num, end_num) {
+		var obj = document.getElementById('cek_all');
+		var ceks;
+		if(obj.checked == false) {
+			for(i=start_num;i<=end_num;i++) {
+				ceks = document.getElementById(varname + i);
+				if(ceks) ceks.checked = false;
+			}
+		} else {
+			for(i=start_num;i<=end_num;i++) {
+				ceks = document.getElementById(varname + i);
+				if(ceks) ceks.checked = true;
+			}
+		}
+	}
+	
+	function getInputForm(){
+      GtfwAjax.replaceContentWithUrl('form-additional','<!-- patTemplate:gtfwgeturl module="pangkat_golongan" sub="inputPangkatGolongan" action="view" type="html" htmlentities="no" / -->&ascomponent=1');
+   }
+</script>
+
+<h1>{TITLE}</h1>
+<br />
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+   {ISI_PESAN}
+</div>
+<!-- /patTemplate:tmpl -->
+<br />
+
+
+<table class="table-details" width="100%" >
+<tr class="subhead">
+   <th>Data Pribadi</th>
+   <th align="right">
+      <div class="toolbar"> 
+           <a class="xhr dest_subcontent-element " href="{URL_BACK}" title="BAck to the current page" tabindex="2">
+           Kembali</a> 
+           <a href="{URL_RTF}" title="Export RTF" tabindex="2" target="_Blank">
+           <img src="images/button-simpan.gif" alt="">Export RTF</a>
+       </div>
+   </th>
+</tr>
+
+<tr><th>No. Urut</th><td>{URUT}</td></tr>
+<tr><th >Nama Lengkap</th><td>{GELAR_DEPAN} {NAMA} {GELAR_BELAKANG}</td></tr>
+<tr><th >NIP</th><td>{NIP}</td></tr>
+<tr><th >Jenis Pegawai</th><td>{JENIS_PEG}</td></tr>
+<tr><th >Jenis Kelamin</th><td>{JENIS_KELAMIN}</td></tr>
+<tr><th >Pangkat dan Golongan Ruang</th><td>{PANGKAT_GOLONGAN}</td></tr>
+<tr><th >TMT Golongan</th><td>{GOL_TMT}</td></tr>
+<tr><th >Nama Jabatan/Eselon</th><td>{JABATAN}</td></tr>
+<tr class="subhead" ><th colspan="2" >TMT Jabatan</th></tr>
+<tr><th >TMT Pelantikan Awal</th><td>{MULAI}</td></tr>
+<tr><th >TMT Pelantikan Selesai</th><td>{SELESAI}</td></tr>
+<tr><th >TMT Capeg</th><td>{CAPEG_TMT}</td></tr>
+<tr><th >Masa Kerja</th><td>{MASA_KERJA}</td></tr>
+<tr class="subhead"><th colspan="2">Riwayat Jabatan</th></tr>
+<tr><td colspan="2">
+<table class="table-common" width="100%">
+   <tr>
+      <th width="5px" >No</th>
+      <th >Nama Jabatan</th>
+      <th >No SK / Tanggal</th>
+      <th > TMT </th>
+      <th >Unit Kerja</th>
+   </tr>
+
+   <!-- patTemplate:tmpl name="data_jabatan" type="condition" conditionvar="DATA_EMPTY" -->
+      <!-- patTemplate:sub condition="YES" -->
+      <tr><td colspan="5" align="center"><em>-- Data tidak ditemukan --</em></td></tr>
+      <!-- /patTemplate:sub -->
+      <!-- patTemplate:sub condition="NO" -->
+         <!-- patTemplate:tmpl name="data_jabatan_item" -->
+         
+         <tr class="{JAB_CLASS_NAME}">
+            <td align="center" width="5%">{JAB_NUMBER}</td>
+            <td align="left" width="20%" >{JAB_JBTN_NAMA}</td>
+            <td align="left" >{JAB_NO_SK_JBTN} tanggal {JAB_TGL_SK_JBTN}</td>
+        	  <td align="left">{JAB_MULAI}</td>
+        	  <td align="left">{JAB_UNIT_KERJA}</td>
+         </tr>
+         
+         <!-- /patTemplate:tmpl -->
+    <!-- /patTemplate:sub -->
+    <!-- /patTemplate:tmpl -->
+
+</table>
+
+</td></tr>
+
+<tr class="subhead"><th colspan="2">Riwayat Pelatihan</th></tr>
+<tr><td colspan="2">
+<table class="table-common" width="100%">
+   <tr>
+      <th width="5px" >No</th>
+      <th >Nama Pelatihan</th>
+      <th >Tahun</th>
+      <th >Jumlah Jam</th>
+   </tr>
+   <!-- patTemplate:tmpl name="list_latihan" type="condition" conditionvar="EMPTY" -->
+   <!-- patTemplate:sub condition="YES" -->
+  <tr><td colspan="4" align="center"><em>-- Data tidak ditemukan --</em></td></tr>
+   <!-- /patTemplate:sub -->
+   <!-- patTemplate:sub condition="NO" -->
+    
+    <!-- patTemplate:tmpl name="val" -->
+      <tr>
+      <td align="center" >{NO}</td>
+      <td>{NAMA}</td>
+      <td align="center" >{TAHUN}</td>
+      <td align="center" >{JAM}</td>
+      </tr>
+    <!-- /patTemplate:tmpl -->
+    
+    
+    <!-- /patTemplate:sub -->
+    <!-- /patTemplate:tmpl -->
+
+</table>
+
+</td></tr>
+<tr class="subhead"><th colspan="2">Pendidikan</th></tr>
+<tr><th >Universitas</th><td>{UNIV}</td></tr>
+<tr><th >Jurusan</th><td>{JURUSAN}</td></tr>
+<tr><th >Lulusan Tahun</th><td>{THN_LULUS}</td></tr>
+<tr><th >Tingkat Ijazah</th><td>{PEND_TINGKAT}</td></tr>
+<tr><th >Tempat Tanggal Lahir</th><td>{TTL}</td></tr>
+<tr><th >Unit Kerja</th><td>{UNIT}</td></tr>
+
+</table>
+
+<!-- /patTemplate:tmpl -->

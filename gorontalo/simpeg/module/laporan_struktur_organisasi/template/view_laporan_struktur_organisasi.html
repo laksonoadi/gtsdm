@@ -1,0 +1,273 @@
+<!-- patTemplate:tmpl name="content" -->
+<div class="background-blue padding-10 text-big" style="text-transform:uppercase">Laporan Struktur Organisasi</div>
+
+<div class="padding-10">
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+   {ISI_PESAN}
+</div>
+<!-- /patTemplate:tmpl -->
+<style>
+.trees {
+  overflow-x: auto;
+}
+.trees ul {
+  padding-top: 20px;
+  position: relative;
+  white-space: nowrap;
+}
+.trees li {
+  display: inline-block;
+  white-space: nowrap;
+  vertical-align: top;
+  margin: 0 -2px;
+  text-align: center;
+  list-style-type: none;
+  position: relative;
+  padding: 20px 5px 0;
+  transition: all .5s;
+  -webkit-transition: all .5s;
+  -moz-transition: all .5s;
+}
+/*We will use ::before and ::after to draw the connectors*/
+.trees li::before,.trees li::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 50%;
+  border-top: 1px solid #ccc;
+  width: 50%;
+  height: 20px;
+}
+.trees li::after {
+  right: auto;
+  left: 50%;
+  border-left: 1px solid #ccc;
+}
+/*We need to remove left-right connectors from elements without any siblings*/
+.trees li:only-child::after,.trees li:only-child::before {
+  display: none;
+}
+/*Remove space from the top of single children*/
+.trees li:only-child {
+  padding-top: 0;
+}
+/*Remove left connector from first child and 
+right connector from last child*/
+.trees li:first-child::before,.trees li:last-child::after {
+  border: 0 none;
+}
+/*Adding back the vertical connector to the last nodes*/
+.trees li:last-child::before {
+  border-right: 1px solid #ccc;
+  border-radius: 0 5px 0 0;
+}
+.trees li:first-child::after {
+  border-radius: 5px 0 0 0;
+}
+/*Time to add downward connectors from parents*/
+.trees ul ul::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  border-left: 1px solid #ccc;
+  width: 0;
+  height: 20px;
+}
+.trees li a {
+  border: 1px solid #ccc;
+  padding: 5px 10px;
+  text-decoration: none;
+  color: #666;
+  font-family: arial, verdana, tahoma;
+  font-size: 11px;
+  display: inline-block;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+/*Time for some hover effects*/
+/*We will apply the hover effect the the lineage of the element also*/
+.trees li a:hover,.trees li a:hover+ul li a {
+  background: #c8e4f8;
+  color: #000;
+  border: 1px solid #94a0b4;
+}
+/*Connector styles on hover*/
+.trees li a:hover+ul li::after,.trees li a:hover+ul li::before,.trees li a:hover+ul::before {
+  border-color: #94a0b4;
+}
+
+   
+</style>
+
+<script type="text/javascript">
+   
+
+    function printDiv(elementId) {
+    var a = document.getElementById('printing-css').value;
+    var b = document.getElementById(elementId).innerHTML;
+    window.frames["print_frame"].document.title = document.title;
+    window.frames["print_frame"].document.body.innerHTML = '<style>' + a + '</style>' + b;
+    window.frames["print_frame"].window.focus();
+    window.frames["print_frame"].window.print();
+    }
+
+   </script>
+<div class="panel panel-default">
+    <div class="panel-heading text-big"><strong>Struktur Organisasi {ORG}</strong></div>
+    <div class="panel-body">
+        <form method="POST" action="{URL_CARI}" class="form-horizontal xhr_simple_form dest_subcontent-element" id="filterbox" role="form">
+            
+            <div class="form-group">
+                <label for="nip" class="col-sm-2 control-label">Satuan Kerja</label>
+                <div class="col-sm-3">
+            <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="unit_kerja"  / -->
+                </div>
+                <div class="col-sm-3">
+                <input type="hidden" name="cari" value="cari" size="30" />
+                <button name="btncari" type="submit" class="btn btn-default btn-sm">Tampilkan <span class="glyphicon glyphicon-search"></span></button>
+                <a class="no-print btn btn-info btn-sm" href="javascript:printDiv('frame');">Cetak <span class="glyphicon glyphicon-print"></span></a>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+
+                </div>
+            </div>
+        </form>
+   
+    </div>
+</div>
+<!-- <div style="text-align:right;"><a class="no-print btn btn-info btn-xs" href="javascript:printDiv('frame');">Print</a> -->
+
+
+<textarea id="printing-css" style="display:none;">.trees {
+  
+  size:297mm 210mm; 
+  size: landscape;
+  width:100%!important;
+}
+.trees ul {
+  padding-top: 20px;
+  position: relative;
+  white-space: nowrap;
+}
+.trees li {
+  display: inline-block;
+  white-space: nowrap;
+  vertical-align: top;
+  margin: 0 -2px;
+  text-align: center;
+  list-style-type: none;
+  position: relative;
+  padding: 20px 5px 0;
+  transition: all .5s;
+  -webkit-transition: all .5s;
+  -moz-transition: all .5s;
+}
+/*We will use ::before and ::after to draw the connectors*/
+.trees li::before,.trees li::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 50%;
+  border-top: 1px solid #ccc;
+  width: 50%;
+  height: 20px;
+}
+.trees li::after {
+  right: auto;
+  left: 50%;
+  border-left: 1px solid #ccc;
+}
+/*We need to remove left-right connectors from elements without any siblings*/
+.trees li:only-child::after,.trees li:only-child::before {
+  display: none;
+}
+/*Remove space from the top of single children*/
+.trees li:only-child {
+  padding-top: 0;
+}
+/*Remove left connector from first child and 
+right connector from last child*/
+.trees li:first-child::before,.trees li:last-child::after {
+  border: 0 none;
+}
+/*Adding back the vertical connector to the last nodes*/
+.trees li:last-child::before {
+  border-right: 1px solid #ccc;
+  border-radius: 0 5px 0 0;
+}
+.trees li:first-child::after {
+  border-radius: 5px 0 0 0;
+}
+/*Time to add downward connectors from parents*/
+.trees ul ul::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  border-left: 1px solid #ccc;
+  width: 0;
+  height: 20px;
+}
+.trees li a {
+  border: 1px solid #ccc;
+  padding: 5px 10px;
+  text-decoration: none;
+  color: #666;
+  font-family: arial, verdana, tahoma;
+  font-size: 11px;
+  display: inline-block;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+/*Time for some hover effects*/
+/*We will apply the hover effect the the lineage of the element also*/
+.trees li a:hover,.trees li a:hover+ul li a {
+  background: #c8e4f8;
+  color: #000;
+  border: 1px solid #94a0b4;
+}
+/*Connector styles on hover*/
+.trees li a:hover+ul li::after,.trees li a:hover+ul li::before,.trees li a:hover+ul::before {
+  border-color: #94a0b4;
+}
+</textarea>
+<iframe id="printing-frame" name="print_frame" src="about:blank" style="display:none;width:100%!important"></iframe>
+</div>
+
+</div>
+     <hr/>
+   <!-- patTemplate:tmpl name="struktur" type="condition" conditionvar="DATA_EMPTY" -->
+      <!-- patTemplate:sub condition="YES" -->
+         <p align="center">-- Pilih Satuan Kerja --</p>
+      <!-- /patTemplate:sub -->
+      <!-- patTemplate:sub condition="NO" -->
+
+
+         <div  style='width:100%!important;background-color:white !important'>
+         <!-- patTemplate:tmpl name="data" -->
+         <div id="frame">
+         <span new=""><div class="trees" id="trees">
+          <ul>
+          <li>
+          {LIDATA}
+        
+          {LITWODATA}
+          
+          </li>
+          </ul>
+          </div></span>
+        </div>
+         <!-- /patTemplate:tmpl -->
+         </div>       
+      
+
+      <!-- /patTemplate:sub -->
+   <!-- /patTemplate:tmpl -->
+<!-- /patTemplate:tmpl -->

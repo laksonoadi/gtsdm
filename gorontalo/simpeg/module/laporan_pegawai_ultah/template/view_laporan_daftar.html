@@ -1,0 +1,137 @@
+<!-- patTemplate:tmpl name="content" -->
+
+<div class="background-blue padding-10 text-big" style="text-transform:uppercase">Laporan Daftar Pegawai Ulang Tahun</div>
+
+<div class="padding-10">
+
+<div class="panel panel-default">
+    <div class="panel-heading text-big"><strong>Pencarian Data</strong></div>
+    <div class="panel-body">
+        <form method="POST" action="{URL_SEARCH}" class="form-horizontal xhr_simple_form dest_subcontent-element" id="filterbox" role="form">
+            
+
+            <div class="form-group">
+                <label for="status" class="col-sm-2 control-label">Cari Ulang Tahun</label>
+                <div class="col-sm-3">
+				
+					<select class="form-control input-sm" name="berdasarkan" style="width:150px">
+						<option value="tanggal" {SELECTED_TANGGAL}>Tanggal</option>
+						<option value="hari_ini" {SELECTED_NIP}>Hari Ini</option>
+						<option value="minggu_ini" >Minggu Ini</option>
+						<option value="bulan_ini" selected>Bulan Ini</option>
+						<!-- <option value="jenisfungsional" {SELECTED_JENISFUNGSIONAL}>Jenis Fungsional</option> -->
+						<option value="kemarin" {SELECTED_STATUS}>Kemarin</option>
+						<option value="minggu_kemarin" {SELECTED_GOLONGAN}>Minggu Kemarin</option>
+						<!-- <option value="fungsional" {SELECTED_FUNGSIONAL}>Tingkatan Jabatan Fungsional</option> -->
+						<option value="bulan_kemarin" {SELECTED_STRUKTURAL}>Bulan Kemarin</option>
+					</select>
+
+                </div>
+            <!--</div>
+             <div class="form-group"> -->
+                <label for="status" class="col-sm-2 control-label">Jenis Urutan</label>
+                <div class="col-sm-4">
+				
+				<select class="form-control input-sm" name="urutan" style="width:200px">
+					<option value="ASC" {SELECTED_ASC}>Dari Rendah Ke Tinggi</option>
+					<option value="DESC" {SELECTED_DESC}>Dari Tinggi Ke Rendah</option>
+				</select>
+
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="nip" class="col-sm-2 control-label">Range Tanggal Awal</label>
+                <div class="col-sm-3">
+            				<!-- patTemplate:gtfwrendermodule module="tanggal" submodule="Tanggal" action="view" name="awal" / -->
+                </div>
+            
+                <label for="nip" class="col-sm-2 control-label">Range Tanggal Akhir</label>
+                <div class="col-sm-4">            
+                            <!-- patTemplate:gtfwrendermodule module="tanggal" submodule="Tanggal" action="view" name="akhir" / -->
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                <input type="hidden" name="cari" value="cari" size="30" />
+                <button name="btncari" type="submit" class="btn btn-default btn-xs">Cari <span class="glyphicon glyphicon-search"></span></button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+   {ISI_PESAN}
+</div>
+
+<!-- /patTemplate:tmpl -->
+
+<div class="row push-down-10">
+    <div class="col-md-6">
+  <!-- patTemplate:gtfwrendermodule module="paging" submodule="paging" action="view" name="paging_top"  / -->
+    </div>
+    <div class="col-md-6 text-right">
+        <div class="btn-group">            
+    <a class="btn btn-xs btn-default" target="_Blank" href="{URL_EXCEL}" title="Export Excel" tabindex="3"><span class="glyphicon glyphicon-excel"></span> Export Excel</a>
+        </div>
+    </div>
+</div>
+
+<div  class="table-responsive" style="max-width:100%; margin-bottom:20px;" >
+
+<table class="table table-bordered" >
+
+<tr>
+	<th rowspan=2>No.</th>
+	<th rowspan=2 style="display:{VFNAMA}">Nama Pegawai</th>
+	<th rowspan=2 style="display:{VFNIP}">NIP Pegawai</th>
+	
+	<th colspan=3 style="display:{VFALAMAT}">Alamat</th>
+	
+	<th colspan=2 style="display:{VFTTL}">TTL</th>
+	<th rowspan=2 style="display:{VFUSIA}">Usia</th>
+</tr>
+<tr>
+	<th style="display:{VFALAMAT}">RT/RW</th>
+	<th style="display:{VFALAMAT}">Kel</th>
+	<th style="display:{VFALAMAT}">Kec</th>
+	
+	<th style="display:{VFTTL}">Tempat</th>
+	<th style="display:{VFTTL}">Tanggal</th>
+
+</tr>
+<!-- patTemplate:tmpl name="table_list" type="condition" conditionvar="EMPTY" -->
+   <!-- patTemplate:sub condition="YES" -->
+    <tr><td align="center" colspan="26">---Data Tidak Ditemukan---</td></tr>
+   <!-- /patTemplate:sub -->
+   <!-- patTemplate:sub condition="NO" -->
+   <!-- patTemplate:tmpl name="table_item" -->
+     <tr>
+  		<td style="{CLASS_NAME}">{NO}</td>
+		<td nowrap style="display:{VFNAMA}">{PEGNAMA}</td>
+  		<td nowrap style="display:{VFNIP}">{PEGKODERESMI}</td>
+  		<td nowrap style="display:{VFALAMAT}">{PEGALAMAT}</td>
+  		<td nowrap style="display:{VFALAMAT}">{PEGKELURAHAN}</td>
+  		<td nowrap style="display:{VFALAMAT}">{PEGKECAMATAN}</td>
+		<td nowrap style="display:{VFTTL}">{PEGTMPLAHIR}</td>
+		<td nowrap style="display:{VFTTL}">{PEGTGLLAHIR}</td>
+    <td nowrap style="display:{VFUSIA}">{USIA}</td>
+		
+  	</tr>
+  <!-- /patTemplate:tmpl -->
+	<!-- /patTemplate:sub -->
+<!-- /patTemplate:tmpl -->
+</table>
+</div>
+
+</div>
+<script>
+document.getElementById('awal_year').setAttribute('style','visibility:hidden');
+document.getElementById('akhir_year').setAttribute('style','visibility:hidden');
+</script>
+
+
+<!-- /patTemplate:tmpl -->

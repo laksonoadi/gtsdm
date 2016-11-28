@@ -1,0 +1,91 @@
+<!-- patTemplate:tmpl name="content" -->
+<h1>{LABEL_TITLE}</h1>
+<br />
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+   {ISI_PESAN}
+</div>
+<br />
+<!-- /patTemplate:tmpl -->
+<h1>Laporan Pegawai Berdasarkan Golongan</h1>
+<br />
+<form method="POST" action="{URL_SEARCH}" class="dataquest xhr_simple_form dest_subcontent-element" id="filterbox">
+   <table>
+      <tr>
+         <th colspan="2"><h2><strong>Pencarian Data</strong></h2></th>
+      </tr>
+      <tr>              
+         <th width="30%">Jenis Pegawai</th>
+         <td>
+            <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="jenis_pegawai"  / -->*
+         </td>
+      </tr>
+      <tr>              
+         <th width="30%">Jenis Jabatan Fungsional</th>
+         <td>
+            <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="jabatan_fungsional"  / -->*
+         </td>
+      </tr>
+      <tr>
+         <th>&nbsp;</th>
+         <td>
+		        <input type="hidden" name="cari" value="cari" size="30" />
+            <input type="submit" name="btncari" value=" Search &raquo;" class="buttonSubmit"/>
+         </td>
+      </tr>
+   </table>
+</form>
+<br />
+<div class="pageBar">
+  <!-- patTemplate:gtfwrendermodule module="paging" submodule="paging" action="view" name="paging_top"  / -->
+  <div class="toolbar">
+    <a target="_Blank" href="{URL_EXCEL}" title="Export Excel" tabindex="3"><img src="images/button-excel.gif" alt="Export Excel">Export Excel</a>
+    <!--<a target="_Blank" href="{URL_RTF}" title="Export Excel" tabindex="3"><img src="images/button-simpan.gif" alt="Export Excel">Simpan Rtf</a>-->
+  </div>
+</div>
+
+<table class="table-common" width="900px">
+<tr>
+	<th rowspan="2" style="width:3%">No.</th>
+	<th rowspan="2">Unit Kerja</th>
+	<th colspan="{GOLONGAN_COLSPAN}">Golongan</th>
+	<th rowspan="2" colspan="2" class="right">Jumlah</th>
+</tr>
+<tr>
+<!-- patTemplate:tmpl name="kolom_golongan" -->
+	<th colspan="2">{GOLONGAN}</th>
+<!-- /patTemplate:tmpl -->
+</tr>
+<tr>
+	<th>1</th>
+	<th>2</th>
+<!-- patTemplate:tmpl name="kolom_nomor_kolom" -->
+	<th colspan="2">{NOMOR_KOLOM}</th>
+<!-- /patTemplate:tmpl -->
+</tr>
+<tr>
+	<th colspan="2" style="font-size:9px"><i>Jenis Kelamin</i></th>
+  <!-- patTemplate:tmpl name="kolom_kelamin" -->
+  	<th>L</th>
+  	<th>P</th>
+  <!-- /patTemplate:tmpl -->
+</tr>
+
+<!-- patTemplate:tmpl name="table_list" type="condition" conditionvar="EMPTY" -->
+   <!-- patTemplate:sub condition="YES" -->
+   <!-- /patTemplate:sub -->
+   <!-- patTemplate:sub condition="NO" -->
+   <!-- patTemplate:tmpl name="table_item" -->
+     <tr>
+  		<td class="{CLASS_NAME}">{NO}</td>
+      <td>{UNIT_KERJA}</td>
+      <!-- patTemplate:tmpl name="jumlah" -->
+      	<td align="right" class="text-right"><font color="red">{JML_L}</font></td>
+      	<td align="right" class="text-right" ><font color="blue">{JML_P}</font></td>
+      <!-- /patTemplate:tmpl -->
+      </tr>
+  <!-- /patTemplate:tmpl -->
+	<!-- /patTemplate:sub -->
+<!-- /patTemplate:tmpl -->
+</table>
+<!-- /patTemplate:tmpl -->
