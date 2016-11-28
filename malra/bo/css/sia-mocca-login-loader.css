@@ -1,0 +1,14 @@
+/* ======================================== 
+    Document   : loader-login.css
+    Created on : Apr 17, 2014
+    Author     : Galih U. Syambudhi [syambudhi@gamatechno.com]
+    Division   : Academic Software
+    Description: for login page stylesheet loader.
+=========================================== */
+
+@import url(sia-mocca/css/a_sia_login.css);
+@import url(css-custome/base.css);
+@import url(css-custome/flexslider.css);
+@import url(css-custome/layout.css);
+@import url(css-custome/reset.css);
+@import url(css-custome/skeleton.css);

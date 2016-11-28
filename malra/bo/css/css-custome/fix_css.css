@@ -1,0 +1,19 @@
+#form-login {
+   color:#005700;
+   margin:0 auto;
+   padding:14px 0 0;
+   text-align:left;
+   width:255px;
+}
+
+#loginBox-head img{
+   display:none;
+}
+ 
+#loginBox-head H1{
+   display:none;
+}
+
+#header-image img{
+   display:none;
+}

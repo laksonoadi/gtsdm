@@ -1,0 +1,51 @@
+/*********/
+/*Padding*/
+/*********/
+
+.padding-none{
+    padding: 0;
+}
+
+.padding-10{
+    padding: 10px !important;
+}
+
+.padding-20{
+    padding: 20px;
+}
+
+.padding-40{
+    padding: 40px;
+}
+
+/********/
+/*Margin*/
+/********/
+
+.margin-none{
+    margin: 0;
+}
+
+.push-down-10{
+    margin-bottom: 10px;
+}
+
+.push-down-20{
+    margin-bottom: 20px;
+}
+
+.push-down-40{
+    margin-bottom: 40px;
+}
+
+.push-up-10{
+    margin-top: 10px;
+}
+
+/********/
+/*Margin*/
+/********/
+
+.border-none{
+    border: none;
+}
