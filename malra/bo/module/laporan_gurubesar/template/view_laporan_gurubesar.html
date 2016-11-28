@@ -1,0 +1,91 @@
+<!-- patTemplate:tmpl name="content" -->
+<h1>{LABEL_TITLE}</h1>
+<br />
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+   {ISI_PESAN}
+</div>
+<br />
+<!-- /patTemplate:tmpl -->
+<h1>Data Guru Besar</h1>
+<br />
+<form method="POST" action="{URL_SEARCH}" class="dataquest xhr_simple_form dest_subcontent-element" id="filterbox">
+   <table>
+      <tr>
+         <th colspan="2"><h2><strong>Pencarian Data</strong></h2></th>
+      </tr>
+      <tr>              
+         <th width="30%">Unit Kerja</th>
+         <td>
+            <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="unit_kerja"  / -->*
+         </td>
+      </tr>
+      <tr>
+         <th>&nbsp;</th>
+         <td>
+		        <input type="hidden" name="cari" value="cari" size="30" />
+            <input type="submit" name="btncari" value=" Search &raquo;" class="buttonSubmit"/>
+         </td>
+      </tr>
+   </table>
+</form>
+<br />
+<div class="pageBar">
+  <!-- patTemplate:gtfwrendermodule module="paging" submodule="paging" action="view" name="paging_top"  / -->
+  <div class="toolbar">
+    <a target="_Blank" href="{URL_EXCEL}" title="Export Excel" tabindex="3"><img src="images/button-excel.gif" alt="Export Excel">Export Excel</a>
+    <!--<a target="_Blank" href="{URL_RTF}" title="Export Excel" tabindex="3"><img src="images/button-simpan.gif" alt="Export Excel">Simpan Rtf</a>-->
+  </div>
+</div>
+
+<table class="table-common" width="700px">
+<tr>
+	<th rowspan=2>No.</th>
+	<th rowspan=2>NIP</th>
+	<th rowspan=2>NAMA</th>
+	<th rowspan=2>GOL</th>
+	<th rowspan=2>JABATAN</th>
+	<th colspan=2>TMT</th>
+	<th rowspan=2>PENDIDIKAN</th>
+	<th rowspan=2>KEPAKARAN</th>
+	<th rowspan=2 class=right>UNIT KERJA</th>
+</tr>
+<tr>
+	<th>GOL</th>
+	<th>JABATAN</th>
+</tr>
+<tr>
+	<th class=bottom>1</th>
+	<th class=bottom>2</th>
+	<th class=bottom>3</th>
+	<th class=bottom>4</th>
+	<th class=bottom>5</th>
+	<th class=bottom>6</th>
+	<th class=bottom>7</th>
+	<th class=bottom>8</th>
+	<th class=bottom>9</th>
+	<th class=bottom-right>10</th>
+</tr>
+<!-- patTemplate:tmpl name="table_list" type="condition" conditionvar="EMPTY" -->
+   <!-- patTemplate:sub condition="YES" -->
+    <tr><td align="center" colspan="10">---Data Tidak Ditemukan---</td></tr>
+   <!-- /patTemplate:sub -->
+   <!-- patTemplate:sub condition="NO" -->
+   <!-- patTemplate:tmpl name="table_item" -->
+     <tr>
+  		<td style="{CLASS_NAME}">{NO}</td>
+  		<td>{NIP}</td>
+		  <td>{NAMA}</td>
+    	<td>{GOL}</td>
+    	<td>{JABATAN}</td>
+    	<td>{GOL_TMT}</td>
+    	<td>{JABATAN_TMT}</td>
+    	<td>{PENDIDIKAN}</td>
+    	<td>{KEPAKARAN}</td>
+    	<td>{UNIT_KERJA}</td>
+  	</tr>
+  <!-- /patTemplate:tmpl -->
+	<!-- /patTemplate:sub -->
+<!-- /patTemplate:tmpl -->
+</table>
+<!-- /patTemplate:tmpl -->

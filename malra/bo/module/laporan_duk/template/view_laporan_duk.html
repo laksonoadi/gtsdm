@@ -1,0 +1,185 @@
+<!-- patTemplate:tmpl name="content" -->
+<div class="background-blue padding-10 text-big" style="text-transform:uppercase">Daftar Urutan Kepangkatan (DUK)</div>
+
+<div class="padding-10">
+
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+   {ISI_PESAN}
+</div>
+<br />
+<!-- /patTemplate:tmpl -->
+
+
+<div class="panel panel-default">
+    <div class="panel-heading text-big"><strong>Pencarian Data</strong></div>
+    <div class="panel-body">
+        <form method="POST" action="{URL_SEARCH}" class="form-horizontal xhr_simple_form dest_subcontent-element" id="filterbox" role="form">
+            
+            <div class="form-group">
+                <label for="nip" class="col-sm-2 control-label">Unit Kerja</label>
+                <div class="col-sm-8">
+                    <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="unit_kerja"  / -->
+                </div>
+            <!--</div>
+             <div class="form-group"> -->
+                
+            </div>
+             <div class="form-group">
+                <label for="nip" class="col-sm-2 control-label">Pangkat/Golongan</label>
+                <div class="col-sm-3">
+                    <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="pangkat_golongan"  / -->
+                </div>
+                <label for="nip" class="col-sm-2 control-label">Jenis Kelamin</label>
+                <div class="col-sm-2">
+                    <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="jenis_kelamin"  / -->
+                </div>
+                <div class="col-sm-1"></div>
+            <!--</div>
+             <div class="form-group"> -->
+                
+                <div class="col-sm-1"></div>
+            </div>
+            <div class="form-group">
+            <label for="nip" class="col-sm-2 control-label">Jenis Pegawai</label>
+                <div class="col-sm-2">
+                    <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="jenis_pegawai"  / -->
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                <input type="hidden" name="cari" value="cari" size="30" />
+                <button name="btncari" type="submit" class="btn btn-default btn-xs">Cari <span class="glyphicon glyphicon-search"></span></button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="row push-down-10">
+    <div class="col-md-6">
+  <!-- patTemplate:gtfwrendermodule module="paging" submodule="paging" action="view" name="paging_top"  / -->
+    </div>
+    <div class="col-md-6 text-right">
+        <div class="btn-group">            
+    <a class="btn btn-xs btn-default" target="_Blank" href="{URL_EXCEL}" title="Export Excel" tabindex="3">Export Excel</a> 
+        </div>
+    </div>
+</div>
+
+<div class="table-responsive" style="max-width:100%; overflow-x:scroll;margin-bottom:20px;">
+<table class="table table-bordered">
+<tr>
+	<th rowspan=2>No.</th>
+	<th rowspan=2>Nama</th>
+	<th rowspan=2>NIP</th>
+	<th colspan=2>TTL</th>
+	<th colspan=2>Pangkat</th>
+	<th colspan=2>Jabatan</th>
+	<th colspan=2>Masa Kerja</th>
+	<th colspan=2>Pendidikan dan Pelatihan</th>
+	<th colspan=2>Pendidikan Terakhir</th>
+	<th rowspan=2>Usia</th>
+	<th rowspan=2>Asal Usul</th>
+	<th rowspan=2>Kecamatan</th>
+	<th rowspan=2>Keterangan</th>
+</tr>
+<tr>
+	<th>Tmp</th>
+	<th>Tgl</th>
+	<th>Gol</th>
+	<th>TMT</th>
+	<th>Nama</th>
+	<th>TMT</th>
+	<th>Thn</th>
+	<th>Bln</th>
+	<th>Nama</th>
+	<th>Tahun</th>
+	<th>Tingkat</th>
+	<th>Lulus</th>
+</tr>
+<tr>
+	<th class=bottom>1</th>
+	<th class=bottom>2</th>
+	<th class=bottom>3</th>
+	<th class=bottom>4</th>
+	<th class=bottom>5</th>
+	<th class=bottom>6</th>
+	<th class=bottom>7</th>
+	<th class=bottom>8</th>
+	<th class=bottom>9</th>
+	<th class=bottom>10</th>
+	<th class=bottom>11</th>
+	<th class=bottom>12</th>
+	<th class=bottom>13</th>
+	<th class=bottom>14</th>
+	<th class=bottom>15</th>
+	<th class=bottom>16</th>
+	<th class=bottom>17</th>
+	<th class=bottom>18</th>
+	<th class=bottom>19</th>
+</tr>
+<!-- patTemplate:tmpl name="table_list" type="condition" conditionvar="EMPTY" -->
+   <!-- patTemplate:sub condition="YES" -->
+    <tr><td align="center" colspan="21">---Data Tidak Ditemukan---</td></tr>
+   <!-- /patTemplate:sub -->
+   <!-- patTemplate:sub condition="NO" -->
+   <!-- patTemplate:tmpl name="table_item" -->
+     <tr>
+  		<td style="{CLASS_NAME}">{NO}</td>
+  		<td nowrap>{NAMA}</td>
+  		<td nowrap>{NIP}</td>
+  		<td nowrap>{TEMPAT_LAHIR}</td>
+  		<td nowrap>{TANGGAL_LAHIR}</td>
+  		<td nowrap>{GOLONGAN}</td>
+  		<td nowrap>{GOLONGAN_TMT}</td>
+  		<td nowrap>{JABATAN}</td>
+  		<td nowrap>{JABATAN_TMT}</td>
+  		<td nowrap align=right style='text-align:right'>{MASA_KERJA_TAHUN}</td>
+  		<td nowrap align=right style='text-align:right'>{MASA_KERJA_BULAN}</td>
+
+   <!-- patTemplate:tmpl name="list_latihan" type="condition" conditionvar="EMPTY" -->
+   <!-- patTemplate:sub condition="YES" -->
+      <td nowrap></td>
+      <td nowrap></td>
+      <!-- patTemplate:comment -->
+      <td nowrap align=right style='text-align:right'></td>
+      <!-- /patTemplate:comment -->
+   <!-- /patTemplate:sub -->
+   <!-- patTemplate:sub condition="NO" -->
+    <td nowrap width="100px">
+    <!-- patTemplate:tmpl name="nm" -->
+      {LATIHAN_NAMA}<br/>
+    <!-- /patTemplate:tmpl -->
+    </td>
+    <td nowrap>
+    <!-- patTemplate:tmpl name="thn" -->
+  		{LATIHAN_TAHUN}<br/>
+    <!-- /patTemplate:tmpl -->
+    </td>
+    <!-- patTemplate:comment -->
+    <td nowrap align=right style='text-align:right'>
+    <!-- patTemplate:tmpl name="jm" -->
+      {LATIHAN_JAM}<br/>
+    <!-- /patTemplate:tmpl -->
+    </td>
+    <!-- /patTemplate:comment -->
+    
+    <!-- /patTemplate:sub -->
+    <!-- /patTemplate:tmpl -->
+  		
+  		<td nowrap>{PENDIDIKAN_TINGKAT}</td>
+  		<td nowrap>{PENDIDIKAN_LULUS}</td>
+  		<td nowrap>{USIA}</td>
+  		<td nowrap>{ASAL}</td>
+  		<td nowrap>{KECAMATAN}</td>
+  		<td nowrap></td>
+  	</tr>
+  <!-- /patTemplate:tmpl -->
+	<!-- /patTemplate:sub -->
+<!-- /patTemplate:tmpl -->
+</table>
+</div>
+</div>
+<!-- /patTemplate:tmpl -->

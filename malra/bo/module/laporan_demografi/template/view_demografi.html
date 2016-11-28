@@ -1,0 +1,159 @@
+<!-- patTemplate:tmpl name="content" -->
+<script language="javascript" type="text/javascript">
+function selectAll(){
+  var kategori=Array('status','posisi','grade','lama_kerja','jenis_kelamin','umur','pendidikan','status_nikah','agama');
+  for (i=0; i<kategori.length; i++){
+    document.getElementById(kategori[i]).checked=true;
+  }
+}
+
+function unselectAll(){
+  var kategori=Array('status','posisi','grade','lama_kerja','jenis_kelamin','umur','pendidikan','status_nikah','agama');
+  for (i=0; i<kategori.length; i++){
+    document.getElementById(kategori[i]).checked=false;
+  }
+}
+
+function bukaPopupCetak(xurl) {
+		var xpopup;
+		xpopup=window.open(xurl,'xpopup','width=900,height=600,resizable=yes,scrollbars=yes,right=0;center');
+		xpopup.focus();
+}
+</script> 
+
+<div class="background-blue padding-10 text-big" style="text-transform:uppercase">Laporan Ringakasan Kepegawaian</div>
+
+<div class="padding-10">
+
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+{ISI_PESAN}
+</div>
+<br />
+<!-- /patTemplate:tmpl -->
+
+<div class="panel panel-default">
+    <div class="panel-heading text-big"><strong>Pencarian Data</strong></div>
+    <div class="panel-body">
+        <form method="POST" action="{URL_SEARCH}" class="form-horizontal xhr_simple_form dest_subcontent-element" id="filterbox" role="form">
+
+            <div class="form-group">
+                <label for="nip" class="col-sm-2 control-label">Pilih Kategori</label>
+                <div class="col-sm-3">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-3">
+                <input type="checkbox" name="status" id="status" {STATUS}>&nbsp;&nbsp;Status
+                </div>
+                <div class="col-sm-3">
+                    <input type="checkbox" name="posisi" id="posisi" {POSISI}>&nbsp;&nbsp;Posisi
+                </div>
+                <div class="col-sm-3">
+                    <input type="checkbox" name="grade" id="grade" {GRADE}>&nbsp;&nbsp;Pangkat
+                </div>
+                <div class="col-sm-3">
+                    <input type="checkbox" name="lama_kerja" id="lama_kerja" {LAMA_KERJA}>&nbsp;&nbsp;Lama Kerja
+                </div>
+                <div class="col-sm-3">
+                    <input type="checkbox" name="jenis_kelamin" id="jenis_kelamin" {JENIS_KELAMIN}>&nbsp;&nbsp;Jender
+                </div>
+                <div class="col-sm-3"><input type="checkbox" name="umur" id="umur" {UMUR}>&nbsp;&nbsp;Umur
+                </div>
+                <div class="col-sm-3"><input type="checkbox" name="pendidikan" id="pendidikan" {PENDIDIKAN}>&nbsp;&nbsp;Latar Belakang Pendidikan
+                </div>
+                <div class="col-sm-3"><input type="checkbox" name="status_nikah" id="status_nikah" {STATUS_NIKAH}>&nbsp;&nbsp;Status Pernikahan</div>
+                <div class="col-sm-3"><input type="checkbox" name="agama" id="agama" {AGAMA}>&nbsp;&nbsp;Agama</div>
+                
+                <!--<div class="col-sm-3"><input type="checkbox" name="or" id="or" {OR}>&nbsp;&nbsp;Recruitment</div>
+                <div class="col-sm-3"><input type="checkbox" name="pelatihan" id="pelatihan" {PELATIHAN}>&nbsp;&nbsp;Pelatihan</div>
+
+                 <div class="col-sm-3"><input type="checkbox" name="mutasi" id="mutasi" {MUTASI}>&nbsp;&nbsp;Mutasi</div>
+                 <div class="col-sm-3"><input type="checkbox" name="hukuman" id="hukuman" {HUKUMAN}>&nbsp;&nbsp;Hukuman</div>
+                 <div class="col-sm-3"><input type="checkbox" name="keluar" id="keluar" {KELUAR}>&nbsp;&nbsp;Keluar</div>
+
+                 <div class="col-sm-3"><input type="checkbox" name="dinas" id="dinas" {DINAS}>&nbsp;&nbsp;Dinas</div>-->
+
+
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+<input type="submit" name="btncari" value=" View &raquo;" class=" btn btn-xs btn-default buttonSubmit"/>
+      <input type="button" name="btnselectall" value=" Pilih semua " onclick="selectAll()" class="buttonSubmit btn btn-xs btn-default"/>
+      <input type="button" name="btnunselectall" value=" Tidak dipilih semua " onclick="unselectAll()" class=" btn btn-xs btn-default buttonSubmit"/>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="row push-down-10">
+    <div class="col-md-6">
+    </div>
+    <div class="col-md-6 text-right">
+        <div class="btn-group">            
+    <!-- <a href="javascript:bukaPopupCetak('{URL_PRINT}')" title="Print" tabindex="2" class="btn btn-default btn-xs"> <span class="glyphicon glyphicon-print"></span> Print</a>  -->
+    <a class="btn btn-default btn-xs" target="_blank" href="{URL_EXCEL}" title="Excel" tabindex="2"> <span class="glyphicon glyphicon-file"></span>  Excel</a>
+    <!-- <a target="_blank" href="{URL_GRAFIK}" class="btn btn-default btn-xs" title="Graphic" tabindex="2">  <span class="glyphicon glyphicon-signal"></span> Grafik</a> -->
+    </div>
+</div>
+
+<h3>{JUDUL_DATA}</h3>
+
+<div class="table-responsive" style="max-width:100%; overflow-x:scroll;margin-bottom:20px;">
+<table class="table table-bordered">
+<tr>
+  <th>NO</th>
+  <th>DESCRIPTION</th>
+  <th>TOTAL</th>
+  <!-- patTemplate:tmpl name="data_judul" -->
+    <th>{LABEL_JUDUL}</th>
+  <!-- /patTemplate:tmpl -->
+</tr>
+
+<!-- patTemplate:tmpl name="data_kategori_m" visibility="hidden" -->
+   <tr><td colspan="{JUM}"><b>&nbsp;{JUDUL_KATEGORI}</b></td></tr>
+   <!-- patTemplate:tmpl name="data_item_m" -->
+   <tr class="{CLASS_NAME}">
+     <td align="center" width="10%">{NUMBER}</td>
+     <td align="left">{LABEL}</td>
+     <td align="center">{TOTAL}</td>
+     <!-- patTemplate:tmpl name="data_nilai_m" -->
+        <td align="center">{NILAI}</td>
+     <!-- /patTemplate:tmpl -->
+     
+   </tr>
+   <!-- /patTemplate:tmpl -->
+   <tr><td colspan="{JUM}">&nbsp;</td></tr>
+<!-- /patTemplate:tmpl -->
+
+<!-- patTemplate:tmpl name="data_kategori_" visibility="hidden" -->
+   <tr><td colspan="{JUM}"><b>&nbsp;{JUDUL_KATEGORI}</b></td></tr>
+   <!-- patTemplate:tmpl name="data_item_" -->
+   <tr class="{CLASS_NAME}">
+     <td align="center" width="10%">{NUMBER}</td>
+     <td align="left">{LABEL}</td>
+     <td align="center">{TOTAL}</td>
+     <!-- patTemplate:tmpl name="data_nilai_" -->
+        <td align="center">{NILAI}</td>
+     <!-- /patTemplate:tmpl -->
+   </tr>
+   <!-- /patTemplate:tmpl -->
+   <tr >
+      <td align="right" colspan="2"><font color="blue"><b>Sub Total</b></font></td>
+      <td align="center"><font color="blue"><b>{TOTAL}</b></font></td>
+      <!-- patTemplate:tmpl name="data_sub_total_" -->
+          <td align="center"><font color="blue"><b>{SUB_TOTAL}</b></font></td>
+      <!-- /patTemplate:tmpl -->
+   </tr>
+   <tr><td colspan="{JUM}">&nbsp;</td></tr>
+<!-- /patTemplate:tmpl -->
+    
+</table>
+</div>
+</div>
+
+</div>
+<!-- /patTemplate:tmpl -->

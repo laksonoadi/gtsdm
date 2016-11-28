@@ -1,0 +1,141 @@
+<!-- patTemplate:tmpl name="content" -->
+<div class="background-blue padding-10 text-big" style="text-transform:uppercase">Laporan nominatif</div>
+
+<div class="padding-10">
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+   {ISI_PESAN}
+</div>
+<!-- /patTemplate:tmpl -->
+
+<div class="panel panel-default">
+    <div class="panel-heading text-big"><strong>Pencarian Data</strong></div>
+    <div class="panel-body">
+        <form method="POST" action="{URL_SEARCH}" class="form-horizontal xhr_simple_form dest_subcontent-element" id="filterbox" role="form">
+            
+            <div class="form-group">
+                <label for="nip" class="col-sm-2 control-label">Unit Kerja</label>
+                <div class="col-sm-3 ">
+            <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="unit_kerja"  / -->
+                </div>
+            </div>
+             <div class="form-group">
+                <label for="nip" class="col-sm-2 control-label">Jenis Pegawai</label>
+                <div class="col-sm-3">          <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="jenis"  / -->
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                <input type="hidden" name="cari" value="cari" size="30" />
+                <button name="btncari" type="submit" class="btn btn-default btn-xs">Cari <span class="glyphicon glyphicon-search"></span></button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<div class="row push-down-10">
+    <div class="col-md-6">
+  <!-- patTemplate:gtfwrendermodule module="paging" submodule="paging" action="view" name="paging_top"  / -->
+    </div>
+    <div class="col-md-6 text-right">
+        <div class="btn-group">            
+    <a target="_Blank" href="{URL_EXCEL}" title="Export Excel" tabindex="3" class="btn btn-xs btn-default">Export Excel</a>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="table-responsive" style="max-width:100%; overflow-x:scroll;margin-bottom:20px;">
+<table class="table table-bordered">
+<tr>
+	<th>No.</th>
+	<th>Nama</th>
+	<th>Tempat Lahir</th>
+	<th>Tgl/Bln/Thn<br>Lahir</th>
+	<th>NIP</th>
+	<th>TMT CPNS</th>
+	<th>TMT PNS</th>
+	
+	<th>Gol/Ruang<br>Terakhir</th>
+	<th>Berkala</th>
+	<th>Status Perkawinan</th>
+	<th>Agama</th>
+	<th>Status Hukum</th>
+	<th>Status Pegawai</th>
+	<th>Instansi Lama</th>
+	<th>TMT Jabatan</th>
+	<th>Eselon</th>
+	<th>Diklat Perjenjangan</th>
+</tr>
+<tr>
+	<th class=bottom>1</th>
+	<th class=bottom>2</th>
+	<th class=bottom>3</th>
+	<th class=bottom>4</th>
+	<th class=bottom>5</th>
+	<th class=bottom>6</th>
+	<th class=bottom>7</th>
+	<th class=bottom>8</th>
+	<th class=bottom>9</th>
+	<th class=bottom>10</th>
+	<th class=bottom>11</th>
+	<th class=bottom>12</th>
+	<th class=bottom>13</th>
+	<th class=bottom>14</th>
+	<th class=bottom>15</th>
+	<th class=bottom>16</th>
+	<th class=bottom>17</th>
+</tr>
+<!-- patTemplate:tmpl name="table_list" type="condition" conditionvar="EMPTY" -->
+   <!-- patTemplate:sub condition="YES" -->
+    <tr><td align="center" colspan="17">---Data Tidak Ditemukan---</td></tr>
+   <!-- /patTemplate:sub -->
+   <!-- patTemplate:sub condition="NO" -->
+   <!-- patTemplate:tmpl name="table_item" -->
+     <tr>
+  		<td style="{CLASS_NAME}">{NO}</td>
+  		<td nowrap>{NAMA}</td>
+  		<td nowrap>{PEGTMPLAHIR}</td>
+  		<td nowrap>{TANGGAL_LAHIR}</td>
+  		<td nowrap>{NIP}</td>
+		
+  		<td nowrap>{PEGCPNSTMT}</td>
+  		<td nowrap>{PEGPNSTMT}</td>
+  		<td nowrap>{GOLONGAN}</td>
+  		<td nowrap>{BERKALA}</td>
+		
+  		<td nowrap>{STATNKHNAMA}</td>
+  		<td nowrap>{AGMNAMA}</td>
+  		<td nowrap>{STATRPEGAWAI}</td>
+  		<td nowrap>{JENIS_PEGAWAI}</td>
+		
+  		<td nowrap>{INSTANSI_LAMA}</td>
+  		<td nowrap>{JABATAN_TMT}</td>
+  		<td nowrap>{NAMEESELON}</td>
+		
+   <!-- patTemplate:tmpl name="list_latihan" type="condition" conditionvar="EMPTY" -->
+   <!-- patTemplate:sub condition="YES" -->
+      <td nowrap></td>
+   <!-- /patTemplate:sub -->
+   <!-- patTemplate:sub condition="NO" -->
+    <td nowrap>
+    <!-- patTemplate:tmpl name="thn" -->
+  		{LATIHAN_TAHUN} : {LATIHAN_NAMA}<br/>
+    <!-- /patTemplate:tmpl -->
+    </td>
+    
+    <!-- /patTemplate:sub -->
+    <!-- /patTemplate:tmpl -->
+  		
+  	</tr>
+  <!-- /patTemplate:tmpl -->
+	<!-- /patTemplate:sub -->
+<!-- /patTemplate:tmpl -->
+</table>
+</div>
+</div>
+<!-- /patTemplate:tmpl -->

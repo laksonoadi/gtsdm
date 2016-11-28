@@ -1,0 +1,459 @@
+<!-- patTemplate:tmpl name="document" -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+        font-family: Calibri,Tahoma,Arial,"Times New Roman",sans-serif;
+        font-size: 11pt;
+      }
+      table {
+        border-collapse: collapse;
+      }
+      .page {
+        width: {100};
+        text-align: center;
+      }
+      .main-title {
+        width: {100};
+        text-align: center;
+        font-size: 120%;
+      }
+      .photo img, .photo .photo-empty {
+        width: 4cm;
+        height: 6cm;
+        vertical-align: middle;
+        text-align: center;
+        border: 1pt solid #000;
+      }
+      .contents {
+        text-align: left;
+      }
+      .contents table .cell-num {
+        text-align: center;
+        width: 30pt;
+      }
+      .contents table th, .contents table td {
+        padding: 3pt 6pt;
+        border: 1pt solid #000;
+      }
+      .text-left {
+        text-align: left;
+      }
+      .text-center {
+        text-align: center;
+      }
+    </style>
+  </head>
+  
+  <body>
+    <div class="page">
+      <span class="main-title"><u>DAFTAR RIWAYAT HIDUP</u></span>
+      <br/>
+      <br/>
+      <br/>
+      <table class="photo" nobr="true">
+        <tr>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+      <!-- patTemplate:tmpl name="photo" type="condition" conditionvar="IS_EMPTY" -->
+      <!-- patTemplate:sub condition="NO" -->
+          <td><img src="{URL_PHOTO}"></td>
+      <!-- /patTemplate:sub -->
+      <!-- patTemplate:sub condition="YES" -->
+          <td class="photo-empty">
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            Pasphoto<br/>
+            4 x 6
+          </td>
+      <!-- /patTemplate:sub -->
+      <!-- /patTemplate:tmpl -->
+        </tr>
+      </table>
+      <br/>
+      <div class="contents">
+        <span>I. KETERANGAN PERORANGAN</span>
+        <br/>
+        <table>
+          <tr nobr="true">
+            <td class="cell-num">1</td>
+            <td class="text-left">Nama Lengkap</td>
+            <td>{GELAR_DEPAN} {NAMA} {GELAR_BELAKANG}</td>
+          </tr>
+          <tr nobr="true">
+            <td class="cell-num">2</td>
+            <td class="text-left">NIP</td>
+            <td>{NIP}</td>
+          </tr>
+          <tr nobr="true">
+            <td class="cell-num">3</td>
+            <td class="text-left">Tempat / Tanggal Lahir</td>
+            <td>{TTL}</td>
+          </tr>
+          <tr nobr="true">
+            <td class="cell-num">4</td>
+            <td class="text-left">Pangkat dan Golongan Ruang</td>
+            <td>{PANGKAT_GOLONGAN}</td>
+          </tr>
+          <tr nobr="true">
+            <td class="cell-num">5</td>
+            <td class="text-left">Jabatan / Eselon</td>
+            <td>{ESELON}</td>
+          </tr>
+          <tr nobr="true">
+            <td class="cell-num">6</td>
+            <td class="text-left">Jenis Kelamin</td>
+            <td>{JENIS_KELAMIN}</td>
+          </tr>
+          <tr nobr="true">
+            <td class="cell-num">7</td>
+            <td class="text-left">Agama</td>
+            <td>{AGAMA}</td>
+          </tr>
+          <tr nobr="true">
+            <td class="cell-num">8</td>
+            <td class="text-left">Status Perkawinan</td>
+            <td>{STATUS_NIKAH}</td>
+          </tr>
+        </table>
+        <br/>
+        <br/>
+        <span>II. PENDIDIKAN</span>
+        <br/>
+        <span>1. Pendidikan di Dalam dan Luar Negeri</span>
+        <br/>
+        <table>
+            <tr nobr="true">
+              <th valign="middle" class="cell-num">NO</th>
+              <th valign="middle" class="text-center">TINGKAT</th>
+              <th valign="middle">NAMA PENDIDIKAN</th>
+              <th valign="middle" class="text-center">JURUSAN</th>
+              <th valign="middle">STTB / TANDA LULUS / IJAZAH TAHUN</th>
+              <th valign="middle" class="text-center">TEMPAT</th>
+              <th valign="middle">NAMA KEPALA SEKOLAH / DIREKTUR / DEKAN / PROMOTOR</th>
+            </tr>
+            <!-- patTemplate:tmpl name="pendidikan" type="condition" conditionvar="IS_EMPTY" -->
+            <!-- patTemplate:sub condition="__default" -->
+            <!-- patTemplate:tmpl name="pendidikan_empty" loop="10" -->
+            <tr nobr="true">
+              <td>&nbsp;<br/></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <!-- /patTemplate:tmpl -->
+            <!-- /patTemplate:sub -->
+            <!-- patTemplate:sub condition="NO" -->
+            <tr nobr="true">
+              <td>{PAT_ROW_VAR}</td>
+              <td>{JPENDLABEL}</td>
+              <td>{INSTITUSI}</td>
+              <td>{JURUSAN}</td>
+              <td>{LULUS}</td>
+              <td>{NEGLABEL}</td>
+              <td>{KEPSEK}</td>
+            </tr>
+            <!-- /patTemplate:sub -->
+            <!-- /patTemplate:tmpl -->
+        </table>
+        <br/>
+        <span>2. Kursus/Latihan di Dalam dan Luar Negeri</span>
+        <br/>
+        <table>
+            <tr nobr="true">
+              <th valign="middle" class="cell-num">NO</th>
+              <th valign="middle">NAMA KURSUS / LATIHAN</th>
+              <th valign="middle" class="text-center">PERIODE</th>
+              <th valign="middle">IJAZAH / TANDA LULUS / SURAT KETERANGAN TAHUN</th>
+              <th valign="middle" class="text-center">TEMPAT</th>
+              <th valign="middle" class="text-center">KETERANGAN</th>
+            </tr>
+            <!-- patTemplate:tmpl name="pelatihan" type="condition" conditionvar="IS_EMPTY" -->
+            <!-- patTemplate:sub condition="__default" -->
+            <!-- patTemplate:tmpl name="pelatihan_empty" loop="10" -->
+            <tr nobr="true">
+              <td>&nbsp;<br/></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <!-- /patTemplate:tmpl -->
+            <!-- /patTemplate:sub -->
+            <!-- patTemplate:sub condition="NO" -->
+            <!-- patTemplate:var name="MULAI" hidden="yes" modifierType="php" modifier="date2string" / -->
+            <!-- patTemplate:var name="SELESAI" hidden="yes" modifierType="php" modifier="date2string" / -->
+            <tr nobr="true">
+              <td>{PAT_ROW_VAR}</td>
+              <td>{NAMA}</td>
+              <td>{MULAI} s/d {SELESAI}</td>
+              <td>{TAHUN}</td>
+              <td>{TEMPAT}</td>
+              <td>{KET}</td>
+            </tr>
+            <!-- /patTemplate:sub -->
+            <!-- /patTemplate:tmpl -->
+        </table>
+        <br/>
+        <br/>
+        <span>III. RIWAYAT JABATAN</span>
+        <br/>
+        <table>
+            <tr class="text-center" nobr="true">
+              <th valign="middle" class="cell-num">NO</th>
+              <th valign="middle">JABATAN</th>
+              <th valign="middle">PERIODE</th>
+              <th valign="middle">INSTANSI INDUK</th>
+              <th valign="middle">KETERANGAN</th>
+            </tr>
+            <!-- patTemplate:tmpl name="jabatan" type="condition" conditionvar="IS_EMPTY" -->
+            <!-- patTemplate:sub condition="__default" -->
+            <!-- patTemplate:tmpl name="jabatan_empty" loop="10" -->
+            <tr nobr="true">
+              <td>&nbsp;<br/></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <!-- /patTemplate:tmpl -->
+            <!-- /patTemplate:sub -->
+            <!-- patTemplate:sub condition="NO" -->
+            <!-- patTemplate:var name="MULAI" hidden="yes" modifier="date2string" / -->
+            <!-- patTemplate:var name="SELESAI" hidden="yes" modifier="date2string" / -->
+            <tr nobr="true">
+              <td>{PAT_ROW_VAR}</td>
+              <td>{JABSTRUK}</td>
+              <td>{MULAI} s/d {SELESAI}</td>
+              <td>{SATUAN_KERJA_INDUK}</td>
+              <td></td>
+            </tr>
+            <!-- /patTemplate:sub -->
+            <!-- /patTemplate:tmpl -->
+        </table>
+        <br/>
+        <br/>
+        <span>IV. TANDA PENGHARGAAN</span>
+        <br/>
+        <table>
+            <tr class="text-center" nobr="true">
+              <th valign="middle" class="cell-num">NO</th>
+              <th valign="middle">NAMA BINTANG / SATYA LENCANA PENGHARGAAN</th>
+              <th valign="middle">TAHUN PEROLEHAN</th>
+              <th valign="middle">LAMANYA</th>
+              <th valign="middle">KETERANGAN</th>
+            </tr>
+            <!-- patTemplate:tmpl name="penghargaan" type="condition" conditionvar="IS_EMPTY" -->
+            <!-- patTemplate:sub condition="__default" -->
+            <!-- patTemplate:tmpl name="penghargaan_empty" loop="10" -->
+            <tr nobr="true">
+              <td>&nbsp;<br/></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <!-- /patTemplate:tmpl -->
+            <!-- /patTemplate:sub -->
+            <!-- patTemplate:sub condition="NO" -->
+            <tr nobr="true">
+              <td>{PAT_ROW_VAR}</td>
+              <td>{TANDA_JASA}<br/>{SK_NOMOR}</td>
+              <td>{SK_TAHUN}</td>
+              <td></td>
+              <td>{KETERANGAN}</td>
+            </tr>
+            <!-- /patTemplate:sub -->
+            <!-- /patTemplate:tmpl -->
+        </table>
+        <br/>
+        <br/>
+        <span>V. DAFTAR PENILAIAN PRESTASI KERJA</span>
+        <br/>
+        <table>
+            <tr class="text-center" nobr="true">
+              <th valign="middle" class="cell-num">NO</th>
+              <th valign="middle">TAHUN</th>
+              <th valign="middle">NILAI RATA-RATA</th>
+              <th valign="middle">KETERANGAN</th>
+            </tr>
+            <!-- patTemplate:tmpl name="prestasi" type="condition" conditionvar="IS_EMPTY" -->
+            <!-- patTemplate:sub condition="__default" -->
+            <!-- patTemplate:tmpl name="prestasi_empty" loop="10" -->
+            <tr nobr="true">
+              <td>&nbsp;<br/></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <!-- /patTemplate:tmpl -->
+            <!-- /patTemplate:sub -->
+            <!-- patTemplate:sub condition="NO" -->
+            <tr nobr="true">
+              <td>{PAT_ROW_VAR}</td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <!-- /patTemplate:sub -->
+            <!-- /patTemplate:tmpl -->
+        </table>
+        <br/>
+        <br/>
+        <span>VI. PENGALAMAN</span>
+        <br/>
+        <table>
+            <tr class="text-center" nobr="true">
+              <th valign="middle" class="cell-num">NO</th>
+              <th valign="middle">NEGARA</th>
+              <th valign="middle">TUJUAN PENUGASAN</th>
+              <th valign="middle">LAMANYA</th>
+              <th valign="middle">KETERANGAN</th>
+            </tr>
+            <!-- patTemplate:tmpl name="kunjungan" type="condition" conditionvar="IS_EMPTY" -->
+            <!-- patTemplate:sub condition="__default" -->
+            <!-- patTemplate:tmpl name="kunjungan_empty" loop="10" -->
+            <tr nobr="true">
+              <td>&nbsp;<br/></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <!-- /patTemplate:tmpl -->
+            <!-- /patTemplate:sub -->
+            <!-- patTemplate:sub condition="NO" -->
+            <!-- patTemplate:var name="MULAI" hidden="yes" modifier="date2string" / -->
+            <!-- patTemplate:var name="SELESAI" hidden="yes" modifier="date2string" / -->
+            <tr nobr="true">
+              <td>{PAT_ROW_VAR}</td>
+              <td>{NEGLABEL}</td>
+              <td>{TUJUAN}</td>
+              <td>{MULAI} s/d {SELESAI}</td>
+              <td>{KET}</td>
+            </tr>
+            <!-- /patTemplate:sub -->
+            <!-- /patTemplate:tmpl -->
+        </table>
+        <br/>
+        <br/>
+        <span>VII. KETERANGAN KELUARGA</span>
+        <br/>
+        <span>1. Istri / Suami</span>
+        <br/>
+        <table>
+            <tr class="text-center" nobr="true">
+              <th valign="middle" class="cell-num">NO</th>
+              <th valign="middle">NAMA</th>
+              <th valign="middle">TEMPAT LAHIR</th>
+              <th valign="middle">TANGGAL LAHIR</th>
+              <th valign="middle">TANGGAL MENIKAH</th>
+              <th valign="middle">PEKERJAAN</th>
+              <th valign="middle">KETERANGAN</th>
+            </tr>
+            <!-- patTemplate:tmpl name="pasangan" type="condition" conditionvar="IS_EMPTY" -->
+            <!-- patTemplate:sub condition="__default" -->
+            <!-- patTemplate:tmpl name="pasangan_empty" loop="2" -->
+            <tr nobr="true">
+              <td>&nbsp;<br/></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <!-- /patTemplate:tmpl -->
+            <!-- /patTemplate:sub -->
+            <!-- patTemplate:sub condition="NO" -->
+            <!-- patTemplate:var name="TGL_LAHIR" hidden="yes" modifier="date2string" / -->
+            <!-- patTemplate:var name="TGL_NIKAH" hidden="yes" modifier="date2string" / -->
+            <tr nobr="true">
+              <td>{PAT_ROW_VAR}</td>
+              <td>{NAMA}</td>
+              <td>{TMPT}</td>
+              <td>{TGL_LAHIR}</td>
+              <td>{TGL_NIKAH}</td>
+              <td>{KERJA}</td>
+              <td>{KET}</td>
+            </tr>
+            <!-- /patTemplate:sub -->
+            <!-- /patTemplate:tmpl -->
+        </table>
+        <br/>
+        <span>2. Anak</span>
+        <br/>
+        <table>
+            <tr class="text-center" nobr="true">
+              <th valign="middle" class="cell-num">NO</th>
+              <th valign="middle">NAMA</th>
+              <th valign="middle">JENIS KELAMIN</th>
+              <th valign="middle">TEMPAT LAHIR</th>
+              <th valign="middle">TANGGAL LAHIR</th>
+              <th valign="middle">PEKERJAAN</th>
+              <th valign="middle">KETERANGAN</th>
+            </tr>
+            <!-- patTemplate:tmpl name="anak" type="condition" conditionvar="IS_EMPTY" -->
+            <!-- patTemplate:sub condition="__default" -->
+            <!-- patTemplate:tmpl name="anak_empty" loop="5" -->
+            <tr nobr="true">
+              <td>&nbsp;<br/></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <!-- /patTemplate:tmpl -->
+            <!-- /patTemplate:sub -->
+            <!-- patTemplate:sub condition="NO" -->
+            <!-- patTemplate:var name="TGL_LAHIR" hidden="yes" modifier="date2string" / -->
+            <tr nobr="true">
+              <td>{PAT_ROW_VAR}</td>
+              <td>{NAMA}</td>
+              <td>{JENKEL}</td>
+              <td>{TMPT}</td>
+              <td>{TGL_LAHIR}</td>
+              <td>{KERJA}</td>
+              <td>{KET}</td>
+            </tr>
+            <!-- /patTemplate:sub -->
+            <!-- /patTemplate:tmpl -->
+        </table>
+        
+        <p align="justify" style="text-indent: 15pt;">Demikian Daftar Riwayat Hidup ini Saya buat dengan sesungguhnya dan apabila di kemudian hari terdapat keterangan yang tidak benar Saya bersedia dituntut di muka Pengadilan serta bersedia menerima segala tindakan yang diambil oleh Pemerintah.</p>
+        <br/>
+      </div>
+      <table>
+        <tr class="text-center">
+          <td></td>
+          <td></td>
+          <td>
+            ......................... , {DATE_TODAY}<br/>
+            <br/>
+            Yang Membuat<br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <u>{NAMA}</u><br/>
+            NIP. {NIP}<br/>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>
+<!-- /patTemplate:tmpl -->

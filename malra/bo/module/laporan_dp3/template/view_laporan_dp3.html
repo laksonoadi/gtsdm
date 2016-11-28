@@ -1,0 +1,114 @@
+<!-- patTemplate:tmpl name="content" -->
+<h1>{LABEL_TITLE}</h1>
+<br />
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+   {ISI_PESAN}
+</div>
+<br />
+<!-- /patTemplate:tmpl -->
+<h1>Daftar Penilaian Pelaksanaan Pekerjaan (DP3)</h1>
+<br />
+<form method="POST" action="{URL_SEARCH}" class="dataquest xhr_simple_form dest_subcontent-element" id="filterbox">
+   <table>
+      <tr>
+         <th colspan="2"><h2><strong>Search Data</strong></h2></th>
+      </tr>
+      <tr>              
+         <th width="30%">Periode Awal</th>
+         <td>
+            <!-- patTemplate:gtfwrendermodule module="tanggal" submodule="Tanggal" action="view" name="awal" / -->
+         </td>
+      </tr>
+      <tr>              
+         <th width="30%">Periode Akhir</th>
+         <td>
+            <!-- patTemplate:gtfwrendermodule module="tanggal" submodule="Tanggal" action="view" name="akhir" / -->
+         </td>
+      </tr>
+      <tr>              
+         <th width="30%">Unit Kerja</th>
+         <td>
+            <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="unit_kerja"  / -->*
+         </td>
+      </tr>
+	    <tr>              
+         <th width="30%">Pangkat/Golongan</th>
+         <td>
+            <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="pangkat_golongan"  / -->*
+         </td>
+      </tr>
+      <tr>
+         <th>&nbsp;</th>
+         <td>
+		        <input type="hidden" name="cari" value="cari" size="30" />
+            <input type="submit" name="btncari" value=" Search &raquo;" class="buttonSubmit"/>
+         </td>
+      </tr>
+   </table>
+</form>
+<br />
+<div class="pageBar">
+  <!-- patTemplate:gtfwrendermodule module="paging" submodule="paging" action="view" name="paging_top"  / -->
+  <div class="toolbar">
+    <a target="_Blank" href="{URL_EXCEL}" title="Export Excel" tabindex="3"><img src="images/button-excel.gif" alt="Export Excel">Export Excel</a>
+  </div>
+</div>
+
+<table class="table-common">
+<tr>
+	<th>No.</th>
+	<th>NIP</th>
+	<th>Nama</th>
+	<th>Pangkat</th>
+  <th>Kesetiaan</th>
+	<th>Prestasi Kerja</th>
+	<th>Tanggung Jawab</th>
+	<th>Ketaatan</th>
+	<th>Kejujuran</th>
+	<th>Kerjasama</th>
+	<th>Prakarsa</th>
+	<th>Kepemimpinan</th>
+	<th>Unit Kerja</th>
+</tr>
+<tr>
+	<th class=bottom>1</th>
+	<th class=bottom>2</th>
+	<th class=bottom>3</th>
+	<th class=bottom>4</th>
+	<th class=bottom>5</th>
+	<th class=bottom>6</th>
+	<th class=bottom>7</th>
+	<th class=bottom>8</th>
+	<th class=bottom>9</th>
+	<th class=bottom>10</th>
+	<th class=bottom>11</th>
+	<th class=bottom>12</th>
+	<th class=bottom>13</th>
+</tr>
+<!-- patTemplate:tmpl name="table_list" type="condition" conditionvar="EMPTY" -->
+   <!-- patTemplate:sub condition="YES" -->
+    <tr><td align="center" colspan="13">---Data Tidak Ditemukan---</td></tr>
+   <!-- /patTemplate:sub -->
+   <!-- patTemplate:sub condition="NO" -->
+   <!-- patTemplate:tmpl name="table_item" -->
+     <tr>
+  		<td style="{CLASS_NAME}">{NO}</td>
+  		<td nowrap>{NIP}</td>
+  		<td nowrap>{NAMA}</td>
+  		<td nowrap>{PANGKAT}</td>
+  		<td nowrap>{KESETIAAN}</td>
+  		<td nowrap>{PRESTASI_KERJA}</td>
+  		<td nowrap>{TANGGUNG_JAWAB}</td>
+  		<td nowrap>{KETAATAN}</td>
+  		<td nowrap>{KEJUJURAN}</td>
+  		<td nowrap>{KERJASAMA}</td>
+  		<td nowrap>{PRAKARSA}</td>
+  		<td nowrap>{KEPEMIMPINAN}</td>
+  		<td nowrap>{UNIT_KERJA}</td>
+  	</tr>
+  <!-- /patTemplate:tmpl -->
+	<!-- /patTemplate:sub -->
+<!-- /patTemplate:tmpl -->
+</table>
+<!-- /patTemplate:tmpl -->

@@ -1,0 +1,280 @@
+<!-- patTemplate:tmpl name="content" -->
+
+<div class="background-blue padding-10 text-big" style="text-transform:uppercase">Laporan Daftar Pegawai</div>
+
+<div class="padding-10">
+
+<div class="panel panel-default">
+    <div class="panel-heading text-big"><strong>Pencarian Data</strong></div>
+    <div class="panel-body">
+        <form method="POST" action="{URL_SEARCH}" class="form-horizontal xhr_simple_form dest_subcontent-element" id="filterbox" role="form">
+            <div class="form-group">
+                <label for="nip" class="col-sm-2 control-label">Kriteria</label>
+                <div class="col-sm-2">
+                </div>
+            </div>
+             <div class="form-group">
+                <label for="nip" class="col-sm-2 control-label">Jenis Fungsional</label>
+                <div class="col-sm-2">
+					<!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="jabatan_fungsional"  / -->
+                </div>
+            <!--</div>
+             <div class="form-group"> -->
+                <label for="nip" class="col-sm-2 control-label">Unit Kerja</label>
+                <div class="col-sm-6">
+						<!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="unit"  / -->
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="nip" class="col-sm-2 control-label">Status Pegawai</label>
+                <div class="col-sm-2">
+						<!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="status"  / -->
+                </div>
+            <!--</div>
+             <div class="form-group"> -->
+                <label for="nip" class="col-sm-2 control-label">Jenis Pegawai</label>
+                <div class="col-sm-2">
+						<!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="jenis"  / -->
+                </div>
+            </div>
+             <div class="form-group">
+                <label for="nip" class="col-sm-2 control-label">Pangkat Golongan</label>
+                <div class="col-sm-2">
+						<!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="golongan"  / -->
+                </div>
+            <!--</div>
+             <div class="form-group"> -->
+                <label for="nip" class="col-sm-2 control-label">Jabatan Fungsional</label>
+                <div class="col-sm-2">
+					<!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="fungsional"  / -->
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="nip" class="col-sm-2 control-label">Tingkat Pendidikan</label>
+                <div class="col-sm-2">
+						<!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="pendidikan"  / -->
+                </div>
+            <!--</div>
+             <div class="form-group"> -->
+                <label for="status" class="col-sm-2 control-label">Agama Pegawai</label>
+                <div class="col-sm-2">
+						<!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="agama"  / -->
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="nip" class="col-sm-2 control-label">Eselon</label>
+                <div class="col-sm-2">
+						<!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="eselon"  / -->
+                </div>
+            <!--</div>
+             <div class="form-group"> -->
+                <label for="nip" class="col-sm-2 control-label">Nama/NIP</label>
+                <div class="col-sm-2">
+            <input type="text" name="nip_nama" class="form-control input-sm" id="nip" value="" size="30">
+                </div>
+
+            </div>
+            <div class="form-group">
+                <label for="nip" class="col-sm-2 control-label">Jenis Kepegawaian</label>
+                <div class="col-sm-2">
+            <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="jenis_kepegawaian"  / -->
+                </div>
+            <!--</div>
+             <div class="form-group"> -->
+               
+
+            </div>
+
+            <div class="form-group">
+                <label for="status" class="col-sm-2 control-label">Tampilkan Kolom</label>
+               <div class="col-sm-10">
+				<!-- patTemplate:tmpl name="field_item" -->
+				<div class="col-sm-4">
+				<label><input type="checkbox" name="{FIELD_NAMA}" {FIELD_CHECKED} />&nbsp;&nbsp;{FIELD_CAPTION}</label>
+				</div>
+				<!-- /patTemplate:tmpl -->
+                </div>	
+            </div>
+
+            <div class="form-group">
+                <label for="status" class="col-sm-2 control-label">Urut Berdasarkan</label>
+                <div class="col-sm-2">
+				
+					<select class="form-control input-sm" name="berdasarkan" style="width:150px">
+						<option value="nip" {SELECTED_NIP}>NIP Pegawai</option>
+						<option value="nama" {SELECTED_NAMA}>Nama Pegawai</option>
+						<option value="unit" {SELECTED_UNIT}>Unit Kerja</option>
+						<!-- <option value="jenisfungsional" {SELECTED_JENISFUNGSIONAL}>Jenis Fungsional</option> -->
+						<option value="status" {SELECTED_STATUS}>Status Pegawai</option>
+						<option value="golongan" {SELECTED_GOLONGAN}>Tingkatan Pangkat Golongan</option>
+						<!-- <option value="fungsional" {SELECTED_FUNGSIONAL}>Tingkatan Jabatan Fungsional</option> -->
+						<option value="struktural" {SELECTED_STRUKTURAL}>Tingkatan Jabatan Struktural</option>
+						<option value="eselon" {SELECTED_ESELON}>Tingkatan Eselon</option>
+						<option value="pendidikan" {SELECTED_PENDIDIKAN}>Tingkat Pendidikan</option>
+						<option value="jenis" {SELECTED_JENIS}>Jenis Pegawai</option>
+						<option value="agama" {SELECTED_AGAMA}>Agama</option>
+						<option value="statnikah" {SELECTED_STATNIKAH}>Status Pernikahan</option>
+						<option value="usia" {SELECTED_USIA}>Usia Pegawai</option>
+						<option value="masakerja" {SELECTED_MASAKERJA}>Lama Bekerja</option>
+					</select>
+
+                </div>
+            <!--</div>
+             <div class="form-group"> -->
+                <label for="status" class="col-sm-2 control-label">Jenis Urutan</label>
+                <div class="col-sm-4">
+				
+				<select class="form-control input-sm" name="urutan" style="width:150px">
+					<option value="ASC" {SELECTED_ASC}}>Dari Rendah Ke Tinggi</option>
+					<option value="DESC" {SELECTED_DESC}>Dari Tinggi Ke Rendah</option>
+				</select>
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                <input type="hidden" name="cari" value="cari" size="30" />
+                <button name="btncari" type="submit" class="btn btn-default btn-xs">Cari <span class="glyphicon glyphicon-search"></span></button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+   {ISI_PESAN}
+</div>
+
+<!-- /patTemplate:tmpl -->
+
+<div class="row push-down-10">
+    <div class="col-md-6">
+  <!-- patTemplate:gtfwrendermodule module="paging" submodule="paging" action="view" name="paging_top"  / -->
+    </div>
+    <div class="col-md-6 text-right">
+        <div class="btn-group">            
+    <a class="btn btn-xs btn-default" target="_Blank" href="{URL_EXCEL}" title="Export Excel" tabindex="3"><span class="glyphicon glyphicon-excel"></span> Export Excel</a>
+        </div>
+    </div>
+</div>
+
+<div  class="table-responsive" style="max-width:100%; overflow-x:scroll;margin-bottom:20px;" >
+
+<table class="table table-bordered" >
+
+<tr>
+	<th rowspan=2>No.</th>
+	<th rowspan=2 style="display:{VFNAMA}">Nama Pegawai</th>
+	<th rowspan=2 style="display:{VFNIP}">NIP Pegawai</th>
+	
+	<th colspan=3 style="display:{VFALAMAT}">Alamat</th>
+	
+	<th colspan=2 style="display:{VFTTL}">TTL</th>
+	
+	<th rowspan=2 style="display:{VFKARPEG}">Nomor Seri Karpeg</th>
+	<th rowspan=2 style="display:{VFKARSU}">Nomor Seri KARIS/KARSU</th>
+	<th rowspan=2 style="display:{VFNPWP}">NPWP</th>
+	<th rowspan=2 style="display:{VFJENISPEG}">Jenis Pegawai</th>
+	<th rowspan=2 style="display:{VFPNSSK}">No SK Pengangkatan PNS</th>
+	<th rowspan=2 style="display:{VFKENPASK}">No SK KENPA</th>
+	<th rowspan=2 style="display:{VFUNIT}" >Unit Kerja</th>
+	<th rowspan=2 style="display:{VFJK}">Jenis Kelamin</th>
+	
+	<th colspan=3 style="display:{VFGOLONGAN}">Pangkat/Golongan</th>
+	<!-- <th colspan=3 style="display:{VFFUNGSIONAL}">Jabatan Fungsional</th> -->
+	<th colspan=3 style="display:{VFSTRUKTURAL}">Jabatan Struktural</th>
+	<th colspan=4 style="display:{VFPENDIDIKAN}">Pendidikan</th>
+	<th colspan=3 style="display:{VFPELATIHAN}">Pelatihan</th>
+	
+	<th rowspan=2 style="display:{VFMKS}">Masa Kerja</th>
+	<th rowspan=2 style="display:{VFUSIA}">Usia</th>
+	<th rowspan=2 style="display:{VFESELON}">Eselon</th>
+	<th rowspan=2 style="display:{VFAGAMA}">Agama</th>
+</tr>
+<tr>
+	<th style="display:{VFALAMAT}">RT/RW</th>
+	<th style="display:{VFALAMAT}">Kel</th>
+	<th style="display:{VFALAMAT}">Kec</th>
+	
+	<th style="display:{VFTTL}">Tempat</th>
+	<th style="display:{VFTTL}">Tanggal</th>
+	
+	<th style="display:{VFGOLONGAN}">Pangkat</th>
+	<th style="display:{VFGOLONGAN}">Golongan Ruang</th>
+	<th style="display:{VFGOLONGAN}">TMT</th>
+	
+<!-- 	<th style="display:{VFFUNGSIONAL}">Nama</th>
+	<th style="display:{VFFUNGSIONAL}">TMT</th>
+	<th style="display:{VFFUNGSIONAL}">No. SK</th> -->
+	
+	<th style="display:{VFSTRUKTURAL}">Nama</th>
+	<th style="display:{VFSTRUKTURAL}">TMT</th>
+	<th style="display:{VFSTRUKTURAL}">No. SK</th>
+	
+	<th style="display:{VFPENDIDIKAN}">Nama</th>
+	<th style="display:{VFPENDIDIKAN}">Jurusan</th>
+	<th style="display:{VFPENDIDIKAN}">Lulus</th>
+	<th style="display:{VFPENDIDIKAN}">Tingkat</th>
+	
+	<th style="display:{VFPELATIHAN}">Tahun</th>
+	<th style="display:{VFPELATIHAN}">Nama</th>
+	<th style="display:{VFPELATIHAN}">Jumlah Jam</th>
+</tr>
+<!-- patTemplate:tmpl name="table_list" type="condition" conditionvar="EMPTY" -->
+   <!-- patTemplate:sub condition="YES" -->
+    <tr><td align="center" colspan="26">---Data Tidak Ditemukan---</td></tr>
+   <!-- /patTemplate:sub -->
+   <!-- patTemplate:sub condition="NO" -->
+   <!-- patTemplate:tmpl name="table_item" -->
+     <tr>
+  		<td style="{CLASS_NAME}">{NO}</td>
+		<td nowrap style="display:{VFNAMA}">{PEGNAMA}</td>
+  		<td nowrap style="display:{VFNIP}">{PEGKODERESMI}</td>
+  		<td nowrap style="display:{VFALAMAT}">{PEGALAMAT}</td>
+  		<td nowrap style="display:{VFALAMAT}">{PEGKELURAHAN}</td>
+  		<td nowrap style="display:{VFALAMAT}">{PEGKECAMATAN}</td>
+		<td nowrap style="display:{VFTTL}">{PEGTMPLAHIR}</td>
+		<td nowrap style="display:{VFTTL}">{PEGTGLLAHIR}</td>
+		<td nowrap style="display:{VFKARPEG}">{PEGNOKARPEG}</td>
+		<td nowrap style="display:{VFKARSU}">{SUTRINOKARTU}</td>
+		<td nowrap style="display:{VFNPWP}">{PEGNONPWP}</td>
+		<td nowrap style="display:{VFJENISPEG}">{JNSPEGRNAMA}</td>
+		<td nowrap style="display:{VFPNSSK}">{PEGPNSSK}</td>
+		<td nowrap style="display:{VFKENPASK}">{PEGKENPASK}</td>
+		<td nowrap style="display:{VFUNIT}">{SATKERNAMA}</td>
+  		<td nowrap style="display:{VFJK}">{PEGKELAMIN}</td>
+  		<td nowrap style="display:{VFGOLONGAN}">{PKTGOLRNAMA}</td>
+		<td nowrap style="display:{VFGOLONGAN}">{PKTGOLRID}</td>
+  		<td nowrap style="display:{VFGOLONGAN}">{PKTGOLTMT}</td>
+		<!-- <td nowrap style="display:{VFFUNGSIONAL}">{JABFUNGRNAMA}</td>
+  		<td nowrap style="display:{VFFUNGSIONAL}">{TMT_FUNGSIONAL}</td>
+		<td nowrap style="display:{VFFUNGSIONAL}">{SK_FUNGSIONAL}</td> -->
+  		<td nowrap style="display:{VFSTRUKTURAL}">{JABSTRUKRNAMA}</td>
+  		<td nowrap style="display:{VFSTRUKTURAL}">{TMT_STRUKTURAL}</td>
+		<td nowrap style="display:{VFSTRUKTURAL}">{SK_STRUKTURAL}</td>
+  		<td nowrap style="display:{VFPENDIDIKAN}">{PDDKINSTITUSI}</td>
+  		<td nowrap style="display:{VFPENDIDIKAN}">{PDDKJURUSAN}</td>
+  		<td nowrap style="display:{VFPENDIDIKAN}">{PDDKTHNLULUS}</td>
+  		<td nowrap style="display:{VFPENDIDIKAN}">{PENDNAMA}</td>
+		<td nowrap style="display:{VFPELATIHAN}">{JNSPELRTAHUN}</td>
+  		<td nowrap style="display:{VFPELATIHAN}">{JNSPELRNAMA}</td>
+  		<td nowrap style="display:{VFPELATIHAN}">{PELJMLJAM}</td>
+  		<td nowrap style="display:{VFMKS}">{MKS}</td>
+  		<td nowrap style="display:{VFUSIA}">{USIA}</td>
+		<td nowrap style="display:{VFESELON}">{NAMEESELON}</td>
+		<td nowrap style="display:{VFAGAMA}">{AGMNAMA}</td>
+  	</tr>
+  <!-- /patTemplate:tmpl -->
+	<!-- /patTemplate:sub -->
+<!-- /patTemplate:tmpl -->
+</table>
+</div>
+
+</div>
+
+
+
+<!-- /patTemplate:tmpl -->

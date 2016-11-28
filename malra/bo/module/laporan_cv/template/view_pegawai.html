@@ -1,0 +1,99 @@
+<!-- patTemplate:tmpl name="content" -->
+<script language="javascript" type="text/javascript">
+	function centangin_semua(varname, start_num, end_num) {
+		var obj = document.getElementById('cek_all');
+		var ceks;
+		if(obj.checked == false) {
+			for(i=start_num;i<=end_num;i++) {
+				ceks = document.getElementById(varname + i);
+				if(ceks) ceks.checked = false;
+			}
+		} else {
+			for(i=start_num;i<=end_num;i++) {
+				ceks = document.getElementById(varname + i);
+				if(ceks) ceks.checked = true;
+			}
+		}
+	}
+	
+	function getInputForm(){
+      GtfwAjax.replaceContentWithUrl('form-additional','<!-- patTemplate:gtfwgeturl module="pangkat_golongan" sub="inputPangkatGolongan" action="view" type="html" htmlentities="no" / -->&ascomponent=1');
+   }
+</script>
+
+<div class="background-blue padding-10 text-big" style="text-transform:uppercase">Riwayat Hidup Pegawai</div>
+
+<div class="padding-10">
+
+<div class="panel panel-default">
+    <div class="panel-heading text-big"><strong>Pencarian Data</strong></div>
+    <div class="panel-body">
+        <form method="POST" action="{URL_SEARCH}" class="form-horizontal xhr_simple_form dest_subcontent-element" id="filterbox" role="form">
+            <div class="form-group">
+                <label for="nip" class="col-sm-2 control-label">Kriteria</label>
+                <div class="col-sm-2">
+                <input class="form-control"type="text" name="tampilkan" value="{KEYWORD}" size="30" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                <button name="btncari" type="submit" class="btn btn-default btn-xs">Cari <span class="glyphicon glyphicon-search"></span></button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+   {ISI_PESAN}
+</div>
+<!-- /patTemplate:tmpl -->
+<br />
+
+<div id="form-additional">
+</div>
+
+<form method="POST" action="{URL_DELETE}" id="form_list" class="xhr_simple_form dest_subcontent-element" >
+
+<div class="row push-down-10">
+    <div class="col-md-6">
+        <!-- patTemplate:gtfwrendermodule module="paging" submodule="paging" action="view" name="paging_top"  / -->
+    </div>
+</div>
+<div class="table-responsive">
+<table class="table table-bordered" width="100%">
+   <tr>
+      <!-- <th width="5"><input type="checkbox" name="cek_all" id="cek_all" value="ALL" 
+	  onclick="centangin_semua('id_','{FIRST_NUMBER}','{LAST_NUMBER}');" /></th> /-->
+      <th>No</th>
+      <th>NIP</th>
+      <th>Nama</th>
+      <th width="50">Aksi</th>   
+   </tr>
+   <!-- patTemplate:tmpl name="data_mutasi_hukuman" type="condition" conditionvar="DATA_EMPTY" -->
+      <!-- patTemplate:sub condition="YES" -->
+         <tr><td colspan="4" align="center"><em>-- Data tidak ditemukan --</em></td></tr>
+      <!-- /patTemplate:sub -->
+      <!-- patTemplate:sub condition="NO" -->
+         <!-- patTemplate:tmpl name="data_mutasi_hukuman_item" -->
+         <tr class="{MPG_CLASS_NAME}">
+            <!-- <td>
+            <input type="checkbox" name="id[]" id="id_{PG_NUMBER}" value="{PG_PANGKAT}" /> 
+            <input type="hidden" name="name[{PG_PANGKAT}]" value="{PG_PANGKAT}" /></td> /-->
+            <td align="center">{MPG_NO}</td>
+            <td align="center">{MPG_NIP}</td>
+            <td align="left">{MPG_NAMA}</td>
+            <td class="links" align="center">
+               <a href="{MPG_URL_DETAIL}" class="xhr dest_subcontent-element btn btn-xs btn-info" title="Pilih Pegawai"> <span class="glyphicon glyphicon-check"></span> Pilih </a>    
+            </td>
+            
+         </tr>
+         <!-- /patTemplate:tmpl -->         
+      <!-- /patTemplate:sub -->
+   <!-- /patTemplate:tmpl -->
+   
+</table>
+</div>
+</form></div>
+<!-- /patTemplate:tmpl -->

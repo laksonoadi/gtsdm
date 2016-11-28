@@ -1,0 +1,133 @@
+<!-- patTemplate:tmpl name="content" -->
+<h1>{LABEL_TITLE}</h1>
+<br />
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+   {ISI_PESAN}
+</div>
+<br />
+<!-- /patTemplate:tmpl -->
+<h1>Laporan Detail Rekapitulasi Beban Kinerja Dosen</h1>
+<br />
+<form method="POST" action="{URL_SEARCH}" class="dataquest xhr_simple_form dest_subcontent-element" id="filterbox">
+   <table>
+      <tr>
+         <th colspan="2"><h2><strong>Pencarian Data</strong></h2></th>
+      </tr>
+      <tr>              
+         <th width="30%">Unit Kerja</th>
+         <td>
+            <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="unit_kerja"  / -->
+         </td>
+      </tr>	
+	    <tr>              
+         <th width="30%">Pangkat/Golongan</th>
+         <td>
+            <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="pangkat_golongan"  / -->
+         </td>
+      </tr>
+      <tr>              
+         <th width="30%">Jabatan Fungsional</th>
+         <td>
+            <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="fungsional"  / -->
+         </td>
+      </tr>
+      <tr>              
+         <th width="30%">Tingkat Pendidikan</th>
+         <td>
+            <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="pendidikan"  / -->
+         </td>
+      </tr>
+      <tr>
+         <th>&nbsp;</th>
+         <td>
+		        <input type="hidden" name="cari" value="cari" size="30" />
+            <input type="submit" name="btncari" value=" Search &raquo;" class="buttonSubmit"/>
+         </td>
+      </tr>
+   </table>
+</form>
+<br />
+<div class="pageBar">
+  <!-- patTemplate:gtfwrendermodule module="paging" submodule="paging" action="view" name="paging_top"  / -->
+  <div class="toolbar">
+    <a href="{URL_EXCEL}" title="Export Excel" tabindex="3"><img src="images/button-excel.gif" alt="Export Excel">Export Excel</a>
+	<a href="{URL_BACK}" title="Kembali" tabindex="3"><img src="images/button-back.gif" alt="Kembali">Rekapitulasi BKD</a>
+  </div>
+</div>
+
+<table class="table-common">
+<tr>
+	<th rowspan=2>No.</th>
+	<th rowspan=2>NIP</th>
+	<th rowspan=2>Nama</th>
+	<th rowspan=2>L/P</th>
+	<th rowspan=2>Jenis Pegawai</th>
+	<th rowspan=2>Tgl Lahir</th>
+	<th colspan=2>Pangkat</th>
+	<th colspan=2>Jabatan Fungsional</th>
+	<th colspan=4>Pendidikan</th>
+	<th rowspan="2" class=right>Unit Kerja</th>
+	<th rowspan=2>Rekapitulasi Individu</th>
+</tr>
+<tr>
+	<th>Gol</th>
+	<th>TMT</th>
+	<th>Nama</th>
+	<th>TMT</th>
+	<th>Nama</th>
+	<th>Jurusan</th>
+	<th>Lulus</th>
+	<th>Tingkat</th>
+  </tr>
+<tr>
+	<th class=bottom>1</th>
+	<th class=bottom>2</th>
+	<th class=bottom>3</th>
+	<th class=bottom>4</th>
+	<th class=bottom>5</th>
+	<th class=bottom>6</th>
+	<th class=bottom>7</th>
+	<th class=bottom>8</th>
+	<th class=bottom>9</th>
+	<th class=bottom>10</th>
+	<th class=bottom>11</th>
+	<th class=bottom>12</th>
+	<th class=bottom>13</th>
+	<th class=bottom>14</th>
+	<th class=bottom>15</th>
+ 	<th class=bottom>16</th>
+ </tr>
+<!-- patTemplate:tmpl name="table_list" type="condition" conditionvar="EMPTY" -->
+   <!-- patTemplate:sub condition="YES" -->
+    <tr><td align="center" colspan="27">---Data Tidak Ditemukan---</td></tr>
+   <!-- /patTemplate:sub -->
+   <!-- patTemplate:sub condition="NO" -->
+   <!-- patTemplate:tmpl name="table_item" -->
+     <tr>
+  		<td style="{CLASS_NAME}">{NO}</td>
+  		<td nowrap>{NIP}</td>
+  		<td nowrap>{NAMA}</td>
+  		<td nowrap>{JENIS_KELAMIN}</td>
+  		<td nowrap>{JENIS_PEGAWAI}</td>
+  		<td nowrap>{TANGGAL_LAHIR}</td>
+  		<td nowrap>{GOLONGAN}</td>
+  		<td nowrap>{GOLONGAN_TMT}</td>
+  		<td nowrap>{JABFUNG}</td>
+  		<td nowrap>{JABATAN_TMT}</td>
+  		<td nowrap>{PENDIDIKAN_NAMA}</td>
+  		<td nowrap>{PENDIDIKAN_JURUSAN}</td>
+  		<td nowrap>{PENDIDIKAN_LULUS}</td>
+  		<td nowrap>{PENDIDIKAN_TINGKAT}</td>
+  		<td nowrap>{UNIT_KERJA}</td>
+	    <td nowrap class="link" style="text-align:center;">
+			<a class="xhr dest_subcontent-element" href="{URL_DETAIL}" title="Rekapitulasi Individu">
+				<img src="images/button-detail.gif" alt="Detail"/>			
+			</a>		
+		</td>
+  	</tr>
+  <!-- /patTemplate:tmpl -->
+	<!-- /patTemplate:sub -->
+<!-- /patTemplate:tmpl -->
+</table>
+<!-- /patTemplate:tmpl -->

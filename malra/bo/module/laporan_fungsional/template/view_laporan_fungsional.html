@@ -1,0 +1,108 @@
+<!-- patTemplate:tmpl name="content" -->
+<div class="background-blue padding-10 text-big" style="text-transform:uppercase">Daftar Tenaga Fungsional</div>
+
+<div class="padding-10">
+
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+   {ISI_PESAN}
+</div>
+<br />
+<!-- /patTemplate:tmpl -->
+
+
+<div class="panel panel-default">
+    <div class="panel-heading text-big"><strong>Pencarian Data</strong></div>
+    <div class="panel-body">
+        <form method="POST" action="{URL_SEARCH}" class="form-horizontal xhr_simple_form dest_subcontent-element" id="filterbox" role="form">
+            
+            <div class="form-group">
+                <label for="nip" class="col-sm-2 control-label">Unit Kerja</label>
+                <div class="col-sm-3">
+            <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="unit_kerja"  / -->
+                </div>
+            </div>
+             <div class="form-group">
+                <label for="nip" class="col-sm-2 control-label">Jenis Jabatan Fungsional</label>
+                <div class="col-sm-3">            <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="jabatan_fungsional"  / -->
+                </div>
+            </div>
+             <div class="form-group">
+                <label for="nip" class="col-sm-2 control-label">Status Jabatan</label>
+                <div class="col-sm-2">
+            <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="status_jabatan"  / -->
+                </div>
+            
+            </div>
+             
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                <input type="hidden" name="cari" value="cari" size="30" />
+                <button name="btncari" type="submit" class="btn btn-default btn-xs">Cari <span class="glyphicon glyphicon-search"></span></button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="row push-down-10">
+    <div class="col-md-6">
+  <!-- patTemplate:gtfwrendermodule module="paging" submodule="paging" action="view" name="paging_top"  / -->
+    </div>
+    <div class="col-md-6 text-right">
+        <div class="btn-group">            
+    <a target="_Blank" href="{URL_EXCEL}" title="Export Excel" tabindex="3" class="btn btn-xs btn-default">Export Excel</a>
+        </div>
+    </div>
+</div>
+
+
+<div class="table-responsive" style="max-width: 100%; overflow-x: auto; margin-bottom: 20px;">
+<table class="table table-bordered">
+<tr>
+	<th>No.</th>
+	<th>NIP</th>
+	<th>Nama</th>
+	<th>GOL</th>
+	<th>TMT</th>
+	<th>Jabatan</th>
+	<th>Pendidikan</th>
+	<th>L/P</th>
+	<th>Unit Kerja</th>
+</tr>
+<tr>
+	<th class=bottom>1</th>
+	<th class=bottom>2</th>
+	<th class=bottom>3</th>
+	<th class=bottom>4</th>
+	<th class=bottom>5</th>
+	<th class=bottom>6</th>
+	<th class=bottom>7</th>
+	<th class=bottom>8</th>
+	<th class=bottom>9</th>
+</tr>
+<!-- patTemplate:tmpl name="table_list" type="condition" conditionvar="EMPTY" -->
+   <!-- patTemplate:sub condition="YES" -->
+    <tr><td align="center" colspan="9">---Data Tidak Ditemukan---</td></tr>
+   <!-- /patTemplate:sub -->
+   <!-- patTemplate:sub condition="NO" -->
+   <!-- patTemplate:tmpl name="table_item" -->
+     <tr>
+  		<td style="{CLASS_NAME}">{NO}</td>
+  		<td nowrap {ALIGN}>{NIP}</td>
+    	<td nowrap {ALIGN}>{NAMA}</td>
+    	<td nowrap {ALIGN}>{GOL}</td>
+    	<td nowrap {ALIGN}>{TMT}</td>
+    	<td nowrap {ALIGN}>{JABATAN}</td>
+    	<td nowrap {ALIGN}>{PENDIDIKAN}</td>
+    	<td nowrap {ALIGN}>{JENIS_KELAMIN}</td>
+    	<td nowrap {ALIGN}>{UNIT_KERJA}</td>
+  	</tr>
+  <!-- /patTemplate:tmpl -->
+	<!-- /patTemplate:sub -->
+<!-- /patTemplate:tmpl -->
+</table>
+</div>
+</div>
+<!-- /patTemplate:tmpl -->

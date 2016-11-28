@@ -1,0 +1,55 @@
+<!-- patTemplate:tmpl name="content" -->
+<h1>{LABEL_TITLE}</h1>
+<br />
+
+<div><h1>{TITLE}</h1></div><br>
+<h2>{JUDUL_DATA}</h2>
+<table class="table-common" width="900px">
+<tr>
+  <th>NO</th>
+  <th>KETERANGAN</th>
+  <th>TOTAL</th>
+  <!-- patTemplate:tmpl name="data_judul" -->
+    <th>{LABEL_JUDUL}</th>
+  <!-- /patTemplate:tmpl -->
+</tr>
+
+<!-- patTemplate:tmpl name="data_kategori_m" visibility="hidden" -->
+   <tr><td colspan="{JUM}"><b>&nbsp;{JUDUL_KATEGORI}</b></td></tr>
+   <!-- patTemplate:tmpl name="data_item_m" -->
+   <tr class="{CLASS_NAME}">
+     <td align="center" width="10%">{NUMBER}</td>
+     <td align="left">{LABEL}</td>
+     <!-- patTemplate:tmpl name="data_nilai_m" -->
+        <td align="center">{NILAI}</td>
+     <!-- /patTemplate:tmpl -->
+     <td align="center">{TOTAL}</td>
+   </tr>
+   <!-- /patTemplate:tmpl -->
+   <tr><td colspan="{JUM}">&nbsp;</td></tr>
+<!-- /patTemplate:tmpl -->
+
+<!-- patTemplate:tmpl name="data_kategori_" visibility="hidden" -->
+   <tr><td colspan="{JUM}"><b>&nbsp;{JUDUL_KATEGORI}</b></td></tr>
+   <!-- patTemplate:tmpl name="data_item_" -->
+   <tr class="{CLASS_NAME}">
+     <td align="center" width="10%">{NUMBER}</td>
+     <td align="left">{LABEL}</td>
+     <td align="center">{TOTAL}</td>
+     <!-- patTemplate:tmpl name="data_nilai_" -->
+        <td align="center">{NILAI}</td>
+     <!-- /patTemplate:tmpl -->
+   </tr>
+   <!-- /patTemplate:tmpl -->
+   <tr >
+      <td align="right" colspan="2"><font color="blue"><b>Sub Total</b></font></td>
+      <td align="center"><font color="blue"><b>{TOTAL}</b></font></td>
+      <!-- patTemplate:tmpl name="data_sub_total_" -->
+          <td align="center"><font color="blue"><b>{SUB_TOTAL}</b></font></td>
+      <!-- /patTemplate:tmpl -->
+   </tr>
+   <tr><td colspan="{JUM}">&nbsp;</td></tr>
+<!-- /patTemplate:tmpl -->
+    
+</table>
+<!-- /patTemplate:tmpl -->

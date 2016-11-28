@@ -1,0 +1,547 @@
+<!-- patTemplate:tmpl name="content" -->
+<script language="javascript" type="text/javascript">
+	function centangin_semua(varname, start_num, end_num) {
+		var obj = document.getElementById('cek_all');
+		var ceks;
+		if(obj.checked == false) {
+			for(i=start_num;i<=end_num;i++) {
+				ceks = document.getElementById(varname + i);
+				if(ceks) ceks.checked = false;
+			}
+		} else {
+			for(i=start_num;i<=end_num;i++) {
+				ceks = document.getElementById(varname + i);
+				if(ceks) ceks.checked = true;
+			}
+		}
+	}
+	
+	function getInputForm(){
+      GtfwAjax.replaceContentWithUrl('form-additional','<!-- patTemplate:gtfwgeturl module="pangkat_golongan" sub="inputPangkatGolongan" action="view" type="html" htmlentities="no" / -->&ascomponent=1');
+   }
+</script>
+
+<div class="background-blue padding-10 text-big" style="text-transform:uppercase">Laporan Daftar Pegawai</div>
+
+<div class="padding-10">
+
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+   {ISI_PESAN}
+</div>
+<!-- /patTemplate:tmpl -->
+
+<div class="table-responsive">
+
+<table class="table" width="100%" >
+<tr class="background-blue-light">
+   <th>DETAIL RIWAYAT HIDUP</th>
+   <th align="right">
+      <div class="text-right"> 
+           <a class="xhr dest_subcontent-element btn btn-xs btn-default" href="{URL_BACK}" title="BAck to the current page" tabindex="2">
+           Kembali </a> 
+           <a class="btn btn-xs btn-default" href="{URL_RTF}" title="Export RTF" tabindex="2" target="_Blank">
+           Export RTF</a>
+           <a class="btn btn-xs btn-default" href="{URL_PDF}" title="Export PDF" tabindex="2" target="_Blank">
+           Export PDF</a>
+       </div>
+   </th>
+</tr>
+<tr><th >Nama Lengkap</th><td>{GELAR_DEPAN} {NAMA} {GELAR_BELAKANG}</td></tr>
+<tr><th >NIP</th><td>{NIP}</td></tr>
+<tr><th >Pangkat dan Golongan Ruang</th><td>{PANGKAT_GOLONGAN}</td></tr>
+
+<tr><th >Jenis Pegawai</th><td>{JNSPEGID}</td></tr>
+<tr><th >Jenis Kepegawaian</th><td>{JENIS_KEPEGAWAIAN}</td></tr>
+
+<tr><th >Tempat Tanggal Lahir</th><td>{TTL}</td></tr>
+<tr><th >Jenis Kelamin</th><td>{JENIS_KELAMIN}</td></tr>
+<tr><th >Bahasa Yang Dikuasai</th><td>{BAHASA}</td></tr>
+<tr><th >Status Pernikahan</th><td>{STATUS_NIKAH}</td></tr>
+<tr><th >Kepemilikan Rumah</th><td>{RUMAH}</td></tr>
+<tr><th >Alamat</th><td>{ALAMAT_JALAN}</td></tr>
+
+<tr><th >Kelurahan</th><td>{KELURAHAN}</td></tr>
+<tr><th >Kecamatan</th><td>{KECAMATAN}</td></tr>
+<tr><th >Kota</th><td>{KOTA}</td></tr>
+
+<tr><th >Kode Pos</th><td>{ALAMAT_KODEPOS}</td></tr>
+<tr><th >Telepon</th><td>{TELP} / {HP}</td></tr>
+<tr><th >Email</th><td>{EMAIL}</td></tr>
+<tr><th >Hoby</th><td>{HOBI}</td></tr>
+<tr><th >Ciri Badan</th><td></td></tr>
+<tr><th >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tinggi Badan</th><td>{TINGGI_BADAN}</td></tr>
+<tr><th >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Berat Badan</th><td>{BERAT_BADAN}</td></tr>
+<tr><th >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Rambut</th><td>{RAMBUT}</td></tr>
+<tr><th >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bentuk Muka</th><td>{BENTUK_MUKA}</td></tr>
+<tr><th >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Warna Kulit</th><td>{WARNA_KULIT}</td></tr>
+<tr><th >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ciri Khas</th><td>{CIRI_KHAS}</td></tr>
+<tr><th >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cacat Tubuh</th><td>{CACAT_TUBUH}</td></tr>
+<tr><th >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Golongan Darah</th><td>{GOLONGAN_DARAH}</td></tr>
+<tr class="background-blue-light"><th colspan="2">Riwayat Pendidikan</th></tr>
+<tr><td colspan="2">
+<b class="background-blue-light">Pendidikan</b>
+<div class="table-resposive">
+<table class="table" width="100%" >
+<tr >
+      <th width="5px" >No</th>
+      <th >Tingkat Pendidikan</th>
+      <th >Nama Universitas/Sekolah</th>
+      <th >Bidang Studi</th>
+      <th >Tahun Lulus</th>
+      <th >Negara</th>
+      <th >Dekan/Kepala Sekolah</th>
+   </tr>
+   <!-- patTemplate:tmpl name="data_pendidikan" type="condition" conditionvar="DATA_EMPTY" -->
+      <!-- patTemplate:sub condition="YES" -->
+      <tr><td colspan="10" align="center"><em>-- Data tidak ditemukan --</em></td></tr>
+      <!-- /patTemplate:sub -->
+      <!-- patTemplate:sub condition="NO" -->
+         <!-- patTemplate:tmpl name="data_pendidikan_item" -->
+         <tr class="{PEND_CLASS_NAME}">
+            <td align="center" width="5%">{PEND_NUMBER}</td>
+            <td align="left" width="20%">{PEND_JPENDLABEL}</td>
+        	  <td align="left">{PEND_INSTITUSI}</td>
+        	  <td align="left">{PEND_JURUSAN}</td>
+        	  <td align="left">{PEND_LULUS}</td>
+        	  <td align="left">{PEND_NEGLABEL}</td>
+        	  <td align="left">{PEND_KEPSEK}</td>
+         </tr>
+         <!-- /patTemplate:tmpl -->
+      <!-- /patTemplate:sub -->
+   <!-- /patTemplate:tmpl -->
+</table>
+</div>
+<b class="background-blue-light">Pelatihan</b>
+<div class="table-resposive">
+<table class="table" width="100%" >
+<tr>
+   <tr>
+      <th width="5px" >No</th>
+      <th >Tipe Pelatihan</th>
+      <th >Jenis Pelatihan</th>
+      <th >Nama</th>
+      <th >Tahun Pelatihan</th>
+      <th >Jumlah Jam</th>
+      <th >Tempat</th>
+   </tr>
+   <!-- patTemplate:tmpl name="data_pelatihan" type="condition" conditionvar="DATA_EMPTY" -->
+      <!-- patTemplate:sub condition="YES" -->
+      <tr><td colspan="7" align="center"><em>-- Data tidak ditemukan --</em></td></tr>
+      <!-- /patTemplate:sub -->
+      <!-- patTemplate:sub condition="NO" -->
+         <!-- patTemplate:tmpl name="data_pelatihan_item" -->
+         <tr class="{PEL_CLASS_NAME}">
+            <td align="center" width="5%">{PEL_NUMBER}</td>
+            <td align="left" width="20%">{PEL_TIPELABEL}</td>
+        	  <td align="left">{PEL_JENISLABEL}</td>
+        	  <td align="left">{PEL_NAMA}</td>
+        	  <td align="left">{PEL_TAHUN}</td>
+        	  <td align="left">{PEL_JMLJAM}</td>
+        	  <td align="left">{PEL_TEMPAT}</td>
+         </tr>
+         <!-- /patTemplate:tmpl -->
+      <!-- /patTemplate:sub -->
+   <!-- /patTemplate:tmpl -->
+</table>
+</div>
+<!--
+<b class="background-blue-light">Seminar</b>
+<div class="table-resposive">
+<table class="table" width="100%" >
+   <tr>
+      <th width="5px" >No</th>
+      <th >Nama Seminar</th>
+      <th >Level</th>
+      <th >Tanggal</th>
+	    <th >Penyelenggara</th>
+      <th >Tempat</th>
+   </tr>
+   <!-- patTemplate:tmpl name="data_seminar" type="condition" conditionvar="DATA_EMPTY" -->
+      <!-- patTemplate:sub condition="YES" -->
+        <tr><td colspan="6" align="center"><em>-- Data tidak ditemukan --</em></td></tr>
+      <!-- /patTemplate:sub -->
+      <!-- patTemplate:sub condition="NO" -->
+         <!-- patTemplate:tmpl name="data_seminar_item" -->
+         <tr class="{PEL_CLASS_NAME}">
+            <td align="center" width="5%">{PEL_NUMBER}</td>
+            <td align="left" width="20%">{PEL_NAMA}</td>
+        	  <td align="left">{PEL_TINGKATLABEL}</td>
+        	  <td align="left">{PEL_MULAI}</td>
+        	  <td align="left">{PEL_PENYELENGGARA}</td>
+        	  <td align="left">{PEL_TEMPAT}</td>      
+         </tr>
+         <!-- /patTemplate:tmpl -->
+      <!-- /patTemplate:sub -->
+   <!-- /patTemplate:tmpl -->
+</table>
+</div>
+-->
+</td></tr>
+<tr class="background-blue-light"><th colspan="2">Riwayat Pekerjaan</th></tr>
+<tr><td colspan="2">
+<b class="background-blue-light">Jabatan</b>
+<div class="table-resposive">
+<table class="table" width="100%" >
+   <tr>
+      <th width="5px">No</th>
+      <th>Jabatan</th>
+  	  <th>Tanggal Mulai</th>
+  	  <th>Tanggal Selesai</th>
+   </tr>
+   <!-- patTemplate:tmpl name="data_jabatan" type="condition" conditionvar="DATA_EMPTY" -->
+      <!-- patTemplate:sub condition="YES" -->
+      <tr><td colspan="4" align="center"><em>-- Data tidak ditemukan --</em></td></tr>
+      <!-- /patTemplate:sub -->
+      <!-- patTemplate:sub condition="NO" -->
+         <!-- patTemplate:tmpl name="data_jabatan_item" -->
+         <tr class="{JS_CLASS_NAME}">
+            <td align="center" width="15%">{JS_NUMBER}</td>
+            <td align="left">{JS_JABSTRUK}</td>
+        	  <td align="left">{JS_MULAI}</td>
+        	  <td align="left">{JS_SELESAI}</td>
+         </tr>
+         <!-- /patTemplate:tmpl -->
+      <!-- /patTemplate:sub -->
+   <!-- /patTemplate:tmpl -->
+</table>
+</div>
+</td></tr>
+<!--
+<tr class="background-blue-light"><th colspan="2">Prestasi/Penghargaan</th></tr>
+<tr><td colspan="2">
+<b class="background-blue-light" >Penghargaan</b>
+<div class="table-resposive">
+<table class="table" width="100%" >
+   <tr>
+      <th width="5px" >No</th>
+      <th >Jenis Penghargaan</th>
+      <th >Nama Penghargaan</th>
+      <th >Tahun</th>
+      <th >Institusi/Negara Pemberi</th>
+   </tr>
+   <!-- patTemplate:tmpl name="data_penghargaan" type="condition" conditionvar="DATA_EMPTY" -->
+      <!-- patTemplate:sub condition="YES" -->
+          <tr><td colspan="5" align="center"><em>-- Data tidak ditemukan --</em></td></tr>
+      <!-- /patTemplate:sub -->
+      <!-- patTemplate:sub condition="NO" -->
+         <!-- patTemplate:tmpl name="data_penghargaan_item" -->
+         <tr class="{PENG_CLASS_NAME}">
+            <td align="center" width="5%">{PENG_NUMBER}</td>
+            <td align="left" width="20%">{PENG_JPLABEL}</td>
+        	  <td align="left">{PENG_NAMA}</td>
+        	  <td align="left">{PENG_TAHUN}</td>
+        	  <td align="left">{PENG_PEMBERI}</td>
+         </tr>
+         <!-- /patTemplate:tmpl -->
+      <!-- /patTemplate:sub -->
+   <!-- /patTemplate:tmpl -->
+</table>
+</div>
+<!-- <b class="background-blue-light">Penelitian/Karya</b>
+<div class="table-resposive">
+<table class="table" width="100%" >
+   <tr>
+      <th width="5px" >No</th>
+      <th >Jenis</th>
+      <th >Judul</th>
+      <th >Peranan</th>
+      <th >Tahun</th>
+   </tr>
+   <!-- patTemplate:tmpl name="data_penelitian" type="condition" conditionvar="DATA_EMPTY" -->
+      <!-- patTemplate:sub condition="YES" -->
+      <tr><td colspan="5" align="center"><em>-- Data tidak ditemukan --</em></td></tr>
+      <!-- /patTemplate:sub -->
+      <!-- patTemplate:sub condition="NO" -->
+         <!-- patTemplate:tmpl name="data_penelitian_item" -->
+           <tr class="{PEND_CLASS_NAME}">
+              <td align="center" width="5%">{PEN_NUMBER}</td>
+              <td align="left">{PEN_JKARYALABEL}</td>
+          	  <td align="left">{PEN_JUDUL}</td>
+          	  <td align="left">{PEN_PERANAN}</td>
+          	  <td align="left">{PEN_TAHUN}</td>
+           </tr>
+         <!-- /patTemplate:tmpl -->
+      <!-- /patTemplate:sub -->
+   <!-- /patTemplate:tmpl -->
+</table>
+</div>
+</td></tr>
+<tr class="background-blue-light"><th colspan="2">Pengalaman</th></tr>
+<tr><td colspan="2">
+<b class="background-blue-light">Kunjungan Luar Negeri</b>
+<div class="table-resposive">
+<table class="table" width="100%" >
+   <tr>
+      <th width="5px" >No</th>
+      <th >Jenis Mutasi Kunjungan</th>
+      <th >Tujuan</th>
+      <th >Negara</th>
+      <th >Tanggal Mulai</th>
+      <th >Tanggal Selesai</th>
+   </tr>
+   <!-- patTemplate:tmpl name="data_kunjungan" type="condition" conditionvar="DATA_EMPTY" -->
+      <!-- patTemplate:sub condition="YES" -->
+      <tr><td colspan="6" align="center"><em>-- Data tidak ditemukan --</em></td></tr>
+      <!-- /patTemplate:sub -->
+      <!-- patTemplate:sub condition="NO" -->
+         <!-- patTemplate:tmpl name="data_kunjungan_item" -->
+         <tr class="{KUNJ_CLASS_NAME}">
+            <td align="center" width="5%">{KUNJ_NUMBER}</td>
+            <td align="left" width="20%">{KUNJ_JKLABEL}</td>
+        	  <td align="left">{KUNJ_TUJUAN}</td>
+        	  <td align="left">{KUNJ_NEGLABEL}</td>
+        	  <td align="center">{KUNJ_MULAI}</td>
+        	  <td align="center">{KUNJ_SELESAI}</td>
+         </tr>
+         <!-- /patTemplate:tmpl -->
+      <!-- /patTemplate:sub -->
+   <!-- /patTemplate:tmpl -->
+</table>
+</div>
+</td></tr> -->
+<tr class="background-blue-light"><th colspan="2">Riwayat Organisasi</th></tr>
+<tr><td colspan="2">
+<div class="table-resposive">
+<table class="table" width="100%" >
+   <tr>
+      <th width="5px" >No</th>
+      <th >Nama Organisasi</th>
+      <th >Jabatan </th>
+      <th >Tahun Mulai</th>
+      <th >Tahun Selesai</th>
+   </tr>
+   <!-- patTemplate:tmpl name="data_organisasi" type="condition" conditionvar="DATA_EMPTY" -->
+      <!-- patTemplate:sub condition="YES" -->
+      <tr><td colspan="5" align="center"><em>-- Data tidak ditemukan --</em></td></tr>
+      <!-- /patTemplate:sub -->
+      <!-- patTemplate:sub condition="NO" -->
+         <!-- patTemplate:tmpl name="data_organisasi_item" -->
+         <tr class="{ORG_CLASS_NAME}">
+            <td align="center" width="5%">{ORG_NUMBER}</td>
+            <td align="left" width="20%">{ORG_NAMA}</td>
+        	  <td align="left">{ORG_JABATAN}</td>
+        	  <td align="center">{ORG_MULAI}</td>
+        	  <td align="center">{ORG_SELESAI}</td>
+         </tr>
+         <!-- /patTemplate:tmpl -->
+      <!-- /patTemplate:sub -->
+   <!-- /patTemplate:tmpl -->
+</table>
+</div>
+</td></tr>
+<tr class="background-blue-light"><th colspan="2">Riwayat Bintang Tanda Jasa</th></tr>
+<tr><td colspan="2">
+<div class="table-resposive">
+    <table class="table" width="100%">
+   <tr>
+      <th width="5px" rowspan="2">No</th>
+      <th rowspan="2">Tanda Jasa</th>
+      <th rowspan="2">Tanggal Diberikan</th>
+      <th rowspan="2">Institusi/Negara Pemberi</th>
+      <th colspan="2">Sertifikat</th>
+      <th rowspan="2">Keterangan</th>
+   </tr>
+   <tr>
+      <th >Nomor</th>
+      <th >Tahun</th>
+   </tr>
+   <!-- patTemplate:tmpl name="data_tanda_jasa" type="condition" conditionvar="DATA_EMPTY" -->
+      <!-- patTemplate:sub condition="YES" -->
+   <tr><td colspan="7" align="center"><em>-- Data tidak ditemukan --</em></td></tr>
+      <!-- /patTemplate:sub -->
+      <!-- patTemplate:sub condition="NO" -->
+         <!-- patTemplate:tmpl name="data_tanda_jasa_item" -->
+   <tr class="{CLASS_NAME}">
+      <td align="center" width="5%">{NUMBER}</td>
+      <td align="left" width="20%">{TANDA_JASA}</td>
+	  <td align="left">{TANGGAL}</td>
+	  <td align="left">{PEMBERI}</td>
+	  <td align="left">{SK_NOMOR}</td>
+	  <td align="left">{SK_TAHUN}</td>
+	  <td align="left">{KETERANGAN}</td>
+   </tr>
+         <!-- /patTemplate:tmpl -->
+      <!-- /patTemplate:sub -->
+   <!-- /patTemplate:tmpl -->
+</table>
+</div>
+</td></tr>
+
+<tr class="background-blue-light"><th colspan="2">Suami/Istri</th></tr>
+<tr><td colspan="2">
+<div class="table-resposive">
+    <table class="table" width="100%">
+   <tr>
+      <th width="5px" rowspan="1">No</th>
+      <th rowspan="1">Nama</th>
+      <th rowspan="1">Tmpt Lahir</th>
+      <th rowspan="1">Tgl Lahir</th>
+      <th rowspan="1">Tgl Nikah</th>
+      <th rowspan="1">Pekerjaan</th>
+   </tr>
+  
+   <!-- patTemplate:tmpl name="data_suami_istri" type="condition" conditionvar="DATA_EMPTY" -->
+      <!-- patTemplate:sub condition="YES" -->
+   <tr><td colspan="6" align="center"><em>-- Data tidak ditemukan --</em></td></tr>
+      <!-- /patTemplate:sub -->
+      <!-- patTemplate:sub condition="NO" -->
+         <!-- patTemplate:tmpl name="data_suami_istri_item" -->
+   <tr>
+    <td align="center" width="5%">{NUMBER}</td>
+    <td align="left" width="20%">{NAMA}</td>
+    <td align="left">{TMPT}</td>
+    <td align="left">{TGL_LAHIR}</td>
+    <td align="left">{TGL_NIKAH}</td>
+    <td align="left">{KERJA}</td>
+   </tr>
+         <!-- /patTemplate:tmpl -->
+      <!-- /patTemplate:sub -->
+   <!-- /patTemplate:tmpl -->
+</table>
+</div>
+</td></tr>
+
+
+<tr class="background-blue-light"><th colspan="2">Anak</th></tr>
+<tr><td colspan="2">
+<div class="table-resposive">
+    <table class="table" width="100%">
+   <tr>
+      <th width="5px" rowspan="1">No</th>
+      <th rowspan="1">Nama</th>
+      <th rowspan="1">Jenis Kelamin</th>
+      <th rowspan="1">Tmpt Lahir</th>
+      <th rowspan="1">Tgl Lahir</th>
+      <th rowspan="1">Pekerjaan</th>
+   </tr>
+  
+   <!-- patTemplate:tmpl name="data_anak" type="condition" conditionvar="DATA_EMPTY" -->
+      <!-- patTemplate:sub condition="YES" -->
+   <tr><td colspan="6" align="center"><em>-- Data tidak ditemukan --</em></td></tr>
+      <!-- /patTemplate:sub -->
+      <!-- patTemplate:sub condition="NO" -->
+         <!-- patTemplate:tmpl name="data_anak_item" -->
+   <tr class="{CLASS_NAME}">
+      <td align="center" width="5%">{NUMBER}</td>
+      <td align="left" width="20%">{NAMA}</td>
+    <td align="left">{JENKEL}</td>
+    <td align="left">{TMPT}</td>
+    <td align="left">{TGL_LAHIR}</td>
+    <td align="left">{KERJA}</td>
+   </tr>
+         <!-- /patTemplate:tmpl -->
+      <!-- /patTemplate:sub -->
+   <!-- /patTemplate:tmpl -->
+</table>
+</div>
+</td></tr>
+
+<tr class="background-blue-light"><th colspan="2">Orang Tua</th></tr>
+<tr><td colspan="2">
+<div class="table-resposive">
+    <table class="table" width="100%">
+   <tr>
+      <th width="5px" rowspan="1">No</th>
+      <th rowspan="1">Nama</th>
+      <th rowspan="1">Hubungan</th>
+      <th rowspan="1">Tmpt Lahir</th>
+      <th rowspan="1">Tgl Lahir</th>
+      <th rowspan="1">Pekerjaan</th>
+   </tr>
+  
+   <!-- patTemplate:tmpl name="data_orangtua" type="condition" conditionvar="DATA_EMPTY" -->
+      <!-- patTemplate:sub condition="YES" -->
+   <tr><td colspan="6" align="center"><em>-- Data tidak ditemukan --</em></td></tr>
+      <!-- /patTemplate:sub -->
+      <!-- patTemplate:sub condition="NO" -->
+         <!-- patTemplate:tmpl name="data_orangtua_item" -->
+   <tr class="{CLASS_NAME}">
+        <td align="center" width="5%">{NUMBER}</td>
+      <td align="left" width="20%">{NAMA}</td>
+    <td align="left">{HUB}</td>
+    <td align="left">{TMPT}</td>
+    <td align="left">{TGL_LAHIR}</td>
+    <td align="left">{KERJA}</td>
+   </tr>
+         <!-- /patTemplate:tmpl -->
+      <!-- /patTemplate:sub -->
+   <!-- /patTemplate:tmpl -->
+</table>
+</div>
+</td></tr>
+<!-- patTemplate:comment -->
+<tr class="background-blue-light"><th colspan="2">Saudara</th></tr>
+<tr><td colspan="2">
+<div class="table-resposive">
+    <table class="table" width="100%">
+   <tr>
+      <th width="5px" rowspan="1">No</th>
+      <th rowspan="1">Nama</th>
+      <th rowspan="1">Jenis Kelamin</th>
+      <th rowspan="1">Tmpt Lahir</th>
+      <th rowspan="1">Tgl Lahir</th>
+      <th rowspan="1">Pekerjaan</th>
+   </tr>
+  
+   <!-- patTemplate:tmpl name="data_saudara" type="condition" conditionvar="DATA_EMPTY" -->
+      <!-- patTemplate:sub condition="YES" -->
+   <tr><td colspan="6" align="center"><em>-- Data tidak ditemukan --</em></td></tr>
+      <!-- /patTemplate:sub -->
+      <!-- patTemplate:sub condition="NO" -->
+         <!-- patTemplate:tmpl name="data_saudara_item" -->
+   <tr class="{CLASS_NAME}">
+          <td align="center" width="5%">{NUMBER}</td>
+      <td align="left" width="20%">{NAMA}</td>
+    <td align="left">{HUB}</td>
+    <td align="left">{TMPT}</td>
+    <td align="left">{TGL_LAHIR}</td>
+    <td align="left">{KERJA}</td>
+   </tr>
+         <!-- /patTemplate:tmpl -->
+      <!-- /patTemplate:sub -->
+   <!-- /patTemplate:tmpl -->
+</table>
+</div>
+</td></tr>
+
+<tr class="background-blue-light"><th colspan="2">Mertua</th></tr>
+<tr><td colspan="2">
+<div class="table-resposive">
+    <table class="table" width="100%">
+   <tr>
+      <th width="5px" rowspan="1">No</th>
+      <th rowspan="1">Nama</th>
+      <th rowspan="1">Hubungan</th>
+      <th rowspan="1">Tmpt Lahir</th>
+      <th rowspan="1">Tgl Lahir</th>
+      <th rowspan="1">Pekerjaan</th>
+   </tr>
+  
+   <!-- patTemplate:tmpl name="data_mertua" type="condition" conditionvar="DATA_EMPTY" -->
+      <!-- patTemplate:sub condition="YES" -->
+   <tr><td colspan="7" align="center"><em>-- Data tidak ditemukan --</em></td></tr>
+      <!-- /patTemplate:sub -->
+      <!-- patTemplate:sub condition="NO" -->
+         <!-- patTemplate:tmpl name="data_mertua_item" -->
+   <tr class="{CLASS_NAME}">
+      <td align="center" width="5%">{NUMBER}</td>
+      <td align="left" width="20%">{NAMA}</td>
+    <td align="left">{HUB}</td>
+    <td align="left">{TMPT}</td>
+    <td align="left">{TGL_LAHIR}</td>
+    <td align="left">{KERJA}</td>
+   </tr>
+         <!-- /patTemplate:tmpl -->
+      <!-- /patTemplate:sub -->
+   <!-- /patTemplate:tmpl -->
+</table>
+</div>
+</td></tr>
+<!-- /patTemplate:comment -->
+</table>
+</div>
+
+</div>
+
+<!-- /patTemplate:tmpl -->
