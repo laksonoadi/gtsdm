@@ -1,0 +1,102 @@
+<!-- patTemplate:tmpl name="content" -->
+<script language="javascript" type="text/javascript">
+//	var xpopup;
+//	function bukaPopupKomponen(url) {
+	//	showPopup(url,'',550, 550);
+	//}
+
+</script>
+
+<div class="background-blue padding-10 text-big">REFERENSI {TITLE}</div>
+<div class="padding-10">
+
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="{CLASS_PESAN}">
+            {ISI_PESAN}
+        </div>
+    </div>
+</div>
+<!-- /patTemplate:tmpl -->
+
+<form method="POST" action="{URL_ACTION}" id="frmInput" name="frmInput" class="xhr_form std_form" autocomplete=off enctype="multipart/form-data">
+    <div class="table-responsive">
+   <table class="table">
+      <tr class="background-blue-light">
+         <th colspan="2">{JUDUL} Referensi Jabatan Struktural </th>
+      </tr>
+      <tr>
+         <th width="150">Jabatan Struktural</th>
+         <td><input type="text" name="nama" value="{NAMA}" size="60" maxlenght="200" />*</td>
+         <input type="hidden" name="id_post" value="{ID}"/>
+      </tr>
+      <tr>
+         <th>Level *</th>
+         <td><input type="text" name="tingkat" value="{TINGKAT}" size="5" maxlenght="3" />
+          </td>
+      </tr>
+      <tr>
+         <th>Batas Akhir Pensiun *</th>
+         <td><input type="text" name="batas" value="{BATAS}" size="5" maxlenght="3" />
+          </td>
+      </tr>
+      <!-- <tr>
+         <th>Jenis Struktur *</th>
+        <td> -->
+        <input type="hidden" name="tpstr" value="1">
+			<!--
+      patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="tpstr"
+      -->
+		<!-- </td>
+      </tr> -->
+       <tr> 
+              <th width="25%">Unit Kerja *</th>
+              <td>
+              <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="satker"  / -->
+              </td>
+      </tr>
+      <tr>
+         <th>Dokumen Analisa Jabatan</th>
+          <td>
+          <input type="file" name="anjab_file">
+           <input type="hidden" name="old_file" value="{FILE_LAMA}">
+          <span>Dokumen Sebelumnya : <a href="{PATH_ANJAB}{FILE_LAMA}" target="_blank" title="Dokumen Anjab">{FILE_LAMA}</a> </span>
+          </td>
+      </tr>
+
+    <!--  <tr>
+         <th>Komponen Gaji</th>
+        <td>
+				<input type='text' name='komplabel' value='{KOMPLABEL}' id='komplabel' size="55" readonly />
+            <input type="button" value="..." onclick="bukaPopupKomponen('{URL_POPUP_GAJI}')"/>
+            
+      </tr>
+ -->
+    <input type='hidden' name='komp' value='{KOMP}' id='komp'/>
+       
+      <tr class="background-blue-light">
+         <th></th>
+        <td>
+            <div class="btn-group">
+                <input type="submit" name="btnsimpan" value="Save" class="btn btn-info btn-xs"/>
+                <a href="{URL_KEMBALI}" class="btn btn-warning btn-xs xhr dest_subcontent-element"/>Batal</a>
+            </div>
+        </td>
+      </tr>
+   </table>
+   </div>
+</form>
+
+<div class="petunjuk-area">
+   <h4>Petunjuk:</h4>
+   <ul>
+      <li>Tanda * menunjukkan bahwa field tersebut harus diisi. </li>
+   </ul>
+</div>
+
+</div>
+<script>
+  //  var TE_isiBerita = standardTinyEditor('isiBerita');
+</script>
+<!-- /patTemplate:tmpl -->

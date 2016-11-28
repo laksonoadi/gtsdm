@@ -1,0 +1,50 @@
+<!-- patTemplate:tmpl name="content" -->
+<div class="background-blue padding-10 text-big">MANAJEMEN Jabatan Struktural</div>
+<div class="padding-10">
+
+<h3>Detail Jabatan Struktural</h3>
+<div class="row push-down-10">
+    <div class="col-md-12">
+        <div class="btn-group pull-right">
+            
+            <a class="xhr dest_subcontent-element btn btn-warning btn-xs" href="{URL_BACK}" title="Kembali">Kembali</a>
+        </div>
+    </div>
+</div>
+
+<div class="table-responsive">
+   <table class="table">
+      <!-- <tr>
+         <td colspan="2" class="background-blue-light">
+				Detail Berita
+			</td>
+      </tr> -->
+      <tr>
+         <th width="20%">Jabatan Struktural</th>
+         <td>{NAMA}</td>
+      </tr>
+      <tr>
+         <th>Level</th>
+         <td>{TINGKAT}</td>
+      </tr>
+      <tr>
+         <th>Batas Akhir Pensiun</th>
+         <td>{BATAS}</td>
+      </tr>
+     
+      <tr>
+         <th>Jenis Struktur</th>
+         <td>{JENIS_STRUKTUR}</td>
+      </tr>
+      <tr>
+         <th>Unit Kerja</th>
+         <td>{UNITKERJA}</td>
+      </tr>
+      <tr>
+         <th>Dokumen Analisa Jabatan</th>
+         <td><span>Dokumen Analisa Jabatan saat ini : <a href="{PATH_ANJAB}{FILE_LAMA}" target="_blank" title="Dokumen Anjab">{FILE_LAMA}</a> </span></td>
+      </tr>
+     
+   </table>
+</div>
+<!-- /patTemplate:tmpl -->

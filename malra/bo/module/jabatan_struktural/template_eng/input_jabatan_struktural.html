@@ -1,0 +1,69 @@
+<!-- patTemplate:tmpl name="content" -->
+<script language="javascript" type="text/javascript">
+	var xpopup;
+	function bukaPopupKomponen(url) {
+		showPopup(url,'',550, 550);
+	}
+
+</script>
+<h1>{TITLE}</h1>
+<br />
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+   {ISI_PESAN}
+</div>
+<!-- /patTemplate:tmpl -->
+<br />
+
+<form method="POST" action="{URL_ACTION}" id="frmInput" name="frmInput" class="xhr_form std_form">
+   <table class="table-edit" width="100%">
+      <tr class="subhead">
+         <th colspan="2">{JUDUL} Structural Position Reference</th>
+      </tr>
+      <tr>
+         <th width="150">Structural Position</th>
+         <td><input type="text" name="nama" value="{NAMA}" size="60" maxlenght="200" />*</td>
+         <input type="hidden" name="id_post" value="{ID}"/>
+      </tr>
+      <tr>
+         <th>Level</th>
+         <td><input type="text" name="tingkat" value="{TINGKAT}" size="5" maxlenght="3" />
+          *</td>
+      </tr>
+      <tr>
+         <th>Retirement Age Limit</th>
+         <td><input type="text" name="batas" value="{BATAS}" size="5" maxlenght="3" />
+          *</td>
+      </tr>
+      <tr>
+         <th>Struktural Type</th>
+        <td>
+				<!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="tpstr"  / -->
+			*	</td>
+      </tr>
+      <tr>
+         <th>Salary's Component</th>
+        <td>
+				<input type='text' name='komplabel' value='{KOMPLABEL}' id='komplabel' size="55" readonly />
+            <input type="button" value="..." onclick="bukaPopupKomponen('{URL_POPUP_GAJI}')"/>
+            <input type='hidden' name='komp' value='{KOMP}' id='komp'/>
+      </tr>
+       
+      <tr class="buttons">
+         <th>&nbsp;</th>
+         <td>
+            <input type="submit" name="btnsimpan" value="{BUTTONLABEL}" class="buttonSubmit"/>
+            <a href="{URL_KEMBALI}" class="button">Cancel</a>
+         </td>
+      </tr>
+   </table>
+</form>
+
+<br />
+<div class="petunjuk-area">
+   <h4>Note:</h4>
+   <ul>
+      <li>The sign * indicates that those field must be filled. </li>
+   </ul>
+</div>
+<!-- /patTemplate:tmpl -->

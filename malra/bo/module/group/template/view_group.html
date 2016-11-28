@@ -1,0 +1,67 @@
+<!-- patTemplate:tmpl name="content" -->
+<div class="background-blue padding-10 text-big">Manajemen Group</div>
+<div class="padding-10">
+
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="{CLASS_PESAN}">
+            {ISI_PESAN}
+        </div>
+    </div>
+</div>
+<!-- /patTemplate:tmpl -->
+
+<div class="row push-down-10">
+    <div class="col-md-12 text-right">
+            <a class="xhr dest_subcontent-element btn btn-info btn-xs" href="{GROUP_URL_ADD}" title="Tambah Data Group" tabindex="2">
+	            <span class="glyphicon glyphicon-plus"></span> Add
+	        </a>
+    </div>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-bordered table-hover">
+      <tr>
+         <th>No</th>
+         <th width="90px">Aksi</th>
+         <th>Nama Group</th>
+         <th>Deskripsi</th>
+         <!-- <th>Unit Kerja</th>
+         <th>Hak Akses</th>    -->
+      </tr>
+      <!-- patTemplate:tmpl name="data_group" type="condition" conditionvar="GROUP_EMPTY" -->
+         <!-- patTemplate:sub condition="YES" -->
+         <tr><td colspan="6" align="center"><em>-- Data Tidak Ditemukan --</em></td></tr>
+         <!-- /patTemplate:sub -->
+         <!-- patTemplate:sub condition="NO" -->
+            <!-- patTemplate:tmpl name="data_group_item" -->
+            <tr class="{GROUP_CLASS_NAME}">
+                <td>{GROUP_NUMBER}</td>
+                <td>
+                    <div class="btn-group">
+	                        <a class="xhr dest_subcontent-element btn btn-success btn-xs" href="{GROUP_URL_EDIT}" title="Edit">
+		                        <span class="glyphicon glyphicon-pencil"></span>
+		                    </a>
+                            <!-- <a class="xhr dest_subcontent-element btn btn-primary btn-xs" href="{GROUP_URL_DETAIL}" title="Detail">
+                            <span class="glyphicon glyphicon-open"></span>
+                            </a>  -->
+		                    <a class="xhr dest_subcontent-element btn btn-danger btn-xs" href="{GROUP_URL_DELETE}">
+	                            <span class="glyphicon glyphicon-trash"></span>
+                            </a> 
+                            <!-- <a href="javascript:void(0)" onclick="showPopup('{GROUP_URL_DETAIL}','Group Detail',600,450);" title="Group Detail" class=" btn btn-primary btn-xs"><span class="glyphicon glyphicon-open"></span></a> -->
+                    </div>
+                </td>
+                <td>{GROUP_GROUP_NAME}</td>
+                <td>{GROUP_GROUP_DESCRIPTION}</td>
+                <!-- <td>{GROUP_UNIT_KERJA}</td>
+                <td>{GROUP_HAK_AKSES}</td> -->
+            </tr>
+            <!-- /patTemplate:tmpl -->
+         <!-- /patTemplate:sub -->
+      <!-- /patTemplate:tmpl -->
+   </table>
+</div>
+
+</div>
+<!-- /patTemplate:tmpl -->

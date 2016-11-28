@@ -1,0 +1,177 @@
+<!-- patTemplate:tmpl name="content" -->
+
+<!-- patTemplate:tmpl name="tipe" type="condition" conditionvar="TIPE" -->
+	<!-- patTemplate:sub condition="RINGKASAN" -->
+	<!-- patTemplate:tmpl name="informasi_jumlah" -->
+		<!-- patTemplate:gtfwgetconfig config="application" name="application_name" / --> - <!-- patTemplate:gtfwgetconfig config="application" name="company_name" / -->  &copy; <!-- patTemplate:gtfwgetconfig config="application" name="year" / --> &nbsp;&nbsp;|&nbsp;&nbsp;<a href="#normal" id="link-top"><img src="images/arrow_up.png" width="15px" height="15px" title="Kembali Ke Atas" border="0"></a>&nbsp;&nbsp;|&nbsp;&nbsp;
+		<a href="javascript:void(0);" onclick="showNotifikasi();"><img src="images/msg_new.gif" title="Notifikasi" border="0"><font color="red" bgcolor="white"><sup>({JUMLAH})</sup></font></a>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- /patTemplate:tmpl --> 
+	<!-- /patTemplate:sub -->
+	<!-- patTemplate:sub condition="INFORMASI" -->
+		<h3>Selamat Datang  {REALNAME} !</h3> 
+		Di Backoffice Sistem Informasi Kepegawaian <!-- patTemplate:gtfwgetconfig config="application" name="company_name" / -->.
+
+		<div>
+		<!-- patTemplate:tmpl name="informasi_pegawai_pensiun" type="condition" conditionvar="DATA_EMPTY" -->
+		    <!-- patTemplate:sub condition="YES" -->
+		    <!-- /patTemplate:sub -->
+		    <!-- patTemplate:sub condition="NO" -->
+				<h4>Pegawai yang akan Pensiun</h4>
+				<ol>
+		        <!-- patTemplate:tmpl name="informasi_pegawai_pensiun_list" -->
+					<li>[{NIP}] {NAMA} <br>Tanggal <b>{TANGGAL}</b> Dari {UNITKERJA}</li>
+				<!-- /patTemplate:tmpl --> 
+				</ol>
+		    <!-- /patTemplate:sub -->
+		<!-- /patTemplate:tmpl -->
+		</div>
+
+		<div>
+		<!-- patTemplate:tmpl name="informasi_pegawai_naik_pangkat" type="condition" conditionvar="DATA_EMPTY" -->
+		    <!-- patTemplate:sub condition="YES" -->
+		    <!-- /patTemplate:sub -->
+		    <!-- patTemplate:sub condition="NO" -->
+				<h4>Pegawai yang akan Naik Pangkat</h4>
+				<ol>
+		        <!-- patTemplate:tmpl name="informasi_pegawai_naik_pangkat_list" -->
+					<li>[{NIP}] {NAMA} <br>Tanggal <b>{TANGGAL}</b> Dari {UNITKERJA}</li>
+				<!-- /patTemplate:tmpl --> 
+				</ol>
+		    <!-- /patTemplate:sub -->
+		<!-- /patTemplate:tmpl -->
+		</div>
+
+		<div>
+		<!-- patTemplate:tmpl name="informasi_pegawai_naik_gaji" type="condition" conditionvar="DATA_EMPTY" -->
+		    <!-- patTemplate:sub condition="YES" -->
+		    <!-- /patTemplate:sub -->
+		    <!-- patTemplate:sub condition="NO" -->
+				<h4>Pegawai yang akan Naik Gaji</h4>
+				<ol>
+		        <!-- patTemplate:tmpl name="informasi_pegawai_naik_gaji_list" -->
+					<li>[{NIP}] {NAMA} <br>Tanggal <b>{TANGGAL}</b> Dari {UNITKERJA}</li>
+				<!-- /patTemplate:tmpl --> 
+				</ol>
+		    <!-- /patTemplate:sub -->
+		<!-- /patTemplate:tmpl -->
+		</div>
+	<!-- /patTemplate:sub -->
+	<!-- patTemplate:sub condition="NOTIFIKASI" -->
+        <div class="notification-title"><strong>Notifikasi</strong></div>
+	    <div class="notification-list">
+		<!-- patTemplate:tmpl name="notifikasi_pegawai_pensiun" type="condition" conditionvar="DATA_EMPTY" -->
+		    <!-- patTemplate:sub condition="YES" -->
+		    <!-- /patTemplate:sub -->
+		    <!-- patTemplate:sub condition="NO" -->
+		        <!-- patTemplate:tmpl name="notifikasi_pegawai_pensiun_list" -->
+					<a class="xhr dest_subcontent-element " href="<!-- patTemplate:gtfwgeturl module="laporan_pensiun" sub="LaporanPensiun" action="view" type="html" htmlentities="no" / -->&unit_kerja=all&pangkat_golongan=all&awal={TANGGAL_AWAL}&akhir={TANGGAL_AKHIR}&cari=1"><b>Ada {JUMLAH_PENSIUN} pegawai</b> yang akan <b>pensiun</b> pada enam bulan ke depan.</a>
+				<!-- /patTemplate:tmpl --> 
+		    <!-- /patTemplate:sub -->
+		<!-- /patTemplate:tmpl -->
+
+		<!-- patTemplate:tmpl name="notifikasi_pegawai_ultah" type="condition" conditionvar="DATA_EMPTY" -->
+		    <!-- patTemplate:sub condition="YES" -->
+		    <!-- /patTemplate:sub -->
+		    <!-- patTemplate:sub condition="NO" -->
+		        <!-- patTemplate:tmpl name="notifikasi_pegawai_ultah_list" -->
+					<a class="xhr dest_subcontent-element " href="<!-- patTemplate:gtfwgeturl module="laporan_pegawai_ultah" sub="LaporanPegawai" action="view" type="html" htmlentities="no" / -->"><b>Ada {JUMLAH_ULTAH} pegawai</b> yang akan <b>Ulang Tahun</b> pada bulan ini.</a>
+				<!-- /patTemplate:tmpl --> 
+		    <!-- /patTemplate:sub -->
+		<!-- /patTemplate:tmpl -->
+
+		<!-- patTemplate:tmpl name="notifikasi_pegawai_satya" type="condition" conditionvar="DATA_EMPTY" -->
+		    <!-- patTemplate:sub condition="YES" -->
+		    <!-- /patTemplate:sub -->
+		    <!-- patTemplate:sub condition="NO" -->
+		        <!-- patTemplate:tmpl name="notifikasi_pegawai_satya_list" -->
+						<a class="xhr dest_subcontent-element " href="<!-- patTemplate:gtfwgeturl module="laporan_stlencana" sub="LaporanStLencana" action="view" type="html" htmlentities="no" / -->"><b>Ada {JUMLAH_SATYA} pegawai</b> yang akan <b> menerima pengahargaan satya lencana </b> pada bulan ini.</a>
+				<!-- /patTemplate:tmpl --> 
+		    <!-- /patTemplate:sub -->
+		<!-- /patTemplate:tmpl -->
+
+		<!-- patTemplate:tmpl name="notifikasi_pegawai_naik_pangkat" type="condition" conditionvar="DATA_EMPTY" -->
+		    <!-- patTemplate:sub condition="YES" -->
+		    <!-- /patTemplate:sub -->
+		    <!-- patTemplate:sub condition="NO" -->
+		        <!-- patTemplate:tmpl name="notifikasi_pegawai_naik_pangkat_list" -->
+					<a class="xhr dest_subcontent-element " href="<!-- patTemplate:gtfwgeturl module="laporan_kenaikanpangkat" sub="LaporanKenaikanPangkat" action="view" type="html" htmlentities="no" / -->&unit_kerja=all&pangkat_golongan=all&awal={TANGGAL_AWAL}&akhir={TANGGAL_AKHIR}&cari=1"><b>Ada {JUMLAH_NAIK_PANGKAT} pegawai</b> yang akan <b>naik pangkat</b> pada enam bulan ke depan.</a>
+				<!-- /patTemplate:tmpl --> 
+		    <!-- /patTemplate:sub -->
+		<!-- /patTemplate:tmpl -->
+		<!-- patTemplate:tmpl name="notifikasi_pegawai_naik_pangkat_strategis" type="condition" conditionvar="DATA_EMPTY" -->
+		    <!-- patTemplate:sub condition="YES" -->
+		    <!-- /patTemplate:sub -->
+		    <!-- patTemplate:sub condition="NO" -->
+		        <!-- patTemplate:tmpl name="notifikasi_pegawai_naik_pangkat_strategis_list" -->
+					<a class="xhr dest_subcontent-element " href="<!-- patTemplate:gtfwgeturl module="layanan_pangkat_strategis" sub="LayananPangkatStrategis" action="view" type="html" htmlentities="no" / -->&unit_kerja=all&pangkat_golongan=all&status_sk=0&awal={TANGGAL_AWAL}&akhir={TANGGAL_AKHIR}&cari=1">Cetak <b>{JUMLAH_NAIK_PANGKAT_STRATEGIS}</b> SK Kenaikan Pangkat Strategis pegawai yang akan <b>naik pangkat</b> pada enam bulan ke depan.</a>
+				<!-- /patTemplate:tmpl --> 
+		    <!-- /patTemplate:sub -->
+		<!-- /patTemplate:tmpl -->
+		<!-- patTemplate:tmpl name="notifikasi_pegawai_layanan_kgb" type="condition" conditionvar="DATA_EMPTY" -->
+		    <!-- patTemplate:sub condition="YES" -->
+		    <!-- /patTemplate:sub -->
+		    <!-- patTemplate:sub condition="NO" -->
+		        <!-- patTemplate:tmpl name="notifikasi_pegawai_layanan_kgb_list" -->
+					<a class="xhr dest_subcontent-element " href="<!-- patTemplate:gtfwgeturl module="layanan_sk_kgb" sub="LayananSKgb" action="view" type="html" htmlentities="no" / -->&unit_kerja=all&pangkat_golongan=all&status_sk=0&awal={TANGGAL_AWAL}&akhir={TANGGAL_AKHIR}&cari=1">Cetak <b>{JUMLAH_LAYANAN_KGB}</b> SK Kenaikan Gaji Berkala pegawai yang akan <b>naik gaji</b> pada enam bulan ke depan.</a>
+				<!-- /patTemplate:tmpl --> 
+		    <!-- /patTemplate:sub -->
+		<!-- /patTemplate:tmpl -->
+		<!-- patTemplate:tmpl name="notifikasi_pegawai_naik_gaji" type="condition" conditionvar="DATA_EMPTY" -->
+		    <!-- patTemplate:sub condition="YES" -->
+		    <!-- /patTemplate:sub -->
+		    <!-- patTemplate:sub condition="NO" -->
+		        <!-- patTemplate:tmpl name="notifikasi_pegawai_naik_gaji_list" -->
+					<a class="xhr dest_subcontent-element " href="<!-- patTemplate:gtfwgeturl module="laporan_kenaikangaji" sub="LaporanKenaikanGaji" action="view" type="html" htmlentities="no" / -->&unit_kerja=all&pangkat_golongan=all&awal={TANGGAL_AWAL}&akhir={TANGGAL_AKHIR}&cari=1"><b>Ada {JUMLAH_NAIK_GAJI} pegawai</b> yang akan <b>naik gaji</b> pada dua bulan kedepan.</a>
+				<!-- /patTemplate:tmpl --> 
+		    <!-- /patTemplate:sub -->
+		<!-- /patTemplate:tmpl -->
+		<!-- patTemplate:tmpl name="notifikasi_pegawai_verifikasi" type="condition" conditionvar="DATA_EMPTY" -->
+		    <!-- patTemplate:sub condition="YES" -->
+		    <!-- /patTemplate:sub -->
+		    <!-- patTemplate:sub condition="NO" -->
+		        <!-- patTemplate:tmpl name="notifikasi_pegawai_verifikasi_list" -->
+					<a class="xhr dest_subcontent-element " href="index.php?mod=verifikasi_data&sub=VerifikasiData&act=View&typ=html&nip_nama=&status_data=1&jenis_data={JENISDATA}&item_viewed=15&cari=1&page=1&keyword=&combo="> Ada sebanyak <b>{JUMLAH} data {JUDUL}</b> yang belum diverifikasi.</a>
+				<!-- /patTemplate:tmpl --> 
+		    <!-- /patTemplate:sub -->
+		<!-- /patTemplate:tmpl -->
+		<!-- patTemplate:tmpl name="notifikasi_pegawai_pak" type="condition" conditionvar="DATA_EMPTY" -->
+		    <!-- patTemplate:sub condition="YES" -->
+		    <!-- /patTemplate:sub -->
+		    <!-- patTemplate:sub condition="NO" -->
+		        <!-- patTemplate:tmpl name="notifikasi_pegawai_pak_list" -->
+					<a class="xhr dest_subcontent-element " href="index.php?mod=mutasi_pak_penetapan&sub=MutasiPak&act=view&typ=html&id={PEGID}&dataId={DATAID}"><b>{NAMA} [{NIP}]</b> mengajukan <b>Angka Kredit</b> pada tanggal <b>{TANGGAL}</b> dengan total angka kredit sebanyak {TOTAL}.</a>
+				<!-- /patTemplate:tmpl --> 
+		    <!-- /patTemplate:sub -->
+		<!-- /patTemplate:tmpl -->
+		<!-- patTemplate:tmpl name="notifikasi_pegawai_bkd" type="condition" conditionvar="DATA_EMPTY" -->
+		    <!-- patTemplate:sub condition="YES" -->
+		    <!-- /patTemplate:sub -->
+		    <!-- patTemplate:sub condition="NO" -->
+		        <!-- patTemplate:tmpl name="notifikasi_pegawai_bkd_list" -->
+					<a class="xhr dest_subcontent-element " href="index.php?mod=persetujuan_bkd&sub=persetujuanBkd&act=view&typ=html&id={PEGID}&dataId={DATAID}"><b>{NAMA} [{NIP}]</b> mengajukan <b>Daftar Kinerja Dosen</b> untuk <b>{SEMESTER}</b>.</a>
+				<!-- /patTemplate:tmpl --> 
+		    <!-- /patTemplate:sub -->
+		<!-- /patTemplate:tmpl -->
+		<!-- patTemplate:tmpl name="notifikasi_pegawai_cuti" type="condition" conditionvar="DATA_EMPTY" -->
+		    <!-- patTemplate:sub condition="YES" -->
+		    <!-- /patTemplate:sub -->
+		    <!-- patTemplate:sub condition="NO" -->
+		        <!-- patTemplate:tmpl name="notifikasi_pegawai_cuti_list" -->
+					<a class="xhr dest_subcontent-element " href="index.php?mod=data_cuti&sub=dataCuti&act=view&typ=html&op=edit&dataId={PEGID}&dataId2={DATAID}"><b>{NAMA} [{NIP}]</b> mengajukan <b>Cuti</b> dengan nomor <b>{NOMOR}</b> selama {DURASI} hari.</a>
+				<!-- /patTemplate:tmpl --> 
+		    <!-- /patTemplate:sub -->
+		<!-- /patTemplate:tmpl -->
+		<!-- patTemplate:tmpl name="notifikasi_pegawai_lembur" type="condition" conditionvar="DATA_EMPTY" -->
+		    <!-- patTemplate:sub condition="YES" -->
+		    <!-- /patTemplate:sub -->
+		    <!-- patTemplate:sub condition="NO" -->
+		        <!-- patTemplate:tmpl name="notifikasi_pegawai_lembur_list" -->
+					<a class="xhr dest_subcontent-element " href="index.php?mod=data_lembur&sub=dataLembur&act=view&typ=html&dataId={PEGID}&dataId2={DATAID}"><b>{NAMA} [{NIP}]</b> mengajukan <b>Lembur</b> dengan nomor <b>{NOMOR}</b> untuk tanggal {TANGGAL} selama {DURASI} jam.</a>
+				<!-- /patTemplate:tmpl --> 
+		    <!-- /patTemplate:sub -->
+		<!-- /patTemplate:tmpl -->
+		</div>
+	<!-- /patTemplate:sub -->
+<!-- /patTemplate:tmpl -->
+
+<!-- /patTemplate:tmpl -->

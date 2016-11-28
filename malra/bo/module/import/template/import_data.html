@@ -1,0 +1,106 @@
+<!-- patTemplate:tmpl name="content" -->
+
+
+   
+   <br />
+    <h1>IMPORT DATA MASTER</h1>
+    <br />
+	<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+   <div class="{CLASS_PESAN}">
+      {ISI_PESAN}
+   </div>
+   <br />
+   <!-- /patTemplate:tmpl -->
+   <form method="POST" action="{URL_ACTION}" class="xhr_form std_form" id="frmInput" enctype="multipart/form-data" >
+   <table class="table-edit" width="100%">
+   <tr class="subhead">
+      <td colspan="2"><b>Import Data</b>
+      </td>
+   </tr>
+   <tr>
+      <td width="30%">Jenis Data</td> 
+      <td>
+         <select name="jenis_data" id="jenis_data" onchange="showSampleFormatExcel()">
+			<option value="duk">Daftar Urut Kepangkatan</option>
+			<option value="unit_kerja">Riwayat Unit Kerja Lengkap</option>
+			<option value="golongan">Riwayat Pangkat/Golongan Lengkap</option>
+			<option value="jabfung">Riwayat Jabatan Fungsional Lengkap</option>
+			<option value="jabstruk">Riwayat Jabatan Struktural Lengkap</option>
+            <option value="pendidikan">Riwayat Pendidikan Lengkap</option>
+			<option value="gapok">Daftar Gaji Pokok Lengkap</option>
+         </select>
+      </td>
+   </tr>
+   <tr>
+      <td width="30%">Contoh Format File (Xls)</td> 
+      <td>
+	    <input type="hidden" id="jenis_nama" name="jenis_nama" value="Daftar Urut Kepangkatan" >
+		<input type="hidden" id="download_path" name="download_path" value="<!-- patTemplate:gtfwgetconfig config="application" name="baseaddress" / --><!-- patTemplate:gtfwgetconfig config="application" name="basedir" / -->doc/" >
+        <div id="download_block"><a href="<!-- patTemplate:gtfwgetconfig config="application" name="baseaddress" / --><!-- patTemplate:gtfwgetconfig config="application" name="basedir" / -->doc/contoh_format_import_duk.xls" target="_Blank">Klik disini</a> untuk mendownload contoh format Import Daftar Urut Kepangkatan</div> 
+      </td>
+   </tr>
+   <tr id='rowFile'>
+      <td>
+         Nama file  
+      </td> 
+      <td>  <input type="file" name="file_excel"/> 
+      </td>
+   </tr>
+   <tr>
+      <td width="30%"></td> 
+      <td>
+         <font color="red"><b>PERLU DIPERHATIKAN! <br/>Sebelum mengupload file pastikan data sudah sesuai dengan format sebab kalau tidak maka akan menggangu data yang sudah ada. Pastikan file excel hanya berisi satu sheet saja.</b></font>
+      </td>
+   </tr>
+   <tr class="buttons">
+      <th>
+      </th>
+      <td>
+         <input type="submit" name="save" value=" Import " class="buttonSubmit" />
+         <input type="submit" name="cancel" value=" Batal " class="buttonSubmit" />
+      </td>
+   </tr>
+   </table>
+   </form>
+   
+   <br/><br/>
+   <h2>History Import Data</h2>
+   <table class="table-common" width="700px">
+   <tr>
+      <th width="15px">No</th>
+      <th>Jenis Data</th>
+	  <th>Tanggal Import</th>
+	  <th>User</th>
+	  <th>File Log</th>
+   </tr>
+   <!-- patTemplate:tmpl name="data" type="condition" conditionvar="DATA_EMPTY" -->
+      <!-- patTemplate:sub condition="YES" -->
+        <tr><td colspan="5" align="center"><em>-- Data not found --</em></td></tr>
+      <!-- /patTemplate:sub -->
+      <!-- patTemplate:sub condition="NO" -->
+         <!-- patTemplate:tmpl name="data_item" -->
+         <tr class="{CLASS_NAME}">
+            <td align="center" width="15px">{NUMBER}</td>
+            <td align="left">{JENIS}</td>
+			<td align="center">{TANGGAL}</td>
+			<td align="center">{USER}</td>
+			<td class="links">
+               <a href="{DOWNLOADLOG}" target="_Blank" title="Detail Log"><img src="images/button-detail.gif" alt="Detail"/>Dowload Log</a>
+            </td>
+         </tr>
+         <!-- /patTemplate:tmpl -->
+      <!-- /patTemplate:sub -->
+   <!-- /patTemplate:tmpl -->
+	</table>
+
+   <br />
+   <script language="javascript">
+		function showSampleFormatExcel(){
+			id=document.getElementById('jenis_data').value;
+			name=document.getElementById('jenis_data').options[document.getElementById('jenis_data').selectedIndex].text;
+			var path=document.getElementById('download_path').value;
+			document.getElementById('download_block').innerHTML='<a href="'+path+'contoh_format_import_'+id+'.xls" target="_Blank">Klik disini</a> untuk mendownload contoh format Import '+name;
+			document.getElementById('jenis_nama').value=name;
+		}
+   </script>
+<!-- /patTemplate:tmpl -->
