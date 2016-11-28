@@ -1,0 +1,79 @@
+<!-- patTemplate:tmpl name="content" -->
+<script language="javascript" type="text/javascript">
+	var flyin_value;
+	function hanyaHurufDanBesar(evt, obj) {
+		evt = (evt) ? evt : event;
+		var charCode = (evt.charCode) ? evt.charCode : ((evt.keyCode) ? evt.keyCode : ((evt.which) ? evt.which : 0));
+		if (charCode > 31 && (charCode < 65 || charCode > 90) &&  (charCode < 97 || charCode > 122)) {
+			if(typeof(flyin_value) == 'undefined')
+				obj.value = '';
+			else 
+				obj.value = flyin_value;
+		} else {
+			if(typeof(obj.value) == 'undefined')
+				obj.value = '';
+			else {
+				obj.value = obj.value.toUpperCase();
+				flyin_value = obj.value.toUpperCase();
+			}
+		}
+	}
+</script>
+<br />
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+   <div class="notebox-alert">
+      {ISI_PESAN}
+   </div>
+   <br />
+   <!-- /patTemplate:tmpl -->
+<h1>KOMPONEN GAJI</h1>
+<br />   
+   
+<form method="POST" action="{URL_ACTION}" class="xhr_form std_form" id="frmInput" >
+<input type="hidden" name="dataId" value="{DATAID}"  />
+<input type="hidden" name="page" value="{PAGE}"  />
+  <table class="table-edit" width="100%">
+	 <tr class="subhead">
+		<th colspan="2">{JUDUL} Komponen Gaji</th>
+	 </tr>
+	 <tr>
+		<th width="150">Kode</th>
+		<td><input type="text" name="kode" value="{KODE}" size="7" maxlength="3" onkeyup="hanyaHurufDanBesar(event, this)" />&nbsp;*</td>
+	 </tr>
+	 <tr>
+		<th>Nama</th>
+		<td><input type="text" name="nama" value="{NAMA}" size="40" />&nbsp;*</td>
+	 </tr>
+	 <tr>
+		<th>Deskripsi</th>
+		<td>
+			<textarea name="keterangan" cols="50" rows="5">{KETERANGAN}</textarea>&nbsp;*
+		</td>
+	 </tr>
+	 <tr>
+		<th>Tipe</th>
+		<td>
+			<!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="jenis"  / -->&nbsp;*
+		</td>
+	 </tr>
+	 <tr class="buttons">
+		<th>&nbsp;
+		</th>
+		<td>
+		   <input type="submit" name="btnsimpan" value=" {JUDUL} " class="buttonSubmit"/>
+		   <input  type="submit"  name="btnbalik" value=" Batal " class="buttonSubmit"/>
+		</td>
+	 </tr>
+  </table>
+</form>
+   
+   <br/>
+   
+   <div class="petunjuk-area">
+      <h4>Petunjuk :</h4>
+      <ul>
+		 <li>Kode field harus menggunakan huruf kapital.</li>
+         <li>The sign * indicates that this field must be filled.</li>
+      </ul>
+   </div>
+<!-- /patTemplate:tmpl -->

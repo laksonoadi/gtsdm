@@ -1,0 +1,81 @@
+<!-- patTemplate:tmpl name="content" -->
+<h1>{LABEL_TITLE}</h1>
+<br />
+
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+   {ISI_PESAN}
+</div>
+<br />
+<!-- /patTemplate:tmpl -->
+<div><h1>{TITLE}</h1></div><br>
+<form method="POST" name="frmInput" action="{URL_ACTION}" class="xhr_form std_form" id="frmInput" >
+   <table class="table-edit" width="100%">
+      <tr class="subhead">
+         <th colspan="2">{LABEL_ACTION} {LABEL_INPUT}</th>
+      </tr>
+      <tr>
+         <th width="150">Health Benefits Type {LABEL_INPUT}</th>
+         <td>
+           <input type="text" name="nama" value="{NAMA}"/>&nbsp;*
+         </td>
+      </tr>
+      <tr class="buttons">
+         <th>&nbsp;</th>
+         <td>
+            <input name="btnsimpan" value=" {LABEL_ACTION} " class="buttonSubmit" type="submit">
+            <input name="btnbalik" value=" Cancel " class="buttonSubmit" type="submit">
+         </td>
+      </tr>
+   </table>
+</form>
+<br />
+<form method="POST" action="{URL_SEARCH}" class="dataquest xhr_simple_form dest_subcontent-element" id="filterbox">
+   <table>
+      <tr>
+         <th colspan="2"><h2><strong>{LABEL_PENCARIAN}</strong></h2></th>
+      </tr>
+      <tr>
+         <th width="150">Keyword {LABEL_INPUT}</th>
+         <td>
+            <input type="text" name="cari" value="{CARI}" size="30" />
+         </td>
+      </tr>
+      <tr>
+         <th>&nbsp;</th>
+         <td>
+            <input type="submit" name="btncari" value=" Search &raquo;" class="buttonSubmit"/>
+         </td>
+      </tr>
+   </table>
+</form>
+<br />
+<h2>{JUDUL_DATA}</h2>
+<div class="pageBar">
+<!-- patTemplate:gtfwrendermodule module="paging" submodule="paging" action="view" name="paging_top"  / -->
+</div>
+<table class="table-common" width="80%">
+   <tr>
+      <th width="5px">No</th>
+      <th>Health Benefits Type</th>
+      <th width="63px">Action</th>
+   </tr>
+   <!-- patTemplate:tmpl name="data" type="condition" conditionvar="DATA_EMPTY" -->
+      <!-- patTemplate:sub condition="YES" -->
+   <tr><td colspan="4" align="center"><em>-- Data not found --</em></td></tr>
+      <!-- /patTemplate:sub -->
+      <!-- patTemplate:sub condition="NO" -->
+         <!-- patTemplate:tmpl name="data_item" -->
+   <tr class="{CLASS_NAME}">
+      <td align="center" width="15%">{NUMBER}</td>
+      <td align="left">{NAMA}</td>
+      <td class="links">
+         <a class="xhr dest_subcontent-element" href="{URL_EDIT}" title="Update"><img src="images/button-edit.gif" alt="Update"/></a>
+         <a class="xhr dest_subcontent-element" onClick="javascript: return showBoxConfirmDelete('{ID}', '{NAMA}', '{URL_DELETE_JS}');" href="{URL_DELETE}" title="Delete"><img src="images/button-delete.gif" alt="Delete"/></a>
+      </td>
+   </tr>
+         <!-- /patTemplate:tmpl -->
+      <!-- /patTemplate:sub -->
+   <!-- /patTemplate:tmpl -->
+</table>
+<!-- /patTemplate:tmpl -->

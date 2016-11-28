@@ -1,0 +1,67 @@
+<!-- patTemplate:tmpl name="content" -->
+<script language="javascript" type="text/javascript">
+	function setParent(xid, xlabel) {
+		document.getElementById('komp').value=xid;
+		document.getElementById('komplabel').value=xlabel;
+	 //popupClose();
+	}
+</script>
+<h1>List of Salary's Component Detail</h1>
+<br />
+<form method="POST" action="{URL_SEARCH}" class="dataquest xhr_simple_form dest_popup-subcontent" id="filterboxpopup">
+   <table>
+      <tr>
+         <th colspan="2"><h2><strong>Search Data</strong></h2></th>
+      </tr>
+         <tr>
+            <th width="30%">Salary's Component</label></th>
+            <td><!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="nama"  / --></td>
+         </tr>
+      <tr>
+         <th>&nbsp;</th>
+         <td>
+            <input type="submit" name="btncari" value=" Search &raquo;" class="buttonSubmit"/>
+         </td>
+      </tr>
+   </table>
+</form>
+
+<br />
+   
+   <!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+   <div class="{CLASS_PESAN}">
+      {ISI_PESAN}
+   </div>
+   <!-- /patTemplate:tmpl -->
+
+   <div class="pageBar">
+   <!-- patTemplate:gtfwrendermodule module="paging2" submodule="paging" action="view" name="paging_top"  / -->
+   </div>
+   <table class="table-common" width="100%">
+      <tr>
+         <th width="15%">No</th>
+         <th>Salary's Component</th>
+         <th>Details</th>
+         <th width="31">Select</th>
+      </tr>
+      <!-- patTemplate:tmpl name="data_bank" type="condition" conditionvar="BANK_EMPTY" -->
+         <!-- patTemplate:sub condition="YES" -->
+         <tr><td colspan="4" align="center"><em>-- Data not found --</em></td></tr>
+         <!-- /patTemplate:sub -->
+         <!-- patTemplate:sub condition="NO" -->
+            <!-- patTemplate:tmpl name="data_bank_item" -->
+            <tr class="{DATA_CLASS_NAME}">
+               <td align="center">{DATA_NUMBER}</td>
+               <td>{DATA_KOMP}</td>
+               <td>{DATA_NAMA}</td>
+               <td class="links" align="center">
+					       <a href="javascript:setParent('{DATA_ID}','{DATA_NAMA}')" onclick=""><img alt="Select" src="images/button-check.gif"/></a>
+               </td>
+            </tr>
+            <!-- /patTemplate:tmpl -->
+         <!-- /patTemplate:sub -->
+      <!-- /patTemplate:tmpl -->
+   </table>
+   <br /> 
+<div>
+<!-- /patTemplate:tmpl -->

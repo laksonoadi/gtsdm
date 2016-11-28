@@ -1,0 +1,254 @@
+<!-- patTemplate:tmpl name="content" -->
+<script language="javascript" type="text/javascript">
+	function centangin_semua(varname, start_num, end_num) {
+		var obj = document.getElementById('cek_all');
+		if(obj.checked == false) {
+			for(i=start_num;i<=end_num;i++) {
+				document.getElementById(varname + i).checked = false;
+			}
+		} else {
+			for(i=start_num;i<=end_num;i++) {
+				document.getElementById(varname + i).checked = true;
+			}
+		}
+	}
+	function show_checkbox (varname, start_num, end_num) {
+		//show check_all checkbox
+		document.getElementById('cek_all').style.display='';
+		//document.getElementById('btnHapus').type="button";
+	}
+	function konfirmasi_delete(varname, start_num, end_num) {
+		//var idDelete = document.getElementById('id_delete').value;
+		for(i=start_num;i<=end_num;i++) {
+			if(document.getElementById(varname + i).checked == true) {
+				//document.getElementById('form_list').submit();
+				document.getElementById('btnHapus').type="submit";
+				document.getElementById('btnHapus').click();
+				return true;
+			}
+		}
+		alert('Silakan beri tanda cek pada minimal 1 data');
+		return false;
+	}
+	document.onload = show_checkbox('gaji_id_','{FIRST_NUMBER}','{LAST_NUMBER}');
+
+	function setSelected(valSetting) {
+		if(valSetting == 'nominal') {
+			document.getElementById('tr_nominal').style.display='';
+			document.getElementById('tr_persen').style.display='none';
+		} else {
+			document.getElementById('tr_nominal').style.display='none';
+			document.getElementById('tr_persen').style.display='';
+		}
+	}
+	
+	function setXObj(){
+		document.getElementById('dfform').style.left = '-565px';
+		document.getElementById('input_component').style.height='280px';
+	}
+
+   anime = new janime();
+   anime.element = 'dfform';
+
+	function clearForm(){
+		
+		for(i=0;i<document.frmInput.length;i++){
+         if((document.frmInput.elements[i].name!='btnsimpan') && (document.frmInput.elements[i].name!='btnbalik')){
+			   document.frmInput.elements[i].value = '';
+         }
+		}
+		searchShow();
+	}
+
+	function searchShow(){
+		anime.moveTo(0,0);
+		document.getElementById('input_component').style.height='100px';
+	}
+	
+	function addShow(){
+		anime.moveTo(-565,0);
+		document.getElementById('input_component').style.height='280px';
+	}
+
+	function showhidemonth(valueName){
+		if(valueName == 'Tambah'){
+			document.getElementById('btn-show-hide').value = 'Tutup';
+			anime.slideOpen();
+		}else{
+			document.getElementById('btn-show-hide').value = 'Tambah';
+			anime.slideClose();
+		}
+	}
+
+	
+	
+</script>
+<!--  onclick="konfirmasi_delete('gaji_id_','{FIRST_NUMBER}','{LAST_NUMBER}', '{URL_DELETE}')"  -->
+<br />
+<h1>DETAIL KOMPONEN GAJI</h1>
+<br />
+<form method="POST" action="#" class="dataquest xhr_simple_form dest_subcontent-element">
+   <table>
+      <tr>
+         <th colspan="2"><h2><strong>Komponen Gaji</strong></h2></th>
+      </tr>
+      <tr>              
+         <th width="30%">Kode</th>
+         <td>{KODE}</td>
+      </tr>
+      <tr>              
+         <th>Nama</th>
+         <td>{NAMA}</td>
+      </tr>
+      <tr>              
+         <th>Deskripsi</th>
+         <td>{KETERANGAN}</td>
+      </tr>
+      <tr>              
+         <th>Tipe</th>
+         <td>{JENIS}</td>
+      </tr>
+   </table>
+</form>
+<div class="toolbar" style="float:left;">
+<input type="button" value="Cari" onclick="searchShow()" class="inputButton"  />
+<input type="button" value="Tambah" onclick="addShow()" class="inputButton" />
+</div>
+<br />
+<div id='input_component' style='overflow:hidden; margin-top:20px; height:100px; position:relative; width:560px;'>
+	<div id='dfform' style="position:absolute; left:0px; width:1150px;">
+		
+		<div style="width:555px; height:220px; float:left;">
+			<form method="POST" action="{URL_FILTER}" class="dataquest xhr_simple_form dest_subcontent-element" id="filterbox">
+				<table width="100%">
+					<tr>
+						<th>Kode
+						</th>
+							<td><input type="text" name="kode" value="{KODE_KOMPONEN}" />
+						</td>
+					</tr>
+					<tr>
+						<th>Nama
+						</th>
+						<td><input type="text" name="nama" value="{NAMA_KOMPONEN}"/>
+						</td>
+					</tr>
+					<tr>
+					<th>
+					</th>
+					<td collspan="3"><input type="submit" name="cari" value=" Search " class="buttonSubmit" />
+					</td>
+					</tr>
+				</table>
+			</form>
+		</div>
+	
+		<div style="width:555px; height:220px; float:left; background:white; margin-left:10px;">
+			<form method="POST" action="{URL_ACTION}" class="xhr_form std_form" id="frmInput" name="frmInput" >
+				<input type="hidden" name="dataId" value="{DATAID}"  />
+				<input type="hidden" name="id_detil" value="{ID_DETIL}"  />
+				<input type="hidden" name="page" value="{PAGE}"  />
+				<table class="table-edit" width="100%">
+					<tr class="subhead">
+						<th colspan="2">{JUDUL} Komponen {NAMA}</th>
+					</tr>
+					<tr>
+						<th width="200"><b>Kode</b> {NAMA}</th>
+						<td><input type="text" name="kode_detil" value="{KODE_DETIL}" size="40" />&nbsp;*</td>
+					</tr>
+					<tr>
+						<th><b>Nama</b> {NAMA}</th>
+						<td><input type="text" name="nama_detil" value="{NAMA_DETIL}" size="40" />&nbsp;*</td>
+					</tr>
+					<tr>
+						<th><b>Seting</b></th>
+						<td>
+						<input type="radio" name="setting_detil" value="nominal" id="nominal" onchange="setSelected('nominal')" {NOMINAL_IS_CHECKED} /><label for="nominal">Nominal</label>
+						<input type="radio" name="setting_detil" value="persen" id="persen" onchange="setSelected('persen')" {PERSEN_IS_CHECKED} /><label for="persen">Prosentase</label>
+						</td>
+					</tr>
+					<tr id="tr_nominal">
+						<th><b>Nominal</b> {NAMA}</th>
+						<td><input type="text" name="nominal_detil" value="{NOMINAL_DETIL}" size="40" style="text-align:right" />&nbsp;*</td>
+					</tr>
+					<tr id="tr_persen">
+						<th><b>Persen</b> {NAMA}</th>
+						<td><input type="text" name="persen_detil" value="{PERSEN_DETIL}" size="7" style="text-align:right" />%&nbsp;*</td>
+					</tr>
+					<tr>
+						<th>Admit Date</th>
+						<td>
+							<!-- patTemplate:gtfwrendermodule module="tanggal" submodule="Tanggal" action="view" name="tanggal_berlaku"  / -->&nbsp;*
+						</td>
+					</tr>
+					<tr class="buttons">
+						<th>&nbsp;
+						</th>
+						<td>
+							<input type="submit" name="btnsimpan" value=" Simpan " class="buttonSubmit"/>
+							<input  type="button"  name="btnbalik" value=" Batal " class="buttonSubmit" onClick="clearForm();" />
+						</td>
+					</tr>
+				</table>
+			</form>
+		</div>
+	</div>
+</div>
+<br />
+   
+   <!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+   <div class="{CLASS_PESAN}">
+      {ISI_PESAN}
+   </div>
+   <!-- /patTemplate:tmpl -->
+
+   <br />
+   <form method="POST" action="{URL_DELETE}" class="xhr_simple_form dest_subcontent-element" id="form_list">
+   <b>Detail Daftar Komponen Gaji</b>
+   <div class="pageBar">
+   <!-- patTemplate:gtfwrendermodule module="paging" submodule="paging" action="view" name="paging_top"  / -->
+      <div class="toolbar"> 
+   		<a class="xhr dest_subcontent-element" href="{URL_KEMBALI}" title="Kembali" tabindex="2" onMouseUp="searchShow()"><img src="images/button-back.gif" alt=""> Kembali</a><!-- 
+   		<a class="xhr dest_subcontent-element" href="{URL_RELOAD}" title="Reload" tabindex="2"><img src="images/button-add.gif" alt=""> Reload</a> -->
+		<input type="submit" id="btnHapus" name="btnHapus" value="Delete" class="inputButton" onMouseUp="searchShow()" />
+      </div>
+   </div>
+   <table class="table-common" width="100%">
+      <tr>
+         <th width="5">No</th>
+		 <th width="5"><input type="checkbox" style="display:none" name="cek_all" id="cek_all" value="ALL" onclick="centangin_semua('gaji_id_','{FIRST_NUMBER}','{LAST_NUMBER}');" /></th>
+         <th width="31">Aksi</th>
+         <th>Kode</th>
+         <th>Nama</th>
+         <th>Nominal/ Persen</th>
+         <th>Admit Date</th>
+      </tr>
+      <!-- patTemplate:tmpl name="data" type="condition" conditionvar="DATA_EMPTY" -->
+         <!-- patTemplate:sub condition="YES" -->
+         <tr><td colspan="7" align="center"><em>-- Data tidak ditemukan --</em></td></tr>
+         <!-- /patTemplate:sub -->
+         <!-- patTemplate:sub condition="NO" -->
+            <!-- patTemplate:tmpl name="data_item" -->
+            <tr class="{DATA_CLASS_NAME}">
+               <td align="center">{DATA_NUMBER}</td>
+			   <td align="center">
+					<input type="checkbox" name="id[]" id="gaji_id_{DATA_NUMBER}" value="{DATA_ID}" /><input type="hidden" name="name[{DATA_ID}]" value="{DATA_NAMA}" /></td>
+               <td class="links" align="center">
+                  <a class="xhr dest_subcontent-element" href="{DATA_URL_EDIT}" title="Ubah"><img src="images/button-edit.gif" alt="Ubah"/></a>
+               </td>
+               <td>{DATA_KODE}</td>
+               <td>{DATA_NAMA}</td>
+               <td style="text-align:right;">{DATA_NOMINAL_PROSENTASE}</td>
+               <td>{DATA_TANGGAL_BERLAKU}</td>
+            </tr>
+            <!-- /patTemplate:tmpl -->
+         <!-- /patTemplate:sub -->
+      <!-- /patTemplate:tmpl -->
+   </table>
+   </form>
+   <br /> 
+<script language="javaScript">
+	{EDIT_FUNCTION}
+	setSelected('{SELECTED_VALUE}');
+</script>
+<!-- /patTemplate:tmpl -->

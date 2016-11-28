@@ -1,0 +1,59 @@
+<!-- patTemplate:tmpl name="content" -->
+<script language="javascript" type="text/javascript">
+	var xpopup;
+	function bukaPopupKomponen(url) {
+		showPopup(url,'',550, 400);
+	}
+
+</script>
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+   {ISI_PESAN}
+</div>
+<!-- /patTemplate:tmpl -->
+<br />
+<h1>{TITLE}</h1>
+<br />
+
+
+<form method="POST" action="{URL_ACTION}" id="frmInput" name="frmInput" class="xhr_form std_form">
+   <table class="table-edit" width="100%">
+      <tr class="subhead">
+         <th colspan="2">{JUDUL} Referensi Kode Nikah</th>
+      </tr>
+      <tr>
+         <th width="170">Kode</th>
+         <td><input type="text" name="kode" value="{KODE}" size="15" maxlenght="20" />*</td>
+         <input type="hidden" name="id_post" value="{ID}"/>
+      </tr>
+      <tr>
+         <th>Nama</th>
+         <td><input type="text" name="nama" value="{NAMA}" size="50" maxlenght="100" />
+          *</td>
+      </tr>
+      <tr>
+         <th>Detail Komponen Gaji</th>
+        <td>
+				<input type='text' name='komplabel' value='{KOMPLABEL}' id='komplabel' size="55" readonly />
+            <input type="button" value="..." onclick="bukaPopupKomponen('{URL_POPUP_GAJI}')"/>
+            <input type='hidden' name='komp' value='{KOMP}' id='komp'/>
+      </tr>
+       
+      <tr class="buttons">
+         <th>&nbsp;</th>
+         <td>
+            <input type="submit" name="btnsimpan" value="{BUTTONLABEL}" class="buttonSubmit"/>
+            <a href="{URL_KEMBALI}" class="button">Batal</a>
+         </td>
+      </tr>
+   </table>
+</form>
+
+<br />
+<div class="petunjuk-area">
+   <h4>Petunjuk:</h4>
+   <ul>
+      <li>Tanda * menunjukkan bahwa field tersebut harus diisi </li>
+   </ul>
+</div>
+<!-- /patTemplate:tmpl -->
