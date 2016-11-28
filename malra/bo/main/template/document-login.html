@@ -1,0 +1,66 @@
+<!-- patTemplate:tmpl name="document" -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<title>
+		<!-- patTemplate:gtfwgetconfig config="organization" name="application_name" / --> 
+		- 
+		<!-- patTemplate:gtfwgetconfig config="organization" name="company_name" / -->
+	</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		{RAW_HEAD}
+
+	<script type="text/javascript" language="JavaScript">
+		$(document).ready(function(){
+			var GLOBAL_DRAWER_MIN_HEIGHT = 25;
+			var GLOBAL_DRAWER_MAX_HEIGHT = 90;
+			var GLOBAL_ACTIVE_MENU = 'mn_jadwal';
+			var GLOBAL_ACTIVE_MENU_ICON = 'activemenu-icon';
+		})
+	</script>
+   
+	<link href="images/logo.png" rel="SHORTCUT ICON" />
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/loader.js"></script>
+
+	<!-- <link rel="stylesheet" type="text/css" href="css/sia-mocca{LOADER_NAME_ADDITONAL}-loader.css" title="Mocca"/> -->
+	<link rel="stylesheet" type="text/css" href="css/sia-mocca-login-loader.css" title="Mocca"/>
+
+	<link rel="stylesheet" type="text/css" href="js/yui/build/assets/popup.css" />
+	<link rel="stylesheet" type="text/css" href="js/yui/build/fonts/fonts-min.css" />
+	<link rel="stylesheet" type="text/css" href="js/yui/build/container/assets/container-core.css" />
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+	<script type="text/javascript" src="js/yui/build/yahoo-dom-event/yahoo-dom-event.js"></script>
+	<script type="text/javascript" src="js/yui/build/dragdrop/dragdrop-min.js"></script>
+	<script type="text/javascript" src="js/yui/build/container/container-min.js"></script>
+   
+	<link rel="stylesheet" type="text/css" href="js/yui/build/calendar/assets/skins/sam/calendar.css" />
+	<link rel="stylesheet" type="text/css" href="js/yui/build/datatable/assets/skins/sam/datatable.css" />
+	<script type="text/javascript" src="js/yui/build/calendar/calendar-min.js"></script>
+	<script type="text/javascript" src="js/yui/build/element/element-beta-min.js"></script>
+	<script type="text/javascript" src="js/yui/build/datasource/datasource-beta-min.js"></script>
+	<script type="text/javascript" src="js/yui/build/datatable/datatable-beta-min.js"></script>
+
+    <script src="js/flexslider/jquery.flexslider-min.js"></script>
+    <!-- Hook up the FlexSlider -->
+    <script type="text/javascript">
+        $(window).load(function() {
+            $('.flexslider').flexslider({
+			animation: "fade",         
+			//easing: "easeOutCubic",   //{NEW} String: Determines the easing method used in jQuery transitions. jQuery easing plugin is supported!
+			direction: "vertical"
+			});
+            //$('.flex-direction-nav').remove();
+        });
+    </script>
+   
+</head>
+
+<body {BODY_ATTRIBUTE}>
+   <div id="body-application">
+   <!-- patTemplate:link src="body" / -->
+   </div>
+</body>
+</html>
+<!-- /patTemplate:tmpl -->

@@ -1,0 +1,245 @@
+<!-- patTemplate:tmpl name="document" -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<title><!-- patTemplate:gtfwgetconfig config="organization" name="application_name" / --></title>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		{RAW_HEAD}
+		<script type="text/javascript" src="js/jquery.js"></script>
+		<script type="text/javascript" src="js/loader.js"></script>
+
+		<link rel="stylesheet" type="text/css" href="css/sia-mocca{LOADER_NAME_ADDITONAL}-loader.css" title="Mocca"/>
+		<link href="images/logo.png" rel="SHORTCUT ICON" />
+
+		<script type="text/javascript" language="JavaScript">
+		$(document).ready(function(){
+			var GLOBAL_DRAWER_MIN_HEIGHT = 25;
+			var GLOBAL_DRAWER_MAX_HEIGHT = 90;
+			var GLOBAL_ACTIVE_MENU = 'mn_jadwal';
+			var GLOBAL_ACTIVE_MENU_ICON = 'activemenu-icon';
+			if(Behaviour)Behaviour.apply();
+		})
+		</script>
+		<link rel="stylesheet" type="text/css" href="css/container.css" />
+		<link rel="stylesheet" type="text/css" href="css/theme.css" />
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/chosen/chosen.css" />
+		<link rel="stylesheet" type="text/css" href="css/styles.css" />
+		<link rel="stylesheet" type="text/css" href="css/tinyeditor/style.css" />
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		
+<!--
+		<link href="style/reset.css" rel="stylesheet" type="text/css" />
+        <link href="style/example.css" rel="stylesheet" type="text/css" />
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <script src="style/script/respond.js"></script>
+        <!--[if lte IE 8]>
+        <script src="style/script/html5.js"></script>
+        <![endif]-->
+    <!--    <script src="script/jquery.js"></script>
+   -->
+		<!-- <link rel="stylesheet" type="text/css" href="js/yui/build/assets/popup.css" />
+		<link rel="stylesheet" type="text/css" href="js/yui/build/fonts/fonts-min.css" />
+		<link rel="stylesheet" type="text/css" href="js/yui/build/container/assets/container-core.css" />
+		<script type="text/javascript" src="js/yui/build/yahoo-dom-event/yahoo-dom-event.js"></script>
+		<script type="text/javascript" src="js/yui/build/dragdrop/dragdrop-min.js"></script>
+		<script type="text/javascript" src="js/yui/build/container/container-min.js"></script>
+   
+		<link rel="stylesheet" type="text/css" href="js/yui/build/calendar/assets/skins/sam/calendar.css" />
+		<link rel="stylesheet" type="text/css" href="js/yui/build/datatable/assets/skins/sam/datatable.css" />
+		<script type="text/javascript" src="js/yui/build/calendar/calendar-min.js"></script>
+		<script type="text/javascript" src="js/yui/build/element/element-beta-min.js"></script>
+		<script type="text/javascript" src="js/yui/build/datasource/datasource-beta-min.js"></script>
+		<script type="text/javascript" src="js/yui/build/datatable/datatable-beta-min.js"></script> 
+
+		<link rel="stylesheet" type="text/css" href="css/css-custome/SpryTabbedPanels.css" />
+		<script type="text/javascript" src="js/tabPanel/SpryTabbedPanels.js"></script> -->
+		<!-- <script language="javascript" type="text/javascript" src="main/lib/tiny_mce/tiny_mce.js"></script>
+		<script language="javascript" type="text/javascript" src="main/lib/javascript/numericText.js"></script> -->
+		<script type="text/javascript">
+			/* tinyMCE.init({
+				// General options
+				mode : "exact",
+				elements : "isiBerita,isiAgenda",
+				theme : "advanced",
+				plugins : "xhtmlxtras,table,save,media,print,contextmenu,paste,template",
+				//style,layer,table,save,advhr,advimage,advlink,emotions,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template
+				// Theme options
+				theme_advanced_buttons1 : "bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,fontselect,fontsizeselect",
+				theme_advanced_buttons2 : "bullist,numlist,|,link,unlink,image,code,|,forecolor,backcolor",
+				theme_advanced_buttons3 : "sub,sup,|,charmap,emotions,iespell,media,fullscreen",
+				theme_advanced_toolbar_location : "top",
+				theme_advanced_toolbar_align : "center",
+				theme_advanced_statusbar_location : "bottom",
+				theme_advanced_resizing : true,
+
+				// Example content CSS (should be your site CSS)
+				content_css : "css/content.css",
+
+				// Drop lists for link/image/media/template dialogs
+				template_external_list_url : "lists/template_list.js",
+				external_link_list_url : "lists/link_list.js",
+				external_image_list_url : "lists/image_list.js",
+				media_external_list_url : "lists/media_list.js",
+
+				// Replace values for the template plugin
+				template_replace_values : {
+					username : "Some User",
+					staffid : "991234"
+				}
+			}); */
+			
+			/*
+			// Shorthand function to make TinyEditor by passing the id attribute of the textarea
+			// But the form still need to have the submit handler to take the value from TinyEditor
+			*/
+			var TE_delay;
+			function standardTinyEditor(idAttr) {
+				var elm = $("#"+idAttr);
+				if((elm.length > 0) && (elm[0].tagName == 'TEXTAREA')) {
+					var teInstance = new TINY.editor.edit('tinyeditor', {
+						id: idAttr, // (required) ID of the textarea
+						controls: ['bold', 'italic', 'underline', 'strikethrough', '|', 'subscript', 'superscript', '|', 'orderedlist', 'unorderedlist', '|' ,'outdent' ,'indent', '|', 'leftalign', 'centeralign', 'rightalign', 'blockjustify', 'n', 'font', 'size', 'style', '|', 'hr', 'link', 'unlink', 'n', 'undo', 'redo', '|', 'unformat'],
+						footer: true,
+						fonts: ['Times New Roman','Verdana','Arial','Georgia','Trebuchet MS'],
+						toggle: {text: 'Source HTML', activetext:'WYSIWYG'},
+						resize: true,
+					});
+					
+					elm.closest("form").submit(function(e){
+						teInstance.post();
+					});
+					// Track changes, because form.submit(function) is unreliable
+					var changeHandler = function(e){
+						clearTimeout(TE_delay);
+						TE_delay = setTimeout(function(){
+							teInstance.post();
+						}, 250);
+					}
+					var iframe = $(teInstance.i)[0].contentWindow.document;
+					$(iframe).find("body").keyup(changeHandler);
+					elm.closest(".tinyeditor").find(".tecontrol").click(changeHandler);
+					
+					return teInstance;
+				} else {
+					alert("Textarea with id \"" + idAttr + "\" cannot be found");
+				}
+			}
+			
+			function convLinkVC(strUrl, node, on_save) {
+		            strUrl=strUrl.replace("../","");
+		            return strUrl;
+		       } 
+			
+			function ajaxLoad() {
+				var ed = tinyMCE.get('elm');
+
+				// Do you ajax call here, window.setTimeout fakes ajax call
+				ed.setProgressState(1); // Show progress
+				window.setTimeout(function() {
+					ed.setProgressState(0); // Hide progress
+					ed.setContent('HTML content that got passed from server.');
+				}, 3000);
+			}
+
+			function ajaxSave() {
+				var ed = tinyMCE.get('elm');
+
+				// Do you ajax call here, window.setTimeout fakes ajax call
+				ed.setProgressState(1); // Show progress
+				window.setTimeout(function() {
+				ed.setProgressState(0); // Hide progress				
+				}, 3000);
+			}
+
+		</script>
+		<!-- /TinyMCE -->
+        <script>
+        function stripScripts(s) {
+            var div = document.createElement('div');
+            div.innerHTML = s;
+            var scripts = div.getElementsByTagName('script');
+            var i = scripts.length;
+            while (i--) {
+                scripts[i].parentNode.removeChild(scripts[i]);
+            }
+            return div.innerHTML;
+        }
+        function showAlert(url){
+            var uri=document.location.href;
+            var hasil=uri.indexOf("mod=home2");
+            if (hasil>=0) {
+                showPopup(url,'Informasi',500,350);
+            }
+        }
+        function verifyAlert(){
+            alert('Data Ini Sudah Diverifikasi dan tidak bisa dirubah');
+        }
+        function verifyShow(tombol,url){
+            var verifyVar='',tombol2=tombol;
+            var verifyCallback=function(obj){
+                text = stripScripts(obj.responseText);
+                eval(text);
+                if (verifyTombol=='FALSE'){
+                    document.getElementById(tombol2).innerHTML='<a href="javascript:verifyAlert();" title="Data Ini Sudah Diverifikasi dan tidak bisa dirubah">&nbsp;&nbsp;Verified&nbsp;&nbsp;</a>';
+                }
+            }
+            GtfwAjax.xhrGet('<!-- patTemplate:gtfwgeturl module="tombol_aksi" sub="TombolAksi" action="view" type="html" htmlentities="no" / -->'+url,verifyCallback);
+        }
+        </script>
+         <script>
+            jQuery(function($) {
+                var open = false;
+
+                function resizeMenu() {
+                    if ($(this).width() < 768) {
+                        if (!open) {
+                            $("#menu-drink").hide();
+                        }
+                        $("#menu-button").show();
+                        $("#logo").attr("src", "image/logo.png");
+                    }
+                    else if ($(this).width() >= 768) {
+                        if (!open) {
+                            $("#menu-drink").show();
+                        }
+                        $("#menu-button").hide();
+                        $("#logo").attr("src", "image/logo-large.png");
+                    }
+                }
+
+                function setupMenuButton() {
+                    $("#menu-button").click(function(e) {
+                        e.preventDefault();
+
+                        if (open) {
+                            $("#menu-drink").fadeOut();
+                            $("#menu-button").toggleClass("selected");
+                        }
+                        else {
+                            $("#menu-drink").fadeIn();
+                            $("#menu-button").toggleClass("selected");
+                        }
+                        open = !open;
+                    });
+                }
+
+
+                $(window).resize(resizeMenu);
+
+                resizeMenu();
+                setupMenuButton();
+            });
+        </script>
+   
+</head>
+
+<body {BODY_ATTRIBUTE} onload="showAlert('<!-- patTemplate:gtfwgeturl module="informasi" sub="popupInformasi" action="view" type="html" params=""  / -->');" style="background-color:#E9ECF1;">
+   <div id="body-application">
+   <!-- patTemplate:link src="body" / -->
+   </div>
+</body>
+</html>
+<!-- /patTemplate:tmpl -->
