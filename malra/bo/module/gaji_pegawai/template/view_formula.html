@@ -1,0 +1,5 @@
+<!-- patTemplate:tmpl name="content" -->
+   <!-- <input type="text" class="gvFloat" name="payroll_{PAYROLL_ID_FORMULA}" id="payroll_{PAYROLL_ID_FORMULA}" value='{PAYROLL_ORI}' style="text-align:right; float:left; position:absolute; width:150px;display:none;" /><span id="span_{PAYROLL_ID_FORMULA}" style="text-align:right; float:left; position:absolute; width:150px;padding-top:3px;" >{PAYROLL_NOMINAL}</span> -->
+   <input type="text" onkeyup="HitungTotal();" name="payroll_{PAYROLL_ID_FORMULA}" id="payroll_{PAYROLL_ID_FORMULA}" value='{PAYROLL_ORI}' class="gvFloat" style="text-align:right; float:left; width:150px;display:none;" /><span id="span_{PAYROLL_ID_FORMULA}" style="text-align:right; float:left; width:150px; padding-top:3px;" >{PAYROLL_NOMINAL}</span>
+   <script>HitungTotal();</script>
+<!-- /patTemplate:tmpl -->

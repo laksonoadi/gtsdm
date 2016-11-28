@@ -1,0 +1,35 @@
+<!-- patTemplate:tmpl name="content" -->
+<!-- patTemplate:tmpl name="BudgetRefTitle" visibility="hidden" -->
+<h1>Budget Reference</h1>
+<h2>Import Budget</h2>
+<br />
+<!-- /patTemplate:tmpl -->
+
+<form method="POST" enctype="multipart/form-data" class="xhr_form std_form" action="{URL_ACTION}" id="frm_input" name="frm_input" >
+   <table class="table-edit" width="100%">
+		<tr class="subhead">
+			<th colspan="2">Import Budget</th>
+		</tr>		
+		<tr>
+			<th width="25%">File CSV</th>
+			<td>
+				<input type='file' name='CSV_File'>
+			</td>
+		</tr>
+		<tr>
+			<th width="25%">Tahun Anggaran</th>
+			<td>
+            <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="budgetThanggarid"  / -->
+			</td>
+		</tr>
+		<tr class="buttons">
+			 <th>&nbsp;   
+			 </th>
+			 <td>
+				<input type="submit" name="btnsimpan" value=" Save " class="buttonSubmit"/>
+				<input type="submit"  name="btnbatal" value=" Cancel " class="buttonSubmit"/>
+			 </td>
+		</tr>
+   </table>
+</form>
+<!-- /patTemplate:tmpl -->

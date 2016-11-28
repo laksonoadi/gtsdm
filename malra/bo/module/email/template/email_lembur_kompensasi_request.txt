@@ -1,0 +1,19 @@
+Overtime Work Compensation Request in SSE Human Resource Portal System
+Dear Supervisor,
+
+This Employee, 
+Name            : {NAMA_PEGAWAI}
+Employee Number : {NIP_PEGAWAI}
+
+Has been Requested Overtime Work Compensation.
+
+Detail Informations :
+Date   : {LEMBUR_TANGGAL}
+Reason : {LEMBUR_ALASAN}  
+
+You need to approved or rejected this request,
+please log into SSE Human Resource Portal System.
+
+Regards,
+
+HR Mail System

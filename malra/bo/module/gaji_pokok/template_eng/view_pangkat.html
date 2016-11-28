@@ -1,0 +1,36 @@
+<!-- patTemplate:tmpl name="content" -->
+<br />
+<h1>{LABEL_TITLE}</h1>
+
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+   {ISI_PESAN}
+</div>
+<br />
+<!-- /patTemplate:tmpl -->
+<div><h1>{TITLE}</h1></div><br>
+<table class="table-common" width="60%">
+   <tr>
+      <th width="15%">No</th>
+      <th>Grade</th>
+      <th width="10px">Action</th>
+   </tr>
+   <!-- patTemplate:tmpl name="data_pegawai" type="condition" conditionvar="PEGAWAI_EMPTY" -->
+      <!-- patTemplate:sub condition="YES" -->
+   <tr><td colspan="3" align="center"><em>-- Data not found --</em></td></tr>
+      <!-- /patTemplate:sub -->
+      <!-- patTemplate:sub condition="NO" -->
+         <!-- patTemplate:tmpl name="data_pegawai_item" -->
+   <tr class="{CLASS_NAME}">
+      <td align="center">{NUMBER}</td>
+      <td align="left">{PANGKAT}</td>
+      <td class="links">
+         <a class="xhr dest_subcontent-element" href="{URL_DETAIL}" title="Update">Select</a>
+         </a>
+      </td>
+   </tr>
+         <!-- /patTemplate:tmpl -->
+      <!-- /patTemplate:sub -->
+   <!-- /patTemplate:tmpl -->
+</table>
+<!-- /patTemplate:tmpl -->

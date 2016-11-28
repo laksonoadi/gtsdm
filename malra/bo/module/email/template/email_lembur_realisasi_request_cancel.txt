@@ -1,0 +1,18 @@
+Cancellation Overtime Work Realization in SSE Human Resource Portal System
+Dear Supervisor,
+
+This Employee, 
+Name            : {NAMA_PEGAWAI}
+Employee Number : {NIP_PEGAWAI}
+
+Has Cancelled His/Her Overtime Work Realization.
+
+Detailed Informations :
+Number : {LEMBUR_NUMBER}
+Date   : {LEMBUR_TANGGAL}
+Time   : {LEMBUR_WAKTU_MULAI} s.d {LEMBUR_WAKTU_SELESAI}
+Reason : {LEMBUR_ALASAN}
+
+Regards,
+
+HR Email System

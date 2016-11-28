@@ -1,0 +1,291 @@
+<!-- patTemplate:tmpl name="content" -->
+
+<div id="TOP" class="background-blue padding-10 text-big">{TITLE}</div>
+
+<div class="padding-10">
+<!-- patTemplate:gtfwrendermodule module="profile" submodule="profilebox" action="view" name="profile"  / -->
+
+<div style="align:center;width:100%!important">
+          <a class="buttonSubmit btn btn-info btn-xs" href="{URL_CETAK}" title="Export RTF" tabindex="2" target="_Blank" style="visibility:{HID}">
+           Export RTF</a>
+           <a class="xhr dest_subcontent-element btn btn-warning btn-xs" href="{URL_KEMBALI}" >
+           Kembali</a>
+
+</div>
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+
+<div class="{CLASS_PESAN}" id="warning_box">
+   {ISI_PESAN} <a href="javascript:Tutup();">&nbsp;[Tutup Pesan]</a>
+</div>
+<!-- /patTemplate:tmpl --> 
+
+
+
+<div class="table-responsive">
+    <form method="POST" name="frmInput" action="{URL_ACTION}" enctype="multipart/form-data">
+        <table class="table">
+            <tr class="background-blue-light text-big">
+                <th colspan="2">{LABEL_ACTION} {LABEL_INPUT}</th>
+            </tr>
+
+            <tr>
+                <th colspan="2" class="background-blue-light"><b>Surat Pernyataan Pelantikan</b></th>
+            </tr>
+            <tr>
+              <th width="25%">Tanggal TTD Surat Pernyataan Pelantikan</th>
+              <td>
+              
+              <!-- patTemplate:gtfwrendermodule module="tanggal" submodule="tanggal" action="view" name="pubpeg_tglsurat_1"  / -->
+              </td>
+            </tr>
+            <tr>
+              <th width="25%">Nomor SK Pelantikan</th>
+              <td>
+              <input type="text" name="nomor_sk_pelantikan" id="nomor_sk_pelantikan" value="{NOMOR_SK_PELANTIKAN}"  style="width:95%!important" />
+              </td>
+            </tr>
+            <tr>
+              <th width="25%">Penanda Tangan *</th>
+              <td>
+              <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="jabs_ref"  / -->
+              </td>
+            </tr>
+            <tr>
+              <th width="25%">Nama Pejabat</th>
+              <td>
+              <input type="text" name="pejabat_nama" id="pejabat_nama" value="{PEJABAT_NAMA}"  style="width:95%!important" />
+              </td>
+            </tr>
+            <tr>
+              <th width="25%">NIP Pejabat</th>
+              <td>
+              <input type="text" name="pejabat_nip" id="pejabat_nip" value="{PEJABAT_NIP}"  style="width:95%!important" />
+              </td>
+            </tr>
+            <tr>
+              <th width="25%">Jabatan Struktural Pejabat *</th>
+              <td>
+              <input type="text" name="pejabat_jabstruktural" id="pejabat_jabstruktural" value="{PEJABAT_JABSTRUKTURAL}" style="width:95%!important" />
+              </td>
+            </tr>
+            <tr>
+              <th width="25%">Pangkat/Golongan Pejabat</th>
+              <td>
+              <input type="text" name="pejabat_pangol" id="pejabat_pangol" value="{PEJABAT_PANGOL}"   style="width:95%!important" />
+              </td>
+            </tr>
+
+            <tr>
+              <th width="25%">Nama Pegawai</th>
+              <td>
+              <input type="text" name="nama" id="nama" value="{NAMA_PEGAWAI}"  style="width:95%!important" />
+              </td>
+            </tr>
+            <tr>
+              <th width="25%">NIP Pegawai</th>
+              <td>
+              <input type="text" name="nip" id="nip" value="{NIP_PEGAWAI}"  style="width:95%!important" />
+              <input type="hidden" name="id" id="id" value="{ID}"  style="width:95%!important" />
+              
+              </td>
+            </tr>
+
+            <tr>
+              <th width="25%">Pangkat/Golongan Pegawai</th>
+              <td>
+              <input type="text" name="pangol" id="pangol" value="{PANGOL_PEGAWAI}"   style="width:95%!important" />
+              </td>
+            </tr>
+
+            <tr>
+              <th width="25%">Nomor SK Walikota</th>
+              <td>
+              <input type="text" name="sk_walkot" id="sk_walkot" value="{SK_WALKOT}"   style="width:95%!important" />
+              </td>
+            </tr>
+
+            <tr>
+              <th width="25%">Tanggal SK Walikota</th>
+              <td>
+              
+              <!-- patTemplate:gtfwrendermodule module="tanggal" submodule="tanggal" action="view" name="tgl_sk_wali"  / -->
+              </td>
+            </tr>
+
+            <tr>
+              <th width="25%">Jabatan Baru Pegawai</th>
+              <td>
+              <input type="text" name="jabatanbaru" id="jabatanbaru" value="{JABATANBARU}"   style="width:95%!important" />
+              </td>
+            </tr>
+
+            <tr>
+              <th width="25%">Unit Baru Pegawai</th>
+              <td>
+              <input type="text" name="unitkerja" id="unitkerja" value="{UNITKERJA}"   style="width:95%!important" />
+              </td>
+            </tr>
+
+            <tr>
+              <th width="25%">Tanggal Pelantikan</th>
+              <td>
+              
+              <!-- patTemplate:gtfwrendermodule module="tanggal" submodule="tanggal" action="view" name="tgl_pelantikan"  / -->
+              </td>
+            </tr>
+
+             <tr>
+              <th width="25%">Tembusan 4</th>
+              <td>
+              <input type="text" name="tembusan4" id="tembusan4" value="{TEMBUSAN4}"  style="width:95%!important" />
+              </td>
+            </tr>
+            <tr>
+              <th width="25%">Tembusan 5</th>
+              <td>
+              <input type="text" name="tembusan5" id="tembusan5" value="{TEMBUSAN5}"  style="width:95%!important" />
+              </td>
+            </tr>
+            <tr>
+              <th width="25%">Tembusan 6</th>
+              <td>
+              <input type="text" name="tembusan6" id="tembusan6" value="{TEMBUSAN6}"  style="width:95%!important" />
+              </td>
+            </tr>
+            <tr>
+              <th width="25%">Tembusan 7</th>
+              <td>
+              <input type="text" name="tembusan7" id="tembusan7" value="{TEMBUSAN7}" style="width:95%!important" />
+              </td>
+            </tr>
+
+            <tr>
+                <th colspan="2" class="background-blue-light"><b>Surat Pernyataan Menduduki Jabatan</b></th>
+            </tr>
+            <tr>
+              <th width="25%">Tanggal TTD Surat Pernyataan Menduduki Jabatan</th>
+              <td>
+              
+              <!-- patTemplate:gtfwrendermodule module="tanggal" submodule="tanggal" action="view" name="pubpeg_tglsurat_2"  / -->
+              </td>
+            </tr>
+            <tr>
+              <th width="25%">Nomor SK Menuduki Jabatan</th>
+              <td>
+              <input type="text" name="nomor_sk_menduduki" id="nomor_sk_menduduki" value="{NOMOR_SK_MENDUDUKI}"  style="width:95%!important" />
+              </td>
+            </tr>
+
+            <tr>
+              <th width="25%">Nomor SK Walikota Menduduki Jabatan</th>
+              <td>
+              <input type="text" name="sk_walkot_duduk" id="sk_walkot_duduk" value="{SK_WALKOT_DUDUK}"   style="width:95%!important" />
+              </td>
+            </tr>
+
+            <tr>
+              <th width="25%">Tanggal SK Walikota Menduduki Jabatan</th>
+              <td>
+              <!-- patTemplate:gtfwrendermodule module="tanggal" submodule="tanggal" action="view" name="tgl_sk_waklot_duduk"  / -->
+              </td>
+            </tr>
+
+            <tr>
+              <th width="25%">Eselon</th>
+              <td>
+                <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="eselon"  / -->
+              </td>
+            </tr>
+
+            <tr>
+              <th width="25%">Tanggal Menduduki</th>
+              <td>
+              <!-- patTemplate:gtfwrendermodule module="tanggal" submodule="tanggal" action="view" name="tgl_menduduki"  / -->
+              </td>
+            </tr>
+
+            <tr>
+              <th width="25%">Tunjangan</th>
+              <td>
+              <input type="number" name="tunjangan" id="tunjangan" value="{TUNJANGAN}"   style="width:95%!important" />
+              </td>
+            </tr>
+            <tr>
+                <th colspan="2" class="background-blue-light"><b>Surat Pernyataan Melaksanakan Tugas</b></th>
+            </tr>
+            <tr>
+              <th width="25%">Tanggal TTD Surat Pernyataan Melaksanakan Tugas</th>
+              <td>
+              
+              <!-- patTemplate:gtfwrendermodule module="tanggal" submodule="tanggal" action="view" name="pubpeg_tglsurat_3"  / -->
+              </td>
+            </tr>
+            <tr>
+              <th width="25%">Nomor SK Melaksanakan Tugas</th>
+              <td>
+              <input type="text" name="nomor_sk_pelaksana" id="nomor_sk_pelaksana" value="{NOMOR_SK_PELAKSANA}"  style="width:95%!important" />
+              </td>
+            </tr>
+
+            <tr>
+              <th width="25%">Tanggal Melaksanakan Tugas</th>
+              <td>
+              <!-- patTemplate:gtfwrendermodule module="tanggal" submodule="tanggal" action="view" name="tgl_pelaksana_tugas"  / -->
+              </td>
+            </tr>
+
+            
+            
+
+	      
+          <tr class="buttons">
+             <th>&nbsp;</th>
+             <td>
+                
+                <input type="hidden" name="dataId" id="dataId" value="{INPUT_ID}" />
+                
+                <div ><input name="btnsimpan" value="{LABEL_ACTION} " class="buttonSubmit btn btn-info btn-xs" type="submit">
+
+            
+           </div>
+             </td>
+          </tr>
+        </table>
+    </form>
+</div>
+
+<script language="javascript" type="text/javascript">
+
+// document.getElementById('tanggal_day').visibility='hidden';
+$('#jabs_ref').change(
+                function() {
+                    var result = $(this).val().split('|');
+
+                    $('#pejabat_nama').val(result[1]);
+                    $('#pejabat_nip').val(result[0]);
+                    $('#pejabat_jabstruktural').val(result[4]);
+                    // $('#unitkerja').val(result[3]);
+                    $('#pejabat_pangol').val(result[2]+' / '+result[5]);
+                }
+            );
+
+
+function konfirmasi() {
+	if (document.getElementById('satker').value=='') {
+		alert('Anda belum memilih Satuan Kerja');
+		document.getElementById('satker').focus();
+		return false;
+	}
+	
+	document.frmInput.btnsimpan.click();
+}
+
+function Tab(aktif,nonaktif){
+	document.getElementById(aktif).style.display='';
+	document.getElementById(nonaktif).style.display='none';
+}
+
+
+
+</script>
+<!-- /patTemplate:tmpl -->

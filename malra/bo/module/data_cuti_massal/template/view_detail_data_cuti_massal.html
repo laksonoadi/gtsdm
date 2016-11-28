@@ -1,0 +1,98 @@
+<!-- patTemplate:tmpl name="content" -->
+<div id="TOP" class="background-blue padding-10 text-big" style="text-transform:uppercase">Detail Cuti Masal</div>
+
+<div class="padding-10">
+
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+   {ISI_PESAN}
+</div>
+<br />
+<!-- /patTemplate:tmpl -->
+
+<div class="table-responsive">
+ 
+<form method="POST" name="frmInput" action="{URL_AKSI}" class="xhr_form std_form" id="frmInput" enctype="multipart/form-data">
+   <input type="hidden" name="idPeg" value="{DATA_ID}">
+   <table class="table table-bordered">
+      <tr class="background-blue-light">
+        <th colspan="2" valign="center">Data Detail Cuti Masal</th>
+      </tr>
+      <tr>
+        <th>Tanggal Submit</th>
+        <td>
+          {SUBMIT}
+        </td>
+      </tr>
+	  <tr>
+        <th>Nama Cuti Masal</th>
+        <td>
+          {NAMA}
+        </td>
+      </tr>
+      <tr>
+        <th>Tanggal Mulai</th>
+        <td>
+          {MULAI}
+        </td>
+      </tr>
+      <tr>
+	        <th>Tanggal Selesai</th>
+        <td>
+          {SELESAI}
+        </td>
+      </tr>
+      <tr>
+        <th>Alasan Cuti</th>
+        <td>
+          {ALASAN}
+        </td>
+      </tr>
+	  <tr>
+        <th>File</th>
+        <td>
+          {FILE}
+        </td>
+      </tr>
+	  <tr class="background-blue-light">
+        <th colspan="2">Daftar Pegawai</th>
+     </tr>
+     <tr>
+		<td colspan="2">
+      <div class="table-responsive">
+     		<table class="table table-bordered" width="100%" id="table-komponen" >
+				<tr>
+				 	<th width="90px">Nomor Pegawai</th>
+				 	<th>Nama</th>
+				</tr>
+				<!-- patTemplate:tmpl name="data" type="condition" conditionvar="IS_EMPTY" -->
+					 <!-- patTemplate:sub condition="YES" -->
+					 <tr><td colspan="3" align="center"><em>-- Data tidak ditemukan --</em></td></tr>
+					 <!-- /patTemplate:sub -->
+					 <!-- patTemplate:sub condition="NO" -->
+						<!-- patTemplate:tmpl name="data_item" -->
+						<tr class="{DATA_CLASS_NAME}">
+						   <td style="padding-left:15px;" align="center">{DATA_NOPAK}</td>
+						   <td style="padding-left:15px;">{DATA_NAMAPAK}</td>
+						</tr>
+						<!-- /patTemplate:tmpl -->
+					 <!-- /patTemplate:sub -->
+				  <!-- /patTemplate:tmpl -->
+	  		</table>
+        </div>
+	  	</td>
+	  </tr>
+      <tr class="buttons">
+         <td colspan="2" align="right">
+          
+          <a class="xhr dest_subcontent-element btn btn-xs btn-default " href="{URL_BACK}" title="Kembali" tabindex="2">
+	           Kembali </a> 	
+          
+         </td>
+      </tr>
+   </table>
+</form>
+</div>
+</div>
+
+<!-- /patTemplate:tmpl -->

@@ -1,0 +1,16 @@
+Cancellation Overtime Work Compensation Request in SSE Human Resource Portal System
+Dear Supervisor,
+
+This Employee, 
+Name            : {NAMA_PEGAWAI}
+Employee Number : {NIP_PEGAWAI}
+
+Has been Canceled her/his Overtime Work Compensation Request.
+
+Detailed Informations :
+Date   : {LEMBUR_TANGGAL}
+Reason : {LEMBUR_ALASAN}
+
+Regards,
+
+HR Mail System

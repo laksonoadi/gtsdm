@@ -1,0 +1,172 @@
+
+<!-- patTemplate:tmpl name="content" -->
+<h1>{LABEL_TITLE}</h1>
+<br />
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+   {ISI_PESAN}
+</div>
+<br />
+<!-- /patTemplate:tmpl -->
+<div><h1>{TITLE}</h1></div><br>
+<table class="table-details" width="100%" >
+	<tr class="subhead">
+		<th colspan="3"><b>Employee Data</b></th>
+	</tr>
+	<tr>
+		<td rowspan="4" width="60px"><img src="upload_file/photo/{DATA_FOTO2}" width="100" height="100"></td>
+   </tr>
+   <tr>
+      <td width="120px">Employee Number</td>
+	  <td>{DATA_NIP}</td>
+   </tr>
+   <tr>
+      <td>Name</td>
+	  <td>{DATA_NAMA}</td>
+   </tr>
+   <tr>
+      <td>Address</td>
+	  <td>{DATA_ALAMAT}</td>
+   </tr>
+</table> 
+<form method="POST" name="frmInput" action="{URL_AKSI}" class="xhr_form std_form" id="frmInput" enctype="multipart/form-data">
+   <input type="hidden" name="idPeg" value="{DATA_ID}">
+   <table class="table-details" width="100%" >
+      <tr class="subhead">
+        <th colspan="2" valign="center">Benefit Claim Data Detail</th>
+      </tr>
+      <tr>
+        <th width="39%">Claim Number</th>
+        <td>
+          {DATA_NO}
+        </td>
+      </tr>
+      <!-- patTemplate:tmpl name="detail_pegawai" -->
+	  <tr>
+        <th width="39%">Employee Name</th>
+        <td>
+          {DATA_NAMA_PEGAWAI}
+        </td>
+      </tr>
+	  <tr>
+        <th width="39%">Gender</th>
+        <td>
+          {DATA_JNS_KELAMIN}
+        </td>
+      </tr>
+	  <tr>
+        <th width="39%">Marital Status</th>
+        <td>
+          {DATA_STATUS_NIKAH}
+        </td>
+      </tr>
+	  <tr>
+        <th width="39%">Employee Type</th>
+        <td>
+          {DATA_JNS_PEGAWAI}
+        </td>
+      </tr>
+	  <tr>
+        <th width="39%">Structural Position</th>
+        <td>
+          {DATA_JABATAN_STRUKTURAL}
+        </td>
+      </tr>
+	  <!-- /patTemplate:tmpl -->
+	  <tr>
+        <th width="39%">Patient Name</th>
+        <td>
+          {DATA_NAMA_PASIEN}
+        </td>
+      </tr>
+	  <tr>
+        <th width="39%">Patient Relationship with Employee</th>
+        <td>
+          {DATA_RELASI_PASIEN}
+        </td>
+      </tr>
+	  <tr>
+        <th width="39%">Claim Type</th>
+        <td>
+          {DATA_TIPE_KLAIM}
+        </td>
+      </tr>
+	  <tr>
+        <th width="39%">Date</th>
+        <td>
+          {DATA_TGL_BENEFIT}
+        </td>
+      </tr>
+	  <tr>
+        <th width="39%">Place</th>
+        <td>
+          {DATA_TEMPAT}
+        </td>
+      </tr>
+	  <tr class="subhead">
+        <th colspan="2" valign="center">Claim Reference Detail</th>
+      </tr>
+	  <tr>
+	    <td colspan="2" style="padding-left:30px">
+			<table class="table-edit" width="500" id="table_claim_list">
+				<tr class="subhead">
+					<th>No.</th>
+					<th>Claim Reference</th>
+					<th>Request Amount</th>
+					<th>Approved Amount</th>
+					<th>Attachment</th>
+				</tr>
+				<!-- patTemplate:tmpl name="tpl_claim_list" type="condition" conditionvar="CLAIM_LIST_EMPTY" -->
+					<!-- patTemplate:sub condition="YES" -->
+						<tr id="claim_empty"><td colspan="5" align="center"><em>-- Data not found --</em></td></tr>
+					<!-- /patTemplate:sub -->
+					<!-- patTemplate:sub condition="NO" -->
+						<!-- patTemplate:tmpl name="tpl_claim_item" -->
+							<tr class="{DATA_CLASS_NAME}">
+								<td align="center">{DATA_NUMBER}</td>
+								<td>{DATA_TIPE_KLAIM}</td>
+								<td>{DATA_NILAI_KLAIM}</td>
+								<td>{DATA_NILAI_KLAIM_DISETUJUI}</td>
+								<td>{DATA_FILE_KLAIM}</td>
+							</tr>
+						<!-- /patTemplate:tmpl -->
+					<!-- /patTemplate:sub -->
+				<!-- /patTemplate:tmpl -->
+			</table>
+		</td>
+	  </tr>
+	  <tr>
+        <th width="39%">Claim Total</th>
+        <td>
+          {DATA_TOTAL_KLAIM}
+        </td>
+      </tr>
+	  <tr>
+        <th width="39%">Medical Reason</th>
+        <td>
+          {DATA_ALASAN}
+        </td>
+      </tr>
+	  <tr>
+        <th width="39%">Claim Date</th>
+        <td>
+          {DATA_TGL_KLAIM}
+        </td>
+      </tr>
+	  <tr>
+        <th width="39%">Approval Status</th>
+        <td>
+          {DATA_STATUS}
+        </td>
+      </tr>				
+      <tr class="buttons">
+         <td colspan="2" align="right">
+          <div class="toolbar"> 
+          <a class="xhr dest_subcontent-element " href="{URL_BACK}" title="Kembali" tabindex="2">
+          <img src="images/button-back.gif" alt=""> Kembali</a> 	
+          </div>
+         </td>
+      </tr>
+   </table>
+</form>
+<!-- /patTemplate:tmpl -->

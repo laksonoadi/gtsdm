@@ -1,0 +1,197 @@
+<!-- patTemplate:tmpl name="content" -->
+<script language="javascript" type="text/javascript">
+	var xpopup;
+	function bukaPopupBank(xurl) {
+		showPopup(xurl,'Bank List',500, 500);
+	}
+	
+	function bukaPopupKomponen(url) {
+		showPopup(url,'Component List',500, 500);
+	}
+	
+	function hapus_komponen_gaji(obj) {
+		obj.parentNode.parentNode.parentNode.removeChild(obj.parentNode.parentNode);
+	}
+	
+	/*function cari_kompgaji (url) {
+    //YAHOO.example.container.myPanel.show();
+    document.getElementById('myPanel1').style.display = 'block';
+    YAHOO.example.container.myPanel.hide();
+    if (document.getElementById('refresh_komponen_gaji').value == '1') {
+      url = url + '&ascomponent=1';
+      GtfwAjax.replaceContentWithUrl('subcontent-bank', url);
+    }
+    YAHOO.example.container.myPanel1.show();
+    }*/
+</script>
+<script type="text/javascript">
+/*	YAHOO.namespace("example.container");
+		
+	YAHOO.util.Event.onDOMReady(function () {
+		YAHOO.example.container.myPanel = new YAHOO.widget.Panel("myPanel", { 
+			width:"600px", 
+			visible:false, 
+			constraintoviewport:true, 
+			draggable:true 
+		});
+		YAHOO.example.container.myPanel.render();
+	});
+   
+   YAHOO.util.Event.onDOMReady(function () {
+		YAHOO.example.container.myPanel1 = new YAHOO.widget.Panel("myPanel1", { 
+			width:"600px", 
+			visible:false, 
+			constraintoviewport:true, 
+			draggable:true 
+		});
+		YAHOO.example.container.myPanel1.render();
+	});*/
+</script>
+
+<!--<div id="myPanel" style="display: none">
+		<div class="hd"><div class="tl"></div><span>List Unit Kerja</span><div class="tr"></div></div>
+		<div class="bd">
+			<div id="sub-sub-content" class="sub-sub-content">
+			</div>
+		</div>
+		<div class="ft">End of Panel</div>
+	</div>
+	<div id="myPanel1" style="display: none">
+		<div class="hd"><div class="tl"></div><span>List Data</span><div class="tr"></div></div>
+		<div class="bd">
+			<div id="subcontent-bank" class="subcontent-bank">
+			</div>
+		</div>
+		<div class="ft">End of Panel</div>
+	</div> -->
+<br />
+<h1>Gaji Pegawai</h1>
+<!-- <input type="hidden" name="refresh_komponen_gaji" id="refresh_komponen_gaji" value="1" /> -->
+<br />
+
+   <!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+   <div class="notebox-alert">
+      {ISI_PESAN}
+   </div>
+   <br />
+   <!-- /patTemplate:tmpl -->
+   
+   
+   <form method="POST" action="{URL_ACTION}" class="xhr_form std_form" id="frmInput" >
+   <input type="hidden" name="dataId" value="{DATAID}"  />
+   <input type="hidden" name="page" value="{PAGE}"  />
+      <table class="table-edit" width="100%">
+         <tr class="subhead">
+            <th colspan="2">{JUDUL} Data Gaji Pegawai</th>
+         </tr>
+         <tr>
+            <th width="150">Nomor Pegawai</th>
+            <td>{NIP}</td>
+         </tr>
+         <tr>
+            <th>Unit Kerja</th>
+            <td>{SATKER_UNIT}</td>
+         </tr>
+         <tr>
+            <th>Nama</th>
+            <td>{NAMA}</td>
+         </tr>
+         <tr>
+            <th>Alamat</th>
+            <td>{ALAMAT}</td>
+         </tr>
+         <tr>
+            <th>Nomor HP</th>
+            <td>{HP}</td>
+         </tr>
+         <tr>
+            <th>Nomor Telepon</th>
+            <td>{TELP}</td>
+         </tr>
+         <tr>
+            <th>Status Cash</th>
+            <td><input {CASH_CHECKED} type='checkbox' value='Ya' name="cash"></td>
+         </tr>
+         <tr>
+            <th>Nomor Rekening</th>
+            <td>{REKENING}<input type="hidden" name="rekening" value="{REKENING}" size="40" readonly /></td>
+         </tr>
+         <tr>
+            <th>Bank</th>
+            <td>{BANK_LABEL}<input type="hidden" name="bank_label" id="bank_label" value="{BANK_LABEL}" size="40" readonly="readonly" /><input type="hidden" name="bank" id="bank" value="{BANK}" /><!--<input type="button"  name="but_bank" onclick="bukaPopupBank('{URL_POPUP_BANK}')" value=" ... " readonly />--></td>
+         </tr>
+		 <tr>
+            <th>Rekening Bank Penerima</th>
+            <td>{RESIPIEN}<input type="hidden" name="resipien" value="{RESIPIEN}" size="40" readonly /></td>
+         </tr>
+         <tr>
+            <th>Tanggal Pembayaran Gaji</th>
+            <td><!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="tgl_gajian"  / --> *</td>
+         </tr>
+         <tr>
+            <th>Status</th>
+            <td><input {AKTIF_CHECKED} type='checkbox' value='Ya' name="aktif"></td>
+         </tr>
+         
+         <tr>
+    		 <td colspan="2">
+    			<table class="table-common" width="100%" id="table-komponen" >
+    				<tr>
+    				 <th>Kode Komponen gaji </th>
+    				 <th>Nama Komponen gaji </th>
+    				 <th>&nbsp;</th>	 
+    				</tr>
+    				<tbody id="table-komponengaji">
+    					<!-- patTemplate:tmpl name="detil_komponen_gaji" type="condition" conditionvar="DATA_EMPTY" -->
+    					<!-- patTemplate:sub condition="YES" --><!-- /patTemplate:sub -->
+    					<!-- patTemplate:sub condition="NO" -->
+    						<!-- patTemplate:tmpl name="data_komponen_item" -->
+    						<tr>
+    							<td>
+    								<input type="hidden" name="data[tambah][id][]" value="{DATA_ID}" /> 
+    								<input type="hidden" name="data[tambah][kode][]" value="{DATA_KODE}" /> {DATA_KODE}
+    							</td>
+    							<td>
+    								<input type="hidden" name="data[tambah][nama][]" value="{DATA_NAMA}" /> {DATA_NAMA}
+    							</td>
+    							<td>
+    								<a href="javascript:void(null)" title="Hapus" onclick="hapus_komponen_gaji(this)">
+    								<img src="images/button-delete.gif" alt="Hapus" /></a>
+    							</td>
+    						</tr>
+    						<!-- /patTemplate:tmpl -->
+    					<!-- /patTemplate:sub -->
+    					<!-- /patTemplate:tmpl -->
+    				</tbody>
+    				<tr>
+    				 <td colspan="5" class="links" style="border: medium none ;">
+             <!-- <a href="javascript:cari_kompgaji('{URL_POPUP_KOMPONENGAJI}')" onclick=""> -->
+             <a href="javascript:bukaPopupKomponen('{URL_POPUP_KOMPONENGAJI}')" onclick="">
+    				 <img src="images/button-add.gif" alt=""> Tambah Komponen</a>
+    				 </td>
+    				</tr>
+    			</table>
+    			</td>
+    			
+    		 </tr>
+    		 
+         <tr class="buttons">
+            <th>&nbsp;
+            </th>
+            <td>
+               <input type="submit" name="btnsimpan" value=" {JUDUL} " class="buttonSubmit"/>
+               <input  type="submit"  name="btnbalik" value=" Batal " class="buttonSubmit"/>
+            </td>
+         </tr>
+      </table>
+   </form>
+   
+   <br/>
+   
+   <div class="petunjuk-area">
+      <h4>Informasi :</h4>
+      <ul>
+         <li>Tanda * menandakan bahwa field ini harus diisi.</li>
+      </ul>
+   </div>
+<!-- /patTemplate:tmpl -->

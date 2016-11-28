@@ -1,0 +1,78 @@
+<!-- patTemplate:tmpl name="content" -->
+	<!-- patTemplate:tmpl name="combobox" -->
+	<select name="{COMBO_NAME}" class="form-control input-sm" id="{COMBO_NAME}" {ACTION}>
+	<!-- patTemplate:tmpl name="combolist" type="condition" conditionvar="COMBO_IS_DISABLED" -->
+	<!-- patTemplate:sub condition="YES" -->
+		<option value="{COMBO_VALUE}" disabled="disabled" style="cursor: not-allowed; color: #bbb; {COMBO_STYLE}">{COMBO}</option>
+	<!-- /patTemplate:sub -->
+	<!-- patTemplate:sub condition="__default" -->
+		<option value="{COMBO_VALUE}" {COMBO_SELECTED} style="{COMBO_STYLE}">{COMBO}</option>
+	<!-- /patTemplate:sub -->
+	<!-- /patTemplate:tmpl -->
+	</select>
+	<!-- patTemplate:tmpl name="combobox_extended_script" visibility="hidden" varscope="combobox" -->
+	<script>
+	// Self-executing function, to localize the variables (not modifying the 'window' object)
+	(function(){
+		var $select = $("#{COMBO_NAME}");
+        var $parent = $select.parent();
+        var $dummy = $("<div/>").css({
+            "visibility": "hidden",
+            "position": "absolute",
+            "top": 0,
+            "left": 0
+        }).appendTo("body");
+        
+		var placeholder;
+        var index = $select.index();
+        
+        // Move out only temporarily
+        // This solves the problem in case of tabs (display:none at first),
+        // in which the width and height would be 0, which breaks the Chosen
+        $select.appendTo($dummy);
+        
+        // Is it visible after moved?
+        // We cannot make Chosen from an invisible select
+        if($select.is(":visible")) {
+            // The data-placeholder can be passed with the {{ACTION}} parameter,
+            //	in that case we won't change it.
+            // We need to use $().attr() instead of $().data() because the Chosen plugin
+            //	picks up placeholder from attribute, not data.
+            if(!$select.attr("data-placeholder")) {
+                // The data-placeholder is not set. Look for 'placeholder' attribute
+                if($select.attr("placeholder")) {
+                    placeholder = $select.attr("placeholder");
+                } else {
+                    // The 'placeholder' attribute is not set.
+                    // Set default placeholder
+                    if($select.attr("multiple")) {
+                        placeholder = "Pilih satu atau lebih";
+                    } else {
+                        placeholder = "Pilih salah satu";
+                    }
+                }
+                $select.attr("data-placeholder", placeholder);
+            }
+            
+            $select.chosen({
+                no_results_text: 'Data tidak ditemukan',
+                allow_single_deselect: true,
+                search_contains: true,
+                include_group_label_in_selected: true,
+                max_shown_results: 10
+            });
+        }
+        
+        // Move back in
+        // Return to the index it was
+        if(index == 0) {
+            $dummy.children().prependTo($parent);
+        } else {
+            $dummy.children().insertBefore($parent.children().eq(index));
+        }
+        $dummy.remove();
+	})();
+	</script>
+	<!-- /patTemplate:tmpl -->
+	<!-- /patTemplate:tmpl -->
+<!-- /patTemplate:tmpl -->

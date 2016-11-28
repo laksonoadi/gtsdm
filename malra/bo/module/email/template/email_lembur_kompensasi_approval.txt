@@ -1,0 +1,16 @@
+Approval Overtime Work Compensation in SSE Human Resource Portal System
+Dear {NAMA_PEGAWAI},
+
+Your request Overtime Work Compensation:
+
+Date   : {LEMBUR_TANGGAL}
+Reason : {LEMBUR_ALASAN} 
+
+is {LEMBUR_STATUS} by Your Supervisor.
+
+
+For more detailed informations, please log into SSE Human Resource Portal System.
+
+Regards,
+
+HR Mail System

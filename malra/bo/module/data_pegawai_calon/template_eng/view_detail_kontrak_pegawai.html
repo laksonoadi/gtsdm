@@ -1,0 +1,111 @@
+<!-- patTemplate:tmpl name="content" -->
+<h1>{LABEL_TITLE}</h1>
+<br />
+
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+   {ISI_PESAN}
+</div>
+<br />
+<!-- /patTemplate:tmpl -->
+<div><h1>{TITLE}</h1></div><br>
+<table class="table-details" width="100%" >
+	<tr class="subhead">
+		<th colspan="3"><b>Personal Information</b></th>
+	</tr>
+	<tr>
+		<td rowspan="4" width="20%"><img src="upload_file/photo/{PROFIL_FOTO}" width="100" height="100"></td>
+   </tr>
+   <tr>
+      <td width="20%">Name</td>
+	  <td>{PROFIL_NAME}</td>
+   </tr>
+   <tr>
+      <td>Employee ID</td>
+	  <td>{PROFIL_KODE}</td>
+   </tr>
+   <tr>
+     
+      <td valign="top">Address</td>
+	  <td valign="top">{PROFIL_ALAMAT}</td>
+   </tr>
+   <tr>
+      
+   </tr>
+</table>
+<!-- patTemplate:tmpl name="data" type="condition" conditionvar="DATA_EMPTY" -->
+      <!-- patTemplate:sub condition="YES" -->
+    <h1>-- Data not found -- </h1>
+      <!-- /patTemplate:sub -->
+      <!-- patTemplate:sub condition="NO" -->
+         <!-- patTemplate:tmpl name="data_item" -->
+
+   <table class="table-details" width="100%" >
+      <tr class="subhead">
+         <th>DATA</th>
+      </tr>
+	  <tr>
+         <th>Contract Start Date</th>
+         <td>
+           {DETAIL_TGL_AWAL}
+         </td>
+      </tr>
+      <tr>
+         <th >Contract End Date</th>
+         <td>
+           {DETAIL_TGL_AKHIR}
+         </td>
+      </tr>
+	  <tr class="background-blue-light">
+		<th colspan="2">Keputusan</th>
+	  </tr>
+	  <tr>
+         <th >Signed By</th>
+         <td>
+           {DETAIL_PEJABAT}
+         </td>
+      </tr>
+	  <tr>
+         <th >Number of Letter </th>
+         <td>
+           {DETAIL_NOSK}
+         </td>
+      </tr>
+	  <tr>
+         <th >Decree Date </th>
+         <td>
+           {DETAIL_TGL_SK}
+         </td>
+      </tr>
+	  <tr>
+         <th >Contract Status Active </th>
+         <td>
+           {DETAIL_STATUS}
+         </td>
+      </tr>
+	  <tr>
+         <th >Contract Status Date </th>
+         <td>
+           {DETAIL_TGL_STATUS}
+         </td>
+      </tr>
+	  <tr>
+         <th >Decree Document </th>
+         <td>
+           <a href="{DETAIL_LINK_DOWNLOAD_SK}" target="_blank">{DETAIL_UPLOAD}</a>
+         </td>
+      </tr>
+
+<!-- /patTemplate:tmpl -->
+      <!-- /patTemplate:sub -->
+   <!-- /patTemplate:tmpl -->
+	<tr>
+	<td class="subhead" colspan="2">	
+	    <div class="toolbar"> 
+               <a class="xhr dest_subcontent-element " href="{URL_BACK}" title="Back to the Current Page" tabindex="2">
+               <img src="images/button-back.gif" alt="">Back</a> 
+            </div>
+	</td>
+	</tr>
+</table>
+<!-- /patTemplate:tmpl -->

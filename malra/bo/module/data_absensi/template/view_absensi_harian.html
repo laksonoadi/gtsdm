@@ -1,0 +1,98 @@
+<!-- patTemplate:tmpl name="content" -->
+<script language="javascript" type="text/javascript">
+	var xpopup;
+	function centangin_semua(varname, start_num, end_num) {
+		var obj = document.getElementById('cek_all');
+		if(obj.checked == false) {
+			for(i=start_num;i<=end_num;i++) {
+				document.getElementById(varname + i).checked = false;
+			}
+		} else {
+			for(i=start_num;i<=end_num;i++) {
+				document.getElementById(varname + i).checked = true;
+			}
+		}
+	}
+	function show_checkbox (varname, start_num, end_num) {
+		//show check_all checkbox
+		document.getElementById('cek_all').style.display='';
+		//document.getElementById('btnHapus').type="button";
+	}
+	function konfirmasi_delete(varname, start_num, end_num) {
+		//var idDelete = document.getElementById('id_delete').value;
+		for(i=start_num;i<=end_num;i++) {
+			if(document.getElementById(varname + i).checked == true) {
+				//document.getElementById('form_list').submit();
+				document.getElementById('btnHapus').type="submit";
+				document.getElementById('btnHapus').click();
+				return true;
+			}
+		}
+		alert('Silakan beri tanda cek pada minimal 1 data');
+		return false;
+	}
+</script>
+
+<br />
+<h1>DAILY ATTENDANCE DATA</h1>
+<br /> 
+
+<form method="POST" action="{URL_SEARCH}" class="dataquest xhr_simple_form dest_subcontent-element" id="filterbox">
+   <table>
+      <tr>
+         <th colspan="2"><h2><strong>Search Data</strong></h2></th>
+      </tr>
+	  <tr>              
+         <th width="30%">Employee Name</th>
+         <td colspan='2'><input type="text" name="nama" value="{NAMA}" size="30" /></td>
+      </tr>
+	  <tr>            
+         <th width="30%">&nbsp;</th>
+         <td><input type="submit" name="btncari" value=" Search &raquo;" class="buttonSubmit"/></td>
+      </tr>
+   </table>
+</form>
+
+<br /> 
+   <!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+   <div class="{CLASS_PESAN}">
+      {ISI_PESAN}
+   </div>
+   <br />
+   <!-- /patTemplate:tmpl -->
+
+   <h2>Current Date : {TANGGAL}</h2>
+   
+   <div class="pageBar">
+   <!-- patTemplate:gtfwrendermodule module="paging" submodule="paging" action="view" name="paging_top"  / -->
+      <div class="toolbar"> 
+		<a class="xhr dest_subcontent-element" href="{URL_PROSES}" title="Process" tabindex="3"><img src="images/button-forward.gif" alt="Process Data"> Process</a>&nbsp;&nbsp;
+		<a class="xhr dest_subcontent-element" href="{URL_REKAP}" title="Daily Data Rekap" tabindex="3"><img src="images/button-back.gif" alt="Daily Data Rekap"> Rekap</a>
+	  </div>
+   </div>
+	<table class="table-common" width="800px">
+      <tr>
+         <th width="10%">No</th>
+         <th width="70px">Gate Access Code</th>
+		 <th width="70px">Employee Name</th>
+         <th width="70px" align="center">Date</th>
+		 <th width="70px" align="center">Time</th>
+      </tr>
+      <!-- patTemplate:tmpl name="data_absensi" type="condition" conditionvar="ABSENSI_EMPTY" -->
+         <!-- patTemplate:sub condition="YES" -->
+         <tr><td colspan="4" align="center"><em>-- Data not found --</em></td></tr>
+         <!-- /patTemplate:sub -->
+         <!-- patTemplate:sub condition="NO" -->
+            <!-- patTemplate:tmpl name="data_absensi_item" -->
+            <tr class="{DATA_CLASS_NAME}">
+               <td align="center">{DATA_NUMBER}</td>
+               <td>{DATA_GATEACCESS}</td>
+			   <td>{DATA_NAMA}</td>
+			   <td align="center">{DATA_TGL}</td>
+			   <td align="center">{DATA_WAKTU}</td>
+            </tr>
+            <!-- /patTemplate:tmpl -->
+         <!-- /patTemplate:sub -->
+      <!-- /patTemplate:tmpl -->
+   </table>
+<!-- /patTemplate:tmpl -->

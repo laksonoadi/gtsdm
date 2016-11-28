@@ -1,0 +1,271 @@
+
+<!-- patTemplate:tmpl name="content" -->
+<script language="javascript" type="text/javascript">
+function IsHoliday(tanggal){
+	var listHariLibur="{DATA_HARILIBUR}";
+	var arrHariLibur=listHariLibur.split(";");
+	for (i=0; i<arrHariLibur.length; i++){
+		if (arrHariLibur[i].toString()==tanggal) return true;
+	}
+	
+	return false;
+}
+
+function IsWeekend(tanggal){
+	if ((tanggal.getDay()==0)||(tanggal.getDay()==6)) return true;
+	return false;
+}
+
+function konfirmasi() {
+	if(document.getElementById('btnbatal').value == " Reset "){
+      document.getElementById('btnbatal').type = "reset";
+      document.frmInput.onReset();
+    }else{
+      document.getElementById('btnbatal').type = "submit";
+      document.frmInput.onSubmit();
+    }
+}
+
+function cekSisaCuti(){
+	var sekarang=new Date();
+	
+	var awal_day=document.getElementById('tgl_mulai_day').value;
+	var awal_month=document.getElementById('tgl_mulai_mon').value;
+	var awal_year=document.getElementById('tgl_mulai_year').value;
+	var awal=new Date(); awal.setDate(awal_day); awal.setMonth(awal_month-1); awal.setYear(awal_year);
+	
+	var akhir_day=document.getElementById('tgl_selesai_day').value;
+	var akhir_month=document.getElementById('tgl_selesai_mon').value;
+	var akhir_year=document.getElementById('tgl_selesai_year').value;
+	var akhir=new Date(); akhir.setDate(akhir_day); akhir.setMonth(akhir_month-1); akhir.setYear(akhir_year);
+	
+	var t2 = akhir.getTime();
+    var t1 = awal.getTime();
+	
+	var sisa=document.getElementById('sisaCuti').value;
+	var status_before=document.getElementById('statusSebelum').value;
+	var reduced_before=document.getElementById('reducedSebelum').value;
+	var durasi_before=document.getElementById('durasiSebelum').value;
+	
+	var status_after=document.getElementById('status').options[document.getElementById('status').selectedIndex].value;
+	var reduced_after=document.getElementById('reduced').options[document.getElementById('reduced').selectedIndex].value;
+	var durasi_after;
+	
+	var temp=awal;//new Date(); temp.setDate(awal.getDate());
+	var i=0;
+	while (temp<=akhir) {
+		var mon=(parseInt(temp.getMonth())+1); if (mon<=9) mon='0'+mon;
+		var day=parseInt(temp.getDate()); if (day<=9) day='0'+day;
+		var year=parseInt(temp.getFullYear());
+		if (!IsHoliday(year+'-'+mon+'-'+day)&&!IsWeekend(temp)){
+			i=i+1;
+		}
+		temp.setDate(temp.getDate()+1);
+	}
+	durasi_after=i;
+	
+	if (document.getElementById('tipe').value==''){
+		alert('Anda belum memilih tipe cuti!');
+		document.getElementById('tipe').focus();
+		return false;
+	}
+	
+	if (document.getElementById('reduced').value==''){
+		alert('Silahkan pilih dahulu apakah cuti ini mengurangi jatah atau tidak!');
+		document.getElementById('reduced').focus();
+		return false;
+	}
+	
+	if ((sekarang.getTime()>=awal.getTime())||(sekarang.getTime()>=akhir.getTime())){
+		alert('Tanggal cuti tidak boleh lebih kecil dari tanggal sekarang!');
+		return false;
+	}
+	
+	if (document.getElementById('alasan').value==''){
+		alert('Alasan cuti wajib diisi!');
+		document.getElementById('alasan').focus();
+		return false;
+	}
+	
+	if (document.getElementById('status').value==''){
+		alert('Anda belum memilih status cuti!');
+		document.getElementById('status').focus();
+		return false;
+	}
+	
+	
+	
+	if (durasi_after<=0){
+		alert('Tanggal mulai harus lebih kecil atau sama dengan tanggal selesai!');
+		return false;
+	}
+	
+	if (status_before!='approved'){
+		if (status_after=='approved'){
+			if ((durasi_after>sisa)&&(reduced_after=='Yes')){
+				alert('Maaf sisa cuti anda tidak mencukupi untuk cuti sebanyak '+durasi_after+' hari, karena sisa cuti anda tinggal '+sisa+' hari!');
+				return false;
+			}
+		}
+	}else{
+		if (status_after=='approved'){
+			var total=parseInt(sisa)+parseInt(durasi_before);
+			if ((durasi_after>total)&&(reduced_after=='Yes')&&(reduced_before=='Yes')){ 
+				alert('Maaf sisa cuti anda tidak mencukupi untuk cuti sebanyak '+durasi_after+' hari, karena sisa cuti anda tinggal '+total+' hari!');
+				return false;
+			}else if ((durasi_after>sisa)&&(reduced_after=='Yes')&&(reduced_before=='No')){
+				alert('Maaf sisa cuti anda tidak mencukupi untuk cuti sebanyak '+durasi_after+' hari, karena sisa cuti anda tinggal '+sisa+' hari!');
+				return false;
+			}
+		}
+	}
+	
+	//return false;
+	document.getElementById('durasi').value=durasi_after;
+	document.frmInput.btnsimpan.click();
+}
+</script>
+<div class="background-blue padding-10 text-big">{TITLE}</div>
+
+<div class="padding-10">
+
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+   {ISI_PESAN}
+</div>
+<br />
+<!-- /patTemplate:tmpl -->
+<div class="table-responsive">
+    <table class="table table-bordered" >
+	    <tr class="background-blue-light">
+		    <th colspan="3"><b>Data Pegawai</b></th>
+	    </tr>
+	<tr>
+		<td rowspan="4" width="60px"><img src="upload_file/photo/{FOTO2}" width="100" height="100"></td>
+   </tr>
+    <tr>
+      <td>NIP</td>
+	  <td>{NIP}</td>
+   </tr>
+   <tr>
+      <td>Nama</td>
+	  <td>{NAMA}</td>
+   </tr>
+
+   <tr>
+     
+      <td valign="top">Alamat</td>
+	  <td valign="top">{ALAMAT}</td>
+   </tr>
+</table>
+</div>
+
+<form method="POST" name="frmInput" action="{URL_AKSI}" class="xhr_form std_form" id="frmInput" enctype="multipart/form-data">
+   <!-- Bagian dimana untuk mengecek data cuti-->
+   <input type="hidden" name="statusSebelum" id="statusSebelum" value="{DATA_STATUSSEBELUM}">
+   <input type="hidden" name="reducedSebelum" id="reducedSebelum" value="{DATA_REDUCEDSEBELUM}">
+   <input type="hidden" name="durasiSebelum" id="durasiSebelum" value="{DATA_DURASISEBELUM}">
+   <input type="hidden" name="sisaCuti" id="sisaCuti" value="{DATA_SISACUTI}">
+   <input type="hidden" name="durasi" id="durasi" value="">
+   <!-- Akhir Pengecekan-->
+   <input type="hidden" name="idPeg" value="{ID}">
+   <input type="hidden" name="op" value="{OP}" id="op">
+   <div class="table-responsive">
+    <table class="table table-bordered table-hover">
+      <tr  class="background-blue-light">
+        <th valign="center">{LABEL_ACTION} Data Permintaan Cuti</th>
+        <td align="right">
+          <div class="text-right"> 
+          <a class="xhr dest_subcontent-element btn btn-xs btn-default" href="{URL_BACK}" title="Kembali">
+           Kembali</a> 	
+          </div>
+        </td>
+      </tr>
+      <tr style="display:none">
+        <th width="39%" >Nomor Cuti</th>
+        <td>
+          <input type="text" name="no_cuti" size="23" maxlength="20" value="{NO_CUTI}" readonly="readonly" />
+        </td>
+      </tr>
+      <tr>
+        <th>Tanggal Mulai</th>
+        <td>
+          <!-- patTemplate:gtfwrendermodule module="tanggal" submodule="tanggal" action="view" name="tgl_mulai"  / -->
+        </td>
+      </tr>
+      <tr>
+        <th>Tanggal Selesai</th>
+        <td>
+          <!-- patTemplate:gtfwrendermodule module="tanggal" submodule="tanggal" action="view" name="tgl_selesai"  / -->
+        </td>
+      </tr>
+      <tr>
+        <th>Tipe Cuti</th>
+        <td>
+          <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="tipe"  / --> *
+        </td>
+      </tr>
+	  <tr>
+        <th>Kurangi Kuota Cuti</th>
+        <td>
+          <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="reduced"  / --> *
+        </td>
+      </tr>
+      <tr>
+        <th>Alasan Cuti</th>
+        <td>
+          <textarea name="alasan" cols="50" rows="5" id="alasan">{DATA_ALASAN}</textarea> *
+        </td>
+      </tr>
+      <tr>
+        <th>Tanggung Jawab Kerja</th>
+        <td>
+          <input type="text" name="tggjwbker" size="50" maxlength="20" value="{DATA_TGGJWBKER}"/>
+        </td>
+      </tr>
+      <tr>
+        <th>Pengganti Cuti</th>
+        <td>
+          <input type="text" name="pggjwbsmnt" size="50" maxlength="20" value="{DATA_PGGJWBSMNT}"/>
+        </td>
+      </tr>
+      <tr style="display:none">
+        <th>x</th>
+        <td>
+          <input type="text" name="pggjwbsmntk" size="23" maxlength="20" value="{DATA_PGGJWBSMNTK}"/>
+        </td>
+      </tr>
+	  <tr style="{VISIBILITY}">
+        <th>Status</th>
+        <td>
+          <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="status"  / --> *
+        </td>
+      </tr>
+	  <tr style="{VISIBILITY_TR}">
+        <th>Tanggal</th>
+        <td>
+          <!-- patTemplate:gtfwrendermodule module="tanggal" submodule="tanggal" action="view" name="tgl_stat"  / -->
+        </td>
+      </tr>
+      <tr class="buttons">
+         <th>&nbsp;</th>
+         <td>
+            <input type="hidden" name="cuti_id" value="{DATA_ID}" />
+			<input type="hidden" name="peg_id" value="{DATA_PEG_ID}" />
+			<div style="display:none"><input name="btnsimpan" value=" {LABEL_ACTION} " class="buttonSubmit btn btn-xs btn-info" type="submit"></div>
+			<input name="btnsimpanBohong" value=" {LABEL_ACTION} " class="buttonSubmit btn btn-xs btn-info" type="button" onclick="cekSisaCuti()">
+            <input name="btnbatal" id="btnbatal" value="{BUTTON}" class="buttonSubmitbtn btn-xs btn-warning " type="button" onclick="konfirmasi()">
+         </td>
+      </tr>
+   </table>
+   </div>
+</form>
+
+<div class="petunjuk-area">
+   <h4>Petunjuk :</h4>
+   <ul>
+      <li>Tanda * menunjukkan bahwa field tersebut harus diisi.</li>
+   </ul>
+</div>
+</div>
+<!-- /patTemplate:tmpl -->

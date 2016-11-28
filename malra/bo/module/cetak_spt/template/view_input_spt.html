@@ -1,0 +1,216 @@
+<!-- patTemplate:tmpl name="content" -->
+
+<div id="TOP" class="background-blue padding-10 text-big">{TITLE}</div>
+
+<div class="padding-10">
+<!-- patTemplate:gtfwrendermodule module="profile" submodule="profilebox" action="view" name="profile"  / -->
+
+<div style="align:center;width:100%!important">
+          <a class="buttonSubmit btn btn-info btn-xs" href="{URL_CETAK}" title="Export RTF" tabindex="2" target="_Blank" style="visibility:{HID}">
+           Export RTF</a>
+           <a class="xhr dest_subcontent-element btn btn-warning btn-xs" href="{URL_KEMBALI}" >
+           Kembali</a>
+
+</div>
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+
+<div class="{CLASS_PESAN}" id="warning_box">
+   {ISI_PESAN} <a href="javascript:Tutup();">&nbsp;[Tutup Pesan]</a>
+</div>
+<!-- /patTemplate:tmpl --> 
+
+
+
+<div class="table-responsive">
+    <form method="POST" name="frmInput" action="{URL_ACTION}" enctype="multipart/form-data">
+        <table class="table">
+            <tr class="background-blue-light text-big">
+                <th colspan="2">{LABEL_ACTION} {LABEL_INPUT}</th>
+            </tr>
+	        <tr>
+              <th width="25%">Penugas *</th>
+              <td>
+	          	<input type="text" name="penugas" id="penugas" value="{PENUGAS}"  style="width:95%!important" />
+              </td>
+            </tr>
+            <tr>
+              <th width="25%">Nomor SK *</th>
+              <td>
+              <input type="text" name="nomor_sk" id="nomor_sk" value="{NOMOR_SK}"  style="width:95%!important" />
+              </td>
+            </tr>
+            <tr>
+              <th width="25%">Jabatan Lama*</th>
+              <td>
+              <input type="text" name="jabatanlama" id="jabatanlama" value="{JABATANLAMA}"  style="width:95%!important" />
+              </td>
+            </tr>
+            <tr>
+              <th width="25%">Jabatan Baru*</th>
+              <td>
+              <input type="text" name="jabatanbaru" id="jabatanbaru" value="{JABATANBARU}" style="width:95%!important" />
+              </td>
+            </tr>
+            <tr>
+              <th width="25%">Pangkat/Golongan *</th>
+              <td>
+              <input type="text" name="lokasi" id="lokasi" value="{LOKASI}"   style="width:95%!important" />
+              </td>
+            </tr>
+            <tr>
+              <th width="25%">Kota *</th>
+              <td>
+              <input type="text" name="kota" id="kota" value="{KOTA}"  style="width:95%!important" />
+              </td>
+            </tr>
+            <tr>
+              <th width="25%">Tanggal *</th>
+              <td>
+              <!-- <input type="text" name="tanggal" id="tanggal" value="{TANGGAL}"   /> -->
+              <!-- patTemplate:gtfwrendermodule module="tanggal" submodule="Tanggal" action="view" name="tanggal" / -->
+              </td>
+            </tr>
+
+            
+            <tr>
+              <th >Di Tandatangani oleh</th>
+              <td>
+              
+              </td>
+            </tr>
+            
+            <tr>
+              <th width="25%">Penanda Tangan *</th>
+              <td>
+              <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="jabs_ref"  / -->
+              </td>
+            </tr>
+             <tr>
+              <th width="25%">Tanggal Tanda Tangan *</th>
+              <td>
+              <!-- <input type="text" name="tanggalttd" id="tanggalttd" value="{TANGGALTTD}"   /> -->
+              <!-- patTemplate:gtfwrendermodule module="tanggal" submodule="Tanggal" action="view" name="tanggalttd" / -->
+              </td>
+            </tr>
+            <tr>
+              <th width="25%">Nama *</th>
+              <td>
+              <input type="text" name="namattd" id="namattd" value="{NAMATTD}"  style="width:95%!important" />
+              </td>
+            </tr>
+            <tr>
+              <th width="25%">NIP *</th>
+              <td>
+              <input type="text" name="nipttd" id="nipttd" value="{NIPTTD}"  style="width:95%!important" />
+              </td>
+            </tr>
+            <tr>
+              <th width="25%">Jabatan Strutural *</th>
+              <td>
+              <input type="text" name="jabstruktural" id="jabstruktural" value="{JABSTRUKTURAL}" style="width:95%!important" />
+              </td>
+            </tr>
+            <tr>
+              <th width="25%">Unit Kerja *</th>
+              <td>
+              <input type="text" name="unitkerja" id="unitkerja" value="{UNITKERJA}"   style="width:95%!important" />
+              </td>
+            </tr>
+            <tr>
+              <th width="25%">Jabatan Fungsional *</th>
+              <td>
+              <input type="text" name="jabfungsional" id="jabfungsional" value="{JABFUNGSIONAL}"  style="width:95%!important" />
+              </td>
+            </tr>
+            <tr>
+              <th >Tembusan</th>
+              <td>
+              
+              </td>
+            </tr>
+
+            <tr>
+              <th width="25%">Tembusan 4</th>
+              <td>
+              <input type="text" name="tembusan4" id="tembusan4" value="{TEMBUSAN4}"  style="width:95%!important" />
+              </td>
+            </tr>
+            <tr>
+              <th width="25%">Tembusan 5</th>
+              <td>
+              <input type="text" name="tembusan5" id="tembusan5" value="{TEMBUSAN5}"  style="width:95%!important" />
+              </td>
+            </tr>
+            <tr>
+              <th width="25%">Tembusan 6</th>
+              <td>
+              <input type="text" name="tembusan6" id="tembusan6" value="{TEMBUSAN6}"  style="width:95%!important" />
+              </td>
+            </tr>
+            <tr>
+              <th width="25%">Tembusan 7</th>
+              <td>
+              <input type="text" name="tembusan7" id="tembusan7" value="{TEMBUSAN7}" style="width:95%!important" />
+              </td>
+            </tr>
+            <tr>
+              <th width="25%">Tembusan 8</th>
+              <td>
+              <input type="text" name="tembusan8" id="tembusan8" value="{TEMBUSAN8}" style="width:95%!important" />
+              <input type="text" name="pegawaiId" id="pegawaiId" value="{ID}" style="visibility:hidden;"/>
+              </td>
+            </tr>
+
+	      
+          <tr class="buttons">
+             <th>&nbsp;</th>
+             <td>
+                
+                <input type="hidden" name="dataId" id="dataId" value="{INPUT_ID}" />
+                
+                <div ><input name="btnsimpan" value="{LABEL_ACTION} " class="buttonSubmit btn btn-info btn-xs" type="submit">
+
+            
+           </div>
+             </td>
+          </tr>
+        </table>
+    </form>
+</div>
+
+<script language="javascript" type="text/javascript">
+
+// document.getElementById('tanggal_day').visibility='hidden';
+$('#jabs_ref').change(
+                function() {
+                    var result = $(this).val().split('|');
+
+                    $('#namattd').val(result[1]);
+                    $('#nipttd').val(result[0]);
+                    $('#jabstruktural').val(result[4]);
+                    // $('#unitkerja').val(result[3]);
+                    $('#jabfungsional').val(result[2]);
+                }
+            );
+
+document.getElementById('tanggal_day').setAttribute('style','visibility:hidden');
+document.getElementById('tanggalttd_day').setAttribute('style','visibility:hidden');
+function konfirmasi() {
+	if (document.getElementById('satker').value=='') {
+		alert('Anda belum memilih Satuan Kerja');
+		document.getElementById('satker').focus();
+		return false;
+	}
+	
+	document.frmInput.btnsimpan.click();
+}
+
+function Tab(aktif,nonaktif){
+	document.getElementById(aktif).style.display='';
+	document.getElementById(nonaktif).style.display='none';
+}
+
+
+
+</script>
+<!-- /patTemplate:tmpl -->

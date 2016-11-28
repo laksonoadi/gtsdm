@@ -1,0 +1,21 @@
+Cancellation Travel Request in SSE Human Resource Portal System
+
+Dear Supervisor,
+
+This Employee, 
+Name            : {NAMA_PEGAWAI}
+Employee Number : {NIP_PEGAWAI}
+
+Has been Canceled His/Her Travel Request.
+
+Detailed Informations :
+TAF Number      : {TAF_NUMBER}
+Travel Type     : {TAF_TIPE}
+Purpose         : {TAF_ALASAN}
+Date of Request : {TAF_TGL_AJU}
+Total Days      : {TAF_TOTAL_HARI}
+Total Budget    : {TAF_CURRENCY}{TAF_TOTAL_ANGGARAN}
+
+Regards,
+
+HR Mail System

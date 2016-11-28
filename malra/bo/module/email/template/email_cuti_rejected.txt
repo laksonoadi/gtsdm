@@ -1,0 +1,12 @@
+Approval Data Leave Request in SSE Human Resource Portal System
+
+Dear {NAMA_PEGAWAI},
+
+Your request leave number {CUTI_NUMBER} with reason {CUTI_ALASAN} is {CUTI_STATUS} by {CUTI_USER_STATUS}, with remarks {CUTI_CATATAN_STATUS}.
+
+For more detailed informations, please log into SSE Human Resource Portal System.
+
+Regards,
+
+HR Mail System
+

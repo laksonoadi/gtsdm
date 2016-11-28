@@ -1,0 +1,126 @@
+<!-- patTemplate:tmpl name="content" -->
+<script language="javascript" type="text/javascript">
+function IsHoliday(tanggal){
+	var listHariLibur="{HARILIBUR}";
+	var arrHariLibur=listHariLibur.split(";");
+	for (i=0; i<arrHariLibur.length; i++){
+		if (arrHariLibur[i].toString()==tanggal) return true;
+	}
+	return false;
+}
+	
+function konfirmasi() {
+	if(document.getElementById('btnbatal').value == " Reset "){
+		document.getElementById('btnbatal').type = "reset";
+		document.frmInput.onReset();
+    }else{
+		document.getElementById('btnbatal').type = "submit";
+		document.frmInput.onSubmit();
+    }
+}
+
+function cekHariLibur(){
+    if (document.getElementById('pegawai').value==''){
+		alert('Employee Cannot Empty');
+		document.getElementById('pegawai').focus(); 
+		return false;
+    }
+    var nDay= document.getElementById('tglaju_day').selectedIndex;
+    var nMon= document.getElementById('tglaju_mon').selectedIndex;
+    var nMonLabel= document.getElementById('tglaju_mon').options[nMon].text;
+    var nTahun= document.getElementById('tglaju_year').selectedIndex;
+    var nTahunLabel= document.getElementById('tglaju_year').options[nTahun].text;
+	
+  	if (parseInt(nMon)<10) nMon = '0'+nMon;
+  	if (parseInt(nDay)<10) nDay = '0'+nDay;
+    var Tanggal = nTahunLabel+'-'+nMon+'-'+nDay;
+    var TanggalLabel = nDay+' '+nMonLabel+' '+nTahunLabel;
+      
+    var date2=new Date(); date2.setDate(nDay); date2.setMonth(nMon-1); date2.setYear(parseInt(nTahunLabel));
+    var day = date2.getDay();
+      
+    if ((day==0)||(day==6)||(IsHoliday(Tanggal))) { alert('This day is Holiday'); return false; }
+	
+    document.frmInput.btnsimpan.click();
+}
+  
+</script>
+<h1>{LABEL_TITLE}</h1>
+<br />
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+	{ISI_PESAN}
+</div>
+<br />
+<!-- /patTemplate:tmpl -->
+<div><h1>Data Kehadiran Manual</h1></div><br>
+<form method="POST" name="frmInput" action="{URL_AKSI}" class="xhr_form std_form" id="frmInput" >
+	<input type="hidden" name="op" value="{OP}" id="op">
+	<input type="hidden" name="dataId" value="{ID}" id="dataId">
+	<table class="table-edit" width="100%" >
+		<tr class="subhead">
+			<th valign="center">{LABEL_ACTION} Kehadiran Manual</th>
+			<td align="right">
+				<div class="toolbar"> 
+					<a class="xhr dest_subcontent-element " href="{URL_BACK}" title="Kembali" tabindex="2">
+					<img src="images/button-back.gif" alt="">Kembali</a> 	
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<th>Pegawai</th>
+			<td>
+				<!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="pegawai"  / -->
+			</td>
+		</tr>
+		<tr>
+			<th>Tanggal</th>
+			<td>
+				<!-- patTemplate:gtfwrendermodule module="tanggal" submodule="tanggal" action="view" name="tglaju"  / -->
+			</td>
+		</tr>
+		<tr>
+			<th>Jam Masuk</th>
+			<td>
+				<select name="start_jam"  tabindex="2">
+				<!-- patTemplate:tmpl name="start_jam" -->
+				<option value="{JAM}" {SELECTED_START_JAM} >{JAM}</option>
+				<!-- /patTemplate:tmpl -->
+				</select>&nbsp;:&nbsp;<select name="start_menit"  tabindex="3">
+				<!-- patTemplate:tmpl name="start_menit" -->
+				<option value="{MENIT}" {SELECTED_START_MENIT} >{MENIT}</option>
+				<!-- /patTemplate:tmpl -->
+				</select>&nbsp;WIB
+			</td>
+		</tr>
+		<tr>
+			<th>Jam Keluar</th>
+			<td>
+				<select name="end_jam"  tabindex="2">
+				<!-- patTemplate:tmpl name="end_jam" -->
+				<option value="{JAM}" {SELECTED_END_JAM} >{JAM}</option>
+				<!-- /patTemplate:tmpl -->
+				</select>&nbsp;:&nbsp;<select name="end_menit"  tabindex="3">
+				<!-- patTemplate:tmpl name="end_menit" -->
+				<option value="{MENIT}" {SELECTED_END_MENIT} >{MENIT}</option>
+				<!-- /patTemplate:tmpl -->
+				</select>&nbsp;WIB
+			</td>
+		</tr>
+		<tr>
+			<th>Alasan</th>
+			<td>
+				<textarea name="alasan" cols="50" rows="5">{ALASAN}</textarea>
+			</td>
+		</tr>
+		<tr class="buttons">
+			<th>&nbsp;</th>
+			<td>
+				<div style="display:none"><input name="btnsimpan" value="{LABEL_ACTION}" class="buttonSubmit" type="submit"></div>
+				<input name="btnsimpanBohong" value=" {LABEL_ACTION} " class="buttonSubmit" type="button" onClick="cekHariLibur();">
+				<input name="btnbatal" id="btnbatal" value="{BUTTON}" class="buttonSubmit" type="button" onclick="konfirmasi()">
+			</td>
+		</tr>
+	</table>
+</form>
+<!-- /patTemplate:tmpl -->

@@ -1,0 +1,129 @@
+<!-- patTemplate:tmpl name="content" -->
+<script language="javascript" type="text/javascript">
+</script>
+<div><h1>Cetak SK Otomatis</h1></div><br>
+<form method="POST" action="{URL_RTF_SK}" target="_Blank">
+	<input type="hidden" name="jenis" value="{JENIS}" size="20" />
+	<table class="table-details">
+        <tr>
+            <th width="30%">Nama Pegawai</label></th>
+            <td width="25%">
+				{NAMA_PEGAWAI}
+				<input type="hidden" name="nama_pegawai" value="{NAMA_PEGAWAI}" size="20" />
+				<input type="hidden" name="dosen" value="{DOSEN}" size="20" />
+            </td>
+		</tr>
+		<tr>
+            <th width="30%">Tempat/Tanggal Lahir</label></th>
+            <td width="25%">
+				{TEMPAT_LAHIR}, {TANGGAL_LAHIR}
+				<input type="hidden" name="tempat_lahir" value="{TEMPAT_LAHIR}" size="20" />
+				<input type="hidden" name="tanggal_lahir" value="{TANGGAL_LAHIR}" size="20" />
+            </td>
+		</tr>
+		<tr>
+            <th width="30%">NIP/Karpeg</label></th>
+            <td width="25%">
+				{NIP_PEGAWAI}/{KARPEG_PEGAWAI}
+				<input type="hidden" name="nip_pegawai" value="{NIP_PEGAWAI}" size="20" />
+				<input type="hidden" name="karpeg_pegawai" value="{KARPEG_PEGAWAI}" size="20" />
+            </td>
+		</tr>
+		<tr>
+            <th width="30%">Pangkat/Gol. Ruang</label></th>
+            <td width="25%">
+				{PANGKAT_GOLONGAN}
+				<input type="hidden" name="pangkat_golongan" value="{PANGKAT_GOLONGAN}" size="20" />
+				<input type="hidden" name="pangkat" value="{PANGKAT}" size="20" />
+				<input type="hidden" name="golongan" value="{GOLONGAN}" size="20" />
+				<input type="hidden" name="pangkat_golongan_l" value="{PANGKAT_GOLONGAN_L}" size="20" />
+            </td>
+		</tr>
+		<tr>
+            <th width="30%">TMT Pangkat/Gol. Ruang</label></th>
+            <td width="25%">
+				{TMT_PANGKAT_GOLONGAN}
+				<input type="hidden" name="tmt_pangkat_golongan" value="{TMT_PANGKAT_GOLONGAN}" size="20" />
+				<input type="hidden" name="tmt_pangkat_golongan_l" value="{TMT_PANGKAT_GOLONGAN_L}" size="20" />
+            </td>
+		</tr>
+		<tr>
+            <th width="30%">Masa Kerja Golongan</label></th>
+            <td width="25%">
+			    {MASA_KERJA_GOLONGAN}
+				<input type="hidden" name="masa_kerja_golongan" value="{MASA_KERJA_GOLONGAN}" size="20" />
+				<input type="hidden" name="masa_kerja_seluruh" value="{MASA_KERJA_SELURUH}" size="20" />
+            </td>
+		</tr>
+		<tr>
+            <th width="30%">Angka Kredit</label></th>
+            <td width="25%">
+				<input type="text" name="angka_kredit" value="{ANGKA_KREDIT}" size="20" />
+				*diisi jika dosen
+            </td>
+		</tr>
+		<tr>
+            <th width="30%">Unit Kerja</label></th>
+            <td width="25%">
+			    {UNIT_KERJA} {UNIVERSITAS}
+				<input type="hidden" name="unit_kerja" value="{UNIT_KERJA}" size="20" />
+				<input type="hidden" name="universitas" value="{UNIVERSITAS}" size="20" />
+            </td>
+		</tr>
+		<tr>
+            <th width="30%">Pendidikan Terakhir</label></th>
+            <td width="25%">
+			    {PENDIDIKAN}
+				<input type="hidden" name="pendidikan" value="{PENDIDIKAN}" size="20" />
+            </td>
+		</tr>
+		<tr>
+            <th width="30%">Jabatan</label></th>
+            <td width="25%">
+			    {JABATAN_FUNGSIONAL}
+				<input type="hidden" name="jabatan_fungsional" value="{JABATAN_FUNGSIONAL}" size="20" />
+            </td>
+		</tr>
+		<tr>
+            <th width="30%">TMT Jabatan</label></th>
+            <td width="25%">
+			    {TMT_FUNGSIONAL}
+				<input type="hidden" name="tmt_fungsional" value="{TMT_FUNGSIONAL}" size="20" />
+            </td>
+		</tr>
+		<tr>
+            <th width="30%">Mata Kuliah</label></th>
+            <td width="25%">
+				<input type="text" name="mata_kuliah" value="{MATA_KULIAH}" size="20" />
+            </td>
+		</tr>
+		<tr>
+            <th width="30%">Gaji Pokok</label></th>
+            <td width="25%">
+				<input type="text" name="gaji_pokok" value="{GAJI_POKOK}" size="20" />
+				<input type="hidden" name="gaji_pokok_l" value="{GAJI_POKOK_L}" size="20" />
+				<input type="hidden" name="tmt_gaji_berkala" value="{TMT_GAJI_BERKALA}" size="20" />
+            </td>
+		</tr>
+		<tr>
+            <th width="30%">Tunjangan Jabatan Dosen</label></th>
+            <td width="25%">
+				Rp. {LABEL_TUNJANGAN_JABATAN},-
+				<input type="hidden" name="tunjangan_jabatan" value="{TUNJANGAN_JABATAN}" size="20" />
+            </td>
+		</tr>
+		<tr>
+            <th width="30%">Tanggal Penetapan</label></th>
+            <td width="25%">
+				<!-- patTemplate:gtfwrendermodule module="tanggal" submodule="Tanggal" action="view" name="tanggal_penetapan" / -->
+            </td>
+		</tr>
+		<tr>
+			<td></td>
+		    <td>
+				<input type="submit" name="btncari" value=" Cetak SK &raquo;" class="buttonSubmit"/>
+            </td>
+        </tr>
+	</table>
+</form>
+<!-- /patTemplate:tmpl -->
