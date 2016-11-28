@@ -1,0 +1,67 @@
+<!-- patTemplate:tmpl name="content" -->
+<h1>REFERENSI PENETAPAN ANGKA KREDIT</h1>
+<br />
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+   {ISI_PESAN}
+</div>
+<!-- /patTemplate:tmpl -->
+<br />
+
+<form method="POST" action="{URL_ACTION}" id="frmInput" name="frmInput" class="xhr_form std_form">
+   <table class="table-edit" width="100%">
+      <tr class="subhead">
+         <th colspan="2">{JUDUL} Referensi Penetapan Angka Kredit</th>
+      </tr>
+      <tr>
+         <th width="150">Nama Penilaian PAK</th>
+         <td><input type="text" name="nama" value="{NAMA}" size="60" maxlenght="255" />*</td>
+         <input type="hidden" name="id_post" value="{ID}"/>
+      </tr>
+      <tr>
+         <th>Unsur Penilaian</th>
+         <td><select name="input_unsur">
+         <!-- patTemplate:tmpl name="input_unsur" -->
+             <option></option>
+             <option value="Utama" {SELECTED1}>Utama</option>
+             <option value="Penunjang" {SELECTED2}>Penunjang</option>
+         <!-- /patTemplate:tmpl -->
+           </select>
+          *</td>
+      </tr>
+      <tr>
+         <th>Status Aktif</th>
+         <td><select name="input_aktif">
+          <!-- patTemplate:tmpl name="input_aktif" -->
+             <option></option>
+             <option value="Ya" {SELECTED1}>Ya</option>
+             <option value="Tidak" {SELECTED2}>Tidak</option>
+          <!-- /patTemplate:tmpl --> 
+           </select>
+          *</td>
+      </tr>
+      <tr>
+         <th>Jenis jabatan Fungsional</th>
+        <td>
+				<!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="jabfung"  / -->
+			*	</td>
+      </tr>
+      
+      <tr class="buttons">
+         <th>&nbsp;</th>
+         <td>
+            <input type="submit" name="btnsimpan" value="Simpan" class="buttonSubmit"/>
+            <a href="{URL_KEMBALI}" class="button">Batal</a>
+         </td>
+      </tr>
+   </table>
+</form>
+
+<br />
+<div class="petunjuk_area">
+   <h4>Petunjuk:</h4>
+   <ul>
+      <li>Tanda * menunjukkan bahwa field tersebut harus diisi. </li>
+   </ul>
+</div>
+<!-- /patTemplate:tmpl -->

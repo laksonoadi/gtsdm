@@ -1,0 +1,229 @@
+<!-- patTemplate:tmpl name="content" -->
+<script language="javascript" type="text/javascript">
+var xpopup;
+function bukaPopupKomp(xurl) {
+  a=document.getElementById('satker').value;
+  b=xurl+a;
+  showPopup(b,'Employee List',500, 500);
+}
+function setDS() {
+	var status_unit_kerja = document.getElementById('satker').value;
+	var direct_spv = document.getElementById('peg_label_2');
+	var direct_spv_id = document.getElementById('pegId2');
+	var direct_spv_button = document.getElementById('but_peg_2');
+	var direct_spv_work_unit = document.getElementById('sat_label_2');
+	var direct_spv_work_unit_id = document.getElementById('satId2');
+	var mor = document.getElementById('peg_label_1');
+	var mor_id = document.getElementById('pegId1');
+	var mor_button = document.getElementById('but_peg_1');
+	var mor_work_unit = document.getElementById('sat_label_1');	
+	var mor_work_unit_id = document.getElementById('satId1');
+	
+	if (status_unit_kerja == 1 ) {
+		direct_spv.value = 'Board of Trusty (BOT)';
+		direct_spv_value = '-1';
+		//direct_spv_button.style.display = 'none';
+		direct_spv_work_unit.value = 'Board of Trusty (BOT)';
+		direct_spv_work_unit_id.value = '';	
+		
+		mor.value = 'no information';
+		mor_id.value = '';
+		//mor_button.style.display = 'none';
+		mor_work_unit.value = 'no information';
+		mor_work_unit_id.value = '';		 			
+	} else {
+		direct_spv.value = '';
+		direct_spv_id.value = '';
+		//direct_spv_button.style.display = '';
+		direct_spv_work_unit.value = '';
+		direct_spv_work_unit_id.value = '';
+		
+		mor.value = '';
+		mor_id.value = '';
+		//mor_button.style.display = '';
+		mor_work_unit.value = '';
+		mor_work_unit_id.value = '';	
+	}
+		
+}
+</script>
+<h1>{LABEL_TITLE}</h1>
+<br />
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+   {ISI_PESAN}
+</div>
+<br />
+<!-- /patTemplate:tmpl -->
+<div><h1>{TITLE}</h1></div><br>
+<table class="table-edit" width="100%" >
+	<tr class="subhead">
+		<th colspan="3"><b>Personal Information</b></th>
+	</tr>
+	<tr>
+		<td rowspan="4" width="60px"><img src="upload_file/photo/{FOTO2}" width="100" height="100"></td>
+   </tr>
+   <tr>
+      <td>Name</td>
+	  <td>{NAMA}</td>
+   </tr>
+   <tr>
+      <td>Employee ID</td>
+	  <td>{NIP}</td>
+   </tr>
+   <tr>
+     
+      <td valign="top">Address</td>
+	  <td valign="top">{ALAMAT}</td>
+   </tr>
+   <tr>
+      
+   </tr>
+</table>
+<form method="POST" name="frmInput" action="{URL_ACTION}" enctype="multipart/form-data">
+   <table class="table-edit" width="100%" >
+      <tr class="subhead">
+         <th>{LABEL_ACTION} {LABEL_INPUT}</th>
+		 <td>
+       <!--<a class="xhr dest_subcontent-element " href="{URL_BACK}" title="Kembali" tabindex="2"> /-->
+            <div class="toolbar"> 
+               <a class="xhr dest_subcontent-element " href="{URL_BACK}" title="Back to Current Page" tabindex="2">
+               <img src="images/button-back.gif" alt=""> Select Employee</a> 
+            </div>
+          </td>
+      </tr>
+	 <tr>
+      <th width="25%">Working Unit</th>
+      <td>
+	  	<!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="satker"  / -->
+      </td>
+   </tr>
+	  <tr>
+         <th width="180">Direct Supervisor</th>
+         <td>
+           <input type="text" name="peg_label_2" id="peg_label_2" value="{3_NMP}" size="40" readonly="readonly" />
+           <input type="hidden" name="pegId2" id="pegId2" value="{3_IDP}" />
+           <input type="button"  name="but_peg_2" onclick="bukaPopupKomp('{URL_POPUP_PEG_2}')" value=" ... " />&nbsp;*
+         </td>
+      </tr>
+      <tr>
+         <th width="180">DS Working Unit</th>
+         <td>
+           <input type="text" name="sat_label_2" id="sat_label_2" value="{3_NMS}" size="40" readonly="readonly" />
+           <input type="hidden" name="satId2" id="satId2" value="{3_IDS}" />
+         </td>
+      </tr>
+   <tr>
+		<th width="180">Manager Once Removed</th>
+		<td>
+			<input type="text" name="peg_label_1" id="peg_label_1" value="{2_NMP}" size="40" readonly="readonly" />
+			<input type="hidden" name="pegId1" id="pegId1" value="{2_IDP}" />
+			<input type="button"  name="but_peg_1" onclick="bukaPopupKomp('{URL_POPUP_PEG_1}')" value=" ... " />&nbsp;*
+		</td>
+	</tr>
+	<tr>
+		<th width="180">MOR Working Unit</th>
+		<td>
+			<input type="text" name="sat_label_1" id="sat_label_1" value="{2_NMS}" size="40" readonly="readonly" />
+			<input type="hidden" name="satId1" id="satId1" value="{2_IDS}" />
+		</td>
+	</tr>
+	  <tr>
+         <th >Due Date</th>
+         <td>
+           <!-- patTemplate:gtfwrendermodule module="tanggal" submodule="Tanggal" action="view" name="tmt" / -->
+         </td>
+      </tr>
+	  <tr class="subhead">
+		<th colspan="2">Decree</th>
+	  </tr>
+	  <tr>
+         <th >Signed By </th>
+         <td>
+           <input type="text" name="pejabat" value="{INPUT_PEJABAT}"  size="30" />
+         </td>
+      </tr>
+	  <tr>
+         <th >Number of Letter</th>
+         <td>
+           <input type="text" name="sk_no" value="{INPUT_NOSK}"  size="30" />
+         </td>
+      </tr>
+	  <tr>
+         <th >Decree Date </th>
+         <td>
+           <!-- patTemplate:gtfwrendermodule module="tanggal" submodule="Tanggal" action="view" name="tgl_sk" / -->
+         </td>
+      </tr>
+	  <tr>
+         <th>Active Status</th>
+         <td>
+           <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="status"  / -->*
+         </td>
+      </tr>
+	  <tr>
+         <th >Upload </th>
+         <td>
+           <input type="file" name="file" size="40"><br />
+				Current File: <a href="{INPUT_LINK_DOWNLOAD}">{INPUT_UPLOAD}</a>
+        <input name="upload" type="hidden" value="{INPUT_UPLOAD}" />
+         </td>
+      </tr>
+      <tr class="buttons">
+         <th>&nbsp;</th>
+         <td>
+            <input type="hidden" name="pegId" id="pegId" value="{ID}" />
+            <input type="hidden" name="dataId" id="dataId" value="{INPUT_ID}" />
+            <input name="btnsimpan" value="{LABEL_ACTION} " class="buttonSubmit" type="submit">
+            <input name="btnbatal" value="{BUTTON}" class="buttonSubmit" type="{TYPE}">
+         </td>
+      </tr>
+   </table>
+</form>
+<br />
+<br />
+
+<div class="pageBar">
+<!-- patTemplate:gtfwrendermodule module="paging" submodule="paging" action="view" name="paging_top"  / -->
+</div>
+<table class="table-common" width="100%">
+   <tr>
+      <th width="5px" rowspan="2">No</th>
+      <th rowspan="2">Working Unit</th>
+	  <th rowspan="2">Due Date</th>
+	  <th colspan="3">Decree</th>
+	  <th rowspan="2">Status</th>
+      <th width="200px" rowspan="2">Action</th>
+   </tr>
+   <tr>
+      <th>Signed By</th>
+	  <th>Number of Letter</th>
+	  <th>Date</th>
+   </tr>
+   <!-- patTemplate:tmpl name="data" type="condition" conditionvar="DATA_EMPTY" -->
+      <!-- patTemplate:sub condition="YES" -->
+   <tr><td colspan="8" align="center"><em>-- Data not found --</em></td></tr>
+      <!-- /patTemplate:sub -->
+      <!-- patTemplate:sub condition="NO" -->
+         <!-- patTemplate:tmpl name="data_item" -->
+   <tr class="{SATKER_CLASS_NAME}">
+      <td align="center" width="15%">{SATKER_NUMBER}</td>
+      <td align="left">{SATKER_SATKERNAMA}</td>
+	  <td align="left">{SATKER_TMT}</td>
+	  <td align="left">{SATKER_PEJABAT}</td>
+	  <td align="left">{SATKER_NOSK}</td>
+	  <td align="left">{SATKER_TGL_SK}</td>
+	  <td align="left">{SATKER_STATUS}</td>
+      <td class="links">
+			<!--<a href="{SATKER_LINK_DOWNLOAD_SK}" title="SK">Preview</a>-->
+         <a class="xhr dest_subcontent-element" href="{SATKER_URL_DETAIL}" title="Details"><img src="images/button-detail.gif" alt="Details"/></a>
+         <a class="xhr dest_subcontent-element" href="{SATKER_URL_EDIT}" title="Edit"><img src="images/button-edit.gif" alt="Edit"/></a>
+         <a class="xhr dest_subcontent-element" href="{SATKER_URL_DELETE}" title="Delete"><img src="images/button-delete.gif" alt="Delete"/></a>
+      </td>
+   </tr>
+         <!-- /patTemplate:tmpl -->
+      <!-- /patTemplate:sub -->
+   <!-- /patTemplate:tmpl -->
+</table>
+
+<!-- /patTemplate:tmpl -->

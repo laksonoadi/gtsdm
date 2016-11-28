@@ -1,0 +1,216 @@
+
+<!-- patTemplate:tmpl name="content" -->
+<script language="javascript" type="text/javascript">
+
+function konfirmasi() {
+	if(document.getElementById('btnbatal').value == " Reset "){
+      document.getElementById('btnbatal').type = "reset";
+      document.frmInput.onReset();
+    }else{
+      document.getElementById('btnbatal').type = "submit";
+      document.frmInput.onSubmit();
+    }
+}
+</script>
+<script language="javascript" type="text/javascript">
+	var xpopup;
+	
+	function bukaPopupKomponen(url) {
+		showPopup(url,'Dosen List',900, 500);
+	}
+	
+	function hapus_pegawai(obj) {
+		obj.parentNode.parentNode.parentNode.removeChild(obj.parentNode.parentNode);
+	}
+	
+	function cek(){
+		nilai = document.getElementById('semua').checked;
+		if (nilai) {
+			document.getElementById('keyword').value='';
+			document.getElementById('keyword').disabled=true;
+		}else{
+			document.getElementById('keyword').disabled=false;
+		}
+	}
+</script>
+
+<h1>PENILAIAN SERTIFIKASI DOSEN</h1>
+<br />
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+   {ISI_PESAN}
+</div>
+<br />
+<!-- /patTemplate:tmpl -->
+<table class="table-edit" width="100%" >
+      <tr class="subhead">
+        <th valign="center">{LABEL_ACTION} Sertifikasi Dosen</th>
+        <td align="right">
+          <div class="toolbar"> 
+          <a class="xhr dest_subcontent-element " href="{URL_BACK}" title="Kembali" tabindex="2">
+          <img src="images/button-back.gif" alt=""> Kembali</a> 	
+          </div>
+        </td>
+      </tr>
+	  <tr>
+        <th width="39%">Tahun Sertifikasi</th>
+        <td>
+		  {SRTFKTAHUN}
+        </td>
+      </tr>
+      <tr>
+        <th>Periode Awal</th>
+        <td>
+          {SRTFKPERIODEAWAL}
+        </td>
+      </tr>
+      <tr>
+        <th>Periode Akhir</th>
+        <td>
+          {SRTFKPERIODEAKHIR}
+        </td>
+      </tr>
+</table>
+<form method="POST" action="{URL_SEARCH}" class="dataquest xhr_simple_form dest_subcontent-element" id="filterbox">
+   <table>
+	  <tr>
+         <th><h2><strong>Pencarian</strong></h2></th>
+      </tr>
+	  <tr>
+         <th></th>
+		 <td>
+		    <input type="checkbox" name="semua" id="semua" onclick="cek();" {SEMUA}>&nbsp;&nbsp;Tampilkan Semua </br>
+		 </td>
+      </tr>
+	  <tr>
+         <th>NIP/Nama/No Peserta</th>
+		 <td>
+			<input type="text" name="keyword" id="keyword" size="35" value="{KEYWORD}" {KEYWORD_DISABLED}>
+		 </td>
+      </tr>
+      <tr>              
+         <th width="30%">&nbsp;</th>
+         <td><input type="submit" name="btncari" value=" Cari &raquo;" class="buttonSubmit"/></td>
+      </tr>
+   </table>
+</form>
+<form method="POST" name="frmInput" action="{URL_AKSI}" class="xhr_form std_form" id="frmInput" enctype="multipart/form-data">
+	<input type="hidden" name="srtfkTahun" size="10" maxlength="20" value="{SRTFKTAHUN}" />
+	<input type="hidden" name="srtfkId" value="{SRTFKID}">
+    <!-- patTemplate:tmpl name="detil_pegawai" type="condition" conditionvar="DATA_EMPTY" -->
+    	<!-- patTemplate:sub condition="YES" --><!-- /patTemplate:sub -->
+    	<!-- patTemplate:sub condition="NO" -->
+			<input type="hidden" name="op" value="nilai" id="op">
+			<table width="1100px">
+			<tr>
+				<td colspan="2">
+					<br>
+					<table class="table-common" width="100%" id="table-komponen" >
+		    			<tr>
+							<th rowspan="2">No</th>
+							<th rowspan="2">Nomor Peserta</th>
+							<th rowspan="2">NIP/NIK</th>
+		    				<th rowspan="2" width="200px">Nama Dosen</th>
+							<th rowspan="2">Nomor Sertifikat</th>
+							<th rowspan="2">Penilaian</th>
+							<th rowspan="2">ATDL<br>(diisi jika Belum Lulus)</th>
+							<th colspan="2">Penilai</th>
+							<th rowspan="2">Kunci</th>
+		    			</tr>
+						<tr>
+							<th>NIRA Asesor I</th>
+							<th>NIRA Asesor II</th>
+		    			</tr>
+		    			<tbody id="table-pegawai">
+    						<!-- patTemplate:tmpl name="data_peserta_sertifikasi" -->
+    						<tr>
+								<td>
+									{DATA_NUMBER}
+    							</td>
+								<td>
+									{DATA_SRTFKDETNOPESERTA}
+    							</td>
+    							<td>
+									{DATA_SRTFKDETNIP}
+    							</td>
+    							<td>
+									<input type="hidden" name="data[tambah][srtfkdetPegId][]" value="{DATA_SRTFKDETPEGID}" />
+									<input type="hidden" name="data[tambah][srtfkdetIsVerifikasi][{DATA_SRTFKDETPEGID}]" value="{DATA_SRTFKDETISVERIFIKASI}"/>
+									{DATA_SRTFKDETNAMA}
+    							</td>
+								<td>
+									<input type="text" size="15" name="data[tambah][srtfkdetNo][{DATA_SRTFKDETPEGID}]" value="{DATA_SRTFKDETNO}" />
+    							</td>
+								<td>
+									<table border="0">
+									<tr><td width="200px">Persep</td><td>
+									<select name="data[tambah][srtfkdetPersep][{DATA_SRTFKDETPEGID}]"/>
+										<option value="NULL" {DATA_SRTFKDETPERSEP_NULL_SELECTED}>-</option>
+										<option value="LULUS" {DATA_SRTFKDETPERSEP_LULUS_SELECTED}>LULUS</option>
+										<option value="BELUM LULUS" {DATA_SRTFKDETPERSEP_BELUM_SELECTED}>BELUM LULUS</option>
+									</select></td></tr>
+									<tr><td>Person</td><td>
+									<select name="data[tambah][srtfkdetPerson][{DATA_SRTFKDETPEGID}]"/>
+										<option value="NULL" {DATA_SRTFKDETPERSON_NULL_SELECTED}>-</option>
+										<option value="LULUS" {DATA_SRTFKDETPERSON_LULUS_SELECTED}>LULUS</option>
+										<option value="BELUM LULUS" {DATA_SRTFKDETPERSON_BELUM_SELECTED}>BELUM LULUS</option>
+									</select></td></tr>
+									<tr><td>GabPAK</td><td>
+									<select name="data[tambah][srtfkdetGabPAK][{DATA_SRTFKDETPEGID}]"/>
+										<option value="NULL" {DATA_SRTFKDETGABPAK_NULL_SELECTED}>-</option>
+										<option value="LULUS" {DATA_SRTFKDETGABPAK_LULUS_SELECTED}>LULUS</option>
+										<option value="BELUM LULUS" {DATA_SRTFKDETGABPAK_BELUM_SELECTED}>BELUM LULUS</option>
+									</select></td></tr>
+									<tr><td>Konst</td><td>
+									<select name="data[tambah][srtfkdetKonst][{DATA_SRTFKDETPEGID}]"/>
+										<option value="NULL" {DATA_SRTFKDETKONST_NULL_SELECTED}>-</option>
+										<option value="LULUS" {DATA_SRTFKDETKONST_LULUS_SELECTED}>LULUS</option>
+										<option value="BELUM LULUS" {DATA_SRTFKDETKONST_BELUM_SELECTED}>BELUM LULUS</option>
+									</select></td></tr>
+									<tr><td>HasilAkhir</td><td>
+									<select name="data[tambah][srtfkdetHasilAkhir][{DATA_SRTFKDETPEGID}]"/>
+										<option value="NULL" {DATA_SRTFKDETHASILAKHIR_NULL_SELECTED}>-</option>
+										<option value="LULUS" {DATA_SRTFKDETHASILAKHIR_LULUS_SELECTED}>LULUS</option>
+										<option value="BELUM LULUS" {DATA_SRTFKDETHASILAKHIR_BELUM_SELECTED}>BELUM LULUS</option>
+									</select></td></tr>
+									</table>
+    							</td>
+								<td>
+									<textarea name="data[tambah][srtfkdetATDL][{DATA_SRTFKDETPEGID}]" rows="5">{DATA_SRTFKDETATDL}</textarea>
+    							</td>
+								<td>
+									<input type="text" size="15" name="data[tambah][srtfkdetAsesorI][{DATA_SRTFKDETPEGID}]" value="{DATA_SRTFKDETASESORI}" />
+    							</td>
+								<td>
+									<input type="text" size="15" name="data[tambah][srtfkdetAsesorII][{DATA_SRTFKDETPEGID}]" value="{DATA_SRTFKDETASESORII}" />
+    							</td>
+								<td align="center">
+    								<input type="checkbox" name="data[tambah][srtfkdetIsLock][{DATA_SRTFKDETPEGID}]"/>
+    							</td>
+    						</tr>
+    						<!-- /patTemplate:tmpl -->
+					    </tbody>
+					</table>
+				</td>
+			</tr>
+			<tr class="buttons">
+				<th>&nbsp;</th>
+				<td>
+					<input name="btnsimpan" value=" Simpan " class="buttonSubmit" type="submit">
+					<input name="btnbatal" id="btnbatal" value="Batal" class="buttonSubmit" type="button" onclick="konfirmasi()">
+				</td>
+			</tr>
+		</table>
+    <!-- /patTemplate:sub -->
+<!-- /patTemplate:tmpl -->
+</form>
+<div class="petunjuk-area">
+   <h4>Petunjuk:</h4>
+   <ul>
+	  <li>Cari Dosen yang ingin dinilai terlebih dahulu berdasarkan NIP atau Nama atau Nomor Peserta.</li>
+      <li>Isikan nilai kesimpulan untuk dosen yang bersangkutan.</li>
+	  <li>Pemberian nilai hanya bisa dilakukan untuk dosen yang <b>sudah diverifikasi</b>.</li>
+	  <li>Centang kolom kunci jika penilaian tidak akan diedit lagi.</li>
+   </ul>
+</div>
+<!-- /patTemplate:tmpl -->

@@ -1,0 +1,96 @@
+<!-- patTemplate:tmpl name="content" -->
+<h1>{LABEL_TITLE}</h1>
+<br />
+
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+   {ISI_PESAN}
+</div>
+<br />
+<!-- /patTemplate:tmpl -->
+<div><h1>{TITLE}</h1></div><br>
+<table class="table-details" width="100%" >
+	<tr class="subhead">
+		<th colspan="3" ><b>Personal Informations</b></th>
+	</tr>
+	<tr>
+		<td rowspan="4" width="60px"><img src="upload_file/photo/{PROFIL_FOTO}" width="100" height="100"></td>
+   </tr>
+   <tr>
+      <td width="120px">Employee ID</td>
+	  <td>{PROFIL_KODE}</td>
+   </tr>
+   <tr>
+      <td width="60px">Name</td>
+	  <td>{PROFIL_NAME}</td>
+   </tr>
+   <tr>
+      <td valign="top" width="60px">Address</td>
+	  <td valign="top">{PROFIL_ALAMAT}</td>
+   </tr>
+   <tr>
+      
+   </tr>
+</table>
+<br>
+<!-- patTemplate:tmpl name="data" type="condition" conditionvar="DATA_EMPTY" -->
+      <!-- patTemplate:sub condition="YES" -->
+    <h1>Data not found</h1>
+      <!-- /patTemplate:sub -->
+      <!-- patTemplate:sub condition="NO" -->
+         <!-- patTemplate:tmpl name="data_item" -->
+
+   <table class="table-details" width="100%" >
+      <tr class="subhead">
+         <th colspan="5">DATA</th>
+      </tr>
+      
+	  <tr>
+         <th >Seminar Name</th>
+         <td>
+           {DETAIL_NAMA}
+         </td>
+      </tr>
+	  <tr>
+         <th >Seminar Level</th>
+         <td>
+           {DETAIL_TINGKATLABEL}
+         </td>
+      </tr>
+      <tr>
+         <th >Date</th>
+         <td>
+           {DETAIL_MULAI}
+         </td>
+      </tr>
+       <tr>
+         <th >Role</th>
+         <td>
+           {DETAIL_PERANAN}
+         </td>
+      </tr>
+       <tr>
+         <th >Location</th>
+         <td>
+           {DETAIL_TEMPAT}
+         </td>
+      </tr>
+      <tr>
+         <th >Organizers</th>
+         <td>
+           {DETAIL_PENYELENGGARA}
+         </td>
+      </tr>
+	       
+   </table>
+
+<!-- /patTemplate:tmpl -->
+      <!-- /patTemplate:sub -->
+   <!-- /patTemplate:tmpl -->
+<div class="toolbar"> 
+               <a class="xhr dest_subcontent-element " href="{URL_BACK}" title="Back" tabindex="2">
+               <img src="images/button-back.gif" alt="">Back</a> 
+            </div>
+
+
+<!-- /patTemplate:tmpl -->

@@ -1,0 +1,139 @@
+<!-- patTemplate:tmpl name="content" -->
+<script language="javascript" type="text/javascript">
+	function setParent(xid, xlabel, xsat, xidsat) {
+	  if(document.getElementById('dataPeg').value=="A"){
+      document.getElementById('pegId1').value=xid;
+		  document.getElementById('peg_label_1').value=xlabel;
+		  document.getElementById('satId1').value=xidsat;
+		  document.getElementById('sat_label_1').value=xsat;
+    }else{
+      document.getElementById('pegId2').value=xid;
+		  document.getElementById('peg_label_2').value=xlabel;
+		  document.getElementById('satId2').value=xidsat;
+		  document.getElementById('sat_label_2').value=xsat;
+    }
+	}
+</script>
+<script type='text/javascript'>
+function addPegawaiItem(obj,id,pegid,nip,nama,tmpt,tgl,jabfungrid,jabfungrnama,pktgolrid,pktgolrnama,bidangkode,bidangnama,s1,s2,s3) {
+	var random=Math.floor(Math.random()*666);
+	var tr = document.createElement('tr');
+	var td_nip = document.createElement('td');
+	var td_nama = document.createElement('td');
+	var td_ttl = document.createElement('td');
+	var td_jabatan = document.createElement('td');
+	var td_pangkat = document.createElement('td');
+	var td_bidang = document.createElement('td');
+	var td_s1 = document.createElement('td');
+	var td_s2 = document.createElement('td');
+	var td_s3 = document.createElement('td');
+	var td_delete = document.createElement('td');
+	var tbodi = document.getElementById("table-pegawai");
+
+	td_nip.innerHTML 	= 	'<input type="hidden" name="data[tambah][srtfkdetId][]" value="' + id + '" />'
+							+ '<input type="hidden" name="data[tambah][srtfkdetNip][]" value="' + nip + '" /> '
+							+ nip ; 
+	td_nama.innerHTML 	= 	'<input type="hidden" name="data[tambah][srtfkdetPegId][]" value="' + pegid + '" />'
+							+ '<input type="hidden" name="data[tambah][srtfkdetNama][]" value="' + nama + '" /> '
+							+ nama ;
+	td_ttl.innerHTML 	= 	'<input type="hidden" name="data[tambah][srtfkdetTempatLahir][]" value="' + tmpt + '" />'
+							+ '<input type="hidden" name="data[tambah][srtfkdetTanggalLahir][]" value="' + tgl + '" /> '
+							+ tmpt + ', ' + tgl ;
+	td_jabatan.innerHTML= 	'<input type="hidden" name="data[tambah][srtfkdetJabfungrId][]" value="' + jabfungrid + '" />'
+							+ '<input type="hidden" name="data[tambah][srtfkdetJabfungrNama][]" value="' + jabfungrnama + '" /> '
+							+ jabfungrnama ;
+	td_pangkat.innerHTML= 	'<input type="hidden" name="data[tambah][srtfkdetPktgolrId][]" value="' + pktgolrid + '" />'
+							+ '<input type="hidden" name="data[tambah][srtfkdetPktgolrNama][]" value="' + pktgolrnama + '" /> '
+							+ pktgolrid ;
+	td_bidang.innerHTML = 	'<input type="hidden" name="data[tambah][srtfkdetBidangKode][]" value="' + bidangkode + '" />'
+							+ '<input type="hidden" name="data[tambah][srtfkdetBidangNama][]" value="' + bidangnama + '" /> '
+							+ bidangnama ; 
+	td_s1.innerHTML 	= 	'<input type="hidden" name="data[tambah][srtfkdetS1][]" value="' + s1 + '" />'
+							+ s1 ;
+	td_s2.innerHTML 	= 	'<input type="hidden" name="data[tambah][srtfkdetS2][]" value="' + s2 + '" />'
+							+ s2 ;
+	td_s3.innerHTML 	= 	'<input type="hidden" name="data[tambah][srtfkdetS3][]" value="' + s3 + '" />'
+							+ s3 ;
+	td_delete.innerHTML = '<a href="javascript:void(null)" title="Hapus" onclick="hapus_pegawai(this)"><img src="images/button-delete.gif" alt="Hapus" /></a>';
+
+	tr.appendChild(td_nip);
+	tr.appendChild(td_nama);
+	tr.appendChild(td_ttl);
+	tr.appendChild(td_jabatan);
+	tr.appendChild(td_pangkat);
+	tr.appendChild(td_bidang);
+	tr.appendChild(td_s1);
+	tr.appendChild(td_s2);
+	tr.appendChild(td_s3);
+	tr.appendChild(td_delete);
+	tbodi.appendChild(tr);
+}
+</script>
+<form method="POST" action="{URL_SEARCH}" class="dataquest xhr_simple_form dest_popup-subcontent" id="filterboxpopup">
+<input type="hidden" value="{PEG}" name="dataPeg" id="dataPeg">
+<input type="hidden" value="{SAT}" name="dataSatker" id="dataSatker">
+   <table>
+         <tr>
+            <th width="30%">NIP / Nama Pegawai</label></th>
+            <td width="25%"><input type="text" name="nama" value="{NAMA}" size="20" />
+            <td>
+            <input type="submit" name="btncari" value=" Cari &raquo;" class="buttonSubmit"/>
+            </td>
+         </tr>
+   </table>
+</form>
+
+<br /> 
+   <!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+   <div class="{CLASS_PESAN}">
+      {ISI_PESAN}
+   </div>
+   <br />
+   <!-- /patTemplate:tmpl -->
+        <div class="pageBar">
+         <!-- patTemplate:gtfwrendermodule module="paging2" submodule="paging" action="view" name="paging_top"  / -->
+         </div>
+		 <div style="{FR}">
+            <table class="table-common" width="100%">
+				<tr>
+					<th rowspan="2">No</th>
+					<th rowspan="2">NIP/NIK</th>
+    				<th rowspan="2">Nama Dosen</th>
+					<th rowspan="2">TTL</th>
+					<th rowspan="2">Jabatan Akademik</th>
+					<th rowspan="2">Pangkat</th>
+					<th rowspan="2">Bidang Ilmu</th>
+					<th colspan="3">Pendidikan</th>
+    				<th rowspan="2">Pilih</th>	 
+    			</tr>
+				<tr>
+    				<th>S1</th>
+					<th>S2</th>
+    				<th>S3</th>
+    			</tr>
+				<!-- patTemplate:tmpl name="data_pegawai" type="condition" conditionvar="DATA_EMPTY" -->
+					<!-- patTemplate:sub condition="YES" -->
+						<tr><td colspan="11" align="center"><em>-- Data tidak ditemukan --</em></td></tr>
+					<!-- /patTemplate:sub -->
+					<!-- patTemplate:sub condition="NO" -->
+					<!-- patTemplate:tmpl name="data_pegawai_item" -->
+						<tr class="{DATA_CLASS_NAME}">
+							<td>{DATA_NUMBER}</td>
+							<td>{DATA_SRTFKDETNIP}</td>
+							<td>{DATA_SRTFKDETGELARDEPAN} {DATA_SRTFKDETNAMA} {DATA_SRTFKDETGELARBELAKANG}</td>
+							<td>{DATA_SRTFKDETTEMPATLAHIR}, {DATA_SRTFKDETTANGGALLAHIR}</td>
+							<td>{DATA_SRTFKDETJABFUNGRNAMA}</td>
+							<td>{DATA_SRTFKDETPKTGOLRID}</td>
+							<td>{DATA_SRTFKDETBIDANGNAMA}</td>
+							<td>{DATA_SRTFKDETS1}</td>
+							<td>{DATA_SRTFKDETS2}</td>
+							<td>{DATA_SRTFKDETS3}</td>
+							<td class="links" align="center">
+								{DATA_SET_PARENT}
+							</td>
+						</tr>
+					<!-- /patTemplate:tmpl -->
+					<!-- /patTemplate:sub -->
+				<!-- /patTemplate:tmpl -->
+		</table></div>
+<!-- /patTemplate:tmpl -->
