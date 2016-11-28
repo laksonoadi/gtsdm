@@ -1,0 +1,104 @@
+<!-- patTemplate:tmpl name="content" -->
+<script language="javascript" type="text/javascript">
+	function centangin_semua(varname, start_num, end_num) {
+		var obj = document.getElementById('cek_all');
+		var ceks;
+		if(obj.checked == false) {
+			for(i=start_num;i<=end_num;i++) {
+				ceks = document.getElementById(varname + i);
+				if(ceks) ceks.checked = false;
+			}
+		} else {
+			for(i=start_num;i<=end_num;i++) {
+				ceks = document.getElementById(varname + i);
+				if(ceks) ceks.checked = true;
+			}
+		}
+	}
+	
+	function getInputForm(){
+      GtfwAjax.replaceContentWithUrl('form-additional','<!-- patTemplate:gtfwgeturl module="pak" sub="inputPak" action="view" type="html" htmlentities="no" / -->&ascomponent=1');
+   }
+</script>
+<br />
+<h1>{TITLE}</h1>
+<br />
+<form method="POST" action="{URL_SEARCH}" class="dataquest xhr_simple_form dest_subcontent-element" id="filterbox">
+   <table>
+      <tr>
+         <th colspan="2"><h2><strong>Search Data</strong></h2></th>
+      </tr>
+      <tr>         
+         <th><input type="checkbox" {KN_CHECKED} value="kn" name="check[kn]">&nbsp; Name</th>
+         <td><input type="text" name="namanikah" value="{NAMA}" size="30" /></td>    
+      </tr>
+      <tr>
+         <th>&nbsp;</th>
+         <td>
+            <input type="submit" name="btncari" value=" Search &raquo;" class="buttonSubmit"/>
+         </td>
+      </tr>
+   </table>
+</form>
+
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+   {ISI_PESAN}
+</div>
+<!-- /patTemplate:tmpl -->
+<br />
+
+<div id="form-additional">
+</div>
+
+<form method="POST" action="{URL_DELETE}" id="form_list" class="xhr_simple_form dest_subcontent-element" >
+<div class="pageBar">
+		<!-- patTemplate:gtfwrendermodule module="paging" submodule="paging" action="view" name="paging_top"  / -->
+   <div class="toolbar"> 
+	<!--	<a href="javascript:getInputForm();" title="Tambah Data Referensi Kode Nikah"> /-->
+      <a class="xhr dest_subcontent-element" href="{URL_ADD}" title="Tambah Data Referensi Kode Nikah">
+      <img src="images/button-add.gif" alt="">Add</a> 	
+	<!--	<input type="submit" id="btnHapus" name="btnHapus" value="Hapus" class="inputButton" /> /-->
+   </div>
+</div>
+
+<table class="table-common" width="100%">
+   <tr>
+      <!-- <th width="5"><input type="checkbox" name="cek_all" id="cek_all" value="ALL" 
+	  onclick="centangin_semua('id_','{FIRST_NUMBER}','{LAST_NUMBER}');" /></th> /-->
+      <th width="15%">No</th>
+      <th width="63px">Action</th> 
+      <th>Code</th>
+      <th>Name</th>
+      <th>Salary's Component Detail</th> 
+   </tr>
+   <!-- patTemplate:tmpl name="data_kode_nikah" type="condition" conditionvar="DATA_EMPTY" -->
+      <!-- patTemplate:sub condition="YES" -->
+         <tr><td colspan="5" align="center"><em>-- Data not found --</em></td></tr>
+      <!-- /patTemplate:sub -->
+      <!-- patTemplate:sub condition="NO" -->
+         <!-- patTemplate:tmpl name="data_kode_nikah_item" -->
+         <tr class="{KN_CLASS_NAME}">
+            <!-- <td>
+            <input type="checkbox" name="id[]" id="id_{PAK_NUMBER}" value="{PAK_ID}" /> 
+            <input type="hidden" name="name[{PAK_NAMA}]" value="{PAK_NAMA}" /></td> /-->
+            <td align="center">{KN_NO}</td>
+            <td class="links" align="center">
+               <a href="{KN_URL_UPDATE}" class="xhr dest_subcontent-element" title="Ubah">
+                  <img src="images/button-edit.gif" alt="Update"/>
+               </a>
+               <a href="{KN_URL_DELETE}" class="xhr dest_subcontent-element" title="Hapus">
+                  <img src="images/button-delete.gif" alt="Delete"/>
+               </a>     
+            </td>
+            <td align="center">{KN_KODE}</td>
+            <td align="left">{KN_NAMA}</td>
+            <td align="center">{KN_KOMPGAJI}</td>            
+         </tr>
+         <!-- /patTemplate:tmpl -->         
+      <!-- /patTemplate:sub -->
+   <!-- /patTemplate:tmpl -->
+   
+</table>
+</form>
+<!-- /patTemplate:tmpl -->

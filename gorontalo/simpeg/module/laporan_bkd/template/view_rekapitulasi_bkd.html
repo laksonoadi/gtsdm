@@ -1,0 +1,141 @@
+<!-- patTemplate:tmpl name="content" -->
+<h1>{LABEL_TITLE}</h1>
+<br />
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+   {ISI_PESAN}
+</div>
+<br />
+<!-- /patTemplate:tmpl -->
+<h1>Rekapitulasi Beban Kinerja Dosen</h1>
+<br />
+<form method="POST" action="{URL_SEARCH}" class="dataquest xhr_simple_form dest_subcontent-element" id="filterbox">
+   <table>
+      <tr>
+         <th colspan="2"><h2><strong>Pencarian Data</strong></h2></th>
+      </tr>
+      <tr>              
+         <th width="30%">Unit Kerja</th>
+         <td>
+            <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="unit_kerja"  / -->
+         </td>
+      </tr>	
+	    <tr>              
+         <th width="30%">Pangkat/Golongan</th>
+         <td>
+            <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="pangkat_golongan"  / -->
+         </td>
+      </tr>
+      <tr>              
+         <th width="30%">Jabatan Fungsional</th>
+         <td>
+            <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="fungsional"  / -->
+         </td>
+      </tr>
+      <tr>              
+         <th width="30%">Tingkat Pendidikan</th>
+         <td>
+            <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="pendidikan"  / -->
+         </td>
+      </tr>
+      <tr>
+         <th>&nbsp;</th>
+         <td>
+		        <input type="hidden" name="cari" value="cari" size="30" />
+            <input type="submit" name="btncari" value=" Search &raquo;" class="buttonSubmit"/>
+         </td>
+      </tr>
+   </table>
+</form>
+<br />
+<div class="pageBar">
+  <!-- Template:gtfwrendermodule module="paging" submodule="paging" action="view" name="paging_top"  / -->
+  <div class="toolbar">
+    <a href="{URL_EXCEL}" title="Export Excel" tabindex="3"><img src="images/button-excel.gif" alt="Export Excel">Export Excel</a>
+    <a href="{URL_DETAIL_REKAP}" title="Detail Rekapitulasi" tabindex="3"><img src="images/button-detail.gif" alt="Detail Rekapitulasi">Detail Rekapitulasi BKD</a>
+  </div>
+</div>
+
+<table class="table-common">
+<tr>
+	<th rowspan=2>No.</th>
+	<th rowspan=2>No. Sertifikat</th>
+	<th rowspan=2>Nama Dosen</th>
+	<th colspan=4>Semester Gasal</th>
+	<th colspan=4>Semester Genap</th>
+	<th rowspan="2" class=right>Kewajiban Khusus Profesor</th>
+	<th rowspan=2>Status</th>
+	<th rowspan=2>Kesimpulan</th>
+</tr>
+<tr>
+	<th>PD</th>
+	<th>PL</th>
+	<th>PG</th>
+	<th>PK</th>
+	<th>PD</th>
+	<th>PL</th>
+	<th>PG</th>
+	<th>PK</th>
+  </tr>
+<tr>
+	<th class=bottom>1</th>
+	<th class=bottom>2</th>
+	<th class=bottom>3</th>
+	<th class=bottom>4</th>
+	<th class=bottom>5</th>
+	<th class=bottom>6</th>
+	<th class=bottom>7</th>
+	<th class=bottom>8</th>
+ 	<th class=bottom>9</th>
+	<th class=bottom>10</th>
+	<th class=bottom>11</th>
+	<th class=bottom>12</th>
+ 	<th class=bottom>13</th>
+ 	<th class=bottom>14</th>
+ </tr>
+<!-- patTemplate:tmpl name="table_list" type="condition" conditionvar="EMPTY" -->
+   <!-- patTemplate:sub condition="YES" -->
+    <tr><td align="center" colspan="27">---Data Tidak Ditemukan---</td></tr>
+   <!-- /patTemplate:sub -->
+   <!-- patTemplate:sub condition="NO" -->
+
+	   <!-- patTemplate:tmpl name="table_item" -->
+		<tr><td align="left" colspan="27" style="font-weight:bold;">{NAMEFAK}</td></tr>
+
+		<!-- patTemplate:tmpl name="list_peg" type="condition" conditionvar="EMPTY" -->
+		   <!-- patTemplate:sub condition="YES" -->
+			<tr><td align="center" colspan="27">---Data Tidak Ditemukan---</td></tr>
+		   <!-- /patTemplate:sub -->
+		   <!-- patTemplate:sub condition="NO" -->
+
+			<!-- patTemplate:tmpl name="data_item" -->
+			<tr>
+				<td style="{CLASS_NAME}">{NO}</td>
+				<td nowrap>{NO_SERTIFIKASI}</td>
+				<td nowrap>{NAMA}</td>
+
+				<td nowrap>{SUM_PEND_GANJIL}</td>
+				<td nowrap>{SUM_PENL_GANJIL}</td>
+				<td nowrap>{SUM_PENG_GANJIL}</td>
+				<td nowrap>{SUM_PENU_GANJIL}</td>
+
+				<td nowrap>{SUM_PEND_GENAP}</td>
+				<td nowrap>{SUM_PENL_GENAP}</td>
+				<td nowrap>{SUM_PENG_GENAP}</td>
+				<td nowrap>{SUM_PENU_GENAP}</td>
+
+				<td nowrap style="text-align:center;">{SUM_PROF}</td>
+				<td nowrap>{STATUS}</td>
+				<td nowrap>{KESIMPULAN}</td>
+			</tr>
+			<!-- /patTemplate:tmpl -->
+
+			<!-- /patTemplate:sub -->
+		<!-- /patTemplate:tmpl -->
+			
+		<!-- /patTemplate:tmpl -->
+
+   <!-- /patTemplate:sub -->
+<!-- /patTemplate:tmpl -->
+</table>
+<!-- /patTemplate:tmpl -->
