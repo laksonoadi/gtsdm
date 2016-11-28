@@ -1,0 +1,14 @@
+<!-- patTemplate:tmpl name="content" -->
+	<!-- patTemplate:tmpl name="combobox" -->
+    <select name="{COMBO_NAME}" class="form-control input-sm" id="{COMBO_NAME}" {ACTION}>
+	<!-- patTemplate:tmpl name="combolist" type="condition" conditionvar="COMBO_IS_DISABLED" -->
+	<!-- patTemplate:sub condition="YES" -->
+		<option value="{COMBO_VALUE}" disabled="disabled" style="cursor: not-allowed; color: #bbb;">{COMBO}</option>
+	<!-- /patTemplate:sub -->
+	<!-- patTemplate:sub condition="__default" -->
+		<option value="{COMBO_VALUE}" {COMBO_SELECTED}>{COMBO}</option>
+	<!-- /patTemplate:sub -->
+	<!-- /patTemplate:tmpl -->
+	</select>
+	<!-- /patTemplate:tmpl -->
+<!-- /patTemplate:tmpl -->

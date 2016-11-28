@@ -1,0 +1,79 @@
+<!-- patTemplate:tmpl name="content" --> 
+<div class="col-sm-12" style="margin-top:100px !important">
+<div class="col-sm-3">
+</div>
+<div class="col-sm-6">
+
+<div class="panel panel-danger" style="border-radiius:4px !important">
+    <div class="panel-heading text-big"><strong>Hapus {LABEL}</strong></div>
+    <div class="panel-body">
+        
+         <!-- patTemplate:tmpl name="emptydata" type="condition" conditionvar="IS_EMPTY_DATA" -->
+  <!-- patTemplate:sub condition="NO" -->
+   <form name="form_distribusi" id="form_distribusi" action="{FORM_ACTION_URL}" method="POST" class="xhr_form std_form">
+      <input type="hidden" value="{FORM_ACTION_URL}" />
+      <div class="" id="dialog_delete">
+         <img src="image/alert.gif" alt="" />
+         <p>Anda akan Menghapus {LABEL} dengan Nama/Kode:<br />
+      <!-- patTemplate:tmpl name="multiple_delete" type="condition" conditionvar="IS_MULTIPLE_DELETE" -->
+         <!-- patTemplate:sub condition="NO" -->
+         <input type="hidden" value="{TGL}" name="tglDelete" />
+            <input type="hidden" value="{ID}" name="idDelete" /><b>{DATANAME}</b>
+         <!-- /patTemplate:sub -->
+         <!-- patTemplate:sub condition="YES" -->
+         <ol>
+            <!-- patTemplate:tmpl name="multiple_delete_item" -->
+         <input type="hidden" value="{MULTI_ID}" name="idDelete[]" />
+            <input type="hidden" value="{MULTI_DATANAME}" name="nameDelete[]" />
+            <input type="hidden" value="{MULTI_PERIODE}" name="perDelete[]" />
+            <li style="font-weight:bold">{MULTI_DATANAME}</li>
+            <!-- /patTemplate:tmpl -->
+        </ol>
+         <!-- /patTemplate:sub -->
+      <!-- /patTemplate:tmpl -->
+        <div style="padding:5px 0px 5px 35px; margin-bottom:10px; background:url(images/alert.gif) left center no-repeat; color:red; font-weight:bold;">
+        Apakah Anda Yakin? {MESSAGE}
+        </div>
+         </p>
+        <div class="col-sm-12 col-xs-12">
+        <div class="col-sm-6 col-xs-6 text-right">
+
+            <input type="submit" name="btnDel" class="btn btn-sm btn-danger" style="width:80px !important;font-weight:bold !important" value="Ya"  title = "Data yang sudah dihapus tidak dapat dikembalikan lagi."/>          
+
+        </div>
+        <div class="col-sm-6 col-xs-6">
+            <a class="xhr dest_subcontent-element btn btn-sm btn-warning" href="{URL_KEMBALI}" style="width:80px !important;font-weight:bold !important" title="Batal menghapus dan menutup dialog ini.">Batal</a>          
+        </div>
+        <div class="clearfix text-right">
+          <br/>
+          <br/>
+          <span style="color:red;font-size:11px !important;text-align:right">*Data yang sudah dihapus tidak dapat dikembalikan.</span>
+        </div>
+        </div>
+
+
+           
+        </div>
+    </form>
+  <!-- /patTemplate:sub -->
+  <!-- patTemplate:sub condition="YES" -->
+      <div class="" id="dialog_delete">
+         <img src="image/alert.gif" alt="" />
+         <p>Anda Harus Memilih Salah Satu Data Untuk Dihapus.<br />Silahkan Kembali.</p>
+         
+            <a class="xhr dest_subcontent-element btn btn-sm btn-warning" href="{URL_KEMBALI}" title="Kembali">Kembali</a>
+            <p>Batal menghapus dan menutup dialog ini.</p>
+         
+    </div>
+
+
+    </div>
+</div>
+
+</div>
+<div class="col-sm-3">
+</div>
+  </div>
+  <!-- /patTemplate:sub -->
+<!-- /patTemplate:tmpl -->
+<!-- /patTemplate:tmpl -->

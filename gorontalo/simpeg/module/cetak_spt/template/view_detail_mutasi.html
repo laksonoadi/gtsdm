@@ -1,0 +1,112 @@
+<!-- patTemplate:tmpl name="content" -->
+<!--<h1>{LABEL_TITLE}</h1>-->
+<div class="background-blue padding-10 text-big">{TITLE}</div>
+
+<div class="padding-10">
+
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+   {ISI_PESAN}
+</div>
+<br />
+<!-- /patTemplate:tmpl -->
+
+<div class="table-responsive">
+    <table class="table" >
+	    <tr class="background-blue-light">
+		    <th colspan="3" width="25%"><b>Personal Information</b></th>
+	    </tr>
+	    <tr>
+		    <td rowspan="4"><img src="upload_file/photo/{PROFIL_FOTO}" width="100" height="100"></td>
+       </tr>
+       <tr>
+          <td>Name</td>
+	      <td>{PROFIL_NAME}</td>
+       </tr>
+       <tr>
+          <td>Employee ID</td>
+	      <td>{PROFIL_KODE}</td>
+       </tr>
+       <tr>
+          <td valign="top">Address</td>
+	      <td valign="top">{PROFIL_ALAMAT}</td>
+       </tr>
+    </table>
+</div>
+
+<div class="table-responsive">
+    <table class="table" >
+        <!-- patTemplate:tmpl name="data" type="condition" conditionvar="DATA_EMPTY" -->
+            <!-- patTemplate:sub condition="YES" -->
+                <h1>Data not found </h1>
+            <!-- /patTemplate:sub -->
+            <!-- patTemplate:sub condition="NO" -->
+                <!-- patTemplate:tmpl name="data_item" -->
+                  <tr class="background-blue-light" >
+                     <th colspan="5">DATA</th>
+		             
+                  </tr>
+                  <tr style="display:none">
+                     <th >Employment Status</th>
+                     <td>
+                       {DETAIL_JPNAMA}
+                     </td>
+                  </tr>
+	              <tr>
+                     <th >Working Unit</th>
+                     <td>
+                       {DETAIL_SATKERNAMA}
+                     </td>
+                  </tr>
+	              <tr>
+                     <th >Due Date </th>
+                     <td>
+                       {DETAIL_TMT}
+                     </td>
+                  </tr>
+	              <tr class="background-blue-light">
+		            <th colspan="2">Decree</th>
+	              </tr>
+	              <tr>
+                     <th >Signed By </th>
+                     <td>
+                       {DETAIL_PEJABAT}
+                     </td>
+                  </tr>
+	              <tr>
+                     <th >Number of Letter </th>
+                     <td>
+                       {DETAIL_NOSK}
+                     </td>
+                  </tr>
+	              <tr>
+                     <th >Decree Date </th>
+                     <td>
+                       {DETAIL_TGL_SK}
+                     </td>
+                  </tr>
+	              <tr>
+                     <th >Position Active Status </th>
+                     <td>
+                       {DETAIL_STATUS}
+                     </td>
+                  </tr>
+	              <tr>
+                     <th >Decree Document </th>
+                     <td>
+                       <a href="{DETAIL_LINK_DOWNLOAD}">{DETAIL_UPLOAD}</a>
+                     </td>
+                  </tr>
+                <!-- /patTemplate:tmpl -->
+            <!-- /patTemplate:sub -->
+    <!-- /patTemplate:tmpl -->
+	<tr>
+        <td colspan="2" class="background-blue-light text-right">
+            <a class="xhr dest_subcontent-element " href="{URL_BACK}" title="Kembali" tabindex="2">
+                <button type="button" class="btn btn-default btn-xs">Kembali</button>
+            </a>
+        </td>
+	</tr>
+</table>
+</div>
+<!-- /patTemplate:tmpl -->
