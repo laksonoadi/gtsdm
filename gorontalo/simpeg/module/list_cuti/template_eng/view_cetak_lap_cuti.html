@@ -1,0 +1,36 @@
+<!-- patTemplate:tmpl name="content" -->
+<div class="a4-landscape"><br><br>
+<h1 align="center"><u>LEAVE REPORT</u></h1>
+<br />
+<table width="100%" style="border: 1px">
+   <tr>
+      <th>No.</th>
+      <th>Leave Number</th>
+      <th>Employee</th>
+      <th>Leave Type</th>
+      <th>Leave Date</th>
+      <th>Status</th>
+      <th>Work Responsibility</th>
+   </tr>
+   <!-- patTemplate:tmpl name="data" type="condition" conditionvar="SLIP_EMPTY" -->
+         <!-- patTemplate:sub condition="YES" -->
+         <tr><td colspan="7" align="center"><em>-- Data not found --</em></td></tr>
+         <!-- /patTemplate:sub -->
+         <!-- patTemplate:sub condition="NO" -->
+            <!-- patTemplate:tmpl name="data_slip_item" -->
+            <tr>
+               <td align="center">{NOMER}</td>
+               <td align="center">{NO}</td>
+               <td align="center">{NMPEG}</td>
+               <td align="center">{NAMA}</td>
+               <td align="center">{TGLCUTI}</td>
+               <td align="center">{STATUS}</td>
+               <td>{TGGJWB}</td>
+            </tr>
+            <!-- /patTemplate:tmpl -->
+         <!-- /patTemplate:sub -->
+   <!-- /patTemplate:tmpl -->
+</table>
+<br><br>
+</div>
+<!-- /patTemplate:tmpl -->

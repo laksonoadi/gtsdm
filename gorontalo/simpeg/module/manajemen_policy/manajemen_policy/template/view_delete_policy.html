@@ -1,0 +1,27 @@
+<!-- patTemplate:tmpl name="content" -->
+<div class="mainContent-fp-element-full">
+	<div class="mainContent-fp-element-full-head"><h2>Menejemen Kebijakan & Peraturan</h2></div>
+	<div class="mainContent-fp-element-full-body">
+   <!-- patTemplate:gtfwrendermodule module="breadcrump" submodule="breadcrump" action="view" name="breadcrump" / -->
+	<form method="post" enctype="multipart/form-data" name="formInput"></form>
+
+   <form name="form_policy" id="form_policy" action="<!-- patTemplate:gtfwgeturl module="manajemen_policy" sub="{SUB}" action="view" type="html" / -->" method="post" autocomplete=off>
+      <table class="table-form" width="100%">
+         <tr>
+            <td colspan="2" align="center"><h3>Apakah Anda yakin untuk menghapus kebijakan & peraturan?</h3></td>
+         </tr>
+         <tr>
+            <td colspan="2"><h4>{POLICYNAMA}<h4></td>
+         </tr>
+         <tr>
+            <td colspan="2">
+               <input type="hidden" name="idPeg" value="{IDPEG}" />
+               <input type="hidden" name="id" value="{POLICYID}" />
+               <input type="submit" name="action" value="Yes" />
+               <input type="button" name="action" value="No" onclick="window.location.href = '{URL_BACK}'"/>
+            </td>
+         </tr>
+      </table>
+   </form>
+</div></div>
+<!-- /patTemplate:tmpl -->

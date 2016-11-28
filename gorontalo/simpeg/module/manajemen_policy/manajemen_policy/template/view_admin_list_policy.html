@@ -1,0 +1,94 @@
+<!-- patTemplate:tmpl name="content" -->
+<h1>MANAJEMEN DOKUMEN</h1>
+<h2>List Dokumen</h2>
+
+<form method="POST" action="{URL_SEARCH}" class="dataquest xhr_simple_form dest_subcontent-element" id="filterbox">
+    <table>
+        <tr>
+            <th colspan="2"><h2><strong>Cari Data</strong></h2></th>
+        </tr>
+        <tr>              
+            <th width="30%">Nama/Deskripsi</th>
+            <td colspan='2'><input type="text" name="nip_nama" value="{NIP_NAMA}" size="30" /></td>
+        </tr>
+        <tr>
+            <th>Unit Kerja</th>
+            <td><!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="satuan_kerja"  / --></td>
+        </tr>
+        <tr>
+            <th>Jenis</th>
+            <td><!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="jenis_policy"  / --></td>
+        </tr>
+
+        <tr>
+            <th>&nbsp;</th>
+            <td>
+                <input type="submit" name="btncari" value=" Search &raquo;" class="buttonSubmit"/>
+            </td>
+        </tr>
+    </table>
+</form>
+
+<!-- patTemplate:tmpl name="message" visibility="hidden" -->
+<div class="{CSS}">
+    {MESSAGE}
+</div>
+<br />
+<!-- /patTemplate:tmpl -->
+
+<div class="pageBar">
+    <!-- patTemplate:gtfwrendermodule module="paging" submodule="Paging" action="view" itemviewed="{ITEM_VIEWED}" totitems="{TOTAL_ITEMS}" pagingurl="{PAGING_URL}" page="{PAGE}" cari="{CARI}" / -->
+    <!-- patTemplate:tmpl name="toolbar" -->
+    <div class="toolbar">
+        <a href="{URL_ADD}" title="Tambah"><img src="images/button-add.gif" alt="Tambah" /> Tambah</a>
+    </div>
+</div>
+<!-- /patTemplate:tmpl -->
+
+<table class="table-common" width="100%">
+    <tr>
+        <th>No</th>
+        <th>Unit Kerja</th>
+        <th>Jenis</th>
+        <th>Nama</th>
+        <th>Tanggal</th>
+        <th>Status</th>
+        <th>Deskripsi</th>
+        <th>Jumlah File</th>
+        <th width="94">Aksi</th>
+    </tr>
+    <!-- patTemplate:tmpl name="empty_policy" visibility="hidden" -->
+    <tr>
+        <td colspan="9" align="center">--data not found--</td>
+    </tr>
+    <!-- /patTemplate:tmpl -->
+
+    <!-- patTemplate:tmpl name="list_policy" visibility="hidden" -->
+    <tr>
+        <td>{NO}</td>
+        <td>{SATKERNAMA}</td>
+        <td>{JNSPOLICYNAMA}</td>
+        <td>{POLICYNAMA}</td>
+        <td>{POLICYTANGGALPOLICY}</td>
+        <td>{POLICYISAKTIF}</td>
+        <td>{POLICYKETERANGAN}</td>
+        <td align="center">{TOTAL_FILE}</td>
+        <td class="links">
+            <a href="{URL_EDIT}"><img src="images/button-edit.gif" alt="" /></a>
+            <!-- patTemplate:tmpl name="empty_file_upload" visibility="visible" -->
+            <a href="{URL_DELETE}"><img src="images/button-delete.gif" alt="" /></a>
+            <!-- /patTemplate:tmpl -->
+            <a href="{URL_DETAIL}"><img src="images/button-detail.gif" alt="" /></a>
+        </td>
+    </tr>
+    <!-- /patTemplate:tmpl -->
+</table>
+<br/>
+<br/>
+<div class="petunjuk-area">
+    <h4>Petunjuk :</h4>
+    <ul>
+        <li>Kosongkan File Terlebih Dahulu Untuk Menghapus Kebijakan. </li>
+    </ul>
+</div>
+<!-- /patTemplate:tmpl -->

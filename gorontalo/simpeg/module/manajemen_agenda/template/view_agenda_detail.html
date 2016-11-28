@@ -1,0 +1,65 @@
+<!-- patTemplate:tmpl name="content" -->
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+	{ISI_PESAN}
+</div>
+<br />
+<!-- /patTemplate:tmpl -->
+<div><h1>{TITLE}</h1></div>
+
+<div style="display:{DISPLAY_FORM}">
+<h2>Detail Agenda</h2>
+<div class="toolbar"> 
+	<a class="xhr dest_subcontent-element " href="{URL_BALIK}" title="Kembali" tabindex="2"><img src="images/button-back.gif" alt="">Kembali</a>
+</div>
+   <table class="table-details" width="100%">
+	  <tr class="subhead">
+			<th colspan="2">
+				Detail Agenda
+			</th>
+		 </tr>
+      <tr>
+         <th width="30%">Nama Agenda </th>
+         <td>{TITLE_AG}</td>
+      </tr>
+      <tr>
+         <th>Artikel</th>
+         <td>{ARTICLE}</td>
+      </tr>
+      <tr>
+         <th>URL</th>
+         <td><a href="{URL}" target="_blank">{URL}</a></td>
+      </tr>
+      <tr>
+         <th>Photo</th>
+         <td><img src="{FOTO}" width="300"/></td>
+      </tr>
+      <tr>
+         <th>Judul </th>
+         <td>{CAPTION}</td>
+      </tr>
+      <tr>
+         <th>Mulai</th>
+         <td>{START_DATE}</td>
+      </tr>
+      <tr>
+         <th>Selesai</th>
+         <td>{END_DATE}</td>
+      </tr>
+      <tr>
+         <th>Tempat</th>
+         <td>{LOCATION}</td>
+      </tr>
+      <tr>
+         <th>Status</th>
+         <td>{STATUS}</td>
+      </tr>
+      <tr>
+         <td colspan="2" class="table-common-links">
+			<div class="toolbar"> 
+				<a class="xhr dest_subcontent-element " href="{URL_BALIK}" title="Kembali" tabindex="2"><img src="images/button-back.gif" alt="">Kembali</a>
+			</div>
+         </td>
+      </tr>
+   </table>
+<!-- /patTemplate:tmpl -->  

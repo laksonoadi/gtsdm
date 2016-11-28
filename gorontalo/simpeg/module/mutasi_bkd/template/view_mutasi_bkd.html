@@ -1,0 +1,1473 @@
+<!-- patTemplate:tmpl name="content" -->
+<style>
+.btnTambah { font-family:arial; font-size:16px; border:1px solid #848ebf; height:30px; color:#2e3724; font-weight:bold; background:#fcfff7; cursor:pointer;}
+.btnTambah:hover { color:#525b29; border:1px solid #DBDDC8;}
+</style>
+<script language="javascript" type="text/javascript">
+var xpopup;
+function cariPegawai(temp,xurl) {
+	document.getElementById('temp').value=temp;
+	b=xurl;
+	showPopup(b,'Employee List',500, 500);
+}
+function cekform(isian){
+	if(isian.jenis.value == ""){
+		alert("Isian Jenis pada tab Identitas Dosen masih kosong");
+		tp1.showPanel(0);
+		isian.jenis.focus();
+		return false;
+	}
+	if(isian.thnAkd.value == ""){
+		alert("Isian Tahun Akademik pada tab Identitas Dosen masih kosong");
+		tp1.showPanel(0);
+		isian.thnAkd.focus();
+		return false;
+	}
+	if(isian.semester.value == ""){
+		alert("Isian Semester pada tab Identitas Dosen masih kosong");
+		tp1.showPanel(0);
+		isian.semester.focus();
+		return false;
+	}
+	if(isian.pejabat_id.value == ""){
+		alert("Asesor 1 pada tab Identitas Dosen harus di pilih");
+		tp1.showPanel(0);
+		clickAsesor1.focus();
+		return false;
+	}
+	if(isian.pejabat_id_2.value == ""){
+		alert("Asesor 2 pada tab Identitas Dosen harus di pilih");
+		tp1.showPanel(0);
+		clickAsesor2.focus();
+		return false;
+	}
+}
+
+counterPdddk	= 0;
+counterPenlt	= 0;
+counterPengbd	= 0;
+counterPenunj	= 0;
+counterProf		= 0;
+// fungsi tab pendidikan start --------------------------------------------------------------------------------------------------------------------
+function tambahPendidikan(){
+	counterNextPddk = counterPdddk + 1;
+	counterPrevPddk = counterPdddk + 1 - 1;
+
+	var namakegPddk		= document.getElementById('namakegPddk').value;
+	var bpenugasanPddk	= document.getElementById('bpenugasanPddk').value;
+	var sks1Pddk		= document.getElementById('bebanSksPddk').value;
+	var mpPddk			= document.getElementById('masapenugasanPddk').value;
+	var bdokPddk		= document.getElementById('bdokPddk').value;
+	var sks2Pddk		= document.getElementById('kinerjaSksPddk').value;
+	var filePddk		= document.getElementById('filePddk'+counterPrevPddk).value;
+	
+	document.getElementById("filePddk_"+counterPdddk).innerHTML = "<input type='file' name='filePddk[]' id=\"filePddk"+counterNextPddk+"\"><span id=\"filePddk_"+counterNextPddk+"\"></span>";
+	counterPdddk++;
+	document.getElementById('filePddk'+counterPrevPddk).style.display='none';
+
+	// validasi FORM ------------------------------------------------------------------------------------------------------------------------------
+	if(namakegPddk == ""){
+		alert("Isian Nama Kegiatan masih kosong"); tp1.showPanel(1); namakegPddk.focus(); return false;
+	}
+	if(bpenugasanPddk == ""){
+		alert("Isian Bukti Penugasan masih kosong"); tp1.showPanel(1); bpenugasanPddk.focus(); return false;
+	}
+	if(sks1Pddk == ""){
+		alert("Isian Beban Kerja SKS masih kosong"); tp1.showPanel(1); sks1Pddk.focus(); return false;
+	}
+	if(mpPddk == ""){
+		alert("Isian Masa Penugasan masih kosong"); tp1.showPanel(1); mpPddk.focus(); return false;
+	}
+	if(bdokPddk == ""){
+		alert("Isian Bukti Dokumen masih kosong"); tp1.showPanel(1); mpPddk.focus(); return false;
+	}
+	if(sks2Pddk == ""){
+		alert("Isian Kinerja SKS masih kosong"); tp1.showPanel(1); mpPddk.focus(); return false;
+	}
+	// validasi FORM ------------------------------------------------------------------------------------------------------------------------------
+
+	var tampil_tombol_aksi = '<a href="javascript:void(0)" title="Hapus" onclick="hapusPenddk(this,confirmPddk)"><img src="images/button-delete.gif" alt="Hapus" border=0 /></a>';
+		
+	var tr			= document.createElement('tr');
+	var td_nama		= document.createElement('td');
+	var td_bp		= document.createElement('td');
+	var td_sks1		= document.createElement('td');
+	var td_mp		= document.createElement('td');
+	var td_bd		= document.createElement('td');
+	var td_sks2		= document.createElement('td');
+	var td_file		= document.createElement('td');
+	var td_aksi		= document.createElement('td');
+
+	var tbodi 		= document.getElementById("tbody_penddk_list");
+
+	td_aksi.className	= 'links';
+	td_aksi.width		= 15;
+	td_nama.innerHTML	= namakegPddk+'<input id="confirmPddk" type="hidden" name="data[pddk][namakegPddk][]" value="'+namakegPddk+'" />\n';
+	td_bp.innerHTML		= bpenugasanPddk+'<input type="hidden" name="data[pddk][bpenugasanPddk][]" value="'+bpenugasanPddk+'" />\n';
+	td_sks1.innerHTML	= sks1Pddk+'<input type="hidden" name="data[pddk][sks1Pddk][]" value="'+sks1Pddk+'" />\n';
+	td_mp.innerHTML		= mpPddk+'<input type="hidden" name="data[pddk][mpPddk][]" value="'+mpPddk+'" />\n';
+	td_bd.innerHTML		= bdokPddk+'<input type="hidden" name="data[pddk][bdokPddk][]" value="'+bdokPddk+'" />\n';
+	td_sks2.innerHTML	= sks2Pddk+'<input type="hidden" name="data[pddk][sks2Pddk][]" value="'+sks2Pddk+'" />\n';
+	td_file.innerHTML	= filePddk+'<input type="hidden" name="data[pddk][filePddk][]" value="'+filePddk+'" />\n';
+	td_aksi.innerHTML	= tampil_tombol_aksi;
+
+	tr.appendChild(td_nama);
+	tr.appendChild(td_bp);
+	tr.appendChild(td_sks1);
+	tr.appendChild(td_mp);
+	tr.appendChild(td_bd);
+	tr.appendChild(td_sks2);
+	tr.appendChild(td_file);
+	tr.appendChild(td_aksi);
+	tbodi.appendChild(tr);
+
+	document.getElementById('namakegPddk').value='';
+	document.getElementById('bpenugasanPddk').value='';
+	document.getElementById('bebanSksPddk').value='';
+	document.getElementById('masapenugasanPddk').value='';
+	document.getElementById('bdokPddk').value='';
+	document.getElementById('kinerjaSksPddk').value='';
+}
+function hapusPenddk(obj,namakegPddk)
+{
+//	var cc = obj.parentNode.parentNode.parentNode.appendChild(obj.parentNode.parentNode);
+//	alert(cc);
+//	var namakegPddk	= document.getElementById('confirmPddk').value;
+//	var pesanPddk	= confirm('Apakah Data BKD Bidang Pendidikan \n\n - Nama Kegiatan : '+ namakegPddk +'   \n\nAkan Dihapus?');
+	var pesanPddk	= confirm('Apakah Anda Yakin Akan Menghapus Data BKD Bidang Pendidikan Ini ?');
+	if (pesanPddk) {
+		obj.parentNode.parentNode.parentNode.removeChild(obj.parentNode.parentNode);
+	}
+}
+// fungsi tab pendidikan end --------------------------------------------------------------------------------------------------------------------
+
+
+// fungsi tab penelitian start --------------------------------------------------------------------------------------------------------------------
+function tambahPenelitian(){
+	counterNextPenlt = counterPenlt + 1;
+	counterPrevPenlt = counterPenlt + 1 - 1;
+
+	var namakegPenlt	= document.getElementById('namakegPenlt').value;
+	var bpenugasanPenlt	= document.getElementById('bpenugasanPenlt').value;
+	var sks1Penlt		= document.getElementById('bebanSksPenlt').value;
+	var mpPenlt			= document.getElementById('masapenugasanPenlt').value;
+	var bdokPenlt		= document.getElementById('bdokPenlt').value;
+	var sks2Penlt		= document.getElementById('kinerjaSksPenlt').value;
+	var filePenlt		= document.getElementById('filePenlt'+counterPrevPenlt).value;
+	
+	document.getElementById("filePenlt_"+counterPenlt).innerHTML = "<input type='file' name='filePenlt[]' id=\"filePenlt"+counterNextPenlt+"\"><span id=\"filePenlt_"+counterNextPenlt+"\"></span>";
+	counterPenlt++;
+	document.getElementById('filePenlt'+counterPrevPenlt).style.display='none';
+
+	// validasi FORM ------------------------------------------------------------------------------------------------------------------------------
+	if(namakegPenlt == ""){
+		alert("Isian Nama Kegiatan masih kosong"); tp1.showPanel(2); namakegPenlt.focus(); return false;
+	}
+	if(bpenugasanPenlt == ""){
+		alert("Isian Bukti Penugasan masih kosong"); tp1.showPanel(2); bpenugasanPenlt.focus(); return false;
+	}
+	if(sks1Penlt == ""){
+		alert("Isian Beban Kerja SKS masih kosong"); tp1.showPanel(2); sks1Penlt.focus(); return false;
+	}
+	if(mpPenlt == ""){
+		alert("Isian Masa Penugasan masih kosong"); tp1.showPanel(2); mpPenlt.focus(); return false;
+	}
+	if(bdokPenlt == ""){
+		alert("Isian Bukti Dokumen masih kosong"); tp1.showPanel(2); bdokPenlt.focus(); return false;
+	}
+	if(sks2Penlt == ""){
+		alert("Isian Kinerja SKS masih kosong"); tp1.showPanel(2); sks2Penlt.focus(); return false;
+	}
+	// validasi FORM ------------------------------------------------------------------------------------------------------------------------------
+
+	var tampil_tombol_aksi = '<a href="javascript:void(null)" title="Hapus" onclick="hapusPenlt(this)"><img src="images/button-delete.gif" alt="Hapus" border=0 /></a>';
+
+	var tr			= document.createElement('tr');
+	var td_nama		= document.createElement('td');
+	var td_bp		= document.createElement('td');
+	var td_sks1		= document.createElement('td');
+	var td_mp		= document.createElement('td');
+	var td_bd		= document.createElement('td');
+	var td_sks2		= document.createElement('td');
+	var td_file		= document.createElement('td');
+	var td_aksi		= document.createElement('td');
+
+	var tbodi 		= document.getElementById("tbody_penlt_list");
+
+	td_aksi.className	= 'links';
+	td_aksi.width		= 15;
+	td_nama.innerHTML	= namakegPenlt+'<input type="hidden" name="data[penlt][namakegPenlt][]" value="'+namakegPenlt+'" />\n';
+	td_bp.innerHTML		= bpenugasanPenlt+'<input type="hidden" name="data[penlt][bpenugasanPenlt][]" value="'+bpenugasanPenlt+'" />\n';
+	td_sks1.innerHTML	= sks1Penlt+'<input type="hidden" name="data[penlt][sks1Penlt][]" value="'+sks1Penlt+'" />\n';
+	td_mp.innerHTML		= mpPenlt+'<input type="hidden" name="data[penlt][mpPenlt][]" value="'+mpPenlt+'" />\n';
+	td_bd.innerHTML		= bdokPenlt+'<input type="hidden" name="data[penlt][bdokPenlt][]" value="'+bdokPenlt+'" />\n';
+	td_sks2.innerHTML	= sks2Penlt+'<input type="hidden" name="data[penlt][sks2Penlt][]" value="'+sks2Penlt+'" />\n';
+	td_file.innerHTML	= filePenlt+'<input type="hidden" name="data[penlt][filePenlt][]" value="'+filePenlt+'" />\n';
+	td_aksi.innerHTML	= tampil_tombol_aksi;	
+	
+	tr.appendChild(td_nama);
+	tr.appendChild(td_bp);
+	tr.appendChild(td_sks1);
+	tr.appendChild(td_mp);
+	tr.appendChild(td_bd);
+	tr.appendChild(td_sks2);
+	tr.appendChild(td_file);
+	tr.appendChild(td_aksi);
+	tbodi.appendChild(tr);
+
+	document.getElementById('namakegPenlt').value='';
+	document.getElementById('bpenugasanPenlt').value='';
+	document.getElementById('bebanSksPenlt').value='';
+	document.getElementById('masapenugasanPenlt').value='';
+	document.getElementById('bdokPenlt').value='';
+	document.getElementById('kinerjaSksPenlt').value='';
+}
+function hapusPenlt(obj)
+{		
+	var pesanPenlt	= confirm('Apakah Anda Yakin Akan Menghapus Data BKD Bidang Penelitian Ini ?');
+	if (pesanPenlt) {
+		obj.parentNode.parentNode.parentNode.removeChild(obj.parentNode.parentNode);
+	}
+}
+// fungsi tab penelitian end --------------------------------------------------------------------------------------------------------------------
+
+
+// fungsi tab pengabdian start --------------------------------------------------------------------------------------------------------------------
+function tambahPengabdian(){
+	counterNextPengbd = counterPengbd + 1;
+	counterPrevPengbd = counterPengbd + 1 - 1;
+	
+	var namakegPengbd		= document.getElementById('namakegPengbd').value;
+	var bpenugasanPengbd	= document.getElementById('bpenugasanPengbd').value;
+	var sks1Pengbd			= document.getElementById('bebanSksPengbd').value;
+	var mpPengbd			= document.getElementById('masapenugasanPengbd').value;
+	var bdokPengbd			= document.getElementById('bdokPengbd').value;
+	var sks2Pengbd			= document.getElementById('kinerjaSksPengbd').value;
+	var filePengbd			= document.getElementById('filePengbd'+counterPrevPengbd).value;
+	
+	document.getElementById("filePengbd_"+counterPengbd).innerHTML = "<input type='file' name='filePengbd[]' id=\"filePengbd"+counterNextPengbd+"\"><span id=\"filePengbd_"+counterNextPengbd+"\"></span>";
+	counterPengbd++;
+	document.getElementById('filePengbd'+counterPrevPengbd).style.display='none';
+
+	// validasi FORM ------------------------------------------------------------------------------------------------------------------------------
+	if(namakegPengbd == ""){
+		alert("Isian Nama Kegiatan masih kosong"); tp1.showPanel(3); namakegPengbd.focus(); return false;
+	}
+	if(bpenugasanPengbd == ""){
+		alert("Isian Bukti Penugasan masih kosong"); tp1.showPanel(3); bpenugasanPengbd.focus(); return false;
+	}
+	if(sks1Pengbd == ""){
+		alert("Isian Beban Kerja SKS masih kosong"); tp1.showPanel(3); sks1Pengbd.focus(); return false;
+	}
+	if(mpPengbd == ""){
+		alert("Isian Masa Penugasan masih kosong"); tp1.showPanel(3); mpPengbd.focus(); return false;
+	}
+	if(bdokPengbd == ""){
+		alert("Isian Bukti Dokumen masih kosong"); tp1.showPanel(3); bdokPengbd.focus(); return false;
+	}
+	if(sks2Pengbd == ""){
+		alert("Isian Kinerja SKS masih kosong"); tp1.showPanel(3); sks2Pengbd.focus(); return false;
+	}
+	// validasi FORM ------------------------------------------------------------------------------------------------------------------------------
+
+	var tampil_tombol_aksi = '<a href="javascript:void(null)" title="Hapus" onclick="hapusPengbd(this)"><img src="images/button-delete.gif" alt="Hapus" border=0 /></a>';
+
+	var tr			= document.createElement('tr');
+	var td_nama		= document.createElement('td');
+	var td_bp		= document.createElement('td');
+	var td_sks1		= document.createElement('td');
+	var td_mp		= document.createElement('td');
+	var td_bd		= document.createElement('td');
+	var td_sks2		= document.createElement('td');
+	var td_file		= document.createElement('td');
+	var td_aksi		= document.createElement('td');
+
+	var tbodi 		= document.getElementById("tbody_pengbd_list");
+
+	td_aksi.className	= 'links';
+	td_aksi.width		= 15;
+	td_nama.innerHTML	= namakegPengbd+'<input type="hidden" name="data[pengbd][namakegPengbd][]" value="'+namakegPengbd+'" />\n';
+	td_bp.innerHTML		= bpenugasanPengbd+'<input type="hidden" name="data[pengbd][bpenugasanPengbd][]" value="'+bpenugasanPengbd+'" />\n';
+	td_sks1.innerHTML	= sks1Pengbd+'<input type="hidden" name="data[pengbd][sks1Pengbd][]" value="'+sks1Pengbd+'" />\n';
+	td_mp.innerHTML		= mpPengbd+'<input type="hidden" name="data[pengbd][mpPengbd][]" value="'+mpPengbd+'" />\n';
+	td_bd.innerHTML		= bdokPengbd+'<input type="hidden" name="data[pengbd][bdokPengbd][]" value="'+bdokPengbd+'" />\n';
+	td_sks2.innerHTML	= sks2Pengbd+'<input type="hidden" name="data[pengbd][sks2Pengbd][]" value="'+sks2Pengbd+'" />\n';
+	td_file.innerHTML	= filePengbd+'<input type="hidden" name="data[pengbd][filePengbd][]" value="'+filePengbd+'" />\n';
+	td_aksi.innerHTML	= tampil_tombol_aksi;
+
+	tr.appendChild(td_nama);
+	tr.appendChild(td_bp);
+	tr.appendChild(td_sks1);
+	tr.appendChild(td_mp);
+	tr.appendChild(td_bd);
+	tr.appendChild(td_sks2);
+	tr.appendChild(td_file);
+	tr.appendChild(td_aksi);
+	tbodi.appendChild(tr);
+
+	document.getElementById('namakegPengbd').value='';
+	document.getElementById('bpenugasanPengbd').value='';
+	document.getElementById('bebanSksPengbd').value='';
+	document.getElementById('masapenugasanPengbd').value='';
+	document.getElementById('bdokPengbd').value='';
+	document.getElementById('kinerjaSksPengbd').value='';
+}
+function hapusPengbd(obj)
+{		
+	var pesanPengbd	= confirm('Apakah Anda Yakin Akan Menghapus Data BKD Bidang Pengabdian Ini ?');
+	if (pesanPengbd) {
+		obj.parentNode.parentNode.parentNode.removeChild(obj.parentNode.parentNode);
+	}
+}
+// fungsi tab pengabdian end --------------------------------------------------------------------------------------------------------------------
+
+
+// fungsi tab penunjang start --------------------------------------------------------------------------------------------------------------------
+function tambahPenunjang(){
+	counterNextPenunj = counterPenunj + 1;
+	counterPrevPenunj = counterPenunj + 1 - 1;
+
+	var namakegPenunj		= document.getElementById('namakegPenunj').value;
+	var bpenugasanPenunj	= document.getElementById('bpenugasanPenunj').value;
+	var sks1Penunj			= document.getElementById('bebanSksPenunj').value;
+	var mpPenunj			= document.getElementById('masapenugasanPenunj').value;
+	var bdokPenunj			= document.getElementById('bdokPenunj').value;
+	var sks2Penunj			= document.getElementById('kinerjaSksPenunj').value;
+	var filePenunj			= document.getElementById('filePenunj'+counterPrevPenunj).value;
+	
+	document.getElementById("filePenunj_"+counterPenunj).innerHTML = "<input type='file' name='filePenunj[]' id=\"filePenunj"+counterNextPenunj+"\"><span id=\"filePenunj_"+counterNextPenunj+"\"></span>";
+	counterPenunj++;
+	document.getElementById('filePenunj'+counterPrevPenunj).style.display='none';
+
+	// validasi FORM ------------------------------------------------------------------------------------------------------------------------------
+	if(namakegPenunj == ""){
+		alert("Isian Nama Kegiatan masih kosong"); tp1.showPanel(4); namakegPenunj.focus(); return false;
+	}
+	if(bpenugasanPenunj == ""){
+		alert("Isian Bukti Penugasan masih kosong"); tp1.showPanel(4); bpenugasanPenunj.focus(); return false;
+	}
+	if(sks1Penunj == ""){
+		alert("Isian Beban Kerja SKS masih kosong"); tp1.showPanel(4); sks1Penunj.focus(); return false;
+	}
+	if(mpPenunj == ""){
+		alert("Isian Masa Penugasan masih kosong"); tp1.showPanel(4); mpPenunj.focus(); return false;
+	}
+	if(bdokPenunj == ""){
+		alert("Isian Bukti Dokumen masih kosong"); tp1.showPanel(4); bdokPenunj.focus(); return false;
+	}
+	if(sks2Penunj == ""){
+		alert("Isian Kinerja SKS masih kosong"); tp1.showPanel(4); sks2Penunj.focus(); return false;
+	}
+	// validasi FORM ------------------------------------------------------------------------------------------------------------------------------
+
+	var tampil_tombol_aksi = '<a href="javascript:void(null)" title="Hapus" onclick="hapusPenunj(this)"><img src="images/button-delete.gif" alt="Hapus" border=0 /></a>';
+
+	var tr			= document.createElement('tr');
+	var td_nama		= document.createElement('td');
+	var td_bp		= document.createElement('td');
+	var td_sks1		= document.createElement('td');
+	var td_mp		= document.createElement('td');
+	var td_bd		= document.createElement('td');
+	var td_sks2		= document.createElement('td');
+	var td_file		= document.createElement('td');
+	var td_aksi		= document.createElement('td');
+
+	var tbodi 		= document.getElementById("tbody_penunj_list");
+
+	td_aksi.className	= 'links';
+	td_aksi.width		= 15;
+	td_nama.innerHTML	= namakegPenunj+'<input type="hidden" name="data[penunj][namakegPenunj][]" value="'+namakegPenunj+'" />\n';
+	td_bp.innerHTML		= bpenugasanPenunj+'<input type="hidden" name="data[penunj][bpenugasanPenunj][]" value="'+bpenugasanPenunj+'" />\n';
+	td_sks1.innerHTML	= sks1Penunj+'<input type="hidden" name="data[penunj][sks1Penunj][]" value="'+sks1Penunj+'" />\n';
+	td_mp.innerHTML		= mpPenunj+'<input type="hidden" name="data[penunj][mpPenunj][]" value="'+mpPenunj+'" />\n';
+	td_bd.innerHTML		= bdokPenunj+'<input type="hidden" name="data[penunj][bdokPenunj][]" value="'+bdokPenunj+'" />\n';
+	td_sks2.innerHTML	= sks2Penunj+'<input type="hidden" name="data[penunj][sks2Penunj][]" value="'+sks2Penunj+'" />\n';
+	td_file.innerHTML	= filePenunj+'<input type="hidden" name="data[penunj][filePenunj][]" value="'+filePenunj+'" />\n';
+	td_aksi.innerHTML	= tampil_tombol_aksi;
+
+	tr.appendChild(td_nama);
+	tr.appendChild(td_bp);
+	tr.appendChild(td_sks1);
+	tr.appendChild(td_mp);
+	tr.appendChild(td_bd);
+	tr.appendChild(td_sks2);
+	tr.appendChild(td_file);
+	tr.appendChild(td_aksi);
+	tbodi.appendChild(tr);
+
+	document.getElementById('namakegPenunj').value='';
+	document.getElementById('bpenugasanPenunj').value='';
+	document.getElementById('bebanSksPenunj').value='';
+	document.getElementById('masapenugasanPenunj').value='';
+	document.getElementById('bdokPenunj').value='';
+	document.getElementById('kinerjaSksPenunj').value='';
+}
+function hapusPenunj(obj)
+{		
+	var pesanPenunj	= confirm('Apakah Anda Yakin Akan Menghapus Data BKD Bidang Penunjang Ini ?');
+	if (pesanPenunj) {
+		obj.parentNode.parentNode.parentNode.removeChild(obj.parentNode.parentNode);
+	}
+}
+// fungsi tab penunjang end --------------------------------------------------------------------------------------------------------------------
+
+
+// fungsi tab profesor start --------------------------------------------------------------------------------------------------------------------
+function tambahProfesor(){
+	counterNextProf		= counterProf + 1;
+	counterPrevProf		= counterProf + 1 - 1;
+
+	var namakegProf		= document.getElementById('namakegProf').value;
+	var bpenugasanProf	= document.getElementById('bpenugasanProf').value;
+	var sks1Prof		= document.getElementById('bebanSksProf').value;
+	var mpProf			= document.getElementById('masapenugasanProf').value;
+	var bdokProf		= document.getElementById('bdokProf').value;
+	var sks2Prof		= document.getElementById('kinerjaSksProf').value;
+	var fileProf		= document.getElementById('fileProf'+counterPrevProf).value;
+	
+	document.getElementById("fileProf_"+counterProf).innerHTML = "<input type='file' name='fileProf[]' id=\"fileProf"+counterNextProf+"\"><span id=\"fileProf_"+counterNextProf+"\"></span>";
+	counterProf++;
+	document.getElementById('fileProf'+counterPrevProf).style.display='none';
+
+	// validasi FORM ------------------------------------------------------------------------------------------------------------------------------
+	if(namakegProf == ""){
+		alert("Isian Nama Kegiatan masih kosong"); tp1.showPanel(5); namakegProf.focus(); return false;
+	}
+	if(bpenugasanProf == ""){
+		alert("Isian Bukti Penugasan masih kosong"); tp1.showPanel(5); bpenugasanProf.focus(); return false;
+	}
+	if(sks1Prof == ""){
+		alert("Isian Beban Kerja SKS masih kosong"); tp1.showPanel(5); sks1Prof.focus(); return false;
+	}
+	if(mpProf == ""){
+		alert("Isian Masa Penugasan masih kosong"); tp1.showPanel(5); mpProf.focus(); return false;
+	}
+	if(bdokProf == ""){
+		alert("Isian Bukti Dokumen masih kosong"); tp1.showPanel(5); bdokProf.focus(); return false;
+	}
+	if(sks2Prof == ""){
+		alert("Isian Kinerja SKS masih kosong"); tp1.showPanel(5); sks2Prof.focus(); return false;
+	}
+	// validasi FORM ------------------------------------------------------------------------------------------------------------------------------
+
+	var tampil_tombol_aksi = '<a href="javascript:void(null)" title="Hapus" onclick="hapusProf(this)"><img src="images/button-delete.gif" alt="Hapus" border=0 /></a>';
+
+	var tr			= document.createElement('tr');
+	var td_nama		= document.createElement('td');
+	var td_bp		= document.createElement('td');
+	var td_sks1		= document.createElement('td');
+	var td_mp		= document.createElement('td');
+	var td_bd		= document.createElement('td');
+	var td_sks2		= document.createElement('td');
+	var td_file		= document.createElement('td');
+	var td_aksi		= document.createElement('td');
+
+	var tbodi 		= document.getElementById("tbody_prof_list");
+
+	td_aksi.className	= 'links';
+	td_aksi.width		= 15;
+	td_nama.innerHTML	= namakegProf+'<input type="hidden" name="data[prof][namakegProf][]" value="'+namakegProf+'" />\n';
+	td_bp.innerHTML		= bpenugasanProf+'<input type="hidden" name="data[prof][bpenugasanProf][]" value="'+bpenugasanProf+'" />\n';
+	td_sks1.innerHTML	= sks1Prof+'<input type="hidden" name="data[prof][sks1Prof][]" value="'+sks1Prof+'" />\n';
+	td_mp.innerHTML		= mpProf+'<input type="hidden" name="data[prof][mpProf][]" value="'+mpProf+'" />\n';
+	td_bd.innerHTML		= bdokProf+'<input type="hidden" name="data[prof][bdokProf][]" value="'+bdokProf+'" />\n';
+	td_sks2.innerHTML	= sks2Prof+'<input type="hidden" name="data[prof][sks2Prof][]" value="'+sks2Prof+'" />\n';
+	td_file.innerHTML	= fileProf+'<input type="hidden" name="data[prof][fileProf][]" value="'+fileProf+'" />\n';
+	td_aksi.innerHTML	= tampil_tombol_aksi;
+
+	tr.appendChild(td_nama);
+	tr.appendChild(td_bp);
+	tr.appendChild(td_sks1);
+	tr.appendChild(td_mp);
+	tr.appendChild(td_bd);
+	tr.appendChild(td_sks2);
+	tr.appendChild(td_file);
+	tr.appendChild(td_aksi);
+	tbodi.appendChild(tr);
+
+	document.getElementById('namakegProf').value='';
+	document.getElementById('bpenugasanProf').value='';
+	document.getElementById('bebanSksProf').value='';
+	document.getElementById('masapenugasanProf').value='';
+	document.getElementById('bdokProf').value='';
+	document.getElementById('kinerjaSksProf').value='';
+}
+function hapusProf(obj)
+{		
+	var pesanProf	= confirm('Apakah Anda Yakin Akan Menghapus Data BKD Bidang Profesor Ini ?');
+	if (pesanProf) {
+		obj.parentNode.parentNode.parentNode.removeChild(obj.parentNode.parentNode);
+	}
+}
+// fungsi tab profesor end --------------------------------------------------------------------------------------------------------------------
+
+
+</script>
+
+
+<div id="TOP"><h1>{TITLE}</h1></div><br>
+<!-- Informasi Pribadi Start -->
+<!-- patTemplate:gtfwrendermodule module="profile" submodule="profilebox" action="view" name="profile"  / -->
+<table class="table-edit" width="100%" >
+	<tr class="subhead">
+		<th colspan="2">
+			<div class="toolbar"> 
+				<a href="javascript:Tab('LISTDATA','FORMDATA');"><img src="images/button-aturan.gif" title="Lihat List Data">Lihat List Data</a>
+				<a href="javascript:Tab('FORMDATA','LISTDATA');"><img src="images/button-add.gif" title="Form Data">Tambah Data</a>
+				<a class="xhr dest_subcontent-element " href="{URL_BACK}" title="Pilih Pegawai" tabindex="2"><img src="images/button-back.gif" alt=""> Pilih Pegawai</a> 
+			</div>
+		</th>
+	</tr>
+</table>
+
+<br />
+
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<script language="javascript" type="text/javascript">
+function Tutup(){
+	document.getElementById('warning_box').style.display='none';
+}
+</script>
+<div class="{CLASS_PESAN}" id="warning_box">
+   {ISI_PESAN} <a href="javascript:Tutup();">&nbsp;[Tutup Pesan]</a>
+</div>
+<!-- /patTemplate:tmpl --> 
+
+<div id="FORMDATA" style="display:none; width:600px;">
+	<form method="POST" action="{URL_ACTION}" name="frmInput" class="" id="frmInput" onSubmit="return cekform(this);" enctype="multipart/form-data">
+	<div class="TabbedPanels" id="tp1">
+	  <ul class="TabbedPanelsTabGroup">
+		<li class="TabbedPanelsTab TabbedPanelsTabSelected">IDENTITAS</li>
+		<li class="TabbedPanelsTab">PENDIDIKAN</li>
+		<li class="TabbedPanelsTab">PENELITIAN</li>
+		<li class="TabbedPanelsTab">PENGABDIAN</li>
+		<li class="TabbedPanelsTab">PENUNJANG</li>
+		<li class="TabbedPanelsTab">PROFESOR</li>
+		<li class="TabbedPanelsTab">KONFIRMASI</li>
+	  </ul>
+	  
+	  <div class="TabbedPanelsContentGroup">
+	  <!------------------------------------------------------- Identitas Dosen Begin ------------------------------------------------------->	
+		<div style="display: block;" class="TabbedPanelsContent TabbedPanelsContentVisible">
+			<input type="hidden" name="temp" id="temp" >
+			   <table class="table-edit" width="100%">
+				  <tr class="subhead">
+					 <th colspan="2" style="font-size:15px;">{JUDUL} Identitas Dosen</th>
+				  </tr>
+				  <tr>
+					 <th width="150">No. Sertifikasi</th>
+					 <td>: <input type="hidden" name="nosertf" value="{NOSERTF}" size="50" maxlenght="100" /> {NOSERTF}</td>
+				  </tr>
+				  <tr>
+					 <th>NIP / NIDN</th>
+					 <td>: 
+							{NIP} / {NIDN}
+							<input type="hidden" name="nip" value="{NIP}" size="20" maxlenght="20" />
+							<input type="hidden" name="nidn" value="{NIDN}" size="20" maxlenght="20" />
+					 </td>
+				  </tr>
+				  <tr>
+					 <th>Nama</th>
+					 <td>: 
+							{NAMA}
+							<input type="hidden" name="nama" value="{NAMA}" size="20" maxlenght="200" />
+					 </td>
+				  </tr>
+				  <tr>
+					 <th>Nama PT</th>
+					 <td>: <input type="text" name="nmPt" value="{NAMAPT}" size="50" maxlength="100" /></td>
+				  </tr>
+				  <tr>
+					 <th>ALamat PT</th>
+					 <td>: <textarea rows="3" cols="53" name="almtpt">{ALAMATPT}</textarea></td>
+				  </tr>
+				  <tr>
+					 <th>Fakultas/Departemen</th>
+					 <td>: 
+							{FAKULTAS}
+							<input type="hidden" name="fakultas" value="{FAKULTAS}" size="50" maxlength="100" />
+					 </td>
+				  </tr>
+				  <tr>
+					 <th>Prog. Studi</th>
+					 <td>: 
+							{PRODI}
+							<input type="hidden" name="prodiid" value="{PRODIID}" size="50" maxlength="100" />
+					 </td>
+				  </tr>
+				  <tr>
+					 <th>Jab. Fungsional / Gol</th>
+					 <td>: 
+							{JABFUNG} / {PKTGOL}
+							<input type="hidden" name="jabfungid" value="{JABFUNGID}" size="50" maxlength="100" />
+							<input type="hidden" name="pktgolid" value="{PKTGOLID}" size="50" maxlength="100" />							
+					</td>
+				  </tr>
+				  <tr>
+					 <th>Tempat/Tgl lahir</th>
+					 <td>: 
+							{TMPLAHIR}, {TGLLAHIR}
+					 </td>
+				  </tr>
+				  <tr>
+					 <th>S1</th>
+					 <td>: 
+							{S1}
+							<input type="hidden" name="s1" value="{S1}" size="50" maxlength="255" />
+					 </td>
+				  </tr>
+				  <tr>
+					 <th>S2</th>
+					 <td>: 
+							{S2}
+							<input type="hidden" name="s2" value="{S2}" size="50" maxlength="255" />
+					 </td>
+				  </tr>
+				  <tr>
+					 <th>S3</th>
+					 <td>: 
+							{S3}
+							<input type="hidden" name="s3" value="{S3}" size="50" maxlength="255" />
+					 </td>
+				  </tr>
+				  <tr>
+					 <th>Jenis </th>
+					 <td>: <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="jenis" id="jenis"  / --> *</td>
+				  </tr>
+				  <tr>
+					 <th>Bidang Ilmu</th>
+					 <td>: 
+							{BIDANGILMU}
+							<input type="hidden" name="bidang" value="{BIDANGILMU}" size="50" maxlength="100" />
+					 </td>
+				  </tr>
+				  <tr>
+					 <th>NO. Telp/HP</th>
+					 <td>: 
+						 <input type="text" name="nohp" value="{HP}" size="50" maxlenght="255" />
+					 </td>
+				  </tr>
+				  <tr>
+					 <th>Tahun Akd. / Semeseter</th>
+					 <td>: 
+							<!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="thnAkd" id="thnAkd"  / --> /
+							<!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="semester" id="semester"  / --> *
+					 </td>
+				  </tr>
+				  
+				  <!---------------------------------- PILIHAN ASESOR 1 BEGIN ---------------------------------->
+				  <tr class="subhead">
+					 <th style="font-size:12px;padding-top:6px;">Asesor 1</th>
+					 <td>
+						<div class="toolbar"> 
+							<a href="javascript:void(0);" onclick="cariPegawai('pejabat','{URL_CARI}')" id='clickAsesor1'><img src="images/detil.gif" border="0">Cari</a> 
+						</div>
+					 </td>
+				  </tr>
+				  <tr>
+					 <th>NIP</th>
+					 <td>: 	
+							<input type="hidden" name="asesor1" id="pejabat_id" value="{PEG_ID_1}">					
+							<span id="pejabat_nip">{NIP_1}</span>
+					 </td>
+				  </tr>
+				  <tr>
+					 <th>Nama</th>
+					 <td>:	<span id="pejabat_nama">{NAMA_1}</span></td>
+				  </tr>
+				  <tr>
+					 <th>Pangkat Dan Gol. Ruang</th>
+					 <td>:	<span id="pejabat_pangkat">{PANGKAT_1}</span></td>
+				  </tr>
+				  <tr>
+					 <th>Jabatan</th>
+					 <td>:	<span id="pejabat_jabatan">{JABATAN_1}</span></td>
+				  </tr>
+				  <tr>
+					 <th>Unit Kerja</th>
+					 <td>:	<span id="pejabat_unit_kerja">{UNIT_KERJA_1}</span></td>
+				  </tr>
+				  <!---------------------------------- PILIHAN ASESOR 1 END ---------------------------------->
+
+				  <!---------------------------------- PILIHAN ASESOR 2 BEGIN ---------------------------------->
+				  <tr class="subhead">
+					 <th style="font-size:12px;padding-top:6px;">Asesor 2</th>
+					 <td>
+						<div class="toolbar"> 
+							<a href="javascript:void(0);" onclick="cariPegawai('pejabat_2','{URL_CARI}')" id='clickAsesor2'><img src="images/detil.gif" border="0">Cari</a> 
+						</div>
+					 </td>
+				  </tr>
+				  <tr>
+					 <th>NIP</th>
+					 <td>: 	
+							<input type="hidden" name="asesor2" id="pejabat_id_2" value="{PEG_ID_2}">					
+							<span id="pejabat_nip_2">{NIP_2}</span>
+					 </td>
+				  </tr>
+				  <tr>
+					 <th>Nama</th>
+					 <td>:	<span id="pejabat_nama_2">{NAMA_2}</span></td>
+				  </tr>
+				  <tr>
+					 <th>Pangkat Dan Gol. Ruang</th>
+					 <td>:	<span id="pejabat_pangkat_2">{PANGKAT_2}</span></td>
+				  </tr>
+				  <tr>
+					 <th>Jabatan</th>
+					 <td>:	<span id="pejabat_jabatan_2">{JABATAN_2}</span></td>
+				  </tr>
+				  <tr>
+					 <th>Unit Kerja</th>
+					 <td>:	<span id="pejabat_unit_kerja_2">{UNIT_KERJA_2}</span></td>
+				  </tr>
+				  <!---------------------------------- PILIHAN ASESOR 1 END ---------------------------------->
+
+
+				  <tr class="buttons_galihsam">
+					<td>&nbsp;</td>
+					<td style="text-align:right;float: right;">
+						<input name="lanjut_pendidikan" value="Selanjutnya &raquo;&raquo;&raquo;" class="" type="button" onclick="javascript:tp1.showPanel(1);" />
+					</td>
+				  </tr>
+			   </table>			
+		</div>
+	  <!------------------------------------------------------- Identitas Dosen End ------------------------------------------------------->	
+		
+		
+	  <!------------------------------------------------------- Pendidikan Begin ------------------------------------------------------->	
+		<div style="display: none;" class="TabbedPanelsContent">
+			   <table class="table-edit" width="100%">
+				  <tr class="subhead" style="font-size:15px;">
+					 <th colspan="2">{JUDUL} Kinerja Bidang Pendidikan</th>
+				  </tr>
+				  <tr>
+					 <th width="150">Nama Kegiatan</th>
+					 <td valign="top">: <textarea rows="5" cols="53" name="namakegPddk" id="namakegPddk">{NAMAKEG}</textarea> *</td>
+				  </tr>
+
+				  <tr>
+					 <th width="150" style="text-align:left; font-weight:bold;" colspan="2">Beban Kerja</th>
+				  </tr>
+				  <tr>
+					 <th width="150">Bukti Penugasan</th>
+					 <td valign="top">: <textarea rows="5" cols="53" name="bpenugasanPddk" id="bpenugasanPddk">{BPEN}</textarea> *</td>
+				  </tr>
+				  <tr>
+					 <th width="150">SKS</th>
+					 <td>: <input type="text" name="bebanSksPddk" id="bebanSksPddk" value="{BEBANSKS}" size="50" maxlength="255" /> *</td>
+				  </tr>
+
+				  <tr>
+					 <th width="150">Masa Penugasan</th>
+					 <td>: <textarea rows="5" cols="53" name="masapenugasanPddk" id="masapenugasanPddk">{MASAPENUGASAN}</textarea> *</td>
+				  </tr>
+
+				  <tr>
+					 <th width="150" style="text-align:left; font-weight:bold;" colspan="2">Kinerja</th>
+				  </tr>
+				  <tr>
+					 <th width="150">Bukti Dokumen</th>
+					 <td valign="top">: <textarea rows="5" cols="53" name="bdokPddk" id="bdokPddk">{BDOK}</textarea> *</td>
+				  </tr>
+				  <tr>
+					 <th width="150">SKS</th>
+					 <td>: <input type="text" name="kinerjaSksPddk" id="kinerjaSksPddk" value="{KINERJASKS}" size="50" maxlength="255" /> *</td>
+				  </tr>
+
+				  <!--<tr>
+					 <th width="150">Rekomendasi</th>
+					 <td>:  patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="rekomen"  / 
+					 </td>
+				  </tr>-->
+
+				  <tr>
+					 <th width="150">File</th>
+					 <td>:	
+							<input type="file" name="filePddk[]" id="filePddk0" size="40">
+							<span id="filePddk_0"></span>
+					 </td>
+				  </tr>
+
+				  <tr>
+					 <td colspan="2" style="text-align:center;">
+						<input type="button" name="pendidikan_simpan" id="pendidikan_simpan" value=" TAMBAH KEGIATAN " class="btnTambah" onclick="tambahPendidikan()" />
+					 </td>
+				  </tr>
+
+				  <tr class="subhead">
+					<th style="font-size:12px;padding-top:6px;">List Detail Kegiatan</th>
+					<td></td>
+				  </tr>
+				  <tr>
+					 <td colspan="2" align="center" style="font-size:11px;">
+
+						<table class="table-common" id="table_kegiatan" width="100%" >
+							<tr>
+							  <th width="21%" rowspan="2" style="text-align:center;">Nama Kegiatan</th>
+							  <th colspan="2" style="text-align:center;">Beban Kerja</th>
+							  <th width="16%" rowspan="2" style="text-align:center;">Masa Penugasan</th>
+							  <th colspan="2" style="text-align:center;">Kinerja</th>
+							  <th width="15%" rowspan="2" style="text-align:center;">File</th>
+							  <th width="4%" rowspan="2" style="text-align:center;">Aksi</th>
+						  </tr>
+							<tr>
+								<th width="17%" style="text-align:center;">Bukti Penugasan</th>
+							  <th width="5%" style="text-align:center;">SKS</th>
+							  <th width="17%" style="text-align:center;">Bukti Dokumen</th>
+							  <th width="5%" style="text-align:center;">SKS</th>
+						  </tr>
+						  <tbody id="tbody_penddk_list">
+						  <!-- patTemplate:tmpl name="dataPendidikan" type="condition" conditionvar="DATA_EMPTY" -->
+								<!-- patTemplate:sub condition="NO" -->
+									<!-- patTemplate:tmpl name="data_item_pendidikan" -->
+									<tr class="{CLASS_NAME}">
+										<td>{PENDD_NMKEG}</td>
+										<td>{PENDD_BKBUKTI}</td>
+										<td>{PENDD_BKSKS}</td>
+										<td>{PENDD_MASA}</td>
+										<td>{PENDD_KBUKTI}</td>
+										<td>{PENDD_BKSKS}</td>
+										<td>{PENDD_FILE}</td>
+										<td class="links">
+											<a class="xhr dest_subcontent-element" href="{PENDD_URL_DELETE}" title="Hapus"
+												onClick="return confirm('Apakah Data {PENDD_LABEL} \n\n - Nama Kegiatan : {PENDD_NMKEG}  \n\nAkan Dihapus?')">
+													<img src="images/button-delete.gif" alt="Hapus"/>
+											</a>
+										</td>
+									</tr>
+									<!-- /patTemplate:tmpl -->
+								<!-- /patTemplate:sub -->
+						  <!-- /patTemplate:tmpl -->
+						  </tbody>
+						</table>
+							 					 
+					 </td>
+				  </tr>
+
+
+				  <tr class="buttons_galihsam">
+					<td>
+						<input name="back_dosen" value="&laquo;&laquo;&laquo; Sebelumnya" class="" type="button" onclick="javascript:tp1.showPanel(0);" />
+					</td>
+					<td style="text-align:right;float: right;">
+						<input name="lanjut_penelitian" value="Selanjutnya &raquo;&raquo;&raquo;" class="" type="button" onclick="javascript:tp1.showPanel(2);" />
+					</td>
+				  </tr>
+			   </table>
+		</div>
+	  <!------------------------------------------------------- Pendidikan End ------------------------------------------------------->	
+
+	  
+	  <!------------------------------------------------------- Penelitian Begin ------------------------------------------------------->	
+		<div style="display: none;" class="TabbedPanelsContent">
+			   <table class="table-edit" width="100%">
+				  <tr class="subhead" style="font-size:15px;">
+					 <th colspan="2">{JUDUL} Kinerja Bidang Penelitian</th>
+				  </tr>
+				  <tr>
+					 <th width="150">Nama Kegiatan</th>
+					 <td valign="top">: <textarea rows="5" cols="53" name="namakegPenlt" id="namakegPenlt">{NAMAKEG}</textarea> *</td>
+				  </tr>
+
+				  <tr>
+					 <th width="150" style="text-align:left; font-weight:bold;" colspan="2">Beban Kerja</th>
+				  </tr>
+				  <tr>
+					 <th width="150">Bukti Penugasan</th>
+					 <td valign="top">: <textarea rows="5" cols="53" name="bpenugasanPenlt" id="bpenugasanPenlt">{BPEN}</textarea> *</td>
+				  </tr>
+				  <tr>
+					 <th width="150">SKS</th>
+					 <td>: <input type="text" name="bebanSksPenlt" id="bebanSksPenlt" value="{BEBANSKS}" size="50" maxlength="255" /> *</td>
+				  </tr>
+
+				  <tr>
+					 <th width="150">Masa Penugasan</th>
+					 <td>: <textarea rows="5" cols="53" name="masapenugasanPenlt" id="masapenugasanPenlt">{MASAPENUGASAN}</textarea> *</td>
+				  </tr>
+
+				  <tr>
+					 <th width="150" style="text-align:left; font-weight:bold;" colspan="2">Kinerja</th>
+				  </tr>
+				  <tr>
+					 <th width="150">Bukti Dokumen</th>
+					 <td valign="top">: <textarea rows="5" cols="53" name="bdokPenlt" id="bdokPenlt">{BDOK}</textarea> *</td>
+				  </tr>
+				  <tr>
+					 <th width="150">SKS</th>
+					 <td>: <input type="text" name="kinerjaSksPenlt" id="kinerjaSksPenlt" value="{KINERJASKS}" size="50" maxlength="255" /> *</td>
+				  </tr>
+
+				  <!--<tr>
+					 <th width="150">Rekomendasi</th>
+					 <td>:  patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="rekomen"  / 
+					 </td>
+				  </tr>-->
+
+				  <tr>
+					 <th width="150">File</th>
+					 <td>:	
+							<input type="file" name="filePenlt[]" id="filePenlt0" size="40">
+							<span id="filePenlt_0"></span>
+					 </td>
+				  </tr>
+
+				  <tr>
+					 <td colspan="2" style="text-align:center;">
+						<input type="button" name="penelitian_simpan" id="penelitian_simpan" value=" TAMBAH KEGIATAN " class="btnTambah" onclick="tambahPenelitian()" />
+					 </td>
+				  </tr>
+
+				  <tr class="subhead">
+					<th style="font-size:12px;padding-top:6px;">List Detail Kegiatan</th>
+					<td></td>
+				  </tr>
+				  <tr>
+					 <td colspan="2" align="center" style="font-size:11px;">
+
+						<table class="table-common" id="table_kegiatan" width="100%" >
+							<tr>
+							  <th width="21%" rowspan="2" style="text-align:center;">Nama Kegiatan</th>
+							  <th colspan="2" style="text-align:center;">Beban Kerja</th>
+							  <th width="16%" rowspan="2" style="text-align:center;">Masa Penugasan</th>
+							  <th colspan="2" style="text-align:center;">Kinerja</th>
+							  <th width="15%" rowspan="2" style="text-align:center;">File</th>
+							  <th width="4%" rowspan="2" style="text-align:center;">Aksi</th>
+						  </tr>
+							<tr>
+								<th width="17%" style="text-align:center;">Bukti Penugasan</th>
+							  <th width="5%" style="text-align:center;">SKS</th>
+							  <th width="17%" style="text-align:center;">Bukti Dokumen</th>
+							  <th width="5%" style="text-align:center;">SKS</th>
+						  </tr>
+						  <tbody id="tbody_penlt_list">
+						  <!-- patTemplate:tmpl name="dataPenelitian" type="condition" conditionvar="DATA_EMPTY" -->
+								<!-- patTemplate:sub condition="NO" -->
+									<!-- patTemplate:tmpl name="data_item_penelitian" -->
+									<tr class="{CLASS_NAME}">
+										<td>{PENLT_NMKEG}</td>
+										<td>{PENLT_BKBUKTI}</td>
+										<td>{PENLT_BKSKS}</td>
+										<td>{PENLT_MASA}</td>
+										<td>{PENLT_KBUKTI}</td>
+										<td>{PENLT_BKSKS}</td>
+										<td>{PENLT_FILE}</td>
+										<td class="links">
+											<a class="xhr dest_subcontent-element" href="{PENLT_URL_DELETE}" title="Hapus"
+												onClick="return confirm('Apakah Data {PENLT_LABEL} \n\n - Nama Kegiatan : {PENLT_NMKEG}  \n\nAkan Dihapus?')">
+												<img src="images/button-delete.gif" alt="Hapus"/>
+											</a>
+										</td>
+									</tr>
+									<!-- /patTemplate:tmpl -->
+								<!-- /patTemplate:sub -->
+						  <!-- /patTemplate:tmpl -->
+						  </tbody>
+						</table>
+							 
+					 </td>
+				  </tr>
+
+
+				  <tr class="buttons_galihsam">
+					<td>
+						<input name="back_pendidikan" value="&laquo;&laquo;&laquo; Sebelumnya" class="" type="button" onclick="javascript:tp1.showPanel(1);" />
+					</td>
+					<td style="text-align:right;float: right;">
+						<input name="lanjut_pengabdian" value="Selanjutnya &raquo;&raquo;&raquo;" class="" type="button" onclick="javascript:tp1.showPanel(3);" />
+					</td>
+				  </tr>
+			   </table>
+		</div>
+	  <!------------------------------------------------------- Penelitian End ------------------------------------------------------->	
+
+
+	  <!------------------------------------------------------- Pengabdian Begin ------------------------------------------------------->	
+		<div style="display: none;" class="TabbedPanelsContent">
+			   <table class="table-edit" width="100%">
+				  <tr class="subhead" style="font-size:15px;">
+					 <th colspan="2">{JUDUL} Kinerja Bidang Pengabdian</th>
+				  </tr>
+				  <tr>
+					 <th width="150">Nama Kegiatan</th>
+					 <td valign="top">: <textarea rows="5" cols="53" name="namakegPengbd" id="namakegPengbd">{NAMAKEG}</textarea> *</td>
+				  </tr>
+
+				  <tr>
+					 <th width="150" style="text-align:left; font-weight:bold;" colspan="2">Beban Kerja</th>
+				  </tr>
+				  <tr>
+					 <th width="150">Bukti Penugasan</th>
+					 <td valign="top">: <textarea rows="5" cols="53" name="bpenugasanPengbd" id="bpenugasanPengbd">{BPEN}</textarea> *</td>
+				  </tr>
+				  <tr>
+					 <th width="150">SKS</th>
+					 <td>: <input type="text" name="bebanSksPengbd" id="bebanSksPengbd" value="{BEBANSKS}" size="50" maxlength="255" /> *</td>
+				  </tr>
+
+				  <tr>
+					 <th width="150">Masa Penugasan</th>
+					 <td>: <textarea rows="5" cols="53" name="masapenugasanPengbd" id="masapenugasanPengbd">{MASAPENUGASAN}</textarea> *</td>
+				  </tr>
+
+				  <tr>
+					 <th width="150" style="text-align:left; font-weight:bold;" colspan="2">Kinerja</th>
+				  </tr>
+				  <tr>
+					 <th width="150">Bukti Dokumen</th>
+					 <td valign="top">: <textarea rows="5" cols="53" name="bdokPengbd" id="bdokPengbd">{BDOK}</textarea> *</td>
+				  </tr>
+				  <tr>
+					 <th width="150">SKS</th>
+					 <td>: <input type="text" name="kinerjaSksPengbd" id="kinerjaSksPengbd" value="{KINERJASKS}" size="50" maxlength="255" /> *</td>
+				  </tr>
+
+				  <!--<tr>
+					 <th width="150">Rekomendasi</th>
+					 <td>:  patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="rekomen"  / 
+					 </td>
+				  </tr>-->
+
+				  <tr>
+					 <th width="150">File</th>
+					 <td>:	
+							<input type="file" name="filePengbd[]" id="filePengbd0" size="40">
+							<span id="filePengbd_0"></span>					 
+					 </td>
+				  </tr>
+
+				  <tr>
+					 <td colspan="2" style="text-align:center;">
+						<input type="button" name="pengabdian_simpan" id="pengabdian_simpan" value=" TAMBAH KEGIATAN " class="btnTambah" onclick="tambahPengabdian()" />
+					 </td>
+				  </tr>
+
+				  <tr class="subhead">
+					<th style="font-size:12px;padding-top:6px;">List Detail Kegiatan</th>
+					<td></td>
+				  </tr>
+				  <tr>
+					 <td colspan="2" align="center" style="font-size:11px;">
+
+						<table class="table-common" id="table_kegiatan" width="100%" >
+							<tr>
+							  <th width="21%" rowspan="2" style="text-align:center;">Nama Kegiatan</th>
+							  <th colspan="2" style="text-align:center;">Beban Kerja</th>
+							  <th width="16%" rowspan="2" style="text-align:center;">Masa Penugasan</th>
+							  <th colspan="2" style="text-align:center;">Kinerja</th>
+							  <th width="15%" rowspan="2" style="text-align:center;">File</th>
+							  <th width="4%" rowspan="2" style="text-align:center;">Aksi</th>
+						  </tr>
+							<tr>
+								<th width="17%" style="text-align:center;">Bukti Penugasan</th>
+							  <th width="5%" style="text-align:center;">SKS</th>
+							  <th width="17%" style="text-align:center;">Bukti Dokumen</th>
+							  <th width="5%" style="text-align:center;">SKS</th>
+						  </tr>
+						  <tbody id="tbody_pengbd_list">
+						  <!-- patTemplate:tmpl name="dataPengabdian" type="condition" conditionvar="DATA_EMPTY" -->
+								<!-- patTemplate:sub condition="NO" -->
+									<!-- patTemplate:tmpl name="data_item_pengabdian" -->
+									<tr class="{CLASS_NAME}">
+										<td>{PENGB_NMKEG}</td>
+										<td>{PENGB_BKBUKTI}</td>
+										<td>{PENGB_BKSKS}</td>
+										<td>{PENGB_MASA}</td>
+										<td>{PENGB_KBUKTI}</td>
+										<td>{PENGB_BKSKS}</td>
+										<td>{PENGB_FILE}</td>
+										<td class="links">
+											<a class="xhr dest_subcontent-element" href="{PENGB_URL_DELETE}" title="Hapus"
+												onClick="return confirm('Apakah Data {PENGB_LABEL} \n\n - Nama Kegiatan : {PENGB_NMKEG}  \n\nAkan Dihapus?')">											
+												<img src="images/button-delete.gif" alt="Hapus"/>
+											</a>
+										</td>
+									</tr>
+									<!-- /patTemplate:tmpl -->
+								<!-- /patTemplate:sub -->
+						  <!-- /patTemplate:tmpl -->
+						  </tbody>
+						</table>
+							 
+					 </td>
+				  </tr>
+
+				  <tr class="buttons_galihsam">
+					<td>
+						<input name="back_penelitian" value="&laquo;&laquo;&laquo; Sebelumnya" class="" type="button" onclick="javascript:tp1.showPanel(2);" />
+					</td>
+					<td style="text-align:right;float: right;">
+						<input name="lanjut_penunjang" value="Selanjutnya &raquo;&raquo;&raquo;" class="" type="button" onclick="javascript:tp1.showPanel(4);" />
+					</td>
+				  </tr>
+			   </table>
+		</div>
+	  <!------------------------------------------------------- Pengabdian End ------------------------------------------------------->	
+
+
+	  <!------------------------------------------------------- Penunjang Begin ------------------------------------------------------->	
+		<div style="display: none;" class="TabbedPanelsContent">
+			   <table class="table-edit" width="100%">
+				  <tr class="subhead" style="font-size:15px;">
+					 <th colspan="2">{JUDUL} Kinerja Bidang Penunjang</th>
+				  </tr>
+				  <tr>
+					 <th width="150">Nama Kegiatan</th>
+					 <td valign="top">: <textarea rows="5" cols="53" name="namakegPenunj" id="namakegPenunj">{NAMAKEG}</textarea> *</td>
+				  </tr>
+
+				  <tr>
+					 <th width="150" style="text-align:left; font-weight:bold;" colspan="2">Beban Kerja</th>
+				  </tr>
+				  <tr>
+					 <th width="150">Bukti Penugasan</th>
+					 <td valign="top">: <textarea rows="5" cols="53" name="bpenugasanPenunj" id="bpenugasanPenunj">{BPEN}</textarea> *</td>
+				  </tr>
+				  <tr>
+					 <th width="150">SKS</th>
+					 <td>: <input type="text" name="bebanSksPenunj" id="bebanSksPenunj" value="{BEBANSKS}" size="50" maxlength="255" /> *</td>
+				  </tr>
+
+				  <tr>
+					 <th width="150">Masa Penugasan</th>
+					 <td>: <textarea rows="5" cols="53" name="masapenugasanPenunj" id="masapenugasanPenunj">{MASAPENUGASAN}</textarea> *</td>
+				  </tr>
+
+				  <tr>
+					 <th width="150" style="text-align:left; font-weight:bold;" colspan="2">Kinerja</th>
+				  </tr>
+				  <tr>
+					 <th width="150">Bukti Dokumen</th>
+					 <td valign="top">: <textarea rows="5" cols="53" name="bdokPenunj" id="bdokPenunj">{BDOK}</textarea> *</td>
+				  </tr>
+				  <tr>
+					 <th width="150">SKS</th>
+					 <td>: <input type="text" name="kinerjaSksPenunj" id="kinerjaSksPenunj" value="{KINERJASKS}" size="50" maxlength="255" /> *</td>
+				  </tr>
+
+				  <!--<tr>
+					 <th width="150">Rekomendasi</th>
+					 <td>:  patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="rekomen"  / 
+					 </td>
+				  </tr>-->
+
+				  <tr>
+					 <th width="150">File</th>
+					 <td>:	
+							<input type="file" name="filePenunj[]" id="filePenunj0" size="40">
+							<span id="filePenunj_0"></span>					 
+					 </td>
+				  </tr>
+
+				  <tr>
+					 <td colspan="2" style="text-align:center;">
+						<input type="button" name="penunjang_simpan" id="penunjang_simpan" value=" TAMBAH KEGIATAN " class="btnTambah" onclick="tambahPenunjang()" />
+					 </td>
+				  </tr>
+
+				  <tr class="subhead">
+					<th style="font-size:12px;padding-top:6px;">List Detail Kegiatan</th>
+					<td></td>
+				  </tr>
+				  <tr>
+					 <td colspan="2" align="center" style="font-size:11px;">
+
+						<table class="table-common" id="table_kegiatan" width="100%" >
+							<tr>
+							  <th width="21%" rowspan="2" style="text-align:center;">Nama Kegiatan</th>
+							  <th colspan="2" style="text-align:center;">Beban Kerja</th>
+							  <th width="16%" rowspan="2" style="text-align:center;">Masa Penugasan</th>
+							  <th colspan="2" style="text-align:center;">Kinerja</th>
+							  <th width="15%" rowspan="2" style="text-align:center;">File</th>
+							  <th width="4%" rowspan="2" style="text-align:center;">Aksi</th>
+						  </tr>
+							<tr>
+								<th width="17%" style="text-align:center;">Bukti Penugasan</th>
+							  <th width="5%" style="text-align:center;">SKS</th>
+							  <th width="17%" style="text-align:center;">Bukti Dokumen</th>
+							  <th width="5%" style="text-align:center;">SKS</th>
+						  </tr>
+						  <tbody id="tbody_penunj_list">
+						  <!-- patTemplate:tmpl name="dataPenunjang" type="condition" conditionvar="DATA_EMPTY" -->
+								<!-- patTemplate:sub condition="NO" -->
+									<!-- patTemplate:tmpl name="data_item_penunjang" -->
+									<tr class="{CLASS_NAME}">
+										<td>{PENUNJ_NMKEG}</td>
+										<td>{PENUNJ_BKBUKTI}</td>
+										<td>{PENUNJ_BKSKS}</td>
+										<td>{PENUNJ_MASA}</td>
+										<td>{PENUNJ_KBUKTI}</td>
+										<td>{PENUNJ_BKSKS}</td>
+										<td>{PENUNJ_FILE}</td>
+										<td class="links">
+											<a class="xhr dest_subcontent-element" href="{PENUNJ_URL_DELETE}" title="Hapus"
+												onClick="return confirm('Apakah Data {PENUNJ_LABEL} \n\n - Nama Kegiatan : {PENUNJ_NMKEG}  \n\nAkan Dihapus?')">											
+												<img src="images/button-delete.gif" alt="Hapus"/>
+											</a>
+										</td>
+									</tr>
+									<!-- /patTemplate:tmpl -->
+								<!-- /patTemplate:sub -->
+						  <!-- /patTemplate:tmpl -->
+						  </tbody>
+						</table>
+							 
+					 </td>
+				  </tr>
+
+				  <tr class="buttons_galihsam">
+					<td>
+						<input name="back_pengabdian" value="&laquo;&laquo;&laquo; Sebelumnya" class="" type="button" onclick="javascript:tp1.showPanel(3);" />
+					</td>
+					<td style="text-align:right;float: right;">
+						<input name="lanjut_profesor" value="Selanjutnya &raquo;&raquo;&raquo;" class="" type="button" onclick="javascript:tp1.showPanel(5);" />
+					</td>
+				  </tr>
+			   </table>
+		</div>
+	  <!------------------------------------------------------- Penunjang End ------------------------------------------------------->	
+
+
+	  <!------------------------------------------------------- Profesor Begin ------------------------------------------------------->	
+		<div style="display: none;" class="TabbedPanelsContent">
+			   <table class="table-edit" width="100%">
+				  <tr class="subhead" style="font-size:15px;">
+					 <th colspan="2">{JUDUL} Kinerja Bidang Profesor</th>
+				  </tr>
+				  <tr>
+					 <th width="150">Nama Kegiatan</th>
+					 <td valign="top">: <textarea rows="5" cols="53" name="namakegProf" id="namakegProf">{NAMAKEG}</textarea> *</td>
+				  </tr>
+
+				  <tr>
+					 <th width="150" style="text-align:left; font-weight:bold;" colspan="2">Beban Kerja</th>
+				  </tr>
+				  <tr>
+					 <th width="150">Bukti Penugasan</th>
+					 <td valign="top">: <textarea rows="5" cols="53" name="bpenugasanProf" id="bpenugasanProf">{BPEN}</textarea> *</td>
+				  </tr>
+				  <tr>
+					 <th width="150">SKS</th>
+					 <td>: <input type="text" name="bebanSksProf" id="bebanSksProf" value="{BEBANSKS}" size="50" maxlength="255" /> *</td>
+				  </tr>
+
+				  <tr>
+					 <th width="150">Masa Penugasan</th>
+					 <td>: <textarea rows="5" cols="53" name="masapenugasanProf" id="masapenugasanProf">{MASAPENUGASAN}</textarea> *</td>
+				  </tr>
+
+				  <tr>
+					 <th width="150" style="text-align:left; font-weight:bold;" colspan="2">Kinerja</th>
+				  </tr>
+				  <tr>
+					 <th width="150">Bukti Dokumen</th>
+					 <td valign="top">: <textarea rows="5" cols="53" name="bdokProf" id="bdokProf">{BDOK}</textarea> *</td>
+				  </tr>
+				  <tr>
+					 <th width="150">SKS</th>
+					 <td>: <input type="text" name="kinerjaSksProf" id="kinerjaSksProf" value="{KINERJASKS}" size="50" maxlength="255" /> *</td>
+				  </tr>
+
+				  <!--<tr>
+					 <th width="150">Rekomendasi</th>
+					 <td>:  patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="rekomen"  / 
+					 </td>
+				  </tr>-->
+
+				  <tr>
+					 <th width="150">File</th>
+					 <td>:	
+							<input type="file" name="fileProf[]" id="fileProf0" size="40">
+							<span id="fileProf_0"></span>					 
+					 </td>
+				  </tr>
+
+				  <tr>
+					 <td colspan="2" style="text-align:center;">
+						<input type="button" name="profesor_simpan" id="profesor_simpan" value=" TAMBAH KEGIATAN " class="btnTambah" onclick="tambahProfesor()" />
+					 </td>
+				  </tr>
+
+				  <tr class="subhead">
+					<th style="font-size:12px;padding-top:6px;">List Detail Kegiatan</th>
+					<td></td>
+				  </tr>
+				  <tr>
+					 <td colspan="2" align="center" style="font-size:11px;">
+
+						<table class="table-common" id="table_kegiatan" width="100%" >
+							<tr>
+							  <th width="21%" rowspan="2" style="text-align:center;">Nama Kegiatan</th>
+							  <th colspan="2" style="text-align:center;">Beban Kerja</th>
+							  <th width="16%" rowspan="2" style="text-align:center;">Masa Penugasan</th>
+							  <th colspan="2" style="text-align:center;">Kinerja</th>
+							  <th width="15%" rowspan="2" style="text-align:center;">File</th>
+							  <th width="4%" rowspan="2" style="text-align:center;">Aksi</th>
+						  </tr>
+							<tr>
+								<th width="17%" style="text-align:center;">Bukti Penugasan</th>
+							  <th width="5%" style="text-align:center;">SKS</th>
+							  <th width="17%" style="text-align:center;">Bukti Dokumen</th>
+							  <th width="5%" style="text-align:center;">SKS</th>
+						  </tr>
+						  <tbody id="tbody_prof_list">
+						  <!-- patTemplate:tmpl name="dataProfesor" type="condition" conditionvar="DATA_EMPTY" -->
+								<!-- patTemplate:sub condition="NO" -->
+									<!-- patTemplate:tmpl name="data_item_profesor" -->
+									<tr class="{CLASS_NAME}">
+										<td>{PROF_NMKEG}</td>
+										<td>{PROF_BKBUKTI}</td>
+										<td>{PROF_BKSKS}</td>
+										<td>{PROF_MASA}</td>
+										<td>{PROF_KBUKTI}</td>
+										<td>{PROF_BKSKS}</td>
+										<td>{PROF_FILE}</td>
+										<td class="links">
+											<a class="xhr dest_subcontent-element" href="{PROF_URL_DELETE}" title="Hapus"
+												onClick="return confirm('Apakah Data {PROF_LABEL} \n\n - Nama Kegiatan : {PROF_NMKEG}  \n\nAkan Dihapus?')">											
+												<img src="images/button-delete.gif" alt="Hapus"/>
+											</a>
+										</td>
+									</tr>
+									<!-- /patTemplate:tmpl -->
+								<!-- /patTemplate:sub -->
+						  <!-- /patTemplate:tmpl -->
+						</tbody>
+						</table>
+						
+					 </td>
+				  </tr>
+
+				  <tr class="buttons_galihsam">
+					<td>
+						<input name="back_penunjang" value="&laquo;&laquo;&laquo; Sebelumnya" class="" type="button" onclick="javascript:tp1.showPanel(4);" />
+					</td>
+					<td style="text-align:right;float: right;">
+						<input name="lanjut_konfirmasi" value="Selanjutnya &raquo;&raquo;&raquo;" class="" type="button" onclick="javascript:tp1.showPanel(6);" />
+					</td>
+				  </tr>
+			   </table>
+		</div>
+	  <!------------------------------------------------------- Profesor End ------------------------------------------------------->	
+
+	  <!------------------------------------------------------- Konfirmasi Begin ------------------------------------------------------->	
+		<div style="display: none;" class="TabbedPanelsContent">
+			<input type="hidden" name="pegId" value="{ID}"/>
+			<input type="hidden" name="dataId" value="{DATA_ID_UPDATE}"/>
+			   <table class="table-edit" width="100%">
+				  <tr class="subhead">
+					 <th colspan="2" style="font-size:15px;">Konfirmasi</th>
+				  </tr>
+				  <tr>
+					 <th colspan="2" width="150">
+						 <div style="padding:15px 0px 5px 35px; margin-bottom:10px; background:url(images/alert.gif) left center no-repeat; 
+								color:red; font-weight:bold; font-size:14px;">
+							Apakah anda yakin akan {AKSI} data mutasi BKD ?
+						 </div>
+						 <ul class="taskdialog">
+							<li><input name="btnsimpan" value=" {LABEL_ACTION} " type="submit" id="btnsimpan"
+								style="width:100px; height:30px;cursor:pointer; color:#000099;font-size:14px;font-weight:bold;" />
+								<p>Data yang sudah tersimpan dapat di Update, dengan catatan data mutasi BKD yang anda ajukan belum 
+									disetujui oleh Asesor.
+								</p>
+							</li>
+
+							<li><input type="button" name="btnbalik" class="buttonSubmit"  value=" Batal " 
+								onclick="window.location.href = '{URL_BALIK}'" style="width:100px; height:30px;cursor:pointer; 
+								color:#000099;font-size:14px;font-weight:bold;" />
+								<p>Batal menyimpan data pengajuan mutasi BKD.</p>
+							</li>
+						 </ul>
+					 </th>
+				  </tr>
+				  
+				  <tr class="buttons_galihsam">
+					<td>
+						<input name="back_penunjang" value="&laquo;&laquo;&laquo; Sebelumnya" class="" type="button" onclick="javascript:tp1.showPanel(5);" />
+					</td>
+					<td style="text-align:right;float: right;"></td>
+				  </tr>
+			   </table>
+		</div>
+	  <!------------------------------------------------------- Konfirmasi End ------------------------------------------------------->	
+
+
+	  </div>
+	</div>
+	</form>			
+	</div>
+
+	<script language="JavaScript" type="text/javascript">
+//		var tp1 = new Spry.Widget.TabbedPanels("tp1", { defaultTab: 0 });
+		{TABPANEL}
+	</script>
+
+<div style="clear:both;"></div>   
+
+<div id="LISTDATA" style="display:">
+<h1>History Mutasi Beban Kinerja Dosen</h1><br>
+<table class="table-common" width="700px">
+   <tr>
+      <th width="5px" >No</th>
+      <th>Tahun Akademik</th>
+  	  <th>Semester</th>
+  	  <th width="200px">Jenis</th>
+  	  <th width="100px">Asesor 1</th>
+  	  <th width="100px">Asesor 2</th>
+  	  <th>Tanggal Pengajuan</th>
+  	  <th>Tanggal Penilaian</th>
+	  <th>Status</th>
+      <th width="120px">Action</th>
+   </tr>
+   <!-- patTemplate:tmpl name="data" type="condition" conditionvar="DATA_EMPTY" -->
+      <!-- patTemplate:sub condition="YES" -->
+        <tr><td colspan="9" align="center"><em>-- Data not found --</em></td></tr>
+      <!-- /patTemplate:sub -->
+      <!-- patTemplate:sub condition="NO" -->
+         <!-- patTemplate:tmpl name="data_item" -->
+         <tr class="{BKD_CLASS_NAME}">
+            <td align="center">{BKD_NUMBER}</td>
+            <td align="center">{BKD_THNAKD}/{BKD_THNAKD_}</td>
+            <td align="center">{BKD_SEMESTER}</td>
+        	  <td align="center">{BKD_JENIS}</td>
+        	  <td align="center">{BKD_ASESOR_1}</td>
+        	  <td align="center">{BKD_ASESOR_2}</td>
+        	  <td align="center">{BKD_TANGGAL_PENGAJUAN}</td>
+        	  <td align="center">{BKD_TANGGAL_PENILAIAN}</td>
+			  <td align="center">{BKD_STATUS}</td>
+			  <td class="links">{BKD_LINK_AKSI}</td>
+         </tr>
+         <!-- /patTemplate:tmpl -->
+      <!-- /patTemplate:sub -->
+   <!-- /patTemplate:tmpl -->
+</table>
+<div class="petunjuk-area">
+   <h4>Petunjuk:</h4>
+   <ul>
+      <li>Gunakan tombol <img src="images/button-edit.gif" alt="Ubah"/> untuk mengubah data. </li>
+      <li>Gunakan tombol <img src="images/button-delete.gif" alt="Delete"/> untuk menghapus data. </li>
+	  <li>Gunakan tombol <img src="images/button-detail.gif" alt="Detail"/> untuk melihat detail data. </li>
+	  <!-- <li>Gunakan tombol <img src="images/detil.gif" alt="Download SK"/> untuk mendownload SK (jika ada). </li> -->
+	  <li><a href="#TOP" id="link-top">Klik Disini</a> untuk kembali ke atas. </li>
+   </ul>
+</div></div>
+<script language="javascript" type="text/javascript">
+function Tab(aktif,nonaktif){
+	document.getElementById(aktif).style.display='';
+	document.getElementById(nonaktif).style.display='none';
+}
+
+function CekAksi(){
+    var dataId2='0'+'{DATA_ID_UPDATE}';
+	if (dataId2=='0') {
+		Tab('LISTDATA','FORMDATA');
+	}else{
+		Tab('FORMDATA','LISTDATA');
+	}
+}
+CekAksi();
+</script>
+<!-- /patTemplate:tmpl -->
+
+

@@ -1,0 +1,51 @@
+<!-- patTemplate:tmpl name="content" -->
+<div class="mainContent-fp-element-full">
+	<div class="mainContent-fp-element-full-head"><h2>Agenda Management</h2></div>
+	<div class="mainContent-fp-element-full-body">
+   <h2>&nbsp;&nbsp;List Agenda</h2>
+   <!-- patTemplate:tmpl name="toolbar" -->
+   <table class="table-form" width="100%">
+      <tr>
+         <td colspan="2" class="table-common-links">
+            <a href="{URL_ADD}" title="Add New Agenda"><img src="images/button-add.gif" alt="Tambah" />Add New Agenda</a>
+         </td>
+      </tr>
+   </table>
+   <!-- /patTemplate:tmpl -->
+   
+   <!-- patTemplate:gtfwrendermodule module="paging" submodule="Paging" action="view" itemviewed="{ITEM_VIEWED}" totitems="{TOTAL_ITEMS}" pagingurl="{PAGING_URL}" page="{PAGE}" cari="{CARI}" / -->
+   
+   <table class="table-common" width="100%">
+      <tr>
+         <th width="5%">No</th>
+         <th width="25%">Agenda</th>
+         <th width="15%">Author</th>
+         <th width="15%">Date</th>
+         <th width="10%">Status</th>
+         <th width="20%">Action</th>
+      </tr>
+      <!-- patTemplate:tmpl name="empty_agenda" visibility="hidden" -->
+      <tr>
+         <td colspan="6" align="center">--data not found--</td>
+      </tr>
+      <!-- /patTemplate:tmpl -->
+      
+      <!-- patTemplate:tmpl name="list_agenda" visibility="hidden" -->
+      <tr>
+         <td>{NO}</td>
+         <td>{TITLE}</td>
+         <td>{SENDER}</td>
+         <td>{START_DATE}</td>
+         <td>{STATUS}</td>
+         <td class="table-common-links">
+            <a href="{URL_EDIT}"><img src="images/button-edit.gif" alt="" /></a>
+            <a href="{URL_DELETE}"><img src="images/button-delete.gif" alt="" /></a>
+            <a href="{URL_DETAIL}"><img src="images/button-detail.gif" alt="" /></a>
+         </td>
+      </tr>
+      <!-- /patTemplate:tmpl -->
+   </table>
+   
+   <!-- patTemplate:gtfwrendermodule module="paging" submodule="Paging" action="view" itemviewed="{ITEM_VIEWED}" totitems="{TOTAL_ITEMS}" pagingurl="{PAGING_URL}" page="{PAGE}" cari="{CARI}" / -->
+</div></div>
+<!-- /patTemplate:tmpl -->

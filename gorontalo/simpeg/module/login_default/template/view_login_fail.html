@@ -1,0 +1,60 @@
+<!-- patTemplate:tmpl name="content" -->
+<!-- MAIN PAGE's
+        ================================================== -->
+        <div class="container">
+            <div class="col-sm-12" style="margin-bottom:8% !important">
+            </div>
+        <!-- content START -->
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4">
+                <div class="login">
+                    <!-- <div class="login_wrapper"></div> -->
+                        
+                            <div class="alert alert-danger alert-dismissible" role="alert" style="font-size:11px !important;margin-bottom:10px !important;padding:10px !important">
+                              <strong>Gagal!</strong> Password atau Username anda tidak sesuai
+                            </div>
+
+                        <center>
+                          <img src="images/logo.png" class="logo" style="height:120px !important;width:80px !important;"/><br/>
+                          <span style="font-weight:bold">Badan Kepegawaian Daerah Kota Gorontalo</span>
+                        </center>
+                        <br/>
+
+                        <form name="form_login" id="form-login" action="<!-- patTemplate:gtfwgeturl module="login_default" sub="login" action="do" type="html" / -->" method="post" autocomplete="off" onsubmit="return dosubmit(this, '<!-- patTemplate:gtfwgeturl module="login_default" sub="login" action="do" type="html" / -->');">
+
+                            <input type="hidden" id="salt" name="salt" value="{LOGIN_SALT}" />
+                            <div class="form-group">
+                            <div class="input-group">
+                              <span class="input-group-addon glyphicon glyphicon-user input-sm" style="background-color:#2C95DD !important;color:#fff;border:1px ##2C95DD solid; top:0px !important;margin-top:0px"></span> 
+                              <input type="text" style="margin-top:0px !important;border-radius:0px !important" autocomplete="off" title="Username" name="username" id="username" class="form-control" placeholder="Username"/>
+                            </div>
+                            </div>
+                            <div class="form-group">
+                            <div class="input-group">
+                              <span class="input-group-addon glyphicon glyphicon-asterisk input-sm" style="background-color:#2C95DD !important;color:#fff;border:1px ##2C95DD solid;top:0px !important;margin-top:0px"></span>
+                            <input type="password" autocomplete="off" style="margin-top:0px !important;border-radius:0px !important" id="regularInput" title="Password" name="password" id="password" class="form-control" placeholder="Password"/>
+                            </div>
+
+                            </div>
+                            <div class="form-group">
+                            <label class="col-sm-2 control-label" ></label>
+                            <div class="log_btn"><button type="submit" style="border-radius:0px !important" class="btn btn-primary" tabindex="3">
+                            <span class="glyphicon glyphicon-log-in"></span>
+                            Login</button></div>
+                            </div>
+
+                                 
+                        </form>
+                </div>
+             </div>
+            <div class="col-sm-4"></div>
+        <!-- content END -->
+        </div>
+        <div id="footer">
+        <!-- Copyright Information -->
+        &copy;2014 | 
+        <!-- patTemplate:gtfwgetconfig config="organization" name="application_name" / -->
+        -
+        <!-- patTemplate:gtfwgetconfig config="organization" name="company_name" / -->
+        </div>
+<!-- /patTemplate:tmpl -->

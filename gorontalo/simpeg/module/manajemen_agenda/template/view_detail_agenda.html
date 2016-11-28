@@ -1,0 +1,81 @@
+<!-- patTemplate:tmpl name="content" -->
+<div class="background-blue padding-10 text-big">MANAJEMEN AGENDA</div>
+<div class="padding-10">
+
+<h3>Detail Agenda</h3>
+<div class="row push-down-10">
+    <div class="col-md-12">
+        <div class="btn-group pull-right">
+            <a class="xhr dest_subcontent-element btn btn-success btn-xs" href="{URL_EDIT}" title="Edit"><span class="glyphicon glyphicon-pencil"></span>&nbsp;Edit</a>
+            <a class="xhr dest_subcontent-element btn btn-danger btn-xs" href="{URL_DELETE}" title="Hapus"><span class="glyphicon glyphicon-trash"></span>&nbsp;Hapus</a>
+            <a class="xhr dest_subcontent-element btn btn-warning btn-xs" href="{URL_BACK}" title="Kembali">Kembali</a>
+        </div>
+    </div>
+</div>
+
+<div class="table-responsive">
+   <table class="table">
+      <!-- <tr>
+         <td colspan="2" class="background-blue-light">
+				Detail Agenda
+			</td>
+      </tr> -->
+      <tr>
+         <th width="30%">Nama Agenda </th>
+         <td>{TITLE}</td>
+      </tr>
+      <tr>
+         <th>Artikel</th>
+         <td>{ARTICLE}</td>
+      </tr>
+      <!-- <tr>
+         <th>URL</th>
+         <td>{URL}</td>
+      </tr> -->
+      <tr>
+         <th>Photo</th>
+         <td>
+				<!-- patTemplate:tmpl name="foto" type="condition" conditionvar="FOTO_EMPTY" -->
+				<!-- patTemplate:sub condition="NO" -->
+            <div style="width: 400px;">
+               <img src="{FOTO}" class="img-responsive" />
+            </div>
+				<!-- /patTemplate:sub -->
+				<!-- patTemplate:sub condition="YES" -->
+				Tidak ada foto
+				<!-- /patTemplate:sub -->
+				<!-- /patTemplate:tmpl -->
+         </td>
+      </tr>
+      <tr>
+         <th>Judul Foto</th>
+         <td>{CAPTION}</td>
+      </tr>
+      <tr>
+         <th>Mulai</th>
+         <td>{START_DATE}</td>
+      </tr>
+      <tr>
+         <th>Selesai</th>
+         <td>{END_DATE}</td>
+      </tr>
+      <tr>
+         <th>Tempat</th>
+         <td>{LOCATION}</td>
+      </tr>
+      <tr>
+         <th>Status</th>
+         <td>{STATUS}</td>
+      </tr>
+      <!-- <tr>
+         <td colspan="2" class="table-common-links">
+			<div class="toolbar">
+	            <a href="{URL_EDIT}"><img src="images/button-edit.gif" alt="" />Ubah</a>
+	            <a href="{URL_DELETE}"><img src="images/button-delete.gif" alt="" />Hapus</a>
+	            <a href="{URL_BACK}"><img src="images/button-bukunutup.gif" alt="" />Kembali</a>
+			</div>
+         </td>
+      </tr> -->
+   </table>
+</div>
+<!-- /patTemplate:tmpl -->

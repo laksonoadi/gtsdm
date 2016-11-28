@@ -1,0 +1,131 @@
+<!-- patTemplate:tmpl name="content" -->
+<h1>{LABEL_TITLE}</h1>
+<br />
+
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+   {ISI_PESAN}
+</div>
+<br />
+<!-- /patTemplate:tmpl -->
+<div><h1>{TITLE}</h1></div><br>
+<table class="table-edit" width="100%" >
+	<tr>
+		<th colspan="3" width="25%"><b>Informasi Pribadi</b></th>
+	</tr>
+	<tr>
+		<td rowspan="4"><img src="upload_file/photo/{PROFIL_FOTO}" width="100" height="100"></td>
+   </tr>
+   <tr>
+      <td>Nama</td>
+	  <td>{PROFIL_NAME}</td>
+   </tr>
+   <tr>
+      <td>ID Pegawai</td>
+	  <td>{PROFIL_KODE}</td>
+   </tr>
+   <tr>
+     
+      <td valign="top">Alamat</td>
+	  <td valign="top">{PROFIL_ALAMAT}</td>
+   </tr>
+   <tr>
+      
+   </tr>
+</table>
+<br>
+<!-- patTemplate:tmpl name="data" type="condition" conditionvar="DATA_EMPTY" -->
+      <!-- patTemplate:sub condition="YES" -->
+    <h1>-- Data tidak ditemukan -- </h1>
+      <!-- /patTemplate:sub -->
+      <!-- patTemplate:sub condition="NO" -->
+         <!-- patTemplate:tmpl name="data_item" -->
+
+   <table class="table-details" width="100%" >
+      <tr class="subhead">
+         <th colspan="2">DATA</th>
+		 
+      </tr>
+      
+	  <tr>
+         <th >Jenis Pekerjaan</th>
+         <td>
+           {DETAIL_JPNAMA}
+         </td>
+      </tr>
+	  <tr>
+         <th >Pangkat/Golongan</th>
+         <td>
+           {DETAIL_PKTGOL}
+         </td>
+      </tr>
+	  <tr>
+         <th >Asuransi Kesejahteraan </th>
+         <td>
+           {DETAIL_NOMINAL_GAPOK}
+         </td>
+      </tr>
+	  <tr>
+         <th >Jatuh Tempo </th>
+         <td>
+           {DETAIL_TMT}
+         </td>
+      </tr>
+	  <tr class="subhead">
+		<th colspan="2">Surat Keputusan (SK)</th>
+	  </tr>
+	  <tr>
+         <th >Tanda Tangan </th>
+         <td>
+           {DETAIL_PEJABAT}
+         </td>
+      </tr>
+	  <tr>
+         <th >Nomor Surat</th>
+         <td>
+           {DETAIL_NOSK}
+         </td>
+      </tr>
+	  <tr>
+         <th >Tanggal SK </th>
+         <td>
+           {DETAIL_TGL_SK}
+         </td>
+      </tr>
+      <tr>
+         <th >Peraturan Dasar </th>
+         <td>
+           {DETAIL_DASAR}
+         </td>
+      </tr>
+     <tr>
+         <th >Tanggal Kenaikan Gaji</th>
+         <td>
+           {DETAIL_TGL_NAIK}
+         </td>
+      </tr>
+	  <tr>
+         <th >Status Aktif </th>
+         <td>
+           {DETAIL_STATUS}
+         </td>
+      </tr>
+	  <tr>
+         <th >Dokumen SK</th>
+         <td>
+           {DETAIL_UPLOAD}
+         </td>
+      </tr>
+      
+   </table>
+
+<!-- /patTemplate:tmpl -->
+      <!-- /patTemplate:sub -->
+   <!-- /patTemplate:tmpl -->
+<div class="toolbar"> 
+               <a class="xhr dest_subcontent-element " href="{URL_BACK}" title="Kembali" tabindex="2">
+               <img src="images/button-back.gif" alt="">Kembali</a> 
+            </div>
+
+
+<!-- /patTemplate:tmpl -->

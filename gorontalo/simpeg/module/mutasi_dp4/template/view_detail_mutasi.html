@@ -1,0 +1,237 @@
+<!-- patTemplate:tmpl name="content" -->
+<h1>{LABEL_TITLE}</h1>
+<br />
+
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+   {ISI_PESAN}
+</div>
+<br />
+<!-- /patTemplate:tmpl -->
+<div><h1>Daftar Penilaian Pelaksanaan Pekerjaan Pegawai (DP4)</h1></div><br>
+<table class="table-edit" width="100%" >
+	<tr class="subhead">
+		<th colspan="3"><b>Informasi Pribadi</b></th>
+	</tr>
+	<tr>
+		<td rowspan="4" width="60px"><img src="upload_file/photo/{FOTO2}" width="100" height="100"></td>
+   </tr>
+   <tr>
+      <td>Nama</td>
+	  <td>{NAMA}</td>
+   </tr>
+   <tr>
+      <td>NIP</td>
+	  <td>{NIP}</td>
+   </tr>
+   <tr>
+     
+      <td valign="top">Alamat</td>
+	  <td valign="top">{ALAMAT}</td>
+   </tr>
+   <tr>
+      
+   </tr>
+</table>
+
+   <table class="table-edit" width="100%" >
+      <tr class="subhead">
+      <th>Detail</th>
+		      <td align="right">
+		      <div class="toolbar"> 
+              <a class="xhr dest_subcontent-element " href="{URL_BACK}" title="back to the current page" tabindex="2">
+                  <img src="images/button-back.gif" alt="">Back</a> 
+          </div>
+          </td>
+      </tr>
+      <tr class="subhead">
+		    <th>Pejabat Penilai</th>
+		    <td align="right">
+        </td>
+	    </tr>
+	    <tr>
+        <th>NIP</th>
+  	    <td>
+            <input type="hidden" name="pejabat_id" id="pejabat_id" value="{INPUT_PEJABAT_ID}">
+            <div id="pejabat_nip">{INPUT_PEJABAT_NIP}</div>
+        </td>
+      </tr>
+      <tr><th>Nama</th><td><div id="pejabat_nama">{INPUT_PEJABAT_NAMA}</div></td></tr>
+      <tr><th>Pangkat dan Golongan Ruang</th><td><div id="pejabat_pangkat">{INPUT_PEJABAT_PANGKAT}</div></td></tr>
+      <tr><th>Jabatan</th><td><div id="pejabat_jabatan">{INPUT_PEJABAT_JABATAN}</div></td></tr>
+      <tr><th>Unit Kerja</th><td><div id="pejabat_unit_kerja">{INPUT_PEJABAT_UNIT_KERJA}</div></td></tr>
+	    <tr class="subhead">
+		    <th>Atasan Pejabat Penilai</th>
+		    <td align="right">
+        </td>
+	    </tr>
+	    <tr>
+        <th>NIP</th>
+  	    <td>
+            <input type="hidden" name="atasan_pejabat_id" id="atasan_pejabat_id" value="{INPUT_ATASAN_PEJABAT_ID}">
+            <div id="atasan_pejabat_nip">{INPUT_ATASAN_PEJABAT_NIP}</div>
+        </td>
+      </tr>
+      <tr><th>Nama</th><td><div id="atasan_pejabat_nama">{INPUT_ATASAN_PEJABAT_NAMA}</div></td></tr>
+      <tr><th>Pangkat dan Golongan Ruang</th><td><div id="atasan_pejabat_pangkat">{INPUT_ATASAN_PEJABAT_PANGKAT}</div></td></tr>
+      <tr><th>Jabatan</th><td><div id="atasan_pejabat_jabatan">{INPUT_ATASAN_PEJABAT_JABATAN}</div></td></tr>
+      <tr><th>Unit Kerja</th><td><div id="atasan_pejabat_unit_kerja">{INPUT_ATASAN_PEJABAT_UNIT_KERJA}</div></td></tr>
+      <tr class="subhead">
+		    <th colspan="2">Yang Dinilai</th>
+	    </tr>
+	    <tr>
+        <th>Nama</th>
+  	    <td>{NAMA}</td>
+      </tr>
+      <tr>
+        <th>NIP</th>
+  	    <td>{INPUT_NIP}</td>
+      </tr>
+      <tr>
+        <th>Nomor Seri Kartu Pegawai</th>
+  	    <td>{INPUT_NO_SERI}</td>
+      </tr>
+      <tr>
+        <th>Tanggal Lahir</th>
+  	    <td>{INPUT_TANGGAL_LAHIR}</td>
+      </tr>
+      <tr>
+        <th>Jenis Kelamin</th>
+  	    <td>{INPUT_JENIS_KELAMIN}</td>
+      </tr>
+      <tr>
+        <th>Pendidikan Tertinggi</th>
+  	    <td>{INPUT_PENDIDIKAN}</td>
+      </tr>
+      <tr>
+        <th>Pangkat dan Golongan/TMT</th>
+  	    <td>{INPUT_PANGKAT_GOLONGAN}</td>
+      </tr>
+      <tr>
+        <th>Jabatan Fungsional/TMT</th>
+  	    <td>{INPUT_JABATAN_FUNGSIONAL}</td>
+      </tr>
+     <tr>
+         <th >Unit Kerja</th>
+         <td>
+           {INPUT_UNIT_KERJA_LABEL}
+         </td>
+     </tr>  
+     <tr>
+         <th >Periode Awal Penilaian </th>
+         <td>
+            {INPUT_MULAI}
+         </td>
+      </tr>
+      <tr>
+         <th >Periode Akhir Penilaian </th>
+         <td>
+           {INPUT_SELESAI}
+         </td>
+      </tr>
+	   <tr class="subhead">
+		  <th colspan="2">Penilaian</th>
+		 </tr>
+		 <tr>
+         <th >Kesetiaan</th>
+         <td>
+           {INPUT_KESETIAAN}
+         </td>
+     </tr>
+     <tr>
+         <th >Prestasi Kerja</th>
+         <td>
+           {INPUT_PRESTASI_KERJA}
+         </td>
+     </tr>
+     <tr>
+         <th >Tanggung Jawab</th>
+         <td>
+           {INPUT_TANGGUNG_JAWAB}
+         </td>
+     </tr>  
+     <tr>
+         <th >Keataatan</th>
+         <td>
+           {INPUT_KETAATAN}
+         </td>
+     </tr>
+     <tr>
+         <th >Kejujuran</th>
+         <td>
+           {INPUT_KEJUJURAN}
+         </td>
+     </tr>
+     <tr>
+         <th >Kerjasama</th>
+         <td>
+           {INPUT_KERJASAMA}
+         </td>
+     </tr>
+     <tr>
+         <th >Prakarsa</th>
+         <td>
+           {INPUT_PRAKARSA}
+         </td>
+     </tr>
+     <tr>
+         <th >Kepemimpinan</th>
+         <td>
+           {INPUT_KEPEMIMPINAN}
+         </td>
+     </tr>
+     <tr>
+         <th >Implementasi 7 Nilai Dasar Yayasan</th>
+         <td>
+           {INPUT_NILAI_YAYASAN}
+         </td>
+     </tr>
+     <tr>
+         <th >Keberatan dari PNS yang dinilai</th>
+         <td>
+           {INPUT_KEBERATAN}
+         </td>
+     </tr>
+     <tr>
+         <th >Tanggapan Pejabat Penilai Atas Keberatan</th>
+         <td>
+           {INPUT_TANGGAPAN_KEBERATAN}
+         </td>
+     </tr>
+     <tr>
+         <th >Keputusan Atasan Pejabat Penilai</th>
+         <td>
+           {INPUT_KEPUTUSAN_ATASAN}
+         </td>
+     </tr>
+     <tr>
+         <th >Lain-lain</th>
+         <td>
+           {INPUT_LAIN_LAIN}
+         </td>
+     </tr>
+     <tr>
+         <th >Tanggal Dibuat</th>
+         <td>
+           {INPUT_TGL_BUAT}
+         </td>
+      </tr>
+      <tr>
+         <th >Tanggal Diterima PNS </th>
+         <td>
+           {INPUT_TGL_PNS}
+         </td>
+      </tr>
+      <tr>
+         <th>Tanggal Diterima Atasan Pejabat Penilai </th>
+         <td>
+           {INPUT_TGL_DITERIMA}
+         </td>
+      </tr>
+   </table>
+<br />
+<div class="toolbar"> 
+        <a class="xhr dest_subcontent-element " href="{URL_BACK}" title="back to the current page" tabindex="2">
+        <img src="images/button-back.gif" alt="">Back</a> 
+</div>
+<!-- /patTemplate:tmpl -->

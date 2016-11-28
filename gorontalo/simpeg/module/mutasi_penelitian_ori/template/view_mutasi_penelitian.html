@@ -1,0 +1,275 @@
+<!-- patTemplate:tmpl name="content" -->
+<script language="JavaScript">
+function js_next(form,url) {
+	var pnltnTipePenelitianId = form.pnltnTipePenelitianId;
+	var url = url+'&tipe='+pnltnTipePenelitianId.value;
+    location.href = url;
+	
+}
+
+function change(form,url){
+	var pnltnTipePenelitianId = form.pnltnTipePenelitianId;
+	var url = url+'&tipe='+pnltnTipePenelitianId.value;
+	location.href = GtfwAjax.replaceContentWithUrl("pnltnTipePenelitianId","url+'&asComponent=1'");
+}
+</script>
+<h1>{LABEL_TITLE}</h1>
+<br />
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+   {ISI_PESAN}
+</div>
+<br />
+<!-- /patTemplate:tmpl -->
+<div><h1>{TITLE}</h1></div><br>
+<table class="table-edit" width="100%" >
+	<tr class="subhead">
+		<th colspan="3"><b>Personal Informations</b></th>
+	</tr>
+	<tr>
+		<td rowspan="4" width="60px"><img src="upload_file/photo/{FOTO2}" width="100" height="100"></td>
+   </tr>
+   <tr>
+      <td width="60px">Employee ID</td>
+	  <td>{NIP}</td>
+   </tr>
+   <tr>
+      <td width="60px">Name</td>
+	  <td>{NAMA}</td>
+   </tr>
+   <tr>
+     
+      <td valign="top" width="60px">Address</td>
+	  <td valign="top">{ALAMAT}</td>
+   </tr>
+   <tr>
+      
+   </tr>
+</table>
+	
+<form method="POST" name="frmInput" action="{URL_ACTION}" class="xhr_form std_form" id="frmInput" enctype="multipart/form-data">
+   <table class="table-edit" width="100%" >
+    <tr class="subhead">
+         <th>{LABEL_ACTION} {LABEL_INPUT}</th>
+		 <td align="right">
+       <!--<a class="xhr dest_subcontent-element " href="{URL_BACK}" title="Kembali" tabindex="2"> /-->
+            <div class="toolbar"> 
+               <a class="xhr dest_subcontent-element " href="{URL_BACK}" title="Back" tabindex="2">
+               <img src="images/button-back.gif" alt="">Select Employee</a> 
+            </div>
+          </td>
+      </tr>
+	<tr>
+      <th>Select Specification Data Research / Writing </th>
+      <td><!--<select name="pnltnTipePenelitianId" onChange="{URL_ITSELF}" >-->
+	  	 <select name="pnltnTipePenelitianId" onChange="js_next(this.form,'{URL_ITSELF}')" >
+        <!-- patTemplate:tmpl name="tipe_penelitian" -->
+        <option value="1" {SELECTED1}>Book</option>
+        <option value="2" {SELECTED2}>Article</option>
+        <option value="3" {SELECTED3}>Scientific Work/Research</option>
+        <option value="4" {SELECTED4}>Publication</option>
+        <!-- /patTemplate:tmpl -->
+      </select>
+      <input name="pegKode" type="hidden" value="{PEG_ID}" />
+		  <input name="dataKode" type="hidden" value="{DATA_ID}" />
+      </td>
+    </tr>
+      <!-- patTemplate:tmpl name="data_tipe_penelitian" type="condition" conditionvar="data_status" -->
+      <!-- patTemplate:sub condition="buku" -->
+         <!-- patTemplate:tmpl name="data_buku" -->
+			<tr>
+              <th>Type of Book </th>
+              <td>
+                <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="jenis_buku_ref"  / -->*
+        	    </td>
+            </tr>
+            <tr>
+              <th> Book Title</th>
+              <td><input name="pnltnJudulBuku" type="text" size="40" value="{JUDUL_BUKU}">*
+              </td> 
+            </tr>
+            <tr> 
+              <th>Type Of Activity</th>
+              <td>
+                  <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="jenis_kegiatan_ref"  / -->*
+              </td>
+            </tr>
+            <tr> 
+              <th>Role</th>
+              <td>
+                  <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="peranan_ref"  / -->*
+              </td>
+            </tr>
+            <tr> 
+              <th>Year of Publication </th>
+              <td><input name="pnltnTahun" type="text" size="4" maxlength="4" value="{TAHUN}"></td>
+            </tr>
+            <tr>
+              <th>Publisher</th>
+              <td><input name="pnltnPenerbit" type="text" size="40" value="{PENERBIT}"></td>
+            </tr>
+            <tr> 
+              <th valign="top">Description</th>
+              <td><textarea name="pnltnKeterangan" cols="40" rows="6">{KETERANGAN}</textarea></td>
+            </tr>
+         <!-- /patTemplate:tmpl -->   
+      <!-- /patTemplate:sub -->
+    
+    
+      <!-- patTemplate:sub condition="artikel" -->
+         <!-- patTemplate:tmpl name="data_artikel" --> 
+			<tr>
+              <th>Type Of Book (Articles)</th>
+              <td>
+                <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="jenis_buku_ref"  / -->*
+        	    </td>
+            <tr>
+              <th> Article Title </th>
+              <td><input name="pnltnJudulArtikel" type="text" size="40" value="{JUDUL_ARTIKEL}">*
+              </td> 
+            </tr>
+            <tr> 
+              <th>Type of Activity</th>
+              <td>
+                  <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="jenis_kegiatan_ref"  / -->*
+              </td>
+            </tr>
+            <tr> 
+              <th>Role</th>
+              <td>
+                <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="peranan_ref"  / -->*
+              </td>
+            </tr>
+            <tr> 
+              <th>Year of Publication </th>
+              <td><input name="pnltnTahun" type="text" size="4" maxlength="4" value="{TAHUN}"></td>
+            </tr>
+            <tr> 
+              <th valign="top">Description</th>
+              <td><textarea name="pnltnKeterangan" cols="40" rows="6">{KETERANGAN}</textarea></td>
+            </tr>
+         <!-- /patTemplate:tmpl -->
+      <!-- /patTemplate:sub -->
+    
+    
+      <!-- patTemplate:sub condition="penelitian" --> 
+         <!-- patTemplate:tmpl name="data_penelitian" -->  
+            <tr>
+              <th>Scientific Work Type </th>
+              <td>
+                <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="jenis_karya_ref"  / -->*
+              </td>
+            </tr>
+            <tr>
+              <th>Research Type</th>
+              <td>
+                <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="jenis_penelitian_ref"  / -->*
+              </td>
+            </tr>
+            <tr>
+              <th> Scientific Work / Research Title </th>
+              <td><input name="pnltnJudulKaryaIlmiah" type="text" size="40" value="{JUDUL_PENELITIAN}">*
+              </td> 
+            </tr>
+            <tr> 
+              <th>Role</th>
+              <td>
+                <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="peranan_ref"  / -->*
+              </td>
+            </tr>
+            <tr> 
+              <th>Year of Publication</th>
+              <td><input name="pnltnTahun" type="text" size="4" maxlength="4" value="{TAHUN}"></td>
+            </tr>
+            <tr> 
+              <th>Funds</th>
+              <td>
+                <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="asal_dana_ref"  / -->*
+              </td>
+            </tr>
+            <tr> 
+              <th valign="top">Description</th>
+              <td><textarea name="pnltnKeterangan" cols="40" rows="6">{KETERANGAN}</textarea></td>
+            </tr>
+        <!-- /patTemplate:tmpl -->
+      <!-- /patTemplate:sub -->
+    
+    
+      <!-- patTemplate:sub condition="publikasi" -->  
+           <!-- patTemplate:tmpl name="data_publikasi" --> 
+            <tr>
+              <th>Publication Type </th>
+              <td>
+                <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="jenis_publikasi_ref"  / -->*
+              </td>
+            </tr>
+            <tr>
+              <th> Publication Title </th>              
+              <td><input name="pnltnJudulPublikasi" type="text" size="40" value="{JUDUL_PUBLIKASI}">*
+              </td> 
+            </tr>
+            <tr> 
+              <th>Role</th>
+              <td>
+                <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="peranan_ref"  / -->*
+              </td>
+            </tr>
+            <tr> 
+              <th>Year of Publication </th>
+              <td><input name="pnltnTahun" type="text" size="4" maxlength="4" value="{TAHUN}"></td>
+            </tr>
+            <tr> 
+              <th valign="top">Description</th>
+              <td><textarea name="pnltnKeterangan" cols="40" rows="6">{KETERANGAN}</textarea></td>
+            </tr>
+          <!-- /patTemplate:tmpl -->
+       <!-- /patTemplate:sub -->
+       <!-- /patTemplate:tmpl -->
+    <tr class="buttons">
+           <th>&nbsp;</th>
+           <td>
+              <input name="btnsimpan" value="{LABEL_ACTION} " class="buttonSubmit" type="submit">
+              <input name="btnbatal" value="{BUTTON}" class="buttonSubmit" type="{TYPE}">
+           </td>
+    </tr>
+    </table>
+</form>
+<br />
+<br />
+
+<div class="pageBar">
+<!-- patTemplate:gtfwrendermodule module="paging" submodule="paging" action="view" name="paging_top"  / -->
+</div>
+<table class="table-common" width="96%">
+   <tr>
+      <th width="5px" >No</th>
+      <th >Type</th>
+      <th >Title</th>
+      <th >Role</th>
+      <th >Year</th>
+      <th width="66px" >Action</th>
+   </tr>
+   <!-- patTemplate:tmpl name="data" type="condition" conditionvar="DATA_EMPTY" -->
+      <!-- patTemplate:sub condition="YES" -->
+   <tr><td colspan="6" align="center"><em>-- Data not found --</em></td></tr>
+      <!-- /patTemplate:sub -->
+      <!-- patTemplate:sub condition="NO" -->
+         <!-- patTemplate:tmpl name="data_item" -->
+           <tr class="{PEND_CLASS_NAME}">
+              <td align="center" width="5%">{PEN_NUMBER}</td>
+              <td align="left">{PEN_JKARYALABEL}</td>
+          	  <td align="left">{PEN_JUDUL}</td>
+          	  <td align="left">{PEN_PERANAN}</td>
+          	  <td align="left">{PEN_TAHUN}</td>
+              <td class="links">
+                 <!--<a class="xhr dest_subcontent-element" href="{PEN_URL_DETAIL}" title="detail"><img src="images/button-detail.gif" alt="detail"/></a>-->
+                 <a class="xhr dest_subcontent-element" href="{PEN_URL_EDIT}" title="Edit"><img src="images/button-edit.gif" alt="Edit"/></a>
+                 <a class="xhr dest_subcontent-element" href="{PEN_URL_DELETE}" title="Delete"><img src="images/button-delete.gif" alt="Delete"/></a>
+              </td>
+           </tr>
+         <!-- /patTemplate:tmpl -->
+      <!-- /patTemplate:sub -->
+   <!-- /patTemplate:tmpl -->
+</table>
+</div></div>
+<!-- /patTemplate:tmpl -->

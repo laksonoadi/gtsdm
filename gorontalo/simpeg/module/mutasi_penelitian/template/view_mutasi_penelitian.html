@@ -1,0 +1,369 @@
+<!-- patTemplate:tmpl name="content" -->
+<script language="JavaScript">
+function js_next(form,url) {
+	var pnltnTipePenelitianId = form.pnltnTipePenelitianId;
+	var url = url+'&tipe='+pnltnTipePenelitianId.value;
+    location.href = url;
+}
+
+function change(form,url){
+	var pnltnTipePenelitianId = form.pnltnTipePenelitianId;
+	var url = url+'&tipe='+pnltnTipePenelitianId.value;
+	location.href = GtfwAjax.replaceContentWithUrl("pnltnTipePenelitianId","url+'&asComponent=1'");
+}
+
+function toggleAbstraksi() {
+	var tipe_penelitian = document.getElementById('pnltnTipePenelitianId').value;
+	var data_buku = document.getElementById('data_buku');
+	var data_artikel = document.getElementById('data_artikel');
+	var data_riset = document.getElementById('data_riset');
+	var data_publikasi = document.getElementById('data_publikasi');
+	
+	if (tipe_penelitian == "1") {
+		data_buku.style.display='';
+		data_artikel.style.display='none';
+		data_riset.style.display='none';
+		data_publikasi.style.display='none';
+	} else if(tipe_penelitian == "2") {
+		data_buku.style.display='none';
+		data_artikel.style.display='';
+		data_riset.style.display='none';
+		data_publikasi.style.display='none';
+	} else if(tipe_penelitian == "3") {
+		data_buku.style.display='none';
+		data_artikel.style.display='none';
+		data_riset.style.display='';
+		data_publikasi.style.display='none';
+	} else {
+		data_buku.style.display='none';
+		data_artikel.style.display='none';
+		data_riset.style.display='none';
+		data_publikasi.style.display='';
+	}
+}
+toggleAbstraksi();	
+</script>
+<div>
+  <h1>RIWAYAT PENELITIAN / KARYA ILMIAH</h1>
+</div><br>
+<!-- patTemplate:gtfwrendermodule module="profile" submodule="profilebox" action="view" name="profile"  / -->
+<table class="table-edit" width="100%" >
+	<tr class="subhead">
+		<th colspan="2">
+			<div class="toolbar"> 
+				<a href="javascript:Tab('LISTDATA','FORMDATA');"><img src="images/button-aturan.gif" title="Lihat List Data">Lihat List Data</a>
+				<a href="javascript:Tab('FORMDATA','LISTDATA');"><img src="images/button-add.gif" title="Form Data">Tambah Data</a>
+				<a class="xhr dest_subcontent-element " href="{URL_BACK}" title="Pilih Pegawai" tabindex="2"><img src="images/button-back.gif" alt=""> Pilih Pegawai</a> 
+			</div>
+		</th>
+	</tr>
+</table>
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<script language="javascript" type="text/javascript">
+function Tutup(){
+	document.getElementById('warning_box').style.display='none';
+}
+</script>
+<div class="{CLASS_PESAN}" id="warning_box">
+   {ISI_PESAN} <a href="javascript:Tutup();">&nbsp;[Tutup Pesan]</a>
+</div>
+<!-- /patTemplate:tmpl --> 
+<div id="FORMDATA" style="display:none">
+<br/>
+<form method="POST" name="frmInput" action="{URL_ACTION}" class="xhr_form std_form" id="frmInput" enctype="multipart/form-data">
+	<table class="table-edit" width="100%" >
+    <tr class="subhead">
+        <th width="32%">{LABEL_ACTION} {LABEL_INPUT}</th>
+		<td width="68%" align="right"></td>
+    </tr>
+	<tr>
+		<th>Pilih Data Spesifikasi Penelitian/Karya Ilmiah</th>
+		<td>
+			<select name="pnltnTipePenelitianId" id="pnltnTipePenelitianId" onChange="toggleAbstraksi()" >
+		  	 <!--<select name="pnltnTipePenelitianId" onChange="js_next(this.form,'{URL_ITSELF}')" >-->
+	        <!-- patTemplate:tmpl name="tipe_penelitian" -->
+	        <option value="1" {SELECTED1}>Buku</option>
+	        <option value="2" {SELECTED2}>Artikel</option>
+	        <option value="3" {SELECTED3}>Penelitian/Karya Ilmiah</option>
+	        <option value="4" {SELECTED4}>Publikasi</option>
+			<!--<option value="{VALUE}" {SELECTED}>{LABEL}</option>-->
+	        <!-- /patTemplate:tmpl -->
+	      </select>
+	      <input name="pegKode" type="hidden" value="{PEG_ID}" />
+		  <input name="dataKode" type="hidden" value="{DATA_ID}" />
+		</td>
+    </tr>
+      <!-- ~patTemplate:tmpl name="data_tipe_penelitian" type="condition" conditionvar="data_status" -->
+      <!-- ~patTemplate:sub condition="buku" -->
+         <!-- patTemplate:tmpl name="data_buku" -->
+	<tr id="data_buku">
+		<td colspan="2">
+			<table class="table-edit" width="100%">		
+			<tr>
+				<th>Jenis Buku</th>
+				<td>
+					<!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="buku_jenis_buku_ref"  / -->*
+				</td>
+            </tr>
+            <tr>
+				<th> Judul Buku</th>
+				<td><input name="pnltnJudulBuku" type="text" size="60" value="{JUDUL_BUKU}">*</td> 
+            </tr>
+            <tr> 
+				<th>Jenis Kegiatan</th>
+				<td>
+					<!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="buku_jenis_kegiatan_ref"  / -->*
+				</td>
+            </tr>
+            <tr> 
+				<th>Peranan</th>
+				<td>
+					<!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="buku_peranan_ref"  / -->*
+				</td>
+            </tr>
+            <tr> 
+				<th>Tahun Diterbitkan </th>
+				<td><input name="pnltnTahunBuku" type="text" size="4" maxlength="4" value="{TAHUN}"></td>
+            </tr>
+            <tr>
+				<th>Penerbit </th>
+				<td><input name="pnltnPenerbitBuku" type="text" size="40" value="{PENERBIT}"></td>
+            </tr>
+            <tr> 
+				<th valign="top">Keterangan</th>
+				<td><textarea name="pnltnKeteranganBuku" cols="40" rows="6">{KETERANGAN}</textarea></td>
+            </tr>
+			</table>
+		</td>
+	</tr>
+         <!-- /patTemplate:tmpl -->   
+      <!-- ~/patTemplate:sub -->
+    
+    
+      <!-- ~patTemplate:sub condition="artikel" -->
+         <!-- patTemplate:tmpl name="data_artikel" --> 
+	<tr id="data_artikel" style="display:none;">
+		<td colspan="2">
+			<table class="table-edit" width="100%">
+			<tr>
+				<th>Jenis Buku (Artikel)</th>
+				<td>
+					<!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="artikel_jenis_buku_ref"  / -->*
+				</td>
+			</tr>
+            <tr>
+              <th> Jenis Artikel </th>
+              <td><input name="pnltnJudulArtikel" type="text" size="60" value="{JUDUL_ARTIKEL}">*
+              </td> 
+            </tr>
+            <tr> 
+              <th>Jenis Kegiatan</th>
+              <td>
+                  <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="artikel_jenis_kegiatan_ref"  / -->*
+              </td>
+            </tr>
+            <tr> 
+              <th>Peranan</th>
+              <td>
+                <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="artikel_peranan_ref"  / -->*
+              </td>
+            </tr>
+            <tr> 
+              <th>Tahun Diterbitkan</th>
+              <td><input name="pnltnTahunArtikel" type="text" size="4" maxlength="4" value="{TAHUN}"></td>
+            </tr>
+            <tr> 
+              <th valign="top">Keterangan</th>
+              <td><textarea name="pnltnKeteranganArtikel" cols="40" rows="6">{KETERANGAN}</textarea></td>
+            </tr>
+			</table>
+		</td>
+	</tr>
+         <!-- /patTemplate:tmpl -->
+      <!-- ~/patTemplate:sub -->
+    
+    
+      <!-- ~patTemplate:sub condition="penelitian" --> 
+         <!-- patTemplate:tmpl name="data_penelitian" -->  
+    <tr id="data_riset" style="display:none;">
+		<td colspan="2">
+		<table class="table-edit" width="100%">
+	        <tr>
+              <th>Jenis Karya Ilmiah </th>
+              <td>
+                <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="karya_ilmiah_jenis_karya_ref"  / -->*
+              </td>
+            </tr>
+            <tr>
+              <th>Jenis Penelitian</th>
+              <td>
+                <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="karya_ilmiah_jenis_penelitian_ref"  / -->*
+              </td>
+            </tr>
+            <tr>
+              <th> Judul Penelitian/Karya Ilmiah </th>
+              <td><input name="pnltnJudulKaryaIlmiah" type="text" size="60" value="{JUDUL_PENELITIAN}">*
+              </td> 
+            </tr>
+            <tr> 
+              <th>Peranan</th>
+              <td>
+                <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="karya_ilmiah_peranan_ref"  / -->*
+              </td>
+            </tr>
+            <tr> 
+              <th>Tahun Diterbitkan</th>
+              <td><input name="pnltnTahunKaryaIlmiah" type="text" size="4" maxlength="4" value="{TAHUN}"></td>
+            </tr>
+            <tr> 
+              <th>Asal Dana</th>
+              <td>
+                <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="karya_ilmiah_asal_dana_ref"  / -->*
+              </td>
+            </tr>
+            <tr> 
+              <th valign="top">Keterangan</th>
+              <td><textarea name="pnltnKeteranganKaryaIlmiah" cols="40" rows="6">{KETERANGAN}</textarea></td>
+            </tr>
+			</table>
+		</td>
+	</tr>
+        <!-- /patTemplate:tmpl -->
+      <!-- ~/patTemplate:sub -->
+    
+    
+      <!-- ~patTemplate:sub condition="publikasi" -->  
+           <!-- patTemplate:tmpl name="data_publikasi" --> 
+     <tr id="data_publikasi" style="display:none;">
+		<td colspan="2">
+		<table class="table-edit" width="100%">
+	        <tr>
+              <th>Jenis Publikasi </th>
+              <td>
+                <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="publikasi_jenis_publikasi_ref"  / -->*
+              </td>
+            </tr>
+            <tr>
+              <th> Judul Publikasi</th>              
+              <td><input name="pnltnJudulPublikasi" type="text" size="60" value="{JUDUL_PUBLIKASI}">*
+              </td> 
+            </tr>
+            <tr> 
+              <th>Peranan</th>
+              <td>
+                <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="publikasi_peranan_ref"  / -->*
+              </td>
+            </tr>
+            <tr> 
+              <th>Tahun Diterbitkan </th>
+              <td><input name="pnltnTahunPublikasi" type="text" size="4" maxlength="4" value="{TAHUN}"></td>
+            </tr>
+            <tr> 
+              <th valign="top">Keterangan</th>
+              <td><textarea name="pnltnKeteranganPublikasi" cols="40" rows="6">{KETERANGAN}</textarea></td>
+            </tr>
+		</table>
+		</td>
+	
+	</tr>
+	
+          <!-- /patTemplate:tmpl -->
+       <!-- ~/patTemplate:sub -->
+       <!-- ~/patTemplate:tmpl -->
+	<tr>
+		<th >Upload </th>
+		<td>
+			<input type="file" name="file" size="40"><br />
+			File sebelumnya: <a href="{INPUT_LINK_DOWNLOAD}">{INPUT_UPLOAD}</a>
+			<input name="upload" type="hidden" value="{INPUT_UPLOAD}" />
+		</td>
+	</tr>	
+    <tr class="buttons">
+           <th>&nbsp;</th>
+           <td>
+              <input name="btnsimpan" id="btnsimpan" value="{LABEL_ACTION}" class="buttonSubmit" type="submit">
+              <input name="btnbatal" value="{BUTTON}" class="buttonSubmit" type="{TYPE}">
+           </td>
+    </tr>
+    </table>
+</form>
+<br />
+<div class="petunjuk-area">
+   <h4>Petunjuk:</h4>
+   <ul>
+      <li>Tanda * menunjukkan bahwa field tersebut harus diisi. </li>
+   </ul>
+</div>
+</div>
+<div id="LISTDATA" style="display:">
+<div>
+  <h2>LIST RIWAYAT PENELITIAN / KARYA ILMIAH</h2>
+</div><br>
+<table class="table-common" width="700px">
+   <tr>
+      <th width="5px" >No</th>
+      <th >Jenis</th>
+      <th >Judul</th>
+      <th >Peranan</th>
+      <th >Tahun</th>
+	  <th width="125px" >Aksi</th>
+   </tr>
+   <!-- patTemplate:tmpl name="data" type="condition" conditionvar="DATA_EMPTY" -->
+      <!-- patTemplate:sub condition="YES" -->
+   <tr><td colspan="6" align="center"><em>-- Data tidak ditemukan --</em></td></tr>
+      <!-- /patTemplate:sub -->
+      <!-- patTemplate:sub condition="NO" -->
+         <!-- patTemplate:tmpl name="data_item" -->
+           <tr class="{PEND_CLASS_NAME}">
+              <td align="center" width="5%">{PEN_NUMBER}</td>
+              <td align="left">{PEN_JKARYALABEL}</td>
+          	  <td align="left">{PEN_JUDUL}</td>
+          	  <td align="left">{PEN_PERANAN}</td>
+          	  <td align="left">{PEN_TAHUN}</td>
+              <td class="links">
+				 <div id="tombol_{PEN_NUMBER}">
+                 <a class="xhr dest_subcontent-element" href="{PEN_URL_EDIT}" title="Ubah"><img src="images/button-edit.gif" alt="Ubah"/></a>
+                 <a class="xhr dest_subcontent-element" href="{PEN_URL_DELETE}" title="Hapus"><img src="images/button-delete.gif" alt="Hapus"/></a>
+				 </div>
+				 <!--<a class="xhr dest_subcontent-element" href="{PEN_URL_DETAIL}" title="detail"><img src="images/button-detail.gif" alt="detail"/></a>-->
+				 <div id="download_{PEN_NUMBER}"><a href="{PEN_LINK_DOWNLOAD_SK}" title="SK" target="_blank"><img src="images/detil.gif" alt="SK"/></a></div>
+				 <script>
+					verifyShow('tombol_{PEN_NUMBER}','&jenis=1&params=sdm_penelitian:{PEN_ID}');
+					if ('{PEN_LINK_DOWNLOAD_SK}'==''){var download='download_{PEN_NUMBER}'; document.getElementById(download).style.display='none';}
+				 </script>
+              </td>
+           </tr>
+         <!-- /patTemplate:tmpl -->
+      <!-- /patTemplate:sub -->
+   <!-- /patTemplate:tmpl -->
+</table>
+<div class="petunjuk-area">
+   <h4>Petunjuk:</h4>
+   <ul>
+      <li>Gunakan tombol <img src="images/button-edit.gif" alt="Ubah"/> untuk mengubah data. </li>
+      <li>Gunakan tombol <img src="images/button-delete.gif" alt="Delete"/> untuk menghapus data. </li>
+	  <li>Gunakan tombol <img src="images/detil.gif" alt="Download SK"/> untuk mendownload Attachment (jika ada). </li>
+	  <li><a href="#TOP" id="link-top">Klik Disini</a> untuk kembali ke atas. </li>
+   </ul>
+</div></div>
+<script language="javascript" type="text/javascript">
+function konfirmasi() {
+	document.frmInput.btnsimpan.click();
+}
+
+function Tab(aktif,nonaktif){
+	document.getElementById(aktif).style.display='';
+	document.getElementById(nonaktif).style.display='none';
+}
+
+function CekAksi(){
+    var dataId2='0'+'{INPUT_ID}';
+	if (document.getElementById('btnsimpan').value=='Tambah') {
+		Tab('LISTDATA','FORMDATA');
+	}else{
+		Tab('FORMDATA','LISTDATA');
+	}
+}
+CekAksi();
+</script>
+<!-- /patTemplate:tmpl -->

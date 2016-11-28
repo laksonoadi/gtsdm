@@ -1,0 +1,93 @@
+<!-- patTemplate:tmpl name="content" -->
+<div class="mainContent-fp-element-full">
+	<div class="mainContent-fp-element-full-head"><h2>Policy Management</h2></div>
+	<div class="mainContent-fp-element-full-body">
+   <h2>&nbsp;&nbsp;&nbsp;&nbsp;Policy Details</h2>
+   <!-- patTemplate:tmpl name="message" visibility="hidden" -->
+      <div class="{CSS}">
+        {MESSAGE}
+      </div>
+      <br />
+   <!-- /patTemplate:tmpl -->
+   <table class="table-form" width="100%">
+      <tr>
+         <td colspan="2" class="table-common-links">
+            <a href="{URL_EDIT}"><img src="images/button-edit.gif" alt="" />Edit</a>
+            <a href="{URL_DELETE}"><img src="images/button-delete.gif" alt="" />Delete</a>
+            <a href="{URL_BACK}"><img src="images/button-bukunutup.gif" alt="" />Back</a>
+         </td>
+      </tr>
+      <tr>
+         <th width="20%">Policy Type</th>
+         <td>{JNSPOLICYNAMA}</td>
+      </tr>
+      <tr>
+         <th>Name</th>
+         <td>{POLICYNAMA}</td>
+      </tr>
+      <tr>
+         <th>URL</th>
+         <td>{POLICYURL}</td>
+      </tr>
+      <tr>
+         <th>Date</th>
+         <td>{POLICYTANGGALPOLICY}</td>
+      </tr>
+      <tr>
+         <th>Status</th>
+         <td>{POLICYISAKTIF}</td>
+      </tr>
+   </table>
+   <br />
+   <h2>&nbsp;&nbsp;&nbsp;&nbsp;Upload File</h2>
+   <form name="form_file_policy" id="form_file_policy" action="{URL_ACTION}" method="post" autocomplete=off enctype="multipart/form-data">
+      <table class="table-details" width="100%">
+         <tr>
+            <th width="20%">File</th>
+            <td>
+              <input type="file" name="file" id="file" value="{FILEPOLICYFILE}">
+            </td>
+         </tr>
+         <tr>
+            <th width="20%">Status</th>
+            <td><input type="checkbox" name="status" value="1" size="40" {CHECKED} /> Aktif</td>
+         </tr>
+         <tr>
+            <td colspan="2">
+                <input type="hidden" name="id" id="id" value="{POLICYID}">
+                <input type="hidden" name="file_id" id="file_id" value="{FILEPOLICYID}">
+                <input type="submit" name="upload"  value="Upload">
+            </td>
+         </tr>
+      </table>
+   </form>
+   <br />
+   <h2>&nbsp;&nbsp;&nbsp;&nbsp;Detail File</h2>
+   <table class="table-common" width="96%">
+      <tr>
+         <th>No</th>
+         <th>Policy File</th>
+         <th>Date</th>
+         <th>Status</th>
+         <th width="100px">Action</th>
+      </tr>
+      <!-- patTemplate:tmpl name="empty_file_policy" visibility="hidden" -->
+      <tr>
+         <td colspan="5" align="center">--data not found--</td>
+      </tr>
+      <!-- /patTemplate:tmpl -->
+      <!-- patTemplate:tmpl name="list_file_policy" visibility="hidden" -->
+      <tr>
+         <td>{NO}</td>
+         <td>{FILEPOLICYFILE}</td>
+         <td>{FILEPOLICYTGL}</td>
+         <td>{FILEPOLICYSTATUS}</td>
+         <td class="table-common-links">
+            <a href="{URL_AKTIF}" title="{BUTTON_LABEL}"><img src="images/{BUTTON}.gif" alt="{BUTTON_LABEL}" /></a>
+            <a href="{URL_DELETE}" title="Delete"><img src="images/button-delete.gif" alt="Delete" /></a>
+         </td>
+      </tr>
+      <!-- /patTemplate:tmpl -->
+   </table>
+</div></div>
+<!-- /patTemplate:tmpl -->

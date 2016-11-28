@@ -1,0 +1,54 @@
+<!-- patTemplate:tmpl name="content" -->
+<h1>DOKUMEN UNIT KERJA</h1>
+<h2>List Dokumen Unit Kerja</h2>
+	
+	<!-- patTemplate:tmpl name="message" visibility="hidden" -->
+      <div class="{CSS}">
+        {MESSAGE}
+      </div>
+      <br />
+   <!-- /patTemplate:tmpl -->
+   
+	<div class="pageBar">
+	<!-- patTemplate:gtfwrendermodule module="paging" submodule="Paging" action="view" itemviewed="{ITEM_VIEWED}" totitems="{TOTAL_ITEMS}" pagingurl="{PAGING_URL}" page="{PAGE}" cari="{CARI}" / -->
+   <!-- patTemplate:tmpl name="toolbar" -->
+		<div class="toolbar">
+            <a href="{URL_ADD}" title="Tambah"><img src="images/button-add.gif" alt="Tambah" /> Tambah</a>
+		</div>
+	</div>
+   <!-- /patTemplate:tmpl -->
+   
+   <table class="table-common" width="100%">
+      <tr>
+         <th>No</th>
+         <th>Unit Kerja</th>
+         <th>Deskripsi</th>
+		 <th>Tanggal</th>
+         <th>Status</th>
+         <th width="70px">Aksi</th>
+      </tr>
+      <!-- patTemplate:tmpl name="empty_satker_policy" visibility="hidden" -->
+      <tr>
+         <td colspan="6" align="center">--data not found--</td>
+      </tr>
+      <!-- /patTemplate:tmpl -->
+      
+      <!-- patTemplate:tmpl name="list_satker_policy" visibility="hidden" -->
+      <tr>
+         <td>{NO}</td>
+         <td>{SATKERNAMA}</td>
+		 <td>{SATKERPOLICYDESKRIPSI}</td>
+         <td>{SATKERPOLICYTGL}</td>
+         <td>{SATKERPOLICYSTATUS}</td>
+         <td class="links">
+            <a class="xhr dest_subcontent-element" href="{URL_EDIT}"><img src="images/button-edit.gif" alt="" /></a>
+            <a class="xhr dest_subcontent-element" href="{URL_DELETE}"><img src="images/button-delete.gif" alt="" /></a>
+         </td>
+      </tr>
+      <!-- /patTemplate:tmpl -->
+   </table>
+   <br/>
+   <div class="pageBar" style="padding-left: 10px;">
+    <!-- patTemplate:gtfwrendermodule module="paging" submodule="Paging" action="view" itemviewed="{ITEM_VIEWED}" totitems="{TOTAL_ITEMS}" pagingurl="{PAGING_URL}" page="{PAGE}" cari="{CARI}" / -->
+   </div>
+<!-- /patTemplate:tmpl -->

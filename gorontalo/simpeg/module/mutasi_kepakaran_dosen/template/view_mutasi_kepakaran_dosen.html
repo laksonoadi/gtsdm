@@ -1,0 +1,139 @@
+<!-- patTemplate:tmpl name="content" -->
+<script language="javascript" type="text/javascript">
+	var xpopup;
+	function bukaPopupBidang(url) {
+		showPopup(url,'',550, 550);
+	}
+
+</script>
+<div id="TOP"><h1>{TITLE}</h1></div><br>
+<!-- patTemplate:gtfwrendermodule module="profile" submodule="profilebox" action="view" name="profile"  / -->
+<table class="table-edit" width="100%" >
+	<tr class="subhead">
+		<th colspan="2">
+			<div class="toolbar"> 
+				<a href="javascript:Tab('LISTDATA','FORMDATA');"><img src="images/button-aturan.gif" title="Lihat List Data">Lihat List Data</a>
+				<a href="javascript:Tab('FORMDATA','LISTDATA');"><img src="images/button-add.gif" title="Form Data">Tambah Data</a>
+				<a class="xhr dest_subcontent-element " href="{URL_BACK}" title="Pilih Pegawai" tabindex="2"><img src="images/button-back.gif" alt=""> Pilih Pegawai</a> 
+			</div>
+		</th>
+	</tr>
+</table>
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<script language="javascript" type="text/javascript">
+function Tutup(){
+	document.getElementById('warning_box').style.display='none';
+}
+</script>
+<div class="{CLASS_PESAN}" id="warning_box">
+   {ISI_PESAN} <a href="javascript:Tutup();">&nbsp;[Tutup Pesan]</a>
+</div>
+<!-- /patTemplate:tmpl --> 
+<div id="FORMDATA" style="display:none">
+<br/>
+<form method="POST" name="frmInput" action="{URL_ACTION}" class="xhr_form std_form" id="frmInput" enctype="multipart/form-data">
+   <table class="table-edit" width="100%" >
+      <tr class="subhead">
+         <th>{LABEL_ACTION} {LABEL_INPUT}</th>
+		 <td align="right">
+          </td>
+      </tr>
+      
+	  <tr>
+         <th >Bidang Kepakaran</th>
+         <td>
+         <input type='text' name='bidanglabel' value='{INPUT_BIDANGLABEL}' id='bidanglabel' size="55" readonly />
+            <input type="button" value="..." onclick="bukaPopupBidang('{URL_POPUP_BIDANG}')"/>
+            <input type='hidden' name='bidang' value='{INPUT_BIDANG}' id='bidang'/>
+		      <input name="pegKode" type="hidden" value="{ID}" />
+		      <input name="dataKode" type="hidden" value="{INPUT_ID}" />
+         </td>
+      </tr>
+	  <tr>
+         <th >Upload </th>
+         <td>
+           <input type="file" name="file" size="40"><br />
+				File sebelumnya: <a href="{INPUT_LINK_DOWNLOAD}">{INPUT_UPLOAD}</a>
+        <input name="upload" type="hidden" value="{INPUT_UPLOAD}" />
+         </td>
+      </tr>
+      <tr class="buttons">
+         <th>&nbsp;</th>
+         <td>
+            <div style="display:none"><input name="btnsimpan" value="{LABEL_ACTION} " class="buttonSubmit" type="submit"></div>
+			<input name="btnsimpanBohong" value="{LABEL_ACTION} " class="buttonSubmit" type="button" onclick="konfirmasi();">
+            <input name="btnbatal" value="{BUTTON}" class="buttonSubmit" type="{TYPE}">
+         </td>
+      </tr>
+   </table>
+</form>
+<br />
+<div class="petunjuk-area">
+   <h4>Petunjuk:</h4>
+   <ul>
+      <li>Tanda * menunjukkan bahwa field tersebut harus diisi. </li>
+   </ul>
+</div></div>
+<div id="LISTDATA" style="display:">
+<h1>List Riwayat Kepakaran Dosen</h1><br>
+<table class="table-common" width="100%">
+   <tr>
+      <th width="5px" >No</th>
+      <th >Bidang Kepakaran</th>
+      <th width="100px" >Aksi</th>
+   </tr>
+   <!-- patTemplate:tmpl name="data" type="condition" conditionvar="DATA_EMPTY" -->
+      <!-- patTemplate:sub condition="YES" -->
+   <tr><td colspan="10" align="center"><em>-- Data tidak ditemukan --</em></td></tr>
+      <!-- /patTemplate:sub -->
+      <!-- patTemplate:sub condition="NO" -->
+         <!-- patTemplate:tmpl name="data_item" -->
+   <tr class="{PAGOL_CLASS_NAME}">
+      <td align="center" width="15%">{KD_NUMBER}</td>
+      <td align="left">{KD_BIDANGLABEL}</td>
+      <td class="links">
+         <a class="xhr dest_subcontent-element" href="{KD_URL_EDIT}" title="Ubah"><img src="images/button-edit.gif" alt="Ubah"/></a>
+         <a class="xhr dest_subcontent-element" href="{KD_URL_DELETE}" title="Hapus"><img src="images/button-delete.gif" alt="Hapus"/></a>
+		 <div style="display:{KD_VIEW_DOWNLOAD}"><a href="{KD_LINK_DOWNLOAD_SK}" title="SK" target="_blank"><img src="images/detil.gif" alt="SK"/></a></div>
+      </td>
+   </tr>
+         <!-- /patTemplate:tmpl -->
+      <!-- /patTemplate:sub -->
+   <!-- /patTemplate:tmpl -->
+</table>
+<div class="petunjuk-area">
+   <h4>Petunjuk:</h4>
+   <ul>
+      <li>Gunakan tombol <img src="images/button-edit.gif" alt="Ubah"/> untuk mengubah data. </li>
+      <li>Gunakan tombol <img src="images/button-delete.gif" alt="Delete"/> untuk menghapus data. </li>
+	  <li>Gunakan tombol <img src="images/detil.gif" alt="Download File Attachment"/> untuk mendownload File Attachment (jika ada). </li>
+	  <li><a href="#TOP" id="link-top">Klik Disini</a> untuk kembali ke atas. </li>
+   </ul>
+</div></div>
+<script language="javascript" type="text/javascript">
+function konfirmasi() {
+	if (document.getElementById('bidang').value=='') {
+		alert('Bidang Kepakaran Wajib Diisi!');
+		document.getElementById('bidang').focus();
+		return false;
+	}
+	
+	document.frmInput.btnsimpan.click();
+}
+
+function Tab(aktif,nonaktif){
+	document.getElementById(aktif).style.display='';
+	document.getElementById(nonaktif).style.display='none';
+}
+
+function CekAksi(){
+    var dataId2='0'+'{INPUT_ID}';
+	if (dataId2=='0') {
+		Tab('LISTDATA','FORMDATA');
+	}else{
+		Tab('FORMDATA','LISTDATA');
+	}
+}
+CekAksi();
+</script>
+<!-- /patTemplate:tmpl -->

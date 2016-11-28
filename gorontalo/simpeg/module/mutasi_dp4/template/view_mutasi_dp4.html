@@ -1,0 +1,314 @@
+<!-- patTemplate:tmpl name="content" -->
+<script languange="javascript">
+  var xpopup;
+  function cariPegawai(temp,xurl) {
+    document.getElementById('temp').value=temp;
+    b=xurl;
+    showPopup(b,'Employee List',500, 500);
+  }
+
+  function konfirmasi(){
+    var atasan_pejabat=document.getElementById('atasan_pejabat_id').value;
+    var pejabat=document.getElementById('pejabat_id').value;
+    if (pejabat==''){
+      alert('Pejabat Penilai Harus Dipilih');
+      return false;
+    }else if (atasan_pejabat==''){
+      alert('Atasan Pejabat Penilai Harus Dipilih');
+      return false;
+    }else{
+      document.frmInput.btnsimpan.click();
+    }
+  }
+</script>
+<h1>Daftar Penilaian Pelaksanaan Pekerjaan Pegawai(DP4)</h1>
+<br />
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+   {ISI_PESAN}
+</div>
+<br />
+<!-- /patTemplate:tmpl -->
+<table class="table-edit" width="100%" >
+	<tr class="subhead">
+		<th colspan="3"><b>Informasi Pribadi</b></th>
+	</tr>
+	<tr>
+		<td rowspan="4" width="60px"><img src="upload_file/photo/{FOTO2}" width="100" height="100"></td>
+   </tr>
+   <tr>
+      <td>Nama</td>
+	  <td>{NAMA}</td>
+   </tr>
+   <tr>
+      <td>NIP</td>
+	  <td>{NIP}</td>
+   </tr>
+   <tr>
+     
+      <td valign="top">Alamat</td>
+	  <td valign="top">{ALAMAT}</td>
+   </tr>
+   <tr>
+      
+   </tr>
+</table>
+<form method="POST" name="frmInput" action="{URL_ACTION}" class="xhr_form std_form" id="frmInput" >
+   <input type="hidden" name="temp" id="temp" >
+   <table class="table-edit" width="100%" >
+      <tr class="subhead">
+      <th>{LABEL_ACTION} {LABEL_INPUT}</th>
+		      <td align="right">
+            <div class="toolbar"> 
+               <a class="xhr dest_subcontent-element " href="{URL_BACK}" title="BAck to the current page" tabindex="2">
+               <img src="images/button-back.gif" alt="">Pilih Pegawai</a> 
+            </div>
+          </td>
+      </tr>
+      <tr class="subhead">
+		    <th>Pejabat Penilai</th>
+		    <td align="right">
+            <div class="toolbar"> 
+               <a href="javascript:void(0);" onclick="cariPegawai('pejabat','{URL_CARI}')"><img src="images/detil.gif" border="0">Cari</a> 
+            </div>
+        </td>
+	    </tr>
+	    <tr>
+        <th>NIP</th>
+  	    <td>
+            <input type="hidden" name="pejabat_id" id="pejabat_id" value="{INPUT_PEJABAT_ID}">
+            <div id="pejabat_nip">{INPUT_PEJABAT_NIP}</div>
+        </td>
+      </tr>
+      <tr><th>Nama</th><td><div id="pejabat_nama">{INPUT_PEJABAT_NAMA}</div></td></tr>
+      <tr><th>Pangkat dan Golongan Ruang</th><td><div id="pejabat_pangkat">{INPUT_PEJABAT_PANGKAT}</div></td></tr>
+      <tr><th>Jabatan</th><td><div id="pejabat_jabatan">{INPUT_PEJABAT_JABATAN}</div></td></tr>
+      <tr><th>Unit Kerja</th><td><div id="pejabat_unit_kerja">{INPUT_PEJABAT_UNIT_KERJA}</div></td></tr>
+	    <tr class="subhead">
+		    <th>Atasan Pejabat Penilai</th>
+		    <td align="right">
+            <div class="toolbar"> 
+               <a href="javascript:void(0);" onclick="cariPegawai('atasan_pejabat','{URL_CARI}')"><img src="images/detil.gif" border="0">Cari</a> 
+            </div>
+        </td>
+	    </tr>
+	    <tr>
+        <th>NIP</th>
+  	    <td>
+            <input type="hidden" name="atasan_pejabat_id" id="atasan_pejabat_id" value="{INPUT_ATASAN_PEJABAT_ID}">
+            <div id="atasan_pejabat_nip">{INPUT_ATASAN_PEJABAT_NIP}</div>
+        </td>
+      </tr>
+      <tr><th>Nama</th><td><div id="atasan_pejabat_nama">{INPUT_ATASAN_PEJABAT_NAMA}</div></td></tr>
+      <tr><th>Pangkat dan Golongan Ruang</th><td><div id="atasan_pejabat_pangkat">{INPUT_ATASAN_PEJABAT_PANGKAT}</div></td></tr>
+      <tr><th>Jabatan</th><td><div id="atasan_pejabat_jabatan">{INPUT_ATASAN_PEJABAT_JABATAN}</div></td></tr>
+      <tr><th>Unit Kerja</th><td><div id="atasan_pejabat_unit_kerja">{INPUT_ATASAN_PEJABAT_UNIT_KERJA}</div></td></tr>
+      <tr class="subhead">
+		    <th colspan="2">Yang Dinilai</th>
+	    </tr>
+	    <tr>
+        <th>Nama</th>
+  	    <td>{NAMA}</td>
+      </tr>
+      <tr>
+        <th>NIP</th>
+  	    <td>{INPUT_NIP}</td>
+      </tr>
+      <tr>
+        <th>Nomor Seri Kartu Pegawai</th>
+  	    <td>{INPUT_NO_SERI}</td>
+      </tr>
+      <tr>
+        <th>Tanggal Lahir</th>
+  	    <td>{INPUT_TANGGAL_LAHIR}</td>
+      </tr>
+      <tr>
+        <th>Jenis Kelamin</th>
+  	    <td>{INPUT_JENIS_KELAMIN}</td>
+      </tr>
+      <tr>
+        <th>Pendidikan Tertinggi</th>
+  	    <td>{INPUT_PENDIDIKAN}</td>
+      </tr>
+      <tr>
+        <th>Pangkat dan Golongan/TMT</th>
+  	    <td>{INPUT_PANGKAT_GOLONGAN}</td>
+      </tr>
+      <tr>
+        <th>Jabatan Fungsional/TMT</th>
+  	    <td>{INPUT_JABATAN_FUNGSIONAL}</td>
+      </tr>
+     <tr>
+         <th >Unit Kerja</th>
+         <td>
+           {INPUT_UNIT_KERJA_LABEL}
+         </td>
+     </tr>  
+     <tr>
+         <th >Periode Awal Penilaian </th>
+         <td>
+           <!-- patTemplate:gtfwrendermodule module="tanggal" submodule="Tanggal" action="view" name="mulai" / -->
+         </td>
+      </tr>
+      <tr>
+         <th >Periode Akhir Penilaian </th>
+         <td>
+           <!-- patTemplate:gtfwrendermodule module="tanggal" submodule="Tanggal" action="view" name="selesai" / -->
+         </td>
+      </tr>
+	   <tr class="subhead">
+		  <th colspan="2">Penilaian</th>
+		 </tr>
+		 <tr>
+         <th >Kesetiaan</th>
+         <td>
+           <input type="text" name="kesetiaan" id="kesetiaan" value="{INPUT_KESETIAAN}"  size="15" />
+         </td>
+     </tr>
+     <tr>
+         <th >Prestasi Kerja</th>
+         <td>
+           <input type="text" name="prestasi_kerja" id="prestasi_kerja" value="{INPUT_PRESTASI_KERJA}"  size="15" />
+         </td>
+     </tr>
+     <tr>
+         <th >Tanggung Jawab</th>
+         <td>
+           <input type="text" name="tanggung_jawab" id="tanggung_jawab" value="{INPUT_TANGGUNG_JAWAB}"  size="15" />
+         </td>
+     </tr>  
+     <tr>
+         <th >Keataatan</th>
+         <td>
+           <input type="text" name="ketaatan" id="ketaatan" value="{INPUT_KETAATAN}"  size="15" />
+         </td>
+     </tr>
+     <tr>
+         <th >Kejujuran</th>
+         <td>
+           <input type="text" name="kejujuran" id="kejujuran" value="{INPUT_KEJUJURAN}"  size="15" />
+         </td>
+     </tr>
+     <tr>
+         <th >Kerjasama</th>
+         <td>
+           <input type="text" name="kerjasama" id="kerjasama" value="{INPUT_KERJASAMA}"  size="15" />
+         </td>
+     </tr>
+     <tr>
+         <th >Prakarsa</th>
+         <td>
+           <input type="text" name="prakarsa" id="prakarsa" value="{INPUT_PRAKARSA}"  size="15" />
+         </td>
+     </tr>
+     <tr>
+         <th >Kepemimpinan</th>
+         <td>
+           <input type="text" name="kepemimpinan" id="kepemimpinan" value="{INPUT_KEPEMIMPINAN}"  size="15" />
+         </td>
+     </tr>
+     <tr>
+         <th >Implementasi 7 Nilai Dasar Yayasan</th>
+         <td>
+           <input type="text" name="nilai_yayasan" id="nilai_yayasan" value="{INPUT_NILAI_YAYASAN}"  size="15" />
+         </td>
+     </tr>
+     <tr>
+         <th >Keberatan dari PNS yang dinilai</th>
+         <td>
+           <textarea name="keberatan" id="keberatan" cols="50" rows="5">{INPUT_KEBERATAN}</textarea>
+         </td>
+     </tr>
+     <tr>
+         <th >Tanggapan Pejabat Penilai Atas Keberatan</th>
+         <td>
+           <textarea name="tanggapan_keberatan" id="tanggapan_keberatan" cols="50" rows="5">{INPUT_TANGGAPAN_KEBERATAN}</textarea>
+         </td>
+     </tr>
+     <tr>
+         <th >Keputusan Atasan Pejabat Penilai</th>
+         <td>
+           <textarea name="keputusan_atasan" id="keputusan_atasan" cols="50" rows="5">{INPUT_KEPUTUSAN_ATASAN}</textarea>
+         </td>
+     </tr>
+     <tr>
+         <th >Lain-lain</th>
+         <td>
+           <textarea name="lain_lain" id="lain_lain" cols="50" rows="5">{INPUT_LAIN_LAIN}</textarea>
+         </td>
+     </tr>
+     <tr>
+         <th >Tanggal Dibuat</th>
+         <td>
+           <!-- patTemplate:gtfwrendermodule module="tanggal" submodule="Tanggal" action="view" name="tgl_buat" / -->
+         </td>
+      </tr>
+      <tr>
+         <th >Tanggal Diterima PNS </th>
+         <td>
+           <!-- patTemplate:gtfwrendermodule module="tanggal" submodule="Tanggal" action="view" name="tgl_pns" / -->
+         </td>
+      </tr>
+      <tr>
+         <th>Tanggal Diterima Atasan Pejabat Penilai </th>
+         <td>
+           <!-- patTemplate:gtfwrendermodule module="tanggal" submodule="Tanggal" action="view" name="tgl_diterima" / -->
+         </td>
+      </tr>
+     <tr class="buttons">
+         <th>&nbsp;</th>
+         <td>
+            <input type="hidden" name="dataId" value="{INPUT_ID}"  size="15" />
+            <input type="hidden" name="pegId" value="{INPUT_PEGID}"  size="15" />
+            <div style="display:none"><input name="btnsimpan" value="{LABEL_ACTION} " class="buttonSubmit" type="submit"></div>
+            <input name="btnsimpanbohong" value="{LABEL_ACTION} " class="buttonSubmit" type="button" onclick="konfirmasi();">
+            <input name="btnbatal" value="{BUTTON}" class="buttonSubmit" type="{TYPE}">
+         </td>
+      </tr>
+   </table>
+</form>
+<br />
+<br />
+
+<div class="pageBar">
+<!-- patTemplate:gtfwrendermodule module="paging" submodule="paging" action="view" name="paging_top"  / -->
+</div>
+<table class="table-common" width="100%">
+   <tr>
+      <th width="5px" >No</th>
+      <th>pejabat Penilai</th>
+  	  <th>Atasan Pejabat Penilai</th>
+  	  <th>Yang Dinilai</th>
+  	  <th>Periode Penilaian Awal</th>
+  	  <th>Periode Penilaian Akhir</th>
+  	  <th>Tanggal Penilaian</th>
+  	  <th>Tanggal Diterima Pejabat Penilai</th>
+      <th width="100px">Action</th>
+   </tr>
+   <!-- patTemplate:tmpl name="data" type="condition" conditionvar="DATA_EMPTY" -->
+      <!-- patTemplate:sub condition="YES" -->
+        <tr><td colspan="9" align="center"><em>-- Data not found --</em></td></tr>
+      <!-- /patTemplate:sub -->
+      <!-- patTemplate:sub condition="NO" -->
+         <!-- patTemplate:tmpl name="data_item" -->
+         <tr class="{DP4_CLASS_NAME}">
+            <td align="center">{DP4_NUMBER}</td>
+            <td align="center">{DP4_PEJABAT_PENILAI}</td>
+            <td align="left">{DP4_ATASAN_PEJABAT_PENILAI}</td>
+        	  <td align="left">{DP4_YANG_DINILAI}</td>
+        	  <td align="left">{DP4_MULAI}</td>
+        	  <td align="left">{DP4_SELESAI}</td>
+        	  <td align="left">{DP4_TANGGAL_PENILAIAN}</td>
+        	  <td align="left">{DP4_TANGGAL_DITERIMA}</td>
+            <td class="links">
+               <a class="xhr dest_subcontent-element" href="{DP4_URL_DETAIL}" title="Detail"><img src="images/button-detail.gif" alt="Detail"/></a>
+               <a class="xhr dest_subcontent-element" href="{DP4_URL_EDIT}" title="Edit"><img src="images/button-edit.gif" alt="Edit"/></a>
+               <a class="xhr dest_subcontent-element" href="{DP4_URL_DELETE}" title="Delete"><img src="images/button-delete.gif" alt="Delete"/></a>
+            </td>
+         </tr>
+         <!-- /patTemplate:tmpl -->
+      <!-- /patTemplate:sub -->
+   <!-- /patTemplate:tmpl -->
+</table>
+
+<!-- /patTemplate:tmpl -->
