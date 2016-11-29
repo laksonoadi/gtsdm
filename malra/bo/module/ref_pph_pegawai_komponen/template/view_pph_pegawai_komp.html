@@ -1,0 +1,135 @@
+<!-- patTemplate:tmpl name="content" -->
+<script language="javascript" type="text/javascript">
+	function centangin_semua(varname, start_num, end_num) {
+		var obj = document.getElementById('cek_all');
+		var ceks;
+		if(obj.checked == false) {
+			for(i=start_num;i<=end_num;i++) {
+				ceks = document.getElementById(varname + i);
+				if(ceks) ceks.checked = false;
+			}
+		} else {
+			for(i=start_num;i<=end_num;i++) {
+				ceks = document.getElementById(varname + i);
+				if(ceks) ceks.checked = true;
+			}
+		}
+	}
+	function show_checkbox () {
+		if(document.getElementById('cek_all'))
+			document.getElementById('cek_all').style.display='';
+	}
+	document.onload = show_checkbox();
+</script>
+<h1>Komponen Pph Pegawai</h1>
+<br />
+<form method="POST" action="{URL_SEARCH}" class="dataquest xhr_simple_form dest_subcontent-element" id="filterbox">
+   <table>
+      <tr>
+         <th colspan="2"><h2><strong>Pencarian</strong></h2></th>
+      </tr>
+	   <tr>              
+         <th width="30%">NIP</th>
+         <td><input type="text" name="nip" value="{NIP}" size="30" /></td>
+      </tr>
+      <tr>              
+         <th width="30%">Nama</th>
+         <td><input type="text" name="nama" value="{NAMA}" size="30" /></td>
+      </tr>
+	  <tr>
+         <th>Tahun Periode</th>
+         <td><!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="periode_tahun"  / --></td>
+      </tr>
+      <tr>
+         <th>&nbsp;</th>
+         <td>
+            <input type="submit" name="btncari" value=" Pencarian &raquo;" class="buttonSubmit"/>
+         </td>
+      </tr>
+   </table>
+</form>
+
+<br />
+   
+   <!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+   <div class="{CLASS_PESAN}">
+      {ISI_PESAN}
+   </div>
+   <!-- /patTemplate:tmpl -->
+
+   <br />
+   <form method="POST" action="{URL_DELETE}" class="xhr_form std_form" id="form_list">
+   <div class="pageBar">
+   <!-- patTemplate:gtfwrendermodule module="paging" submodule="paging" action="view" name="paging_top"  / -->
+		<div class="toolbar">
+		<a href="{URL_SPT_MASSAL}" title="print Spt Massal rtf" tabindex="2"><img src="images/button-simpan.gif" alt=""> Export</a>
+		</div>
+   </div>
+   <table class="table-common" width="1500px">
+		<tr>
+         <th width="50px" rowspan="2">No</th>
+		 <th width="100px" rowspan="2">Aksi</th>
+		 <th width="20px" rowspan="2">NIP</th>
+		 <th width="30px" rowspan="2">NPWP</th>
+		 <th width="100px" rowspan="2">Nama</th>
+		 <th colspan="12">Pajak Penghasilan per {PERIODE_TAHUN} (Rp)</th>
+		</tr>
+		<tr>
+			<th width="100px">Januari</th>
+			<th width="100px">Februari</th>
+			<th width="100px">Maret</th>
+			<th width="100px">April</th>
+			<th width="100px">Mei</th>
+			<th width="100px">Juni</th>
+			<th width="100px">Juli</th>
+			<th width="100px">Augustus</th>
+			<th width="100px">September</th>
+			<th width="100px">Oktober</th>
+			<th width="100px">November</th>
+			<th width="100px">Desember</th>
+	  </tr>
+      <!-- patTemplate:tmpl name="data_pph" type="condition" conditionvar="DATA_EMPTY" -->
+         <!-- patTemplate:sub condition="YES" -->
+         <tr><td colspan="17" align="center"><em>-- Data tidak ditemukan --</em></td></tr>
+         <!-- /patTemplate:sub -->
+         <!-- patTemplate:sub condition="NO" -->
+            <!-- patTemplate:tmpl name="data_pph_item" -->
+            <tr class="{DATA_CLASS_NAME}">
+               <td align="center">{DATA_NUMBER}</td>
+			   <td class="links" align="center">
+                  <a class="xhr dest_subcontent-element" href="{DATA_URL_EDIT}" title="Ubah"><img src="images/button-edit.gif" alt="Ubah"/></a>
+				  <a href="{DATA_URL_PRINT}" title="print spt rtf"><img src="images/button-print.gif" alt="Print"/></a>  				  
+               </td>
+			   <td>{DATA_NIP_PEGAWAI}</td>
+			   <td>{DATA_NPWP_PEGAWAI}</td>
+               <td>{DATA_NAMA_PEGAWAI}</td>
+			   <td align="right">{DATA_NOMINAL_JANUARI}</td> 
+			   <td align="right">{DATA_NOMINAL_FEBRUARI}</td> 
+			   <td align="right">{DATA_NOMINAL_MARET}</td> 
+			   <td align="right">{DATA_NOMINAL_APRIL}</td> 
+			   <td align="right">{DATA_NOMINAL_MEI}</td> 
+			   <td align="right">{DATA_NOMINAL_JUNI}</td> 
+			   <td align="right">{DATA_NOMINAL_JULI}</td> 
+			   <td align="right">{DATA_NOMINAL_AGUSTUS}</td> 
+			   <td align="right">{DATA_NOMINAL_SEPTEMBER}</td> 
+			   <td align="right">{DATA_NOMINAL_OKTOBER}</td> 
+			   <td align="right">{DATA_NOMINAL_NOVEMBER}</td> 
+			   <td align="right">{DATA_NOMINAL_DESEMBER}</td>   
+            </tr>
+            <!-- /patTemplate:tmpl -->
+         <!-- /patTemplate:sub -->
+      <!-- /patTemplate:tmpl -->
+   </table>
+   </form>
+   <br /> 
+
+   <div class="petunjuk-area">
+      <h4>Petunjuk:</h4>
+      <ul>
+		 <li><img src="images/button-simpan.gif"/> = Mencetak daftar komponen pajak dalam format Rtf</li>
+		 <li><img src="images/button-print.gif"/> = Cetak komponen pajak dalam format Rtf</li>
+		 <li><img src="images/button-edit.gif"/> = Klik untuk mengelola komponen pajak penghasilan</li>
+      </ul>
+   </div>
+
+<!-- /patTemplate:tmpl -->

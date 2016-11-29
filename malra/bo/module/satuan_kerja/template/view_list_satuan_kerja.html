@@ -1,0 +1,87 @@
+<!-- patTemplate:tmpl name="content" -->
+<div class="background-blue padding-10 text-big">REFERENSI SATUAN KERJA</div>
+<div class="padding-10">
+
+<div class="panel panel-default">
+    <div class="panel-heading text-big"><strong>Pencarian Data</strong></div>
+    <div class="panel-body">
+        <form method="POST" action="{URL_SEARCH}" class="form-horizontal xhr_simple_form dest_subcontent-element" id="filterbox" role="form">
+            <div class="form-group">
+                <label for="nip" class="col-sm-2 control-label">Kata Kunci</label>
+                <div class="col-sm-10">
+                    <input type="text" name="input" value="{INPUT}">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <input type="hidden" name="btncari" value=" Cari &raquo;" class="buttonSubmit"/>
+                    <button type="submit" class="btn btn-default btn-xs">Cari <span class="glyphicon glyphicon-search"></span></button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="{CLASS_PESAN}">
+            {ISI_PESAN}
+        </div>
+    </div>
+</div>
+<!-- /patTemplate:tmpl -->
+
+<div class="row push-down-10">
+    <div class="col-md-6">
+        <!-- patTemplate:gtfwrendermodule module="paging" submodule="paging" action="view" name="paging_top"  / -->
+    </div>
+    <div class="col-md-6 text-right">
+        <div class="btn-group">
+                <a class="xhr dest_subcontent-element btn btn-xs btn-warning" href="{URL_KEMBALI}" title="Kembali" tabindex="2">
+                    <span class="glyphicon glyphicon-circle-arrow-left"></span> Kembali
+                </a>
+                <a class="xhr dest_subcontent-element btn btn-xs btn-info" href="{URL_ADD}" title="Tambah" tabindex="2">
+                    <span class="glyphicon glyphicon-plus"></span> Tambah
+                </a>
+        </div>
+    </div>
+</div>
+
+<div class="table-responsive">
+<table class="table table-bordered table-hover">
+      <tr>
+         <th width="5">No</th>
+         <th>Unit</th>
+         <th>Nama Unit</th>
+		 <th width="20%">Aksi</th>
+      </tr>
+      <!-- patTemplate:tmpl name="view_satker" type="condition" conditionvar="IS_EMPTY" -->
+         <!-- patTemplate:sub condition="YES" -->
+         <tr><td colspan="4" align="center"><em>-- Data tidak ditemukan --</em></td></tr>
+         <!-- /patTemplate:sub -->
+         <!-- patTemplate:sub condition="NO" -->
+            <!-- patTemplate:tmpl name="list_satker" -->
+            <tr class="{CLASS_NAME}">
+               <td align="center">{NUMBER}</td>
+               <td>{UNITNAME}</td>
+               <td>{SATKERNAMA}</td>
+                <td>
+                    <div class="btn-group">
+                            <a class="xhr dest_subcontent-element btn btn-xs btn-success" href="{URL_UBAH}" title="Ubah">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                            </a>
+                            <a class="xhr dest_subcontent-element btn btn-xs btn-danger" onClick="javascript: return showBoxConfirmDelete('{SATKERID}', '{SATKERNAMA}', '{URL_DELETE_JS}');" href="{URL_DELETE}" title="Hapus">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </a> 
+                    </div>
+                </td>
+            </tr>
+            <!-- /patTemplate:tmpl -->
+         <!-- /patTemplate:sub -->
+      <!-- /patTemplate:tmpl -->
+   </table>
+</div>
+
+</div>
+<!-- /patTemplate:tmpl -->

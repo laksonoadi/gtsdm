@@ -1,0 +1,45 @@
+<!-- patTemplate:tmpl name="content" -->
+<h1>Manajemen Layout Grafik</h1>
+<br/>
+<!-- patTemplate:tmpl name="err" visibility="hidden" -->
+<div class="notebox-warning">
+   Judul Grafik harus diisi
+</div>
+<!-- /patTemplate:tmpl -->
+<form class="xhr_form std_form" name="frmUser" method="post" action="<!-- patTemplate:gtfwgeturl 
+   module="report" sub="{SUB_MODULE}" action="do" type="html" / -->">
+ <table class="table-edit" width="100%">
+      <tr class="subhead">
+         <th colspan="2">{SUB} Layout Grafik</th>
+      </tr>
+   <tr>
+     <th>Judul Grafik *</th>
+     <td><input name="judul" value="{GRAPHIC_JUDUL}" size="60"></td>
+   </tr>
+   <tr>
+     <th>Table/Grafik</th>
+     <td><select name="tabel">
+      <!-- patTemplate:tmpl name="list_table" -->
+      <option value="{TABLE_ID}" {SELECT}>{TABLE_NAMA}
+      <!-- /patTemplate:tmpl -->
+     </select></td>
+   </tr>
+   <tr>
+     <th>Layout</th>
+     <td><select name="layout">
+      <!-- patTemplate:tmpl name="list_layout" -->
+      <option value="{LAYOUT_ID}" {SELECT}>{LAYOUT_JUDUL}
+      <!-- /patTemplate:tmpl -->
+     </select></td>
+   </tr>
+	<tr class="buttons">
+     <td>&nbsp;</td>
+     <td>
+       <input name="graph_id" type="hidden" value="{GRAPHIC_ID}">
+       <input name="simpan" type="submit" value="Simpan" class="buttonSubmit" />
+		 <input name="batal" type="submit" value="Batal"  class="buttonSubmit" />
+     </td>
+   </tr>
+ </table>
+</form>
+<!-- /patTemplate:tmpl -->

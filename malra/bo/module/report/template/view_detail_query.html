@@ -1,0 +1,53 @@
+<!-- patTemplate:tmpl name="content" -->
+<h1>Manajemen Query</h1>
+<br/>
+ <table class="table-details">
+   <tr class="subhead">
+      <th colspan="3">Data Query</th>
+   </tr>
+   <tr>
+     <th width="20%">Nama</th>
+     <td>{QUERY_NAMA}</td>
+   </tr>
+   <tr>
+     <th>Deskripsi</th>
+     <td>{QUERY_DESC}</td>
+   </tr>
+   <tr>
+     <th>Query</th>
+   	 <script language="Javascript" type="text/javascript">
+   		// initialisation
+		
+   		editAreaLoader.init({
+   			id: "query"	// id of the textarea to transform		
+   			,start_highlight: true	// if start with highlight
+   			,allow_resize: "both"
+            ,replace_tab_by_spaces:3
+            ,is_editable: false
+   			,allow_toggle: false
+   			,language: "en"
+   			,syntax: "sql"	
+   		});	
+		
+   	 </script>
+     <td>
+          <textarea id="query" name="query" cols="100%" rows="15">{QUERY_SQL}</textarea>
+      </td>
+   </tr>
+   <tr>
+     <th>Parameter Default</th>
+     <td>{QUERY_PARAM}</td>
+   </tr>
+<!--   <tr>
+     <th>Nama Database</th>
+     <td>{QUERY_DATABASE}</td>
+   </tr>-->
+</table>
+<br>
+<div class="pageBar">
+   <div class="toolbar" >
+      <a class="xhr dest_subcontent-element" href="{BALIK}" title="Kembali"> Kembali </a> 	
+   </div>
+</div>
+  
+<!-- /patTemplate:tmpl -->

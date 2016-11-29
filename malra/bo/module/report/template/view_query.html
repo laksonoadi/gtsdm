@@ -1,0 +1,84 @@
+<!-- patTemplate:tmpl name="content" -->
+<h1>Manajemen Query</h1>
+<br/>
+<form method="POST" action="{URL_SEARCH}" class="dataquest xhr_simple_form dest_subcontent-element" id="filterbox">
+   <table>
+      <tr>
+         <th colspan="2"><h2><strong>Pencarian</strong></h2></th>
+      </tr>
+	  <tr>
+		  <th width="20%">Nama Query</td>
+		  <td><input size="40" name="kunci" type="text" value="{KUNCI}"></td>
+	  </tr>
+      <tr>
+         <th>&nbsp;</th>
+         <td>
+            <input type="submit" name="btncari" value=" Tampilkan &raquo;" class="buttonSubmit"/>
+         </td>
+      </tr>
+   </table>
+</form>
+<br/>
+
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+   {ISI_PESAN}
+</div>
+<!-- /patTemplate:tmpl -->
+<br/>
+
+<div class="pageBar">
+   <!-- patTemplate:gtfwrendermodule module="paging" submodule="paging" action="view" name="paging_top"  / -->
+   <div class="toolbar"> 
+      
+		<a class="xhr dest_subcontent-element" href="{URL_ADD}" title="Tambah" tabindex="2">
+      <img src="images/button-add.gif" alt=""> Tambah</a> 	
+      
+   </div>
+</div>
+
+
+<table class="table-common" width="100%">
+  <tr>
+    <th width="5%" height="21"> No. </th>
+    <th> Nama Query </th>              
+  	 <th width="130"> Aksi </th>
+  </tr>
+<!-- patTemplate:tmpl name="data_query" type="condition" conditionvar="QUERY" -->
+   <!-- patTemplate:sub condition="ADA" -->
+     <!-- patTemplate:tmpl name="list_query" -->
+     <tr class="{CLASS}">
+       <td>{NO}</td>
+       <td>{QUERY_NAMA}</td>
+       <td class="links">
+        
+         <a class="xhr dest_subcontent-element" href="<!-- patTemplate:gtfwgeturl module="report" sub="runQuery" 
+            action="view" type="html" / -->&que_id={QUERY_ID}" title="Jalankan query">
+            <img src="images/button-bukubuka.gif" alt="Jalankan Query" />
+         </a>
+        
+        
+         <a class="xhr dest_subcontent-element" href="<!-- patTemplate:gtfwgeturl module="report" sub="detailQuery" 
+            action="view" type="html" / -->&que_id={QUERY_ID}" title="Detil"><img src="images/button-detail.gif" 
+            alt="Detil" />
+         </a>
+        
+        
+         <a class="xhr dest_subcontent-element" href="{URL_EDIT}" title="Ubah">
+         <img src="images/button-edit.gif" alt="Ubah"/></a>
+        
+        
+         <a class="xhr dest_subcontent-element" href="{URL_DELETE}" title="Hapus">
+         <img src="images/button-delete.gif" alt="Hapus"/></a>
+         
+       </td>
+     </tr>
+     <!-- /patTemplate:tmpl -->					
+   <!-- /patTemplate:sub -->
+   <!-- patTemplate:sub condition="KOSONG" -->
+   <tr><td colspan="3" align="center"> <i>-- data tidak ditemukan --</i> </td></tr>
+	<!-- /patTemplate:sub -->
+<!-- /patTemplate:tmpl -->
+</table>
+
+<!-- /patTemplate:tmpl -->

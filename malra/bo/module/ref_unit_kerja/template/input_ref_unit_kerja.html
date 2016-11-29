@@ -1,0 +1,63 @@
+<!-- patTemplate:tmpl name="content" -->
+<div class="background-blue padding-10 text-big">{TITLE}</div>
+<div class="padding-10">
+
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="{CLASS_PESAN}">
+            {ISI_PESAN}
+        </div>
+    </div>
+</div>
+<!-- /patTemplate:tmpl -->
+
+<form method="POST" action="{URL_ACTION}" id="frmInput" name="frmInput" class="xhr_form std_form" enctype="multipart/form-data">
+	<input type="hidden" name="dataId" value="{DATAID}" />
+    <div class="table-responsive">
+        <table class="table">
+        <tr class="background-blue-light">
+			<th colspan="2">{JUDUL}</th>
+		</tr>
+		<tr>
+			<th width="150">Nama Unit Kerja *</th>
+			<td>
+				<div class="row">
+					<div class="col-sm-4">
+						<input type="text" class="form-control" name="nama" value="{NAMA}" >
+					</div>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<th>Deskripsi</th>
+			<td>
+				<div class="row">
+					<div class="col-sm-5 col-md-4">
+						<textarea class="form-control" name="deskripsi" rows="3">{DESKRIPSI}</textarea>
+					</div>
+				</div>
+			</td>
+		</tr>
+        <tr class="background-blue-light">
+			<th>&nbsp;</th>
+			<td>
+                <div class="btn-group">
+                    <input type="submit" name="btnsimpan" value="{BUTTONLABEL}" class="btn btn-info btn-xs"/>
+                    <a href="{URL_KEMBALI}" class="xhr dest_subcontent-element btn btn-warning btn-xs">Batal</a>
+                </div>
+			</td>
+		</tr>
+        </table>
+    </div>
+</form>
+
+<div class="petunjuk-area">
+   <h4>Petunjuk:</h4>
+   <ul>
+      <li>Tanda * menunjukkan bahwa field tersebut harus diisi .</li>
+   </ul>
+</div>
+
+</div>
+<!-- /patTemplate:tmpl -->

@@ -1,0 +1,237 @@
+<!-- patTemplate:tmpl name="content" -->
+<h1>Management of Employee Income Tax 21 </h1>
+<br/>
+	<form method="POST" action="{URL_ACTION}" class="xhr_form std_form" id="frmInput" name="frmInput" >		
+		<table class="table-edit" width="800px">
+			<tr class="subhead">
+				<th colspan="2">Employee Income Tax 21 Data</th>
+			</tr>
+			<tr>
+				<th width="160">Name</th>
+				<td>{NAMA_PEGAWAI}</td>	
+			</tr>
+			<!--<tr>
+				<th width="160">Availibility NPWP Status</th>
+				<td>{STATUSNPWP_PEGAWAI}</td>	
+			</tr>-->
+			<tr>
+				<th width="160">NPWP</th>
+				<td>{NPWP_PEGAWAI}</td>	
+			</tr>
+			<tr>
+				<th width="160">Sex</th>
+				<td>{JNSKEL_PEGAWAI}</td>	
+			</tr>
+			<tr>
+				<th width="160">Length of Service This Year</th>
+				<td>{MASA_KERJA}</td>
+			</tr>
+			<tr>              
+				 <th>Salary Period</th>
+				 <td><!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="periode_bulan" / -->
+				 <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="periode_tahun" / --></td>
+				 <script>
+					document.forms['frmInput'].update_form = function(){
+						var ObjBulan = this.periode_bulan;
+						var ObjTahun = this.periode_tahun;
+						this.action = "{URL_UPDATE}&ascomponent=1&periode_bulan="+ObjBulan.value+"&periode_tahun="+ObjTahun.value;
+						GtfwAjax.replaceContentWithUrl('subcontent-element', this.action);
+				   }
+				  </script>   
+		    </tr>	
+			<tr>
+				<th width="160">Income Component</th>
+					<td>
+						<table class="table-common" width="100%">
+							<tr>
+								<th width="20">No</th>
+								<th width="200">Income Component Name</th>
+								<th width="80">Income Component Formula </th>
+								<th width="150">Nominal (Rp)</th>
+								<th width="150">Annual Nominal Per {MASA_KERJA} (Rp)</th>
+							</tr>
+								<!-- patTemplate:tmpl name="data_formula" type="condition" conditionvar="DATA_EMPTY" -->
+								<!-- patTemplate:sub condition="YES" -->
+							<tr>
+								<td colspan="5" align="center"><em>-- Data not found --</em></td>
+							</tr>
+								<!-- /patTemplate:sub -->
+								<!-- patTemplate:sub condition="NO" -->
+								<!-- patTemplate:tmpl name="data_pph_item" -->
+							<tr class="{DATA_CLASS_NAME}">
+								<td align="center">{DATA_NUMBER}.</td>
+								<td>{DATA_NAMA_FORMULA}</td>
+								<td>{DATA_KOMPONEN_FORMULA}</td>
+								<td align="right">{DATA_NOMINAL_KOMPONEN}</td>
+								<td align="right">{DATA_NOMINAL_TAHUN_KOMPONEN}</td>
+								<!-- /patTemplate:tmpl -->
+								<!-- /patTemplate:sub -->
+								<!-- /patTemplate:tmpl -->
+							</tr>
+							<tr>
+								<td colspan="3" align="right"><b>Total</b></td>
+								<td align="right"><b>{TOTAL_NOMINAL}</b></td>
+								<td align="right"><b>{TOTAL_NOMINAL_TAHUN}</b></td>
+							</tr>
+						</table>
+					</td>
+			</tr> 
+			<tr>
+				<th width="160">Tax Free Income Component</th>
+					<td>
+						<table class="table-common" width="100%">
+							<tr>
+								<th width="20">No</th>
+								<th width="200">Tax Free Income Component Name</th>
+								<th width="80">Tax Free Income Component Code</th>
+								<th width="150">Nominal (Rp)</th>
+								<th width="150">Annual Nominal Per {MASA_KERJA} (Rp)</th>
+							</tr>
+								<!-- patTemplate:tmpl name="data_komponen_ptkp" type="condition" conditionvar="DATA_EMPTY" -->
+								<!-- patTemplate:sub condition="YES" -->
+							<tr>
+								<td colspan="5" align="center"><em>-- Data not found --</em></td>
+							</tr>
+								<!-- /patTemplate:sub -->
+								<!-- patTemplate:sub condition="NO" -->
+								<!-- patTemplate:tmpl name="data_komponen_ptkp_item" -->
+							<tr class="{DATA_KOMPONEN_PTKP_CLASS_NAME}">
+								<td align="center">{DATA_KOMPONEN_PTKP_NUMBER}.</td>
+								<td>{DATA_KOMPONEN_PTKP_NAMA}</td>
+								<td>{DATA_KOMPONEN_PTKP_KODE}</td>
+								<td align="right">{DATA_KOMPONEN_PTKP_NOMINAL}</td>
+								<td align="right">{DATA_KOMPONEN_PTKP_NOMINAL_TAHUN}</td>
+								<!-- /patTemplate:tmpl -->
+								<!-- /patTemplate:sub -->
+								<!-- /patTemplate:tmpl -->
+							</tr>
+							<tr>
+								<td colspan="3" align="right"><b>Total</b></td>
+								<td align="right"><b>{TOTAL_KOMPONEN_PTKP_NOMINAL}</b></td>
+								<td align="right"><b>{TOTAL_KOMPONEN_PTKP_NOMINAL_TAHUN}</b></td>
+							</tr>
+						</table>
+					</td>
+			</tr>  
+		</table>
+
+   <br/>
+	
+	<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+	<div class="{CLASS_PESAN}">
+      {ISI_PESAN}
+	</div>
+	<br/>
+	<!-- /patTemplate:tmpl -->
+	
+	
+		<table class="table-edit" width="800px">
+			   <input type="hidden" name="dataId" value="{DATAID}"  />
+			   <input type="hidden" name="statusnpwp" value="{STATUSNPWP}"  />
+			   <input type="hidden" name="kelamin" value="{KELAMIN}"  />
+			   <input type="hidden" name="potId" value="{POTID}"  />
+			   <input type="hidden" name="page" value="{PAGE}"  />
+			   <input type="hidden" name="id_pegawai" value="{ID_PEGAWAI}"/>
+			   <input type="hidden" name="nominal" value="{TOTAL_NOMINAL}"/>
+			   <input type="hidden" name="nama" value="{NAMA_PEGAWAI}"/>
+			<tr class="subhead"> 
+				<th colspan="2">Add Income Deduction Component</th>
+		    </tr>
+			<tr>
+	            <th width="150">Income Deduction Component</th>
+	            <td><!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="formula"  / --> *</td>
+	        </tr>
+			<tr class="buttons">
+				<th>&nbsp;</th>
+	            <td>
+	               <input type="submit" name="btnsimpan" value=" Add " class="buttonSubmit"/>
+	               <a class="xhr dest_subcontent-element" href="{URL_BACK}"><input name="back" value="Back" type="submit"></a></td>
+	            </td>
+	        </tr>
+		</table>
+	</form>
+
+   <br/>
+   <h3>Saved Income Deduction Component</h3>
+   <br />
+   <h4><i>NPWP Availibility Status at this {PERIODE_BULAN}, {PERIODE_TAHUN} : {STATUS_NPWP}</i></h4>
+   <br/>
+	<form method="POST" action="{URL_DELETE_RINCIAN}" class="xhr_form std_form" id="frmInput" >
+		<table class="table-common" width="600px">
+			<tr>
+				<th width="20">NO.</th>
+				<th width="300">INCOME DEDUCTION COMPONENT NAME</th>
+				<th width="100">NOMINAL (Rp)</th>
+				<th width="100">ANNUAL NOMINAL PER {MASA_KERJA} (Rp)</th>
+				<th width="20">ACTION</th>
+			</tr>
+				<!-- patTemplate:tmpl name="data_rincian" type="condition" conditionvar="DATA_EMPTY" -->
+				<!-- patTemplate:sub condition="YES" -->
+			<tr>
+				<td colspan="5" align="center"><em>-- Data not found --</em></td>
+			</tr>
+				<!-- /patTemplate:sub -->
+				<!-- patTemplate:sub condition="NO" -->
+				<!-- patTemplate:tmpl name="data_rincian_item" -->
+			<tr class="{DATA_CLASS_NAME}">
+				<td align="center">{DATA_NUMBER}.</td>
+				<td>{DATA_KOMP_FORM_NAMA}</td>
+				<td align="right">{DATA_NOMINAL_KOMP_PEG}</td>
+				<td align="right">{DATA_NOMINAL_TAHUN_KOMP_PEG}</td>
+				<td align="center"><a class="xhr dest_subcontent-element" href="{DATA_URL_DELETE}" title="Delete"><img src="images/button-delete.gif" alt="Delete"/></a></td>
+				<!-- /patTemplate:tmpl -->
+				<!-- /patTemplate:sub -->
+				<!-- /patTemplate:tmpl -->
+			</tr>
+			<tr>
+				<td colspan="2" align="right"><b>Total</b></td>
+				<td align="right"><b>{TOTAL_NOMINAL_RINCIAN}</b></td>
+				<td align="right"><b>{TOTAL_NOMINAL_TAHUN_RINCIAN}</b></td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr><td colspan="2">&nbsp;</td><td colspan="3">&nbsp;</td></tr>
+			<!-- patTemplate:tmpl name="status_npwp" type="condition" conditionvar="STATUS" -->
+			<!-- patTemplate:sub condition="YES" -->
+			<!-- patTemplate:tmpl name="nominal_pajak_dengan_npwp" -->
+			<tr>
+				<td colspan="2" align="right">Monthly Income Tax Nominal</td>
+				<td align="right" colspan="3"><b>{POT_PERBL}</b></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="right">Annual Income Tax Nominal Per {MASA_KERJA}</td>
+				<td align="right" colspan="3"><b>{POT_PERTH}</b></td>
+			</tr>
+			<!-- /patTemplate:tmpl -->
+			<!-- /patTemplate:sub -->
+			<!-- patTemplate:sub condition="NO" -->
+			<!-- patTemplate:tmpl name="nominal_pajak_tanpa_npwp" -->
+			<tr>
+				<td colspan="2" align="right">Monthly Income Tax Nominal</td>
+				<td align="right" colspan="3"><b>{POT_PERBL}</b></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="right">Additional Tax (20% x Monthly Income Tax Nominal)</td>
+				<td align="right" colspan="3"><b>{POT_PERBL_NO_NPWP}</b></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="right">Total Monthly Income Tax Nominal</td>
+				<td align="right" colspan="3"><b>{POT_PERBL_TOTAL}</b></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="right">Annual Income Tax Nominal Per {MASA_KERJA}</td>
+				<td align="right" colspan="3"><b>{POT_PERTH}</b></td>
+			</tr>
+			<!-- /patTemplate:tmpl -->
+			<!-- /patTemplate:sub -->
+			<!-- /patTemplate:tmpl -->
+		</table>
+	</form>
+   
+	<div class="petunjuk-area">
+		<h4>Notification:</h4>
+		<ul>
+			<li>* is mandatory to be filled. </li>
+			<li><img src="images/button-delete.gif"/> = delete current employee income tax component detail</li>
+		</ul>
+	</div>
+<!-- /patTemplate:tmpl -->

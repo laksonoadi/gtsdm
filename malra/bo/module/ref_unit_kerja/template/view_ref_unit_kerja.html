@@ -1,0 +1,110 @@
+<!-- patTemplate:tmpl name="content" -->
+<div class="background-blue padding-10 text-big">{TITLE}</div>
+<div class="padding-10">
+
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="{CLASS_PESAN}">
+            {ISI_PESAN}
+        </div>
+    </div>
+</div>
+<!-- /patTemplate:tmpl -->
+
+<div class="panel panel-default">
+    <div class="panel-heading text-big"><strong>Pencarian Data</strong></div>
+    <div class="panel-body">
+        <form method="GET" action="{URL_SEARCH}" class="form-horizontal xhr_simple_form dest_subcontent-element" id="filterbox" role="form">
+            <div class="form-group">
+                <label for="inputNama" class="col-sm-2 control-label">Unit Kerja</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" name="nama" value="{NAMA}" size="30" id="inputNama"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-default btn-xs">Cari <span class="glyphicon glyphicon-search"></span></button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div id="form-additional">
+</div>
+
+<form method="POST" action="{URL_DELETE}" id="form_list" name="form_list" class="xhr_simple_form dest_subcontent-element" >
+
+<div class="row push-down-10">
+    <div class="col-md-6">
+        <!-- patTemplate:gtfwrendermodule module="paging" submodule="paging" action="view" name="paging_top"  / -->
+    </div>
+    <div class="col-md-6 text-right">
+        <div class="btn-group">
+            <a class="xhr dest_subcontent-element btn btn-primary btn-xs" href="{URL_ADD}" title="Tambah"><span class="glyphicon glyphicon-plus"></span>&nbsp;Tambah</a>
+            <input type="submit" id="btnHapus" name="btnHapus" value="Hapus" class="btn btn-danger btn-xs" />
+        </div>
+    </div>
+</div>
+
+<div class="table-responsive">
+<table class="table table-bordered table-hover">
+   <tr>
+      <th width="1%"><input type="checkbox" name="cek_all" id="cek_all" value="ALL" onclick="checkAll.call(this);" /></th>
+      <th width="1%">No</th>
+      <th width="73px">Aksi</th>
+      <th>Unit Kerja</th>
+      <th>Deskripsi</th>
+   </tr>
+   <!-- patTemplate:tmpl name="data" type="condition" conditionvar="DATA_EMPTY" -->
+      <!-- patTemplate:sub condition="YES" -->
+         <tr><td colspan="5" align="center"><em>-- Data tidak ditemukan --</em></td></tr>
+      <!-- /patTemplate:sub -->
+      <!-- patTemplate:sub condition="NO" -->
+         <!-- patTemplate:tmpl name="data_item" -->
+         <tr class="{CLASS_NAME}">
+            <td>
+				<input type="checkbox" name="id[]" id="id_{NO}" value="{ENCID}" /> 
+				<input type="hidden" name="name[{ENCID}]" value="{NAMA}" />
+			</td>
+            <td align="center">{NO}</td>
+            <td class="links" align="center">
+                <div class="btn-group">
+                    <a class="xhr dest_subcontent-element btn btn-success btn-xs" href="{URL_UPDATE}" title="Ubah">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                    </a>
+                    <a class="xhr dest_subcontent-element btn btn-danger btn-xs" href="{URL_DELETE}" title="Hapus">
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </a>
+                </div>
+            </td>
+            <td>{NAMA}</td>
+            <td>{DESKRIPSI}</td>
+         </tr>
+         <!-- /patTemplate:tmpl -->
+      <!-- /patTemplate:sub -->
+   <!-- /patTemplate:tmpl -->
+</table>
+</form>
+
+</div>
+
+<script language="javascript" type="text/javascript">
+var checkAll=function(){
+	var obj = document.forms['form_list'].elements['id[]'];
+	if(obj){
+		var checked = this.checked;
+		if(obj.length){
+			for(var i=0,m=obj.length;i<m;++i){
+				obj[i].checked = checked;
+			}
+		}else obj.checked = checked;
+	}
+};
+var showContentFile=function(url){
+	var title = this.title.replace('Detail ', '');
+	showPopup(url, 'Preview File ' . title, 800, 600);
+};
+</script>
+<!-- /patTemplate:tmpl -->

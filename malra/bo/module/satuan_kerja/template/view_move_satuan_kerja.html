@@ -1,0 +1,104 @@
+<!-- patTemplate:tmpl name="content" -->
+<style>
+.jstree li[rel="item-disabled"] > a {
+    background-color: #ffa;
+    border-color: #ee9;
+    color: #333;
+}
+</style>
+
+<!--<h1>{LABEL_TITLE}</h1>-->
+
+<div class="background-blue padding-10 text-big">{TITLE}</div>
+<div class="padding-10">
+
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="notebox-alert">
+            {ISI_PESAN}
+        </div>
+    </div>
+</div>
+<!-- /patTemplate:tmpl -->
+
+<form method="POST" class="xhr_form std_form" action="{URL_ACTION}" id="frm_input" name="frm_input" >
+   <table class="table">
+        <!-- patTemplate:tmpl name="satker_ids" -->
+        <input type="hidden" name="satkerIds[]" value="{ID}" />
+        <!-- /patTemplate:tmpl -->
+	  
+		<tr class="background-blue-light">
+			<th colspan="2">Referensi Satuan Kerja</th>
+		</tr>
+		<tr>
+			<th width="25%">Pilih Induk</th>
+			<td>
+				<div id="satker_tree" class="jstree-ui" style="display:none;">
+                    <ul>
+                        <li id="satker_item_0">
+                            <input type="radio" name="parentId" class="jstree-checkbox-raw" value="0" />
+                            <a>&lt;Level Paling Atas&gt;</a>
+                            {SATKER_TREE_STR}
+                        </li>
+                    </ul>
+                </div>
+			</td>
+		</tr>
+		
+		<tr class="background-blue-light">
+            <th></th>
+            <td>
+                <div class="btn-group">
+                    <input type="submit" name="btnsimpan" value="Simpan" class="btn btn-info btn-xs"/>
+                    <a class="xhr dest_subcontent-element btn btn-warning btn-xs" href="{URL_BACK}">Batal</a>
+                </div>
+            </td>
+		</tr>
+   </table>
+</form>
+
+</div>
+
+<script>
+    setTimeout(function(){
+        $("#satker_tree").hide().bind("loaded.jstree", function(e, data){
+            $(this).show();
+        }).jstree({
+            "plugins" : [ "themes", "html_data", "ui", "types" ],
+            "core" : {
+                "animation" : 0,
+            },
+            "themes" : {
+                "theme" : "classic",
+                "icons" : false,
+                "dots" : true,
+            },
+            "ui" : {
+                "select_limit" : 1,
+                "selected_parent_close" : "select_parent",
+                "selected_parent_open" : true,
+                "initially_select": [
+                    <!-- patTemplate:tmpl name="satker_opento" -->
+                    "satker_item_{ID}",
+                    <!-- /patTemplate:tmpl -->
+                ],
+            },
+            "types" : {
+                "type_attr" : "rel",
+                "types" : {
+                    "item-disabled" : {
+                        "select_node" : false,
+                        "open_node" : true,
+                        "close_node" : true,
+                        "create_node" : false,
+                        "delete_node" : false,
+                        "hover_node" : false,
+                    },
+                },
+            },
+        });
+    }, 10);
+</script>
+
+<!-- /patTemplate:tmpl --> 

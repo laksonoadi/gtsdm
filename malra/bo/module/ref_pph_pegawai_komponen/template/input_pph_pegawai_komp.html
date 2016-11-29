@@ -1,0 +1,237 @@
+<!-- patTemplate:tmpl name="content" -->
+<h1>Komponen Pph</h1>
+<br/>
+	<form method="POST" action="{URL_ACTION}" class="xhr_form std_form" id="frmInput" name="frmInput" >		
+		<table class="table-edit" width="800px">
+			<tr class="subhead">
+				<th colspan="2">Data Pajak Penghasilan</th>
+			</tr>
+			<tr>
+				<th width="160">Nama</th>
+				<td>{NAMA_PEGAWAI}</td>	
+			</tr>
+			<!--<tr>
+				<th width="160">Availibility NPWP Status</th>
+				<td>{STATUSNPWP_PEGAWAI}</td>	
+			</tr>-->
+			<tr>
+				<th width="160">NPWP</th>
+				<td>{NPWP_PEGAWAI}</td>	
+			</tr>
+			<tr>
+				<th width="160">Jenis Kelamin</th>
+				<td>{JNSKEL_PEGAWAI}</td>	
+			</tr>
+			<tr>
+				<th width="160">Masa Kerja </th>
+				<td>{MASA_KERJA}</td>
+			</tr>
+			<tr>              
+				 <th>Periode Gaji</th>
+				 <td><!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="periode_bulan" / -->
+				 <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="periode_tahun" / --></td>
+				 <script>
+					document.forms['frmInput'].update_form = function(){
+						var ObjBulan = this.periode_bulan;
+						var ObjTahun = this.periode_tahun;
+						this.action = "{URL_UPDATE}&ascomponent=1&periode_bulan="+ObjBulan.value+"&periode_tahun="+ObjTahun.value;
+						GtfwAjax.replaceContentWithUrl('subcontent-element', this.action);
+				   }
+				  </script>   
+		    </tr>	
+			<tr>
+				<th width="160">Komponen Pendapatan</th>
+					<td>
+						<table class="table-common" width="100%">
+							<tr>
+								<th width="20">No</th>
+								<th width="200">Nama Komponen Pendapatan</th>
+								<th width="80">Formula Komponen Pendapatan </th>
+								<th width="150">Nominal (Rp)</th>
+								<th width="150">Nominal Tahunan Per {MASA_KERJA} (Rp)</th>
+							</tr>
+								<!-- patTemplate:tmpl name="data_formula" type="condition" conditionvar="DATA_EMPTY" -->
+								<!-- patTemplate:sub condition="YES" -->
+							<tr>
+								<td colspan="5" align="center"><em>-- Data tidak ditemukan --</em></td>
+							</tr>
+								<!-- /patTemplate:sub -->
+								<!-- patTemplate:sub condition="NO" -->
+								<!-- patTemplate:tmpl name="data_pph_item" -->
+							<tr class="{DATA_CLASS_NAME}">
+								<td align="center">{DATA_NUMBER}.</td>
+								<td>{DATA_NAMA_FORMULA}</td>
+								<td>{DATA_KOMPONEN_FORMULA}</td>
+								<td align="right">{DATA_NOMINAL_KOMPONEN}</td>
+								<td align="right">{DATA_NOMINAL_TAHUN_KOMPONEN}</td>
+								<!-- /patTemplate:tmpl -->
+								<!-- /patTemplate:sub -->
+								<!-- /patTemplate:tmpl -->
+							</tr>
+							<tr>
+								<td colspan="3" align="right"><b>Total</b></td>
+								<td align="right"><b>{TOTAL_NOMINAL}</b></td>
+								<td align="right"><b>{TOTAL_NOMINAL_TAHUN}</b></td>
+							</tr>
+						</table>
+					</td>
+			</tr> 
+			<tr>
+				<th width="160">Komponen Gratis Pajak Penghasilan </th>
+					<td>
+						<table class="table-common" width="100%">
+							<tr>
+								<th width="20">No</th>
+								<th width="200">Nama Komponen Gratis Pajak Penghasilan</th>
+								<th width="80">Kode Komponen Gratis Pajak Penghasilan</th>
+								<th width="150">Nominal (Rp)</th>
+								<th width="150">Nominal Tahunan Per {MASA_KERJA} (Rp)</th>
+							</tr>
+								<!-- patTemplate:tmpl name="data_komponen_ptkp" type="condition" conditionvar="DATA_EMPTY" -->
+								<!-- patTemplate:sub condition="YES" -->
+							<tr>
+								<td colspan="5" align="center"><em>-- Data tidak ditemukan --</em></td>
+							</tr>
+								<!-- /patTemplate:sub -->
+								<!-- patTemplate:sub condition="NO" -->
+								<!-- patTemplate:tmpl name="data_komponen_ptkp_item" -->
+							<tr class="{DATA_KOMPONEN_PTKP_CLASS_NAME}">
+								<td align="center">{DATA_KOMPONEN_PTKP_NUMBER}.</td>
+								<td>{DATA_KOMPONEN_PTKP_NAMA}</td>
+								<td>{DATA_KOMPONEN_PTKP_KODE}</td>
+								<td align="right">{DATA_KOMPONEN_PTKP_NOMINAL}</td>
+								<td align="right">{DATA_KOMPONEN_PTKP_NOMINAL_TAHUN}</td>
+								<!-- /patTemplate:tmpl -->
+								<!-- /patTemplate:sub -->
+								<!-- /patTemplate:tmpl -->
+							</tr>
+							<tr>
+								<td colspan="3" align="right"><b>Total</b></td>
+								<td align="right"><b>{TOTAL_KOMPONEN_PTKP_NOMINAL}</b></td>
+								<td align="right"><b>{TOTAL_KOMPONEN_PTKP_NOMINAL_TAHUN}</b></td>
+							</tr>
+						</table>
+					</td>
+			</tr>  
+		</table>
+
+   <br/>
+	
+	<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+	<div class="{CLASS_PESAN}">
+      {ISI_PESAN}
+	</div>
+	<br/>
+	<!-- /patTemplate:tmpl -->
+	
+	
+		<table class="table-edit" width="800px">
+			   <input type="hidden" name="dataId" value="{DATAID}"  />
+			   <input type="hidden" name="statusnpwp" value="{STATUSNPWP}"  />
+			   <input type="hidden" name="kelamin" value="{KELAMIN}"  />
+			   <input type="hidden" name="potId" value="{POTID}"  />
+			   <input type="hidden" name="page" value="{PAGE}"  />
+			   <input type="hidden" name="id_pegawai" value="{ID_PEGAWAI}"/>
+			   <input type="hidden" name="nominal" value="{TOTAL_NOMINAL}"/>
+			   <input type="hidden" name="nama" value="{NAMA_PEGAWAI}"/>
+			<tr class="subhead"> 
+				<th colspan="2">Tambah Komponen Potongan Pendapatan</th>
+		    </tr>
+			<tr>
+	            <th width="150">Potongan Komponen Pendapatan</th>
+	            <td><!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="formula"  / --> *</td>
+	        </tr>
+			<tr class="buttons">
+				<th>&nbsp;</th>
+	            <td>
+	               <input type="submit" name="btnsimpan" value=" Tambah " class="buttonSubmit"/>
+	               <a class="xhr dest_subcontent-element" href="{URL_BACK}"><input name="back" value="Kembali" type="submit"></a></td>
+	            </td>
+	        </tr>
+		</table>
+	</form>
+
+   <br/>
+   <h3>Simpan Komponen Deduksi Pendapatan</h3>
+   <br />
+   <h4><i>Status NPWP {PERIODE_BULAN}, {PERIODE_TAHUN} : {STATUS_NPWP}</i></h4>
+   <br/>
+	<form method="POST" action="{URL_DELETE_RINCIAN}" class="xhr_form std_form" id="frmInput" >
+		<table class="table-common" width="600px">
+			<tr>
+				<th width="20">NO.</th>
+				<th width="300">NAMA KOMPONEN POTONGAN PENDAPATAN</th>
+				<th width="100">NOMINAL (Rp)</th>
+				<th width="100">NOMINAL TAHUNAN PER {MASA_KERJA} (Rp)</th>
+				<th width="20">AKSI</th>
+			</tr>
+				<!-- patTemplate:tmpl name="data_rincian" type="condition" conditionvar="DATA_EMPTY" -->
+				<!-- patTemplate:sub condition="YES" -->
+			<tr>
+				<td colspan="5" align="center"><em>-- Data tidak ditemukan --</em></td>
+			</tr>
+				<!-- /patTemplate:sub -->
+				<!-- patTemplate:sub condition="NO" -->
+				<!-- patTemplate:tmpl name="data_rincian_item" -->
+			<tr class="{DATA_CLASS_NAME}">
+				<td align="center">{DATA_NUMBER}.</td>
+				<td>{DATA_KOMP_FORM_NAMA}</td>
+				<td align="right">{DATA_NOMINAL_KOMP_PEG}</td>
+				<td align="right">{DATA_NOMINAL_TAHUN_KOMP_PEG}</td>
+				<td align="center"><a class="xhr dest_subcontent-element" href="{DATA_URL_DELETE}" title="Hapus"><img src="images/button-delete.gif" alt="Hapus"/></a></td>
+				<!-- /patTemplate:tmpl -->
+				<!-- /patTemplate:sub -->
+				<!-- /patTemplate:tmpl -->
+			</tr>
+			<tr>
+				<td colspan="2" align="right"><b>Total</b></td>
+				<td align="right"><b>{TOTAL_NOMINAL_RINCIAN}</b></td>
+				<td align="right"><b>{TOTAL_NOMINAL_TAHUN_RINCIAN}</b></td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr><td colspan="2">&nbsp;</td><td colspan="3">&nbsp;</td></tr>
+			<!-- patTemplate:tmpl name="status_npwp" type="condition" conditionvar="STATUS" -->
+			<!-- patTemplate:sub condition="YES" -->
+			<!-- patTemplate:tmpl name="nominal_pajak_dengan_npwp" -->
+			<tr>
+				<td colspan="2" align="right">Nominal Pajak Penghasilan per Bulan</td>
+				<td align="right" colspan="3"><b>{POT_PERBL}</b></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="right">Nominal Pajak Penghasilan per Tahun {MASA_KERJA}</td>
+				<td align="right" colspan="3"><b>{POT_PERTH}</b></td>
+			</tr>
+			<!-- /patTemplate:tmpl -->
+			<!-- /patTemplate:sub -->
+			<!-- patTemplate:sub condition="NO" -->
+			<!-- patTemplate:tmpl name="nominal_pajak_tanpa_npwp" -->
+			<tr>
+				<td colspan="2" align="right">Nominal Pajak Penghasilan Per Bulan</td>
+				<td align="right" colspan="3"><b>{POT_PERBL}</b></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="right">Tambahan Pajak (20% x Nominal Pajak Penghasilan per Bulan)</td>
+				<td align="right" colspan="3"><b>{POT_PERBL_NO_NPWP}</b></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="right">Total Nominal Pajak Penghasilan per Bulan</td>
+				<td align="right" colspan="3"><b>{POT_PERBL_TOTAL}</b></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="right">Total Nominal Pajak Penghasilan per Tahun {MASA_KERJA}</td>
+				<td align="right" colspan="3"><b>{POT_PERTH}</b></td>
+			</tr>
+			<!-- /patTemplate:tmpl -->
+			<!-- /patTemplate:sub -->
+			<!-- /patTemplate:tmpl -->
+		</table>
+	</form>
+   
+	<div class="petunjuk-area">
+		<h4>Petunjuk:</h4>
+		<ul>
+			<li>* Wajib diisi. </li>
+			<li><img src="images/button-delete.gif"/> = Menghapus komponen detail pajak penghasilan Pegawai</li>
+		</ul>
+	</div>
+<!-- /patTemplate:tmpl -->
