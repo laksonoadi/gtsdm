@@ -1,0 +1,66 @@
+<!-- patTemplate:tmpl name="content" -->
+<div class="background-blue padding-10 text-big"><!-- patTemplate:var name="TITLE" default="Profil Pengguna" / --></div>
+<div class="padding-10">
+
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="{CLASS_PESAN}">
+            {ISI_PESAN}
+        </div>
+    </div>
+</div>
+<!-- /patTemplate:tmpl -->
+
+<div class="row push-down-10">
+    <div class="col-md-offset-6 col-md-6 text-right">
+        <div class="btn-group">
+            <a class="xhr dest_subcontent-element btn btn-success btn-xs" href="{PROFILE_URL_EDIT}" title="Ubah Profil"><span class="glyphicon glyphicon-pencil"></span>&nbsp;Ubah Profil</a>
+            <a class="xhr dest_subcontent-element btn btn-warning btn-xs" href="{URL_UPDATE_PASSWORD}" title="Ubah Password"><span class="glyphicon glyphicon-lock"></span>&nbsp;Ubah Password</a>
+        </div>
+    </div>
+</div>
+
+<div class="table-responsive">
+    <table class="table">
+      <tr class="background-blue-light">
+         <th colspan="2">Profile Data</td>
+      </tr>
+      <tr>
+         <th width="100" align="left">Username</th><td> {USERNAME} </td>
+      </tr>
+     <!--  <tr>
+         <th>No Pegawai</th><td> {NO_PEGAWAI}</td>
+      </tr> -->
+      <tr>
+         <th>Full Name</th><td> {PENGGUNA}</td>
+      </tr>
+      <tr>
+         <th>Description</th><td> {DESKRIPSI}</td>
+      </tr>
+      <tr>
+         <th>Status</th><td> {STATUS}</td>
+      </tr>
+      <tr>
+         <th>Group Name</th><td> {NAMA_GROUP}</td>
+      </tr>
+      <tr>
+         <th>Privileges</th>
+         <td> 
+            <!-- patTemplate:tmpl name="list_hak_akses" -->
+            {HAK_AKSES}
+            <!-- /patTemplate:tmpl -->
+         </td>
+      </tr>  
+   </table>
+</div>
+   
+   <div class="petunjuk-area">
+      <h4>Information:</h4>
+      <ul>
+         <li>To change your password or profile data, click the "Update Password" button or the "Update Profile" in the top right</li>
+      </ul>
+   </div>
+
+</div>
+<!-- /patTemplate:tmpl -->

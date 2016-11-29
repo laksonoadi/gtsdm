@@ -1,0 +1,51 @@
+<!-- patTemplate:tmpl name="content" -->
+<h1>Management of Income Tax-21 Component</h1>
+<br/>
+
+   <!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+   <div class="notebox-alert">
+      {ISI_PESAN}
+   </div>
+   <br/>
+   <!-- /patTemplate:tmpl -->
+   
+   
+   <form method="POST" action="{URL_ACTION}" class="xhr_form std_form" id="frmInput" >
+   <input type="hidden" name="dataId" value="{DATAID}"  />
+   <input type="hidden" name="page" value="{PAGE}"  />
+      <table class="table-edit" width="100%">
+         <tr class="subhead">
+            <th colspan="2">{JUDUL} Income Tax 21 Component</th>
+         </tr>
+         <tr>
+            <th width="150">Code</th>
+            <td><input type="text" name="pph_kode" value="{PPH_KODE}" size="40" notab="2" />&nbsp;*
+         </tr>
+		 <tr>
+            <th width="150">Name</th>
+            <td><input type="text" name="pph_nama" value="{PPH_NAMA}" size="40" notab="2" />&nbsp;*
+         </tr>
+		 <tr>
+            <th width="150">Annotation</th>
+            <td><textarea name="pph_keterangan" cols="50" rows="5">{PPH_KETERANGAN}</textarea>&nbsp;*
+         </tr>
+         <tr class="buttons">
+            <th>&nbsp;
+            </th>
+            <td>
+               <input type="submit" name="btnsimpan" value=" Save " class="buttonSubmit"/>
+               <input  type="submit"  name="btnbalik" value=" Cancel " class="buttonSubmit"/>
+            </td>
+         </tr>
+      </table>
+   </form>
+   
+   <br/>
+   
+   <div class="petunjuk-area">
+      <h4>Notification:</h4>
+      <ul>
+         <li>* is mandatory to be filled.</li>
+      </ul>
+   </div>
+<!-- /patTemplate:tmpl -->

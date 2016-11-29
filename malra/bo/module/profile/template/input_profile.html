@@ -1,0 +1,48 @@
+<!-- patTemplate:tmpl name="content" -->
+<div class="background-blue padding-10 text-big"><!-- patTemplate:var name="TITLE" default="Profil Pengguna" / --></div>
+<div class="padding-10">
+
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="{CLASS_PESAN}">
+            {ISI_PESAN}
+        </div>
+    </div>
+</div>
+<!-- /patTemplate:tmpl -->
+
+   <form method="POST" class="xhr_form std_form" action="{URL_ACTION}"  id="frmInput" >
+      <input type="hidden" name="dataId" value="{DATA_ID}">
+      <input type="hidden" name="page" value="{PAGE}"  />
+      <div class="table-responsive">
+         <table class="table">
+         <tr class="background-blue-light">
+            <th colspan="2">Ubah Profil</th>
+         </tr>
+         <tr>
+            <th>Full Name</th>
+            <td><input type="text" name="realname" value="{REALNAME}" size="40" /> 
+            <input type="hidden" name="usr" value="{USR}"  /></td>
+         </tr>
+         <tr>
+            <th>Description</th>
+            <td>
+               <textarea name="deskripsi" cols="43" rows="5"/>{DESKRIPSI}</textarea>
+            </td>
+         </tr>
+         <tr class="background-blue-light">
+            <th>&nbsp;</th>
+            <td>
+                <div class="btn-group">
+                    <input type="submit" name="btnsimpan" value="Simpan" class="btn btn-info btn-xs"/>
+                    <input type="submit" name="btnbalik" value="Batal" class="btn btn-warning btn-xs"/>
+                </div>
+            </td>
+         </tr>
+         </table>
+      </div>
+   </form>
+
+</div>
+<!-- /patTemplate:tmpl -->
