@@ -1,0 +1,163 @@
+<!-- patTemplate:tmpl name="content" -->
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+   {ISI_PESAN}
+</div>
+<br />
+<!-- /patTemplate:tmpl -->
+<div class="mainContent-fp-element-full">
+	<div class="mainContent-fp-element-full-head"><h2>{TITLE}</h2></div>
+	<div class="mainContent-fp-element-full-body">
+<form method="POST" name="frmInput" action="{URL_ACTION}" class="xhr_form std_form" id="frmInput" enctype="multipart/form-data">
+   <table class="table-details" width="100%" >
+      <tr class="subhead">
+         <th colspan="2">{LABEL_ACTION} {LABEL_INPUT}</th>
+      </tr>
+     <tr>
+         <th >Education Level</th>
+         <td>
+           <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="jenispend"  / -->*
+           <input name="pegKode" type="hidden" value="{ID}" />
+		   <input name="dataKode" type="hidden" value="{INPUT_ID}" />
+         </td>
+      </tr> 
+	  <tr>
+         <th >Name of School / College</th>
+         <td>
+         <input type="text" name="institusi" value="{INPUT_INSTITUSI}"  size="60" />*
+         </td>
+      </tr>
+      <tr>
+         <th >Field Study</th>
+         <td>
+         <input type="text" name="jurusan" value="{INPUT_JURUSAN}"  size="50" />
+         </td>
+      </tr>
+      <tr>
+         <th >Graduated Year</th>
+         <td>
+         <input type="text" name="lulus" value="{INPUT_LULUS}"  size="10" />
+         </td>
+      </tr>
+      <tr>
+         <th >Place</th>
+         <td>
+         <input type="text" name="tempat" value="{INPUT_TEMPAT}"  size="50" />
+         </td>
+      </tr>
+      <tr>
+         <th>Country</th>
+         <td>
+           <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="negara"  / -->*
+         </td>
+      </tr>
+      <tr>
+         <th >Head Principal / Dean</th>
+         <td>
+         <input type="text" name="kepsek" value="{INPUT_KEPSEK}"  size="50" />
+         </td>
+      </tr>
+      <tr>
+         <th >Origin Funds </th>
+         <td>
+           <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="asdan"  / -->
+         </td>
+      </tr>
+      <tr style="display:none">
+         <th >Pangkat/Golongan Maks</th>
+         <td>
+           <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="pktgol"  / -->
+         </td>
+      </tr>
+      <tr>
+         <th >Education Status</th>
+         <td>
+           <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="istamat"  / -->
+         </td>
+      </tr>
+      <tr>
+         <th >Long Education</th>
+         <td>
+           <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="lama"  / -->Year
+         </td>
+      </tr>
+       <tr>
+         <th >Start Dinas</th>
+         <td>
+           <!-- patTemplate:gtfwrendermodule module="tanggal" submodule="Tanggal" action="view" name="mulai" / -->
+         </td>
+      </tr>
+      <tr>
+         <th >End Dinas </th>
+         <td>
+           <!-- patTemplate:gtfwrendermodule module="tanggal" submodule="Tanggal" action="view" name="selesai" / -->
+         </td>
+      </tr>
+      <tr>
+         <th >Description </th>
+         <td>
+           <textarea name="ket" id="ket" cols="50" rows="5">{INPUT_KET}</textarea>
+         </td>
+      </tr>
+	  <tr>
+         <th >Upload </th>
+         <td>
+           <input type="file" name="file" size="40"><br />
+				Current file: <a href="{INPUT_LINK_DOWNLOAD}">{INPUT_UPLOAD}</a>
+        <input name="upload" type="hidden" value="{INPUT_UPLOAD}" />
+         </td>
+      </tr>
+      <tr class="buttons">
+         <th>&nbsp;</th>
+         <td>
+            <input name="btnsimpan" value="{LABEL_ACTION} " class="buttonSubmit" type="submit">
+            <input name="btnbatal" value="{BUTTON}" class="buttonSubmit" type="{TYPE}">
+         </td>
+      </tr>
+   </table>
+</form>
+<br />
+<br />
+
+<div class="pageBar">
+<!-- patTemplate:gtfwrendermodule module="paging" submodule="paging" action="view" name="paging_top"  / -->
+</div>
+<table class="table-common" width="96%">
+   <tr>
+      <th width="5px" >No</th>
+      <th >Level</th>
+      <th >Name of School/College </th>
+      <th >Field</th>
+      <th >Graduated Year </th>
+      <th >Country</th>
+      <!--<th >Head Principal/Dean</th>-->
+      <th width="96px" >Action</th>
+   </tr>
+   <!-- patTemplate:tmpl name="data" type="condition" conditionvar="DATA_EMPTY" -->
+      <!-- patTemplate:sub condition="YES" -->
+   <tr><td colspan="10" align="center"><em>-- Data not found --</em></td></tr>
+      <!-- /patTemplate:sub -->
+      <!-- patTemplate:sub condition="NO" -->
+         <!-- patTemplate:tmpl name="data_item" -->
+   <tr class="{PEND_CLASS_NAME}">
+      <td align="center" width="5%">{PEND_NUMBER}</td>
+      <td align="left" width="20%">{PEND_JPENDLABEL}</td>
+	  <td align="left">{PEND_INSTITUSI}</td>
+	  <td align="left">{PEND_JURUSAN}</td>
+	  <td align="left">{PEND_LULUS}</td>
+	  <td align="left">{PEND_NEGLABEL}</td>
+	  <!--<td align="left">{PEND_KEPSEK}</td>-->
+      <td class="links">
+	  <a href="{PEND_LINK_DOWNLOAD_SK}" title="Decree" target="_blank"><img src="images/detil.gif" alt="Decree"/></a>
+			<!--<a href="{PAGOL_LINK_DOWNLOAD_SK}" title="SK">Lihat SK</a>/-->
+         <a class="xhr dest_subcontent-element" href="{PEND_URL_DETAIL}" title="detail"><img src="images/button-detail.gif" alt="detail"/></a>
+         <a class="xhr dest_subcontent-element" href="{PEND_URL_EDIT}" title="Edit"><img src="images/button-edit.gif" alt="Edit"/></a>
+         <a class="xhr dest_subcontent-element" href="{PEND_URL_DELETE}" title="Delete"><img src="images/button-delete.gif" alt="Delete"/></a>
+      </td>
+   </tr>
+         <!-- /patTemplate:tmpl -->
+      <!-- /patTemplate:sub -->
+   <!-- /patTemplate:tmpl -->
+</table>
+</div></div>
+<!-- /patTemplate:tmpl -->

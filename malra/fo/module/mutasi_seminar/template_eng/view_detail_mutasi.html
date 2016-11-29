@@ -1,0 +1,77 @@
+<!-- patTemplate:tmpl name="content" -->
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+   {ISI_PESAN}
+</div>
+<br />
+<!-- /patTemplate:tmpl -->
+<div class="mainContent-fp-element-full">
+	<div class="mainContent-fp-element-full-head"><h2>Seminars</h2></div>
+	<div class="mainContent-fp-element-full-body">
+<!-- patTemplate:tmpl name="data" type="condition" conditionvar="DATA_EMPTY" -->
+      <!-- patTemplate:sub condition="YES" -->
+    <h1>Data not found </h1>
+      <!-- /patTemplate:sub -->
+      <!-- patTemplate:sub condition="NO" -->
+         <!-- patTemplate:tmpl name="data_item" -->
+
+   <table class="table-details" width="100%" >
+      <tr class="subhead">
+         <th colspan="2">DATA</th>
+      </tr>
+      
+	  <tr>
+         <th >Seminars Name</th>
+         <td>
+           {DETAIL_NAMA}
+         </td>
+      </tr>
+	  <tr>
+         <th >Level</th>
+         <td>
+           {DETAIL_TINGKATLABEL}
+         </td>
+      </tr>
+      <tr>
+         <th >Start Date </th>
+         <td>
+           {DETAIL_MULAI}
+         </td>
+      </tr>
+	  
+       <tr>
+         <th >Role</th>
+         <td>
+           {DETAIL_PERANAN}
+         </td>
+      </tr>
+      
+       <tr>
+         <th >Location</th>
+         <td>
+           {DETAIL_TEMPAT}
+         </td>
+      </tr>
+      <tr>
+         <th >Organizers</th>
+         <td>
+           {DETAIL_PENYELENGGARA}
+         </td>
+      </tr>
+	  <tr>
+         <th >Decree Document </th>
+         <td>
+           <a href="{DETAIL_LINK_DOWNLOAD_SK}" target="_blank">{DETAIL_UPLOAD}</a>
+         </td>
+      </tr>     
+   </table>
+
+<!-- /patTemplate:tmpl -->
+      <!-- /patTemplate:sub -->
+   <!-- /patTemplate:tmpl -->
+<div class="toolbar"> 
+               &nbsp;&nbsp;&nbsp;&nbsp;<a class="xhr dest_subcontent-element " href="{URL_BACK}" title="Kembali" tabindex="2">Back</a> 
+            </div>
+
+</div></div>
+<!-- /patTemplate:tmpl -->

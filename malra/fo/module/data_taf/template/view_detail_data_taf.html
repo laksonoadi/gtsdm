@@ -1,0 +1,222 @@
+
+<!-- patTemplate:tmpl name="content" -->
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+   {ISI_PESAN}
+</div>
+<br />
+<!-- /patTemplate:tmpl -->
+<div class="mainContent-fp-element-full">
+	<div class="mainContent-fp-element-full-head"><h2>DETAIL DATA KUNJUNGAN </h2></div>
+	<div class="mainContent-fp-element-full-body">
+<form method="POST" name="frmInput" action="{URL_AKSI}" class="xhr_form std_form" id="frmInput" enctype="multipart/form-data">
+   <input type="hidden" name="idPeg" value="{DATA_ID}">
+   <table class="table-details" width="100%" >
+      <!-- patTemplate:tmpl name="detail_pegawai" -->
+	    <tr class="subhead">
+        <th valign="center">Data</th>
+        <th align="right">
+        </th>
+      </tr>
+  	  <tr> 
+          <th width="39%">No.ID - Nama</th>
+          <td>
+            {DATA_NIP_PEGAWAI} - {DATA_NAMA_PEGAWAI}
+          </td>
+      </tr>
+      <tr> 
+          <th width="39%">Judul Pekerjaan</th>
+          <td>
+            {DATA_JOB_TITLE}
+          </td>
+      </tr>
+      <tr> 
+          <th width="39%">Divisi</th>
+          <td>
+            {DATA_DIVISION}
+          </td>
+      </tr>
+  	  <!-- /patTemplate:tmpl -->
+  	  <tr>
+        <th width="39%">Nomor Kunjungan </th>
+        <td>
+          {DATA_TAF_NUMBER}
+        </td>
+      </tr>
+      <tr>
+        <th width="39%">Jenis Kunjungan </th>
+        <td>
+          {DATA_TIPE_TAF}
+        </td>
+      </tr>
+      <tr>
+        <th>Tanggal Pengajuan</th>
+        <td>
+          {DATA_TGL_AJU}
+        </td>
+      </tr>
+      <tr>              
+    		<th>Alasan</th>
+    		<td>{DATA_ALASAN}</td>
+  	  </tr>
+  	  <tr>
+  	    <td colspan="2">
+  			<table class="table-edits" width="100%" id="table_travel_list">
+  				<tr class="subhead">
+  					<th align="center">Tujuan</th>
+  					<th align="center">Dari Tanggal</th>
+  					<th align="center">Sampai Tanggal</th>
+  					<th align="center">Total Hari</th>
+  				</tr>
+  				<!-- patTemplate:tmpl name="tpl_travel_list" type="condition" conditionvar="TRAVEL_LIST_EMPTY" -->
+  					<!-- patTemplate:sub condition="YES" -->
+  						<tr id="travel_empty"><td colspan="4" align="center"><em>-- Data tidak ditemukan --</em></td></tr>
+  					<!-- /patTemplate:sub -->
+  					<!-- patTemplate:sub condition="NO" -->
+  						<!-- patTemplate:tmpl name="tpl_travel_item" -->
+  							<tr class="{DATA_CLASS_NAME}">
+  								<td>{DATA_TUJUAN}</td>
+  								<td>{DATA_TGL_AWAL_LABEL}</td>
+  								<td>{DATA_TGL_AKHIR_LABEL}</td>
+  								<td>{DATA_TOTAL_HARI}</td>
+  							</tr>
+  						<!-- /patTemplate:tmpl -->
+  					<!-- /patTemplate:sub -->
+  				<!-- /patTemplate:tmpl -->
+  			</table>
+  		</td>
+  	</tr>
+  	<tr>
+  	    <td colspan="2">
+  	    <b><font size="2">TRANSPORTASI / PENERBANGAN :</font></b>
+  			<table class="table-edits" width="100%" id="table_transport_list">
+  				<tr class="subhead">
+  					<th align="center">Tujuan</th>
+  					<th align="center">Jenis Transportasi</th>
+  					<th align="center">Nama/Penerbangan</th>
+  					<th align="center">ETD</th>
+  					<th align="center">ETA</th>
+  					<th align="center">Anggaran</th>
+  					<th align="center">Catatan</th>
+  				</tr>
+  				<!-- patTemplate:tmpl name="tpl_transport_list" type="condition" conditionvar="TRANSPORT_LIST_EMPTY" -->
+  					<!-- patTemplate:sub condition="YES" -->
+  						<tr><td colspan="6" align="center"><em>-- Data tidak ditemukan --</em></td></tr>
+  					<!-- /patTemplate:sub -->
+  					<!-- patTemplate:sub condition="NO" -->
+  						<!-- patTemplate:tmpl name="tpl_transport_item" -->
+  							<tr class="{DATA_CLASS_NAME}">
+  								<td>{DATA_TUJUAN}</td>
+  								<td>{DATA_JENIS}</td>
+  								<td>{DATA_NAMA}</td>
+  								<td>{DATA_TGL_AWAL_LABEL}<br />{DATA_JAM_AWAL}</td>
+  								<td>{DATA_TGL_AKHIR_LABEL}<br />{DATA_JAM_AKHIR}</td>
+  								<td align="right">{DATA_ANGGARAN_LABEL}</td>
+  								<td>{DATA_NOTE}</td>
+  							</tr>
+  						<!-- /patTemplate:tmpl -->
+  					<!-- /patTemplate:sub -->
+  				<!-- /patTemplate:tmpl -->
+  			</table>
+  			<br /><br />
+  		</td>
+  	</tr>
+  	<tr>
+  	    <td colspan="2">
+  	    <b><font size="2">TUNJANGAN KUNJUNGAN :</font></b>
+  			<table class="table-edits" width="100%" id="table_allowance_list">
+  				<!-- patTemplate:tmpl name="tpl_allowance_list" type="condition" conditionvar="ALLOWANCE_LIST_EMPTY" -->
+  					<!-- patTemplate:sub condition="YES" -->
+  						<tr><td colspan="6" align="center"><em>-- Data Tidak ditemukan --</em></td></tr>
+  					<!-- /patTemplate:sub -->
+  					<!-- patTemplate:sub condition="NO" -->
+  						<!-- patTemplate:tmpl name="tpl_allowance_item" -->
+  						
+  						  <!-- patTemplate:tmpl name="tpl_header" type="condition" conditionvar="HEADER" -->
+  						    <!-- patTemplate:sub condition="YES" -->
+      						  <!-- patTemplate:tmpl name="tpl_allowance_header" -->
+      						    <tr><td colspan="6"><br />{DATA_KODE_TUJUAN}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{DATA_TUJUAN}</td></tr>
+      						    <tr class="subhead">
+              					<th>Keterangan</th>
+              					<th width="12%" align="center">Total Hari</th>
+              					<th align="center">Tunjangan</th>
+              					<th width="5%" align="center">Anggaran</th>
+              					<th align="center">Mata Uang</th>
+              					<th align="center">Catatan</th>
+              				</tr>
+        						<!-- /patTemplate:tmpl -->
+      						<!-- /patTemplate:sub -->
+      						<!-- patTemplate:sub condition="NO" -->
+      						<!-- /patTemplate:sub -->
+    						<!-- /patTemplate:tmpl -->
+    						
+  							<tr class="{DATA_CLASS_NAME}">
+  								<td>{DATA_DESKRIPSI}</td>
+  								<td align="center">{DATA_TOTAL_HARI}</td>
+  								<td align="right">{DATA_NILAI_LABEL}</td>
+  								<td align="center">{DATA_CURRENCY}</td>
+  								<td align="right">{DATA_TOTAL_LABEL}</td>
+  								<td>{DATA_NOTE}</td>
+  							</tr>
+  							
+  							<!-- patTemplate:tmpl name="tpl_subtotal" type="condition" conditionvar="SUBTOTAL" -->
+  						    <!-- patTemplate:sub condition="YES" -->
+      						  <!-- patTemplate:tmpl name="tpl_allowance_subtotal" -->
+        						  <tr><td colspan="4" align="right"> SUB TOTAL</td><td align="right">{DATA_SUB_TOTAL_LABEL}</td><td></td></tr>
+        						<!-- /patTemplate:tmpl -->
+      						<!-- /patTemplate:sub -->
+      						<!-- patTemplate:sub condition="NO" -->
+      						<!-- /patTemplate:sub -->
+    						<!-- /patTemplate:tmpl -->
+  							
+  						<!-- /patTemplate:tmpl -->
+  					<!-- /patTemplate:sub -->
+  				<!-- /patTemplate:tmpl -->
+  				<tr><td colspan="6"><br /></td></tr>
+  				<tr><td colspan="4" align="right">TOTAL</td><td colspan="1" align="right">{DATA_TOTAL_ALLOWANCE_LABEL}</td><td></td></tr>
+  			</table>
+  			<br /><br />
+  		</td>
+  	</tr>
+	  <tr>
+  	    <td colspan="2">
+  	    <b><font size="2">ANGGARAN :</font></b>
+  			<table class="table-edits" width="100%" id="table_budget_list">
+  				<tr class="subhead">
+  					<th>ID ANGGARAN</th>
+  					<th>Keterangan</th>
+  					<th align="center">Periode</th>
+  					<th align="center">Nilai Anggaran</th>
+  				</tr>
+  				<!-- patTemplate:tmpl name="tpl_budget_list" type="condition" conditionvar="BUDGET_LIST_EMPTY" -->
+  					<!-- patTemplate:sub condition="YES" -->
+  						<tr><td colspan="4" align="center"><em>-- Data tidak ditemukan --</em></td></tr>
+  					<!-- /patTemplate:sub -->
+  					<!-- patTemplate:sub condition="NO" -->
+  						<!-- patTemplate:tmpl name="tpl_budget_item" -->
+  							<tr class="{DATA_CLASS_NAME}">
+  								<td>{DATA_KODE_BUDGET}</td>
+  								<td>{DATA_DESKRIPSI}</td>
+  								<td>{DATA_PERIODE}</td>
+  								<td align="right">{DATA_ANGGARAN_LABEL}</td>
+  							</tr>
+  						<!-- /patTemplate:tmpl -->
+  					<!-- /patTemplate:sub -->
+  				<!-- /patTemplate:tmpl -->
+  				<tr><td colspan="3" align="right">TOTAL</td><td align="right">{TOTAL_BUDGET_LABEL}</td></tr>
+  			</table>
+  			<br /><br />
+  		</td>
+  	</tr>			
+    <tr class="buttons">
+         <td colspan="2" align="right">
+          <div class="toolbar"> 
+          <a class="xhr dest_subcontent-element " href="{URL_BACK}" title="Kembali" tabindex="2">
+          <img src="images/button-back.gif" alt=""> Kembali</a> 	
+          </div>
+         </td>
+      </tr>
+   </table>
+</form>
+</div></div>
+<!-- /patTemplate:tmpl -->

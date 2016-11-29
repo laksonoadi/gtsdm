@@ -1,0 +1,87 @@
+<!-- patTemplate:tmpl name="content" -->
+<script name="javaScript" >
+
+   function updateGroup() {
+      GtfwAjax.replaceContentWithUrl('combo_group', '<!-- patTemplate:gtfwgeturl module="user" sub="comboGroup" action="view" type="html" htmlentities="no" / -->&ascomponent=1&unit=' + document.frmInput.unit_kerja.value);
+   }
+
+</script>
+   <!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+   <div class="notebox-alert">
+      {ISI_PESAN}
+   </div>
+   <!-- /patTemplate:tmpl -->
+   
+<div class="mainContent-fp-element-full">
+	<div class="mainContent-fp-element-full-head"><h2>MANAJEMEN PENGGUNA</h2></div>
+	<div class="mainContent-fp-element-full-body">    
+   <form method="POST" action="{URL_ACTION}" class="xhr_form std_form" id="frmInput" name="frmInput" >
+      <table class="table-details" width="100%">
+         <tr class="subhead">
+            <th colspan="2">{JUDUL} Pengguna</th>
+         </tr>
+         <tr>
+            <th width="150">Nama Pengguna</th>
+            <td><input type="text" name="username" value="{USERNAME}" size="25" maxlength="16" {READONLY} /> *
+            <input type="hidden" name="usr" value="{USR}"  />
+            <input type="hidden" name="user_id" value="{USER_ID}"  />
+            <input type="hidden" name="cari" value="{CARI}"  /></td>
+         </tr>
+         <!-- patTemplate:tmpl name="view_password" visibility="hidden" -->
+         <tr>
+            <th>Password</th>
+            <td><input type="password" name="password" size="25" maxlength="32" /> *</td>
+         </tr>
+         <tr>
+            <th>Konfirmasi Password</th>
+            <td><input type="password" name="retype_password"  size="25" maxlength="32" /> *</td>
+         </tr>
+         <!-- /patTemplate:tmpl -->
+         <tr>
+            <th>Unit Kerja</th>
+            <td>
+         <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="unit_kerja"  / -->
+            *</td>
+         </tr>
+         <tr>
+            <th>Group</th>
+            <td><div id="combo_group">
+         <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="group"  / -->
+            *</div></td>
+         </tr>
+         <tr>
+            <th>Nama Asli</th>
+            <td><input type="text" name="realname" value="{REALNAME}" size="35" maxlength="100" /></td>
+         </tr>
+         <tr>
+            <th>Deskripsi</th>
+            <td><textarea name="deskripsi" cols="32">{DESKRIPSI}</textarea></td>
+         </tr>
+         <tr>
+            <th>Status</th>
+            <td><input type="radio" name="status" id="status_yes" value="Yes" {STATUS}/><label for="status_yes">Aktif<label>
+            <input type="radio" name="status" id="status_no" value="No" {NSTATUS}/><label for="status_no">Tidak Aktif<label></td>
+         </tr>
+         <tr class="buttons">
+            <th>&nbsp;
+            </th>
+            <td>
+               <input type="submit" name="btnsimpan" value=" Simpan " class="buttonSubmit"/>
+               <input  type="submit"  name="btnbalik" value=" Batal " class="buttonSubmit"/>
+            </td>
+         </tr>
+      </table>
+   </form>
+   
+   <br/>
+   
+   <div class="petunjuk-area">
+      <h4>Petunjuk:</h4>
+      <ul>
+         <li>Tanda * menunjukkan bahwa field tersebut harus diisi. </li>
+         <li>Nama pengguna adalah nama yang dipakai untuk login, sedangkan nama asli adalah nama asli dari pengguna tersebut. </li>
+      </ul>
+   </div>
+</div>
+</div>
+<!-- /patTemplate:tmpl -->

@@ -1,0 +1,80 @@
+<!-- patTemplate:tmpl name="content" -->
+<script language="javascript" type="text/javascript">
+function setParent(xid, xlabel, xsat, xidsat,xnip,xpangkat,xjabatan) {
+//alert(window.opener.temp.value);
+	if(window.opener.temp.value=="pejabat"){
+		window.opener.document.getElementById('pejabat_id').value=xid;
+		window.opener.document.getElementById('pejabat_nama').innerHTML=xlabel;
+		window.opener.document.getElementById('pejabat_nip').innerHTML=xnip;
+		window.opener.document.getElementById('pejabat_pangkat').innerHTML=xpangkat;
+		window.opener.document.getElementById('pejabat_jabatan').innerHTML=xjabatan;
+		window.opener.document.getElementById('pejabat_unit_kerja').innerHTML=xsat;
+	}else{
+		window.opener.document.getElementById('pejabat_id_2').value=xid;
+		window.opener.document.getElementById('pejabat_nama_2').innerHTML=xlabel;
+		window.opener.document.getElementById('pejabat_nip_2').innerHTML=xnip;
+		window.opener.document.getElementById('pejabat_pangkat_2').innerHTML=xpangkat;
+		window.opener.document.getElementById('pejabat_jabatan_2').innerHTML=xjabatan;
+		window.opener.document.getElementById('pejabat_unit_kerja_2').innerHTML=xsat;
+	}
+}
+</script>
+<center>
+<form method="POST" action="{URL_SEARCH}" class="dataquest xhr_simple_form dest_popup-subcontent" id="filterboxpopup">
+<input type="hidden" value="{PEG}" name="dataPeg" id="dataPeg">
+<input type="hidden" value="{SAT}" name="dataSatker" id="dataSatker">
+   <table>
+         <tr>
+            <th width="30%">NIP/Nama Pegawai</label></th>
+            <td width="25%"><input type="text" name="nama" value="{NAMA}" size="20" />
+            <td>
+            <input type="submit" name="btncari" value=" Cari &raquo;" class="buttonSubmit"/>
+            </td>
+         </tr>
+   </table>
+</form>
+</center>
+
+<br /> 
+   <!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+   <div class="{CLASS_PESAN}">
+      {ISI_PESAN}
+   </div>
+   <br />
+   <!-- /patTemplate:tmpl -->
+         <div class="pageBar">
+			<!-- patTemplate:gtfwrendermodule module="paging2" submodule="paging" action="view" name="paging_top"  / -->
+         </div>
+		 <div style="{FR}">
+      <table class="table-common" width="100%" style="font-size:11px;">
+      <tr>
+         <th width="8%">No</th>
+        <th width="19%">Nomor Pegawai</th>
+        <th width="61%">Nama</th>
+         <th width="12%">Pilih</th>
+      </tr>
+      <!-- patTemplate:tmpl name="data_pegawai" type="condition" conditionvar="DATA_EMPTY" -->
+         <!-- patTemplate:sub condition="YES" -->
+         <tr><td colspan="4" align="center"><em>-- Data tidak ditemukan --</em></td></tr>
+         <!-- /patTemplate:sub -->
+         <!-- patTemplate:sub condition="NO" -->
+            <!-- patTemplate:tmpl name="data_pegawai_item" -->
+            <tr class="{DATA_CLASS_NAME}">
+               <td align="center">{DATA_NUMBER}</td>
+               <td align="center">{DATA_KODE}
+               <input type="hidden" name="id" id="id" value="{DATA_ID}" >
+               <input type="hidden" name="kode" id="kode" value="{DATA_KODE}" >
+               <input type="hidden" name="nama" id="nama" value="{DATA_NAMA}" >
+               </td>
+               <td>{DATA_NAMA}</td>
+               <td class="links" align="center">
+					<a href="javascript:setParent('{DATA_ID}','{DATA_NAMA}','{DATA_SATKER}','{DATA_IDSATKER}','{DATA_NIP}','{DATA_PANGKAT}','{DATA_JABFUNG}')" onclick=""><img alt="Pilih" src="images/button-check.gif"/></a>
+               </td>
+               
+            </tr>
+            <!-- /patTemplate:tmpl -->
+		  <!-- /patTemplate:sub -->
+      <!-- /patTemplate:tmpl -->
+	  
+   </table></div>
+<!-- /patTemplate:tmpl -->

@@ -1,0 +1,62 @@
+<!-- patTemplate:tmpl name="content" -->
+<!-- patTemplate:tmpl name="login" type="condition" conditionvar="IS_LOGIN" -->
+  <!-- patTemplate:sub condition="YES" -->
+    <!--<div id="coverArea-photo-login">
+         !-- patTemplate:gtfwrendermodule name="data_pegawai_login" module="data_pegawai" submodule="dataPegawaiLogin" action="view" type="html" params="" / --
+    </div>-->
+  <!-- /patTemplate:sub -->
+  <!-- patTemplate:sub condition="NO" -->
+<div id="carousel-main-wrapper" class="hidden-xs">
+  <div id="carousel-main" class="carousel slide">
+    <div class="carousel-inner" role="listbox">
+		<div class="item active">
+			<img src="images/slide/gtl_1.jpg" alt="<!-- patTemplate:gtfwgetconfig config="application" name="company_name" / -->">
+		</div>
+		<div class="item">
+			<img src="images/slide/gtl_4.jpg" alt="<!-- patTemplate:gtfwgetconfig config="application" name="company_name" / -->">
+		</div>
+		<div class="item">
+			<img src="images/slide/gtl_3.jpg" alt="<!-- patTemplate:gtfwgetconfig config="application" name="company_name" / -->">
+		</div>
+		<div class="item">
+			<img src="images/slide/gtl_2.jpg" alt="<!-- patTemplate:gtfwgetconfig config="application" name="company_name" / -->">
+		</div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+	$("#carousel-main").carousel({
+		'interval': 3500,
+		'pause': "false",
+		'wrap': true,
+		'keyboard': false,
+	});
+</script>
+
+<style type="text/css">
+#carousel-main-wrapper {
+	width: 100%;
+	height: 475px;
+}
+#carousel-main, #carousel-main > .carousel-inner {
+	width: 100%;
+	height: 100%;
+}
+#carousel-main .carousel-inner > .item {
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	overflow: hidden;
+}
+#carousel-main img {
+	width: 100%;
+	height: auto;
+	margin: auto;
+	vertical-align: middle;
+}
+</style>
+
+  <!-- /patTemplate:sub -->
+<!-- /patTemplate:tmpl -->
+<!-- /patTemplate:tmpl -->

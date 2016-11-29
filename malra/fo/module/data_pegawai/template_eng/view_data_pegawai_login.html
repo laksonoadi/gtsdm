@@ -1,0 +1,24 @@
+<!-- patTemplate:tmpl name="content" -->
+<!-- patTemplate:tmpl name="login" type="condition" conditionvar="IS_LOGIN" -->
+  <!-- patTemplate:sub condition="YES" -->
+     <!-- patTemplate:tmpl name="content2" -->
+      <h2>Personal Information</h2>
+        <table width="98%" >
+      	<tr>
+      		<td width="60px" align="center"><img src="upload_file/photo/{FOTO2}" width="80" height="80"></td>
+         </tr>
+         <tr>
+      	    <td align="center">{NAMA}</td>
+         </tr>
+         <tr>
+      	    <td align="center">{NIP}</td>
+         </tr>
+      </table>
+      <!-- /patTemplate:tmpl -->
+  <!-- /patTemplate:sub -->
+  <!-- patTemplate:sub condition="NO" -->
+    <h2>Message</h2>
+    Welcome In Sampoerna School Of Education
+  <!-- /patTemplate:sub -->
+<!-- /patTemplate:tmpl -->
+<!-- /patTemplate:tmpl -->

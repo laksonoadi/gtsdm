@@ -1,0 +1,60 @@
+<!-- patTemplate:tmpl name="content" -->
+<h1>{LABEL_TITLE}</h1>
+<br />
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+   {ISI_PESAN}
+</div>
+<br />
+<!-- /patTemplate:tmpl -->
+<div><h1>{TITLE}</h1></div>
+<br />
+<form method="POST" action="{URL_SEARCH}" class="dataquest xhr_simple_form dest_subcontent-element" id="filterbox">
+   <table>
+      <tr>
+         <th colspan="2"><h2><strong>Pencarian Data</strong></h2></th>
+      </tr>
+      <tr>              
+         <th width="30%">NIP/Nama Pegawai</th>
+         <td colspan='2'><input type="text" name="nip_nama" value="{NIP_NAMA}" size="30" /></td>
+      </tr>
+      <tr>
+         <th>&nbsp;</th>
+         <td>
+            <input type="submit" name="btncari" value=" Cari &raquo;" class="buttonSubmit"/>
+         </td>
+      </tr>
+   </table>
+</form>
+<br />
+
+<div class="pageBar">
+<!-- patTemplate:gtfwrendermodule module="paging" submodule="paging" action="view" name="paging_top"  / -->
+</div>
+<table class="table-common" width="80%">
+   <tr>
+      <th width="15%">No</th>
+      <th width="100px">Nomor Pegawai</th>
+	  <th>Nama</th>
+      <th width="20px">Aksi</th>
+   </tr>
+   <!-- patTemplate:tmpl name="data_pegawai" type="condition" conditionvar="PEGAWAI_EMPTY" -->
+      <!-- patTemplate:sub condition="YES" -->
+   <tr><td colspan="4" align="center"><em>-- Data tidak ditemukan --</em></td></tr>
+      <!-- /patTemplate:sub -->
+      <!-- patTemplate:sub condition="NO" -->
+         <!-- patTemplate:tmpl name="data_pegawai_item" -->
+   <tr class="{CLASS_NAME}">
+      <td align="center">{NUMBER}</td>
+      <td align="center">{NIP}</td>
+	  <td align="left">{NAMA}</td>
+      <td class="links">
+         <a class="xhr dest_subcontent-element" href="{URL_DETAIL}" title="Pilih">Pilih</a>
+         </a>
+      </td>
+   </tr>
+         <!-- /patTemplate:tmpl -->
+      <!-- /patTemplate:sub -->
+   <!-- /patTemplate:tmpl -->
+</table>
+<!-- /patTemplate:tmpl -->

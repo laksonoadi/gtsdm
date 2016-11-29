@@ -1,0 +1,25 @@
+<!-- patTemplate:tmpl name="content" -->
+<div class="col-md-12">
+	<div class="container article">
+		<h2 class="section-title">Berita</h2>
+		<div class="line-double"></div>
+		
+		<h3 class="article-title">{TITLE}</h3>
+		<hr/>
+		<p class="article-meta">{DATE_POSTED} | Oleh {PENGIRIM}</p>
+		<!-- patTemplate:tmpl name="foto" varscope="content" type="condition" conditionvar="FOTO" -->
+		<!-- patTemplate:sub condition="__empty" -->
+		<!-- /patTemplate:sub -->
+		<!-- patTemplate:sub condition="__default" -->
+		<div class="pull-right" style="margin: 5px 10px; text-align: center; max-width: 300px;">
+			<img src="{FOTO}" rel="foto agenda" style="max-width: 300px; max-height: 250px;" >
+			<div class="small" style="margin: 0 auto; word-wrap: break-word; max-width: 100%;">{CAPTION_FOTO}</div>
+		</div>
+		<!-- /patTemplate:sub -->
+		<!-- /patTemplate:tmpl -->
+		<div class="article-text"><p>{ARTIKEL}</p></div>
+		<hr/>
+		<a class="btn btn-link xhr dest_subcontent-element" href="<!-- patTemplate:gtfwgeturl module="berita" sub="beritaList" action="view" type="html" params=""  / -->">Lihat Berita Lain</a>
+	</div>
+</div>
+<!-- /patTemplate:tmpl -->

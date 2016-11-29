@@ -1,0 +1,77 @@
+
+<!-- patTemplate:tmpl name="content" -->
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+   {ISI_PESAN}
+</div>
+<br />
+<!-- /patTemplate:tmpl -->
+<div class="mainContent-fp-element-full">
+	<div class="mainContent-fp-element-full-head"><h2>{TITLE}</h2></div>
+	<div class="mainContent-fp-element-full-body">
+<form method="POST" name="frmInput" action="{URL_AKSI}" class="xhr_form std_form" id="frmInput" enctype="multipart/form-data">
+   <input type="hidden" name="idPeg" value="{DATA_ID}">
+   <table class="table-details" width="100%" >
+      <tr class="subhead">
+        <th colspan="2" valign="center">Overtime Work Data Detail</th>
+      </tr>
+      <tr>
+        <th width="39%">Overtime Work Number</th>
+        <td>
+          {NO}
+        </td>
+      </tr>
+      <tr>
+        <th>Overtime Work Date</th>
+        <td>
+          {AJU}
+        </td>
+      </tr>
+      <tr>
+        <th>Date Submitted</th>
+        <td>
+          {SUBMIT}
+        </td>
+      </tr>
+      <tr>
+        <th>Start Time</th>
+        <td>
+          {MULAI}
+        </td>
+      </tr>
+      <tr>
+        <th>Completed Time</th>
+        <td>
+          {SELESAI}
+        </td>
+      </tr>
+      <tr>
+        <th>Overtime Work Reason</th>
+        <td>
+          {ALASAN}
+        </td>
+      </tr>
+      <tr>
+        <th>Overtime Work Approval Status</th>
+        <td>
+          {STATUS}
+        </td>
+      </tr>
+      <tr>
+        <th>Last Update Status</th>
+        <td>
+          {TGLSTAT}
+        </td>
+      </tr>
+      <tr class="buttons">
+         <td colspan="2" align="right">
+          <div class="toolbar"> 
+          <a class="xhr dest_subcontent-element " href="{URL_BACK}" title="Back" tabindex="2">
+          <img src="images/button-back.gif" alt=""> Back</a> 	
+          </div>
+         </td>
+      </tr>
+   </table>
+</form>
+</div></div>
+<!-- /patTemplate:tmpl -->

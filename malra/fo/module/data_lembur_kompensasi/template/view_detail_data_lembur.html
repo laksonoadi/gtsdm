@@ -1,0 +1,77 @@
+
+<!-- patTemplate:tmpl name="content" -->
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+   {ISI_PESAN}
+</div>
+<br />
+<!-- /patTemplate:tmpl -->
+<div class="mainContent-fp-element-full">
+	<div class="mainContent-fp-element-full-head"><h2>KOMPENSASI LEMBUR</h2></div>
+	<div class="mainContent-fp-element-full-body">
+<form method="POST" name="frmInput" action="{URL_AKSI}" class="xhr_form std_form" id="frmInput" enctype="multipart/form-data">
+   <input type="hidden" name="idPeg" value="{DATA_ID}">
+   <table class="table-details" width="100%" >
+      <tr class="subhead">
+        <th colspan="2" valign="center">Detail Data Kompensasi Lembur</th>
+      </tr>
+      <tr>
+        <th width="39%">Nomor Lembur</th>
+        <td>
+          {NO}
+        </td>
+      </tr>
+      <tr>
+        <th>Tanggal Lembur</th>
+        <td>
+          {AJU}
+        </td>
+      </tr>
+      <tr>
+        <th>Tanggal Submit</th>
+        <td>
+          {SUBMIT}
+        </td>
+      </tr>
+      <tr>
+        <th>Jam Mulai</th>
+        <td>
+          {MULAI}
+        </td>
+      </tr>
+      <tr>
+        <th>Jam Selesai</th>
+        <td>
+          {SELESAI}
+        </td>
+      </tr>
+      <tr>
+        <th>Alasan Lembur</th>
+        <td>
+          {ALASAN}
+        </td>
+      </tr>
+      <tr>
+        <th>Status Disetujui</th>
+        <td>
+          {STATUS}
+        </td>
+      </tr>
+      <tr>
+        <th>TanggaL Disetujui</th>
+        <td>
+          {TGLSTAT}
+        </td>
+      </tr>
+      <tr class="buttons">
+         <td colspan="2" align="right">
+          <div class="toolbar"> 
+          <a class="xhr dest_subcontent-element " href="{URL_BACK}" title="Kembali" tabindex="2">
+          <img src="images/button-back.gif" alt=""> Kembali</a> 	
+          </div>
+         </td>
+      </tr>
+   </table>
+</form>
+</div></div>
+<!-- /patTemplate:tmpl -->

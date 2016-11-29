@@ -1,0 +1,163 @@
+<!-- patTemplate:tmpl name="content" -->
+<script language="javascript" type="text/javascript">
+	function setParent(xid, xlabel,xnilai) {
+	    if ((xid==1)||(xid==2)||(xid==3)) xnilai = xnilai-window.opener.angka_kredit_pendidikan;
+        var tampil_tombol_aksi = '<a href="javascript:void(null)" title="Hapus" onclick="hapusKegiatan(this,'+xnilai+')"><img src="images/button-delete.gif" alt="Hapus" border=0 /></a>';
+  		var tr = window.opener.document.createElement('tr');
+  		var td_kegiatan = window.opener.document.createElement('td');
+		var td_ak = window.opener.document.createElement('td');
+  		var td_deskripsi = window.opener.document.createElement('td');
+  		var td_tambahan = window.opener.document.createElement('td');
+  		var td_bukti = window.opener.document.createElement('td');
+  		var td_aksi = window.opener.document.createElement('td');  		
+  		var tbodi = window.opener.document.getElementById("tbody_kegiatan_list");
+  		
+  		td_aksi.className = 'links';
+  		td_aksi.width = 15;
+  		td_kegiatan.innerHTML = xlabel+'<input type="hidden" name="data[kegiatan][kegiatan][]" value="'+xid+'" />\n';
+		td_ak.innerHTML = xnilai+'<input type="hidden" name="data[kegiatan][angka_kredit][]" value="'+xnilai+'" />\n';
+  		td_deskripsi.innerHTML = '<textarea name="data[kegiatan][deskripsi][]" rows="5" cols="10" ></textarea>\n';
+  		td_tambahan.innerHTML = '<input type="text" size="10" name="data[kegiatan][peran][]" value="" />\n<input type="text" size="10" name="data[kegiatan][lokasi][]" value="" />\n<input type="text" size="10" name="data[kegiatan][waktu][]" value="" />\n';
+  		td_bukti.innerHTML = '<input type="text" size="10" name="data[kegiatan][bukti][]" value="" />\n';
+  		td_aksi.innerHTML = '<input type="hidden" name="data[kegiatan][id][]" value="" />\n'+tampil_tombol_aksi;
+  		
+  		tr.appendChild(td_kegiatan);
+		tr.appendChild(td_ak);
+  		tr.appendChild(td_deskripsi);
+  		tr.appendChild(td_tambahan);
+  		tr.appendChild(td_bukti);
+  		tr.appendChild(td_aksi);
+  		tbodi.appendChild(tr);
+		
+		window.opener.document.getElementById('total_angka_kredit').innerHTML = parseFloat(window.opener.document.getElementById('total_angka_kredit').innerHTML)+xnilai;
+  }
+  
+  function setParentOtomatis(xid, xlabel,xnilai,xdeskripsi,xlokasi,xperan,xwaktu,xreferensi) {
+	    if ((xid==1)||(xid==2)||(xid==3)) xnilai = xnilai-window.opener.angka_kredit_pendidikan;
+        var tampil_tombol_aksi = '<a href="javascript:void(null)" title="Hapus" onclick="hapusKegiatan(this,'+xnilai+')"><img src="images/button-delete.gif" alt="Hapus" border=0 /></a>';
+  		var tr = window.opener.document.createElement('tr');
+  		var td_kegiatan = window.opener.document.createElement('td');
+		var td_ak = window.opener.document.createElement('td');
+  		var td_deskripsi = window.opener.document.createElement('td');
+  		var td_tambahan = window.opener.document.createElement('td');
+  		var td_bukti = window.opener.document.createElement('td');
+  		var td_aksi = window.opener.document.createElement('td');  		
+  		var tbodi = window.opener.document.getElementById("tbody_kegiatan_list");
+  		
+  		td_aksi.className = 'links';
+  		td_aksi.width = 15;
+  		td_kegiatan.innerHTML = xlabel+'<input type="hidden" name="data[kegiatan][kegiatan][]" value="'+xid+'" />\n';
+		td_ak.innerHTML = xnilai+'<input type="hidden" name="data[kegiatan][angka_kredit][]" value="'+xnilai+'" />\n';
+  		td_deskripsi.innerHTML = '<textarea name="data[kegiatan][deskripsi][]" rows="5" cols="10">'+xdeskripsi+'</textarea>\n';
+  		td_tambahan.innerHTML = '<input type="text" size="10" name="data[kegiatan][peran][]" value="'+xperan+'" />\n<input type="text" size="10" name="data[kegiatan][lokasi][]" value="'+xlokasi+'" />\n<input type="text" size="10" name="data[kegiatan][waktu][]" value="'+xwaktu+'" />\n';
+  		td_bukti.innerHTML = '<input type="text" size="10" name="data[kegiatan][bukti][]" value="" />\n';
+  		td_aksi.innerHTML = '<input type="hidden" name="data[kegiatan][id][]" value="" />\n<input type="hidden" name="data[kegiatan][referensi][]" value="'+xreferensi+'" />\n'+tampil_tombol_aksi;
+  		
+  		tr.appendChild(td_kegiatan);
+		tr.appendChild(td_ak);
+  		tr.appendChild(td_deskripsi);
+  		tr.appendChild(td_tambahan);
+  		tr.appendChild(td_bukti);
+  		tr.appendChild(td_aksi);
+  		tbodi.appendChild(tr);
+		
+		window.opener.document.getElementById('total_angka_kredit').innerHTML = parseFloat(window.opener.document.getElementById('total_angka_kredit').innerHTML)+xnilai;
+  }
+  
+</script>
+<form method="POST" action="{URL_SEARCH}" class="dataquest xhr_simple_form dest_popup-subcontent" id="filterboxpopup">
+<input type="hidden" value="{PEG}" name="dataPeg" id="dataPeg">
+<input type="hidden" value="{SAT}" name="dataSatker" id="dataSatker">
+   <table>
+         <tr>
+            <th width="30%">Kegiatan</label></th>
+            <td width="25%"><input type="text" name="nama" value="{NAMA}" size="20" />
+            <td>
+            <input type="submit" name="btncari" value=" Cari &raquo;" class="buttonSubmit"/>
+            </td>
+         </tr>
+   </table>
+</form>
+
+<br /> 
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+    {ISI_PESAN}
+</div>
+<br />
+<!-- /patTemplate:tmpl -->
+<div class="pageBar">
+	<!-- patTemplate:gtfwrendermodule module="paging2" submodule="paging" action="view" name="paging_top"  / -->
+</div>
+<div style="{FR}">
+	<!-- patTemplate:tmpl name="otomatis" type="condition" conditionvar="IS_OTOMATIS" -->
+		<!-- patTemplate:sub condition="YES" -->
+			<table class="table-common" width="100%">
+				<tr>
+					<th width="15px">No</th>
+					<th>Nama Kegiatan</th>
+					<th>Deskripsi</th>
+					<th>Lokasi<br/>Peran<br/>Waktu</th>
+					<th>Angka Kredit</th>
+					<th width="35">Pilih</th>
+				</tr>
+				<!-- patTemplate:tmpl name="data_kegiatan_otomatis" type="condition" conditionvar="DATA_EMPTY" -->
+		        <!-- patTemplate:sub condition="YES" -->
+		        <tr><td colspan="6" align="center"><em>-- Data tidak ditemukan --</em></td></tr>
+		        <!-- /patTemplate:sub -->
+		        <!-- patTemplate:sub condition="NO" -->
+		            <!-- patTemplate:tmpl name="data_kegiatan_item_otomatis" -->
+		            <tr class="{DATA_CLASS_NAME}">
+						<td width="15px">{DATA_NUMBER}</td>
+						<td>{DATA_NAMA}
+							<input type="hidden" name="id" id="id" value="{DATA_ID}" >
+							<input type="hidden" name="angka_kredit" id="angka_kredit" value="{DATA_ANGKA_KREDIT}" >
+							<input type="hidden" name="nama" id="nama" value="{DATA_NAMA}" >
+						</td>
+						<td>{DATA_DESKRIPSI}</td>
+						<td>{DATA_LOKASI}{DATA_PERAN}{DATA_WAKTU}</td>
+						<td>{DATA_ANGKA_KREDIT}</td>
+						<td class="links" align="center">
+						    <a href="javascript:setParentOtomatis('{DATA_ID}','{DATA_NAMA}',{DATA_ANGKA_KREDIT},'{DATA_DESKRIPSI}','{DATA_LOKASI}','{DATA_PERAN}','{DATA_WAKTU}','{DATA_REFERENSI}')" onclick=""><img alt="Pilih" src="images/button-check.gif"/></a>
+		               </td>
+		            </tr>
+					<!-- /patTemplate:tmpl -->
+				<!-- /patTemplate:sub -->
+				<!-- /patTemplate:tmpl -->
+			</table>
+		<!-- /patTemplate:sub -->
+		<!-- patTemplate:sub condition="NO" -->
+			<table class="table-common" width="100%">
+				<tr>
+					<th width="15px">No</th>
+					<th>Nama Kegiatan</th>
+					<th>Angka Kredit</th>
+					<th width="35">Pilih</th>
+				</tr>
+				<!-- patTemplate:tmpl name="data_kegiatan" type="condition" conditionvar="DATA_EMPTY" -->
+		        <!-- patTemplate:sub condition="YES" -->
+		        <tr><td colspan="4" align="center"><em>-- Data tidak ditemukan --</em></td></tr>
+		        <!-- /patTemplate:sub -->
+		        <!-- patTemplate:sub condition="NO" -->
+		            <!-- patTemplate:tmpl name="data_kegiatan_item" -->
+		            <tr class="{DATA_CLASS_NAME}">
+						<td width="15px">{DATA_NUMBER}</td>
+						<td>{DATA_NAMA}
+							<input type="hidden" name="id" id="id" value="{DATA_ID}" >
+							<input type="hidden" name="angka_kredit" id="angka_kredit" value="{DATA_ANGKA_KREDIT}" >
+							<input type="hidden" name="nama" id="nama" value="{DATA_NAMA}" >
+						</td>
+						<td>{DATA_ANGKA_KREDIT}</td>
+						<td class="links" align="center">
+						    <a href="javascript:setParent('{DATA_ID}','{DATA_NAMA}',{DATA_ANGKA_KREDIT})" onclick=""><img alt="Pilih" src="images/button-check.gif"/></a>
+		               </td>
+		            </tr>
+					<!-- /patTemplate:tmpl -->
+				<!-- /patTemplate:sub -->
+				<!-- /patTemplate:tmpl -->
+			</table>
+		<!-- /patTemplate:sub -->
+	<!-- /patTemplate:tmpl -->
+      
+</div>
+<!-- /patTemplate:tmpl -->

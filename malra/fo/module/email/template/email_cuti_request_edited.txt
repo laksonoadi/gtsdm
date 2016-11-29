@@ -1,0 +1,21 @@
+Edited Data Leave Proposal in SSE Human Resource Portal System
+
+Dear Supervisor,
+
+This Employee, 
+Name            : {NAMA_PEGAWAI}
+Employee Number : {NIP_PEGAWAI}
+
+Has been changed His/Her data request leave. 
+
+Detailed Informations :
+
+Leave Number : {CUTI_NUMBER} 
+Leave Reason : {CUTI_ALASAN} 
+
+You need to approved or rejected this request,
+please log into SSE Human Resource Portal System.
+
+Regards,
+
+HR Mail System

@@ -1,0 +1,57 @@
+<!-- patTemplate:tmpl name="content" --> 
+   <div class="mainContent-fp-element-full">
+	<div class="mainContent-fp-element-full-head"><h2>{LABEL}</h2></div>
+	<div class="mainContent-fp-element-full-body">
+   <h2 style="margin-top:10px;">Delete {LABEL} Confirmation</h2>
+  <!-- patTemplate:tmpl name="emptydata" type="condition" conditionvar="IS_EMPTY_DATA" -->
+  <!-- patTemplate:sub condition="NO" -->
+   <form name="form_distribusi" id="form_distribusi" action="{FORM_ACTION_URL}" method="POST" class="xhr_form std_form">
+      <input type="hidden" value="{FORM_ACTION_URL}" />
+      <div class="dialogbox" id="dialog_delete">
+         <img src="image/alert.gif" alt="" />
+         <h2>Delete {LABEL}</h2>
+         <p>You are going to delete {LABEL} with name/code:<br />
+      <!-- patTemplate:tmpl name="multiple_delete" type="condition" conditionvar="IS_MULTIPLE_DELETE" -->
+         <!-- patTemplate:sub condition="NO" -->
+         <input type="hidden" value="{TGL}" name="tglDelete" />
+            <input type="hidden" value="{ID}" name="idDelete" /><b>{DATANAME}</b>
+         <!-- /patTemplate:sub -->
+         <!-- patTemplate:sub condition="YES" -->
+		 <ol>
+            <!-- patTemplate:tmpl name="multiple_delete_item" -->
+         <input type="hidden" value="{MULTI_ID}" name="idDelete[]" />
+			<input type="hidden" value="{MULTI_DATANAME}" name="nameDelete[]" />
+			<input type="hidden" value="{MULTI_PERIODE}" name="perDelete[]" />
+			<li style="font-weight:bold">{MULTI_DATANAME}</li>
+            <!-- /patTemplate:tmpl -->
+		</ol>
+         <!-- /patTemplate:sub -->
+      <!-- /patTemplate:tmpl -->
+		<div style="padding:5px 0px 5px 35px; margin-bottom:10px; background:url(images/alert.gif) left center no-repeat; color:red; font-weight:bold;">
+		Are you sure? {MESSAGE}
+		</div>
+         </p>
+         <ul class="taskdialog">
+            <li><input type="submit" name="btnDel" class="button" value="Delete" />
+            <p>Deleted data cannot be restored.</p></li>
+
+            <li><a class="xhr dest_subcontent-element button" href="{URL_KEMBALI}" title="Cancel">Cancel</a>
+            <p>Cancel delete and close this dialog.</p></li>
+         </ul>
+		</div>
+	</form>
+  <!-- /patTemplate:sub -->
+  <!-- patTemplate:sub condition="YES" -->
+      <div class="dialogbox" id="dialog_delete">
+         <img src="image/alert.gif" alt="" />
+         <p>You have to choose at least one data<br />Back.</p>
+         <ul class="taskdialog">
+            <li><a class="xhr dest_subcontent-element button" href="{URL_KEMBALI}" title="Back">Back</a>
+            <p>Cancel delete and close this dialog.</p></li>
+         </ul>
+	</div>
+  <!-- /patTemplate:sub -->
+<!-- /patTemplate:tmpl -->
+</div>
+</div>
+<!-- /patTemplate:tmpl -->

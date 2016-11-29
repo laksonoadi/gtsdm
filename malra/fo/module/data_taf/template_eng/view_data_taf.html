@@ -1,0 +1,1028 @@
+<!-- patTemplate:tmpl name="content" -->
+<script language="javascript" type="text/javascript">
+var tempKebijakan="{NILAI_KEBIJAKAN}";
+var tempZona="{NILAI_ZONA}";
+var kebijakan=new Array();
+var zona=new Array();
+var nTotal_allowance={TOTAL_ALLOWANCE};
+var nTotal_budget={TOTAL_BUDGET};
+var nSisa_budget=0;
+     function konfirmasi() {
+    		if(document.getElementById('btnbatal').value == " Reset "){
+          document.getElementById('btnbatal').type = "reset";
+          document.frmInput.onReset();
+        }else{
+          document.getElementById('btnbatal').type = "submit";
+          document.frmInput.onSubmit();
+        }
+     }
+
+    function getKebijakan(jenisId,zonaId) {
+      var nKebijakan=tempKebijakan.split('#');
+      for (i=1; i<nKebijakan.length; i++){
+        var mKebijakan=nKebijakan[i].split("|");
+        var tem=mKebijakan[1].split("-");
+        for (ii=2; ii<mKebijakan.length; ii++){
+          tem[ii]=mKebijakan[ii];
+        }
+        kebijakan[i-1]=tem;
+        if ((kebijakan[i-1][0]==jenisId)&&(kebijakan[i-1][1]==zonaId)){
+          return kebijakan[i-1];
+        }
+      }
+      
+      return 0;
+    }
+    
+    function getZona(kotaId) {
+      var nZona=tempZona.split('|');
+      for (i=1; i<nZona.length; i++){
+        zona[i-1]=nZona[i].split("-");
+        if (zona[i-1][0]==kotaId) {
+          var result=new Array();
+          result[0]=zona[i-1][1];
+          result[1]=zona[i-1][2];
+          return result;
+        }
+      }
+      
+      return 0;
+    }
+    
+    function prosesNumber(num){
+      numstring = num;
+    	num2 = numstring.toString().replace(/\./g,'');
+	    num = num2.toString().replace(/,/g,'.');
+      return parseFloat(num);
+    }
+
+    function js_next(url) {
+    	var tipe = document.getElementById('tipe').selectedIndex;
+    	var url = url+'&op='+document.getElementById('op').value+'&tipe='+document.getElementById('tipe').options[tipe].value;
+        location.href = url;
+    }
+    
+    function rubahTotalByHari(tujuanValue,nomorValue,TotalDays) {
+       //Get Jumlah Hari Baru
+    	 var total_hari_baru = document.getElementById('allowance_total_hari_'+tujuanValue+'_'+nomorValue).value;
+    	 if (total_hari_baru==''){
+    	   total_hari_baru=0;
+       }else
+       if (parseInt(total_hari_baru)>TotalDays){
+          total_hari_baru=TotalDays;
+       }
+        
+    	 //Get Nilai Kebijakan
+    	 var nilai = document.getElementById('allowance_nilai_'+tujuanValue+'_'+nomorValue).value;
+    	 
+    	 //Get Total Nilai Lama
+    	 var total_nilai_lama = prosesNumber(document.getElementById('allowance_total_'+tujuanValue+'_'+nomorValue).value);
+    	 
+       //Lihat SubTotal Lama
+    	 var sub_total_lama=prosesNumber(document.getElementById('allowance_sub_total_'+tujuanValue).value);
+    	 
+    	 //Lihat Total Lama
+    	 var total_lama=prosesNumber(document.getElementById('total_allowance').value);
+    	 total_lama -=sub_total_lama;
+    	 sub_total_lama -= total_nilai_lama;
+    	 
+    	 //Set Total Kebijakan (total_hari*kebijakan)
+    	 var total_nilai_baru=total_hari_baru*nilai;
+    	 document.getElementById('allowance_total_'+tujuanValue+'_'+nomorValue).value=formatNumber(total_hari_baru*nilai);
+    	 
+    	 //Set Subtotal Baru
+    	 var sub_total_baru = sub_total_lama+total_nilai_baru;
+    	 document.getElementById('allowance_sub_total_'+tujuanValue).value=formatNumber(sub_total_baru);
+    	 
+    	 //Set Total Baru
+    	 var total_baru = sub_total_baru+total_lama;
+    	 document.getElementById('total_allowance').value=formatNumber(total_baru);
+    	 nTotal_allowance=total_baru;
+    	 
+    	 nSisa_budget = nTotal_allowance - nTotal_budget;
+       document.getElementById('amount_budget').value=nSisa_budget;
+    	 
+    	 //Set Total Hari Baru
+    	 if (total_hari_baru==0){
+    	   total_hari_baru=0;
+       }
+    	 document.getElementById('allowance_total_hari_'+tujuanValue+'_'+nomorValue).value=total_hari_baru;
+    	 
+    }
+    
+    function tambahAllowance(nTujuanLabel,nTujuanValue,TotalDays){
+       var tbodi = document.getElementById("tbody_allowance_list");
+						  
+			 //Get Zona Sesuai Tujuan untuk menentukan allowance
+			 nZona = getZona(nTujuanValue);
+			 if (nZona!=0){
+         //get kebijakan by jenisId dan zonaId
+  			 nKebijakan = getKebijakan(nZona[0],nZona[1]);
+			 }
+			 
+			 if (nKebijakan==0){
+			    alert('This City Have not Allowance');
+          return false;
+       }
+			 
+			 if (nKebijakan!=0){
+			   
+			   //Create Header
+         var tr = document.createElement('tr');
+    		 var th_header = document.createElement('th');
+    		 th_header.align = "center";
+    		 th_header.colSpan = "7";
+    		 th_header.innerHTML = nTujuanLabel+'<input type="hidden" name="data[allowance]['+nTujuanValue+'][judul][]" id="allowance_judul_'+nTujuanValue+'_0" value="" />';
+    		 tr.appendChild(th_header);
+    		 tbodi.appendChild(tr);
+    		 
+    		 //Create Data Allowance
+    		 var sub_total=0;
+    		 var ii=0; //ii menandakan jumlah kebijakan pada kota ini
+    		 for (i=2; i<nKebijakan.length-1; i++){
+    		    ii++;
+    		    var nNilai=nKebijakan[i].split("-");
+    		    var total=parseInt(nNilai[2])*TotalDays;
+    		    sub_total += total;
+    		    
+            var tr = document.createElement('tr');
+    		    var td_nama = document.createElement('td');
+    		    var td_total_hari = document.createElement('td');
+    		    var td_nilai = document.createElement('td');
+    		    var td_currency = document.createElement('td');
+    		    var td_total = document.createElement('td');
+    		    var td_catatan = document.createElement('td');
+    		    var td_aksi = document.createElement('td');
+    		    
+    		    var tampil_tombol_aksi = '<a href="javascript:void(null)" title="Hapus" onclick="hapusAllowance(this)"><img src="images/button-delete.gif" alt="Hapus" border=0 /></a>';
+    		    
+    		    td_nama.innerHTML = nNilai[1]+'<input type="hidden" name="data[allowance]['+nTujuanValue+'][kebijakan_taf_id][]" value="'+nNilai[0]+'" />\n';
+    		    td_total_hari.innerHTML = '<input type="text" name="data[allowance]['+nTujuanValue+'][total_hari][]" id="allowance_total_hari_'+nTujuanValue+'_'+ii+'" size="2" value="'+TotalDays+'" onkeyup="rubahTotalByHari('+nTujuanValue+','+ii+','+TotalDays+')" />\n';
+    		    td_nilai.align='right';
+    		    td_nilai.innerHTML = formatNumber(nNilai[2])+'<input type="hidden" name="data[allowance]['+nTujuanValue+'][nilai][]" id="allowance_nilai_'+nTujuanValue+'_'+ii+'" value="'+nNilai[2]+'" />\n';
+    		    td_currency.align='center';
+    		    td_currency.innerHTML = nNilai[4]+'<input type="hidden" name="data[allowance]['+nTujuanValue+'][currency][]" value="'+nNilai[3]+'" />\n';
+    		    td_total.innerHTML = '<input type="text" name="data[allowance]['+nTujuanValue+'][total][]" id="allowance_total_'+nTujuanValue+'_'+ii+'" size="10" value="'+formatNumber(total)+'" readonly />\n';
+    		    td_catatan.innerHTML = '<input type="text" name="data[allowance]['+nTujuanValue+'][catatan][]" value=""  />\n';
+    		    td_aksi.innerHTML ='<input type="hidden" name="data[allowance]['+nTujuanValue+'][tujuan][]" value="'+nTujuanValue+'" /><input type="hidden" name="data[allowance]['+nTujuanValue+'][id][]" value="" />\n';/*+tampil_tombol_aksi;*/
+    		    
+    		    tr.appendChild(td_nama);
+    		    tr.appendChild(td_total_hari);
+    		    tr.appendChild(td_nilai);
+    		    tr.appendChild(td_currency);
+    		    tr.appendChild(td_total);
+    		    tr.appendChild(td_catatan);
+    		    tr.appendChild(td_aksi);
+    		    tbodi.appendChild(tr);
+         }
+         
+         
+         //Create Sub Total
+         var tr = document.createElement('tr');
+    		 var th_sub_total_label = document.createElement('td');
+    		 var th_sub_total = document.createElement('td');
+    		 var th_empty = document.createElement('td');
+    		 
+    		 
+    		 th_sub_total_label.align = "center";
+    		 th_sub_total_label.colSpan = "4";
+    		 
+    		 th_empty.align = "center";
+    		 th_empty.colSpan = "2";
+    		 
+    		 th_sub_total.align = "left";
+            		 
+    		 th_sub_total_label.innerHTML = "SUB TOTAL";
+    		 jj=ii+1;
+    		 th_sub_total.innerHTML = '<input type="text" name="data[allowance]['+nTujuanValue+'][sub_total][]" id="allowance_sub_total_'+nTujuanValue+'" size="10" value="'+formatNumber(sub_total)+'" readonly /><input type="hidden" name="data[allowance][jumlah_kebijakan][]" id="allowance_jumlah_kebijakan_'+nTujuanValue+'" size="10" value="'+ii+'" readonly />\n'+'<input type="hidden" name="data[allowance]['+nTujuanValue+'][sub][]" id="allowance_sub_'+nTujuanValue+'_'+jj+'" value="" />';;
+    		 th_empty.innerHTML = "";
+    		 
+    		 tr.appendChild(th_sub_total_label);
+    		 tr.appendChild(th_sub_total);
+    		 tr.appendChild(th_empty);
+    		 
+    		 tbodi.appendChild(tr);
+    		 
+    		 nTotal_allowance += sub_total;
+    		 nSisa_budget = nTotal_allowance - nTotal_budget;
+    		 
+    		 document.getElementById('amount_budget').value=nSisa_budget;
+    		 document.getElementById('total_allowance').value=formatNumber(nTotal_allowance);
+         return true;
+       }
+  		
+    }
+    
+    function hapusAllowance(obj)
+    {		
+    		obj.parentNode.parentNode.parentNode.removeChild(obj.parentNode.parentNode);
+    }
+    
+    function tambahTravel(){
+      var weekday=new Array(7);
+      weekday[0]="Sunday";
+      weekday[1]="Monday";
+      weekday[2]="Tuesday";
+      weekday[3]="Wednesday";
+      weekday[4]="Thursday";
+      weekday[5]="Friday";
+      weekday[6]="Saturday";
+      
+      //Tanggal Mulai
+      var nFDay= document.getElementById('tgl_mulai_day').selectedIndex;
+      var nFMon= document.getElementById('tgl_mulai_mon').selectedIndex;
+      var nFMonLabel= document.getElementById('tgl_mulai_mon').options[nFMon].text;
+      var nFTahun= document.getElementById('tgl_mulai_year').selectedIndex;
+      var nFTahunLabel= document.getElementById('tgl_mulai_year').options[nFTahun].text;
+      var FTanggal = nFTahunLabel+'-'+nFMon+'-'+nFDay;
+      var FTanggalLabel = nFDay+' '+nFMonLabel+' '+nFTahunLabel;
+      
+      var date1=new Date(); date1.setDate(nFDay); date1.setMonth(nFMon-1); date1.setYear(parseInt(nFTahunLabel));
+      var day1 = date1.getDay();
+      
+      //Tanggal Selesai
+      var nTDay= document.getElementById('tgl_selesai_day').selectedIndex;
+      var nTMon= document.getElementById('tgl_selesai_mon').selectedIndex;
+      var nTMonLabel= document.getElementById('tgl_selesai_mon').options[nTMon].text;
+      var nTTahun= document.getElementById('tgl_selesai_year').selectedIndex;
+      var nTTahunLabel= document.getElementById('tgl_selesai_year').options[nTTahun].text;
+      var TTanggal = nTTahunLabel+'-'+nTMon+'-'+nTDay;
+      var TTanggalLabel = nTDay+' '+nTMonLabel+' '+nTTahunLabel;
+      
+      var date2=new Date(); date2.setDate(nTDay); date2.setMonth(nTMon-1); date2.setYear(parseInt(nTTahunLabel));
+      var day2 = date2.getDay();
+      
+      //selisih hari
+      var diff  = new Date();
+      diff.setTime(Math.abs(date2.getTime() - date1.getTime()));
+      var timediff = diff.getTime();
+      var TotalDays = Math.floor(timediff / (1000 * 60 * 60 * 24))+1; 
+      
+      var nTujuan= document.getElementById('tujuan_travel').selectedIndex;
+      var nTujuanLabel= document.getElementById('tujuan_travel').options[nTujuan].text;
+      var nTujuanValue= document.getElementById('tujuan_travel').options[nTujuan].value;
+      
+      if (nTujuan==0){
+        alert('Transportation Destination Must Be Select');
+        return false;
+      }
+       
+      var tampil_tombol_aksi = '<a href="javascript:void(null)" title="Hapus" onclick="hapusTravel(this,'+nTujuanValue+')"><img src="images/button-delete.gif" alt="Hapus" border=0 /></a>';
+      
+  		var tr = document.createElement('tr');
+  		var td_tujuan = document.createElement('td');
+  		var td_tgl_mulai = document.createElement('td');
+  		var td_tgl_selesai = document.createElement('td');
+  		var td_total_days = document.createElement('td');
+  		var td_aksi = document.createElement('td');
+  		
+  		var tbodi = document.getElementById("tbody_travel_list");
+  		
+  		td_aksi.className = 'links';
+  		td_aksi.width = 15;
+  		td_tujuan.innerHTML = nTujuanLabel+'<input type="hidden" name="data[travel][tujuan][]" value="'+nTujuanValue+'" />\n';
+  		td_tgl_mulai.innerHTML = weekday[day1]+', '+FTanggalLabel+'<input type="hidden" name="data[travel][tanggal_mulai][]" value="'+FTanggal+'" />\n';
+  		td_tgl_selesai.innerHTML = weekday[day2]+', '+TTanggalLabel+'<input type="hidden" name="data[travel][tanggal_selesai][]" value="'+TTanggal+'" />\n';
+  		td_total_days.innerHTML = TotalDays+'<input type="hidden" name="data[travel][total_days][]" value="'+TotalDays+'" />\n';
+  		td_aksi.innerHTML = '<input type="hidden" name="data[travel][id][]" value="" />\n'+tampil_tombol_aksi;
+  		
+  		tr.appendChild(td_tujuan);
+  		tr.appendChild(td_tgl_mulai);
+  		tr.appendChild(td_tgl_selesai);
+  		tr.appendChild(td_total_days);
+  		tr.appendChild(td_aksi);
+  		tbodi.appendChild(tr);
+  		
+  		document.getElementById('tujuan_travel').selectedIndex=0;
+  		
+  		tambahAllowance(nTujuanLabel,nTujuanValue,TotalDays);
+  }
+  
+  function hapusTravel(obj,tujuan)
+  {		
+  		obj.parentNode.parentNode.parentNode.removeChild(obj.parentNode.parentNode);
+  		hapusAllowanceMassal(tujuan);
+  }
+  
+  function hapusAllowanceMassal(tujuan)
+  {		
+      
+  		var jumlah_kebijakan=document.getElementById('allowance_jumlah_kebijakan_'+tujuan).value;
+  		var obj1=document.getElementById('allowance_judul_'+tujuan+'_0');
+  		var objN=document.getElementById('allowance_jumlah_kebijakan_'+tujuan);
+  		var obj;
+  		
+  		//Lihat SubTotal Lama
+    	var sub_total_lama=prosesNumber(document.getElementById('allowance_sub_total_'+tujuan).value);
+    	  
+    	//Lihat Total Lama
+    	var total_lama=prosesNumber(document.getElementById('total_allowance').value);
+    	total_lama -=sub_total_lama;
+    	
+    	//Set Total Baru
+    	nTotal_allowance=total_lama;
+    	document.getElementById('total_allowance').value=formatNumber(total_lama);
+    	
+    	nSisa_budget = nTotal_allowance - nTotal_budget;
+      document.getElementById('amount_budget').value=nSisa_budget;
+  		
+  		//Menghapus Header
+  		obj1.parentNode.parentNode.parentNode.removeChild(obj1.parentNode.parentNode);
+  		
+  		//Menghapus Sub Total
+  		objN.parentNode.parentNode.parentNode.removeChild(objN.parentNode.parentNode);
+  		
+  		//Menghapus Isi
+  		for (i=1; i<=jumlah_kebijakan; i++){
+  		    obj=document.getElementById('allowance_total_'+tujuan+'_'+i);
+  		    obj.parentNode.parentNode.parentNode.removeChild(obj.parentNode.parentNode);
+      }
+  }
+  
+  function tambahBudget(){      
+      //Periode
+      var nPMon= document.getElementById('periode_bulan').selectedIndex;
+      var nPTahun= document.getElementById('periode_tahun').selectedIndex;
+      var PMon= document.getElementById('periode_bulan').options[nPMon].value;
+      var PTahun= document.getElementById('periode_tahun').options[nPTahun].value;
+      
+      //Budget ID
+      var nBudget= document.getElementById('budget_id').selectedIndex;
+      var TBudget= document.getElementById('budget_id').options[nBudget].text;
+      var VBudget= document.getElementById('budget_id').options[nBudget].value; 
+      var Budget=TBudget.split("#");
+      
+      if (nBudget==0){
+        alert('Budget ID Must Be Select');
+        return false;
+      }
+      
+      //Amount
+      var amount=document.getElementById('amount_budget').value;
+      if (amount=='') {amount=0;}
+      
+      /*if (amount+nTotal_budget>nTotal_allowance){
+          alert('Your Budget Total Excedeed Your Allowance Total');
+          return false;
+      }*/
+      
+      var tampil_tombol_aksi = '<a href="javascript:void(null)" title="Hapus" onclick="hapusBudget(this)"><img src="images/button-delete.gif" alt="Hapus" border=0 /></a>';
+      
+  		var tr = document.createElement('tr');
+  		var td_id = document.createElement('td');
+  		var td_nama = document.createElement('td');
+  		var td_period = document.createElement('td');
+  		var td_amount = document.createElement('td');
+  		var td_aksi = document.createElement('td');
+  		
+  		var tbodi = document.getElementById("tbody_budget_list");
+  		
+  		td_aksi.className = 'links';
+  		td_aksi.width = 15;
+  		td_id.innerHTML = Budget[0];
+  		td_nama.innerHTML = Budget[1];
+  		td_period.innerHTML = PMon+'-'+PTahun+'<input type="hidden" name="data[budget][periode_bulan][]" value="'+PMon+'" /><input type="hidden" name="data[budget][periode_tahun][]" value="'+PTahun+'" />\n';
+  		td_amount.innerHTML = '<input type="text" name="data[budget][amount][]" value="'+formatNumber(amount)+'" onkeyup="validasiAngka(this); jumlahnominal();" onblur="formatNumBlur(this)" onfocus="formatNumFoc(this)" />\n';
+  		td_aksi.innerHTML = '<input type="hidden" name="data[budget][budget_id][]" value="'+VBudget+'" /><input type="hidden" name="data[budget][id][]" value="" />\n'+tampil_tombol_aksi;
+  		
+  		tr.appendChild(td_id);
+  		tr.appendChild(td_nama);
+  		tr.appendChild(td_period);
+  		tr.appendChild(td_amount);
+  		tr.appendChild(td_aksi);
+  		tbodi.appendChild(tr);
+  		
+  		nTotal_budget += parseInt(amount);
+    	document.getElementById('total_budget').value=formatNumber(nTotal_budget);
+    	
+    	nSisa_budget = nTotal_allowance - nTotal_budget;
+      document.getElementById('amount_budget').value=nSisa_budget;
+  }
+  
+  function hapusBudget(obj)
+  {		
+  		obj.parentNode.parentNode.parentNode.removeChild(obj.parentNode.parentNode);
+  		jumlahnominal();
+  }
+  
+  function tambahTransport(){
+      
+      //Tanggal ETD
+      var nFDay= document.getElementById('tgl_transport_etd_day').selectedIndex;
+      var nFMon= document.getElementById('tgl_transport_etd_mon').selectedIndex;
+      var nFMonLabel= document.getElementById('tgl_transport_etd_mon').options[nFMon].text;
+      var nFTahun= document.getElementById('tgl_transport_etd_year').selectedIndex;
+      var nFTahunLabel= document.getElementById('tgl_transport_etd_year').options[nFTahun].text;
+      var FTanggal = nFTahunLabel+'-'+nFMon+'-'+nFDay;
+      var FTanggalLabel = nFDay+' '+nFMonLabel+' '+nFTahunLabel;
+      
+      var nFJam= document.getElementById('start_jam').selectedIndex;
+      var FJam= document.getElementById('start_jam').options[nFJam].value; 
+      var nFMenit= document.getElementById('start_menit').selectedIndex;
+      var FMenit= document.getElementById('start_menit').options[nFMenit].value;
+      
+      //Tanggal ETA
+      var nTDay= document.getElementById('tgl_transport_eta_day').selectedIndex;
+      var nTMon= document.getElementById('tgl_transport_eta_mon').selectedIndex;
+      var nTMonLabel= document.getElementById('tgl_transport_eta_mon').options[nTMon].text;
+      var nTTahun= document.getElementById('tgl_transport_eta_year').selectedIndex;
+      var nTTahunLabel= document.getElementById('tgl_transport_eta_year').options[nTTahun].text;
+      var TTanggal = nTTahunLabel+'-'+nTMon+'-'+nTDay;
+      var TTanggalLabel = nTDay+' '+nTMonLabel+' '+nTTahunLabel;
+      
+      var nTJam= document.getElementById('end_jam').selectedIndex;
+      var TJam= document.getElementById('end_jam').options[nTJam].value; 
+      var nTMenit= document.getElementById('end_menit').selectedIndex;
+      var TMenit= document.getElementById('end_menit').options[nTMenit].value; 
+      
+      
+      //Tujuan
+      var nTujuan= document.getElementById('tujuan_transport').selectedIndex;
+      var nTujuanLabel= document.getElementById('tujuan_transport').options[nTujuan].text;
+      var nTujuanValue= document.getElementById('tujuan_transport').options[nTujuan].value;
+      
+      if (nTujuan==0){
+        alert('Transportation Destination Must Be Select');
+        return false;
+      }
+      
+      //Tipe
+      var nTipe= document.getElementById('tipe_transport').selectedIndex;
+      var nTipeLabel= document.getElementById('tipe_transport').options[nTipe].text;
+      var nTipeValue= document.getElementById('tipe_transport').options[nTipe].value;
+      
+      if (nTipe==0){
+        alert('Travel Type Must Be Select');
+        return false;
+      }
+      
+      var nNoteValue= document.getElementById('note_transport').value;
+      var nNamaValue= document.getElementById('nama_transport').value;
+      
+       
+      var tampil_tombol_aksi = '<a href="javascript:void(null)" title="Hapus" onclick="hapusTransport(this)"><img src="images/button-delete.gif" alt="Hapus" border=0 /></a>';
+      
+  		var tr = document.createElement('tr');
+  		var td_tujuan = document.createElement('td');
+  		var td_tipe = document.createElement('td');
+  		var td_nama = document.createElement('td');
+  		var td_eta = document.createElement('td');
+  		var td_etd = document.createElement('td');
+  		var td_amount = document.createElement('td');
+  		var td_note = document.createElement('td');
+  		var td_aksi = document.createElement('td');
+  		
+  		var tbodi = document.getElementById("tbody_transport_list");
+  		
+  		td_aksi.className = 'links';
+  		td_aksi.width = 15;
+  		td_amount.align= 'right';
+  		td_tujuan.innerHTML = nTujuanLabel+'<input type="hidden" name="data[transport][tujuan][]" value="'+nTujuanValue+'" />\n';
+  		td_tipe.innerHTML = nTipeLabel+'<input type="hidden" name="data[transport][tipe][]" value="'+nTipeValue+'" />\n';
+  		td_nama.innerHTML = nNamaValue+'<input type="hidden" name="data[transport][nama][]" value="'+nNamaValue+'" />\n';
+  		td_etd.innerHTML = FTanggalLabel+'\n'+FJam+':'+FMenit+'<input type="hidden" name="data[transport][etd_tanggal][]" value="'+FTanggal+'" />\n'+'<input type="hidden" name="data[transport][etd_waktu][]" value="'+FJam+':'+FMenit+'" />\n';
+  		td_eta.innerHTML = TTanggalLabel+'\n'+TJam+':'+TMenit+'<input type="hidden" name="data[transport][eta_tanggal][]" value="'+TTanggal+'" />\n'+'<input type="hidden" name="data[transport][eta_waktu][]" value="'+TJam+':'+TMenit+'" />\n';
+  		td_amount.innerHTML=formatNumber(0);
+  		td_note.innerHTML=nNoteValue+'<input type="hidden" name="data[transport][catatan][]" value="'+nNoteValue+'" />\n';
+  		td_aksi.innerHTML = '<input type="hidden" name="data[transport][id][]" value="" />\n'+tampil_tombol_aksi;
+  		
+  		tr.appendChild(td_tujuan);
+  		tr.appendChild(td_tipe);
+  		tr.appendChild(td_nama);
+  		tr.appendChild(td_etd);
+  		tr.appendChild(td_eta);
+  		tr.appendChild(td_amount);
+  		tr.appendChild(td_note);
+  		tr.appendChild(td_aksi);
+  		tbodi.appendChild(tr);
+  		
+  		document.getElementById('tujuan_transport').selectedIndex=0;
+  		document.getElementById('tipe_transport').selectedIndex=0;
+  		document.getElementById('nama_transport').value='';
+  		document.getElementById('note_transport').value='';
+  }
+  
+  function hapusTransport(obj)
+  {		
+  		obj.parentNode.parentNode.parentNode.removeChild(obj.parentNode.parentNode);
+  }
+  
+  function validasiAngka(field){   
+     var Char; 
+     var sudahkoma = false;
+     var belakangkoma = 0;
+     Char = "";
+     for (i = 0; i < (field.value.length); i++){
+        if(isNaN(field.value.charAt(i)) && field.value.charAt(i) != '.' && field.value.charAt(i) != ','){
+           break;
+        }else {
+  		 if (sudahkoma == true) {
+  			if (field.value.charAt(i) == '.' || belakangkoma > 1) {
+  				break;
+  			}
+  			belakangkoma++;
+  		 }
+  		 if (field.value.charAt(i) == ',') {
+  			sudahkoma = true;
+  		 }
+           Char = Char + field.value.charAt(i);
+        }
+     }
+     field.value = Char;
+  }
+  
+  function formatNumber (num) {
+      num = parseFloat(num);
+      decplaces = 2;
+      if (!isNaN(num)) {
+          var str = "" + Math.round (eval(num) * Math.pow(10,decplaces));
+          if (str.indexOf("e") != -1) {
+              return "Out of Range";
+          }
+          while (str.length <= decplaces) {
+              str = "0" + str;
+          }
+          var decpoint = str.length - decplaces;
+          //return str.substring(0,decpoint) + "." + str.substring(decpoint,str.length);
+          
+          ribuan = str.substring(0,decpoint);
+  		/*ribuan = formatRibuan(ribuan);*/
+  		
+          for (var i = 0; i < Math.floor((ribuan.length-(1+i))/3); i++) {
+              ribuan = ribuan.substring(0,ribuan.length-(4*i+3))+'.'+ribuan.substring(ribuan.length-(4*i+3));
+          }
+  		
+          
+          return ribuan + "," + str.substring(decpoint,str.length);
+      } else {
+          return "0";
+      }
+  }
+  
+  function formatNumBlur (obj) {
+  	numstring = obj.value;
+  	num = numstring.toString().replace(/\./g,'');
+  	num = num.toString().replace(/,/g,'.');
+  	numstring = formatNumber(num);
+  	obj.value = numstring;
+  }
+  
+  function formatNumFoc (obj) {
+  	numstring = obj.value;
+  	num = numstring.toString().replace(/\./g,'');
+  	num = num.toString().replace(',00','');
+  	obj.value = num;
+  }
+  
+  function jumlahnominal() {
+   var sum = 0;
+   var temp;
+   tbd = document.getElementById('tbody_budget_list');
+   
+   for(i=1; i<tbd.childNodes.length; i++) {
+	    temp =tbd.childNodes[i].childNodes[3].childNodes[0].value;
+	    //temp =tbd.childNodes[i].childNodes[3].childNodes[0].value;
+	    //alert(temp.toString());
+      temp = temp.toString().replace(/\./g,'');
+	    temp = temp.toString().replace(/,/g,'.');
+	    temp = parseFloat(temp);
+      if(isNaN(temp)) temp = 0;
+      sum += temp;
+   }
+   
+   sum_rp = formatNumber(sum);
+   document.getElementById('total_budget').value = sum_rp;
+   
+   nTotal_budget=sum;
+   
+   nSisa_budget = nTotal_allowance - nTotal_budget;
+   document.getElementById('amount_budget').value=nSisa_budget;
+}
+
+  function cekIsiForm(){
+    temp=document.getElementById('total_budget').value;
+    temp = temp.toString().replace(/\./g,'');
+	  temp = temp.toString().replace(/,/g,'.');
+	  nTotal_budget = parseInt(temp);
+	  var alasan=document.getElementById('alasan').value;
+	  
+    if (alasan==''){
+        munculPesan('empty_purpose'); 
+        alert('Purpose Must Be Fill'); 
+        return false; 
+    }
+    
+    if (nTotal_allowance==nTotal_budget) {
+        document.frmInput.btnsimpan.click(); 
+    } else {
+        alert('Total Allowance and Total Budget Must Be Same');
+        return false;
+    }
+  }
+  
+  function sembunyiPesan(id){
+      document.getElementById(id).style.display='none';
+  }
+  
+  function munculPesan(id){
+      document.getElementById(id).style.display='';
+  }
+</script>
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+   {ISI_PESAN}
+</div>
+<br />
+<!-- /patTemplate:tmpl -->
+<div class="mainContent-fp-element-full">
+	<div class="mainContent-fp-element-full-head"><h2>Travel Application Form</h2></div>
+	<div class="mainContent-fp-element-full-body">
+<form method="POST" name="frmInput" action="{URL_AKSI}" class="xhr_form std_form" id="frmInput" enctype="multipart/form-data">
+   <input type="hidden" name="idPeg" value="{ID_PEG}">
+   <input type="hidden" name="pilihpegawai" value="{PILIH_PEGAWAI}">
+   <input type="hidden" name="op" value="{OP}" id="op">
+   <table class="table-details" width="100%" >
+      <tr class="subhead">
+        <th valign="center">{LABEL_ACTION}</th>
+        <th align="right">
+          <div class="toolbar"> 
+          <a class="xhr dest_subcontent-element " href="{URL_BACK}" title="Back" tabindex="2">
+          <img src="images/button-back.gif" alt=""> Back</a> 	
+          </div>
+        </th>
+      </tr>
+  	  <!-- patTemplate:tmpl name="detail_pegawai" -->
+      <tr class="subhead">
+        <th valign="center">Data</th>
+        <th align="right">
+        </th>
+      </tr>
+  	  <tr> 
+          <th width="39%">ID.No - Name</th>
+          <td>
+            {DATA_NIP_PEGAWAI} - {DATA_NAMA_PEGAWAI}
+          </td>
+      </tr>
+      <tr> 
+          <th width="39%">Job Title</th>
+          <td>
+            {DATA_JOB_TITLE}
+          </td>
+      </tr>
+      <tr> 
+          <th width="39%">Division</th>
+          <td>
+            {DATA_DIVISION}
+          </td>
+      </tr>
+  	  <!-- /patTemplate:tmpl -->
+  	  <tr>
+        <th width="39%">TAF No.</th>
+        <td>
+          <input type="text" name="no_taf" id="no_taf" size="23" maxlength="20" value="{NO_TAF}" readonly="readonly" />
+        </td>
+      </tr>
+      <tr>
+        <th width="39%">TAF Type</th>
+        <td>
+          <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="tipe"  / --> *
+        </td>
+      </tr>
+      <tr>
+        <th>Request Date</th>
+        <td>
+          <!-- patTemplate:gtfwrendermodule module="tanggal" submodule="tanggal" action="view" name="tgl_aju"  / -->
+        </td>
+      </tr>
+      <tr>              
+    		<th>Purpose</th>
+    		<td><input type="text" name="alasan" id="alasan" value="{DATA_ALASAN}" size="50" onkeyup="if (this.value!='') {sembunyiPesan('empty_purpose');}else {munculPesan('empty_purpose');} " /> * <div id="empty_purpose" style="display:none"><font color="red">Purpose Cannot Be Empty</font></div></td>
+  	  </tr>
+  	  <tr class="subhead">
+        <th valign="center">Travel</th>
+        <th align="right">
+        </th>
+      </tr>
+      <tr>
+        <th>Destination</th>
+        <td>
+          <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="tujuan_travel"  / --> *
+        </td>
+      </tr>    
+	    <tr>
+	      <th>From Date</th>
+        <td>
+          <!-- patTemplate:gtfwrendermodule module="tanggal" submodule="tanggal" action="view" name="tgl_mulai"  / -->
+        </td>
+     </tr>
+     <tr>
+	      <th>To Date</th>
+        <td>
+          <!-- patTemplate:gtfwrendermodule module="tanggal" submodule="tanggal" action="view" name="tgl_selesai"  / -->
+        </td>
+      </tr>
+      <tr>
+  	    <th>&nbsp;</th>
+  		  <td><input type="button" value="Add" name="travel_simpan" id="travel_simpan" onclick="tambahTravel();" /></td>
+  	  </tr>
+	   <tr>
+			<td colspan="2" align="center" style="padding-left:10px">
+				<table class="table-edits" id="table_travel" border="1" >
+					<tr>
+						<th>Destination</th>
+						<th>From Date</th>
+						<th>To Date</th>
+						<th>Total Days</th>
+						<th width="5%">Action</th>
+					</tr>
+					<tbody id="tbody_travel_list">
+					  <!-- patTemplate:tmpl name="tpl_travel_list" type="condition" conditionvar="TRAVEL_LIST_EMPTY" -->
+						 <!-- patTemplate:sub condition="YES" -->
+						 <!-- /patTemplate:sub -->
+						 <!-- patTemplate:sub condition="NO" -->
+							<!-- patTemplate:tmpl name="tpl_travel_item" -->
+							<tr class="{DATA_CLASS_NAME}">
+							   <td>{DATA_TUJUAN}<input type="hidden" name="data[travel][tujuan][]" value="{DATA_TUJUAN_ID}" /></td>
+							   <td>{DATA_TGL_AWAL_LABEL}<input type="hidden" size="15" name="data[travel][tanggal_mulai][]" value="{DATA_TGL_AWAL}"  /></td>
+							   <td>{DATA_TGL_AKHIR_LABEL}<input type="hidden" size="15" name="data[travel][tanggal_selesai][]" value="{DATA_TGL_AKHIR}"  /></td>
+							   <td>{DATA_TOTAL_HARI}<input type="hidden" name="data[travel][total_days][]" value="{DATA_TOTAL_HARI}" /></td>
+							   <td>
+							     <input type="hidden" name="data[travel][id][]" value="{DATA_ID}" />
+									 <a href="javascript:void(null)" title="Hapus" onclick="hapusTravel(this,{DATA_TUJUAN_ID})"><img src="images/button-delete.gif" alt="Hapus" border=0 /></a>
+							   </td>
+						  </tr>
+						 <!-- /patTemplate:tmpl -->
+						 <!-- /patTemplate:sub -->
+					  <!-- /patTemplate:tmpl -->
+					</tbody>
+				</table>
+			</td>
+		</tr>
+      <tr class="subhead">
+        <th valign="center">Transportation</th>
+        <th align="right">
+        </th>
+      </tr>
+      <tr>              
+    		<th>Destination</th>
+    		<td>
+    		<!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="tujuan_transport"  / --> *
+        </td>
+  	  </tr>
+  	  <tr>              
+    		<th>Transportation Type</th>
+    		<td>
+    		<!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="tipe_transport"  / --> *
+        </td>
+  	  </tr>
+  	  <tr>              
+    		<th>Flight. No / Transport Name</th>
+    		<td><input type="text" name="nama_transport" id="nama_transport" size="25" /><br /> ex: Argo Wilis (Train), Rosalia Indah (Bus), GA101 (Airplane)</td>
+  	  </tr>
+  	  <tr>
+        <th>ETD Date</th>
+        <td>
+            <!-- patTemplate:gtfwrendermodule module="tanggal" submodule="tanggal" action="view" name="tgl_transport_etd"  / -->
+        </td>
+      </tr>
+  	  <tr>
+        <th>ETD Time</th>
+        <td>
+            <select name="start_jam"  id="start_jam" tabindex="2">
+            <!-- patTemplate:tmpl name="start_jam" -->
+              <option value="{JAM}" {JAM_SELECTED}>{JAM}</option>
+            <!-- /patTemplate:tmpl -->
+            </select>&nbsp;:&nbsp;<select name="start_menit" id="start_menit"  tabindex="3">
+            <!-- patTemplate:tmpl name="start_menit" -->
+              <option value="{MENIT}" {MENIT_SELECTED}>{MENIT}</option>
+            <!-- /patTemplate:tmpl -->
+            </select>&nbsp;WIB
+        </td>
+      </tr>
+      <tr>
+        <th>ETA Date</th>
+        <td>
+            <!-- patTemplate:gtfwrendermodule module="tanggal" submodule="tanggal" action="view" name="tgl_transport_eta"  / -->
+        </td>
+      </tr>
+      <tr>
+        <th>ETA Time</th>
+        <td>
+            <select name="end_jam" id="end_jam"  tabindex="2">
+            <!-- patTemplate:tmpl name="end_jam" -->
+              <option value="{JAM}" {JAM_SELECTED} >{JAM}</option>
+            <!-- /patTemplate:tmpl -->
+            </select>&nbsp;:&nbsp;<select name="end_menit" id="end_menit" tabindex="3">
+            <!-- patTemplate:tmpl name="end_menit" -->
+              <option value="{MENIT}" {MENIT_SELECTED} >{MENIT}</option>
+            <!-- /patTemplate:tmpl -->
+            </select>&nbsp;WIB
+        </td>
+      </tr>
+      <tr>              
+    		<th>Note</th>
+    		<td><input type="text" name="note_transport" id="note_transport" size="50" /></td>
+  	  </tr>
+  	  <tr>
+  	    <th>&nbsp;</th>
+  		  <td><input type="button" value="Add" name="transport_simpan" id="transport_simpan" onclick="tambahTransport();" /></td>
+  	  </tr>
+	   <tr>
+			<td colspan="2" align="center" style="padding-left:10px">
+				<table class="table-edits" id="table_transport" border="1" >
+					<tr>
+						<th>Destination</th>
+						<th>Type</th>
+						<th>Flight. No/<br />Transport Name</th>
+						<th>ETD</th>
+						<th>ETA</th>
+						<th>Amount</th>
+						<th>Note</th>
+						<th width="5%">Action</th>
+					</tr>
+					<tbody id="tbody_transport_list">
+					  <!-- patTemplate:tmpl name="tpl_transport_list" type="condition" conditionvar="TRANSPORT_LIST_EMPTY" -->
+						 <!-- patTemplate:sub condition="YES" -->
+						 <!-- /patTemplate:sub -->
+						 <!-- patTemplate:sub condition="NO" -->
+							<!-- patTemplate:tmpl name="tpl_transport_item" -->
+							<tr class="{DATA_CLASS_NAME}">
+							   <td>{DATA_TUJUAN}<input type="hidden" name="data[transport][tujuan][]" value="{DATA_TUJUAN_ID}" /></td>
+							   <td>{DATA_JENIS}<input type="hidden" name="data[transport][tipe][]" value="{DATA_JENIS_ID}" /></td>
+							   <td>{DATA_NAMA}<input type="hidden" name="data[transport][nama][]" value="{DATA_NAMA}" /></td>
+							   <td>{DATA_TGL_AWAL_LABEL}<br />{DATA_JAM_AWAL}<input type="hidden" name="data[transport][etd_tanggal][]" value="{DATA_TGL_AWAL}" /><input type="hidden" name="data[transport][etd_waktu][]" value="{DATA_JAM_AWAL}" /></td>
+							   <td>{DATA_TGL_AKHIR_LABEL}<br />{DATA_JAM_AKHIR}<input type="hidden" name="data[transport][eta_tanggal][]" value="{DATA_TGL_AKHIR}" /><input type="hidden" name="data[transport][eta_waktu][]" value="{DATA_JAM_AKHIR}" /></td>
+							   <td align="right">{DATA_ANGGARAN_LABEL}</td>
+							   <td>{DATA_NOTE}<input type="hidden" name="data[transport][catatan][]" value="{DATA_NOTE}" /></td>
+							   <td>
+							     <input type="hidden" name="data[transport][id][]" value="{DATA_ID}" />
+									 <a href="javascript:void(null)" title="Hapus" onclick="hapusTransport(this)"><img src="images/button-delete.gif" alt="Hapus" border=0 /></a>
+							   </td>
+						  </tr>
+						 <!-- /patTemplate:tmpl -->
+						 <!-- /patTemplate:sub -->
+					  <!-- /patTemplate:tmpl -->
+					</tbody>
+				</table>
+			</td>
+		</tr>
+		<tr class="subhead">
+        <th valign="center">Travel Allowance</th>
+        <th align="right">
+        </th>
+    </tr>
+    <tr>
+			<td colspan="2" align="center" style="padding-left:10px">
+				<table class="table-edits" id="table_allowance" border="1" >
+					<tr>
+						<th width="25%">Decription</th>
+						<th>Allwnc Day</th>
+						<th>Allowance</th>
+						<th>Currency</th>
+						<th>Total</th>
+						<th>Note</th>
+						<th width="5%">Action</th>
+					</tr>
+					<tbody id="tbody_allowance_list">
+					  <!-- patTemplate:tmpl name="tpl_allowance_list" type="condition" conditionvar="ALLOWANCE_LIST_EMPTY" -->
+						 <!-- patTemplate:sub condition="YES" -->
+						 <!-- /patTemplate:sub -->
+						 <!-- patTemplate:sub condition="NO" -->
+							<!-- patTemplate:tmpl name="tpl_allowance_item" -->
+							
+							<!-- patTemplate:tmpl name="tpl_header" type="condition" conditionvar="HEADER" -->
+  						    <!-- patTemplate:sub condition="YES" -->
+      						  <!-- patTemplate:tmpl name="tpl_allowance_header" -->
+      						    <tr><td colspan="7" align="center">
+                      {DATA_TUJUAN}
+                      <input type="hidden" name="data[allowance][{DATA_TUJUAN_ID}][judul][]" id="allowance_judul_{DATA_TUJUAN_ID}_0" value="" />
+                      </td></tr>
+        						<!-- /patTemplate:tmpl -->
+      						<!-- /patTemplate:sub -->
+      						<!-- patTemplate:sub condition="NO" -->
+      						<!-- /patTemplate:sub -->
+    						<!-- /patTemplate:tmpl -->
+    						
+  							<tr class="{DATA_CLASS_NAME}">
+  								<td>{DATA_DESKRIPSI}<input type="hidden" name="data[allowance][{DATA_TUJUAN_ID}][kebijakan_taf_id][]" value="{DATA_KEBIJAKAN_ID}" /></td>
+  								<td><input type="text" name="data[allowance][{DATA_TUJUAN_ID}][total_hari][]" id="allowance_total_hari_{DATA_TUJUAN_ID}_{DATA_NOMOR}" size="3" value="{DATA_TOTAL_HARI}" onkeyup="rubahTotalByHari({DATA_TUJUAN_ID},{DATA_NOMOR},{DATA_TOTAL_HARI})" /></td>
+  								<td align="right">{DATA_NILAI_LABEL}<input type="hidden" name="data[allowance][{DATA_TUJUAN_ID}][nilai][]" id="allowance_nilai_{DATA_TUJUAN_ID}_{DATA_NOMOR}" value="{DATA_NILAI}" /></td>
+  								<td align="center">{DATA_CURRENCY}<input type="hidden" name="data[allowance][{DATA_TUJUAN_ID}][currency][]" value="{DATA_CURR_ID}" /></td>
+  								<td align="right"><input type="text" name="data[allowance][{DATA_TUJUAN_ID}][total][]" id="allowance_total_{DATA_TUJUAN_ID}_{DATA_NOMOR}" size="10" value="{DATA_TOTAL_LABEL}" readonly /></td>
+  								<td><input type="text" name="data[allowance][{DATA_TUJUAN_ID}][catatan][]" value="{DATA_NOTE}"  /></td>
+  								<td>
+							     <input type="hidden" name="data[allowance][{DATA_TUJUAN_ID}][tujuan][]" value="{DATA_TUJUAN_ID}" />
+                   <input type="hidden" name="data[allowance][{DATA_TUJUAN_ID}][id][]" value="{DATA_ID}" />
+									 <!--<a href="javascript:void(null)" title="Hapus" onclick="hapusAllowance(this)"><img src="images/button-delete.gif" alt="Hapus" border=0 /></a>-->
+							   </td>
+  							</tr>
+  							
+  							<!-- patTemplate:tmpl name="tpl_subtotal" type="condition" conditionvar="SUBTOTAL" -->
+  						    <!-- patTemplate:sub condition="YES" -->
+      						  <!-- patTemplate:tmpl name="tpl_allowance_subtotal" -->
+        						  <tr><td colspan="4" align="right"> SUB TOTAL</td><td align="right">
+        						  <input type="text" name="data[allowance][{DATA_TUJUAN_ID}][sub_total][]" id="allowance_sub_total_{DATA_TUJUAN_ID}" size="10" value="{DATA_SUB_TOTAL_LABEL}" readonly /><input type="hidden" name="data[allowance][jumlah_kebijakan][]" id="allowance_jumlah_kebijakan_{DATA_TUJUAN_ID}" size="10" value="{DATA_JUMLAH_KEBIJAKAN}" readonly />
+        						  <input type="hidden" name="data[allowance][{DATA_TUJUAN_ID}][sub][]" id="allowance_sub_{DATA_TUJUAN_ID}_{DATA_JUMLAH_KEBIJAKAN_PLUS1}" value="" />
+                      </td><td colspan="2"></td></tr>
+        						<!-- /patTemplate:tmpl -->
+      						<!-- /patTemplate:sub -->
+      						<!-- patTemplate:sub condition="NO" -->
+      						<!-- /patTemplate:sub -->
+    						<!-- /patTemplate:tmpl -->
+						 <!-- /patTemplate:tmpl -->
+						 <!-- /patTemplate:sub -->
+					  <!-- /patTemplate:tmpl -->
+					</tbody>
+					<tr>
+						<td colspan="4">TOTAL</td>
+						<td><input type="text" name="total_allowance" id="total_allowance"  size="10" maxlength="20" value="{DATA_TOTAL_ALLOWANCE_LABEL}" readonly="readonly" /></td>
+						<td colspan="2"></td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+    <tr class="subhead">
+        <th valign="center">Budget</th>
+        <th align="right">
+        </th>
+    </tr>
+    <tr>
+        <th>Budget ID</th>
+        <td>
+          <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="budget_id"  / -->
+        </td>
+    </tr>
+  	<tr>              
+    		<th>Budget Period</th>
+    		<td>
+    		    <select name="periode_bulan" id="periode_bulan"  tabindex="2">
+            <!-- patTemplate:tmpl name="periode_bulan" -->
+              <option value="{BULAN}" {BULAN_SELECTED} >{BULAN}</option>
+            <!-- /patTemplate:tmpl -->
+            </select>&nbsp;&nbsp;<select name="periode_tahun" id="periode_tahun" tabindex="3">
+            <!-- patTemplate:tmpl name="periode_tahun" -->
+              <option value="{TAHUN}" {TAHUN_SELECTED} >{TAHUN}</option>
+            <!-- /patTemplate:tmpl -->
+            </select>&nbsp;
+        </td>
+  	</tr>
+  	<tr>              
+    		<th>Budget Amount</th>
+    		<td>
+          <input type="text" name="amount_budget" id="amount_budget" size="20" />
+          <input type="button" value="Add" name="budget_simpan" id="budget_simpan" onclick="tambahBudget();" />
+        </td>
+  	</tr>
+    <tr>
+			<td colspan="2" align="center" style="padding-left:10px">
+				<table class="table-edits" id="table_budget" border="1" >
+					<tr>
+						<th>Budget ID</th>
+						<th width="20%">Budget Description</th>
+						<th>Period</th>
+						<th>Amount</th>
+						<th width="5%">Action</th>
+					</tr>
+					<tbody id="tbody_budget_list">
+					  <!-- patTemplate:tmpl name="tpl_budget_list" type="condition" conditionvar="BUDGET_LIST_EMPTY" -->
+						 <!-- patTemplate:sub condition="YES" -->
+						 <!-- /patTemplate:sub -->
+						 <!-- patTemplate:sub condition="NO" -->
+							<!-- patTemplate:tmpl name="tpl_budget_item" -->
+							<tr class="{DATA_CLASS_NAME}">
+							   <td>{DATA_KODE_BUDGET}</td>
+							   <td>{DATA_DESKRIPSI}</td>
+							   <td>{DATA_PERIODE}<input type="hidden" name="data[budget][periode_bulan][]" value="{DATA_PERIODE_BULAN}" /><input type="hidden" name="data[budget][periode_tahun][]" value="{DATA_PERIODE_TAHUN}" /></td>
+							   <td><input type="text" name="data[budget][amount][]" value="{DATA_ANGGARAN_LABEL}" onkeyup="validasiAngka(this); jumlahnominal();" onblur="formatNumBlur(this)" onfocus="formatNumFoc(this)" /></td>
+							   <td>
+							     <input type="hidden" name="data[budget][id][]" value="{DATA_ID}" />
+							     <input type="hidden" name="data[budget][budget_id][]" value="{DATA_BUDGET_ID}" />
+									 <a href="javascript:void(null)" title="Hapus" onclick="hapusBudget(this)"><img src="images/button-delete.gif" alt="Hapus" border=0 /></a>
+							   </td>
+						  </tr>
+						 <!-- /patTemplate:tmpl -->
+						 <!-- /patTemplate:sub -->
+					  <!-- /patTemplate:tmpl -->
+					</tbody>
+					<tr>
+						<td colspan="3">TOTAL</td>
+						<td><input type="text" name="total_budget" id="total_budget"  maxlength="20" value="{TOTAL_BUDGET_LABEL}" /></td>
+						<td colspan="1"></td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+      <tr class="buttons">
+         <th>&nbsp;</th>
+         <td>
+            <input type="hidden" name="id" value="{DATA_ID}" />
+			<input type="hidden" name="peg_id" value="{ID_PEG}" />
+			<div style="display:none"><input name="btnsimpan" id="btnsimpan" value=" {LABEL_ACTION} " class="buttonSubmit" type="submit" ></div>
+            <input type="button" name="btnsimpanBohong" value=" Save " onclick="cekIsiForm()" />
+			<input name="btnbatal" id="btnbatal" value="{BUTTON}" class="buttonSubmit" type="button" onclick="konfirmasi()">
+         </td>
+      </tr>
+   </table>
+</form>
+</div></div>
+<!-- /patTemplate:tmpl -->

@@ -1,0 +1,54 @@
+<!-- patTemplate:tmpl name="content" -->
+<div class="mainContent-fp-element-full">
+	<div class="mainContent-fp-element-full-head"><h2>JENIS KEBIJAKAN DAN PERATURAN</h2></div>
+	<div class="mainContent-fp-element-full-body">
+	<!-- patTemplate:tmpl name="message" visibility="hidden" -->
+      <div class="{CSS}">
+        {MESSAGE}
+      </div>
+      <br />
+   <!-- /patTemplate:tmpl -->
+   <form name="form_file_policy" id="form_file_policy" action="{URL_ACTION}" method="post" autocomplete=off enctype="multipart/form-data">
+      <table class="table-details" width="100%">
+         <tr>
+            <th width="20%">Jenis Kebijakan Dan Peraturan</th>
+            <td>
+              <input type="text" size="25" name="nama" id="nama" value="{JNSPOLICYNAMA}">
+            </td>
+         </tr>
+         <tr>
+            <th>&nbsp;</th>
+			<td>
+                <input type="hidden" name="id" id="id" value="{JNSPOLICYID}">
+                <input type="submit" name="simpan"  value="{LABEL_AKSI}">
+            </td>
+         </tr>
+      </table>
+   </form>
+   <br />
+   <table class="table-common" width="96%">
+      <tr>
+         <th>No</th>
+         <th>Jenis Kebijakan & peraturan</th>
+         <th>tanggal</th>
+         <th width="100px">Aksi</th>
+      </tr>
+      <!-- patTemplate:tmpl name="empty_type_policy" visibility="hidden" -->
+      <tr>
+         <td colspan="4" align="center">-- Data tidak ditemukan --</td>
+      </tr>
+      <!-- /patTemplate:tmpl -->
+      <!-- patTemplate:tmpl name="list_type_policy" visibility="hidden" -->
+      <tr>
+         <td>{NO}</td>
+         <td>{JNSPOLICYNAMA}</td>
+         <td>{JNSPOLICYTGL}</td>
+         <td class="table-common-links">
+            <a href="{URL_EDIT}" title="Edit"><img src="images/button-edit.gif" alt="Edit" /></a>
+            <a href="{URL_DELETE}" title="Delete"><img src="images/button-delete.gif" alt="Delete" /></a>
+         </td>
+      </tr>
+      <!-- /patTemplate:tmpl -->
+   </table>
+</div></div>
+<!-- /patTemplate:tmpl -->

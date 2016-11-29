@@ -1,0 +1,121 @@
+<!-- patTemplate:tmpl name="content" -->
+<script language="javascript" type="text/javascript">
+	var xpopup;
+	function centangin_semua(varname, start_num, end_num) {
+		var obj = document.getElementById('cek_all');
+		if(obj.checked == false) {
+			for(i=start_num;i<=end_num;i++) {
+				document.getElementById(varname + i).checked = false;
+			}
+		} else {
+			for(i=start_num;i<=end_num;i++) {
+				document.getElementById(varname + i).checked = true;
+			}
+		}
+	}
+	function show_checkbox (varname, start_num, end_num) {
+		//show check_all checkbox
+		document.getElementById('cek_all').style.display='';
+		//document.getElementById('btnHapus').type="button";
+	}
+	function konfirmasi_delete(varname, start_num, end_num) {
+		//var idDelete = document.getElementById('id_delete').value;
+		for(i=start_num;i<=end_num;i++) {
+			if(document.getElementById(varname + i).checked == true) {
+				//document.getElementById('form_list').submit();
+				document.getElementById('btnHapus').type="submit";
+				document.getElementById('btnHapus').click();
+				return true;
+			}
+		}
+		alert('Silakan beri tanda cek pada minimal 1 data');
+		return false;
+	}
+</script>
+
+<div class="mainContent-fp-element-full">
+	<div class="mainContent-fp-element-full-head"><h2>Leave Data List</h2></div>
+	<div class="mainContent-fp-element-full-body">
+<form method="POST" action="{URL_SEARCH}" >
+   <table>
+      <tr>
+         <th colspan="2"><h2><strong>Search Data</strong></h2></th>
+      </tr>
+  	  <tr>
+    		<th>Year :</th>
+    		<td>
+    			<!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="year" / -->
+    			<input type="submit" name="btncari" value=" Search &raquo;" class="buttonSubmit"/>
+        </td>
+    	</tr>
+   </table>
+</form>
+
+<br /> 
+   <!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+   <div class="{CLASS_PESAN}">
+      {ISI_PESAN}
+   </div>
+   <br />
+   <!-- /patTemplate:tmpl -->
+   <table class="table-form" width="100%">
+      <tr>
+         <td class="table-common-links">
+		        <a class="xhr dest_subcontent-element" href="{URL_TAMBAH_CUTI}" title="Add Leave Data" tabindex="3"><img src="images/button-add.gif" alt="Leave Data"> Leave Request</a>
+		        <!-- patTemplate:tmpl name="approval" visibility="visible" -->
+		        <a class="xhr dest_subcontent-element" href="{URL_APPROVAL_CUTI}" title="Approval Leave Data" tabindex="3"><img src="images/button-add.gif" alt="Approval Leave Data"> Leave Approval</a>
+		        <!-- /patTemplate:tmpl -->
+         </td>
+      </tr>
+   </table>
+   <h2>Leave List In {TAHUN}</h2>
+   <div class="pageBar">
+      <!-- patTemplate:gtfwrendermodule module="paging" submodule="paging" action="view" name="paging_top"  / -->
+   </div>
+	<table class="table-common" width="96%">
+      <tr>
+         <th width="5%">No</th>
+         <th>Date Proposed</th>
+         <th>Duration</th>
+         <!--<th>Leave Reason</th>-->
+         <th>Leave Type</th>
+         <th>Deduction Status</th>
+		 <th>Approval Status</th>
+         <th>Date Approved</th>
+         <th width="10%">Action</th>
+      </tr>
+      <!-- patTemplate:tmpl name="data_history" type="condition" conditionvar="HISTORY_EMPTY" -->
+         <!-- patTemplate:sub condition="YES" -->
+         <tr><td colspan="9" align="center"><em>-- Data not found --</em></td></tr>
+         <!-- /patTemplate:sub -->
+         <!-- patTemplate:sub condition="NO" -->
+            <!-- patTemplate:tmpl name="data_history_item" -->
+            <tr class="{DATA_CLASS_NAME}">
+               <td align="center">{DATA_NUMBER}</td>
+               <td align="center">{DATA_PROPOSED}</td>
+               <td>{DATA_DURASI} days</td>
+					     <!--<td align="center">{DATA_ALASAN}</td>-->
+					     <td align="center">{DATA_NAMA}</td>
+               <td align="center">{DATA_DEDUCTION}</td>
+			   <td align="center">{DATA_STATUS}</td>
+               <td align="center">{DATA_TGLSTATUS}</td>
+               <td class="links" align="center">
+                  <a class="xhr dest_subcontent-element" href="{DATA_URL_DETAIL}" title="Detail"><img src="images/button-detail.gif" alt="Detail"/></a> 				  
+                  <!-- patTemplate:tmpl name="edit_data" visibility="hidden" -->
+                  <a class="xhr dest_subcontent-element" href="{DATA_URL_EDIT}" title="Update"><img src="images/button-edit.gif" alt="Update"/></a>
+                  <a class="xhr dest_subcontent-element" href="{DATA_URL_DELETE}" title="Delete"><img src="images/button-delete.gif" alt="Delete"/></a>
+                  <!-- /patTemplate:tmpl -->
+               </td>
+            </tr>
+            <!-- /patTemplate:tmpl -->
+         <!-- /patTemplate:sub -->
+      <!-- /patTemplate:tmpl -->
+   </table>
+   <br />
+   <div>
+      Leaved Proposed : {JUMLAH_PENGAJUAN} days<br />
+      Leaved Approved : {JUMLAH_DISETUJUI} days<br />
+      Remaining Leave : {JUMLAH_SISA} days<br />
+   </div>
+</div></div>
+<!-- /patTemplate:tmpl -->

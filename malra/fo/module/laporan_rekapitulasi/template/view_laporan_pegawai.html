@@ -1,0 +1,208 @@
+<!-- patTemplate:tmpl name="content" -->
+<div class="mainContent-fp-element-full">
+	<div class="mainContent-fp-element-full-head"><h2>Statistik Data Pegawai <!-- patTemplate:gtfwgetconfig config="application" name="company_name" / --></h2></div>
+	<div class="mainContent-fp-element-full-body">
+<form method="POST" action="{URL_SEARCH}" class="dataquest xhr_simple_form dest_subcontent-element" id="filterbox">
+	<table>
+		<tr>
+			<th colspan="2"><h2><strong>Pencarian Data</strong></h2></th>
+		</tr>
+		<tr>              
+			<th width="30%"><b>Berdasarkan</b></th>
+			<td>
+				<select name="berdasarkan" style="width:150px">
+					<option value="unit" {SELECTED_UNIT}}>Unit Kerja</option>
+					<option value="jenisfungsional" {SELECTED_JENISFUNGSIONAL}>Jenis Fungsional</option>
+					<option value="status" {SELECTED_STATUS}>Status Pegawai</option>
+					<option value="golongan" {SELECTED_GOLONGAN}>Pangkat Golongan</option>
+					<option value="fungsional" {SELECTED_FUNGSIONAL}>Jabatan Fungsional</option>
+					<option value="struktural" {SELECTED_STRUKTURAL}>Jabatan Struktural</option>
+					<option value="eselon" {SELECTED_ESELON}>Tingkatan Eselon</option>
+					<option value="pendidikan" {SELECTED_PENDIDIKAN}>Tingkat Pendidikan</option>
+					<option value="spendidikan" {SELECTED_PENDIDIKANS}>Status Pendidikan</option>
+					<option value="jenis" {SELECTED_JENIS}>Jenis Pegawai</option>
+					<option value="agama" {SELECTED_AGAMA}>Agama</option>
+					<option value="statnikah" {SELECTED_STATNIKAH}>Status Pernikahan</option>
+					<option value="usia" {SELECTED_USIA}>Usia Pegawai</option>
+					<option value="masakerja" {SELECTED_MASAKERJA}>Lama Bekerja</option>
+					<option value="sertifikasi" {SELECTED_SERTIFIKASI}>Tahun Sertifikasi Dosen</option>
+				</select>
+			</td>
+		</tr>
+		<tr>              
+			<th width="30%"><b>Dengan Kriteria</b></th>
+			<td>
+				<table width="100%">
+				<tr>              
+					<th>Jenis Fungsional</th>
+					<td>
+						<!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="jabatan_fungsional"  / -->
+					</td>
+				</tr>
+				<tr>              
+					<th>Unit Kerja</th>
+					<td>
+						<!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="unit"  / -->
+					</td>
+				</tr>
+				<tr>              
+					<th>Status Pegawai</th>
+					<td>
+						<!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="status"  / -->
+					</td>
+				</tr>
+				<tr>              
+					<th>Jenis Pegawai</th>
+					<td>
+						<!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="jenis"  / -->
+					</td>
+				</tr>
+				<tr>              
+					<th>Pangkat Golongan</th>
+					<td>
+						<!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="golongan"  / -->
+					</td>
+				</tr>
+				<tr>              
+					<th>Jabatan Fungsional</th>
+					<td>
+						<!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="fungsional"  / -->
+					</td>
+				</tr>
+				<tr>              
+					<th>Tingkat Pendidikan</th>
+					<td>
+						<!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="pendidikan"  / -->
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>              
+			<th width="30%"><b>Kriteria Tampilan</b></th>
+			<td>
+				<input type="checkbox" name="L" {CHECKED_L}>&nbsp;&nbsp;L (Laki-laki)<br />
+				<input type="checkbox" name="P" {CHECKED_P}>&nbsp;&nbsp;P (Perempuan)<br />
+				<input type="checkbox" name="X" {CHECKED_X}>&nbsp;&nbsp;X (Belum diset jenis kelaminnya)<br />
+				<input type="checkbox" name="T" {CHECKED_T}>&nbsp;&nbsp;T (Total)<br />
+				<input type="checkbox" name="0" {CHECKED_0}>&nbsp;&nbsp;Tampilkan nilai 0<br />
+			</td>
+		</tr>
+		<tr>
+			<th>&nbsp;</th>
+			<td>
+		        <input type="hidden" name="cari" value="cari" size="30" />
+				<input type="submit" name="btncari" value=" Cari &raquo;" class="buttonSubmit"/>
+			</td>
+		</tr>
+	</table>
+</form>
+<br />
+<div style="display:none">
+<div class="pageBar">
+	<div style="display:none"><!-- patTemplate:gtfwrendermodule module="paging" submodule="paging" action="view" name="paging_top"  / --></div>
+	<div class="toolbar">
+		<a target="_Blank" href="{URL_EXCEL}" title="Export Excel" tabindex="3"><img src="images/button-excel.gif" alt="Export Excel">Export Excel</a>
+	</div>
+</div>
+
+<table class="table-common" width="{LEBAR_TABEL}">
+<tr>
+	<th rowspan="2" style="width:15px">No.</th>
+	<th rowspan="2" width="500px">Unit Kerja</th>
+	<th colspan="{GOLONGAN_COLSPAN}">{JUDUL}</th>
+	<th rowspan="2" colspan="{JUMLAH_CHECK}" class="right">Jumlah</th>
+</tr>
+<tr>
+<!-- patTemplate:tmpl name="kolom_status" -->
+	<th colspan="{JUMLAH_CHECK}">{GOLONGAN}</th>
+<!-- /patTemplate:tmpl -->
+</tr>
+<tr>
+	<th>1</th>
+	<th>2</th>
+<!-- patTemplate:tmpl name="kolom_nomor_kolom" -->
+	<th colspan="{JUMLAH_CHECK}">{NOMOR_KOLOM}</th>
+<!-- /patTemplate:tmpl -->
+</tr>
+<tr>
+	<th colspan="2" style="font-size:9px"><i>Jenis Kelamin</i></th>
+  <!-- patTemplate:tmpl name="kolom_kelamin" -->
+    <th style="display:{L}">L</th>
+	<th style="display:{P}">P</th>
+	<th style="display:{X}">X</th>
+	<th style="display:{T}">T</th>
+  <!-- /patTemplate:tmpl -->
+</tr>
+
+<!-- patTemplate:tmpl name="table_list" type="condition" conditionvar="EMPTY" -->
+   <!-- patTemplate:sub condition="YES" -->
+   <!-- /patTemplate:sub -->
+   <!-- patTemplate:sub condition="NO" -->
+   <!-- patTemplate:tmpl name="table_item" -->
+     <tr>
+  		<td class="{CLASS_NAME}">{NO}</td>
+        <td>{UNIT_KERJA}</td>
+      <!-- patTemplate:tmpl name="jumlah" -->
+      	<td align="right" class="text-right" style="display:{L}"><font color="red">{JML_L}</font></td>
+      	<td align="right" class="text-right" style="display:{P}"><font color="blue">{JML_P}</font></td>
+		<td align="right" class="text-right" style="display:{X}"><font color="green">{JML_X}</font></td>
+		<td align="right" class="text-right" style="display:{T}"><font color="black">{JML_T}</font></td>
+      <!-- /patTemplate:tmpl -->
+      </tr>
+  <!-- /patTemplate:tmpl -->
+	<!-- /patTemplate:sub -->
+<!-- /patTemplate:tmpl -->
+<tr>
+	<th colspan="2" style="font-size:9px"></th>
+  <!-- patTemplate:tmpl name="kolom_kelamin2" -->
+    <th style="display:{L}">L</th>
+	<th style="display:{P}">P</th>
+	<th style="display:{X}">X</th>
+	<th style="display:{T}">T</th>
+  <!-- /patTemplate:tmpl -->
+</tr>
+<tr>
+	<th style="width:15px"></th>
+	<th></th>
+<!-- patTemplate:tmpl name="kolom_status2" -->
+	<th colspan="{JUMLAH_CHECK}">{GOLONGAN}</th>
+<!-- /patTemplate:tmpl -->
+	<th colspan="{JUMLAH_CHECK}" class="right">Jumlah</th>
+</tr>
+</table>
+<br/></div>
+<table class="table-common">
+<tr>
+	<th style="width:15px">No.</th>
+	<th>{JUDUL}</th>
+	<th style="display:{L}">L</th>
+	<th style="display:{P}">P</th>
+	<th style="display:{X}">X</th>
+	<th style="display:{T}">Total</th>
+	<th style="display:{T}">Persentase</th>
+</tr>
+<!-- patTemplate:tmpl name="variable_item" -->
+<tr>
+ 	<td class="{CLASS_NAME}">{NO}</td>
+    <td>{GOLONGAN}</td>
+   	<td align="right" class="text-right" style="display:{L}"><font color="red">{JML_L}</font></td>
+   	<td align="right" class="text-right" style="display:{P}"><font color="blue">{JML_P}</font></td>
+	<td align="right" class="text-right" style="display:{X}"><font color="green">{JML_X}</font></td>
+	<td align="right" class="text-right" style="display:{T}"><font color="black">{JML_T}</font></td>
+	<td align="right" class="text-right" style="display:{T}"><font color="black">{PERSEN}%</font></td>
+</tr>
+<!-- /patTemplate:tmpl -->
+</table>
+
+<div class="petunjuk-area">
+   <h4>Petunjuk:</h4>
+   <ul>
+      <li>L : Jumlah Laki-laki </li>
+	  <li>P : Jumlah Perempuan </li>
+	  <li>X : Jumlah yang belum diset jenis kelaminnya </li>
+	  <li>L : Jumlah Total </li>
+   </ul>
+</div>
+</div></div>
+<!-- /patTemplate:tmpl -->

@@ -1,0 +1,134 @@
+
+<!-- patTemplate:tmpl name="content" -->
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+   {ISI_PESAN}
+</div>
+<br />
+<!-- /patTemplate:tmpl -->
+<div class="mainContent-fp-element-full">
+	<div class="mainContent-fp-element-full-head"><h2>Approval Leave Data</h2></div>
+	<div class="mainContent-fp-element-full-body">
+<form method="POST" name="frmInput" action="{URL_AKSI}" class="xhr_form std_form" id="frmInput" enctype="multipart/form-data">
+   <input type="hidden" name="idPeg" value="{DATA_ID}">
+   <table class="table-details" width="100%" >
+      <tr class="subhead">
+        <th colspan="2" valign="center">Employee Data</th>
+      </tr>
+      <tr>
+        <th width="39%">Name</th>
+        <td>
+          {DATA_NAMA}
+        </td>
+      </tr>
+      <tr>
+        <th width="39%">ID</th>
+        <td>
+          {DATA_NIP}
+        </td>
+      </tr>
+      <tr>
+        <th width="39%">Remaining Leave</th>
+        <td>
+          {DATA_SISA}
+        </td>
+      </tr>
+      <tr class="subhead">
+        <th colspan="2" valign="center">Leave Data Detail</th>
+      </tr>
+      <tr>
+        <th width="39%">Leave Number</th>
+        <td>
+          {NO}
+        </td>
+      </tr>
+      <tr>
+        <th>Request Date</th>
+        <td>
+          {AJU}
+        </td>
+      </tr>
+      <tr>
+        <th>Date Submitted</th>
+        <td>
+          {SUBMIT}
+        </td>
+      </tr>
+      <tr>
+        <th>Duration</th>
+        <td>
+          {DURASI} days
+        </td>
+      </tr>
+      <tr>
+        <th>Date Leave</th>
+        <td>
+          {DATE_LEAVE}
+        </td>
+      </tr>
+      <tr style="display:none">
+        <th>Start Date</th>
+        <td>
+          {MULAI}
+        </td>
+      </tr>
+      <tr style="display:none">
+        <th>Date Completed</th>
+        <td>
+          {SELESAI}
+        </td>
+      </tr>
+      <tr>
+        <th>Leave Type</th>
+        <td>
+          {NAMA}
+        </td>
+      </tr>
+      <tr>
+        <th>Leave Reason</th>
+        <td>
+          {ALASAN}
+        </td>
+      </tr>
+      <tr>
+        <th>Work Responsibility</th>
+        <td>
+          {TGGJWB}
+        </td>
+      </tr>
+      <tr>
+        <th>Temporary Charge</th>
+        <td>
+          {PGGJWB}
+        </td>
+      </tr>
+      <tr>
+        <th>Temporary Charge Contact</th>
+        <td>
+          {PGGJWBK}
+        </td>
+      </tr>
+      <tr>
+        <th>Leave Approval Status</th>
+        <td>
+          {STATUS}
+        </td>
+      </tr>
+      <tr>
+        <th>Last Update Status</th>
+        <td>
+          {TGLSTAT}
+        </td>
+      </tr>
+      <tr class="buttons">
+         <td colspan="2" align="right">
+          <div class="toolbar"> 
+          <a class="xhr dest_subcontent-element " href="{URL_BACK}" title="Back" tabindex="2">
+          <img src="images/button-back.gif" alt=""> Back</a> 	
+          </div>
+         </td>
+      </tr>
+   </table>
+</form>
+</div></div>
+<!-- /patTemplate:tmpl -->

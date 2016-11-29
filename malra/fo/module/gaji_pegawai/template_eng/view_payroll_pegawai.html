@@ -1,0 +1,260 @@
+<!-- patTemplate:tmpl name="content" -->
+<script>
+   /*var anime = new janime();
+
+   function setVisible1(element){
+      $('#'+element).fadeIn(200);
+   }
+   function setInVisible1(element){
+      $('#'+element).fadeOut(200);
+   }
+
+   function setVisible(element){
+      $('#'+element).fadeIn(200);
+   }
+   function setInVisible(element){
+      $('#'+element).fadeOut(200);
+   }*/
+   //BARUUUUUUU COBAAAAA
+   var anime=new janime();
+   var set = 'auto';
+
+   function setVisible1(element){
+      anime.element = element;
+      anime.alpha(100);
+   }
+   function setInVisible1(element){
+      anime.element = element;
+      anime.alpha(0);
+   }
+
+   function setVisible(element){
+      obj = document.getElementById(element);
+      obj.style.display='block';
+      anime.element = element;
+      anime.fadeIn();
+      obj.setFocus();
+   }
+   
+   function setVisible2(element,element2,nilai){
+      obj = document.getElementById(element);
+      obj.style.display='block';
+	   obj2 = document.getElementById(element2);
+	   obj2.value=nilai;
+   }//SAMPE SINI
+
+   function setInputValue(element,newValue){
+      document.getElementById(element).value = newValue;
+   }
+   
+   function setFormula(idName,formId){
+      GtfwAjax.replaceContentWithUrl(idName, '<!-- patTemplate:gtfwgeturl module="gaji_pegawai" sub="formula" action="view" type="html" htmlentities="no" / -->&ascomponent=1&idFormula=' + formId +'&nip=' + "{BIO_NIP}" +'&idPeg=' + "{ID_PEGAWAI}");
+   }
+
+   /*function hideAll(element){
+      str = '{HIDE_KOMPONEN}';
+      arrStr = str.split('|');
+      for(i=0; i<arrStr.length; i++) $('#'+element+arrStr[i]).hide();
+   }*/
+   
+   //BARUUUUUUU COBAAAAA
+   function setInVisible(element){
+      if(set!='auto'){
+         anime.element = element;
+         anime.fadeOut();
+         set='auto';
+      }
+   }
+   function hideAll(element){
+      str = '{HIDE_KOMPONEN}';
+      arrStr = str.split('|');
+      for(i=0; i<arrStr.length; i++){
+         anime.element = element+arrStr[i];
+         anime.alpha(0);
+      }
+   }
+   //SAMPE SINI
+   
+</script>
+<br />
+<h1>EMPLOYEE SALARY</h1>
+<br />
+   <form method="POST" action="{URL_ACTION}" class="xhr_form std_form" id="form_list" name="form_list">
+   <table class="table-edit" width="100%">
+      <tr class="subhead">
+         <th colspan="2"><h2><strong>Employee Data</strong></h2></th>
+      </tr>
+      <tr>              
+         <th width="30%">Employee Number</th>
+         <td>{BIO_NIP}</td>
+      </tr>
+      <tr>              
+         <th>Work Unit</th>
+         <td>{BIO_UNIT}</td>
+      </tr>
+      <tr>              
+         <th>Name</th>
+         <td>{BIO_NAMA}</td>
+      </tr>
+      <tr>              
+         <th>Address</th>
+         <td>{BIO_ALAMAT}</td>
+      </tr>
+      <tr>              
+         <th>Account Number</th>
+         <td>{BIO_NO_REKENING}</td>
+      </tr>
+      <tr>              
+         <th>Bank</th>
+         <td>{BIO_NAMA_BANK}</td>
+      </tr>
+      <tr>              
+         <th>Salary Period</th>
+         <td><!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="periode_bulan" / -->
+         <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="periode_tahun" / --></td>
+		 <script>
+		 	document.forms['form_list'].update_form = function(){
+				var ObjBulan = this.periode_bulan;
+				var ObjTahun = this.periode_tahun;
+				this.action = "{URL_UPDATE}&ascomponent=1&periode_bulan="+ObjBulan.value+"&periode_tahun="+ObjTahun.value;
+				GtfwAjax.replaceContentWithUrl('subcontent-element', this.action);
+		   }
+		  </script>   
+      </tr>
+      <tr class="subhead">
+         <td colspan="2">&nbsp;
+         </td>
+      </tr>
+   </table>
+
+<br />
+   
+   <!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+   <div class="{CLASS_PESAN}">
+      {ISI_PESAN}
+   </div>
+    <br />
+   <!-- /patTemplate:tmpl -->
+   <h2>Payroll Management</h2> 
+   <div class="pageBar">
+      <div class="toolbar"> 
+   		<input type="submit" name="save" value="Save Salary List" class="inputButton"/>
+		   <a class="xhr dest_subcontent-element" href="{URL_LIST}" title="List Pegawai" tabindex="3"> Employee List </a>
+      </div>
+   </div>
+   <input type="hidden" name="idPegawai" value="{ID_PEGAWAI}" />
+   <input type="hidden" name="pendapatanLainTotal" value="{PENDAPATAN_LAIN_TOTAL}" />
+   <input type="hidden" name="potonganGajiTotal" value="{POTONGAN_GAJI_TOTAL}" />
+   <table class="table-common" width="100%">
+      <tr>
+         <th width="5">No</th>
+         <th width="180">Component Formula for Salary</th>
+         <th>Nominal (Rp)</th>
+         <th width="148">Action</th>
+      </tr>
+      <tr class="{CLASS2}">
+         <td align="center">{NO2}</td>
+         <td>Basic Salary</td>
+         <td align="right" style="padding-right:13px;">{GAPOK}</td>
+         <input type="hidden" name="gapok" value="{GAPOK2}">
+         <td></td>
+      </tr>     
+      <!-- patTemplate:tmpl name="data_grid" type="condition" conditionvar="IS_DATA_EMPTY" -->
+         <!-- patTemplate:sub condition="YES" -->
+         <tr><td colspan="5" align="center"><em>-- Data not found --</em></td></tr>
+         <!-- /patTemplate:sub -->
+         <!-- patTemplate:sub condition="NO" -->
+            <!-- patTemplate:tmpl name="payroll_item" -->
+            <tr class="{PAYROLL_CLASS_NAME}">
+               <td align="center">{PAYROLL_NUMBER}</td>
+               <td>{PAYROLL_NAMA_FORMULA}</td>
+               <td style="padding-left:22px;">
+               <div id="div_{PAYROLL_ID_FORMULA}">
+               <!-- <input class="gvFloat" type="text" name="payroll_{PAYROLL_ID_FORMULA}" id="payroll_{PAYROLL_ID_FORMULA}" value='{PAYROLL_ORI}' style="text-align:right; float:left; position:absolute; width:150px;" /> -->
+               <input type="text" name="payroll_{PAYROLL_ID_FORMULA}" id="payroll_{PAYROLL_ID_FORMULA}" value='{PAYROLL_ORI}' style="text-align:right; float:left; position:absolute; width:150px;" class="gvFloat" /> 
+               <span id="span_{PAYROLL_ID_FORMULA}" style="text-align:right; float:left; position:absolute; width:150px; padding-top:3px;" >{PAYROLL_NOMINAL}</span>
+               </div>
+               
+               </td>
+               <td class="links" align="center">
+               <input type="hidden" name="isManual_{PAYROLL_ID_FORMULA}" id="isManual_{PAYROLL_ID_FORMULA}" value="{PAYROLL_IS_MANUAL}" />
+                  <a title="Calculate Payroll" onclick="setVisible1('span_{PAYROLL_ID_FORMULA}');setFormula('div_{PAYROLL_ID_FORMULA}',{PAYROLL_ID_FORMULA});setInVisible('payroll_{PAYROLL_ID_FORMULA}'); setInputValue('isManual_{PAYROLL_ID_FORMULA}','Tidak');">Calculate Payroll</a>            
+                  <a title="Manually" onclick="setInputValue('isManual_{PAYROLL_ID_FORMULA}','Ya');setInVisible1('span_{PAYROLL_ID_FORMULA}');setVisible('payroll_{PAYROLL_ID_FORMULA}');">Manually</a>    
+               </td>
+            </tr>
+            <!-- /patTemplate:tmpl -->
+         <!-- /patTemplate:sub -->
+      <!-- /patTemplate:tmpl -->
+	  
+	  <!-- patTemplate:tmpl name="data_pendapatan" type="condition" conditionvar="IS_DATA_EMPTY" -->
+         <!-- patTemplate:sub condition="YES" -->
+         <!-- /patTemplate:sub -->
+         <!-- patTemplate:sub condition="NO" -->
+            <!-- patTemplate:tmpl name="pendapatan_item" -->
+      		  <tr class="{DAPAT_CLASS_NAME}">
+				 <td align="center">{DAPAT_NO3}</td>
+				 <td>{DAPAT_JENIS}</td>
+				 <td align="right" style="padding-right:13px;">{DAPAT_LAIN}</td>
+				 <input type="hidden" name="lainLain" value="{DAPAT_LAIN2}">
+				 <td></td>
+			  </tr>
+			<!-- /patTemplate:tmpl -->
+         <!-- /patTemplate:sub -->
+      <!-- /patTemplate:tmpl -->
+	  
+	  <!-- patTemplate:tmpl name="data_thr" type="condition" conditionvar="IS_DATA_EMPTY" -->
+         <!-- patTemplate:sub condition="YES" -->
+         <!-- /patTemplate:sub -->
+         <!-- patTemplate:sub condition="NO" -->
+            <!-- patTemplate:tmpl name="thr_item" --> 
+			  <tr class="{TUNJ_CLASS_NAME}">
+				 <td align="center">{TUNJ_NO4}</td>
+				 <td>Holiday Allowance (THR) </td>
+				 <td align="right" style="padding-right:13px;">{TUNJ_THR}</td>
+				 <input type="hidden" name="thr" value="{TUNJ_THR2}">
+				 <td></td>
+			  </tr>
+			<!-- /patTemplate:tmpl -->
+         <!-- /patTemplate:sub -->
+      <!-- /patTemplate:tmpl --> 
+	  
+	  <!-- patTemplate:tmpl name="data_potongan" type="condition" conditionvar="IS_DATA_EMPTY" -->
+         <!-- patTemplate:sub condition="YES" -->
+         <!-- /patTemplate:sub -->
+         <!-- patTemplate:sub condition="NO" -->
+            <!-- patTemplate:tmpl name="potongan_item" -->
+			  <tr class="{POT_CLASS_NAME}">
+				 <td align="center">{POT_NO5}</td>
+				 <td>{POT_JENIS}</td>
+				 <td align="right" style="padding-right:13px;">{POT_GAJI}</td>
+				 <input type="hidden" name="potongan" value="{POT_GAJI2}">
+				 <td></td>
+			  </tr>
+			<!-- /patTemplate:tmpl -->
+         <!-- /patTemplate:sub -->
+      <!-- /patTemplate:tmpl --> 
+	  
+	  <!-- patTemplate:tmpl name="data_pph" type="condition" conditionvar="IS_DATA_EMPTY" -->
+         <!-- patTemplate:sub condition="YES" -->
+         <!-- /patTemplate:sub -->
+         <!-- patTemplate:sub condition="NO" -->
+            <!-- patTemplate:tmpl name="pph_item" --> 
+			  <tr class="{TUNJ_CLASS_NAME}">
+				 <td align="center">{TUNJ_NO6}</td>
+				 <td>Tax Income 21 Allowance (PPH21) </td>
+				 <td align="right" style="padding-right:13px;">{TUNJ_PPH}</td>
+				 <input type="hidden" name="pph" value="{TUNJ_PPH2}">
+				 <td></td>
+			  </tr>
+			<!-- /patTemplate:tmpl -->
+         <!-- /patTemplate:sub -->
+      <!-- /patTemplate:tmpl -->       
+   </table>
+   </form>
+   <br /> 
+
+<script>
+   
+   hideAll('payroll_');
+</script>
+<!-- /patTemplate:tmpl -->

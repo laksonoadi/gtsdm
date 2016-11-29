@@ -1,0 +1,15 @@
+Leave Request in SSE Human Resource Portal System
+Dear Supervisor,
+
+This Employee, 
+Name            : {NAMA_PEGAWAI}
+Employee Number : {NIP_PEGAWAI}
+
+Request leave with number {CUTI_NUMBER} and reason {CUTI_ALASAN} 
+
+You need to approved or rejected this request, 
+please log into SSE Human Resource Portal System.
+
+Regards,
+
+HR Mail System

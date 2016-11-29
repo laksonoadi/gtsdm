@@ -1,0 +1,28 @@
+<!-- patTemplate:tmpl name="content" -->
+<div class="mainContent-fp-element-full">
+	<div class="mainContent-fp-element-full-head"><h2>News Management</h2></div>
+	<div class="mainContent-fp-element-full-body">
+   <h2>&nbsp;&nbsp;&nbsp;&nbsp;Delete Agenda</h2>
+   
+   <form name="form_agenda" id="form_agenda" action="<!-- patTemplate:gtfwgeturl module="manajemen_agenda" sub="{SUB}" action="view" type="html" / -->" method="post" autocomplete=off>
+      <table class="table-form" width="100%">
+         <tr>
+            <td colspan="2" align="center"><h3>Are you sure to delete this agenda?</h3></td>
+         </tr>
+         <tr>
+            <td colspan="2"><h4>{TITLE}<h4></td>
+         </tr>
+         <tr>
+            <td colspan="2">{ARTICLE} <a href="{URL_MORE}">(more...)</a></td>
+         </tr>
+         <tr>
+            <td colspan="2">
+               <input type="hidden" name="id" value="{ID}" />
+               <input type="submit" name="action" value="Yes" />
+               <input type="submit" name="action" value="No" />
+            </td>
+         </tr>
+      </table>
+   </form>
+</div></div>
+<!-- /patTemplate:tmpl -->

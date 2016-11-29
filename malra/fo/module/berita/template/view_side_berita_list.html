@@ -1,0 +1,23 @@
+<!-- patTemplate:tmpl name="content" -->
+<div class="panel panel-info-solid">
+    <h4 class="panel-heading text-center">Berita</h4>
+    <div class="list-group">
+        <!-- patTemplate:tmpl name="list" type="condition" conditionvar="IS_EMPTY" -->
+        <!-- patTemplate:sub condition="YES" -->
+        <div class="list-group-item text-left">Belum ada berita</div>
+        <!-- /patTemplate:sub -->
+        <!-- patTemplate:sub condition="NO" -->
+        <!-- patTemplate:tmpl name="item" -->
+        <a class="list-group-item xhr dest_subcontent-element text-left" href="{URL_BERITA}" title="{TITLE}">
+            <h4 class="list-group-item-heading text-ellipsis-pad" title="{TITLE}">{TITLE}</h4>
+            <small class="list-group-item-text">{DATE_POSTED}</small>
+        </a>
+        <!-- /patTemplate:tmpl -->
+        <!-- /patTemplate:sub -->
+        <!-- /patTemplate:tmpl -->
+    </div>
+    <div class="panel-footer">
+        <a class="xhr dest_subcontent-element center-block text-center small" href="<!-- patTemplate:gtfwgeturl module="berita" sub="beritaList" action="view" type="html" params=""  / -->">Selengkapnya</a>
+    </div>
+</div>
+<!-- /patTemplate:tmpl -->

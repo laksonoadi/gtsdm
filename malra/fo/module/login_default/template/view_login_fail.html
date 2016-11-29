@@ -1,0 +1,13 @@
+<!-- patTemplate:tmpl name="content" -->
+<form name="form_login" id="form-login" action="<!-- patTemplate:gtfwgeturl module="login_default" sub="login" action="do" type="html" / -->" method="post" autocomplete="off" onsubmit="return dosubmit(this, '<!-- patTemplate:gtfwgeturl module="login_default" sub="login" action="do" type="html" / -->');">
+<input type="hidden" id="salt" name="salt" value="{LOGIN_SALT}" />
+<table>
+<tr><td colspan="3" align="center" >
+<br />
+<img src="css/sia-mocca/images/login-warning.gif" alt="Login tidak berhasil" /><font color="black">
+Proses Login tidak berhasil. <br />Username atau password yang anda masukan salah.  <br /><br />
+Klik<a href="<!-- patTemplate:gtfwgeturl module="login_default" sub="login" action="view" type="html" / -->"><font color="black"><b>kembali</b></font></a> untuk login ulang
+</font></td></tr>
+</table>
+</form>
+<!-- /patTemplate:tmpl -->

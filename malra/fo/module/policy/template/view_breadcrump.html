@@ -1,0 +1,14 @@
+<!-- patTemplate:tmpl name="content" -->
+<!-- patTemplate:tmpl name="breadcrump_nav" -->
+<div id="breadcrumb-navigation" {ACTION}>
+	<ul>
+		<li><a class="home" title="Home" href="<!-- patTemplate:gtfwgeturl module="home" sub="home" action="view" type="html" params="" / -->"><img class="home" alt="Home" src="css/sia-mocca/images/home.png"></a></li>
+		<!-- patTemplate:tmpl name="breadcrump_nav_item" visibility="visible" -->
+		<li><a class="xhr dest_subcontent-element" href="{NAV_URL}" title="{NAV_MENU}">{NAV_MENU}</a></li>
+		<!-- /patTemplate:tmpl -->
+		<li><b>{NAV_TITLE}</b></li>
+	</ul>
+</div>
+<br />
+<!-- /patTemplate:tmpl -->
+<!-- /patTemplate:tmpl -->

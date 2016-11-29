@@ -1,0 +1,100 @@
+<!-- patTemplate:tmpl name="content" -->
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+   {ISI_PESAN}
+</div>
+<br />
+<!-- /patTemplate:tmpl -->
+<div class="mainContent-fp-element-full">
+	<div class="mainContent-fp-element-full-head"><h2>{TITLE}</h2></div>
+	<div class="mainContent-fp-element-full-body">
+<br>
+<!-- patTemplate:tmpl name="data" type="condition" conditionvar="DATA_EMPTY" -->
+      <!-- patTemplate:sub condition="YES" -->
+    <h1><em>-- Data tidak ditemukan --</em></h1>
+      <!-- /patTemplate:sub -->
+      <!-- patTemplate:sub condition="NO" -->
+         <!-- patTemplate:tmpl name="data_item" -->
+
+   <table class="table-details" width="100%" >
+      <tr class="subhead">
+         <th colspan="2">DATA</th>
+      </tr>
+      
+	  <tr>
+         <th >Golongan</th>
+         <td>
+           {DETAIL_PKTGOLLABEL}
+         </td>
+      </tr>
+	  <tr>
+         <th >Gaji Pokok</th>
+         <td>
+           {DETAIL_GAPOK}
+         </td>
+      </tr>
+	  <!-- <tr>
+         <th >Masa Kerja </th>
+         <td>
+           {DETAIL_MASA}
+         </td>
+      </tr> -->
+	  <tr>
+         <th >Tanggal Mulai</th>
+         <td>
+           {DETAIL_MULAI}
+         </td>
+      </tr>
+      <tr>
+         <th >Tanggal berikutnya</th>
+         <td>
+           {DETAIL_YAD}
+         </td>
+      </tr>
+	  <tr class="subhead">
+		<th colspan="2">Surat Keputusan (SK)</th>
+	  </tr>
+	  <tr>
+         <th >Tanda Tangan</th>
+         <td>
+           {DETAIL_PEJABAT}
+         </td>
+      </tr>
+	  <tr>
+         <th >Nomor Surat</th>
+         <td>
+           {DETAIL_NOSK}
+         </td>
+      </tr>
+	  <tr>
+         <th >Tanggal SK</th>
+         <td>
+           {DETAIL_TGL_SK}
+         </td>
+      </tr>
+	  <tr>
+	  <th>Status</th>
+         <td>
+           {DETAIL_STATUS}
+         </td>
+      </tr>
+	  <tr>
+         <th >File SK</th>
+         <td>
+           <a href="{DETAIL_LINK_DOWNLOAD}" target="_blank">{DETAIL_UPLOAD}</a>
+         </td>
+      </tr>
+<!-- /patTemplate:tmpl -->
+      <!-- /patTemplate:sub -->
+   <!-- /patTemplate:tmpl -->
+      <tr>
+			<td colspan="2" class="subhead">
+            <div class="toolbar"> 
+               <a class="xhr dest_subcontent-element " href="{URL_BACK}" title="Kembali" tabindex="2">
+               <img src="images/button-back.gif" alt=""> Kembali</a> 
+            </div>
+         </td>
+		</tr>
+   </table>
+   </div></div>
+<!-- /patTemplate:tmpl -->

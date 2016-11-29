@@ -1,0 +1,20 @@
+Edited Overtime Work Compensation Request in SSSE Human Resource Portal System
+Dear Supervisor,
+
+This Employee, 
+Name            : {NAMA_PEGAWAI}
+Employee Number : {NIP_PEGAWAI}
+
+Has been changed His/Her data Overtime Work Compensation Request. 
+His/Her new Overtime Work Compensation Request 
+
+Detailed Informations :
+Date   : {LEMBUR_TANGGAL}
+Reason : {LEMBUR_ALASAN}
+
+For more detailed informations and if you want to approved or rejected this request,
+please log into SSE Human Resource Portal System.
+
+RegardS,
+
+HR Mail System

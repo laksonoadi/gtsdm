@@ -1,0 +1,627 @@
+
+<!-- patTemplate:tmpl name="content" -->
+<script language="javascript" type="text/javascript">
+	
+	var file_attach_nomor = 2;
+	var nomor_claim_list = 0;
+	var arr_claim_list = new Array();
+	var xpopup;
+	
+	function konfirmasi() {
+			if(document.getElementById('btnbatal').value == " Reset "){
+		  document.getElementById('btnbatal').type = "reset";
+		  document.frmInput.onReset();
+		}else{
+		  document.getElementById('btnbatal').type = "submit";
+		  document.frmInput.onSubmit();
+		}
+	}
+	
+	function getButton(xjenis, xhref, xonclick) {
+		var xlink = document.createElement('a');
+		var gbr = document.createElement('img');
+		if(xjenis == 'hapus' || xjenis == 'delete') {
+			xlink.setAttribute("title", "Hapus");
+			gbr.setAttribute("src", "images/button-delete.gif");
+			gbr.setAttribute("alt", "Hapus");
+		} else {
+			//edit
+			xlink.setAttribute("title", "Edit");
+			gbr.setAttribute("src", "images/button-edit.gif");
+			gbr.setAttribute("alt", "Edit");
+		}
+		xlink.setAttribute("class", "xhr dest_subcontent-element");
+		xlink.setAttribute("href", xhref);
+		xlink.setAttribute("onclick", xonclick);
+		xlink.appendChild(gbr);
+		return xlink;
+	}
+	
+	function buatBaris(xId, isiNomor, objKlaim, objNilai, objFile, objAksi) {
+		var tr = document.createElement('tr');
+		var td_nomor = document.createElement('td');
+		var td_klaim = document.createElement('td');
+		var td_nilai = document.createElement('td');
+		var td_file = document.createElement('td');
+		var td_aksi = document.createElement('td');
+		var nomor = document.createTextNode(isiNomor+1);
+
+		tr.setAttribute("id", "tr_" + xId + "_" + isiNomor);
+		td_nomor.align = "center";
+		//alert(isiNomor);
+		td_nomor.appendChild(nomor);
+		//td_isi.setAttribute("title", "666");
+		td_klaim.appendChild(objKlaim);
+		td_nilai.appendChild(objNilai);
+		td_file.appendChild(objFile);
+		td_aksi.appendChild(objAksi);
+
+		//tr.appendChild(td_nomor);
+		tr.appendChild(td_klaim);
+		tr.appendChild(td_nilai);
+		tr.appendChild(td_file);
+		tr.appendChild(td_aksi);
+		return tr;
+	}
+	
+	function tambahKlaim() {
+		var obj_reference = document.getElementById('jenis_klaim');
+		if (obj_reference.selectedIndex==0){alert('You must choose claim reference'); return false;}
+		var obj_nilai = document.getElementById('nilai_klaim');
+		if (obj_nilai.value==''){alert('You must fill claim amount'); return false;}
+		var obj_total = document.getElementById('total_klaim');
+		
+		numstring = obj_nilai.value;
+	  num1 = numstring.toString().replace(/\./g,'');
+	  num1 = num1.toString().replace(/,/g,'.');
+	  
+	  numstring = obj_total.value;
+	  if (numstring==''){ numstring='0';  }
+	  num2 = numstring.toString().replace(/\./g,'');
+	  num2 = num2.toString().replace(/,/g,'.');
+	  
+    
+		var tampil_tombol_aksi = '<a href="javascript:void(null)" title="Hapus" onclick="hapusKlaim(this,'+num1+')"><img src="images/button-delete.gif" alt="Hapus" border=0 /></a>';
+      
+  	var tr = document.createElement('tr');
+  	var td_jenis = document.createElement('td');
+  	var td_nilai = document.createElement('td');
+  	var td_file = document.createElement('td');
+  	var td_aksi = document.createElement('td');
+  		
+  	var tbodi = document.getElementById("tbody_claim_list");
+  	
+  	td_jenis.innerHTML=obj_reference.options[obj_reference.selectedIndex].text;
+  	td_nilai.innerHTML=obj_nilai.value;
+  	td_file.innerHTML='<input type="file" name="data[file_klaim][]" />';
+  	td_aksi.width = 15;
+  	td_aksi.innerHTML = '<input type="hidden" name="data[tipe_klaim][]" value="'+obj_reference.options[obj_reference.selectedIndex].value+'" />'+
+                        '<input type="hidden" name="data[nilai_klaim][]" value="'+obj_nilai.value+'" />'+
+                        tampil_tombol_aksi;
+    
+    tr.appendChild(td_jenis);
+    tr.appendChild(td_nilai);
+    tr.appendChild(td_file);
+  	tr.appendChild(td_aksi);
+  	tbodi.appendChild(tr);
+	  
+	  obj_total.value = formatNumber(parseInt(num1)+parseInt(num2));
+		
+		kosongkan();
+	}
+	
+  function kosongkan() {
+    var obj_reference = document.getElementById('jenis_klaim');
+		var obj_amount = document.getElementById('nilai_klaim');
+		var obj_file = document.getElementById('file_klaim');
+		obj_reference.selectedIndex=0;
+		obj_amount.value='';
+		obj_file.value='';
+	}
+  
+	function hapusKlaim(obj,nilai) {
+		//document.getElementById("tbody_claim_list").removeChild(obj.parentNode.parentNode);
+		obj.parentNode.parentNode.parentNode.removeChild(obj.parentNode.parentNode);
+		var obj_total = document.getElementById('total_klaim');
+		
+		numstring = nilai;
+		num1=nilai;
+	  /*num1 = numstring.toString().replace(/\./g,'');
+	  num1 = num1.toString().replace(/,/g,'.');*/
+	  
+	  numstring = obj_total.value;
+	  if (numstring==''){ numstring='0';  }
+	  num2 = numstring.toString().replace(/\./g,'');
+	  num2 = num2.toString().replace(/,/g,'.');
+	  obj_total.value = formatNumber(parseInt(num2)-parseInt(num1));
+	}
+	
+	function hitungTotal() {
+		 var obj_total = document.getElementById('total_klaim');
+	}
+
+	function hapusKlaimEdit(obj, xid) {
+		var tr = obj.parentNode.parentNode;
+		tr.setAttribute('style', 'display:none');
+		//membuat input hidden untuk dihapus
+		var input_hidden;
+		input_hidden = document.createElement('input');
+		input_hidden.type = 'hidden';
+		input_hidden.name = 'no_claim_list_delete[]';
+		input_hidden.value = xid;
+		obj.parentNode.appendChild(input_hidden);
+	}
+
+	function uploadFile(obj) {
+		var arr_namafile = obj.value.split("\\");
+		var namafile = arr_namafile[(arr_namafile.length-1)];
+		
+		//membuat elemen2
+		var tr = document.createElement('tr');
+		var td_nomor = document.createElement('td');
+		var td_isi = document.createElement('td');
+		var td_aksi = document.createElement('td');
+
+		//membuat input file baru
+		var input_file = document.createElement('input');
+		input_file.setAttribute("type", "file");
+		input_file.setAttribute("readonly", "true");
+		input_file.setAttribute("name", "file_attach[]");
+		input_file.setAttribute("onchange", "uploadFile(this)");
+		input_file.id = "file_attach_" + file_attach_nomor;
+		obj.parentNode.appendChild(input_file);
+
+		//menyembunyikan yang lama
+		obj.setAttribute("style", "display:none");
+
+		//membuat isi elemen2
+		var nomor = document.createTextNode(file_attach_nomor-1);
+		var isi = document.createTextNode(namafile);
+		
+		//mengisikan elemen2 dengan isinya
+		tr.setAttribute("id", "tr_file_bohong_" + (file_attach_nomor-1));
+		td_nomor.setAttribute("align", "center");
+		td_nomor.appendChild(nomor);
+		td_isi.setAttribute("title", obj.value);
+		td_isi.appendChild(isi);
+		//td_isi.appendChild(input_file);
+
+		//untuk tombol deletenya
+		var button_hapus = getButton("hapus", "javascript:void(0)", "hapusFile('" + (file_attach_nomor-1) + "')");
+		td_aksi.appendChild(button_hapus);
+
+		//tr.appendChild(td_nomor);
+		tr.appendChild(td_isi);
+		tr.appendChild(td_aksi);
+		document.getElementById('file_attach_tbody').appendChild(tr);
+		if(document.getElementById('file_empty'))
+			document.getElementById('file_empty').style.display='none';
+		file_attach_nomor++;
+	}
+
+	function hapusFile(xid) {
+		var elem = document.getElementById("tr_file_bohong_" + xid);
+		elem.parentNode.removeChild(elem);
+		var elem2 = document.getElementById("file_attach_" + xid);
+		elem2.parentNode.removeChild(elem2);
+	}
+	
+	function cek(objId, msg) {
+		var obj = document.getElementById(objId);
+		if(!obj.value) {
+			alert(msg);
+			obj.focus();
+			obj.select;
+			return false;
+		}
+		return true;
+	}
+
+	function cekIsiForm() {
+		if(false == cek('relasi_pasien', 'Please choose the relation between the patient and employee')) return;
+		if(false == cek('nama_pasien', 'Please fill the patient name')) return;
+		if(false == cek('jenis_benefit', 'Please choose claim type')) return;
+		if(false == cek('tempat', 'Please fill the place where patient being hospitalized')) return;
+		document.getElementById('btnsimpan').click();
+	}
+	
+function validasiAngka(field){   
+   var Char; 
+   var sudahkoma = false;
+   var belakangkoma = 0;
+   Char = "";
+   for (i = 0; i < (field.value.length); i++){
+      if(isNaN(field.value.charAt(i)) && field.value.charAt(i) != '.' && field.value.charAt(i) != ','){
+         break;
+      }else {
+		 if (sudahkoma == true) {
+			if (field.value.charAt(i) == '.' || belakangkoma > 1) {
+				break;
+			}
+			belakangkoma++;
+		 }
+		 if (field.value.charAt(i) == ',') {
+			sudahkoma = true;
+		 }
+         Char = Char + field.value.charAt(i);
+      }
+   }
+   field.value = Char;
+}
+
+function formatNumber (num) {
+    num = parseFloat(num);
+    decplaces = 2;
+    if (!isNaN(num)) {
+        var str = "" + Math.round (eval(num) * Math.pow(10,decplaces));
+        if (str.indexOf("e") != -1) {
+            return "Out of Range";
+        }
+        while (str.length <= decplaces) {
+            str = "0" + str;
+        }
+        var decpoint = str.length - decplaces;
+        //return str.substring(0,decpoint) + "." + str.substring(decpoint,str.length);
+        
+        ribuan = str.substring(0,decpoint);
+		/*ribuan = formatRibuan(ribuan);*/
+		
+        for (var i = 0; i < Math.floor((ribuan.length-(1+i))/3); i++) {
+            ribuan = ribuan.substring(0,ribuan.length-(4*i+3))+'.'+ribuan.substring(ribuan.length-(4*i+3));
+        }
+		
+        
+        return ribuan + "," + str.substring(decpoint,str.length);
+    } else {
+        return "0";
+    }
+}
+
+function formatNumBlur (obj) {
+	numstring = obj.value;
+	num = numstring.toString().replace(/\./g,'');
+	num = num.toString().replace(/,/g,'.');
+	numstring = formatNumber(num);
+	obj.value = numstring;
+}
+
+function formatNumFoc (obj) {
+	numstring = obj.value;
+	num = numstring.toString().replace(/\./g,'');
+	num = numstring.toString().replace(',00','');
+	obj.value = num;
+}
+
+</script>
+
+<script language="javascript">
+
+document.getElementById('contactPerson').addItem = function (id, nama, alamat, hp, tlp, email, foto)
+{
+   nomor = this.getElementsByTagName('tr').length;
+   var tr = document.createElement('tr');
+   
+   tr.setAttribute("id", nomor);
+   if (nomor % 2 == 0) tr.setAttribute('class', 'table-common-even');
+   
+   var tdNomor = document.createElement('td');
+   tdNomor.setAttribute("style", 'padding: 2px; text-align: center');
+   tdNomor.innerHTML = nomor;
+   
+   var tdNama = document.createElement('td');
+   tdNama.setAttribute("style", 'padding: 2px; text-align: left');
+   tdNama.innerHTML = "<input type='hidden' name='cp[" + nomor +"][id]' value='" + id + "'><input type='text' name='cp[" + nomor +"][nama]' value='" + nama + "'>";
+   
+   var tdAlamat = document.createElement('td');
+   tdAlamat.setAttribute("style", 'padding: 2px; text-align: left');
+   tdAlamat.innerHTML = "<input type='text' name='cp[" + nomor +"][alamat]' value='" + alamat + "'>";
+  
+   var tdHp = document.createElement('td');
+   tdHp.setAttribute("style", 'padding: 2px; text-align: left');
+   tdHp.innerHTML ="<input type='text' name='cp[" + nomor +"][hp]' value='" + hp + "'>";
+   
+   var tdTlp = document.createElement('td');
+   tdTlp.setAttribute("style", 'padding: 2px; text-align: left');
+   tdTlp.innerHTML = "<input type='text' name='cp[" + nomor +"][telp]' value='" + tlp + "'>";
+   
+   var tdEmail = document.createElement('td');
+   tdEmail.setAttribute("style", 'padding: 2px; text-align: left');
+   tdEmail.innerHTML = "<input type='text' name='cp[" + nomor +"][email]' value='" + email + "'>";
+   
+   var tdFoto = document.createElement('td');
+   tdFoto.setAttribute("style", 'padding: 2px; text-align: left');
+   tdFoto.innerHTML = "<input type='file' name='fileCp[" + nomor +"]'><input type='hidden' name='cp[" + nomor +"][fotoHidden]' value='" + foto + "'>";
+   
+   var tdDelete = document.createElement('td');
+   tdDelete.setAttribute("class", "links");
+   tdDelete.setAttribute("align", 'center');
+   tdDelete.innerHTML = "<a onClick=\"document.getElementById('contactPerson').deleteItem('" + nomor + "');\" title='Hapus'><img src=\"images/button-delete.gif\" alt=\"Hapus\"/></a>";
+   
+   
+   tr.appendChild(tdNomor);
+   tr.appendChild(tdNama);
+   tr.appendChild(tdAlamat);
+   tr.appendChild(tdHp);
+   tr.appendChild(tdTlp);
+   tr.appendChild(tdEmail);
+   tr.appendChild(tdFoto);
+   tr.appendChild(tdDelete);
+   this.style.display = '';
+   this.appendChild(tr);
+   
+   document.getElementById('contactkosong').style.display = 'none';
+   
+   return true;
+}
+
+document.getElementById('contactPerson').deleteItem = function (id)
+{
+   this.removeChild(document.getElementById(id));
+   Obj = this.getElementsByTagName('tr');
+   if (Obj.length == 1) {this.style.display = '';
+								document.getElementById('contactkosong').style.display = '';}
+   else for (i = 1; i < Obj.length; i++)
+   {
+      Obj[i].setAttribute('class',(i % 2)?'':'table-common-even');
+      Obj[i].firstChild.innerHTML = i;
+   }
+}
+
+document.getElementById('contactPerson').deleteAllItem = function ()
+{
+   Obj = this.getElementsByTagName('tr');
+   for (i = Obj.length - 1; i > 0; i--)
+      if (Obj[i].id) this.removeChild(Obj[i]);
+   this.style.display = 'none';
+}
+
+contact_person = {JSON_CONTACT_PERSON};
+for (i in contact_person)
+   document.getElementById('contactPerson').addItem
+   (  
+	  contact_person[i].id,
+      contact_person[i].nama,
+      contact_person[i].alamat,
+      contact_person[i].hp,
+	  contact_person[i].telp,
+	  contact_person[i].email,
+      contact_person[i].foto
+   );
+   
+   function hapus_bank(item_id)
+   {
+      var item = document.getElementById(item_id);
+      var parent = item.parentNode;
+      parent.removeChild(item);
+      if (parent.childNodes.length == 0) parent.setAttribute("style", "display: none");
+   }
+</script>
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+   {ISI_PESAN}
+</div>
+<br />
+<!-- /patTemplate:tmpl -->
+<div class="mainContent-fp-element-full">
+	<div class="mainContent-fp-element-full-head"><h2>{TITLE}</h2></div>
+	<div class="mainContent-fp-element-full-body">
+<form method="POST" name="frmInput" action="{URL_AKSI}" class="xhr_form std_form" id="frmInput" enctype="multipart/form-data">
+   <input type="hidden" name="idPeg" value="{ID}">
+   <input type="hidden" name="op" value="{OP}" id="op">
+   <table class="table-details" width="100%" >
+      <tr class="subhead">
+        <th valign="center">{LABEL_ACTION} Benefit Claim Request Data</th>
+        <th align="right">
+          <div class="toolbar"> 
+          <a class="xhr dest_subcontent-element " href="{URL_BACK}" title="Back" tabindex="2">
+          <img src="images/button-back.gif" alt=""> Back</a> 	
+          </div>
+        </th>
+      </tr>
+      <tr style="display:none">
+        <th width="39%">Benefit Number</th>
+        <td>
+          <input type="text" name="no_benefit" id="no_benefit" size="23" maxlength="20" value="{NO_BENEFIT}" readonly="readonly" />
+        </td>
+      </tr>
+	  <!-- patTemplate:tmpl name="detail_pegawai" -->
+	  <tr style="display:none"> 
+        <th width="39%">Employee Name</th>
+        <td>
+          {DATA_NAMA_PEGAWAI}
+        </td>
+      </tr>
+	  <tr style="display:none">
+        <th width="39%">Gender</th>
+        <td>
+          {DATA_JNS_KELAMIN}
+        </td>
+      </tr>
+	  <tr style="display:none">
+        <th width="39%">Marital Status</th>
+        <td>
+          {DATA_STATUS_NIKAH}
+        </td>
+      </tr>
+	  <tr style="display:none">
+        <th width="39%">Employee Type</th>
+        <td>
+          {DATA_JNS_PEGAWAI}
+        </td>
+      </tr>
+	  <tr style="display:none">
+        <th width="39%">Structural Position</th>
+        <td>
+          {DATA_JABATAN_STRUKTURAL}
+        </td>
+      </tr>
+	  <!-- /patTemplate:tmpl -->
+	  <tr>
+        <th width="39%">Patient Name</th>
+        <td>
+          <input type="text" name="nama_pasien" id="nama_pasien" size="23" maxlength="20" value="{DATA_NAMA_PASIEN}" /> *
+        </td>
+      </tr>
+	  <tr>
+        <th>Patient Relationship with Employee</th>
+        <td>
+          <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="relasi_pasien"  / --> *
+        </td>
+      </tr>
+      <tr>
+        <th>Claim Type</th>
+        <td>
+          <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="jenis_benefit"  / --> *
+        </td>
+      </tr>
+	  <tr>
+        <th>Date</th>
+        <td>
+          <!-- patTemplate:gtfwrendermodule module="tanggal" submodule="tanggal" action="view" name="tgl_benefit"  / -->
+        </td>
+      </tr>
+      <tr>
+        <th>Place</th>
+        <td>
+          <input type="text" name="tempat" id="tempat" size="53" maxlength="50" value="{DATA_TEMPAT}"/> *
+        </td>
+      </tr>
+      </tr>
+	   <tr>
+	   	<th>Medical Reason</th>
+		  <td><textarea name="alasan" id="alasan" cols="50" rows="5">{DATA_ALASAN}</textarea></td>
+	   </tr>
+	   <tr>
+	   <th>Claim Date</th>
+        <td>
+          <!-- patTemplate:gtfwrendermodule module="tanggal" submodule="tanggal" action="view" name="tgl_klaim"  / -->
+        </td>
+     </tr>
+	   <tr>
+      <tr class="subhead">
+        <th valign="center">Claim Reference Data Detail</th>
+        <th align="right">
+        </th>
+      </tr>
+	   <tr>
+        <th>Claim Reference</th>
+        <td>
+          <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="jenis_klaim"  / --> *
+        </td>
+      </tr>
+      <tr>
+        <th>Claim Amount </th>
+        <td>
+          <input type="text" name="nilai_klaim" id="nilai_klaim" size="23" maxlength="20" value="0" onkeyup="validasiAngka(this);" onblur="formatNumBlur(this);" onfocus="formatNumFoc(this);" /><br /><div id="terbilang" style="font-style: italic;"></div> <!--onkeyup="getNumber(this,'terbilang');" -->
+        </td>
+      </tr>
+	  <tr>
+	    <th>&nbsp;</th>
+		<td><input type="button" value="Save" name="besaran_klaim_simpan" id="besaran_klaim_simpan" onclick="tambahKlaim();" /></td>
+	  </tr>
+	   <tr>
+			<td style="padding-left:10px" colspan="2">
+				<table class="table-edit" id="table_claim_list">
+					<tr class="subhead">
+						<th>Claim Reference</th>
+						<th>Claim Amount</th>
+						<th>Attachment</th>
+						<th width="5%">Action</th>
+					</tr>
+					<tbody id="tbody_claim_list">
+					  <!-- patTemplate:tmpl name="tpl_claim_list" type="condition" conditionvar="CLAIM_LIST_EMPTY" -->
+						 <!-- patTemplate:sub condition="YES" -->
+						 <!-- /patTemplate:sub -->
+						 <!-- patTemplate:sub condition="NO" -->
+							<!-- patTemplate:tmpl name="tpl_claim_item" -->
+							<tr class="{DATA_CLASS_NAME}">
+							   <td>{DATA_TIPE_KLAIM}<input type="hidden" name="data[tipe_klaim][]" value="{DATA_ID_TIPE_KLAIM}" /></td>
+							   <td>{DATA_NILAI_KLAIM_LABEL}<input type="hidden" size="15" name="data[nilai_klaim][]" value="{DATA_NILAI_KLAIM_LABEL}" onkeyup="validasiAngka(this); hitungTotal(); " onblur="formatNumBlur(this);" onfocus="formatNumFoc(this);" /></td>
+							   <td><input type="file" name="data[file_klaim][]" value="{DATA_FILE_KLAIM}" /></td>
+							   <td>
+							     <input type="hidden" name="data[id_klaim][]" value="{DATA_ID_KLAIM}" />
+									 <a href="javascript:void(null)" title="Hapus" onclick="hapusKlaim(this,{DATA_NILAI_KLAIM})"><img src="images/button-delete.gif" alt="Hapus" border=0 /></a>
+							   </td>
+						  </tr>
+						 <!-- /patTemplate:tmpl -->
+						 <!-- /patTemplate:sub -->
+					  <!-- /patTemplate:tmpl -->
+					</tbody>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	   <tr>
+        <th>Claim Amount Total</th>
+        <td>
+          <input type="text" name="total_klaim" id="total_klaim" size="23" maxlength="20" value="{DATA_TOTAL_KLAIM}" readonly="readonly" />
+		</td>
+       
+	   <!--<tr>              
+		<th>Attachment</th>
+		<td><input type="file" name="file_attach[]" id="file_attach_1" onchange="uploadFile(this)" size="30" /></td>
+	   </tr>
+	   <tr>
+		<td colspan="2" style="padding-left:50px">
+			<table class="table-edit" id="file_attach_table" width="500">
+				<tr class="subhead">
+					<th>Filename</th>
+					<th width="33">Action</th>
+				</tr>
+				<tbody id="file_attach_tbody">
+				<tr id="file_empty"><td colspan="3" align="center"><em>-- Data not found --</em></td></tr>
+				</tbody>
+			</table>
+			<br />
+		</td>
+	   </tr>-->
+      <tr class="subhead" style="display:none">
+        <th valign="center">Contact Person</th>
+        <th align="right">
+        </th>
+      </tr>
+	    <tr style="display:none">
+         <th width="150"><!-- patTemplate:gtfwgetconfig config="language" name="kontak_person" / --></th>
+         <td>
+            <a><img src="images/button-add.gif" onClick="javascript: document.getElementById('contactPerson').addItem('','','','','','','')"></a>
+         </td>
+      </tr>
+	  <tr style="display:none">
+		<td colspan=2>
+			<table class="table-common" width="96%">
+               <tbody id="contactPerson">
+         			<tr>
+         				<th width="5px">no</th>
+						<th>name</th>
+         				<th>address</th>
+         				<th>hp</th>
+         				<th>phone</th>
+         				<th>email</th>
+						<th>Foto</th>
+						<th>action</th>
+         			</tr>
+               </tbody>
+			   <tbody id="contactkosong" style="">
+				  <tr><td colspan="8" style='text-align: center; font-style: italic'>-- belum_ada_yang_dipilih --</td></tr>
+			  </tbody>
+      		</table>
+		</td>
+	  </tr>
+      <tr class="buttons">
+         <th>&nbsp;</th>
+         <td>
+            <input type="hidden" name="id" value="{DATA_ID}" />
+			<input type="hidden" name="peg_id" value="{DATA_PEG_ID}" />
+			<div style="display:none;"><input name="btnsimpan" id="btnsimpan" value=" {LABEL_ACTION} " class="buttonSubmit" type="submit" ></div>
+            <input type="button" name="btnsimpanBohong" value=" Save " onclick="cekIsiForm()" />
+			<input name="btnbatal" id="btnbatal" value="{BUTTON}" class="buttonSubmit" type="button" onclick="konfirmasi()">
+         </td>
+      </tr>
+   </table>
+</form>
+</div></div>
+<!-- /patTemplate:tmpl -->

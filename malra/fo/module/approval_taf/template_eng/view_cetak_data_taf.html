@@ -1,0 +1,193 @@
+<!-- patTemplate:tmpl name="content" -->
+<div class="mainContent-fp-element-full">
+	<div class="mainContent-fp-element-full-head">
+  <b>
+    TRAVEL APPLICATION FORM<br />
+  </b>
+  </div>
+	<div class="mainContent-fp-element-full-body">
+   <table class="table-details" border="1" cellpadding="5" cellspacing="0" width="100%" >
+     <tr>
+        <td colspan="4">           
+          <table class="table-edits" border="0" cellpadding="2" cellspacing="0" width="100%" id="table_budget_list">
+  				<tr>
+  				  <td width="13%">ID.No - Name</td><td>: {DATA_NIP_PEGAWAI} - {DATA_NAMA_PEGAWAI}</td>
+  					<td wodth="10%">Type</td><td>: {DATA_TIPE_TAF}</td>
+  				</tr>
+  				<tr>
+  				  <td width="13%">Job Title</td><td>: {DATA_JOB_TITLE}</td>
+  					<td wodth="10%">Taf No</td><td>: {DATA_TAF_NUMBER}</td>
+  				</tr>
+  				<tr>
+  				  <td width="13%">Division</td><td>: {DATA_DIVISION}</td>
+  					<td wodth="10%">Date of Request</td><td>: {DATA_TGL_AJU}</td>
+  				</tr>
+  				<tr>
+  				  <td width="13%">Purpose</td><td>: {DATA_ALASAN}</td>
+  					<td wodth="10%"></td><td></td>
+  				</tr>
+  			</table>
+        </td>
+      </tr>
+      <tr>
+  					<th align="center">Destination</th>
+  					<th align="center">From Date</th>
+  					<th align="center">To Date</th>
+  					<th align="center">Total Days</th>
+  		</tr>
+  	  <!-- patTemplate:tmpl name="tpl_travel_list" type="condition" conditionvar="TRAVEL_LIST_EMPTY" -->
+  					<!-- patTemplate:sub condition="YES" -->
+  						<tr id="travel_empty"><td colspan="4" align="center"><em>-- Data not found --</em></td></tr>
+  					<!-- /patTemplate:sub -->
+  					<!-- patTemplate:sub condition="NO" -->
+  						<!-- patTemplate:tmpl name="tpl_travel_item" -->
+  							<tr class="{DATA_CLASS_NAME}">
+  								<td>{DATA_TUJUAN}</td>
+  								<td>{DATA_TGL_AWAL_LABEL}</td>
+  								<td>{DATA_TGL_AKHIR_LABEL}</td>
+  								<td>{DATA_TOTAL_HARI}</td>
+  							</tr>
+  						<!-- /patTemplate:tmpl -->
+  					<!-- /patTemplate:sub -->
+  		 <!-- /patTemplate:tmpl -->
+  	<tr><td colspan="4">
+  	    <b><font size="2">TRANSPORTATION/FLIGHT :</font></b>
+  			<table class="table-edits" border="1" cellpadding="2" cellspacing="0" width="100%" id="table_transport_list">
+  				<tr class="subhead">
+  					<th align="center">Destination</th>
+  					<th align="center">Transport Type</th>
+  					<th align="center">Name/Flight</th>
+  					<th align="center">ETD</th>
+  					<th align="center">ETA</th>
+  					<th align="center">Amount</th>
+  					<th align="center">Note</th>
+  				</tr>
+  				<!-- patTemplate:tmpl name="tpl_transport_list" type="condition" conditionvar="TRANSPORT_LIST_EMPTY" -->
+  					<!-- patTemplate:sub condition="YES" -->
+  						<tr><td colspan="6" align="center"><em>-- Data not found --</em></td></tr>
+  					<!-- /patTemplate:sub -->
+  					<!-- patTemplate:sub condition="NO" -->
+  						<!-- patTemplate:tmpl name="tpl_transport_item" -->
+  							<tr class="{DATA_CLASS_NAME}">
+  								<td>{DATA_TUJUAN}</td>
+  								<td>{DATA_JENIS}</td>
+  								<td>{DATA_NAMA}</td>
+  								<td>{DATA_TGL_AWAL_LABEL}<br />{DATA_JAM_AWAL}</td>
+  								<td>{DATA_TGL_AKHIR_LABEL}<br />{DATA_JAM_AKHIR}</td>
+  								<td align="right">{DATA_ANGGARAN_LABEL}</td>
+  								<td>{DATA_NOTE}</td>
+  							</tr>
+  						<!-- /patTemplate:tmpl -->
+  					<!-- /patTemplate:sub -->
+  				<!-- /patTemplate:tmpl -->
+  			</table>
+  			<br /><br />
+  			
+  			<b><font size="2">TRAVEL ALLOWANCE :</font></b>
+  				<!-- patTemplate:tmpl name="tpl_allowance_list" type="condition" conditionvar="ALLOWANCE_LIST_EMPTY" -->
+  					<!-- patTemplate:sub condition="YES" -->
+  						<tr><td colspan="6" align="center"><em>-- Data not found --</em></td></tr>
+  					<!-- /patTemplate:sub -->
+  					<!-- patTemplate:sub condition="NO" -->
+  						<!-- patTemplate:tmpl name="tpl_allowance_item" -->
+  						
+  						  <!-- patTemplate:tmpl name="tpl_header" type="condition" conditionvar="HEADER" -->
+  						    <!-- patTemplate:sub condition="YES" -->
+      						  <!-- patTemplate:tmpl name="tpl_allowance_header" -->
+      						    <br />{DATA_KODE_TUJUAN}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{DATA_TUJUAN}
+      						    <table class="table-edits" border="1" cellpadding="2" cellspacing="0" width="100%" id="table_allowance_list">
+      						    <tr class="subhead">
+              					<th>Description</th>
+              					<th width="12%" align="center">Alw Days</th>
+              					<th align="center">Allowance</th>
+              					<th width="5%" align="center">Curr</th>
+              					<th align="center">Total</th>
+              					<th align="center">Note</th>
+              				</tr>
+        						<!-- /patTemplate:tmpl -->
+      						<!-- /patTemplate:sub -->
+      						<!-- patTemplate:sub condition="NO" -->
+      						<!-- /patTemplate:sub -->
+    						<!-- /patTemplate:tmpl -->
+    						
+  							<tr class="{DATA_CLASS_NAME}">
+  								<td>{DATA_DESKRIPSI}</td>
+  								<td align="center">{DATA_TOTAL_HARI}</td>
+  								<td align="right">{DATA_NILAI_LABEL}</td>
+  								<td align="center">{DATA_CURRENCY}</td>
+  								<td align="right">{DATA_TOTAL_LABEL}</td>
+  								<td>{DATA_NOTE}</td>
+  							</tr>
+  							
+  							<!-- patTemplate:tmpl name="tpl_subtotal" type="condition" conditionvar="SUBTOTAL" -->
+  						    <!-- patTemplate:sub condition="YES" -->
+      						  <!-- patTemplate:tmpl name="tpl_allowance_subtotal" -->
+        						  <tr><td colspan="4" align="right"> SUB TOTAL</td><td align="right">{DATA_SUB_TOTAL_LABEL}</td><td></td></tr>
+        						  </table>
+        						<!-- /patTemplate:tmpl -->
+      						<!-- /patTemplate:sub -->
+      						<!-- patTemplate:sub condition="NO" -->
+      						<!-- /patTemplate:sub -->
+    						<!-- /patTemplate:tmpl -->
+  							
+  						<!-- /patTemplate:tmpl -->
+  					<!-- /patTemplate:sub -->
+  				<!-- /patTemplate:tmpl -->
+  				<br />
+  				TOTAL : {DATA_TOTAL_ALLOWANCE_LABEL}
+  			<br /><br />
+  			
+  			<b><font size="2">BUDGET :</font></b>
+  			<table class="table-edits" border="1" cellpadding="2" cellspacing="0" width="100%" id="table_budget_list">
+  				<tr class="subhead">
+  					<th>Budget ID</th>
+  					<th>Budget Description</th>
+  					<th align="center">Period</th>
+  					<th align="center">Amount</th>
+  				</tr>
+  				<!-- patTemplate:tmpl name="tpl_budget_list" type="condition" conditionvar="BUDGET_LIST_EMPTY" -->
+  					<!-- patTemplate:sub condition="YES" -->
+  						<tr><td colspan="4" align="center"><em>-- Data not found --</em></td></tr>
+  					<!-- /patTemplate:sub -->
+  					<!-- patTemplate:sub condition="NO" -->
+  						<!-- patTemplate:tmpl name="tpl_budget_item" -->
+  							<tr class="{DATA_CLASS_NAME}">
+  								<td>{DATA_KODE_BUDGET}</td>
+  								<td>{DATA_DESKRIPSI}</td>
+  								<td>{DATA_PERIODE}</td>
+  								<td align="right">{DATA_ANGGARAN_LABEL}</td>
+  							</tr>
+  						<!-- /patTemplate:tmpl -->
+  					<!-- /patTemplate:sub -->
+  				<!-- /patTemplate:tmpl -->
+  				<tr><td colspan="3" align="right">TOTAL</td><td align="right">{TOTAL_BUDGET_LABEL}</td></tr>
+  			</table>
+  			<br /><br />
+  	    <table class="table-edits" border="0" cellpadding="2" cellspacing="0" width="100%" id="table_budget_list">
+  				<tr>
+  					<td>
+              Requested By:<br /><br /><br /><br />
+              {DATA_NAMA_PEGAWAI}<br />
+              Date : {DATA_TGL_AJU}
+            </td>
+  					<td>
+              Approved By:<br /><br /><br /><br />
+              Departement Head<br />
+              Date : 
+            </td>
+            <td>
+              Approved By:<br /><br /><br /><br />
+              Chief Operating Officer<br />
+              Date : 
+            </td>
+            <td>
+              HRD Verification:<br /><br /><br /><br />
+              <br /> 
+              Date : 
+            </td>
+  				</tr>
+  			</table>
+    </td></tr>		
+   </table>
+</div></div>
+<!-- /patTemplate:tmpl -->

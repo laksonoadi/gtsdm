@@ -1,0 +1,152 @@
+<!-- patTemplate:tmpl name="content" -->
+<script language="javascript" type="text/javascript">
+	var xpopup;
+	function centangin_semua(varname, start_num, end_num) {
+		var obj = document.getElementById('cek_all');
+		if(obj.checked == false) {
+			for(i=start_num;i<=end_num;i++) {
+				document.getElementById(varname + i).checked = false;
+			}
+		} else {
+			for(i=start_num;i<=end_num;i++) {
+				document.getElementById(varname + i).checked = true;
+			}
+		}
+	}
+	function show_checkbox (varname, start_num, end_num) {
+		//show check_all checkbox
+		document.getElementById('cek_all').style.display='';
+		//document.getElementById('btnHapus').type="button";
+	}
+	function konfirmasi_delete(varname, start_num, end_num) {
+		//var idDelete = document.getElementById('id_delete').value;
+		for(i=start_num;i<=end_num;i++) {
+			if(document.getElementById(varname + i).checked == true) {
+				//document.getElementById('form_list').submit();
+				document.getElementById('btnHapus').type="submit";
+				document.getElementById('btnHapus').click();
+				return true;
+			}
+		}
+		alert('Silakan beri tanda cek pada minimal 1 data');
+		return false;
+	}
+	//document.onload = show_checkbox('gaji_pegawai_id_','{FIRST_NUMBER}','{LAST_NUMBER}');
+	function bukaPopupUnitkerja(xurl) {
+		xpopup = window.open(xurl,'xpopup','width=400,height=500,resizable=yes,scrollbars=yes,right=0;center');
+		xpopup.focus();
+	}
+	function enaDisaTanggal(jenis) {
+		if(jenis == 'semua') {
+			//semua, disable
+			document.getElementById('periode_bulan').disabled=true;
+			//document.getElementById('periode_year').disabled=true;
+		} else {
+			//satu, enable
+			document.getElementById('periode_bulan').disabled=false;
+			//document.getElementById('periode_year').disabled=false;
+		}
+	}
+</script>
+<script language="javascript" type="text/javascript">
+   var xpopup;
+   function bukaPopupCetak(xurl) {
+      xpopup = window.open(xurl,'xpopup','width=900,height=600,resizable=yes,scrollbars=yes,right=0;center');
+      xpopup.focus();
+   }
+</script>
+<br />
+<h1>EMPLOYEE SALARY</h1>
+<br />
+<table class="table-edit" width="100%" >
+	<tr class="subhead">
+		<th colspan="3"><b>Employee Data</b></th>
+	</tr>
+	<tr>
+		<td rowspan="4" width="60px"><img src="upload_file/photo/{FOTO2}" width="100" height="100"></td>
+   </tr>
+   <tr>
+      <td width="120px">Employee Number</td>
+	  <td> : {NIP}</td>
+   </tr>
+   <tr>
+      <td>Name</td>
+	  <td> : {NAMA}</td>
+   </tr>
+   <tr>
+      <td>Address</td>
+	  <td> : {ALAMAT}</td>
+   </tr>
+</table> 
+<br />
+<form method="POST" action="{URL_SEARCH}" class="dataquest xhr_simple_form dest_subcontent-element" id="filterbox">
+   <table>
+      <tr>
+         <th colspan="2"><h2><strong>Search Data</strong></h2></th>
+      </tr>
+	  <tr>
+		<th>Show Data</th>
+		<td>
+			<input type="radio" name="tampilkan" value="satu" id="satu" onchange="enaDisaTanggal(this.value)" {SATU_CHECKED} /><label for="satu"> monthly</label> 
+			<input type="radio" name="tampilkan" value="semua" id="semua" onchange="enaDisaTanggal(this.value)" {SEMUA_CHECKED} /><label for="semua"> yearly</label>
+		</td>
+	</tr>
+      <tr>              
+         <th width="30%">Salary Period</th>
+         <td><!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="periode_bulan" / -->
+         <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="periode_tahun" / --></td>
+      </tr>
+      <tr>              
+         <th width="30%">&nbsp;</th>
+         <td><input type="submit" name="btncari" value=" Search &raquo;" class="buttonSubmit"/></td>
+      </tr>
+   </table>
+</form>
+
+<br />
+   
+   <!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+   <div class="{CLASS_PESAN}">
+      {ISI_PESAN}
+   </div>
+   <br />
+   <!-- /patTemplate:tmpl -->
+   <h2>Salary History Management</h2>
+   <div class="pageBar">
+   <!-- patTemplate:gtfwrendermodule module="paging" submodule="paging" action="view" name="paging_top"  / -->
+      <div class="toolbar"> 
+   		<a class="xhr dest_subcontent-element" href="{URL_KEMBALI}" title="Back" tabindex="2"><img src="images/button-back.gif" alt="Kembali"> Back</a>
+      </div>
+   </div>
+	<table class="table-common" width="800px">
+      <tr>
+         <th width="5">No</th>
+         <th>Period</th>
+            <!-- patTemplate:tmpl name="kolom_item" -->
+			<th>{KOLOM_NAMA} (Rp)</th>
+            <!-- /patTemplate:tmpl -->
+         <th>Other Income (Rp)</th>
+         <th>Total (Rp)</th>
+         <th>Action</th>
+      </tr>
+      <!-- patTemplate:tmpl name="data_history" type="condition" conditionvar="HISTORY_EMPTY" -->
+         <!-- patTemplate:sub condition="YES" -->
+         <tr><td colspan="6" align="center"><em>-- Data not found --</em></td></tr>
+         <!-- /patTemplate:sub -->
+         <!-- patTemplate:sub condition="NO" -->
+            <!-- patTemplate:tmpl name="data_history_item" -->
+            <tr class="{DATA_CLASS_NAME}">
+               <td align="center">{DATA_NUMBER}</td>
+               <td>{DATA_PERIODE}</td>
+					<!-- patTemplate:tmpl name="data_nominal_item" -->
+					<td style="text-align:right;">{DATA_NOMINAL}</td>
+					<!-- /patTemplate:tmpl -->
+					     <td style="text-align:right;">{DATA_PLAIN}</td>
+               <td style="text-align:right;">{DATA_TOTAL}</td>
+               <td><center><a href="javascript:void(0)" onclick="bukaPopupCetak('{DATA_URL_CETAK}')" title="Print Paycheck"><img src="images/button-print.gif" alt="Print Paycheck"/></a></center></td>
+            </tr>
+            <!-- /patTemplate:tmpl -->
+         <!-- /patTemplate:sub -->
+      <!-- /patTemplate:tmpl -->
+   </table>
+<!-- /patTemplate:tmpl -->

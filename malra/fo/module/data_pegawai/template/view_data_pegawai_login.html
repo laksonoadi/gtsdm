@@ -1,0 +1,22 @@
+<!-- patTemplate:tmpl name="content" -->
+<!-- patTemplate:tmpl name="login" type="condition" conditionvar="IS_LOGIN" -->
+  <!-- patTemplate:sub condition="YES" -->
+     <!-- patTemplate:tmpl name="content2" -->
+      <h2>Informasi Pribadi</h2>
+        <table width="98%" >
+      	<tr>
+      		<td width="60px" align="center"><img src="{FOTO2}" width="120" ></td>
+         </tr>
+         <tr>
+      	    <td align="center">{NAMA}</td>
+         </tr>
+         <tr>
+      	    <td align="center">{NIP}</td>
+         </tr>
+      </table>
+      <!-- /patTemplate:tmpl -->
+  <!-- /patTemplate:sub -->
+  <!-- patTemplate:sub condition="NO" -->
+  <!-- /patTemplate:sub -->
+<!-- /patTemplate:tmpl -->
+<!-- /patTemplate:tmpl -->

@@ -1,0 +1,27 @@
+<!-- patTemplate:tmpl name="content" -->
+<div class="panel panel-success-solid">
+    <h4 class="panel-heading text-center">Dokumen Terbaru</h4>
+    <div class="list-group">
+        <!-- patTemplate:tmpl name="list" type="condition" conditionvar="IS_EMPTY" -->
+        <!-- patTemplate:sub condition="YES" -->
+        <div class="list-group-item text-left">Belum ada dokumen</div>
+        <!-- /patTemplate:sub -->
+        <!-- patTemplate:sub condition="NO" -->
+        <!-- patTemplate:tmpl name="item" -->
+        <a class="list-group-item xhr dest_subcontent-element text-left" href="{URL_POLICY}">
+            <h4 class="list-group-item-heading" title="{FILENAME}">{JNSPOLICY}</h4>
+            <div class="list-group-item-text">
+                <div><strong>{POLICY}</strong></div>
+                <div class="small">{SATKER}</div>
+                <div class="small">{TANGGAL}</div>
+            </div>
+        </a>
+        <!-- /patTemplate:tmpl -->
+        <!-- /patTemplate:sub -->
+        <!-- /patTemplate:tmpl -->
+    </div>
+    <div class="panel-footer">
+        <a class="xhr dest_subcontent-element center-block text-center small" href="<!-- patTemplate:gtfwgeturl module="policy" sub="PolicySatuanKerjaList" action="view" type="html" params="" / -->">Selengkapnya</a>
+    </div>
+</div>
+<!-- /patTemplate:tmpl -->

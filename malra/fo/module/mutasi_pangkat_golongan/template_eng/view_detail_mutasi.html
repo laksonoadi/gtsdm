@@ -1,0 +1,131 @@
+<!-- patTemplate:tmpl name="content" -->
+<h1></h1>
+<br />
+
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+   {ISI_PESAN}
+</div>
+<br />
+<!-- /patTemplate:tmpl -->
+<div><h1>Grade Detail</h1></div><br>
+<table class="table-edit" width="100%" >
+	<tr>
+		<th colspan="2" width="25%"><b>Employee Data</b></th>
+	</tr>
+	<tr>
+		<td rowspan="4"><img src="upload_file/photo/{PROFIL_FOTO}" width="100" height="100"></td>
+   </tr>
+   <tr>
+      <td>Name</td>
+	  <td>{PROFIL_NAME}</td>
+   </tr>
+   <tr>
+      <td>Employee Number</td>
+	  <td>{PROFIL_KODE}</td>
+   </tr>
+   <tr>
+     
+      <td valign="top">Address</td>
+	  <td valign="top">{PROFIL_ALAMAT}</td>
+   </tr>
+   <tr>
+      
+   </tr>
+</table>
+<br>
+<!-- patTemplate:tmpl name="data" type="condition" conditionvar="DATA_EMPTY" -->
+      <!-- patTemplate:sub condition="YES" -->
+    <h1>Data not found </h1>
+      <!-- /patTemplate:sub -->
+      <!-- patTemplate:sub condition="NO" -->
+         <!-- patTemplate:tmpl name="data_item" -->
+
+   <table class="table-edit" width="100%" >
+      <tr class="subhead">
+         <th>DATA</th>
+		 <td align="right">
+      </tr>
+      
+	  <tr>
+         <th >Employee Type</th>
+         <td>
+           {DETAIL_JPNAMA}
+         </td>
+      </tr>
+	  <tr>
+         <th >Grade </th>
+         <td>
+           {DETAIL_PKTGOL}
+         </td>
+      </tr>
+	  <tr>
+         <th >Salary Allowances </th>
+         <td>
+           {DETAIL_NOMINAL_GAPOK}
+         </td>
+      </tr>
+	  <tr>
+         <th >End Date </th>
+         <td>
+           {DETAIL_TMT}
+         </td>
+      </tr>
+      <tr>
+         <th >Next Rank Up Date</th>
+         <td>
+           {DETAIL_TGL_NAIK}
+         </td>
+      </tr>
+	  <tr class="subhead">
+		<th colspan="2">SK</th>
+	  </tr>
+	  <tr>
+         <th >Officer </th>
+         <td>
+           {DETAIL_PEJABAT}
+         </td>
+      </tr>
+	  <tr>
+         <th >Number </th>
+         <td>
+           {DETAIL_NOSK}
+         </td>
+      </tr>
+	  <tr>
+         <th >SK Date</th>
+         <td>
+           {DETAIL_TGL_SK}
+         </td>
+      </tr>
+      <tr>
+         <th >Base</th>
+         <td>
+           {DETAIL_DASAR}
+         </td>
+      </tr>
+	  <tr>
+         <th >Status</th>
+         <td>
+           {DETAIL_STATUS}
+         </td>
+      </tr>
+	  <tr>
+         <th >SK File</th>
+         <td>
+           {DETAIL_UPLOAD}
+         </td>
+      </tr>
+      
+   </table>
+
+<!-- /patTemplate:tmpl -->
+      <!-- /patTemplate:sub -->
+   <!-- /patTemplate:tmpl -->
+<div class="toolbar"> 
+               <a class="xhr dest_subcontent-element " href="{URL_BACK}" title="Back" tabindex="2">
+               <img src="images/button-back.gif" alt="">Back</a> 
+            </div>
+
+
+<!-- /patTemplate:tmpl -->

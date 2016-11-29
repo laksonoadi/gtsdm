@@ -1,0 +1,176 @@
+<!-- patTemplate:tmpl name="content" -->
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+   {ISI_PESAN}
+</div>
+<br />
+<!-- /patTemplate:tmpl -->
+<div class="mainContent-fp-element-full">
+	<div class="mainContent-fp-element-full-head"><h2>{TITLE}</h2></div>
+	<div class="mainContent-fp-element-full-body">
+   <table class="table-details" width="100%" >
+      <tr class="subhead">
+      <th>Detail Mutasi Penetapan Angka Kredit</th>
+		      <th align="right">
+            <div class="toolbar"> 
+               <a class="xhr dest_subcontent-element " href="{URL_BACK}" title="BAck to the current page" tabindex="2">
+               <img src="images/button-back.gif" alt="">Back</a> 
+            </div>
+          </th>
+      </tr>
+      <tr>
+         <th >Nomor PAK</th>
+         <td>
+           {INPUT_NOPAK}
+         </td>
+     </tr>
+     <tr>
+         <th >Tanggal Penetapan </th>
+         <td>
+           {INPUT_TANGGAL_PENETAPAN}
+         </td>
+     </tr>
+     <tr>
+         <th >Pejabat </th>
+         <td>
+           {INPUT_PEJABAT}
+         </td>
+     </tr>
+     <tr>
+         <th >Tanggal Awal Penilaian </th>
+         <td>
+           {INPUT_MULAI}
+         </td>
+      </tr>
+      <tr>
+         <th >Tanggal Akhir Penilaian </th>
+         <td>
+           {INPUT_SELESAI}
+         </td>
+      </tr>
+      <tr>
+        <th>NIP</th>
+  	    <td>{INPUT_NIP}</td>
+      </tr>
+      <tr>
+        <th>Nomor Seri Kartu Pegawai</th>
+  	    <td>{INPUT_NO_SERI}</td>
+      </tr>
+      <tr>
+        <th>Tanggal Lahir</th>
+  	    <td>{INPUT_TANGGAL_LAHIR}</td>
+      </tr>
+      <tr>
+        <th>Jenis Kelamin</th>
+  	    <td>{INPUT_JENIS_KELAMIN}</td>
+      </tr>
+      <tr>
+        <th>Pendidikan Tertinggi</th>
+  	    <td>{INPUT_PENDIDIKAN}</td>
+      </tr>
+      <tr>
+        <th>Pangkat dan Golongan/TMT</th>
+  	    <td>{INPUT_PANGKAT_GOLONGAN}</td>
+      </tr>
+      <tr>
+        <th>Jabatan Fungsional/TMT</th>
+  	    <td>{INPUT_JABATAN_FUNGSIONAL}</td>
+      </tr>
+     <tr>
+         <th >Unit Kerja</th>
+         <td>
+           {INPUT_UNIT_KERJA_LABEL}
+         </td>
+     </tr>  
+     <tr>
+         <th>Dapat diangkat dlm Jabatan sebagai</th>
+         <td>
+           {INPUT_JABATAN}
+         </td>
+     </tr>  
+	   <tr class="subhead">
+		  <th colspan="2">Penetapan Angka Kredit</th>
+	   </tr>
+	   <tr><td colspan="2">
+	     <table class="table-common" width="100%">
+         <tr>
+            <th width="60%">Penetapan Angka Kredit</th>
+        	  <th colspan="4"><center>Jumlah</center></th>
+         </tr>
+         <tr>
+            <th>Unsur Utama</th>
+            <th>Lama</th>
+        	  <th>Baru</th>
+        	  <th>Digunakan</th>
+        	  <th>Lebihan</th>
+         </tr>
+         <!-- patTemplate:tmpl name="unsur_utama" type="condition" conditionvar="DATA_EMPTY" -->
+            <!-- patTemplate:sub condition="YES" -->
+              <tr><td colspan="5" align="center"><em>-- Unsur Utama belum ditetapkan --</em></td></tr>
+            <!-- /patTemplate:sub -->
+            <!-- patTemplate:sub condition="NO" -->
+               <!-- patTemplate:tmpl name="unsur_utama_item" -->
+                 <tr>
+                    <td align="left" width="15%">{NAMA}</td>
+                    <td align="right">{LAMA}</td>
+                    <td align="right">{BARU}</td>
+                    <td align="right">{DIGUNAKAN}</td>
+                    <td align="right">{LEBIHAN}</td>
+                 </tr>
+               <!-- /patTemplate:tmpl -->
+            <!-- /patTemplate:sub -->
+         <!-- /patTemplate:tmpl -->
+          <tr class="table-common-even">
+              <td align="right" width="15%">Jumlah Unsur Utama </td>
+              <td align="right">{UTAMA_LAMA}</td>
+              <td align="right">{UTAMA_BARU}</td>
+              <td align="right">{UTAMA_DIGUNAKAN}</td>
+              <td align="right">{UTAMA_LEBIHAN}</td>
+          </tr>
+          <tr>
+            <th>Unsur Penunjang</th>
+            <th>Lama</th>
+        	  <th>Baru</th>
+        	  <th>Digunakan</th>
+        	  <th>Lebihan</th>
+         </tr>
+         <!-- patTemplate:tmpl name="unsur_penunjang" type="condition" conditionvar="DATA_EMPTY" -->
+            <!-- patTemplate:sub condition="YES" -->
+              <tr><td colspan="5" align="center"><em>-- Unsur Utama belum ditetapkan --</em></td></tr>
+            <!-- /patTemplate:sub -->
+            <!-- patTemplate:sub condition="NO" -->
+               <!-- patTemplate:tmpl name="unsur_penunjang_item" -->
+                 <tr>
+                    <td align="left" width="15%">{NAMA}</td>
+                    <td align="right">{LAMA}</td>
+                    <td align="right">{BARU}</td>
+                    <td align="right">{DIGUNAKAN}</td>
+                    <td align="right">{LEBIHAN}</td>
+                 </tr>
+               <!-- /patTemplate:tmpl -->
+            <!-- /patTemplate:sub -->
+         <!-- /patTemplate:tmpl -->
+          <tr class="table-common-even"> 
+              <td align="right" width="15%">Jumlah Unsur Penunjang </td>
+              <td align="right">{PENUNJANG_LAMA}</td>
+              <td align="right">{PENUNJANG_BARU}</td>
+              <td align="right">{PENUNJANG_DIGUNAKAN}</td>
+              <td align="right">{PENUNJANG_LEBIHAN}</td>
+          </tr>
+          <tr class="table-common-even">
+              <td align="right" width="15%">Jumlah Unsur Utama dan Unsur Penunjang</td>
+              <td align="right">{TOTAL_LAMA}</td>
+              <td align="right">{TOTAL_BARU}</td>
+              <td align="right">{TOTAL_DIGUNAKAN}</td>
+              <td align="right">{TOTAL_LEBIHAN}</td>
+          </tr>
+       </table>
+     </td></tr>	 
+   </table>
+<br />
+<div class="toolbar"> 
+        <a class="xhr dest_subcontent-element " href="{URL_BACK}" title="back to the current page" tabindex="2">
+        <img src="images/button-back.gif" alt="">Back</a> 
+</div>
+</div></div>
+<!-- /patTemplate:tmpl -->

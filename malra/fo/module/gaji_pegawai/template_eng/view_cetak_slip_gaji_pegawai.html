@@ -1,0 +1,76 @@
+<!-- patTemplate:tmpl name="content" -->
+<div class="a4-landscape"><br><br>
+<h1 align="center"><u>Paycheck</u></h1>
+<br />
+<b><table align="center">
+   <tr>
+      <td width="15%">Employee Number</td><td>: {NIP_PEGAWAI}</td>
+   </tr>
+   <tr>
+      <td>Name</td><td>: {NAMA_PEGAWAI}</td>
+   </tr>
+   <tr>
+      <td>Period</td><td>: {PERIODE}</td>
+   </tr>
+</table>
+</b>
+<br>
+<h1 align="center"><u>Salary Details</u></h1>
+<br />
+<table width="100%" style="border: 1px">
+   <tr>
+      <th>No.</th>
+      <th>Salary Component</th>
+      <th>Nominal (Rp)</th>
+   </tr>
+   <!-- patTemplate:tmpl name="data" type="condition" conditionvar="SLIP_EMPTY" -->
+         <!-- patTemplate:sub condition="YES" -->
+         <tr><td colspan="7" align="center"><em>-- Data not found --</em></td></tr>
+         <!-- /patTemplate:sub -->
+         <!-- patTemplate:sub condition="NO" -->
+            <!-- patTemplate:tmpl name="data_slip_item" -->
+            <tr>
+               <td align="center">{NOMER}</td>
+               <td>{KOLOM}</td>
+               <td align="right">{NOMINAL_RP}</td>
+            </tr>
+            <!-- /patTemplate:tmpl -->
+         <!-- /patTemplate:sub -->
+   <!-- /patTemplate:tmpl -->
+   <!-- patTemplate:tmpl name="data2" type="condition" conditionvar="LAIN_EMPTY" -->
+         <!-- patTemplate:sub condition="YES" -->
+         <!-- /patTemplate:sub -->
+         <!-- patTemplate:sub condition="NO" -->
+            <!-- patTemplate:tmpl name="data_slip_item2" -->
+            <tr>
+               <td align="center">{NO}</td>
+               <td>{PLAIN}</td>
+               <td align="right">{DAPAT_LAIN}</td>
+            </tr>
+            <!-- /patTemplate:tmpl -->
+         <!-- /patTemplate:sub -->
+   <!-- /patTemplate:tmpl -->
+   <th colspan="2">Total (Rp)</th>
+   <th style="text-align: right;">{JML}</th>
+</table>
+<table width="100%">
+  <tr>
+    <td style="border: 0px"></td>
+
+    <td width="10%" height="70px" style="border: 0px">{TMPT}, {TGL}</td><td width="10%" style="border: 0px"></td>
+  </tr>
+  <tr>
+    <td style="border: 0px"></td>
+    <td width="10%" height="120px" style="border: 0px">____________________</td><td width="10%" style="border: 0px"></td>
+  </tr>
+  <tr><td colspan="3" style="border: 0px">&nbsp;</td></tr>  
+  <tr><td colspan="3" style="border: 0px">&nbsp;</td></tr>  
+  <tr>
+
+    <td style="border: 0px"></td>
+    <td width="20%" style="border: 0px"></td><td width="10%" style="border: 0px"></td>
+  </tr>
+</table>
+<br><br>
+</div>
+<!-- /patTemplate:tmpl -->

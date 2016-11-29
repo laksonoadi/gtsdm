@@ -1,0 +1,55 @@
+<!-- patTemplate:tmpl name="content" -->
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+   {ISI_PESAN}
+</div>
+<br />
+<!-- /patTemplate:tmpl -->
+<div class="mainContent-fp-element-full">
+	<div class="mainContent-fp-element-full-head"><h2>{TITLE}</h2></div>
+	<div class="mainContent-fp-element-full-body">
+
+<div class="pageBar">
+<!-- patTemplate:gtfwrendermodule module="paging" submodule="paging" action="view" name="paging_top"  / -->
+</div>
+<table class="table-common" width="100%">
+   <tr>
+      <th width="5px" rowspan="2">No</th>
+	  <th width="120px" rowspan="2">Aksi</th>
+      <th rowspan="2">Periode Tahun Penyesuaian</th>
+	  <th rowspan="2">Periode Bulan Penyesuaian</th>
+	  <th colspan="3">Surat Keputusan (SK)</th>
+      
+   </tr>
+   <tr>
+      <th>Tanda Tangan</th>
+	  <th>Nomor Surat</th>
+	  <th>Tanggal</th>
+   </tr>
+   <!-- patTemplate:tmpl name="data" type="condition" conditionvar="DATA_EMPTY" -->
+      <!-- patTemplate:sub condition="YES" -->
+   <tr><td colspan="10" align="center"><em>-- Data tidak ditemukan --</em></td></tr>
+      <!-- /patTemplate:sub -->
+      <!-- patTemplate:sub condition="NO" -->
+         <!-- patTemplate:tmpl name="data_item" -->
+   <tr class="{MKP_CLASS_NAME}">
+      <td align="center" width="10%">{MKP_NUMBER}</td>
+	  <td class="links">
+		 <div id="download_{MKP_NUMBER}"><a href="{MKP_LINK_DOWNLOAD_SK}" title="SK" target="_blank"><img src="images/detil.gif" alt="SK"/></a></div>
+         <!--<a class="xhr dest_subcontent-element" href="{MKP_URL_DETAIL}" title="detail"><img src="images/button-detail.gif" alt="detail"/></a>-->
+		 <script>
+			if ('{MKP_LINK_DOWNLOAD_SK}'==''){var download='download_{MKP_NUMBER}'; document.getElementById(download).style.display='none';}
+		 </script>
+      </td>
+      <td align="left">{MKP_TAHUN} tahun</td>
+	  <td align="left">{MKP_BULAN} bulan</td>
+	  <td align="left">{MKP_PEJABAT}</td>
+	  <td align="left">{MKP_NOSK}</td>
+	  <td align="left">{MKP_TGL_SK}</td>
+   </tr>
+         <!-- /patTemplate:tmpl -->
+      <!-- /patTemplate:sub -->
+   <!-- /patTemplate:tmpl -->
+</table>
+</div></div>
+<!-- /patTemplate:tmpl -->

@@ -1,0 +1,239 @@
+<!-- patTemplate:tmpl name="content" -->
+<script languange="javascript">
+	var angka_kredit_pendidikan={INPUT_ANGKA_KREDIT_PENDIDIKAN};
+	var xpopup;
+	function cariKegiatan(temp,xurl) {
+		document.getElementById('temp').value=temp;
+		b=xurl;
+		var win = window.open( xurl, "myWindow","status = 1, height = 600, width = 600, resizable = 0, scrollbars=1" );
+        if (!win.opener) win.opener = window.self;
+	}
+  
+	function hapusKegiatan(obj,xnilai)
+	{		
+  		obj.parentNode.parentNode.parentNode.removeChild(obj.parentNode.parentNode);
+		document.getElementById('total_angka_kredit').innerHTML = parseInt(document.getElementById('total_angka_kredit').innerHTML)-xnilai;
+	}
+  
+	function konfirmasi(){
+		var no_pak=document.getElementById('no_pak').value;
+		var pejabat=document.getElementById('pejabat').value;
+		//if (pejabat==''){
+			//alert('Nama Pejabat Wajib diisi');
+			//document.getElementById('pejabat').focus();
+			//return false;
+		//}else{
+			document.frmInput.btnsimpan.click();
+		//}
+	}
+</script>
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+	{ISI_PESAN}
+</div>
+<br />
+<!-- /patTemplate:tmpl -->
+<div class="mainContent-fp-element-full">
+	<div class="mainContent-fp-element-full-head"><h2>{TITLE}</h2></div>
+	<div class="mainContent-fp-element-full-body">
+<form method="POST" name="frmInput" action="{URL_ACTION}" id="frmInput" >
+	<input type="hidden" name="temp" id="temp" >
+	<table class="table-details" width="750px" style="display:{DISPLAY_FORM}" >
+		<tr class="subhead">
+			<th colspan="2">
+			{LABEL_ACTION} {LABEL_INPUT}
+			</th>
+		</tr>
+		<tr style="display:none">
+			<th >Nomor PAK</th>
+			<td>
+				<input type="text" name="no_pak" id="no_pak" value="{INPUT_NOPAK}"  size="15" />*
+			</td>
+		</tr>
+		<tr>
+			<th >Tanggal Pengajuan </th>
+			<td>
+				<!-- patTemplate:gtfwrendermodule module="tanggal" submodule="Tanggal" action="view" name="tgl_penetapan" / -->
+			</td>
+		</tr>
+		<tr style="display:none">
+			<th >Pejabat </th>
+			<td>
+				<input type="text" name="pejabat" id="pejabat" value="{INPUT_PEJABAT}"  size="30" />*
+			</td>
+		</tr>
+		<tr>
+			<th >Tanggal Awal Penilaian </th>
+			<td>
+				<!-- patTemplate:gtfwrendermodule module="tanggal" submodule="Tanggal" action="view" name="mulai" / -->
+			</td>
+		</tr>
+		<tr>
+			<th >Tanggal Akhir Penilaian </th>
+			<td>
+				<!-- patTemplate:gtfwrendermodule module="tanggal" submodule="Tanggal" action="view" name="selesai" / -->
+			</td>
+		</tr>
+		<tr>
+			<th>NIP</th>
+			<td>{INPUT_NIP}</td>
+		</tr>
+		<tr>
+			<th>Nomor Seri Kartu Pegawai</th>
+			<td>{INPUT_NO_SERI}</td>
+		</tr>
+		<tr>
+			<th>Tanggal Lahir</th>
+			<td>{INPUT_TANGGAL_LAHIR}</td>
+		</tr>
+		<tr>
+			<th>Jenis Kelamin</th>
+			<td>{INPUT_JENIS_KELAMIN}</td>
+		</tr>
+		<tr>
+			<th>Pendidikan Tertinggi</th>
+			<td>{INPUT_PENDIDIKAN}</td>
+		</tr>
+		<tr>
+			<th>Pangkat dan Golongan/TMT</th>
+			<td>{INPUT_PANGKAT_GOLONGAN}</td>
+		</tr>
+		<tr>
+			<th>Jabatan Fungsional/TMT</th>
+			<td>{INPUT_JABATAN_FUNGSIONAL}</td>
+		</tr>
+		<tr>
+			<th >Unit Kerja</th>
+			<td>
+				{INPUT_UNIT_KERJA_LABEL}
+				<div style="display:none"><!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="unit_kerja"  / -->*</div>
+			</td>
+		</tr>  
+		<tr>
+			<th>Dapat diangkat dlm Jabatan sebagai</th>
+			<td>
+				<!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="jabatan"  / -->*
+			</td>
+		</tr> 
+		<tr class="subhead">
+			<th colspan="2" >
+			Detail Kegiatan
+			<div class="toolbar"> 
+				<!-- patTemplate:tmpl name="edit_mode" visibility="hidden" -->
+				<a href="javascript:void(0);" onclick="cariKegiatan('kegiatan','{URL_CARI_OTO}')"><img src="images/detil.gif" border="0" alt="Mencari Kegiatan Dari Data gtSdm">Cari Kegiatan</a> 
+				<!-- /patTemplate:tmpl -->
+				<a href="javascript:void(0);" onclick="cariKegiatan('kegiatan','{URL_CARI}')"><img src="images/detil.gif" border="0">Tambah Kegiatan</a> 
+			</div>
+			</th>
+		</tr>
+		<tr>
+			<td colspan="2" align="center" style="padding-left:10px">
+				<table class="table-common" id="table_kegiatan" >
+					<tr>
+						<th width="35%">Butir Kegiatan</th>
+						<th width="5%">AK</th>
+						<th width="35%">Deskripsi</th>
+						<th width="10%">Peran<br>Lokasi<br>Waktu</th>
+						<th width="10%">Bukti Fisik / Keterangan</th>
+						<th width="5%">Aksi</th>
+					</tr>
+					<tbody id="tbody_kegiatan_list">
+						<!-- patTemplate:tmpl name="tpl_kegiatan_list" type="condition" conditionvar="KEGIATAN_LIST_EMPTY" -->
+							<!-- patTemplate:sub condition="YES" -->
+							<!-- /patTemplate:sub -->
+							<!-- patTemplate:sub condition="NO" -->
+								<!-- patTemplate:tmpl name="tpl_kegiatan_item" -->
+								<tr class="{DATA_CLASS_NAME}">
+									<td>{DATA_KEGIATAN}<input type="hidden" name="data[kegiatan][kegiatan][]" value="{DATA_KEGIATAN_ID}" /></td>
+									<td align="right">{DATA_ANGKA_KREDIT}<input type="hidden" name="data[kegiatan][angka_kredit][]" value="{DATA_ANGKA_KREDIT}" /></td>
+									<td><textarea name="data[kegiatan][deskripsi][]" rows="5" cols="10">{DATA_DESKRIPSI}</textarea></td>
+									<td>
+										<input type="text" name="data[kegiatan][peran][]" value="{DATA_PERAN}"  size="10" /><br/>
+										<input type="text" name="data[kegiatan][lokasi][]" value="{DATA_LOKASI}" size="10" /><br/>
+										<input type="text" name="data[kegiatan][waktu][]" value="{DATA_WAKTU}" size="10" />
+									</td>
+									<td>
+										<!-- patTemplate:tmpl name="lampiran_hardcopy" -->
+										<input type="text" name="data[kegiatan][bukti][]" value="{DATA_BUKTI}" size="10" />
+										<!-- /patTemplate:tmpl -->
+										<input type="hidden" name="data[kegiatan][lampiran][]" value="{DATA_LAMPIRAN}" size="10" />
+										<!-- patTemplate:tmpl name="lampiran_softcopy" -->
+											<a href="{DATA_PATHLAMPIRAN}">Download Lampiran Bukti Fisik Dalam Bentuk Softcopy</a>
+										<!-- /patTemplate:tmpl -->
+									</td>
+									<td>
+										<input type="hidden" name="data[kegiatan][id][]" value="{DATA_ID}" />
+										<input type="hidden" name="data[kegiatan][referensi][]" value="{DATA_REFERENSI}" />
+										<a href="javascript:void(null)" title="Hapus" onclick="hapusKegiatan(this,{DATA_ANGKA_KREDIT})"><img src="images/button-delete.gif" alt="Hapus" border=0 /></a>
+									</td>
+								</tr>
+								<!-- /patTemplate:tmpl -->
+							<!-- /patTemplate:sub -->
+						<!-- /patTemplate:tmpl -->
+					</tbody>
+					<tr class="table-common-even">
+						<td width="35%">Total</td>
+						<td width="5%" align="right"><div id="total_angka_kredit">{TOTAL_ANGKA_KREDIT}</div></td>
+						<td width="35%"></td>
+						<td width="10%"></td>
+						<td width="10%"></td>
+						<td width="5%"></td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr class="buttons">
+			<th>&nbsp;</th>
+			<td>
+				<input type="hidden" name="dataId" value="{INPUT_ID}"  size="15" />
+				<input type="hidden" name="pegId" value="{INPUT_PEGID}"  size="15" />
+				<div style="display:none"><input name="btnsimpan" value="{LABEL_ACTION} " class="buttonSubmit" type="submit"></div>
+				<input name="btnsimpanbohong" value="{LABEL_ACTION} " class="buttonSubmit" type="button" onclick="konfirmasi();">
+				<input name="btnbatal" value="{BUTTON}" class="buttonSubmit" type="{TYPE}">
+			</td>
+		</tr>
+	</table>
+</form>
+<br />
+<br />
+
+<div class="pageBar">
+<!-- patTemplate:gtfwrendermodule module="paging" submodule="paging" action="view" name="paging_top"  / -->
+</div>
+<table class="table-common" width="750px">
+	<tr>
+		<th width="5px" >No</th>
+		<!--<th>Nomor PAK </th>-->
+		<th>Tanggal Pengajuan</th>
+		<!--<th>Pejabat</th>-->
+		<th>Tanggal Penilaian Awal</th>
+		<th>Tanggal Penilaian Akhir</th>
+		<th>Total Angka Kredit</th>
+		<th width="100px">Action</th>
+	</tr>
+	<!-- patTemplate:tmpl name="data" type="condition" conditionvar="DATA_EMPTY" -->
+		<!-- patTemplate:sub condition="YES" -->
+        <tr><td colspan="7" align="center"><em>-- Data not found --</em></td></tr>
+		<!-- /patTemplate:sub -->
+		<!-- patTemplate:sub condition="NO" -->
+			<!-- patTemplate:tmpl name="data_item" -->
+			<tr class="{PAK_CLASS_NAME}">
+				<td align="center">{PAK_NUMBER}</td>
+				<!--<td align="left">{PAK_NOMOR}</td>-->
+				<td align="left">{PAK_TANGGAL_PENETAPAN}</td>
+				<!--<td align="left">{PAK_PEJABAT}</td>-->
+				<td align="left">{PAK_MULAI}</td>
+				<td align="left">{PAK_SELESAI}</td>
+				<td align="center">{PAK_TOTAL_ANGKA_KREDIT}</td>
+				<td class="links">
+					<a class="xhr dest_subcontent-element" href="{PAK_URL_DETAIL}" title="Detail"><img src="images/button-detail.gif" alt="Detail"/></a>
+					{PAK_EDIT}
+					{PAK_DELETE}
+				</td>
+			</tr>
+			<!-- /patTemplate:tmpl -->
+		<!-- /patTemplate:sub -->
+	<!-- /patTemplate:tmpl -->
+</table>
+</div></div>
+<!-- /patTemplate:tmpl -->

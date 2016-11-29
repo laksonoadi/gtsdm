@@ -1,0 +1,28 @@
+<!-- patTemplate:tmpl name="content" -->
+<div class="panel panel-primary-solid">
+    <h4 class="panel-heading text-center">Agenda</h4>
+    <div class="list-group">
+        <!-- patTemplate:tmpl name="list" type="condition" conditionvar="IS_EMPTY" -->
+        <!-- patTemplate:sub condition="YES" -->
+        <div class="list-group-item text-left">Belum ada agenda</div>
+        <!-- /patTemplate:sub -->
+        <!-- patTemplate:sub condition="NO" -->
+        <!-- patTemplate:tmpl name="item" -->
+        <a class="list-group-item xhr dest_subcontent-element text-left" href="{URL_AGENDA}">
+            <!-- patTemplate:tmpl name="icon_sticky" type="condition" conditionvar="STICKY" varscope="item" -->
+            <!-- patTemplate:sub condition="1" -->
+            <span class="glyphicon glyphicon-edit small text-muted pull-right" title="Sticky post" style="opacity: 0.5;"></span>
+            <!-- /patTemplate:sub -->
+            <!-- /patTemplate:tmpl -->
+            <h4 class="list-group-item-heading text-ellipsis-pad" title="{TITLE}">{TITLE}</h4>
+            <small class="list-group-item-text">{DATE_POSTED}</small>
+        </a>
+        <!-- /patTemplate:tmpl -->
+        <!-- /patTemplate:sub -->
+        <!-- /patTemplate:tmpl -->
+    </div>
+    <div class="panel-footer">
+        <a class="xhr dest_subcontent-element center-block text-center small" href="<!-- patTemplate:gtfwgeturl module="agenda" sub="agendaList" action="view" type="html" params=""  / -->">Selengkapnya</a>
+    </div>
+</div>
+<!-- /patTemplate:tmpl -->

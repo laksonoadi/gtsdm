@@ -1,0 +1,87 @@
+<!-- patTemplate:tmpl name="content" -->
+<h1>{LABEL_TITLE}</h1>
+<br />
+
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+   {ISI_PESAN}
+</div>
+<br />
+<!-- /patTemplate:tmpl -->
+<div><h1>{TITLE}</h1></div>
+<h2>LIST SUBMODULE PADA MODULE {MODULE}</h2><br><br>
+<div class="pageBar">
+	<div class="ToolBar">
+		<a class="xhr dest_subcontent-element" href="{URL_BACK}" title="Kembali"><img src="images/button-back.gif" alt="Kembali"/>Kembali</a>
+	</div>
+</div>
+<form method="POST" name="frmInput" action="{URL_ACTION}" >
+<h2><input type="checkbox" name="registerModule" checked>Pilih SubModule Yang Ingin Diregisterkan</h2>
+<table class="table-common" width="100%">
+   <tr>
+      <th width="15px">No</th>
+	  <th width="30px">Register</th>
+	  <th width="30px">Access</th>
+      <th>SubModule</th>
+	  <th>Action</th>
+	  <th>Type</th>
+	  <th>Default</th>
+   </tr>
+   <!-- patTemplate:tmpl name="data" type="condition" conditionvar="DATA_EMPTY" -->
+      <!-- patTemplate:sub condition="YES" -->
+        <tr><td colspan="3" align="center"><em>-- Data not found --</em></td></tr>
+      <!-- /patTemplate:sub -->
+      <!-- patTemplate:sub condition="NO" -->
+         <!-- patTemplate:tmpl name="data_item" -->
+         <tr class="{CLASS_NAME}">
+            <td align="center" width="15px">{NUMBER}</td>
+            <td align="center">
+               <!--<a class="xhr dest_subcontent-element" href="{URL_DETAIL}" title="Detail Submodul"><img src="images/button-detail.gif" alt="Detail"/></a>-->
+			   {CHECKBOX}
+            </td>
+			<td align="center">{COMBOBOX}</td>
+            <td align="left">{SUBMODULENAME}</td>
+			<td align="center">{ACTION}</td>
+			<td align="center">{TYPE}</td>
+			<td align="center"><input type="radio" name="default" value="{NAME_CHECKBOX}" {DEFAULT}></td>
+         </tr>
+         <!-- /patTemplate:tmpl -->
+      <!-- /patTemplate:sub -->
+   <!-- /patTemplate:tmpl -->
+</table><br>
+<h2>{CHECKED_REGISTER_MENU} Buat juga menu baru untuk module yang diregisterkan</h2>
+<table class="table-edit" width="100%">
+	<tr>
+		<td>Parent Menu</td>
+		<td>
+			<!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="MenuParentId"  / -->
+		</td>
+	</tr>
+	<tr>
+		<td>Nama Menu</td>
+		<td>
+			<input type="text" name="MenuName" size="50" value="{MENUNAME}" {READONLY}>
+		</td>
+	</tr>
+	<tr>
+		<td>Tampilkan</td>
+		<td>
+			<!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="IsShow"  / -->
+		</td>
+	</tr>
+	<tr>
+		<td>Icon Menu</td>
+		<td>
+			<input type="text" name="IconPath" size="50" value="{ICONPATH}" {READONLYS}>
+		</td>
+	</tr>
+	<tr class="buttons">
+         <th>&nbsp;</th>
+         <td>
+            <input name="btnsimpan" value="{LABEL_ACTION}" class="buttonSubmit" type="submit">
+            <input name="btnbatal" id="btnbatal" value="Batal" class="buttonSubmit" type="button" onclick="konfirmasi()">
+         </td>
+      </tr>
+</table>
+</form>
+<!-- /patTemplate:tmpl -->

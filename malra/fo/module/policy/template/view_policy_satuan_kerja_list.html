@@ -1,0 +1,45 @@
+<!-- patTemplate:tmpl name="content" -->
+
+<div class="col-md-12" id="list-unitkerja">
+	<h2 class="section-title">Peraturan dan Kebijakan</h2>
+	<div class="line-double"></div>
+	<section class="row section-content cover">
+		<div class="panel panel-success-solid">
+			<h4 class="panel-heading">Unit Kerja</h4>
+			<ul class="list-group">
+				<!-- patTemplate:tmpl name="satkerpolicywrapper" type="condition" conditionvar="IS_EMPTY" -->
+				<!-- patTemplate:sub condition="YES" -->
+				<div class="list-group-item text-left">Belum ada dokumen</div>
+				<!-- /patTemplate:sub -->
+				<!-- patTemplate:sub condition="NO" -->
+				<!-- patTemplate:tmpl name="satkerpolicylist" -->
+				<li class="list-group-item">
+					<h4 class="list-group-item-heading collapse-toggle" data-toggle="collapse" data-target="#unitkerja-collapse-{PAT_ROW_VAR}" data-parent="#list-unitkerja">{SATKER}&nbsp;<span class="badge btn-primary">&nbsp;{TOTAL_POLICY}&nbsp;</span>&nbsp;<span class="caret"></span></h4>
+					<ul class="collapse" id="unitkerja-collapse-{PAT_ROW_VAR}">
+					<!-- patTemplate:tmpl name="jenis_policy" type="condition" conditionvar="HISTORY_EMPTY" -->
+					<!-- patTemplate:sub condition="YES" -->
+						<li>-- Tidak ada data --</li>
+					<!-- /patTemplate:sub -->
+					<!-- patTemplate:sub condition="NO" -->
+						<!-- patTemplate:tmpl name="jenispolicylist" type="condition" conditionvar="TOTAL_POLICY" -->
+						<!-- patTemplate:sub condition="0" -->
+						<!-- /patTemplate:sub -->
+						<!-- patTemplate:sub condition="__default" -->
+						<li><a href="{URL_POLICY}" class="xhr dest_subcontent-element">{JENIS_POLICY}&nbsp;
+						<span class="badge btn-success">&nbsp;{TOTAL_POLICY}&nbsp;</span>
+						</a></li>
+						<!-- /patTemplate:sub -->
+						<!-- /patTemplate:tmpl -->
+					<!-- /patTemplate:sub -->
+					<!-- /patTemplate:tmpl -->
+					</ul>
+				</li>
+				<!-- /patTemplate:tmpl -->
+				<!-- /patTemplate:sub -->
+				<!-- /patTemplate:tmpl -->
+			</ul>
+		</div>
+	</section>
+</div>
+
+<!-- /patTemplate:tmpl -->
