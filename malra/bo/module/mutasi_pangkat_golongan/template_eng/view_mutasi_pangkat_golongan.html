@@ -1,0 +1,172 @@
+<!-- patTemplate:tmpl name="content" -->
+<h1>{LABEL_TITLE}</h1>
+<br />
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+   {ISI_PESAN}
+</div>
+<br />
+<!-- /patTemplate:tmpl -->
+<div><h1>{TITLE}</h1></div><br>
+<table class="table-edit" width="100%" >
+	<tr class="subhead">
+		<th colspan="3"><b>Personal Information</b></th>
+	</tr>
+	<tr>
+		<td rowspan="4" width="60px"><img src="upload_file/photo/{FOTO2}" width="100" height="100"></td>
+   </tr>
+   <tr>
+      <td>Name</td>
+	  <td>{NAMA}</td>
+   </tr>
+   <tr>
+      <td>Employee ID</td>
+	  <td>{NIP}</td>
+   </tr>
+   <tr>
+     
+      <td valign="top">Address</td>
+	  <td valign="top">{ALAMAT}</td>
+   </tr>
+   <tr>
+      
+   </tr>
+</table>
+<form method="POST" name="frmInput" action="{URL_ACTION}" class="xhr_form std_form" id="frmInput" enctype="multipart/form-data">
+   <table class="table-edit" width="100%" >
+      <tr class="subhead">
+         <th>{LABEL_ACTION} {LABEL_INPUT}</th>
+		 <td>
+       <!--<a class="xhr dest_subcontent-element " href="{URL_BACK}" title="Kembali" tabindex="2"> /-->
+            <div class="toolbar"> 
+               <a class="xhr dest_subcontent-element " href="{URL_BACK}" title="Back to Current Page" tabindex="2">
+               <img src="images/button-back.gif" alt=""> Select Employee</a> 
+            </div>
+          </td>
+      </tr>
+      
+	  <tr>
+         <th >Employee Status </th>
+         <td>
+           <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="jenis_pegawai"  / -->
+		   <input name="pegKode" type="hidden" value="{ID}" />
+		   <input name="dataKode" type="hidden" value="{INPUT_ID}" />
+         </td>
+      </tr>
+	  <tr>
+         <th >Degree/ Class </th>
+         <td>
+           <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="golongan_ref"  / -->*
+         </td>
+      </tr>
+	  <tr>
+         <th >Due Date</th>
+         <td>
+           <!-- patTemplate:gtfwrendermodule module="tanggal" submodule="Tanggal" action="view" name="tmt" / -->
+         </td>
+      </tr>
+	  <tr class="background-blue-light">
+		<th colspan="2">Keputusan</th>
+	  </tr>
+	  <tr>
+         <th >Signed By </th>
+         <td>
+           <input type="text" name="pejabat" value="{INPUT_PEJABAT}"  size="30" />
+         </td>
+      </tr>
+	  <tr>
+         <th >Number of Letter</th>
+         <td>
+           <input type="text" name="sk_no" value="{INPUT_NOSK}"  size="30" />
+         </td>
+      </tr>
+	  <tr>
+         <th >Decree Date </th>
+         <td>
+           <!-- patTemplate:gtfwrendermodule module="tanggal" submodule="Tanggal" action="view" name="tgl_sk" / -->
+         </td>
+      </tr>
+       <tr>
+         <th >Regulation Base </th>
+         <td>
+           <input type="text" name="dasar" value="{INPUT_DASAR}"  size="50" />
+         </td>
+      </tr>
+      <tr>
+         <th >Subsequent Raise Date</th>
+         <td>
+           <!-- patTemplate:gtfwrendermodule module="tanggal" submodule="Tanggal" action="view" name="tgl_naik" / -->
+         </td>
+      </tr>
+	  <tr>
+         <th>Active Status</th>
+         <td>
+           <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="status"  / -->*
+         </td>
+      </tr>
+	  <tr>
+         <th >Upload </th>
+         <td>
+           <input type="file" name="file" size="40"><br />
+				Current File: <a href="{INPUT_LINK_DOWNLOAD}">{INPUT_UPLOAD}</a>
+        <input name="upload" type="hidden" value="{INPUT_UPLOAD}" />
+         </td>
+      </tr>
+      <tr class="buttons">
+         <th>&nbsp;</th>
+         <td>
+            <input name="btnsimpan" value="{LABEL_ACTION} " class="buttonSubmit" type="submit">
+            <input name="btnbatal" value="{BUTTON}" class="buttonSubmit" type="{TYPE}">
+         </td>
+      </tr>
+   </table>
+</form>
+<br />
+<br />
+
+<div class="pageBar">
+<!-- patTemplate:gtfwrendermodule module="paging" submodule="paging" action="view" name="paging_top"  / -->
+</div>
+<table class="table-common" width="80%">
+   <tr>
+      <th width="5px" rowspan="2">No</th>
+      <th rowspan="2">Degree/ Class </th>
+	  <th rowspan="2">TMT</th>
+	  <th colspan="3">Decree</th>
+	   <th rowspan="2">Regulation Base</th>
+	  <th rowspan="2">Status</th>
+      <th width="200px" rowspan="2">Action</th>
+   </tr>
+   <tr>
+      <th>Official</th>
+	  <th>Number</th>
+	  <th>Date</th>
+   </tr>
+   <!-- patTemplate:tmpl name="data" type="condition" conditionvar="DATA_EMPTY" -->
+      <!-- patTemplate:sub condition="YES" -->
+   <tr><td colspan="10" align="center"><em>-- Data not found --</em></td></tr>
+      <!-- /patTemplate:sub -->
+      <!-- patTemplate:sub condition="NO" -->
+         <!-- patTemplate:tmpl name="data_item" -->
+   <tr class="{PAGOL_CLASS_NAME}">
+      <td align="center" width="15%">{PAGOL_NUMBER}</td>
+      <td align="left">{PAGOL_PKTGOL}</td>
+	  <td align="left">{PAGOL_TMT}</td>
+	  <td align="left">{PAGOL_PEJABAT}</td>
+	  <td align="left">{PAGOL_NOSK}</td>
+	  <td align="left">{PAGOL_TGL_SK}</td>
+	  <td align="left">{PAGOL_DASAR}</td>
+	  <td align="left">{PAGOL_STATUS}</td>
+      <td class="links">
+		 <a href="{PAGOL_LINK_DOWNLOAD_SK}" title="Decree" target="_blank"><img src="images/detil.gif" alt="Decree"/></a>
+         <a class="xhr dest_subcontent-element" href="{PAGOL_URL_DETAIL}" title="Details"><img src="images/button-detail.gif" alt="Details"/></a>
+         <a class="xhr dest_subcontent-element" href="{PAGOL_URL_EDIT}" title="Edit"><img src="images/button-edit.gif" alt="Edit"/></a>
+         <a class="xhr dest_subcontent-element" href="{PAGOL_URL_DELETE}" title="Delete"><img src="images/button-delete.gif" alt="Delete"/></a>
+      </td>
+   </tr>
+         <!-- /patTemplate:tmpl -->
+      <!-- /patTemplate:sub -->
+   <!-- /patTemplate:tmpl -->
+</table>
+
+<!-- /patTemplate:tmpl -->

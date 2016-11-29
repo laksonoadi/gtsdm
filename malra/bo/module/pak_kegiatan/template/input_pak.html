@@ -1,0 +1,48 @@
+<!-- patTemplate:tmpl name="content" -->
+<h1>REFERENSI KEGIATAN ANGKA KREDIT DOSEN</h1>
+<br />
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+   {ISI_PESAN}
+</div>
+<!-- /patTemplate:tmpl -->
+<br />
+
+<form method="POST" action="{URL_ACTION}" id="frmInput" name="frmInput" class="xhr_form std_form">
+   <table class="table-edit" width="700px">
+      <tr class="subhead">
+         <th colspan="2">{JUDUL} Referensi Kegiatan Angka Kredit Dosen</th>
+      </tr>
+	    <th>Unsur Kegiatan</th>
+        <td>
+				<!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="unsur"  / -->
+			*	</td>
+      </tr>
+      <tr>
+         <th width="150">Kegiatan</th>
+         <td><textarea name="nama" cols="50" rows="5">{NAMA}</textarea>*</td>
+         <input type="hidden" name="id_post" value="{ID}"/>
+      </tr>
+      <tr>
+	  <tr>
+         <th width="150">Angka Kredit</th>
+         <td><input type="text" name="angka_kredit" value="{ANGKA_KREDIT}" size="5" maxlenght="255" />*</td>
+      </tr>
+      <tr class="buttons">
+         <th>&nbsp;</th>
+         <td>
+            <input type="submit" name="btnsimpan" value="Simpan" class="buttonSubmit"/>
+            <a href="{URL_KEMBALI}" class="button">Batal</a>
+         </td>
+      </tr>
+   </table>
+</form>
+
+<br />
+<div class="petunjuk_area">
+   <h4>Petunjuk:</h4>
+   <ul>
+      <li>Tanda * menunjukkan bahwa field tersebut harus diisi. </li>
+   </ul>
+</div>
+<!-- /patTemplate:tmpl -->

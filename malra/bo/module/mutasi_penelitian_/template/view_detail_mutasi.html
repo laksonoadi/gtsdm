@@ -1,0 +1,139 @@
+<!-- patTemplate:tmpl name="content" -->
+<h1>{LABEL_TITLE}</h1>
+<br />
+
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+   {ISI_PESAN}
+</div>
+<br />
+<!-- /patTemplate:tmpl -->
+<div><h1>{TITLE}</h1></div><br>
+<table class="table-edit" width="100%" >
+	<tr>
+		<th colspan="2" width="25%"><b>Data Pribadi</b></th>
+	</tr>
+	<tr>
+		<td rowspan="4"><img src="upload_file/photo/{PROFIL_FOTO}" width="100" height="100"></td>
+   </tr>
+   <tr>
+      <td>Nama</td>
+	  <td>{PROFIL_NAME}</td>
+   </tr>
+   <tr>
+      <td>NIP</td>
+	  <td>{PROFIL_KODE}</td>
+   </tr>
+   <tr>
+     
+      <td valign="top">Alamat</td>
+	  <td valign="top">{PROFIL_ALAMAT}</td>
+   </tr>
+   <tr>
+      
+   </tr>
+</table>
+<br>
+<!-- patTemplate:tmpl name="data" type="condition" conditionvar="DATA_EMPTY" -->
+      <!-- patTemplate:sub condition="YES" -->
+    <h1>Data tidak ditemukan </h1>
+      <!-- /patTemplate:sub -->
+      <!-- patTemplate:sub condition="NO" -->
+         <!-- patTemplate:tmpl name="data_item" -->
+
+   <table class="table-edit" width="100%" >
+      <tr class="subhead">
+         <th>DATA</th>
+		 <td align="right">
+      </tr>
+      
+	  <tr>
+         <th >Tingkat Penelitian</th>
+         <td>
+           {DETAIL_JPENDLABEL}
+         </td>
+      </tr>
+	  <tr>
+         <th >Nama Sekolah/PT</th>
+         <td>
+           {DETAIL_INSTITUSI}
+         </td>
+      </tr>
+	  <tr>
+         <th >Jurusan</th>
+         <td>
+           {DETAIL_JURUSAN}
+         </td>
+      </tr>
+       <tr>
+         <th >Tahun Lulus</th>
+         <td>
+           {DETAIL_LULUS}
+         </td>
+      </tr>
+       <tr>
+         <th >Tempat</th>
+         <td>
+           {DETAIL_TEMPAT}
+         </td>
+      </tr>
+       <tr>
+         <th >Kepala</th>
+         <td>
+           {DETAIL_KEPSEK}
+         </td>
+      </tr> 
+      <tr>
+         <th >Asal Dana</th>
+         <td>
+           {DETAIL_ASDANLABEL}
+         </td>
+      </tr>
+      <tr>
+         <th >Pangkat/Golongan Maks</th>
+         <td>
+           {DETAIL_PKTGOLLABEL}
+         </td>
+      </tr>
+      <tr>
+         <th >Status Penelitian</th>
+         <td>
+           {DETAIL_ISTAMAT}
+         </td>
+      </tr>
+       <tr>
+         <th >Lama Penelitian</th>
+         <td>
+           {DETAIL_LAMA}&nbsp;Tahun
+         </td>
+      </tr>
+	  <tr>
+         <th >Tanggal Mulai </th>
+         <td>
+           {DETAIL_MULAI}
+         </td>
+      </tr>
+	  <tr>
+         <th >Tanggal Selesai </th>
+         <td>
+           {DETAIL_SELESAI}
+         </td>
+      </tr>
+	  <tr>
+         <th >Keterangan</th>
+         <td>
+           {DETAIL_KET}
+         </td>
+      </tr>      
+   </table>
+
+<!-- /patTemplate:tmpl -->
+      <!-- /patTemplate:sub -->
+   <!-- /patTemplate:tmpl -->
+<div class="toolbar"> 
+               <a class="xhr dest_subcontent-element " href="{URL_BACK}" title="Kembali" tabindex="2">
+               <img src="images/button-back.gif" alt="">Kembali</a> 
+            </div>
+
+
+<!-- /patTemplate:tmpl -->

@@ -1,0 +1,339 @@
+<!-- patTemplate:tmpl name="content" -->
+<script languange="javascript">
+  function editNilai(obj){
+    //obj.value=parseFloat(obj.value);
+    //if (isNaN(obj.value)) obj.value=0;
+    var jumlah_unsur_utama=document.getElementById('utama_jumlah').value;
+    var jumlah_unsur_penunjang=document.getElementById('penunjang_jumlah').value;
+    var lama,baru,digunakan,lebihan;
+    
+    var utama_lama=0;
+    var utama_baru=0;
+    var utama_digunakan=0;
+    var utama_lebihan=0;
+    
+    for (i=1; i<=jumlah_unsur_utama; i++){
+      var id_lama='ulama_'+i;
+      var id_baru='ubaru_'+i;
+      var id_digunakan='udigunakan_'+i;
+      var id_lebihan='ulebihan_'+i;
+      
+      lama=parseFloat(document.getElementById(id_lama).value);
+      baru=parseFloat(document.getElementById(id_baru).value);
+      digunakan=parseFloat(document.getElementById(id_digunakan).value);
+      lebihan=(lama+baru)-digunakan;
+      document.getElementById(id_lebihan).value=lebihan;
+      
+      utama_lama+=lama;
+      utama_baru+=baru;
+      utama_digunakan+=digunakan;
+      utama_lebihan+=lebihan;
+    }
+    
+    var penunjang_lama=0;
+    var penunjang_baru=0;
+    var penunjang_digunakan=0;
+    var penunjang_lebihan=0;
+    
+    for (i=1; i<=jumlah_unsur_penunjang; i++){
+      var id_lama='plama_'+i;
+      var id_baru='pbaru_'+i;
+      var id_digunakan='pdigunakan_'+i;
+      var id_lebihan='plebihan_'+i;
+      
+      lama=parseFloat(document.getElementById(id_lama).value);
+      baru=parseFloat(document.getElementById(id_baru).value);
+      digunakan=parseFloat(document.getElementById(id_digunakan).value);
+      lebihan=(lama+baru)-digunakan;
+      document.getElementById(id_lebihan).value=lebihan;
+      
+      penunjang_lama+=lama;
+      penunjang_baru+=baru;
+      penunjang_digunakan+=digunakan;
+      penunjang_lebihan+=lebihan;
+    }
+    
+    var total_lama=0+utama_lama+penunjang_lama;
+    var total_baru=0+utama_baru+penunjang_baru;
+    var total_digunakan=0+utama_digunakan+penunjang_digunakan;
+    var total_lebihan=0+utama_lebihan+penunjang_lebihan;
+    
+    document.getElementById('utama_lama').value=utama_lama;
+    document.getElementById('utama_baru').value=utama_baru;
+    document.getElementById('utama_digunakan').value=utama_digunakan;
+    document.getElementById('utama_lebihan').value=utama_lebihan;
+    
+    document.getElementById('penunjang_lama').value=penunjang_lama;
+    document.getElementById('penunjang_baru').value=penunjang_baru;
+    document.getElementById('penunjang_digunakan').value=penunjang_digunakan;
+    document.getElementById('penunjang_lebihan').value=penunjang_lebihan;
+    
+    document.getElementById('total_lama').value=total_lama;
+    document.getElementById('total_baru').value=total_baru;
+    document.getElementById('total_digunakan').value=total_digunakan;
+    document.getElementById('total_lebihan').value=total_lebihan;
+  }
+  
+  function konfirmasi(){
+    var no_pak=document.getElementById('no_pak').value;
+    var pejabat=document.getElementById('pejabat').value;
+    if (no_pak==''){
+      alert('Nomor PAK Wajib diisi');
+      document.getElementById('no_pak').focus();
+      return false;
+    }else if (pejabat==''){
+      alert('Nama Pejabat Wajib diisi');
+      document.getElementById('pejabat').focus();
+      return false;
+    }else{
+      document.frmInput.btnsimpan.click();
+    }
+  }
+</script>
+<h1>{LABEL_TITLE}</h1>
+<br />
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+   {ISI_PESAN}
+</div>
+<br />
+<!-- /patTemplate:tmpl -->
+<div><h1>{TITLE}</h1></div><br>
+<table class="table-edit" width="100%" >
+	<tr class="subhead">
+		<th colspan="3"><b>Indormasi Pribadi</b></th>
+	</tr>
+	<tr>
+		<td rowspan="4" width="60px"><img src="upload_file/photo/{FOTO2}" width="100" height="100"></td>
+   </tr>
+   <tr>
+      <td>Nama</td>
+	  <td>{NAMA}</td>
+   </tr>
+   <tr>
+      <td>NIP</td>
+	  <td>{NIP}</td>
+   </tr>
+   <tr>
+     
+      <td valign="top">Alamat</td>
+	  <td valign="top">{ALAMAT}</td>
+   </tr>
+   <tr>
+      
+   </tr>
+</table>
+<form method="POST" name="frmInput" action="{URL_ACTION}" id="frmInput" >
+   <table class="table-edit" width="100%" >
+      <tr class="subhead">
+      <th>{LABEL_ACTION} {LABEL_INPUT}</th>
+		      <td align="right">
+            <!--<a class="xhr dest_subcontent-element " href="{URL_BACK}" title="Kembali" tabindex="2"> /-->
+            <div class="toolbar"> 
+               <a class="xhr dest_subcontent-element " href="{URL_BACK}" title="BAck to the current page" tabindex="2">
+               <img src="images/button-back.gif" alt="">Pilih Pegawai</a> 
+            </div>
+          </td>
+      </tr>
+      <tr>
+         <th >Nomor PAK</th>
+         <td>
+           <input type="text" name="no_pak" id="no_pak" value="{INPUT_NOPAK}"  size="15" />*
+         </td>
+     </tr>
+     <tr>
+         <th >Tanggal Penetapan </th>
+         <td>
+           <!-- patTemplate:gtfwrendermodule module="tanggal" submodule="Tanggal" action="view" name="tgl_penetapan" / -->
+         </td>
+     </tr>
+     <tr>
+         <th >Pejabat </th>
+         <td>
+           <input type="text" name="pejabat" id="pejabat" value="{INPUT_PEJABAT}"  size="30" />*
+         </td>
+     </tr>
+     <tr>
+         <th >Tanggal Awal Penilaian </th>
+         <td>
+           <!-- patTemplate:gtfwrendermodule module="tanggal" submodule="Tanggal" action="view" name="mulai" / -->
+         </td>
+      </tr>
+      <tr>
+         <th >Tanggal Akhir Penilaian </th>
+         <td>
+           <!-- patTemplate:gtfwrendermodule module="tanggal" submodule="Tanggal" action="view" name="selesai" / -->
+         </td>
+      </tr>
+      <tr>
+        <th>NIP</th>
+  	    <td>{INPUT_NIP}</td>
+      </tr>
+      <tr>
+        <th>Nomor Seri Kartu Pegawai</th>
+  	    <td>{INPUT_NO_SERI}</td>
+      </tr>
+      <tr>
+        <th>Tanggal Lahir</th>
+  	    <td>{INPUT_TANGGAL_LAHIR}</td>
+      </tr>
+      <tr>
+        <th>Jenis Kelamin</th>
+  	    <td>{INPUT_JENIS_KELAMIN}</td>
+      </tr>
+      <tr>
+        <th>Pendidikan Tertinggi</th>
+  	    <td>{INPUT_PENDIDIKAN}</td>
+      </tr>
+      <tr>
+        <th>Pangkat dan Golongan/TMT</th>
+  	    <td>{INPUT_PANGKAT_GOLONGAN}</td>
+      </tr>
+      <tr>
+        <th>Jabatan Fungsional/TMT</th>
+  	    <td>{INPUT_JABATAN_FUNGSIONAL}</td>
+      </tr>
+     <tr>
+         <th >Unit Kerja</th>
+         <td>
+           {INPUT_UNIT_KERJA_LABEL}
+           <div style="display:none"><!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="unit_kerja"  / -->*</div>
+         </td>
+     </tr>  
+     <tr>
+         <th>Dapat diangkat dlm Jabatan sebagai</th>
+         <td>
+           <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="jabatan"  / -->*
+         </td>
+     </tr> 
+	   <tr class="subhead">
+		  <th colspan="2">Penetapan Angka Kredit</th>
+	   </tr>
+	   <tr><td colspan="2">
+	     <table class="table-common" width="100%">
+         <tr>
+            <th width="60%">Penetapan Angka Kredit</th>
+        	  <th colspan="4"><center>Jumlah</center></th>
+         </tr>
+         <tr>
+            <th>Unsur Utama</th>
+            <th>Lama</th>
+        	  <th>Baru</th>
+        	  <th>Digunakan</th>
+        	  <th>Lebihan</th>
+         </tr>
+         <!-- patTemplate:tmpl name="unsur_utama" type="condition" conditionvar="DATA_EMPTY" -->
+            <!-- patTemplate:sub condition="YES" -->
+              <tr><td colspan="5" align="center"><em>-- Unsur Utama belum ditetapkan --</em></td></tr>
+            <!-- /patTemplate:sub -->
+            <!-- patTemplate:sub condition="NO" -->
+               <!-- patTemplate:tmpl name="unsur_utama_item" -->
+                 <tr>
+                    <td align="left" width="15%">{NAMA}<input type="hidden" size="3" name="uid_{NOMOR}" id="uid_{NOMOR}" value="{ID}"><input type="hidden" size="3" name="uidref_{NOMOR}" id="uidref_{NOMOR}" value="{IDREF}"></td>
+                    <td align="left"><input type="text" size="3" name="ulama_{NOMOR}" id="ulama_{NOMOR}" value="{LAMA}" onkeyup="editNilai(this);"></td>
+                    <td align="left"><input type="text" size="3" name="ubaru_{NOMOR}" id="ubaru_{NOMOR}" value="{BARU}" onkeyup="editNilai(this);"></td>
+                    <td align="left"><input type="text" size="3" name="udigunakan_{NOMOR}" id="udigunakan_{NOMOR}" value="{DIGUNAKAN}" onkeyup="editNilai(this);"></td>
+                    <td align="left"><input type="text" size="3" name="ulebihan_{NOMOR}" id="ulebihan_{NOMOR}" value="{LEBIHAN}" onkeyup="editNilai(this);"></td>
+                 </tr>
+               <!-- /patTemplate:tmpl -->
+            <!-- /patTemplate:sub -->
+         <!-- /patTemplate:tmpl -->
+          <tr class="table-common-even">
+              <td align="right" width="15%">Jumlah Unsur Utama <input type="hidden" size="3" name="utama_jumlah" id="utama_jumlah" value="{UTAMA_JUMLAH}"></td>
+              <td align="left"><input type="text" size="3" name="utama_lama" id="utama_lama" value="{UTAMA_LAMA}" readonly></td>
+              <td align="left"><input type="text" size="3" name="utama_baru" id="utama_baru" value="{UTAMA_BARU}" readonly></td>
+              <td align="left"><input type="text" size="3" name="utama_digunakan" id="utama_digunakan" value="{UTAMA_DIGUNAKAN}" readonly></td>
+              <td align="left"><input type="text" size="3" name="utama_lebihan" id="utama_lebihan" value="{UTAMA_LEBIHAN}" readonly></td>
+          </tr>
+          <tr>
+            <th>Unsur Penunjang</th>
+            <th>Lama</th>
+        	  <th>Baru</th>
+        	  <th>Digunakan</th>
+        	  <th>Lebihan</th>
+         </tr>
+         <!-- patTemplate:tmpl name="unsur_penunjang" type="condition" conditionvar="DATA_EMPTY" -->
+            <!-- patTemplate:sub condition="YES" -->
+              <tr><td colspan="5" align="center"><em>-- Unsur Utama belum ditetapkan --</em></td></tr>
+            <!-- /patTemplate:sub -->
+            <!-- patTemplate:sub condition="NO" -->
+               <!-- patTemplate:tmpl name="unsur_penunjang_item" -->
+                 <tr>
+                    <td align="left" width="15%">{NAMA}<input type="hidden" size="3" name="pid_{NOMOR}" id="pid_{NOMOR}" value="{ID}"><input type="hidden" size="3" name="pidref_{NOMOR}" id="pidref_{NOMOR}" value="{IDREF}"></td>
+                    <td align="left"><input type="text" size="3" name="plama_{NOMOR}" id="plama_{NOMOR}" value="{LAMA}" onkeyup="editNilai(this);"></td>
+                    <td align="left"><input type="text" size="3" name="pbaru_{NOMOR}" id="pbaru_{NOMOR}" value="{BARU}" onkeyup="editNilai(this);"></td>
+                    <td align="left"><input type="text" size="3" name="pdigunakan_{NOMOR}" id="pdigunakan_{NOMOR}" value="{DIGUNAKAN}" onkeyup="editNilai(this);"></td>
+                    <td align="left"><input type="text" size="3" name="plebihan_{NOMOR}" id="plebihan_{NOMOR}" value="{LEBIHAN}" onkeyup="editNilai(this);"></td>
+                 </tr>
+               <!-- /patTemplate:tmpl -->
+            <!-- /patTemplate:sub -->
+         <!-- /patTemplate:tmpl -->
+          <tr class="table-common-even"> 
+              <td align="right" width="15%">Jumlah Unsur Penunjang <input type="hidden" size="3" name="penunjang_jumlah" id="penunjang_jumlah" value="{PENUNJANG_JUMLAH}"></td>
+              <td align="left"><input type="text" size="3" name="penunjang_lama" id="penunjang_lama" value="{PENUNJANG_LAMA}" readonly></td>
+              <td align="left"><input type="text" size="3" name="penunjang_baru" id="penunjang_baru" value="{PENUNJANG_BARU}" readonly></td>
+              <td align="left"><input type="text" size="3" name="penunjang_digunakan" id="penunjang_digunakan" value="{PENUNJANG_DIGUNAKAN}" readonly></td>
+              <td align="left"><input type="text" size="3" name="penunjang_lebihan" id="penunjang_lebihan" value="{PENUNJANG_LEBIHAN}" readonly></td>
+          </tr>
+          <tr class="table-common-even">
+              <td align="right" width="15%">Jumlah Unsur Utama dan Unsur Penunjang</td>
+              <td align="left"><input type="text" size="3" name="total_lama" id="total_lama" value="{TOTAL_LAMA}" readonly></td>
+              <td align="left"><input type="text" size="3" name="total_baru" id="total_baru" value="{TOTAL_BARU}" readonly></td>
+              <td align="left"><input type="text" size="3" name="total_digunakan" id="total_digunakan" value="{TOTAL_DIGUNAKAN}" readonly></td>
+              <td align="left"><input type="text" size="3" name="total_lebihan" id="total_lebihan" value="{TOTAL_LEBIHAN}" readonly></td>
+          </tr>
+       </table>
+     </td></tr>	  
+     <tr class="buttons">
+         <th>&nbsp;</th>
+         <td>
+            <input type="hidden" name="dataId" value="{INPUT_ID}"  size="15" />
+            <input type="hidden" name="pegId" value="{INPUT_PEGID}"  size="15" />
+            <div style="display:none"><input name="btnsimpan" value="{LABEL_ACTION} " class="buttonSubmit" type="submit"></div>
+            <input name="btnsimpanbohong" value="{LABEL_ACTION} " class="buttonSubmit" type="button" onclick="konfirmasi();">
+            <input name="btnbatal" value="{BUTTON}" class="buttonSubmit" type="{TYPE}">
+         </td>
+      </tr>
+   </table>
+</form>
+<br />
+<br />
+
+<div class="pageBar">
+<!-- patTemplate:gtfwrendermodule module="paging" submodule="paging" action="view" name="paging_top"  / -->
+</div>
+<table class="table-common" width="100%">
+   <tr>
+      <th width="5px" >No</th>
+      <th>Nomor PAK </th>
+  	  <th>Tanggal Penetapan</th>
+  	  <th>Pejabat</th>
+  	  <th>Tanggal Penilaian Awal</th>
+  	  <th>Tanggal Penilaian Akhir</th>
+      <th width="100px">Action</th>
+   </tr>
+   <!-- patTemplate:tmpl name="data" type="condition" conditionvar="DATA_EMPTY" -->
+      <!-- patTemplate:sub condition="YES" -->
+        <tr><td colspan="7" align="center"><em>-- Data not found --</em></td></tr>
+      <!-- /patTemplate:sub -->
+      <!-- patTemplate:sub condition="NO" -->
+         <!-- patTemplate:tmpl name="data_item" -->
+         <tr class="{PAK_CLASS_NAME}">
+            <td align="center">{PAK_NUMBER}</td>
+            <td align="left">{PAK_NOMOR}</td>
+        	  <td align="left">{PAK_TANGGAL_PENETAPAN}</td>
+        	  <td align="left">{PAK_PEJABAT}</td>
+        	  <td align="left">{PAK_MULAI}</td>
+        	  <td align="left">{PAK_SELESAI}</td>
+            <td class="links">
+               <a class="xhr dest_subcontent-element" href="{PAK_URL_DETAIL}" title="Detail"><img src="images/button-detail.gif" alt="Detail"/></a>
+               <a class="xhr dest_subcontent-element" href="{PAK_URL_EDIT}" title="Edit"><img src="images/button-edit.gif" alt="Edit"/></a>
+               <a class="xhr dest_subcontent-element" href="{PAK_URL_DELETE}" title="Delete"><img src="images/button-delete.gif" alt="Delete"/></a>
+            </td>
+         </tr>
+         <!-- /patTemplate:tmpl -->
+      <!-- /patTemplate:sub -->
+   <!-- /patTemplate:tmpl -->
+</table>
+
+<!-- /patTemplate:tmpl -->

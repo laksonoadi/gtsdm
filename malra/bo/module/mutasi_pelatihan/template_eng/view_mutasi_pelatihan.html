@@ -1,0 +1,161 @@
+<!-- patTemplate:tmpl name="content" -->
+<h1>{LABEL_TITLE}</h1>
+<br />
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+   {ISI_PESAN}
+</div>
+<br />
+<!-- /patTemplate:tmpl -->
+<div><h1>{TITLE}</h1></div><br>
+<table class="table-edit" width="100%" >
+	<tr class="subhead">
+		<th colspan="3"><b>Personal Informations</b></th>
+	</tr>
+	<tr>
+		<td rowspan="4" width="60px"><img src="upload_file/photo/{FOTO2}" width="100" height="100"></td>
+   </tr>
+   <tr>
+      <td width="60px">Employee ID</td>
+	  <td>{NIP}</td>
+   </tr>
+   <tr>
+      <td width="60px">Name</td>
+	  <td>{NAMA}</td>
+   </tr>
+   <tr>
+     
+      <td valign="top" width="60px">Address</td>
+	  <td valign="top">{ALAMAT}</td>
+   </tr>
+   <tr>
+      
+   </tr>
+</table>
+<form method="POST" name="frmInput" action="{URL_ACTION}" class="xhr_form std_form" id="frmInput" enctype="multipart/form-data">
+   <table class="table-edit" width="100%" >
+      <tr class="subhead">
+         <th>{LABEL_ACTION} {LABEL_INPUT}</th>
+		 <td align="right">
+       <!--<a class="xhr dest_subcontent-element " href="{URL_BACK}" title="Kembali" tabindex="2"> /-->
+            <div class="toolbar"> 
+               <a class="xhr dest_subcontent-element " href="{URL_BACK}" title="Back" tabindex="2">
+               <img src="images/button-back.gif" alt="">Select Employee</a> 
+            </div>
+          </td>
+      </tr>
+     <tr>
+         <th >Training Type</th>
+         <td>
+           <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="tipepel"  / -->*
+           <input name="pegKode" type="hidden" value="{ID}" />
+		   <input name="dataKode" type="hidden" value="{INPUT_ID}" />
+         </td>
+      </tr> 
+	  <tr>
+         <th >Training Kind</th>
+         <td>
+         <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="jenispel"  / -->*
+         </td>
+      </tr>
+      <tr>
+         <th >Name</th>
+         <td>
+         <input type="text" name="nama" value="{INPUT_NAMA}"  size="50" />&nbsp;*
+         </td>
+      </tr>
+      <tr>
+         <th >Start Date</th>
+         <td>
+           <!-- patTemplate:gtfwrendermodule module="tanggal" submodule="Tanggal" action="view" name="mulai" / -->
+         </td>
+      </tr>
+      <tr>
+         <th >End Date</th>
+         <td>
+           <!-- patTemplate:gtfwrendermodule module="tanggal" submodule="Tanggal" action="view" name="selesai" / -->
+         </td>
+      </tr>
+      <tr>
+         <th >Number of Hours</th>
+         <td>
+         <input type="text" name="jmljam" value="{INPUT_JMLJAM}"  size="10" />
+         </td>
+      </tr>
+      <tr>
+         <th >Certificates Year</th>
+         <td>
+         <input type="text" name="tahun" value="{INPUT_TAHUN}"  size="10"/>
+         </td>
+      </tr>
+      <tr>
+         <th >Location</th>
+         <td>
+         <input type="text" name="tempat" value="{INPUT_TEMPAT}"  size="50" />
+         </td>
+      </tr>
+      <tr>
+         <th >Funds</th>
+         <td>
+           <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="asdan"  / -->
+         </td>
+      </tr>
+      <tr>
+         <th >Informations</th>
+         <td>
+           <textarea name="ket" id="ket" cols="50" rows="5">{INPUT_KET}</textarea>
+         </td>
+      </tr>
+      <tr class="buttons">
+         <th>&nbsp;</th>
+         <td>
+            <input name="btnsimpan" value="{LABEL_ACTION} " class="buttonSubmit" type="submit">
+            <input name="btnbatal" value="{BUTTON}" class="buttonSubmit" type="{TYPE}">
+         </td>
+      </tr>
+   </table>
+</form>
+<br />
+<br />
+
+<div class="pageBar">
+<!-- patTemplate:gtfwrendermodule module="paging" submodule="paging" action="view" name="paging_top"  / -->
+</div>
+<table class="table-common" width="100%">
+   <tr>
+      <th width="5px" >No</th>
+      <th >Training Type</th>
+      <th >Training Kind</th>
+      <th >Name</th>
+      <th >Certificates Year</th>
+      <th >Number of Hours</th>
+      <th >Location</th>
+      <th width="50px" >Action</th>
+   </tr>
+   <!-- patTemplate:tmpl name="data" type="condition" conditionvar="DATA_EMPTY" -->
+      <!-- patTemplate:sub condition="YES" -->
+   <tr><td colspan="10" align="center"><em>-- Data not found --</em></td></tr>
+      <!-- /patTemplate:sub -->
+      <!-- patTemplate:sub condition="NO" -->
+         <!-- patTemplate:tmpl name="data_item" -->
+   <tr class="{PEL_CLASS_NAME}">
+      <td align="center" width="5%">{PEL_NUMBER}</td>
+      <td align="left" width="20%">{PEL_TIPELABEL}</td>
+	  <td align="left">{PEL_JENISLABEL}</td>
+	  <td align="left">{PEL_NAMA}</td>
+	  <td align="left">{PEL_TAHUN}</td>
+	  <td align="left">{PEL_JMLJAM}</td>
+	  <td align="left">{PEL_TEMPAT}</td>
+      <td class="links">
+			<!--<a href="{PAGOL_LINK_DOWNLOAD_SK}" title="SK">Lihat SK</a>/-->
+         <a class="xhr dest_subcontent-element" href="{PEL_URL_DETAIL}" title="Detail"><img src="images/button-detail.gif" alt="Detail"/></a>
+         <a class="xhr dest_subcontent-element" href="{PEL_URL_EDIT}" title="Update"><img src="images/button-edit.gif" alt="Update"/></a>
+         <a class="xhr dest_subcontent-element" href="{PEL_URL_DELETE}" title="Delete"><img src="images/button-delete.gif" alt="Delete"/></a>
+      </td>
+   </tr>
+         <!-- /patTemplate:tmpl -->
+      <!-- /patTemplate:sub -->
+   <!-- /patTemplate:tmpl -->
+</table>
+
+<!-- /patTemplate:tmpl -->

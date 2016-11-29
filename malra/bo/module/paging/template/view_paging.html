@@ -1,0 +1,69 @@
+<!-- patTemplate:tmpl name="content" -->
+   <!-- patTemplate:tmpl name="page_nav" visibility="hidden" -->
+   
+   <div class="pageNav">
+      <!-- patTemplate:tmpl name="page_nav_first" type="condition" conditionvar="IS_AVAIL" -->
+         <!-- patTemplate:sub condition="YES" -->
+            <a href="{FIRST_NAV_URL}" class="{NAV_CLASS} xhr dest_subcontent-element">
+               <span class="glyphicon glyphicon-fast-backward"></span>
+            </a>
+         <!-- /patTemplate:sub -->
+         <!-- patTemplate:sub condition="NO" -->
+            <div>
+               <span class="glyphicon glyphicon-fast-backward"></span>
+            </div>
+
+         <!-- /patTemplate:sub -->
+      <!-- /patTemplate:tmpl -->
+
+
+      <!-- patTemplate:tmpl name="page_nav_prev" type="condition" conditionvar="IS_AVAIL" -->
+         <!-- patTemplate:sub condition="YES" -->
+            <a href="{PREV_NAV_URL}" class="{NAV_CLASS} xhr dest_subcontent-element">
+               <span class="glyphicon glyphicon-backward"></span>
+            </a>
+         <!-- /patTemplate:sub -->
+         <!-- patTemplate:sub condition="NO" -->
+              <div>
+               <span class="glyphicon glyphicon-backward"></span>
+              </div>
+
+         <!-- /patTemplate:sub -->
+      <!-- /patTemplate:tmpl -->
+  
+         <!-- patTemplate:tmpl name="page_nav_info" -->
+            <div class="pageInfo">
+                  <b>{START_REC_INFO}</b>-<b>{END_REC_INFO}</b> dari <b>{ALL_REC_INFO}</b>
+            </div>
+         <!-- /patTemplate:tmpl -->
+      
+      
+      <!-- patTemplate:tmpl name="page_nav_next" type="condition" conditionvar="IS_AVAIL" -->
+         <!-- patTemplate:sub condition="YES" -->
+            <a href="{NEXT_NAV_URL}" class="{NAV_CLASS} xhr dest_subcontent-element">
+               <span class="glyphicon glyphicon-forward"></span>
+            </a>
+         <!-- /patTemplate:sub -->
+         <!-- patTemplate:sub condition="NO" -->
+            <div>
+            <span class="glyphicon glyphicon-forward"></span>
+            </div>
+         <!-- /patTemplate:sub -->
+      <!-- /patTemplate:tmpl -->
+
+      <!-- patTemplate:tmpl name="page_nav_last" type="condition" conditionvar="IS_AVAIL" -->
+         <!-- patTemplate:sub condition="YES" -->
+            <a href="{LAST_NAV_URL}" class="{NAV_CLASS} xhr dest_subcontent-element">
+               <span class="glyphicon glyphicon-fast-forward"></span>
+            </a>
+         <!-- /patTemplate:sub -->
+         <!-- patTemplate:sub condition="NO" -->
+            <div>
+                <span class="glyphicon glyphicon-fast-forward"></span>
+            </div>
+         <!-- /patTemplate:sub -->
+      <!-- /patTemplate:tmpl -->
+   </div>
+
+   <!-- /patTemplate:tmpl -->
+<!-- /patTemplate:tmpl -->

@@ -1,0 +1,53 @@
+<!-- patTemplate:tmpl name="content" -->
+<h1>REFERENSI UNSUR KEGIATAN (ANGKA KREDIT DOSEN)</h1>
+<br />
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+   {ISI_PESAN}
+</div>
+<!-- /patTemplate:tmpl -->
+<br />
+
+<form method="POST" action="{URL_ACTION}" id="frmInput" name="frmInput" class="xhr_form std_form">
+   <table class="table-edit" width="100%">
+      <tr class="subhead">
+         <th colspan="2">{JUDUL} Referensi Unsur Kegiatan (Angka Kredit Dosen)</th>
+      </tr>
+      <tr>
+         <th width="150">Nama Unsur Kegiatan</th>
+         <td><input type="text" name="nama" value="{NAMA}" size="60" maxlenght="255" />*</td>
+         <input type="hidden" name="id_post" value="{ID}"/>
+      </tr>
+      <tr>
+         <th>Jenis Unsur Kegiatan</th>
+         <td><select name="input_unsur">
+         <!-- patTemplate:tmpl name="input_unsur" -->
+             <option></option>
+             <option value="Utama" {SELECTED1}>Utama</option>
+             <option value="Penunjang" {SELECTED2}>Penunjang</option>
+         <!-- /patTemplate:tmpl -->
+           </select>
+          *</td>
+      </tr>
+	  <tr>
+         <th width="150">Keterangan</th>
+         <td><input type="text" name="keterangan" value="{KETERANGAN}" size="60" maxlenght="255" />*</td>
+      </tr>
+      <tr class="buttons">
+         <th>&nbsp;</th>
+         <td>
+            <input type="submit" name="btnsimpan" value="Simpan" class="buttonSubmit"/>
+            <a href="{URL_KEMBALI}" class="button">Batal</a>
+         </td>
+      </tr>
+   </table>
+</form>
+
+<br />
+<div class="petunjuk_area">
+   <h4>Petunjuk:</h4>
+   <ul>
+      <li>Tanda * menunjukkan bahwa field tersebut harus diisi. </li>
+   </ul>
+</div>
+<!-- /patTemplate:tmpl -->

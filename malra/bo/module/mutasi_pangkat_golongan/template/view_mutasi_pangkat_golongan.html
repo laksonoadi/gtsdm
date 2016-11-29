@@ -1,0 +1,247 @@
+<!-- patTemplate:tmpl name="content" -->
+<!--<h1>{LABEL_TITLE}</h1>-->
+<div id="TOP" class="background-blue padding-10 text-big">{TITLE}</div>
+<div class="padding-10">
+<!-- patTemplate:gtfwrendermodule module="profile" submodule="profilebox" action="view" name="profile"  / -->
+<div class="table-responsive">
+    <table class="table">
+        <tr class="background-blue-light">
+		    <th colspan="3" class="text-center">
+                <div class="btn-group">
+                    
+	                    <a class="btn btn-default btn-xs" href="javascript:Tab('LISTDATA','FORMDATA');">
+	                        <span class="glyphicon glyphicon-list"></span> Lihat List Data
+	                    </a>
+		                <a class="btn btn-default btn-xs" href="javascript:Tab('FORMDATA','LISTDATA');">
+	                        <span class="glyphicon glyphicon-plus"></span> Tambah
+                        </a> 
+                        <a class="xhr dest_subcontent-element btn btn-default btn-xs" href="{URL_BACK}" title="Pilih Pegawai" tabindex="2">
+                            <span class="glyphicon glyphicon-share"></span> Pilih Pegawai
+                        </a> 
+                </div>
+		    </th>
+	    </tr>
+    </table>
+</div>
+
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<script language="javascript" type="text/javascript">
+function Tutup(){
+	document.getElementById('warning_box').style.display='none';
+}
+</script>
+<div class="{CLASS_PESAN}" id="warning_box">
+   {ISI_PESAN} <a href="javascript:Tutup();">&nbsp;[Tutup Pesan]</a>
+</div>
+<!-- /patTemplate:tmpl --> 
+
+<div id="FORMDATA" style="display:none">
+
+<div class="table-responsive">
+    <form method="POST" name="frmInput" action="{URL_ACTION}" class="xhr_form std_form" id="frmInput" enctype="multipart/form-data">
+    <input type="hidden" value="Aktif" name="status">
+        <table class="table" >
+            <tr class="background-blue-light text-big">
+                <th colspan="2">{LABEL_ACTION} {LABEL_INPUT}</th>
+            </tr>
+	      <tr>
+             <th >Status Pegawai</th>
+             <td>
+               <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="jenis_pegawai"  / -->
+		       <input name="pegKode" type="hidden" value="{ID}" />
+		       <input name="dataKode" type="hidden" value="{INPUT_ID}" />
+             </td>
+          </tr>
+	      <tr>
+             <th>Pangkat/Golongan *</th>
+             <td>
+               <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="golongan_ref"  / -->
+             </td>
+          </tr>
+	      <tr>
+             <th>TMT</th>
+             <td>
+               <!-- patTemplate:gtfwrendermodule module="tanggal" submodule="Tanggal" action="view" name="tmt" / -->
+             </td>
+          </tr>
+        <tr>
+         <th >Masa Kerja</th>
+         <td>
+           <input type="text" name="masa_thn" id="masa_thn" value="{INPUT_MASA_THN}" size="5" />  <span style="margin-left:5px;margin-right:5px"> Tahun</span>
+           <input type="text" name="masa_bln" id="masa_bln" value="{INPUT_MASA_BLN}" size="5" />  <span style="margin-left:5px;margin-right:5px"> Bulan</span>
+         </td>
+      </tr>
+	      <tr class="background-blue-light">
+		    <th colspan="2">Keputusan</th>
+	      </tr>
+	      <tr>
+             <th>Pejabat</th>
+             <td>
+               <input type="text" name="pejabat" value="{INPUT_PEJABAT}"  size="30" />
+             </td>
+          </tr>
+	      <tr>
+             <th>Nomor</th>
+             <td>
+               <input type="text" name="sk_no" value="{INPUT_NOSK}"  size="30" />
+             </td>
+          </tr>
+	      <tr>
+             <th >Tanggal</th>
+             <td>
+               <!-- patTemplate:gtfwrendermodule module="tanggal" submodule="Tanggal" action="view" name="tgl_sk" / -->
+             </td>
+          </tr>
+          <tr>
+             <th >Tanggal Keputusan berikutnya</th>
+             <td>
+               <!-- patTemplate:gtfwrendermodule module="tanggal" submodule="Tanggal" action="view" name="tgl_naik" / -->
+             </td>
+          </tr>
+        <tr>
+           <tr>
+             <th >Nomor Persetujuan BKN </th>
+             <td>
+               <input type="text" name="dasar" value="{INPUT_DASAR}"  size="50" />
+             </td>
+          </tr>
+             <tr>
+             <th >Tanggal Persetujuan BKN </th>
+             <td>
+               <!-- patTemplate:gtfwrendermodule module="tanggal" submodule="Tanggal" action="view" name="tgl_bkn" / -->
+             </td>
+          </tr>
+          <tr>
+             <th > Gaji Pangkat/Golongan </th>
+             <td>
+               <input type="text" name="gaji_pangkat" value="{INPUT_GAJI_PANGKAT}"  size="30" /> <span>*diisi menurut SK pangkat terakhir</span>
+             </td>
+          </tr>
+          <!-- <tr>
+             <th>Status Aktif *</th>
+             <td>
+                patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="status"
+             </td>
+          </tr> -->
+	      <tr>
+             <th >Unggah SK Pangkat/Golongan </th>
+             <td>
+               <input type="file" name="file" size="40"><br />
+				    File sebelumnya : <a href="{INPUT_LINK_DOWNLOAD}">{INPUT_UPLOAD}</a>
+            <input name="upload" type="hidden" value="{INPUT_UPLOAD}" />
+             </td>
+          </tr>
+          <tr class="buttons">
+             <th>&nbsp;</th>
+             <td>
+                <div style="display:none"><input name="btnsimpan" value="{LABEL_ACTION} " class="buttonSubmit" type="submit"></div>
+			    <input name="btnsimpanBohong" value="{LABEL_ACTION} " class="buttonSubmit btn btn-xs btn-info" type="button" onclick="konfirmasi();">
+                <input name="btnbatal" value="{BUTTON}" class="buttonSubmit btn btn-xs btn-warning" type="{TYPE}">
+             </td>
+          </tr>
+        </table>
+    </form>
+</div>
+
+<div class="petunjuk-area">
+   <h4>Petunjuk:</h4>
+   <ul>
+      <li>Tanda * menunjukkan bahwa field tersebut harus diisi. </li>
+   </ul>
+</div></div>
+<div id="LISTDATA" style="display:">
+
+<h3>Catatan Mutasi Pangkat Golongan</h3>
+<div class="table-responsive">
+    <table class="table table-bordered table-hover">
+       <tr>
+          <th width="5px" rowspan="2">No</th>
+          <th rowspan="2">Pangkat/Golongan </th>
+	      <th rowspan="2">TMT</th>
+	      <th colspan="3">Keputusan</th>
+	       <th colspan="2">Persetujuan BKN</th>
+	      <!-- <th rowspan="2">Status</th> -->
+          <th width="110px" rowspan="2">Aksi</th>
+       </tr>
+       <tr>
+          <th>Pejabat</th>
+	      <th>Nomor</th>
+	      <th>Tanggal</th>
+        <th>Nomor</th>
+        <th>Tanggal</th>
+       </tr>
+       <!-- patTemplate:tmpl name="data" type="condition" conditionvar="DATA_EMPTY" -->
+          <!-- patTemplate:sub condition="YES" -->
+       <tr><td colspan="10" align="center"><em>-- Data tidak ditemukan --</em></td></tr>
+          <!-- /patTemplate:sub -->
+          <!-- patTemplate:sub condition="NO" -->
+             <!-- patTemplate:tmpl name="data_item" -->
+       <tr class="{PAGOL_CLASS_NAME}">
+          <td align="center" width="5px">{PAGOL_NUMBER}</td>
+          <td align="left">{PAGOL_PKTGOL}</td>
+	      <td align="left">{PAGOL_TMT}</td>
+	      <td align="left">{PAGOL_PEJABAT}</td>
+	      <td align="left">{PAGOL_NOSK}</td>
+	      <td align="left">{PAGOL_TGL_SK}</td>
+	      <td align="left">{PAGOL_DASAR}</td>
+        <td align="left">{PAGOL_TGL_BKN}</td>
+	      <!-- <td align="left">{PAGOL_STATUS}</td> -->
+          <td>
+            <div class="btn-group" id="tombol_{PAGOL_NUMBER}">
+                    <a class="xhr dest_subcontent-element btn btn-primary btn-xs" href="{PAGOL_URL_DETAIL}" title="Detail">
+                        <span class="glyphicon glyphicon-open"></span>
+                    </a>
+                    <a class="xhr dest_subcontent-element btn btn-success btn-xs" href="{PAGOL_URL_EDIT}" title="Edit">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                    </a>
+                    <a class="btn btn-default btn-xs" style="display:{PAGOL_VIEW_DOWNLOAD}" href="{PAGOL_LINK_DOWNLOAD_SK}" title="SK" target="_blank">
+                        <span class="glyphicon glyphicon-download-alt"></span>
+                    </a>
+
+                    <a class="xhr dest_subcontent-element btn btn-danger btn-xs" href="{PAGOL_URL_DELETE}" title="Delete">
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </a>
+            </div>
+          </td>
+       </tr>
+         <!-- /patTemplate:tmpl -->
+      <!-- /patTemplate:sub -->
+   <!-- /patTemplate:tmpl -->
+</table>
+<div class="petunjuk-area">
+   <h4>Petunjuk:</h4>
+   <ul>
+	  <li>Gunakan tombol <span class="glyphicon glyphicon-open"></span> untuk melihat detail data. </li>
+      <li>Gunakan tombol <span class="glyphicon glyphicon-pencil"></span> untuk mengubah data. </li>
+      <li>Gunakan tombol <span class="glyphicon glyphicon-trash"></span> untuk menghapus data. </li>
+	  <li>Gunakan tombol <span class="glyphicon glyphicon-download-alt"></span> untuk mendownload SK (jika ada). </li>
+	  <li><a href="#TOP" id="link-top">Klik Disini</a> untuk kembali ke atas. </li>
+   </ul>
+</div></div>
+<script language="javascript" type="text/javascript">
+function konfirmasi() {
+	if (document.getElementById('golongan_ref').value=='') {
+		alert('Anda belum memilih Pangkat/Golongan');
+		document.getElementById('golongan_ref').focus();
+		return false;
+	}
+	
+	document.frmInput.btnsimpan.click();
+}
+
+function Tab(aktif,nonaktif){
+	document.getElementById(aktif).style.display='';
+	document.getElementById(nonaktif).style.display='none';
+}
+
+function CekAksi(){
+    var dataId2='0'+'{INPUT_ID}';
+	if (dataId2=='0') {
+		Tab('LISTDATA','FORMDATA');
+	}else{
+		Tab('FORMDATA','LISTDATA');
+	}
+}
+CekAksi();
+</script>
+<!-- /patTemplate:tmpl -->

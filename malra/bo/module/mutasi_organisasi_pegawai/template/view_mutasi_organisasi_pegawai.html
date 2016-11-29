@@ -1,0 +1,178 @@
+<!-- patTemplate:tmpl name="content" -->
+<div id="TOP" class="background-blue padding-10 text-big">RIWAYAT ORGANISASI PEGAWAI</div>
+
+<div class="padding-10">
+<!-- patTemplate:gtfwrendermodule module="profile" submodule="profilebox" action="view" name="profile"  / -->
+
+<div class="table-responsive">
+    <table class="table">
+       <tr class="background-blue-light">
+          <th colspan="3" class="text-center">
+                <div class="btn-group">
+                       <a  class="btn btn-default btn-xs" href="javascript:Tab('LISTDATA','FORMDATA');">
+                           <span class="glyphicon glyphicon-list"></span> Lihat List Data
+                       </a>
+                      <a  class="btn btn-default btn-xs" href="javascript:Tab('FORMDATA','LISTDATA');">
+                           <span class="glyphicon glyphicon-plus"></span> Tambah
+                        </a> 
+
+                        <a class="xhr dest_subcontent-element btn btn-default btn-xs" href="{URL_BACK}" title="Pilih Pegawai" tabindex="2">
+                            <span class="glyphicon glyphicon-share"></span> Pilih Pegawai
+                        </a> 
+                </div>
+          </th>
+       </tr>
+    </table>
+</div>
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<script language="javascript" type="text/javascript">
+function Tutup(){
+	document.getElementById('warning_box').style.display='none';
+}
+</script>
+<div class="{CLASS_PESAN}" id="warning_box">
+   {ISI_PESAN} <a href="javascript:Tutup();">&nbsp;[Tutup Pesan]</a>
+</div>
+<!-- /patTemplate:tmpl --> 
+<div id="FORMDATA" style="display:none">
+<div class="table-responsive">
+<form method="POST" name="frmInput" action="{URL_ACTION}" class="xhr_form std_form" id="frmInput" enctype="multipart/form-data">
+   <table class="table" >
+    <tr class="background-blue-light">
+        <th colspan="2">{LABEL_ACTION} {LABEL_INPUT}</th>
+    </tr>
+      <tr>
+         <th>Jenis Kegiatan/Organisasi</th>
+         <td>
+           <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="jenis_organisasi"  / -->*
+         </td>
+      </tr>
+	  <tr>
+         <th >Nama Kegiatan/Organisasi</th>
+         <td>
+         <input type="text" name="nama" value="{INPUT_NAMA}"  size="60" />*
+		   <input name="pegKode" type="hidden" value="{ID}" />
+		   <input name="dataKode" type="hidden" value="{INPUT_ID}" />
+         </td>
+      </tr>
+      <tr>
+         <th>Jabatan</th>
+         <td>
+           <input type="text" name="jabatan" value="{INPUT_JABATAN}"  size="30" />*
+		   <br>*Misal Pengurus, Pengelola, Ketua, Anggota, Sekretaris dll
+         </td>
+      </tr>
+      <tr>
+         <th >Tahun Mulai</th>
+         <td>
+           <input type="text" name="mulai" value="{INPUT_MULAI}"  size="5" maxlength="4" />
+         </td>
+      </tr>
+       <tr>
+         <th >Tahun Selesai</th>
+         <td>
+          <input type="text" name="selesai" value="{INPUT_SELESAI}"  size="5" maxlength="4" />
+          <i>Biarkan kosong jika masih aktif dalam organisasi</i>
+         </td>
+      </tr>
+	  <tr>
+         <th >Upload </th>
+         <td>
+           <input type="file" name="file" size="40"><br />
+				File sebelumnya: <a href="{INPUT_LINK_DOWNLOAD}">{INPUT_UPLOAD}</a>
+        <input name="upload" type="hidden" value="{INPUT_UPLOAD}" />
+         </td>
+      </tr>
+      <tr class="buttons">
+         <th>&nbsp;</th>
+         <td>
+            <input name="btnsimpan" value="{LABEL_ACTION} " class="buttonSubmit btn btn-info btn-xs" type="submit">
+            <input name="btnbatal" value="{BUTTON}" class="buttonSubmit btn btn-warning btn-xs" type="{TYPE}">
+         </td>
+      </tr>
+   </table>
+</form>
+</div>
+<div class="petunjuk-area">
+   <h4>Petunjuk:</h4>
+   <ul>
+      <li>Tanda * menunjukkan bahwa field tersebut harus diisi. </li>
+   </ul>
+</div></div>
+<div id="LISTDATA" style="display:">
+<h3>Data Riwayat Organisasi Pegawai</h3>
+<div class="table-responsive">
+    <table class="table table-bordered table-hover">
+   <tr>
+      <th width="5px" >No</th>
+	  <th >Jenis</th>
+      <th >Nama Organisasi/Kegiatan</th>
+      <th >Jabatan </th>
+      <th >Tahun Mulai</th>
+      <th >Tahun Selesai</th>
+      <th width="9%" >Aksi</th>
+   </tr>
+   <!-- patTemplate:tmpl name="data" type="condition" conditionvar="DATA_EMPTY" -->
+      <!-- patTemplate:sub condition="YES" -->
+   <tr><td colspan="10" align="center"><em>-- Data tidak ditemukan --</em></td></tr>
+      <!-- /patTemplate:sub -->
+      <!-- patTemplate:sub condition="NO" -->
+         <!-- patTemplate:tmpl name="data_item" -->
+   <tr class="{ORG_CLASS_NAME}">
+      <td align="center" width="5%">{ORG_NUMBER}</td>
+	  <td align="left">{ORG_JENIS_LABEL}</td>
+      <td align="left">{ORG_NAMA}</td>
+	  <td align="left">{ORG_JABATAN}</td>
+	  <td align="center">{ORG_MULAI}</td>
+	  <td align="center">{ORG_SELESAI}</td>
+      <td class="links">
+		 <div class="btn-group"  id="tombol_{ORG_NUMBER}">
+         <a class="xhr dest_subcontent-element btn btn-success btn-xs" href="{ORG_URL_EDIT}" title="Ubah"> <span class="glyphicon glyphicon-pencil"></span> </a>
+
+ <a id="download_{ORG_NUMBER}" class="btn btn-default btn-xs" href="{ORG_LINK_DOWNLOAD_SK}" title="SK" target="_blank"> <span class="glyphicon glyphicon-download-alt"></span> </a>
+
+         <a class="xhr dest_subcontent-element btn btn-danger btn-xs" href="{ORG_URL_DELETE}" title="Hapus"> <span class="glyphicon glyphicon-trash"></span> </a>
+		 
+		 </div>
+		 <script>
+			verifyShow('tombol_{ORG_NUMBER}','&jenis=1&params=sdm_organisasi:{ORG_ID}');
+			if ('{ORG_LINK_DOWNLOAD_SK}'==''){var download='download_{ORG_NUMBER}'; document.getElementById(download).style.display='none';}
+		 </script>
+      </td>
+   </tr>
+         <!-- /patTemplate:tmpl -->
+      <!-- /patTemplate:sub -->
+   <!-- /patTemplate:tmpl -->
+</table>
+</div>
+<div class="petunjuk-area">
+   <h4>Petunjuk:</h4>
+   <ul>
+     
+      <li>Gunakan tombol <span class="glyphicon glyphicon-pencil"></span> untuk mengubah data. </li>
+      <li>Gunakan tombol <span class="glyphicon glyphicon-trash"></span> untuk menghapus data. </li>
+     <li>Gunakan tombol <span class="glyphicon glyphicon-download-alt"></span> untuk mendownload SK (jika ada). </li>
+     <li><a href="#TOP" id="link-top">Klik Disini</a> untuk kembali ke atas. </li>
+   </ul>
+</div></div>
+<script language="javascript" type="text/javascript">
+function konfirmasi() {
+	document.frmInput.btnsimpan.click();
+}
+
+function Tab(aktif,nonaktif){
+	document.getElementById(aktif).style.display='';
+	document.getElementById(nonaktif).style.display='none';
+}
+
+function CekAksi(){
+    var dataId2='0'+'{INPUT_ID}';
+	if (dataId2=='0') {
+		Tab('LISTDATA','FORMDATA');
+	}else{
+		Tab('FORMDATA','LISTDATA');
+	}
+}
+CekAksi();
+</script>
+<!-- /patTemplate:tmpl -->

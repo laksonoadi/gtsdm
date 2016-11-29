@@ -1,0 +1,148 @@
+<!-- patTemplate:tmpl name="content" -->
+<div class="background-blue padding-10 text-big">RIWAYAT PENDIDIKAN</div>
+
+<div class="padding-10">
+
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+   {ISI_PESAN}
+</div>
+<br />
+<!-- /patTemplate:tmpl -->
+
+<div class="table-responsive">
+    <table class="table" >
+      <tr class="background-blue-light">
+		<th colspan="3"><b>Informasi Pribadi</b></th>
+	</tr>
+	<tr>
+		<td rowspan="4" width="60px"><img src="upload_file/photo/{PROFIL_FOTO}" width="100" height="100"></td>
+   </tr>
+   <tr>
+      <td width="120px">NIP</td>
+	  <td>{PROFIL_KODE}</td>
+   </tr>
+   <tr>
+      <td>Nama</td>
+	  <td>{PROFIL_NAME}</td>
+   </tr>
+   <tr>  
+      <td valign="top">Alamat</td>
+	  <td valign="top">{PROFIL_ALAMAT}</td>
+   </tr>
+</table>
+</div>
+<!-- patTemplate:tmpl name="data" type="condition" conditionvar="DATA_EMPTY" -->
+      <!-- patTemplate:sub condition="YES" -->
+    <h1>Data tidak ditemukan </h1>
+      <!-- /patTemplate:sub -->
+      <!-- patTemplate:sub condition="NO" -->
+         <!-- patTemplate:tmpl name="data_item" -->
+
+<div class="table-responsive">
+    <table class="table" >
+      <tr class="background-blue-light">
+         <th colspan="5">Data Mutasi Pendidikan</th>
+      </tr>
+      
+	  <tr>
+         <th >Tingkat Pendidikan</th>
+         <td>
+           {DETAIL_JPENDLABEL}
+         </td>
+      </tr>
+	  <tr>
+         <th >Nama Pendidikan/Sekolah</th>
+         <td>
+           {DETAIL_INSTITUSI}
+         </td>
+      </tr>
+	  <tr>
+         <th >Bidang Studi</th>
+         <td>
+           {DETAIL_JURUSAN}
+         </td>
+      </tr>
+       <tr>
+         <th >Tahun Lulus</th>
+         <td>
+           {DETAIL_LULUS}
+         </td>
+      </tr>
+       <tr>
+         <th >Tempat</th>
+         <td>
+           {DETAIL_TEMPAT}
+         </td>
+      </tr>
+       <!-- <tr>
+         <th >Dekan/Kepala Sekolah</th>
+         <td>
+           {DETAIL_KEPSEK}
+         </td>
+      </tr> --> 
+      <tr>
+         <th >Sumber Dana</th>
+         <td>
+           {DETAIL_ASDANLABEL}
+         </td>
+      </tr>
+      <tr>
+         <th >Golongan Maksimal</th>
+         <td>
+           {DETAIL_GOLMAXLABEL}
+         </td>
+      </tr>
+      <tr>
+         <th >Status Pendidikan</th>
+         <td>
+           {DETAIL_ISTAMAT}
+         </td>
+      </tr>
+       <tr>
+         <th >Masa Studi</th>
+         <td>
+           {DETAIL_LAMA}&nbsp;years
+         </td>
+      </tr>
+	  <tr>
+         <th >Mulai</th>
+         <td>
+           {DETAIL_MULAI}
+         </td>
+      </tr>
+	  <tr>
+         <th >Selesai</th>
+         <td>
+           {DETAIL_SELESAI}
+         </td>
+      </tr>
+	  <tr>
+         <th >Keterangan</th>
+         <td>
+           {DETAIL_KET}
+         </td>
+      </tr>
+	  <tr>
+         <th >Dokumen</th>
+         <td>
+           <a href="{DETAIL_LINK_DOWNLOAD_SK}" target="_blank">{DETAIL_UPLOAD}</a>
+         </td>
+      </tr>
+      <!-- /patTemplate:tmpl -->
+      <!-- /patTemplate:sub -->
+   <!-- /patTemplate:tmpl -->      
+      <tr>
+        <td colspan="2" class="background-blue-light text-right">
+            <a class="xhr dest_subcontent-element " href="{URL_BACK}" title="Back to Current Page" tabindex="2">
+                <button type="button" class="btn btn-default btn-xs">Kembali</button>
+            </a>
+        </td>
+		</tr>   
+   </table>
+
+
+
+
+
+<!-- /patTemplate:tmpl -->
