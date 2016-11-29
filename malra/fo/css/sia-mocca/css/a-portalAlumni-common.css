@@ -1,0 +1,325 @@
+/* Portal Specific Tag Defs */
+
+/* Portal Specific ID Defs */
+#common {
+	background-color: #EAF7FD;
+	background-image: url('../images/common-bg.gif');
+	background-position: left top;
+	background-repeat: repeat-x;
+	font-family: Arial, Geneva, sans-serif;
+	font-size: 8pt;
+	text-align: center;
+	margin: 0px;
+	padding: 0px 0px 10px 0px;
+}
+
+#common body {
+        text-align: center;
+}
+
+body {
+	/*background-color: #DEDEDE;
+	background-image: url('../images/page-bg.gif');
+	background-position: center;
+	background-repeat: repeat-y;*/
+	margin: 0px;
+	padding: 0px;
+	text-align: center;
+
+}
+
+acronym {
+        cursor: help;
+        border: none;
+}
+
+#page {
+	background-color: #E9E9E9;
+	background-image: url('../images/page-bg.gif');
+	background-position: center top;
+	background-repeat: repeat-y;
+	text-align: left;
+	width: 779px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 0px;
+}
+
+#header {
+	background-color: #E9E7D9;
+	background-image: url('../images/header-bg.jpg');
+	background-position: center top;
+	background-repeat: no-repeat;
+	width: 779px;
+	height: 56px;
+	overflow: hidden;
+}
+
+#header h1{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 18px;
+	color: #C9E9FF;
+	font-weight: normal;
+	padding: 0px 0px 0px 0px;
+	margin: 20px 0px 0px 0px;
+}
+
+#header-image {
+	width: 360px;
+	height: 52px;
+	float: left;
+	background-image: url(../images/logoSDM.png);
+}
+
+#header-image img {
+	margin: 3px 14px 0px 10px;
+	float: left;
+}
+
+#header-filler {
+	height: 56px;
+	padding: 24px 20px 0px 20px;
+	float: right;
+	color: #FFFFFF;
+	font-family: Tahoma, Arial, sans-serif; 
+	font-size: 9pt; 
+	font-weight: normal;
+	text-align:right;
+}
+
+#navigation {
+	background-color: #080807;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	height: 29px;
+	width: 779px;
+	margin: 0px auto;
+	padding: 1px 0px 1px 0px;
+	z-index:999999;
+}
+
+#navigation ul {
+	float: left;
+	margin: 0px 0px 0px 15px;
+	padding: 0px;
+}
+
+#navigation li {
+	color: #003366;
+	height: 30px;
+	display: block;
+	float: left;
+	font-weight: normal;
+	list-style-type: none;
+	padding: 0px 8px;
+}
+
+#navigation a {
+	color: #F4E5D2;
+	float: left;
+	padding: 8px 10px 8px 10px;
+	text-decoration: none;
+}
+
+#navigation a:hover {
+	color: #69BBEA;
+	background-color: #e8f6c1;
+	background-repeat: repeat-x;
+	height: 29px;
+}
+
+#navigation a:active {
+	color: #FFFFFF;
+	background-image: url('../images/nav-hover.gif');
+	background-position: left top;
+	background-repeat: repeat-x;
+}
+
+#footer {
+	clear: both;
+	color: #FFFFFF;
+	text-align: left;
+	width: 778px;
+	height: 30px;
+	overflow: visible;
+	margin: 0px auto 0px auto;
+	padding: 15px 0px 10px 0px;
+	background-color: #000000;
+}
+
+#footer p {
+	color: #FFFFFF;
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 10px;
+	border-left-width: 3px;
+	border-left-style: solid;
+	border-left-color: #FFFFFF;
+}
+
+#footer a {
+        color: #003366;
+        text-decoration: none;
+}
+
+#footer a:hover {
+        color: #003366;
+        text-decoration: underline;
+}
+
+#footerElement {
+	padding: 0px 0px 0px 17px;
+}
+
+#footer img {
+	float: right;
+	border: none;
+	padding: 0px 20px 0px 0px;
+}
+
+#footerBar {
+        background-color: #122d71;
+		height: 7px;
+        width: 750px;
+        clear: both;
+}
+
+#pageBar {
+        padding: 10px 0px 10px 0px;
+}
+
+#pageBar a {
+        color: #111111;
+        border: #f6f5ed solid 1px;
+        padding: 1px 5px;
+        overflow: hidden;
+        text-decoration: none;
+}
+
+#pageBar a:hover {
+        color: #ffffff;
+        background-color: #6E8085;
+        border: #f6f5ed solid 1px;
+        overflow: hidden;
+
+        font-size: 8pt;
+        text-decoration: none;
+}
+
+#pageBar a:active {
+        color: #ffffff;
+        background-color: #122d71;
+        border: #f6f5ed solid 1px;
+        overflow: hidden;
+
+        text-decoration: none;
+}
+
+#pageBar-pageActive {
+        color: #ffffff;
+        background-color: #122d71;
+        border: #f6f5ed solid 1px;
+        padding: 1px 4px;
+        display: inline;
+
+        font-weight: bold;
+
+}
+
+/* Portal Specific Class Defs */
+
+.ffhack {
+	clear: both !important;
+	height: 5px;
+}
+
+.form-common {
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+}
+
+.form-common-leftCtrl {
+        clear: none;
+}
+
+.form-common-leftCtrl input {
+        float: left;
+        margin: 0px;
+        padding: 0px;
+}
+
+.newButton {
+	color: #0066CC !important;
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+}
+
+.newButton a {
+	color: #234370 !important;
+	font-size: 11px;
+	font-weight: bold;
+	text-decoration: none;
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+}
+
+.newButton a:hover {
+	color: #0066CC !important;
+	text-decoration: underline !important;
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+}
+
+.specialButton {
+	background-image: none !important;
+	margin: 0px 10px 0px 10px !important;
+	padding: 0px 10px 0px 10px !important;
+}
+
+a.specialButton {
+	color: #597AB8 !important;
+	float: right;
+	margin: 0px 10px 10px 0px !important;
+	padding: 0px 10px 0px 0px !important;
+	text-decoration: none;
+	background-image: url('../images/chevron-right.gif');
+	background-position: center right;
+	background-repeat: no-repeat;
+}
+
+a.specialButton:hover {
+	color: #556325 !important;
+	border: none !important;
+	text-decoration: underline !important;
+	
+}
+
+a.specialButtonBlue {
+	color: #71871f !important;
+	float: right;
+	margin: 0px 10px 10px 0px !important;
+	padding: 0px 10px 0px 0px !important;
+	text-decoration: none;
+	background-image: url('../images/chevron-right.gif');
+	background-position: center right;
+	background-repeat: no-repeat;
+}
+
+a.specialButtonBlue:hover {
+	color: #556325 !important;
+	border: none !important;
+	text-decoration: underline !important;
+}
+
+a.specialButtonBlue:active {
+}
+
+/*Statistik*/
+.statistik-label {
+	padding-left: 5px;
+	padding-right: 5px;
+	width: 150px;
+	display: inline;
+}
+
+.statistik img {
+	padding: 0px 10px 0px 20px;
+}

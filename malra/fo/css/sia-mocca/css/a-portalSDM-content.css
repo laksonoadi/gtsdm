@@ -1,0 +1,74 @@
+/* content wrapper*/
+#content {
+	width: 778px;
+	margin: 0px auto 0px auto;
+	padding: 0px 0px 0px 0px;
+}
+
+/* main content wrapper, elements, and tag definitions*/
+#mainContent {
+	float: left;
+	width: 560px;
+	overflow: hidden;
+	margin: 0px 0px 0px 0px;
+	padding: 10px 0px 20px 10px;
+}
+
+.mainContent-fp-element-full {
+	overflow: hidden;
+	width: 547px;
+	margin: 0px 0px 0px 0px;
+}
+
+.mainContent-fp-element-full-head {
+	background-image:  url('../images/mainContent-fp-element-full-head-bg.gif');
+	background-position: left top;
+	background-repeat: repeat-x;
+	height: 29px;
+}
+
+.mainContent-fp-element-full-head h2 {
+	color: #3692C3;
+	font-family: "Times New Roman", Times, serif;
+	font-weight: bold;
+	font-size: 13pt;
+	margin: 0px;
+	padding: 5px 0px 0px 17px;
+}
+
+.mainContent-fp-element-full-body {
+	background-color: #F9F9F9;
+	width: 547px;
+	height: auto;
+	overflow: hidden;
+	margin: 0px 0px;
+	padding: 10px 0px 10px 0px;
+}
+
+.mainContent-fp-element-half {
+	clear: right;
+	float: left;
+	overflow: hidden;
+	width: 267px;
+	margin: 20px 6px 0px 0px;
+}
+
+.mainContent-fp-element-half-head {
+	background-image: url('../images/mainContent-fp-element-half-head-bg.gif');
+	height: 34px;
+}
+
+.mainContent-fp-element-half-head h2 {
+	color: #3692C3;
+	font-family: "Times New Roman", Times, serif;
+	font-weight: bold;
+	font-size: 13pt;
+	margin: 0px;
+	padding: 5px 0px 0px 17px;
+}
+
+.mainContent-fp-element-half-body {
+	background-color: #F9F9F9;
+	line-height: 18px;
+	height: auto;
+}
