@@ -1,0 +1,71 @@
+<!-- patTemplate:tmpl name="content" -->
+<script language="javascript" type="text/javascript">
+	function setParent(xid, xlabel, xsat, xidsat) {
+	  if(document.getElementById('dataPeg').value=="1"){
+      document.getElementById('pegId1').value=xid;
+		  document.getElementById('peg_label_1').value=xlabel;
+		  document.getElementById('satId1').value=xidsat;
+		  document.getElementById('sat_label_1').value=xsat;
+    }else{
+      document.getElementById('pegId2').value=xid;
+		  document.getElementById('peg_label_2').value=xlabel;
+		  document.getElementById('satId2').value=xidsat;
+		  document.getElementById('sat_label_2').value=xsat;
+    }
+	}
+</script>
+<form method="POST" action="{URL_SEARCH}" class="dataquest xhr_simple_form dest_popup-subcontent" id="filterboxpopup">
+<input type="hidden" value="{PEG}" name="dataPeg" id="dataPeg">
+   <table>
+         <tr>
+            <th width="30%">NIP/Nama Pegawai</label></th>
+            <td width="25%"><input type="text" name="nama" value="{NAMA}" size="20" />
+            <td>
+            <input type="submit" name="btncari" value=" Cari &raquo;" class="buttonSubmit"/>
+            </td>
+         </tr>
+   </table>
+</form>
+
+<br /> 
+   <!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+   <div class="{CLASS_PESAN}">
+      {ISI_PESAN}
+   </div>
+   <br />
+   <!-- /patTemplate:tmpl -->
+        <div class="pageBar">
+         <!-- patTemplate:gtfwrendermodule module="paging2" submodule="paging" action="view" name="paging_top"  / -->
+         </div>
+		 <div style="{FR}">
+            <table class="table-common" width="100%">
+      <tr>
+         <th width="15%">No</th>
+         <th width="100px">Nomor Pegawai</th>
+         <th>Nama</th>
+         <th width="35">Pilih</th>
+      </tr>
+      <!-- patTemplate:tmpl name="data_pegawai" type="condition" conditionvar="DATA_EMPTY" -->
+         <!-- patTemplate:sub condition="YES" -->
+         <tr><td colspan="4" align="center"><em>-- Data tidak ditemukan --</em></td></tr>
+         <!-- /patTemplate:sub -->
+         <!-- patTemplate:sub condition="NO" -->
+            <!-- patTemplate:tmpl name="data_pegawai_item" -->
+            <tr class="{DATA_CLASS_NAME}">
+               <td align="center">{DATA_NUMBER}</td>
+               <td align="center">{DATA_KODE}
+               <input type="hidden" name="id" id="id" value="{DATA_ID}" >
+               <input type="hidden" name="kode" id="kode" value="{DATA_KODE}" >
+               <input type="hidden" name="nama" id="nama" value="{DATA_NAMA}" >
+               </td>
+               <td>{DATA_NAMA}</td>
+               <td class="links" align="center">
+					       <a href="javascript:setParent('{DATA_ID}','{DATA_NAMA}','{DATA_SATKER}','{DATA_IDSATKER}')" onclick=""><img alt="Pilih" src="images/button-check.gif"/></a>
+               </td>
+               
+            </tr>
+            <!-- /patTemplate:tmpl -->
+         <!-- /patTemplate:sub -->
+      <!-- /patTemplate:tmpl -->
+   </table></div>
+<!-- /patTemplate:tmpl -->

@@ -1,0 +1,160 @@
+
+<!-- patTemplate:tmpl name="content" -->
+<script language="javascript" type="text/javascript">
+var xpopup;
+function bukaPopupKomp(xurl) {
+  showPopup(xurl,'Employee List',500, 500);
+}
+	
+function konfirmasi() {
+	if(document.getElementById('btnbatal').value == " Reset "){
+    document.getElementById('btnbatal').type = "reset";
+    document.frmInput.onReset();
+  }else{
+    document.getElementById('btnbatal').type = "submit";
+    document.frmInput.onSubmit();
+  }
+}
+</script>
+<h1>{LABEL_TITLE}</h1>
+<br />
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+   {ISI_PESAN}
+</div>
+<br />
+<!-- /patTemplate:tmpl -->
+<div><h1>{TITLE}</h1></div><br>
+<table class="table-edit" width="100%" >
+	<tr class="subhead">
+		<th colspan="3"><b> Data Pegawai</b></th>
+	</tr>
+	<tr>
+		<td rowspan="5" width="60px"><img src="upload_file/photo/{FOTO2}" width="100" height="100"></td>
+   </tr>
+   <tr>
+      <td width="120px">Nomor Pegawai</td>
+	  <td> : {DATA_NIP}</td>
+   </tr>
+   <tr>
+      <td>Nama</td>
+	  <td> : {DATA_NAMA}</td>
+   </tr>
+   <tr>
+      <td>Alamat</td>
+	  <td> : {DATA_ALAMAT}</td>
+   </tr>
+   <tr>
+      <td>Unit Kerja</td>
+	  <td> : {DATA_SATKER}</td>
+   </tr>
+</table> 
+<form method="POST" name="frmInput" action="{URL_AKSI}" class="xhr_form std_form" id="frmInput" enctype="multipart/form-data">
+   <input type="hidden" name="idCuti" value="{ID}">
+   <input type="hidden" name="idPeg" value="{DATA_ID}">
+   <input type="hidden" name="op" value="{OP}" id="op">
+   <table class="table-edit" width="100%" >
+      <tr class="subhead">
+        <th valign="center">Detail Data Cuti</th>
+        <td align="right">
+          &nbsp;
+        </td>
+      </tr>
+      <tr>
+        <th width="39%">Nomor Cuti</th>
+        <td>
+          {NO}
+        </td>
+      </tr>
+      <tr>
+        <th>Tanggal submit</th>
+        <td>
+          {SUBMIT}
+        </td>
+      </tr>
+      <tr>
+        <th>Tanggal Cuti</th>
+        <td>
+          {MULAI} - {SELESAI}
+        </td>
+      </tr>
+      <tr>
+        <th>Jenis Cuti</th>
+        <td>
+          {NAMA}
+        </td>
+      </tr>
+      <tr>
+        <th>Alasan Cuti</th>
+        <td>
+          {ALASAN}
+        </td>
+      </tr>
+      <tr>
+        <th>Tanggung Jawab</th>
+        <td>
+          {TGGJWB}
+        </td>
+      </tr>
+      <tr>
+        <th>Pengganti Cuti</th>
+        <td>
+          {PGGJWB} ( Telp.{PGGJWBK})
+        </td>
+      </tr>
+      <tr class="subhead">
+        <th valign="center">{LABEL_ACTION} Persetujuan Cuti</th>
+        <td align="right">&nbsp;</td>
+      </tr>
+      <tr>
+         <th width="180">Pegawai 1</th>
+         <td>
+           <input type="text" name="peg_label_1" id="peg_label_1" value="{2_NMP}" size="30" readonly="readonly" />
+           <input type="hidden" name="pegId1" id="pegId1" value="{2_IDP}" />
+           <input type="button"  name="but_peg_1" onclick="bukaPopupKomp('{URL_POPUP_PEG_1}')" value=" ... " />&nbsp;*
+         </td>
+      </tr>
+      <tr>
+         <th width="180">Satker 1</th>
+         <td>
+           <input type="text" name="sat_label_1" id="sat_label_1" value="{2_NMS}" size="20" readonly="readonly" />
+           <input type="hidden" name="satId1" id="satId1" value="{2_IDS}" />
+         </td>
+      </tr>
+      <tr>
+        <th>Status 1</th>
+        <td>
+          <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="status1"  / -->
+        </td>
+      </tr>
+      <tr>
+         <th width="180">Pegawai 2</th>
+         <td>
+           <input type="text" name="peg_label_2" id="peg_label_2" value="{3_NMP}" size="30" readonly="readonly" />
+           <input type="hidden" name="pegId2" id="pegId2" value="{3_IDP}" />
+           <input type="button"  name="but_peg_2" onclick="bukaPopupKomp('{URL_POPUP_PEG_2}')" value=" ... " />&nbsp;*
+         </td>
+      </tr>
+      <tr>
+         <th width="180">Satker 2</th>
+         <td>
+           <input type="text" name="sat_label_2" id="sat_label_2" value="{3_NMS}" size="20" readonly="readonly" />
+           <input type="hidden" name="satId2" id="satId2" value="{3_IDS}" />
+         </td>
+      </tr>
+      <tr>
+        <th>Status 2</th>
+        <td>
+          <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="status2"  / -->
+        </td>
+      </tr>
+      <tr class="buttons">
+         <th>&nbsp;</th>
+         <td>
+            <input name="btnsimpan" value=" {LABEL_ACTION} " class="buttonSubmit" type="submit">
+            <input name="btnbatal" id="btnbatal" value="{BUTTON}" class="buttonSubmit" type="submit">
+         </td>
+      </tr>
+   </table>
+</form>
+<!-- /patTemplate:tmpl -->

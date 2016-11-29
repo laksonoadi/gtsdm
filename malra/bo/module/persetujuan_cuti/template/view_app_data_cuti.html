@@ -1,0 +1,66 @@
+<!-- patTemplate:tmpl name="content" -->
+<br />
+<h1>LEAVE APPROVAL</h1>
+<br />
+<form method="POST" action="{URL_SEARCH}" class="dataquest xhr_simple_form dest_subcontent-element" id="filterbox">
+   <table>
+      <tr>
+         <th colspan="2"><h2><strong>Pencarian Data</strong></h2></th>
+      </tr>
+  	  <tr>
+    		<th>Jenis Cuti</th>
+    		<td>
+    			<!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="tampilkan" / -->
+        </td>
+    	</tr>
+      <tr>              
+         <th width="30%">&nbsp;</th>
+         <td><input type="submit" name="btncari" value=" Cari &raquo;" class="buttonSubmit"/></td>
+      </tr>
+   </table>
+</form>
+
+<br /> 
+   <!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+   <div class="{CLASS_PESAN}">
+      {ISI_PESAN}
+   </div>
+   <br />
+   <!-- /patTemplate:tmpl -->
+   <div class="pageBar">
+   <!-- patTemplate:gtfwrendermodule module="paging" submodule="paging" action="view" name="paging_top"  / -->
+   </div>
+	<table class="table-common" width="800px">
+      <tr>
+         <th width="10%">No</th>
+         <th width="20px">Aksi</th>
+         <th width="70px">Nomor Cuti</th>
+         <th width="130px">Jenis Cuti</th>
+         <th width="70px">Mulai</th>
+         <th width="90px">Selesai</th>
+         <th width="110px">Status</th>
+         <th>Tanggung Jawab Kerja</th>
+      </tr>
+      <!-- patTemplate:tmpl name="data_history" type="condition" conditionvar="HISTORY_EMPTY" -->
+         <!-- patTemplate:sub condition="YES" -->
+         <tr><td colspan="8" align="center"><em>-- Data tidak ditemukan --</em></td></tr>
+         <!-- /patTemplate:sub -->
+         <!-- patTemplate:sub condition="NO" -->
+            <!-- patTemplate:tmpl name="data_history_item" -->
+            <tr class="{DATA_CLASS_NAME}">
+               <td align="center">{DATA_NUMBER}</td>
+               <td class="links" align="center">
+                  <a class="xhr dest_subcontent-element" href="{DATA_URL_DETAIL}" title="Pormulir Persetujuan"><img src="images/button-check.gif" alt="Pormulir Persetujuan"/></a> 
+               </td>
+               <td align="center">{DATA_NO}</td>
+               <td>{DATA_NAMA}</td>
+					     <td align="center">{DATA_MULAI}</td>
+               <td align="center">{DATA_SELESAI}</td>
+               <td align="center">{DATA_STATUS}</td>
+               <td>{DATA_TGGJWB}</td>
+            </tr>
+            <!-- /patTemplate:tmpl -->
+         <!-- /patTemplate:sub -->
+      <!-- /patTemplate:tmpl -->
+   </table>
+<!-- /patTemplate:tmpl -->

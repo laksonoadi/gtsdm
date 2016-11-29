@@ -1,0 +1,259 @@
+
+<!-- patTemplate:tmpl name="content" -->
+<script language="javascript" type="text/javascript">
+	var xpopup;
+	function bukaPopupKomp(xurl) {
+	  showPopup(xurl,'Employee List',500, 500);
+	}
+		
+	function konfirmasi() {
+		if(document.getElementById('btnbatal').value == " Reset "){
+		document.getElementById('btnbatal').type = "reset";
+		document.frmInput.onReset();
+	  }else{
+		document.getElementById('btnbatal').type = "submit";
+		document.frmInput.onSubmit();
+	  }
+	}
+	
+	function cek(objId, msg) {
+		var obj = document.getElementById(objId);
+		if(!obj.value) {
+			alert(msg);
+			obj.focus();
+			obj.select;
+			return false;
+		}
+		return true;
+	}
+
+	function cekIsiForm() {
+		if(false == cek('relasi_pasien', 'Please choose the relation between the patient and employee')) return;
+		if(false == cek('nama_pasien', 'Please fill the patient name')) return;
+		if(false == cek('jenis_benefit', 'Please choose claim type')) return;
+		if(false == cek('tempat', 'Please fill the place where patient being hospitalized')) return;
+		if(false == cek('alasan', 'Please fill the reason')) return;
+		document.getElementById('btnsimpan').click();
+	}
+</script>
+<h1>{LABEL_TITLE}</h1>
+<br />
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+   {ISI_PESAN}
+</div>
+<br />
+<!-- /patTemplate:tmpl -->
+<div><h1>{TITLE}</h1></div><br>
+<table class="table-edit" width="100%" >
+	<tr class="subhead">
+		<th colspan="3"><b>Data Pegawai</b></th>
+	</tr>
+	<tr>
+		<td rowspan="7" width="60px"><img src="upload_file/photo/{FOTO2}" width="100" height="100"></td>
+   </tr>
+   <tr>
+      <td width="120px">Nomor Pegawai</td>
+	  <td> : {DATA_NIP}</td>
+   </tr>
+   <tr>
+      <td>Nama</td>
+	  <td> : {DATA_NAMA}</td>
+   </tr>
+    <tr>
+      <td>Supervisor</td>
+	  <td>: {DATA_SPV}</td>
+   </tr>
+   <tr>
+      <td>MOR</td>
+	  <td>: {DATA_MOR}</td>
+   </tr>
+   <tr>
+      <td>Alamat</td>
+	  <td> : {DATA_ALAMAT}</td>
+   </tr>
+   <tr>
+      <td>Unit Kerja</td>
+	  <td> : {DATA_SATKER}</td>
+   </tr>
+</table> 
+<form method="POST" name="frmInput" action="{URL_AKSI}" class="xhr_form std_form" id="frmInput" enctype="multipart/form-data">
+   <input type="hidden" name="idLembur" value="{ID}">
+   <input type="hidden" name="idPeg" value="{DATA_ID}">
+   <input type="hidden" name="op" value="{OP}" id="op">
+   <table class="table-edit" width="100%" >
+      <tr class="subhead">
+        <th valign="center">Detail Data Klaim Asuransi</th>
+        <td align="right">&nbsp;
+          
+        </td>
+      </tr>
+      <tr>
+        <th width="39%">Nomor Asuransi</th>
+        <td>
+          {DATA_NO}
+        </td>
+      </tr>
+	  <!-- patTemplate:tmpl name="detail_pegawai" -->
+	  <tr>
+        <th width="39%">Nama Pegawai</th>
+        <td>
+          {DATA_NAMA_PEGAWAI}
+        </td>
+      </tr>
+	  <tr>
+        <th width="39%">Jender</th>
+        <td>
+          {DATA_JNS_KELAMIN}
+        </td>
+      </tr>
+	  <tr>
+        <th width="39%">Status Nikah</th>
+        <td>
+          {DATA_STATUS_NIKAH}
+        </td>
+      </tr>
+	  <tr>
+        <th width="39%">Jenis Pegawai</th>
+        <td>
+          {DATA_JNS_PEGAWAI}
+        </td>
+      </tr>
+	  <tr>
+        <th width="39%">Jabatan Struktural</th>
+        <td>
+          {DATA_JABATAN_STRUKTURAL}
+        </td>
+      </tr>
+	  <!-- /patTemplate:tmpl -->
+	  <tr>
+        <th width="39%">Nama Pasien</th>
+        <td>
+          {DATA_NAMA_PASIEN}
+        </td>
+      </tr>
+	  <tr>
+        <th>Hubungan pasien dengan pegawai</th>
+        <td>
+          {DATA_RELASI_PASIEN}
+        </td>
+      </tr>
+      <tr>
+        <th>Jenis Klaim</th>
+        <td>
+          {DATA_TIPE_KLAIM}
+        </td>
+      </tr>
+	  <tr>
+        <th>Tanggal Asuransi</th>
+        <td>
+ 		  {DATA_TGL_BENEFIT}
+        </td>
+      </tr>
+      <tr>
+        <th>Tempat</th>
+        <td>
+          {DATA_TEMPAT}
+        </td>
+      </tr>
+	  <tr class="subhead">
+        <th colspan="2" valign="center">Referensi Detail Klaim </th>
+      </tr>
+	  <tr>
+	    <td colspan="2" style="padding-left:30px">
+			<!-- patTemplate:tmpl name="data_balance" -->
+			<div class="{CLASS_BALANCE}">
+			<h4>Nilai Saldo: {DATA_BALANCE}</h4>
+			</div>
+		   	<!-- /patTemplate:tmpl -->
+			<table class="table-edit" width="500" id="table_claim_list">
+				<tr class="subhead">
+					<th>No.</th>
+					<th>Klaim Referensi</th>
+					<th>Jumlah Permintaan</th>
+					<th>Nilai Klaim Disetujui</th>
+					<th>Attachment</th>
+				</tr>
+				<!-- patTemplate:tmpl name="tpl_claim_list" type="condition" conditionvar="CLAIM_LIST_EMPTY" -->
+					<!-- patTemplate:sub condition="YES" -->
+						<tr id="claim_empty"><td colspan="5" align="center"><em>-- Data tidak ditemukan --</em></td></tr>
+					<!-- /patTemplate:sub -->
+					<!-- patTemplate:sub condition="NO" -->
+						<!-- patTemplate:tmpl name="tpl_claim_item" -->
+							<tr class="{DATA_CLASS_NAME}">
+								<td align="center">{DATA_NUMBER}</td>
+								<td>{DATA_TIPE_KLAIM}</td>
+								<td>{DATA_NILAI_KLAIM}</td>
+								<td><input type="text" name="nilai_klaim_disetujui" class="gvFloat" size="23" maxlength="20" value="{DATA_NILAI_KLAIM_DISETUJUI}" /></td>
+								<td>{DATA_FILE_KLAIM}</td>
+							</tr>
+						<!-- /patTemplate:tmpl -->
+					<!-- /patTemplate:sub -->
+				<!-- /patTemplate:tmpl -->
+			</table>
+		</td>
+	  </tr>
+	   <tr>
+        <th>Total Klaim</th>
+        <td>
+          <input type="text" name="total_klaim" class="gvFloat" size="23" maxlength="20" value="{DATA_TOTAL_KLAIM}" readonly="readonly" />
+		</td>
+       </tr>
+	   <tr>
+	   	<th>Alasan Medis</th>
+		<td>
+			{DATA_ALASAN}
+		</td>
+	   </tr>
+	   <!--<tr>              
+		<th>Attachment</th>
+		<td><input type="file" name="file_attach[]" id="file_attach_1" onchange="uploadFile(this)" size="30" /></td>
+	   </tr>
+	   <tr>
+		<td colspan="2" style="padding-left:50px">
+			<table class="table-edit" id="file_attach_table" width="500">
+				<tr class="subhead">
+					<th>Filename</th>
+					<th width="33">Action</th>
+				</tr>
+				<tbody id="file_attach_tbody">
+				<tr id="file_empty"><td colspan="3" align="center"><em>-- Data not found --</em></td></tr>
+				</tbody>
+			</table>
+			<br />
+		</td>
+	   </tr>-->
+       <tr>
+	    <th>Tanggal Klaim</th>
+        <td>
+          <!-- patTemplate:gtfwrendermodule module="tanggal" submodule="tanggal" action="view" name="tgl_klaim"  / -->
+        </td>
+      </tr>
+	  <tr class="subhead">
+        <th colspan="2" valign="center">Status Klaim Asuransi</th>
+      </tr>
+	  <tr>
+        <th>Status</th>
+        <td>
+          <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="status"  / -->
+        </td>
+      </tr>
+	  <tr>
+        <th>Tanggal Status</th>
+        <td>
+          <!-- patTemplate:gtfwrendermodule module="tanggal" submodule="tanggal" action="view" name="tgl_status"  / -->
+        </td>
+      </tr>
+      <tr class="buttons">
+         <th>&nbsp;</th>
+         <td>
+            <input type="hidden" name="id" value="{DATA_ID}" />
+			<input type="hidden" name="peg_id" value="{DATA_PEG_ID}" />
+			<div style="display:none;"><input name="btnsimpan" value=" {LABEL_ACTION} " class="buttonSubmit" type="submit" ></div>
+            <input type="button" name="btnsimpanBohong" value=" Simpan " onclick="cekIsiForm()" />
+			<input name="btnbatal" id="btnbatal" value="{BUTTON}" class="buttonSubmit" type="submit">
+         </td>
+      </tr>
+   </table>
+</form>
+<!-- /patTemplate:tmpl -->

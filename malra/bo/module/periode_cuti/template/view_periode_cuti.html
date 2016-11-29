@@ -1,0 +1,109 @@
+<!-- patTemplate:tmpl name="content" -->
+<h1>{LABEL_TITLE}</h1>
+<br />
+
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+{ISI_PESAN}
+</div>
+<br />
+<!-- /patTemplate:tmpl -->
+
+<div><h1>{TITLE}</h1></div><br>
+<form method="POST" name="frmInput" action="{URL_ACTION}" class="xhr_form std_form" id="frmInput" >
+  <table class="table-edit" width="100%">
+  <tr class="subhead">
+    <th colspan="2">{LABEL_ACTION} {LABEL_INPUT}</th>
+  </tr>
+  <tr>
+  	<th width="30%">Awal Periode</th>
+    <td><!-- patTemplate:gtfwrendermodule module="tanggal" submodule="tanggal" action="view" name="cutiperAwal"  / -->	</td>
+  </tr>
+  <tr>
+  	<th width="30%">Akhir Periode</th>
+    <td><!-- patTemplate:gtfwrendermodule module="tanggal" submodule="tanggal" action="view" name="cutiperAkhir"  / -->	</td>
+  </tr>
+  <tr>
+  	<th>Total Hari Cuti</th>
+	<td><input type="text" name="total" value="{TOTAL}" size="30"/>&nbsp;*</td>
+  </tr>
+  <tr>
+  	<th>Status</th>
+	<td><input type="checkbox" name="status" value="Aktif" {STATUS_CHECKED} />Aktif</td>
+  </tr>
+  <tr class="buttons">
+    <th>&nbsp;</th>
+    <td>
+	  <input type="hidden" name="pegId" value="{PEG_ID}" size="5"/>
+      <input name="btnsimpan" value=" {LABEL_ACTION} " class="buttonSubmit" type="submit">
+      <input name="btnbalik" value=" Batal " class="buttonSubmit" type="submit" /></td>
+  </tr>
+  </table>
+</form>
+
+<br />
+<form method="POST" action="{URL_SEARCH}" class="dataquest xhr_simple_form dest_subcontent-element" id="filterbox">
+  <table>
+  <tr>
+    <th colspan="2"><h2><strong>{LABEL_PENCARIAN}</strong></h2></th>
+  </tr>
+  <tr>
+  	<th width="30%">Awal Periode</th>
+    <td><!-- patTemplate:gtfwrendermodule module="tanggal" submodule="tanggal" action="view" name="cutiperAwalSearch"  / --></td>
+  </tr>
+  <tr>
+  	<th width="30%">Akhir Periode</th>
+    <td><!-- patTemplate:gtfwrendermodule module="tanggal" submodule="tanggal" action="view" name="cutiperAkhirSearch"  / --></td>
+  </tr>
+  <tr>
+    <th>&nbsp;</th>
+    <td>
+      <input type="submit" name="btncari" value=" Cari &raquo;" class="buttonSubmit"/>
+    </td>
+  </tr>
+  </table>
+</form>
+<br />
+
+<h2>{JUDUL_DATA}</h2>
+<div class="pageBar">
+	<!-- patTemplate:gtfwrendermodule module="paging" submodule="paging" action="view" name="paging_top"  / -->
+	<div class="toolbar"> 
+   		<a class="xhr dest_subcontent-element" href="{URL_KEMBALI}" title="Kembali" tabindex="2"><img src="images/button-back.gif" alt="Kembali"> Kembali</a>
+	 </div>
+</div>
+  <table class="table-common" width="100%">
+  <tr>
+    <th width="15%">No</th>
+    <th width="63px">Aksi</th>
+    <th>Awal Periode</th>
+	<th>Akhir Periode</th>
+	<th>Total Hari Cuti</th>
+	<th>Hari Cuti yang diambil</th>
+	<th>Status</th>
+  </tr>
+  <!-- patTemplate:tmpl name="data" type="condition" conditionvar="DATA_EMPTY" -->
+  <!-- patTemplate:sub condition="YES" -->
+  <tr>
+    <td colspan="7" align="center"><em>-- Data tidak ditemukan --</em></td>
+  </tr>
+  <!-- /patTemplate:sub -->
+  <!-- patTemplate:sub condition="NO" -->
+  <!-- patTemplate:tmpl name="data_item" -->
+  <tr class="{CLASS_NAME}">
+    <td align="center" width="10%">{NUMBER}</td>
+    <td class="links">
+    <a class="xhr dest_subcontent-element" href="{URL_EDIT}" title="Ubah"><img src="images/button-edit.gif" alt="Ubah"/></a>
+    <a class="xhr dest_subcontent-element" onClick="javascript: return showBoxConfirmDelete('{ID}', '{NAMA}', '{URL_DELETE_JS}');" href="{URL_DELETE}" title="Hapus"><img src="images/button-delete.gif" alt="Hapus"/></a>
+    </td>
+    <td align="left">{CUTIPERAWAL}</td>
+	<td align="left">{CUTIPERAKHIR}</td>
+	<td align="center">{CUTIPERTOTAL}</td>
+	<td align="center">{CUTIPERDIAMBIL}</td>
+	<td align="center">{CUTIPERSTATUS}</td>
+  </tr>
+  <!-- /patTemplate:tmpl -->
+  <!-- /patTemplate:sub -->
+  <!-- /patTemplate:tmpl -->
+  </table>
+<!-- /patTemplate:tmpl -->
