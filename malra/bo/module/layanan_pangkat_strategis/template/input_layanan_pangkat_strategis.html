@@ -1,0 +1,198 @@
+<!-- patTemplate:tmpl name="content" -->
+<div class="background-blue padding-10 text-big">{TITLE}</div>
+<div class="padding-10">
+
+<div class="btn-group pull-right" style="margin-bottom: 10px;">
+  <a href="{URL_KEMBALI}" class="xhr dest_subcontent-element btn btn-sm btn-warning">Kembali</a>
+</div>
+
+<!-- patTemplate:tmpl name="pegawai" -->
+<table class="table" style="width: 100%;">
+  <tr class="background-blue-light">
+    <td colspan="2"><strong>Informasi Pegawai</strong></td>
+  </tr>
+  <tr>
+    <th style="width: 150px;">Nama</th>
+    <td>{NAMA_GELAR}</td>
+  </tr>
+  <tr>
+    <th>Tanggal Lahir</th>
+    <td>{TGL_LAHIR}</td>
+  </tr>
+  <tr>
+    <th>NIP</th>
+    <td>{NIP}</td>
+  </tr>
+  <tr>
+    <th>Pendidikan</th>
+    <td>{PENDIDIKAN}</td>
+  </tr>
+  <tr>
+    <th>Pangkat / Gol. Ruang / TMT Lama</th>
+    <td>{OLD_PNGKT_TEXT}</td>
+  </tr>
+  <tr>
+    <th>Tanggal Naik Pangkat</th>
+    <td>{TGL_NAIK}</td>
+  </tr>
+  <tr>
+    <th>Gaji Pokok Lama</th>
+    <td>{OLD_GAJI}</td>
+  </tr>
+  <tr>
+    <th>Jabatan</th>
+    <td>{OLD_JAB_NAMA}</td>
+  </tr>
+  <tr>
+    <th>Unit Kerja</th>
+    <td>{SATKER}</td>
+  </tr>
+  <tr>
+    <th>Masa Kerja</th>
+    <td>{MASA_KERJA_TAHUN} tahun {MASA_KERJA_BULAN} bulan</td>
+  </tr>
+</table>
+<!-- /patTemplate:tmpl -->
+<hr/>
+
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="{CLASS_PESAN}">
+            {ISI_PESAN}
+        </div>
+    </div>
+</div>
+<!-- /patTemplate:tmpl -->
+
+<form method="POST" action="{URL_ACTION}" id="frmInput" name="frmInput" class="xhr_form std_form" enctype="multipart/form-data">
+    <input type="hidden" name="dataId" value="{ID}" />
+    <input type="hidden" name="id_pktgol" value="{ID_PKTGOL}" />
+    <div class="table-responsive">
+        <table class="table">
+          <tr class="background-blue-light">
+            <th colspan="2">Input Data Cetak</th>
+          </tr>
+		<tr>
+			<td colspan="2">
+                <!-- patTemplate:tmpl name="button_cetak" type="condition" conditionvar="SHOW" -->
+                <!-- patTemplate:sub condition="YES" -->
+                <a href="{URL_RTF}" class="btn btn-sm btn-info pull-right" target="_blank" title="Download File RTF">Export RTF</a>
+                <!-- /patTemplate:sub -->
+                <!-- patTemplate:sub condition="NO" -->
+                <h4 style="margin: 0;">Isi form dibawah terlebih dahulu untuk mencetak.</h4>
+                <!-- /patTemplate:sub -->
+                <!-- /patTemplate:tmpl -->
+			</td>
+		</tr>
+		<tr>
+			<th width="150">Nomor SK</th>
+			<td>
+				<div class="col-sm-3">
+					<input type="text" class="form-control" name="no_sk" value="{NO_SK}">
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<th width="150">Nomor Persetujuan Teknis</th>
+			<td>
+				<div class="col-sm-3">
+					<input type="text" class="form-control" name="agree_no" value="{AGREE_NO}">
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<th width="150">Tanggal Persetujuan Teknis</th>
+			<td>
+				<div class="col-sm-4">
+					<!-- patTemplate:gtfwrendermodule module="tanggal" submodule="tanggal" action="view" name="agree_date" / -->
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<th width="150">Tanggal Mulai Berlakunya SK</th>
+			<td>
+				<div class="col-sm-4">
+					<!-- patTemplate:gtfwrendermodule module="tanggal" submodule="tanggal" action="view" name="start_sk" / -->
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<th width="150">Pangkat Golongan/Ruang Baru</th>
+			<td>
+				<div class="col-sm-4">
+					{PEGAWAI_NEW_PNGKT} - {PEGAWAI_NEW_PNGKT_NAMA}
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<th width="150">Nama Pangkat Baru</th>
+			<td>
+				<div class="col-sm-4">
+					<input type="text" class="form-control" name="new_pngkt_name" value="{NEW_PNGKT_NAME}">
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<th width="150">Masa Kerja</th>
+			<td>
+				<div class="col-sm-4">
+					{PEGAWAI_MASA_KERJA_TAHUN} tahun {PEGAWAI_MASA_KERJA_BULAN} bulan
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<th width="150">Gaji Pokok Baru</th>
+			<td>
+				<div class="col-sm-4">
+					{PEGAWAI_NEW_GAJI}
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<th width="150">Tempat Ditetapkannya Surat</th>
+			<td>
+				<div class="col-sm-4">
+					<input type="text" class="form-control" name="issue_place" value="{ISSUE_PLACE}">
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<th width="150">Tanggal Ditetapkannya Surat</th>
+			<td>
+				<div class="col-sm-4">
+					<!-- patTemplate:gtfwrendermodule module="tanggal" submodule="tanggal" action="view" name="issue_date" / -->
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<th width="150">Nama Bupati</th>
+			<td>
+				<div class="col-sm-4">
+					<input type="text" class="form-control" name="official_sk" value="{OFFICIAL_SK}">
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<th width="150">Tembusan</th>
+			<td>
+				<div class="col-sm-10">
+					<textarea class="form-control" rows="5" name="tembusan_sk">{TEMBUSAN_SK}</textarea>
+				</div>
+			</td>
+		</tr>
+		<tr class="background-blue-light">
+			<th>&nbsp;</th>
+			<td>
+                <div class="btn-group">
+                    <input type="submit" name="btnsimpan" value="Simpan" class="btn btn-info btn-xs"/>
+                    <a href="{URL_KEMBALI}" class="xhr dest_subcontent-element btn btn-warning btn-xs">Kembali</a>
+                </div>
+			</td>
+		</tr>
+        </table>
+    </div>
+</form>
+
+</div>
+<!-- /patTemplate:tmpl -->

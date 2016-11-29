@@ -1,0 +1,76 @@
+<!-- patTemplate:tmpl name="content" -->
+<div class="background-blue padding-10 text-big">MANAJEMEN DOKUMEN</div>
+<div class="padding-10">
+
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="{CLASS_PESAN}">
+            {ISI_PESAN}
+        </div>
+    </div>
+</div>
+<!-- /patTemplate:tmpl -->
+
+<h2>List Agenda</h2>
+
+<div class="row push-down-10">
+    <div class="col-md-6">
+        <!-- patTemplate:gtfwrendermodule module="paging" submodule="paging" action="view" itemviewed="{ITEM_VIEWED}" totitems="{TOTAL_ITEMS}" pagingurl="{PAGING_URL}" page="{PAGE}" cari="{CARI}"  / -->
+    </div>
+    <div class="col-md-6 text-right">
+        <!-- patTemplate:tmpl name="toolbar" -->
+        <a class="xhr dest_subcontent-element btn btn-primary btn-xs" href="{URL_ADD}" title="Tambah Agenda Baru"><span class="glyphicon glyphicon-plus"></span>&nbsp;Tambah</a>
+        <!-- /patTemplate:tmpl -->
+    </div>
+</div>
+   
+<div class="table-responsive">
+   <table class="table table-bordered table-hover">
+      <tr>
+         <th width="1%">No</th>
+		 <th width="90px">Aksi</th>
+         <th>Agenda</th>
+         <th>Penulis</th>
+         <th>Tanggal</th>
+         <th>Status</th>
+      </tr>
+      <!-- patTemplate:tmpl name="empty_agenda" visibility="hidden" -->
+      <tr>
+         <td colspan="6" align="center">--Data tidak ditemukan--</td>
+      </tr>
+      <!-- /patTemplate:tmpl -->
+      
+      <!-- patTemplate:tmpl name="list_agenda" visibility="hidden" -->
+      <tr>
+         <td>{NO}</td>
+		 <td class="links">
+            <div class="btn-group">
+                <a class="xhr dest_subcontent-element btn btn-info btn-xs" href="{URL_DETAIL}" title="Detail">
+                    <span class="glyphicon glyphicon-search"></span>
+                </a>
+                <a class="xhr dest_subcontent-element btn btn-success btn-xs" href="{URL_EDIT}" title="Ubah">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                </a>
+                <a class="xhr dest_subcontent-element btn btn-danger btn-xs" href="{URL_DELETE}" title="Hapus">
+                    <span class="glyphicon glyphicon-trash"></span>
+                </a>
+            </div>
+         </td>
+         <td>{TITLE}</td>
+         <td>{SENDER}</td>
+         <td>{START_DATE}</td>
+         <td>{STATUS}</td>
+      </tr>
+      <!-- /patTemplate:tmpl -->
+   </table>
+</div>
+   
+<div class="row push-down-10">
+    <div class="col-md-6">
+        <!-- patTemplate:gtfwrendermodule module="paging" submodule="paging" action="view" itemviewed="{ITEM_VIEWED}" totitems="{TOTAL_ITEMS}" pagingurl="{PAGING_URL}" page="{PAGE}" cari="{CARI}"  / -->
+    </div>
+</div>
+
+</div>
+<!-- /patTemplate:tmpl -->

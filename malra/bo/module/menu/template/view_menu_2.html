@@ -1,0 +1,46 @@
+<!-- patTemplate:tmpl name="content" -->
+<script>
+	function HideAllMenu(){
+		id = '{ID_MENU}';
+		arrId = id.split('|');
+		//alert(document.getElementById(arrId[0]).style.displ);
+		var i;
+		for(i=0;i<arrId.length;i++){
+			document.getElementById(arrId[i]).style.display='none';
+		}
+	}
+	
+	function ShowMenu(id){
+		HideAllMenu();
+		document.getElementById(id).style.display='block';
+	}
+</script>
+
+<div class="panel-group" id="accordion">
+    <div class="panel panel-default" id="sidebar-top-info">
+        <div class="background-blue">{DATE_INDO}</div>
+    </div>
+<!-- patTemplate:tmpl name="nav_left" -->
+    <div class="panel panel-default" >
+        <h4 class="panel-title background-blue">
+            <a data-toggle="collapse" data-parent="#accordion" href="#sidebar{UL_ID}">{LEFT_NAV_VALUE}</a>
+        </h4>
+        <div id="sidebar{UL_ID}" class="panel-collapse collapse">
+            <div class="panel-body" style="padding:0px !important">
+	        <!-- patTemplate:tmpl name="sub_nav" visibility="hidden" -->
+                <ul class="sub-menu" role="menu" aria-labelledby="dLabel">
+		            <!-- patTemplate:tmpl name="sub_nav_item" -->
+		            <li><a href="{LEFT_SUB_NAV}" class="xhr dest_subcontent-element">{LEFT_SUB_NAV_VALUE}</a></li>
+		            <!-- /patTemplate:tmpl -->
+                </ul>
+            </div>
+	        <!-- /patTemplate:tmpl -->
+        </div>
+    </div>
+<!-- /patTemplate:tmpl -->
+</div>
+
+<script>
+	//HideAllMenu();
+</script>
+<!-- /patTemplate:tmpl -->

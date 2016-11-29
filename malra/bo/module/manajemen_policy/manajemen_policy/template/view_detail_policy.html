@@ -1,0 +1,199 @@
+<!-- patTemplate:tmpl name="content" -->
+<script name="javaScript" >
+function validasi() {
+		var file=document.getElementById('file').value;
+		var display='{EDITDISPLAY}';
+		if (file==''){
+			alert('File Masih Kosong');
+			document.getElementById('file').focus();
+			return false;
+		}
+		return true;
+   }
+</script>
+<script language="javascript" type="text/javascript">
+var xpopup;
+function cariPegawai(temp,xurl) {
+	document.getElementById('temp').value=temp;
+	b=xurl;
+	showPopup(b,'Employee List',500, 600);
+}
+</script>
+
+<h1>Manajemen Dokumen</h1>
+	
+   <h2>Detail Dokumen</h2>
+   <!-- patTemplate:tmpl name="message" visibility="hidden" -->
+      <div class="{CSS}">
+        {MESSAGE}
+      </div>
+      <br />
+   <!-- /patTemplate:tmpl -->
+   <table class="table-details" style="width:650px;">
+      <tr>
+         <td colspan="2" class="subhead">
+			Detail Data
+			<div class="toolbar">
+            <a href="{URL_EDIT}"><img src="images/button-edit.gif" alt="" />Ubah</a>
+            <a href="{URL_DELETE}"><img src="images/button-delete.gif" alt="" />Hapus</a>
+            <a href="{URL_BACK}"><img src="images/button-bukunutup.gif" alt="" />Kembali</a>
+			</div>
+         </td>
+      </tr>
+	  <tr>
+         <th width="25%">Unit Kerja</th>
+         <td>{SATKERNAMA}</td>
+      </tr>
+      <tr>
+         <th>Jenis</th>
+         <td>{JNSPOLICYNAMA}</td>
+      </tr>
+      <tr>
+         <th>Nama</th>
+         <td>{POLICYNAMA}</td>
+      </tr>
+      <tr>
+         <th>External Link</th>
+         <td>{POLICYURL}</td>
+      </tr>
+      <tr>
+         <th>Tanggal Input</th>
+         <td>{POLICYTANGGALPOLICY}</td>
+      </tr>
+      <tr>
+         <th>Status</th>
+         <td>{POLICYISAKTIF}</td>
+      </tr>
+      <tr>
+         <th>Seleksi Pegawai</th>
+         <td>
+			<div style="display:{DISPLAY_SELECT};padding:3px;border:1px solid #cccccc;width:80px;margin:0;background-color:#FFF3BD;" id="btnBuka" >
+				<a href="#" id="seleksi">
+					<img border="0" src="images/detil.gif"> Tampilkan
+				</a>
+			</div>
+			<div style="display:none;padding:3px;border:1px solid #cccccc;width:80px;margin:0;background-color:#FFF3BD;" id="btnTutup" >
+				<a href="#" id="tutup">
+					<img border="0" src="images/button-detail.gif"> Tutup
+				</a>
+			</div>
+			<div style="display:{DISPLAY_ALL};">
+				Semua Pegawai
+			</div>
+		 </td>
+      </tr>
+      <tr>
+         <th colspan="2">
+				<div id="show_list" style="display:none;background-color:#cccccc;padding:3px;text-align:center;">
+					<span style="font-size:14px;font-weight:bold;">List Pegawai Yang Terseleksi</span>
+					<table class="table-common" width="100%">
+						<tr>
+							<th width="20%">NIP</th>
+							<th width="20%">Nama</th>
+							<th width="20%">Pangkat</th>
+							<th width="20%">Jabatan Fungsional</th>
+							<th width="20%">Satuan Kerja</th>
+						</tr>						
+						<!-- patTemplate:tmpl name="data" type="condition" conditionvar="DATA_EMPTY" -->
+							<!-- patTemplate:sub condition="YES" -->
+								<tr><td colspan="6" align="center"></td></tr>
+							<!-- /patTemplate:sub -->
+							<!-- patTemplate:sub condition="NO" -->
+								<!-- patTemplate:tmpl name="data_item" -->
+									<tr>
+										<td align="left">{NIP}<input type="hidden" name="data[pjb][nip][]" value="{NIP}" /></td>
+										<td align="left">{NAMAPEG}</td>
+										<td align="left">{PKTGOL}</td>
+										<td align="left">{JABFUNG}</td>
+										<td align="left">{SATKER}</td>
+									</tr>
+								<!-- /patTemplate:tmpl -->
+							<!-- /patTemplate:sub -->
+						<!-- /patTemplate:tmpl -->
+					</table>
+				</div>		 
+		 
+		 </th>
+      </tr>
+   </table>
+   <br /><br/>
+   <h3>List File</h3>
+   <form name="form_file_policy_" id="form_file_policy_" action="" method="post" enctype="multipart/form-data"></form>   
+   <form name="form_file_policy" id="form_file_policy" action="{URL_ACTION}" method="post" autocomplete=off enctype="multipart/form-data">
+      <table class="table-edit" style="width:650px;">
+         <tr>
+            <th width="25%">File</th>
+            <td>
+              <input type="file" name="file" id="file" value="{FILEPOLICYFILE}">
+            </td>
+         </tr>
+         <tr>
+            <th width="">Status</th>
+            <td><input type="checkbox" name="status" value="1" size="40" {CHECKED} /> Aktif</td>
+         </tr>
+		 <tr style="display:none">
+            <th width="20%">Is Download</th>
+            <td><input type="checkbox" name="is_download" value="1" size="40" checked /> Yes</td>
+         </tr>
+         <tr>
+			<td></td>
+            <td>
+				<input type="hidden" name="cekRec" id="cekRec" value="0" />
+                <input type="hidden" name="temp" id="temp" />
+				<input type="hidden" name="id" id="id" value="{POLICYID}">
+                <input type="hidden" name="file_id" id="file_id" value="{FILEPOLICYID}">
+                <input type="submit" name="upload"  value="Upload" onclick = "return validasi()">
+            </td>
+         </tr>
+      </table>
+   </form>
+   <br />
+   <h3>Daftar File</h3>
+   <table class="table-common" style="width:650px;">
+      <tr>
+         <th>No</th>
+         <th>File</th>
+         <th>Tanggal Upload</th>
+         <th>Status</th>
+		 <!--<th>Visibility Status</th>-->
+         <th width="100px">Aksi</th>
+      </tr>
+      <!-- patTemplate:tmpl name="empty_file_policy" visibility="hidden" -->
+      <tr>
+         <td colspan="5" align="center">--data not found--</td>
+      </tr>
+      <!-- /patTemplate:tmpl -->
+      <!-- patTemplate:tmpl name="list_file_policy" visibility="hidden" -->
+      <tr>
+         <td>{NO}</td>
+         <td>{FILEPOLICYFILE}</td>
+         <td>{FILEPOLICYTGL}</td>
+         <td align="center">{FILEPOLICYSTATUS}</td>
+		 <!--<td align="center">{FILEPOLICYISDOWNLOAD}</td>-->
+         <td class="links">
+            <a href="{URL_AKTIF}" title="{BUTTON_LABEL}"><img src="images/{BUTTON}.gif" alt="{BUTTON_LABEL}" /></a>
+			<!--<a href="{URL_DOWNLOAD}" title="{BUTTON_LABEL_DOWNLOAD}"><img src="images/{BUTTON_DOWNLOAD}.gif" alt="{BUTTON_LABEL_DOWNLOAD}" /></a>-->
+            <a href="{URL_DELETE}" title="Delete"><img src="images/button-delete.gif" alt="Delete" /></a>
+         </td>
+      </tr>
+      <!-- /patTemplate:tmpl -->
+   </table>
+   
+<script type="text/javascript" charset="utf-8"> 	
+	$(document).ready(function() {	
+		$('#seleksi').click(function() {
+			$('#show_list').slideDown("slow");
+			$('#btnTutup').slideDown("slow");
+			$('#btnBuka').slideUp("slow");
+		});	
+	});
+	$(document).ready(function() {	
+		$('#btnTutup').click(function() {
+			$('#show_list').slideUp("slow");
+			$('#btnTutup').slideUp("slow");
+			$('#btnBuka').slideDown("slow");
+		});	
+	});
+</script>
+
+<!-- /patTemplate:tmpl -->

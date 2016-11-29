@@ -1,0 +1,40 @@
+<!-- patTemplate:tmpl name="content" -->
+<div class="col-sm-12" style="margin-top:100px !important">
+<div class="col-sm-offset-3 col-sm-6">
+
+<div class="panel panel-danger" style="border-radius:4px !important">
+    <div class="panel-heading text-big"><strong>Manajemen Agenda</strong></div>
+    <div class="panel-body">
+    
+    <form name="form_policy" id="form_policy" action="<!-- patTemplate:gtfwgeturl module="manajemen_agenda" sub="{SUB}" action="view" type="html" / -->" method="POST" class="" autocomplete="off">
+      <input type="hidden" value="<!-- patTemplate:gtfwgeturl module="manajemen_agenda" sub="{SUB}" action="view" type="html" / -->" />
+      <input type="hidden" name="id" value="{ID}" />
+      <div class="" id="dialog_delete">
+         <h3>Anda yakin akan menghapus agenda ini?</h3>
+         <h4>{TITLE}</h4>
+         <p>{ARTICLE}&nbsp;<a href="{URL_MORE}" target="_blank">(detail)</a></p>
+        <div class="col-sm-12 col-xs-12">
+        <div class="col-sm-6 col-xs-6 text-right">
+            <input type="submit" name="action" class="btn btn-sm btn-danger" value="Yes" title="Data yang sudah dihapus tidak dapat dikembalikan lagi" />
+        </div>
+        <div class="col-sm-6 col-xs-6">
+            <a href="<!-- patTemplate:gtfwgeturl module="manajemen_agenda" sub="AdminListAgenda" action="view" type="html" / -->" class="xhr dest_subcontent-element btn btn-sm btn-warning">No</a>
+        </div>
+        <div class="clearfix text-right">
+          <br/>
+          <br/>
+          <span style="color:red;font-size:11px !important;text-align:right">*Data yang sudah dihapus tidak dapat dikembalikan.</span>
+        </div>
+        </div>
+
+      </div>
+    </form>
+    
+    </div>
+</div>
+
+</div>
+<div class="col-sm-3">
+</div>
+</div>
+<!-- /patTemplate:tmpl -->

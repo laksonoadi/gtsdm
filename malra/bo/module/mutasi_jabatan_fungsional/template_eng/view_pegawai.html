@@ -1,0 +1,76 @@
+<!-- patTemplate:tmpl name="content" -->
+<h1>{LABEL_TITLE}</h1>
+<br />
+
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+   {ISI_PESAN}
+</div>
+<br />
+<!-- /patTemplate:tmpl -->
+<div><h1>{TITLE}</h1></div><br>
+
+<br />
+<form method="POST" action="{URL_SEARCH}" class="dataquest xhr_simple_form dest_subcontent-element" id="filterbox">
+   <table>
+      <tr>
+         <th colspan="2"><h2><strong>{LABEL_PENCARIAN}</strong></h2></th>
+      </tr>
+      <tr>
+         <th width="30%">Category</th>
+         <td>
+            <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="list"  / -->
+         </td>
+      </tr>
+	  <tr>
+         <th width="30%">Search {LABEL_INPUT}</th>
+         <td>
+            <input type="text" name="cari" value="{CARI}" size="30"/>
+         </td>
+      </tr>
+      <tr>
+         <th>&nbsp;</th>
+         <td>
+            <input type="submit" name="btncari" value=" Search &raquo;" class="buttonSubmit"/>
+         </td>
+      </tr>
+   </table>
+</form>
+<br />
+
+<div class="pageBar">
+<!-- patTemplate:gtfwrendermodule module="paging" submodule="paging" action="view" name="paging_top"  / -->
+</div>
+<table class="table-common" width="700px">
+   <tr>
+      <th width="8px">No</th>
+      <th width="70px">Employee ID</th>
+      <th>Name</th>
+	  <th>Degree/ Class</th>
+	  <th>Work Unit</th>
+	  <th>Position</th>
+      <th width="30px">Action</th>
+   </tr>
+   <!-- patTemplate:tmpl name="data" type="condition" conditionvar="DATA_EMPTY" -->
+      <!-- patTemplate:sub condition="YES" -->
+   <tr><td colspan="7" align="center"><em>-- Data not found --</em></td></tr>
+      <!-- /patTemplate:sub -->
+      <!-- patTemplate:sub condition="NO" -->
+         <!-- patTemplate:tmpl name="data_item" -->
+   <tr class="{DATA_CLASS_NAME}">
+      <td align="center">{DATA_NUMBER}</td>
+	   <td align="center"><a href="{DATA_URL_DETAIL}" class="xhr dest_subcontent-element">{DATA_KODE}</a></td>
+      <td align="left">{DATA_NAME}</td>
+		<td align="left">{DATA_PKTGOL}</td>
+		<td align="left">{DATA_SATKER}</td>
+		<td align="left">{DATA_POSISI}</td>
+      <td class="links">
+         <a class="xhr dest_subcontent-element" href="{DATA_URL_DETAIL}" title="Edit">Select</a>
+         </a>
+      </td>
+   </tr>
+         <!-- /patTemplate:tmpl -->
+      <!-- /patTemplate:sub -->
+   <!-- /patTemplate:tmpl -->
+</table>
+<!-- /patTemplate:tmpl -->

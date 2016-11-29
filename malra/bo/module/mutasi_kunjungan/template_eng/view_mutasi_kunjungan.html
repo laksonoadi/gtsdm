@@ -1,0 +1,150 @@
+<!-- patTemplate:tmpl name="content" -->
+<h1>{LABEL_TITLE}</h1>
+<br />
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+   {ISI_PESAN}
+</div>
+<br />
+<!-- /patTemplate:tmpl -->
+<div><h1>{TITLE}</h1></div><br>
+<table class="table-edit" width="100%" >
+	<tr class="subhead">
+		<th colspan="3"><b>Personal Information</b></th>
+	</tr>
+	<tr>
+		<td rowspan="4" width="60px"><img src="upload_file/photo/{FOTO2}" width="100" height="100"></td>
+   </tr>
+   <tr>
+      <td>Name</td>
+	  <td>{NAMA}</td>
+   </tr>
+   <tr>
+      <td>Employee ID</td>
+	  <td>{NIP}</td>
+   </tr>
+   <tr>
+     
+      <td valign="top">Address</td>
+	  <td valign="top">{ALAMAT}</td>
+   </tr>
+   <tr>
+      
+   </tr>
+</table>
+<form method="POST" name="frmInput" action="{URL_ACTION}" class="xhr_form std_form" id="frmInput" enctype="multipart/form-data">
+   <table class="table-edit" width="100%" >
+      <tr class="subhead">
+         <th>{LABEL_ACTION} {LABEL_INPUT}</th>
+		 <td align="right">
+       <!--<a class="xhr dest_subcontent-element " href="{URL_BACK}" title="Kembali" tabindex="2"> /-->
+            <div class="toolbar"> 
+               <a class="xhr dest_subcontent-element " href="{URL_BACK}" title="Kembali" tabindex="2">
+               <img src="images/button-back.gif" alt="">Select Employee</a> 
+            </div>
+          </td>
+      </tr>
+     <tr>
+         <th >Overseas Visits Type</th>
+         <td>
+           <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="jeniskunj"  / -->*
+           <input name="pegKode" type="hidden" value="{ID}" />
+		   <input name="dataKode" type="hidden" value="{INPUT_ID}" />
+         </td>
+      </tr> 
+	  <tr>
+         <th >Destination</th>
+         <td>
+         <input type="text" name="tujuan" value="{INPUT_TUJUAN}"  size="40" />&nbsp;*
+         </td>
+      </tr>
+      <tr>
+         <th>Country</th>
+         <td>
+           <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="negara"  / -->*
+         </td>
+      </tr>
+      <tr>
+         <th >Origin Funds </th>
+         <td>
+           <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="asdan"  / -->
+         </td>
+      </tr>
+       <tr>
+         <th >Start Date</th>
+         <td>
+           <!-- patTemplate:gtfwrendermodule module="tanggal" submodule="Tanggal" action="view" name="mulai" / -->
+         </td>
+      </tr>
+      <tr>
+         <th >End Date</th>
+         <td>
+           <!-- patTemplate:gtfwrendermodule module="tanggal" submodule="Tanggal" action="view" name="selesai" / -->
+         </td>
+      </tr>
+      <tr>
+         <th >Information </th>
+         <td>
+           <textarea name="ket" id="ket" cols="50" rows="5">{INPUT_KET}</textarea>
+         </td>
+      </tr>
+	  <tr>
+         <th >Upload </th>
+         <td>
+           <input type="file" name="file" size="40"><br />
+				Current file: <a href="{INPUT_LINK_DOWNLOAD}">{INPUT_UPLOAD}</a>
+        <input name="upload" type="hidden" value="{INPUT_UPLOAD}" />
+         </td>
+      </tr>
+      <tr class="buttons">
+         <th>&nbsp;</th>
+         <td>
+            <input name="btnsimpan" value="{LABEL_ACTION} " class="buttonSubmit" type="submit">
+            <input name="btnbatal" value="{BUTTON}" class="buttonSubmit" type="{TYPE}">
+         </td>
+      </tr>
+   </table>
+</form>
+<br />
+<br />
+
+<div class="pageBar">
+<!-- patTemplate:gtfwrendermodule module="paging" submodule="paging" action="view" name="paging_top"  / -->
+</div>
+<table class="table-common" width="100%">
+   <tr>
+      <th width="5px" >No</th>
+      <th >Overseas Visits Type</th>
+      <th >Destination</th>
+      <th >Country</th>
+      <th >Start Date</th>
+      <th >End Date</th>
+      <th width="73px" >Action</th>
+   </tr>
+   <!-- patTemplate:tmpl name="data" type="condition" conditionvar="DATA_EMPTY" -->
+      <!-- patTemplate:sub condition="YES" -->
+   <tr><td colspan="10" align="center"><em>-- Data not found --</em></td></tr>
+      <!-- /patTemplate:sub -->
+      <!-- patTemplate:sub condition="NO" -->
+         <!-- patTemplate:tmpl name="data_item" -->
+   <tr class="{KUNJ_CLASS_NAME}">
+      <td align="center" width="5%">{KUNJ_NUMBER}</td>
+      <td align="left" width="20%">{KUNJ_JKLABEL}</td>
+	  <td align="left">{KUNJ_TUJUAN}</td>
+	  <td align="left">{KUNJ_NEGLABEL}</td>
+	  <td align="center">{KUNJ_MULAI}</td>
+	  <td align="center">{KUNJ_SELESAI}</td>
+      <td class="links">
+		 <a href="{KUNJ_LINK_DOWNLOAD_SK}" title="Decree" target="_blank"><img src="images/detil.gif" alt="Decree"/></a>
+			<!--<a href="{PAGOL_LINK_DOWNLOAD_SK}" title="SK">Lihat SK</a>/-->
+         <a class="xhr dest_subcontent-element" href="{KUNJ_URL_DETAIL}" title="detail"><img src="images/button-detail.gif" alt="detail"/></a>
+         <a class="xhr dest_subcontent-element" href="{KUNJ_URL_EDIT}" title="Ubah"><img src="images/button-edit.gif" alt="Ubah"/></a>
+         <a class="xhr dest_subcontent-element" href="{KUNJ_URL_DELETE}" title="Hapus"><img src="images/button-delete.gif" alt="Hapus"/></a>
+      </td>
+   </tr>
+         <!-- /patTemplate:tmpl -->
+      <!-- /patTemplate:sub -->
+   <!-- /patTemplate:tmpl -->
+</table>
+
+<!-- /patTemplate:tmpl -->

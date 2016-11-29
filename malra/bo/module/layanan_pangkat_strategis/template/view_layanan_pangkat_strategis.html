@@ -1,0 +1,147 @@
+<!-- patTemplate:tmpl name="content" -->
+<style>
+    .printed {
+        background-color: #99ff99;
+    }
+    .not-printed {
+        background-color: #ffff99;
+    }
+    .info-status {
+        display: inline-block;
+        width: 1em;
+        height: 1em;
+        margin: 0 3px;
+    }
+</style>
+
+<div class="background-blue padding-10 text-big" style="text-transform:uppercase">Layanan Kenaikan Pangkat Strategis</div>
+
+<div class="padding-10">
+
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+   {ISI_PESAN}
+</div>
+<br />
+<!-- /patTemplate:tmpl -->
+
+
+<div class="panel panel-default">
+    <div class="panel-heading text-big"><strong>Pencarian Data</strong></div>
+    <div class="panel-body">
+        <form method="POST" action="{URL_SEARCH}" class="form-horizontal xhr_simple_form dest_subcontent-element" id="filterbox" role="form">
+            
+            <div class="form-group">
+                <label for="awal" class="col-sm-2 control-label">Periode Awal</label>
+                <div class="col-sm-3">
+                    <!-- patTemplate:gtfwrendermodule module="tanggal" submodule="Tanggal" action="view" name="awal" / -->
+                </div>
+            </div>
+             <div class="form-group">
+                <label for="akhir" class="col-sm-2 control-label">Periode Akhir</label>
+                <div class="col-sm-3">
+                    <!-- patTemplate:gtfwrendermodule module="tanggal" submodule="Tanggal" action="view" name="akhir" / -->
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="unit_kerja" class="col-sm-2 control-label">Unit Kerja</label>
+                <div class="col-sm-3">
+                    <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="unit_kerja"  / -->
+                </div>
+            </div>
+             <div class="form-group">
+                <label for="pangkat_golongan" class="col-sm-2 control-label">Pangkat/Golongan</label>
+                <div class="col-sm-3">
+                    <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="pangkat_golongan"  / -->
+                </div>
+            </div>
+             <div class="form-group">
+                <label for="status_sk" class="col-sm-2 control-label">Status</label>
+                <div class="col-sm-2">
+                    <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="status_sk"  / -->
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                <input type="hidden" name="cari" value="cari" size="30" />
+                <button name="btncari" type="submit" class="btn btn-default btn-xs">Cari <span class="glyphicon glyphicon-search"></span></button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="row push-down-10">
+    <div class="col-md-6">
+  <!-- patTemplate:gtfwrendermodule module="paging" submodule="paging" action="view" name="paging_top"  / -->
+    </div>
+    <div class="col-md-6 text-right">
+    </div>
+</div>
+
+<div class="table-responsive" style="max-width:100%; overflow-x:scroll;margin-bottom:20px;">
+<table class="table table-bordered">
+<tr>
+	<th rowspan=2>No.</th>
+	<th rowspan=2>Aksi</th>
+	<th rowspan=2>Nama</th>
+	<th rowspan=2>NIP</th>
+	<th colspan=2>TTL</th>
+	<th colspan=2>Pangkat</th>
+	<th rowspan=2>Tanggal Naik</th>
+	<th colspan=2>Masa Kerja</th>
+	<th rowspan=2>Usia</th>
+	<th rowspan=2>Asal Usul</th>
+	<th rowspan=2>Kecamatan</th>
+</tr>
+<tr>
+	<th>Tmp</th>
+	<th>Tgl</th>
+	<th>Gol</th>
+	<th>TMT</th>
+	<th>Thn</th>
+	<th>Bln</th>
+</tr>
+<!-- patTemplate:tmpl name="table_list" type="condition" conditionvar="EMPTY" -->
+   <!-- patTemplate:sub condition="YES" -->
+    <tr><td align="center" colspan="21">---Data Tidak Ditemukan---</td></tr>
+   <!-- /patTemplate:sub -->
+   <!-- patTemplate:sub condition="NO" -->
+   <!-- patTemplate:tmpl name="table_item" -->
+     <tr class="{CLASS_STATUS}">
+  		<td style="{CLASS_NAME}">{NO}</td>
+  		<td nowrap class="links" align="center">
+          <a class="xhr dest_subcontent-element btn btn-primary btn-xs" href="{URL_INPUT}" title="Input Cetak">
+              <span class="glyphicon glyphicon-open"></span>
+          </a>
+      </td>
+  		<td nowrap>{NAMA_GELAR}</td>
+  		<td nowrap>{NIP}</td>
+  		<td nowrap>{TEMPAT_LAHIR}</td>
+  		<td nowrap>{TANGGAL_LAHIR}</td>
+  		<td nowrap>{GOLONGAN}</td>
+  		<td nowrap>{GOLONGAN_TMT}</td>
+  		<td nowrap>{TGL_NAIK}</td>
+  		<td nowrap align=right style='text-align:right'>{MASA_KERJA_TAHUN}</td>
+  		<td nowrap align=right style='text-align:right'>{MASA_KERJA_BULAN}</td>
+  		<td nowrap>{USIA}</td>
+  		<td nowrap>{ASAL}</td>
+  		<td nowrap>{KECAMATAN}</td>
+  	</tr>
+  <!-- /patTemplate:tmpl -->
+	<!-- /patTemplate:sub -->
+<!-- /patTemplate:tmpl -->
+</table>
+</div>
+
+<div class="petunjuk-area">
+   <h4>Petunjuk:</h4>
+   <ul>
+		<li>Baris yang berwarna hijau <span class="info-status printed"></span> menandakan data tersebut <strong>sudah pernah dicetak</strong>.</li>
+		<li>Baris yang berwarna kuning <span class="info-status not-printed"></span> menandakan data tersebut <strong>belum pernah dicetak</strong>.</li>
+   </ul>
+</div>
+
+</div>
+<!-- /patTemplate:tmpl -->

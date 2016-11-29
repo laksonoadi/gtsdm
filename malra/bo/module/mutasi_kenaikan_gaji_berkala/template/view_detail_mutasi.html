@@ -1,0 +1,123 @@
+<!-- patTemplate:tmpl name="content" -->
+<!--<h1>{LABEL_TITLE}</h1>-->
+<div class="background-blue padding-10 text-big">{TITLE}</div>
+
+<div class="padding-10">
+
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+   {ISI_PESAN}
+</div>
+<br />
+<!-- /patTemplate:tmpl -->
+<div class="table-responsive">
+    <table class="table" >
+	    <tr class="background-blue-light">
+		    <th colspan="3"><b>Data Pegawai</b></th>
+	    </tr>
+	    <tr>
+		    <td rowspan="4" width="60px"><img src="upload_file/photo/{PROFIL_FOTO}" width="100" height="100"></td>
+       </tr>
+       <tr>
+          <td width="120px">Nomor Pegawai</td>
+	      <td>{PROFIL_KODE}</td>
+       </tr>
+       <tr>
+          <td>Nama</td>
+	      <td>{PROFIL_NAME}</td>
+       </tr>
+       <tr>  
+          <td valign="top">Alamat</td>
+	      <td valign="top">{PROFIL_ALAMAT}</td>
+       </tr>
+    </table>
+</div>
+<!-- patTemplate:tmpl name="data" type="condition" conditionvar="DATA_EMPTY" -->
+      <!-- patTemplate:sub condition="YES" -->
+    <h1><em>-- Data tidak ditemukan --</em></h1>
+      <!-- /patTemplate:sub -->
+      <!-- patTemplate:sub condition="NO" -->
+         <!-- patTemplate:tmpl name="data_item" -->
+    <div class="table-responsive">
+       <table class="table" >
+          <tr class="background-blue-light" >
+             <th colspan="2">Detail</th>
+          </tr>
+          
+	      <tr>
+             <th >Golongan</th>
+             <td>
+               {DETAIL_PKTGOLLABEL}
+             </td>
+          </tr>
+	      <tr>
+             <th >Gaji Pokok</th>
+             <td>
+               {DETAIL_GAPOK}
+             </td>
+          </tr>
+	      <!-- <tr>
+             <th >Masa Kerja </th>
+             <td>
+               {DETAIL_MASA}
+             </td>
+          </tr> -->
+	      <tr>
+             <th >Tanggal Mulai</th>
+             <td>
+               {DETAIL_MULAI}
+             </td>
+          </tr>
+          <tr>
+             <th >Tanggal berikutnya</th>
+             <td>
+               {DETAIL_YAD}
+             </td>
+          </tr>
+	      <tr class="subhead">
+		    <th colspan="2">Surat Keputusan (SK)</th>
+	      </tr>
+	      <tr>
+             <th >Tanda Tangan</th>
+             <td>
+               {DETAIL_PEJABAT}
+             </td>
+          </tr>
+	      <tr>
+             <th >Nomor Surat</th>
+             <td>
+               {DETAIL_NOSK}
+             </td>
+          </tr>
+	      <tr>
+             <th>Tanggal SK</th>
+             <td>
+               {DETAIL_TGL_SK}
+             </td>
+          </tr>
+	      <!--<tr>
+	        <th>Status</th>
+             <td>
+               {DETAIL_STATUS}
+             </td>
+          </tr> -->
+	      <tr>
+             <th >File SK</th>
+             <td>
+               <a href="{DETAIL_LINK_DOWNLOAD}" target="_blank">{DETAIL_UPLOAD}</a>
+             </td>
+          </tr>
+    <!-- /patTemplate:tmpl -->
+          <!-- /patTemplate:sub -->
+       <!-- /patTemplate:tmpl -->
+	    <tr>
+            <td colspan="2" class="background-blue-light text-right">
+                <a class="xhr dest_subcontent-element " href="{URL_BACK}" title="Kembali" tabindex="2">
+                    <button type="button" class="btn btn-default btn-xs">Kembali</button>
+                </a>
+            </td>
+	    </tr>
+       </table>
+   </div>
+</div>
+<!-- /patTemplate:tmpl -->

@@ -1,0 +1,200 @@
+<!-- patTemplate:tmpl name="content" -->
+<!--<h1>{LABEL_TITLE}</h1>-->
+<div id="TOP" class="background-blue padding-10 text-big" style="text-transform:uppercase">{TITLE}</div>
+
+<div class="padding-10">
+
+<!-- patTemplate:gtfwrendermodule module="profile" submodule="profilebox" action="view" name="profile"  / -->
+<div class="table-responsive">
+    <table class="table" >
+      <tr class="background-blue-light">
+        <th colspan="3" class="text-center">
+                <div class="btn-group">
+                      <a class="btn btn-default btn-xs" href="javascript:Tab('LISTDATA','FORMDATA');">
+                          <span class="glyphicon glyphicon-list"></span> Lihat List Data
+                      </a>
+                    <a class="btn btn-default btn-xs" href="javascript:Tab('FORMDATA','LISTDATA');">
+                          <span class="glyphicon glyphicon-plus"></span> Tambah
+                        </a> 
+                        <a class="xhr dest_subcontent-element btn btn-default btn-xs" href="{URL_BACK}" title="Pilih Pegawai" tabindex="2">
+                            <span class="glyphicon glyphicon-share"></span> Pilih Pegawai
+                        </a> 
+                </div>
+        </th>
+      </tr>
+    </table>
+</div>
+
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<script language="javascript" type="text/javascript">
+function Tutup(){
+	document.getElementById('warning_box').style.display='none';
+}
+</script>
+<div class="{CLASS_PESAN}" id="warning_box">
+   {ISI_PESAN} <a href="javascript:Tutup();">&nbsp;[Tutup Pesan]</a>
+</div>
+<!-- /patTemplate:tmpl --> 
+<div id="FORMDATA" style="display:none">
+<div class="table-responsive">
+<form method="POST" name="frmInput" action="{URL_ACTION}" class="xhr_form std_form" id="frmInput" enctype="multipart/form-data">
+   <table class="table" >
+      <tr class="background-blue-light">
+         <th colspan="2">{LABEL_ACTION} {LABEL_INPUT}</th>
+      </tr>
+     <tr>
+         <th >Jenis Kunjungan</th>
+         <td>
+           <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="jeniskunj"  / -->*
+           <input name="pegKode" type="hidden" value="{ID}" />
+		   <input name="dataKode" type="hidden" value="{INPUT_ID}" />
+         </td>
+      </tr> 
+	  <tr>
+         <th >Tujuan</th>
+         <td>
+         <input type="text" name="tujuan" value="{INPUT_TUJUAN}"  size="40" />&nbsp;*
+         </td>
+      </tr>
+      <tr>
+         <th>Negara</th>
+         <td>
+           <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="negara"  / -->*
+         </td>
+      </tr>
+      <tr>
+         <th >Asal Dana </th>
+         <td>
+           <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="asdan"  / -->
+         </td>
+      </tr>
+       <tr>
+         <th >Tanggal Mulai</th>
+         <td>
+           <!-- patTemplate:gtfwrendermodule module="tanggal" submodule="Tanggal" action="view" name="mulai" / -->
+         </td>
+      </tr>
+      <tr>
+         <th >Tanggal Selesai</th>
+         <td>
+           <!-- patTemplate:gtfwrendermodule module="tanggal" submodule="Tanggal" action="view" name="selesai" / -->
+         </td>
+      </tr>
+      <tr>
+         <th >Petunjuk </th>
+         <td>
+           <textarea name="ket" id="ket" cols="50" rows="5">{INPUT_KET}</textarea>
+         </td>
+      </tr>
+	  <tr>
+         <th >Upload </th>
+         <td>
+           <input type="file" name="file" size="40"><br />
+				File sebelumnya: <a href="{INPUT_LINK_DOWNLOAD}">{INPUT_UPLOAD}</a>
+        <input name="upload" type="hidden" value="{INPUT_UPLOAD}" />
+         </td>
+      </tr>
+      <tr class="buttons">
+         <th>&nbsp;</th>
+         <td>
+            <div style="display:none"><input name="btnsimpan" value="{LABEL_ACTION} " class="buttonSubmit" type="submit"></div>
+      <input name="btnsimpanBohong" value="{LABEL_ACTION} " class="buttonSubmit btn btn-info btn-xs" type="button" onclick="konfirmasi();">
+            <input name="btnbatal" value="{BUTTON}" class="buttonSubmit btn btn-warning btn-xs" type="{TYPE}">
+         </td>
+      </tr>
+   </table>
+</form>
+</div>
+<div class="petunjuk-area">
+   <h4>Petunjuk:</h4>
+   <ul>
+      <li>Tanda * menunjukkan bahwa field tersebut harus diisi. </li>
+   </ul>
+</div></div>
+<div id="LISTDATA" style="display:">
+<h3>Riwayat Kunjungan Luar Negeri</h3>
+<div class="row push-down-10">
+    <div class="col-md-6">
+        <!-- patTemplate:gtfwrendermodule module="paging" submodule="paging" action="view" name="paging_top"  / -->
+    </div>
+</div>
+<div class="table-responsive">
+    <table class="table table-bordered table-hover">
+   <tr>
+      <th width="5px" >No</th>
+      <th >Jenis Mutasi Kunjungan</th>
+      <th >Tujuan</th>
+      <th >Negara</th>
+      <th >Tanggal Mulai</th>
+      <th >Tanggal Selesai</th>
+      <th width="11%" >Aksi</th>
+   </tr>
+   <!-- patTemplate:tmpl name="data" type="condition" conditionvar="DATA_EMPTY" -->
+      <!-- patTemplate:sub condition="YES" -->
+   <tr><td colspan="10" align="center"><em>-- Data tidak ditemukan --</em></td></tr>
+      <!-- /patTemplate:sub -->
+      <!-- patTemplate:sub condition="NO" -->
+         <!-- patTemplate:tmpl name="data_item" -->
+   <tr class="{KUNJ_CLASS_NAME}">
+      <td align="center" width="5%">{KUNJ_NUMBER}</td>
+      <td align="left" width="20%">{KUNJ_JKLABEL}</td>
+	  <td align="left">{KUNJ_TUJUAN}</td>
+	  <td align="left">{KUNJ_NEGLABEL}</td>
+	  <td align="center">{KUNJ_MULAI}</td>
+	  <td align="center">{KUNJ_SELESAI}</td>
+      <td class="links">
+	     <div class="btn-group" id="tombol_{KUNJ_NUMBER}">
+     
+      <a class="xhr dest_subcontent-element btn btn-primary btn-xs" href="{KUNJ_URL_DETAIL}" title="detail"><span class="glyphicon glyphicon-open"></span></a>
+
+      <a class="xhr dest_subcontent-element btn btn-success btn-xs" href="{KUNJ_URL_EDIT}" title="Ubah">
+        <span class="glyphicon glyphicon-pencil"></span>
+      </a>
+     <a class="btn btn-default btn-xs " id="download_{KUNJ_NUMBER}" href="{KUNJ_LINK_DOWNLOAD_SK}" title="SK" target="_blank"><span class="glyphicon glyphicon-download-alt"></span> </a>
+     
+      <a class="xhr dest_subcontent-element btn btn-danger btn-xs" href="{KUNJ_URL_DELETE}" title="Hapus"><span class="glyphicon glyphicon-trash"></span> </a>
+		 
+
+     </div>
+		 <script>
+			verifyShow('tombol_{KUNJ_NUMBER}','&jenis=1&params=sdm_kunjungan_ln:{KUNJ_ID}');
+			if ('{KUNJ_LINK_DOWNLOAD_SK}'==''){var download='download_{KUNJ_NUMBER}'; document.getElementById(download).style.display='none';}
+		 </script>
+      </td>
+   </tr>
+         <!-- /patTemplate:tmpl -->
+      <!-- /patTemplate:sub -->
+   <!-- /patTemplate:tmpl -->
+</table>
+</div>
+<div class="petunjuk-area">
+   <h4>Petunjuk:</h4>
+   <ul>
+    <li>Gunakan tombol <span class="glyphicon glyphicon-open"></span> untuk melihat detail data. </li>
+      <li>Gunakan tombol <span class="glyphicon glyphicon-pencil"></span> untuk mengubah data. </li>
+      <li>Gunakan tombol <span class="glyphicon glyphicon-trash"></span> untuk menghapus data. </li>
+    <li>Gunakan tombol <span class="glyphicon glyphicon-download-alt"></span> untuk mendownload SK (jika ada). </li>
+    <li><a href="#TOP" id="link-top">Klik Disini</a> untuk kembali ke atas. </li>
+   </ul>
+</div></div>
+<script language="javascript" type="text/javascript">
+function konfirmasi() {
+	document.frmInput.btnsimpan.click();
+}
+
+function Tab(aktif,nonaktif){
+	document.getElementById(aktif).style.display='';
+	document.getElementById(nonaktif).style.display='none';
+}
+
+function CekAksi(){
+    var dataId2='0'+'{INPUT_ID}';
+	if (dataId2=='0') {
+		Tab('LISTDATA','FORMDATA');
+	}else{
+		Tab('FORMDATA','LISTDATA');
+	}
+}
+CekAksi();
+</script>
+<!-- /patTemplate:tmpl -->

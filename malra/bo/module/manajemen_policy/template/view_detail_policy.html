@@ -1,0 +1,150 @@
+<!-- patTemplate:tmpl name="content" -->
+<div class="background-blue padding-10 text-big">MANAJEMEN DOKUMEN</div>
+<div class="padding-10">
+
+<!-- patTemplate:tmpl name="message" visibility="hidden" -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="{CSS}">
+            {MESSAGE}
+        </div>
+    </div>
+</div>
+<!-- /patTemplate:tmpl -->
+
+<h3>Detail Dokumen</h3>
+<div class="row push-down-10">
+    <div class="col-md-12">
+        <div class="btn-group pull-right">
+            <a class="xhr dest_subcontent-element btn btn-success btn-xs" href="{URL_EDIT}" title="Edit"><span class="glyphicon glyphicon-pencil"></span>&nbsp;Edit</a>
+				<!-- patTemplate:tmpl name="button_delete" visibility="visible" -->
+            <a class="xhr dest_subcontent-element btn btn-danger btn-xs" href="{URL_DELETE}" title="Hapus"><span class="glyphicon glyphicon-trash"></span>&nbsp;Hapus</a>
+				<!-- /patTemplate:tmpl -->
+            <a class="xhr dest_subcontent-element btn btn-warning btn-xs" href="{URL_BACK}" title="Kembali">Kembali</a>
+        </div>
+    </div>
+</div>
+<div class="table-responsive">
+    <table class="table">
+      <!-- <tr>
+         <td colspan="2" class="background-blue-light">
+			Detail Data
+         </td>
+      </tr> -->
+	  <tr>
+         <th width="20%">Unit Kerja</th>
+         <td>{SATKERNAMA}</td>
+      </tr>
+      <tr>
+         <th width="20%">Jenis</th>
+         <td>{JNSPOLICYNAMA}</td>
+      </tr>
+      <tr>
+         <th>Nama</th>
+         <td>{POLICYNAMA}</td>
+      </tr>
+      <!-- <tr>
+         <th>External Link</th>
+         <td>{POLICYURL}</td>
+      </tr> -->
+      <tr>
+         <th>Tanggal Input</th>
+         <td>{POLICYTANGGALPOLICY}</td>
+      </tr>
+      <tr>
+         <th>Status</th>
+         <td>{POLICYISAKTIF}</td>
+      </tr>
+    </table>
+</div>
+   <br />
+   <h4>Upload File</h4>
+   <form name="form_file_policy" id="form_file_policy" action="{URL_ACTION}" method="post" autocomplete=off enctype="multipart/form-data">
+    <div class="table-responsive">
+        <table class="table">
+         <tr>
+            <th width="20%">File</th>
+            <td>
+              <input type="file" name="file" id="file" value="{FILEPOLICYFILE}">
+            </td>
+         </tr>
+         <tr>
+            <th width="20%">Status</th>
+            <td><input type="checkbox" name="status" value="1" size="40" {CHECKED} /> Active</td>
+         </tr>
+		 <tr style="display:none">
+            <th width="20%">Is Download</th>
+            <td><input type="checkbox" name="is_download" value="1" size="40" checked /> Yes</td>
+         </tr>
+         <tr>
+			<td></td>
+            <td>
+                <input type="hidden" name="id" id="id" value="{POLICYID}">
+                <input type="hidden" name="file_id" id="file_id" value="{FILEPOLICYID}">
+                <input type="submit" name="upload"  value="Upload" onclick = "return validasi()">
+            </td>
+         </tr>
+        </table>
+    </div>
+   </form>
+   <br />
+   <h4>Daftar File</h4>
+<div class="table-responsive">
+    <table class="table">
+      <tr>
+         <th width="1%">No</th>
+         <th>File</th>
+         <th>Tanggal Upload</th>
+         <th>Status</th>
+		 <!--<th>Visibility Status</th>-->
+         <th width="73px">Aksi</th>
+      </tr>
+      <!-- patTemplate:tmpl name="empty_file_policy" visibility="hidden" -->
+      <tr>
+         <td colspan="5" align="center">--Data tidak ditemukan--</td>
+      </tr>
+      <!-- /patTemplate:tmpl -->
+      <!-- patTemplate:tmpl name="list_file_policy" visibility="hidden" -->
+      <tr>
+         <td>{NO}</td>
+         <td>{FILEPOLICYFILE}</td>
+         <td>{FILEPOLICYTGL}</td>
+         <td align="center">{FILEPOLICYSTATUS}</td>
+		 <!--<td align="center">{FILEPOLICYISDOWNLOAD}</td>-->
+         <td class="links">
+            <div class="btn-group">
+                <a class="xhr dest_subcontent-element btn btn-default btn-xs" href="{URL_AKTIF}" title="{BUTTON_LABEL}">
+                    <!-- patTemplate:tmpl name="file_policy_button_icon" type="condition" conditionvar="FILEPOLICYSTATUS" varscope="list_file_policy" -->
+                    <!-- patTemplate:sub condition="Active" -->
+                    <span class="glyphicon glyphicon-remove"></span>
+                    <!-- /patTemplate:sub -->
+                    <!-- patTemplate:sub condition="__default" -->
+                    <span class="glyphicon glyphicon-ok"></span>
+                    <!-- /patTemplate:sub -->
+                    <!-- /patTemplate:tmpl -->
+                </a>
+                <a class="xhr dest_subcontent-element btn btn-danger btn-xs" href="{URL_DELETE}" title="Hapus">
+                    <span class="glyphicon glyphicon-trash"></span>
+                </a>
+            </div>
+         </td>
+      </tr>
+      <!-- /patTemplate:tmpl -->
+    </table>
+</div>
+
+</div>
+
+<script name="javaScript" >
+function validasi() {
+		var file=document.getElementById('file').value;
+		var display='{EDITDISPLAY}';
+		if (file==''){
+			alert('File Masih Kosong');
+			document.getElementById('file').focus();
+			return false;
+		}
+		return true;
+   }
+</script>
+<!-- /patTemplate:tmpl -->

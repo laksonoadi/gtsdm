@@ -1,0 +1,115 @@
+<!-- patTemplate:tmpl name="content" -->
+<div class="background-blue padding-10 text-big">MANAJEMEN DOKUMEN</div>
+<div class="padding-10">
+
+<!-- patTemplate:tmpl name="message" visibility="hidden" -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="{CSS}">
+            {MESSAGE}
+        </div>
+    </div>
+</div>
+<!-- /patTemplate:tmpl -->
+	
+<div class="panel panel-default">
+    <div class="panel-heading text-big"><strong>Pencarian Data</strong></div>
+    <div class="panel-body">
+        <form method="POST" action="{URL_SEARCH}" class="form-horizontal xhr_simple_form dest_subcontent-element" id="filterbox" role="form">
+            <div class="form-group">
+                <label for="inputNama" class="col-sm-2 control-label">Nama/Deskripsi</label>
+                <div class="col-sm-2">
+                    <input type="text" name="nama_deskripsi" value="{NAMA_DESKRIPSI}" size="30" id="inputNama" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="satuan_kerja" class="col-sm-2 control-label">Unit Kerja</label>
+                <div class="col-sm-6 col-md-5">
+                    <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="satuan_kerja"  / -->
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="jenis_policy" class="col-sm-2 control-label">Jenis</label>
+                <div class="col-sm-5 col-md-3">
+                    <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="jenis_policy"  / -->
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <input type="hidden" name="btncari" value=" Cari &raquo;" class="buttonSubmit"/>
+                    <button type="submit" class="btn btn-default btn-xs">Cari <span class="glyphicon glyphicon-search"></span></button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+   
+<div class="row push-down-10">
+    <div class="col-md-6">
+        <!-- patTemplate:gtfwrendermodule module="paging" submodule="paging" action="view" itemviewed="{ITEM_VIEWED}" totitems="{TOTAL_ITEMS}" pagingurl="{PAGING_URL}" page="{PAGE}" cari="{CARI}"  / -->
+    </div>
+    <div class="col-md-6 text-right">
+        <!-- patTemplate:tmpl name="toolbar" -->
+        <a class="xhr dest_subcontent-element btn btn-primary btn-xs" href="{URL_ADD}" title="Tambah Agenda Baru"><span class="glyphicon glyphicon-plus"></span>&nbsp;Tambah</a>
+        <!-- /patTemplate:tmpl -->
+    </div>
+</div>
+
+<div class="table-responsive">
+   <table class="table table-bordered table-hover">
+      <tr>
+         <th width="1%">No</th>
+		 <th>Unit Kerja</th>
+         <th>Jenis</th>
+         <th>Nama</th>
+         <th>Tanggak</th>
+         <th>Status</th>
+         <th>Deskripsi</th>
+		 <th>Files</th>
+         <th width="90px">Aksi</th>
+      </tr>
+      <!-- patTemplate:tmpl name="empty_policy" visibility="hidden" -->
+      <tr>
+         <td colspan="9" align="center">--Data tidak ditemukan--</td>
+      </tr>
+      <!-- /patTemplate:tmpl -->
+      
+      <!-- patTemplate:tmpl name="list_policy" visibility="hidden" -->
+      <tr>
+         <td>{NO}</td>
+		 <td>{SATKERNAMA}</td>
+         <td>{JNSPOLICYNAMA}</td>
+         <td>{POLICYNAMA}</td>
+         <td>{POLICYTANGGALPOLICY}</td>
+         <td>{POLICYISAKTIF}</td>
+         <td>{POLICYKETERANGAN}</td>
+		 <td>{TOTAL_FILE}</td>
+         <td class="links">
+            <div class="btn-group">
+                <a class="xhr dest_subcontent-element btn btn-info btn-xs" href="{URL_DETAIL}" title="Detail">
+                    <span class="glyphicon glyphicon-search"></span>
+                </a>
+                <a class="xhr dest_subcontent-element btn btn-success btn-xs" href="{URL_EDIT}" title="Ubah">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                </a>
+                <!-- patTemplate:tmpl name="empty_file_upload" visibility="visible" -->
+                <a class="xhr dest_subcontent-element btn btn-danger btn-xs" href="{URL_DELETE}" title="Hapus">
+                    <span class="glyphicon glyphicon-trash"></span>
+                </a>
+                <!-- /patTemplate:tmpl -->
+            </div>
+         </td>
+      </tr>
+      <!-- /patTemplate:tmpl -->
+   </table>
+</div>
+
+<div class="petunjuk-area">
+   <h4>Petunjuk :</h4>
+   <ul>
+      <li>Kosongkan File Terlebih Dahulu Untuk Menghapus Kebijakan. </li>
+   </ul>
+</div>
+
+</div>
+<!-- /patTemplate:tmpl -->

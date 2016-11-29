@@ -1,0 +1,114 @@
+<!-- patTemplate:tmpl name="content" -->
+<script language="javascript" type="text/javascript">
+var cekrec 	= document.getElementById("cekRec").value; 
+var xset	= cekrec;
+function setParent(xid, xlabel, xsat, xidsat,xnip,xpangkat,xjabatan) {
+
+//	kombinasi js VS jQuery (syambudhi@gamatechno.com)
+	var xrec	= xset + 1;
+	
+	var delBtn	= '<a href="javascript:void(0)" title="Hapus" onclick="hapus(this)"><img src="images/button-delete.gif" alt="Hapus" border=0 /></a>';
+	var tr		= document.createElement('tr');
+	var td_id	= document.createElement('td');
+	var td_nip	= document.createElement('td');
+	var td_nama	= document.createElement('td');
+	var td_pgk	= document.createElement('td');
+	var td_jab	= document.createElement('td');
+	var td_uk	= document.createElement('td');
+	var tbodi 	= document.getElementById("tbody_pejabat_list"); 
+	var td_aksi	= document.createElement('td');
+	
+	td_nip.align	= 'left';
+	td_nama.align	= 'left';
+	td_pgk.align	= 'left';
+	td_jab.align	= 'left';
+	td_uk.align		= 'left';
+	td_aksi.align	= 'center';
+	
+	$(td_nip).html(xnip+'<input type="hidden" name="data[pjb][nip][]" value="'+xid+'" />');
+	$(td_nama).html(xlabel);
+	$(td_pgk).html(xpangkat);
+	$(td_jab).html(xjabatan);
+	$(td_uk).html(xsat);
+	$(td_aksi).html(delBtn);
+	
+	tr.appendChild(td_nip);
+	tr.appendChild(td_nama);
+	tr.appendChild(td_pgk);
+	tr.appendChild(td_jab);
+	tr.appendChild(td_uk);
+	tr.appendChild(td_aksi);
+	tbodi.appendChild(tr);
+	
+	$("#cekRec").val(xrec);
+	xset++;
+}
+function hapus(obj)
+{
+	var pesan	= confirm('Apakah Anda Yakin Akan Menghapus Data Berikut Ini ?');
+	if (pesan) {
+		obj.parentNode.parentNode.parentNode.removeChild(obj.parentNode.parentNode);
+	}
+	
+    var cekRec	= document.getElementById('cekRec').value;
+	var xrec	= cekRec - 1;
+	$("#cekRec").val(xrec);	
+}
+</script>
+<form method="POST" action="{URL_SEARCH}" class="dataquest xhr_simple_form dest_popup-subcontent" id="filterboxpopup">
+<input type="hidden" value="{PEG}" name="dataPeg" id="dataPeg">
+<input type="hidden" value="{SAT}" name="dataSatker" id="dataSatker">
+   <table>
+         <tr>
+            <th width="30%">NIP/Nama Pegawai</label></th>
+            <td width="25%"><input type="text" name="nama" value="{NAMA}" size="20" />
+            <td>
+            <input type="submit" name="btncari" value=" Cari &raquo;" class="buttonSubmit"/>
+            </td>
+         </tr>
+   </table>
+</form>
+
+<br /> 
+   <!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+   <div class="{CLASS_PESAN}">
+      {ISI_PESAN}
+   </div>
+   <br />
+   <!-- /patTemplate:tmpl -->
+        <div class="pageBar">
+         <!-- patTemplate:gtfwrendermodule module="paging2" submodule="paging" action="view" name="paging_top"  / -->
+         </div>
+		 <div style="{FR}">
+            <table class="table-common" width="100%">
+      <tr>
+         <th width="15%">No</th>
+         <th width="100px">Nomor Pegawai</th>
+         <th>Nama</th>
+         <th width="35">Pilih</th>
+      </tr>
+      <!-- patTemplate:tmpl name="data_pegawai" type="condition" conditionvar="DATA_EMPTY" -->
+         <!-- patTemplate:sub condition="YES" -->
+         <tr><td colspan="4" align="center"><em>-- Data tidak ditemukan --</em></td></tr>
+         <!-- /patTemplate:sub -->
+         <!-- patTemplate:sub condition="NO" -->
+            <!-- patTemplate:tmpl name="data_pegawai_item" -->
+            <tr class="{DATA_CLASS_NAME}">
+               <td align="center">{DATA_NUMBER}</td>
+               <td align="center">{DATA_KODE}
+               <input type="hidden" name="id" id="id" value="{DATA_ID}" >
+               <input type="hidden" name="kode" id="kode" value="{DATA_KODE}" >
+               <input type="hidden" name="nama" id="nama" value="{DATA_NAMA}" >
+               </td>
+               <td>{DATA_NAMA}</td>
+               <td class="links" align="center">
+					<a href="javascript:setParent('{DATA_ID}','{DATA_NAMA}','{DATA_SATKER}','{DATA_IDSATKER}','{DATA_NIP}','{DATA_PANGKAT}','{DATA_JABFUNG}')" onclick=""><img alt="Pilih" src="images/button-check.gif"/></a>
+               </td>
+               
+            </tr>
+            <!-- /patTemplate:tmpl -->
+		  <!-- /patTemplate:sub -->
+      <!-- /patTemplate:tmpl -->
+	  
+   </table></div>
+<!-- /patTemplate:tmpl -->

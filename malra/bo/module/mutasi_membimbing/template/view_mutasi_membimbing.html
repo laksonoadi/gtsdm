@@ -1,0 +1,133 @@
+<!-- patTemplate:tmpl name="content" -->
+<h1>{LABEL_TITLE}</h1>
+<br />
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+   {ISI_PESAN}
+</div>
+<br />
+<!-- /patTemplate:tmpl -->
+<div><h1>RIWAYAT DOSEN MEMBIMBING/MENGUJI</h1></div><br>
+<!-- patTemplate:gtfwrendermodule module="profile" submodule="profilebox" action="view" name="profile"  / -->
+<table class="table-edit" width="100%" >
+	<tr class="subhead">
+		<th colspan="2">
+			<div class="toolbar"> 
+				<a class="xhr dest_subcontent-element " href="{URL_BACK}" title="Pilih Pegawai" tabindex="2"><img src="images/button-back.gif" alt=""> Pilih Pegawai</a> 
+			</div>
+		</th>
+	</tr>
+</table><br/>
+<form method="POST" name="frmInput" action="{URL_ACTION}" class="xhr_form std_form" id="frmInput" enctype="multipart/form-data">
+   <table class="table-edit" width="100%" style="display:{INPUT_DISPLAY}">
+      <tr class="subhead">
+         <th>{LABEL_ACTION} {LABEL_INPUT}</th>
+		 <td align="right">
+          </td>
+      </tr>
+      
+	  <tr style="display:">
+         <th >Semester</th>
+         <td>
+         <input type="text" name="semester" value="{INPUT_SEMESTER}"  size="50" /> <br/>*Contoh; Genap 2009/2010 
+		   <input name="pegKode" type="hidden" value="{ID}" />
+		   <input name="dataKode" type="hidden" value="{INPUT_ID}" />
+         </td>
+      </tr>
+	  <tr>
+         <th>NIM Mahasiswa</th>
+         <td>
+			<input type="text" name="nim_mhs" value="{INPUT_NIM_MHS}"  size="50" />
+         </td>
+      </tr>
+      <tr>
+         <th>Nama Mahasiswa</th>
+         <td>
+			<input type="text" name="nama_mhs" value="{INPUT_NIM_MHS}"  size="50" />
+         </td>
+      </tr>
+	  <tr>
+         <th>Peran Pembimbing</th>
+         <td>
+			<input type="text" name="jenis" value="{INPUT_JENIS}"  size="50" />
+         </td>
+      </tr>
+	  <tr>
+         <th>Judul TA/Penelitian</th>
+         <td>
+         <input type="text" name="judul_ta" value="{INPUT_JUDUL_TA}"  size="50" />
+         </td>
+      </tr>
+      <tr>
+         <th>Status</th>
+         <td>
+           <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="status"  / -->*
+         </td>
+      </tr>
+	  <tr>
+         <th >Upload </th>
+         <td>
+            <input type="file" name="file" size="40"><br />
+				File sebelumnya: <a href="{INPUT_LINK_DOWNLOAD}">{INPUT_UPLOAD}</a>
+			<input name="upload" type="hidden" value="{INPUT_UPLOAD}" />
+         </td>
+      </tr>
+      <tr class="buttons">
+         <th>&nbsp;</th>
+         <td>
+            <input name="btnsimpan" value="{LABEL_ACTION} " class="buttonSubmit" type="submit">
+            <input name="btnbatal" value="{BUTTON}" class="buttonSubmit" type="{TYPE}">
+         </td>
+      </tr>
+   </table>
+</form>
+<br />
+<br />
+<h2>List Data</h2>
+<div class="pageBar">
+<!-- patTemplate:gtfwrendermodule module="paging" submodule="paging" action="view" name="paging_top"  / -->
+</div>
+<table class="table-common" width="100%">
+   <tr>
+      <th width="5px" >No</th>
+      <th width="75px" style="display:">Semester</th>
+	  <th >NIM Mahasiswa</th>
+      <th >Nama Mahasiswa</th>
+	  <th >Peran</th>
+	  <th >Judul TA</th>
+      <th style="display:{INPUT_DISPLAY}">Status Aktif</th>
+      <th width="63px" style="display:{INPUT_DISPLAY}">Aksi</th>
+   </tr>
+   <!-- patTemplate:tmpl name="data" type="condition" conditionvar="DATA_EMPTY" -->
+      <!-- patTemplate:sub condition="YES" -->
+   <tr><td colspan="10" align="center"><em>-- Data tidak ditemukan --</em></td></tr>
+      <!-- /patTemplate:sub -->
+      <!-- patTemplate:sub condition="NO" -->
+         <!-- patTemplate:tmpl name="data_item" -->
+   <tr class="{HKM_CLASS_NAME}">
+      <td align="center" width="5%">{HKM_NUMBER}</td>
+      <td align="left" style="display:">{HKM_SEMESTER}</td>
+	  <td align="left">{HKM_NIM_MHS}</td>
+	  <td align="left">{HKM_NAMA_MHS}</td>
+	  <td align="center">{HKM_JENIS}</td>
+	  <td align="center">{HKM_JUDUL_TA}</td>
+	  <td align="center" style="display:{HKM_DISPLAY}">{HKM_STATUS}</td>
+      <td class="links" style="display:{HKM_DISPLAY}">
+		 <a href="{HKM_LINK_DOWNLOAD_SK}" title="SK" target="_blank"><img src="images/detil.gif" alt="SK"/></a>
+			<!--<a href="{PAGOL_LINK_DOWNLOAD_SK}" title="SK">Lihat SK</a-->
+         <!--a class="xhr dest_subcontent-element" href="{HKM_URL_DETAIL}" title="detail"><img src="images/button-detail.gif" alt="detail"/></a-->
+         <a class="xhr dest_subcontent-element" href="{HKM_URL_EDIT}" title="Ubah"><img src="images/button-edit.gif" alt="Ubah"/></a>
+         <a class="xhr dest_subcontent-element" href="{HKM_URL_DELETE}" title="Hapus"><img src="images/button-delete.gif" alt="Hapus"/></a>
+      </td>
+   </tr>
+         <!-- /patTemplate:tmpl -->
+      <!-- /patTemplate:sub -->
+   <!-- /patTemplate:tmpl -->
+</table>
+<div class="petunjuk-area" style="display:{INPUT_DISPLAY}">
+   <h4>Petunjuk:</h4>
+   <ul>
+      <li>Tanda * menunjukkan bahwa field tersebut harus diisi. </li>
+   </ul>
+</div>
+<!-- /patTemplate:tmpl -->

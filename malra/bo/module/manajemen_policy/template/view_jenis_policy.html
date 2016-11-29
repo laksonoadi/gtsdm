@@ -1,0 +1,72 @@
+<!-- patTemplate:tmpl name="content" -->
+<div class="background-blue padding-10 text-big">JENIS KEBIJAKAN DAN PERATURAN</div>
+<div class="padding-10">
+
+<!-- patTemplate:tmpl name="message" visibility="hidden" -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="{CSS}">
+            {MESSAGE}
+        </div>
+    </div>
+</div>
+<!-- /patTemplate:tmpl -->
+
+<form method="POST" name="form_file_policy" action="{URL_ACTION}" id="form_file_policy" autocomplete="off" enctype="multipart/form-data" >
+    <div class="table-responsive">
+      <table class="table">
+      <tr class="background-blue-light">
+         <th colspan="2">{LABEL_AKSI} Data</th>
+      </tr>
+      <tr>
+         <th width="20%">Jenis</th>
+         <td>
+           <input type="text" size="25" name="nama" id="nama" value="{JNSPOLICYNAMA}">
+         </td>
+      </tr>
+      <tr class="background-blue-light">
+        <th></th>
+        <td>
+            <input type="hidden" name="dataId" id="dataId" value="{JNSPOLICYID}">
+            <input type="submit" name="simpan" value="{LABEL_AKSI}" class="btn btn-info btn-xs"/>
+        </td>
+      </tr>
+      </table>
+    </div>
+</form>
+
+<div class="table-responsive">
+    <table class="table table-bordered table-hover">
+      <tr>
+         <th width="1%">No</th>
+         <th>Jenis Dokumen</th>
+         <th>Tanggal</th>
+         <th width="73px">Aksi</th>
+      </tr>
+      <!-- patTemplate:tmpl name="empty_type_policy" visibility="hidden" -->
+      <tr>
+         <td colspan="4" align="center">-- Data tidak ditemukan --</td>
+      </tr>
+      <!-- /patTemplate:tmpl -->
+      <!-- patTemplate:tmpl name="list_type_policy" visibility="hidden" -->
+      <tr>
+         <td>{NO}</td>
+         <td>{JNSPOLICYNAMA}</td>
+         <td>{JNSPOLICYTGL}</td>
+         <td class="links">
+            <div class="btn-group">
+                <a class="xhr dest_subcontent-element btn btn-success btn-xs" href="{URL_EDIT}" title="Ubah">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                </a>
+                <a class="xhr dest_subcontent-element btn btn-danger btn-xs" href="{URL_DELETE}" title="Hapus">
+                    <span class="glyphicon glyphicon-trash"></span>
+                </a>
+            </div>
+         </td>
+      </tr>
+      <!-- /patTemplate:tmpl -->
+   </table>
+</div>
+
+</div>
+<!-- /patTemplate:tmpl -->

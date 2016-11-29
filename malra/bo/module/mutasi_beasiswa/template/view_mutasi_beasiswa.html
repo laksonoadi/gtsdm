@@ -1,0 +1,185 @@
+<!-- patTemplate:tmpl name="content" -->
+<div id="TOP" class="background-blue padding-10 text-big">RIWAYAT BEASISWA</div>
+
+<div class="padding-10">
+<!-- patTemplate:gtfwrendermodule module="profile" submodule="profilebox" action="view" name="profile"  / -->
+
+<div class="table-responsive">
+    <table class="table">
+       <tr class="background-blue-light">
+          <th colspan="3" class="text-center">
+                <div class="btn-group">
+                       <a  class="btn btn-default btn-xs" href="javascript:Tab('LISTDATA','FORMDATA');">
+                           <span class="glyphicon glyphicon-list"></span> Lihat List Data
+                       </a>
+                      <a  class="btn btn-default btn-xs" href="javascript:Tab('FORMDATA','LISTDATA');">
+                           <span class="glyphicon glyphicon-plus"></span> Tambah
+                        </a> 
+
+                        <a class="xhr dest_subcontent-element btn btn-default btn-xs" href="{URL_BACK}" title="Pilih Pegawai" tabindex="2">
+                            <span class="glyphicon glyphicon-share"></span> Pilih Pegawai
+                        </a> 
+                </div>
+          </th>
+       </tr>
+    </table>
+</div>
+
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<script language="javascript" type="text/javascript">
+function Tutup(){
+	document.getElementById('warning_box').style.display='none';
+}
+</script>
+<div class="{CLASS_PESAN}" id="warning_box">
+   {ISI_PESAN} <a href="javascript:Tutup();">&nbsp;[Tutup Pesan]</a>
+</div>
+<!-- /patTemplate:tmpl --> 
+<div id="FORMDATA" style="display:none">
+<div class="table-responsive">
+<form method="POST" name="frmInput" action="{URL_ACTION}" class="xhr_form std_form" id="frmInput" enctype="multipart/form-data">
+   <table class="table" >
+    <tr class="background-blue-light">
+        <th colspan="2">{LABEL_ACTION} {LABEL_INPUT}</th>
+    </tr>
+      <tr>
+         <th >Tahun Diterima</th>
+         <td>
+         <input type="text" name="tahun_diterima" value="{INPUT_TAHUN_TERIMA}"  size="5" />
+		 <input name="pegKode" type="hidden" value="{ID}" />
+		 <input name="dataKode" type="hidden" value="{INPUT_ID}" />
+         </td>
+      </tr>
+	  <tr>
+         <th>Jenjang Studi</th>
+         <td>
+           <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="jenis"  / -->*
+         </td>
+      </tr>
+	  <tr>
+         <th >Nama Beasiswa</th>
+         <td>
+         <input type="text" name="beasiswa" value="{INPUT_BEASISWA}"  size="50" />
+         </td>
+      </tr>
+       <tr>
+         <th >Nama Proyek / Sumber Dana</th>
+         <td>
+         <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="dana"  / -->*
+         </td>
+      </tr>
+	  <tr>
+         <th >Jangka Waktu </th>
+         <td>
+         Tahun : <input type="text" name="tahun" value="{INPUT_TAHUN}"  size="4" />  Bulan : <input type="text" name="bulan" value="{INPUT_BULAN}"  size="4" /> <br/><br/> ket: kosongkan jika bulan atau tahun tidak ada
+         </td>
+		 
+      </tr>
+	  <tr>
+         <th >Keterangan</th>
+         <td>
+			<textarea name="ket" id="ket" cols="50" rows="5">{INPUT_KET}</textarea>
+         </td>
+      </tr>
+      <tr>
+         <th >Upload </th>
+         <td>
+           <input type="file" name="file" size="40"><br />
+				File sebelumnya: <a href="{INPUT_LINK_DOWNLOAD}">{INPUT_UPLOAD}</a>
+        <input name="upload" type="hidden" value="{INPUT_UPLOAD}" />
+         </td>
+      </tr>
+      <tr class="buttons">
+         <th>&nbsp;</th>
+         <td>
+            <input name="btnsimpan" value="{LABEL_ACTION} " class="buttonSubmit btn btn-info btn-xs" type="submit">
+            <input name="btnbatal" value="{BUTTON}" class="buttonSubmit btn btn-warning btn-xs" type="{TYPE}">
+         </td>
+      </tr>
+   </table>
+</form>
+</div>
+<div class="petunjuk-area">
+   <h4>Petunjuk:</h4>
+   <ul>
+      <li>Tanda * menunjukkan bahwa field tersebut harus diisi. </li>
+   </ul>
+</div></div>
+<div id="LISTDATA" style="display:">
+<h1>Data Riwayat Penerimaan Beasiswa</h1><br>
+<div class="row push-down-10">
+    <div class="col-md-6">
+        <!-- patTemplate:gtfwrendermodule module="paging" submodule="paging" action="view" name="paging_top"  / -->
+    </div>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-bordered table-hover">
+   <tr>
+      <th width="5px" >No</th>
+      <th >Tahun Diterima </th>
+      <th >Jenjang Pendidikan</th>
+      <th >Nama Beasiswa</th>
+	  <th >Nama Proyek / Sumber Dana</th>
+      <th >Jangka Waktu</th>
+	  <th >Keterangan</th>
+      <th width="9%" >Aksi</th>
+   </tr>
+   <!-- patTemplate:tmpl name="data" type="condition" conditionvar="DATA_EMPTY" -->
+      <!-- patTemplate:sub condition="YES" -->
+   <tr><td colspan="10" align="center"><em>-- Data tidak ditemukan --</em></td></tr>
+      <!-- /patTemplate:sub -->
+      <!-- patTemplate:sub condition="NO" -->
+         <!-- patTemplate:tmpl name="data_item" -->
+   <tr class="{HKM_CLASS_NAME}">
+      <td align="center" width="5%">{HKM_NUMBER}</td>
+      <td align="center">{HKM_TAHUN_TERIMA}</td>
+	  <td align="center">{HKM_JENJANG}</td>
+	  <td align="left">{HKM_NAMA}</td>
+	  <td align="left">{HKM_DANA}</td>
+	  <td align="left">{HKM_TAHUN} tahun, {HKM_BULAN} bulan</td>
+	  <td align="left">{HKM_KETERANGAN}</td>
+      <td class="links">
+	     <script>verifyShow('tombol_{HKM_NUMBER}','&jenis=1&params=sdm_beasiswa:{HKM_ID}');</script>
+		 <div class="btn-group" id="tombol_{HKM_NUMBER}">
+         <a class="xhr dest_subcontent-element btn btn-success btn-xs" href="{HKM_URL_EDIT}" title="Ubah"><span class="glyphicon glyphicon-pencil"></span> </a>
+       <a class="btn btn-default btn-xs" style="display:{HKM_VIEW_DOWNLOAD}" href="{HKM_LINK_DOWNLOAD_SK}" title="Attachment" target="_blank"><span class="glyphicon glyphicon-download-alt"></span></a>
+         <a class="xhr dest_subcontent-element btn btn-danger btn-xs" href="{HKM_URL_DELETE}" title="Hapus"><span class="glyphicon glyphicon-trash"></span></a>
+		 </div>
+      </td>
+   </tr>
+         <!-- /patTemplate:tmpl -->
+      <!-- /patTemplate:sub -->
+   <!-- /patTemplate:tmpl -->
+</table>
+</div>
+<div class="petunjuk-area">
+   <h4>Petunjuk:</h4>
+   <ul>
+      <li>Gunakan tombol <span class="glyphicon glyphicon-pencil"></span> untuk mengubah data. </li>
+      <li>Gunakan tombol <span class="glyphicon glyphicon-trash"></span> untuk menghapus data. </li>
+     <li>Gunakan tombol <span class="glyphicon glyphicon-download-alt"></span> untuk mendownload SK (jika ada). </li>
+     <li><a href="#TOP" id="link-top">Klik Disini</a> untuk kembali ke atas. </li>
+   </ul>
+</div></div>
+<script language="javascript" type="text/javascript">
+function konfirmasi() {
+	document.frmInput.btnsimpan.click();
+}
+
+function Tab(aktif,nonaktif){
+	document.getElementById(aktif).style.display='';
+	document.getElementById(nonaktif).style.display='none';
+}
+
+function CekAksi(){
+    var dataId2='0'+'{INPUT_ID}';
+	if (dataId2=='0') {
+		Tab('LISTDATA','FORMDATA');
+	}else{
+		Tab('FORMDATA','LISTDATA');
+	}
+}
+CekAksi();
+</script>
+<!-- /patTemplate:tmpl -->

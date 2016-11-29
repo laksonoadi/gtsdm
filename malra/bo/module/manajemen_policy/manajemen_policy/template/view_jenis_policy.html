@@ -1,0 +1,57 @@
+<!-- patTemplate:tmpl name="content" -->
+<h1>JENIS KEBIJAKAN DAN PERATURAN</h1>
+	<!-- patTemplate:tmpl name="message" visibility="hidden" -->
+      <div class="{CSS}">
+        {MESSAGE}
+      </div>
+      <br />
+	<!-- /patTemplate:tmpl -->
+<br/>
+   <form name="form_file_policy_" id="form_file_policy_" action="" method="post" autocomplete=off enctype="multipart/form-data"></form>
+   <form name="form_file_policy" id="form_file_policy" action="{URL_ACTION}" method="post" autocomplete=off enctype="multipart/form-data">
+      <table class="table-edit" width="100%">
+	     <tr class="subhead">
+            <th colspan="2">{LABEL_AKSI} Data</th>
+         </tr>
+         <tr>
+            <th width="20%">Jenis</th>
+            <td>
+              <input type="text" size="25" name="nama" id="nama" value="{JNSPOLICYNAMA}">
+            </td>
+         </tr>
+         <tr>
+            <th>&nbsp;</th>
+			<td>
+                <input type="hidden" name="dataId" id="dataId" value="{JNSPOLICYID}">
+                <input type="submit" name="simpan"  value="{LABEL_AKSI}">
+				<input name="btnbalik" value=" Batal " class="buttonSubmit" type="button" onclick="window.location.href = '{URL_BALIK}'">
+            </td>
+         </tr>
+      </table>
+   </form>
+   <br />
+   <table class="table-common" width="100%">
+      <tr>
+         <th>No</th>
+         <th>Jenis Dokumen</th>
+         <th>tanggal</th>
+         <th width="63px">Aksi</th>
+      </tr>
+      <!-- patTemplate:tmpl name="empty_type_policy" visibility="hidden" -->
+      <tr>
+         <td colspan="4" align="center">-- Data tidak ditemukan --</td>
+      </tr>
+      <!-- /patTemplate:tmpl -->
+      <!-- patTemplate:tmpl name="list_type_policy" visibility="hidden" -->
+      <tr>
+         <td>{NO}</td>
+         <td>{JNSPOLICYNAMA}</td>
+         <td>{JNSPOLICYTGL}</td>
+         <td class="links">
+            <a class="xhr dest_subcontent-element" href="{URL_EDIT}" title="Edit"><img src="images/button-edit.gif" alt="Edit" /></a>
+            <a class="xhr dest_subcontent-element" href="{URL_DELETE}" title="Delete"><img src="images/button-delete.gif" alt="Delete" /></a>
+         </td>
+      </tr>
+      <!-- /patTemplate:tmpl -->
+   </table>
+<!-- /patTemplate:tmpl -->

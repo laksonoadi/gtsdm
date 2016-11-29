@@ -1,0 +1,396 @@
+<?php
+require_once GTFWConfiguration::GetValue( 'application', 'docroot').'module/satuan_kerja/business/satuan_kerja.class.php';
+
+class LayananKgb extends Database {
+
+   protected $mSqlFile= 'module/layanan_sk_kgb/business/layanan_kgb.sql.php';
+   
+   function __construct($connectionNumber=0) {
+      parent::__construct($connectionNumber);   
+	$this->Obj = new SatuanKerja();  
+      //  
+   }
+   
+   function GetQueryKeren($sql,$params) {
+      foreach ($params as $k => $v) {
+        if (is_array($v)) {
+          $params[$k] = '~~' . join("~~,~~", $v) . '~~';
+          $params[$k] = str_replace('~~', '\'', addslashes($params[$k]));
+        } else {
+          $params[$k] = addslashes($params[$k]);
+        }
+      }
+      $param_serialized = '~~' . join("~~,~~", $params) . '~~';
+      $param_serialized = str_replace('~~', '\'', addslashes($param_serialized));
+      eval('$sql_parsed = sprintf("' . $sql . '", ' . $param_serialized . ');');
+      //echo $sql_parsed;
+      return $sql_parsed;
+   }
+  
+//==GET== 
+   function GetComboUnitKerja(){
+      $this->Obj = new SatuanKerja();
+	  $result = $this->Obj->GetSatuanKerjaByUserId();
+	  return $result;
+      //return $this->Open($this->mSqlQueries['get_combo_unit_kerja'],array());
+   }
+   
+   function GetComboPangkatGolongan(){
+      return $this->Open($this->mSqlQueries['get_combo_pangkat_golongan'],array());
+   }
+   
+   function GetComboStatusSk() {
+       return array(
+        array(
+            'id' => '1',
+            'name' => 'Sudah Dicetak',
+        ),
+        array(
+            'id' => '0',
+            'name' => 'Belum Dicetak',
+        )
+       );
+   }
+   
+   function GetCountDataKenaikanGaji($awal, $akhir, $unit_kerja, $pangkat_golongan, $status) {
+      $sql=$this->mSqlQueries['get_data_kenaikangaji']; 
+      $result = $this->GetSatkerAndLevel();
+      if($result){
+         $satker = $result[0]['satkerId'];
+         $satlev = $result[0]['satkerLevel'];
+      } else {
+          $satker = 0;
+          $satlev = 0; 
+      }
+      
+      if($unit_kerja == "all"){
+        // All; use user's data
+        $sql=str_replace('%unit_kerja%', ' AND (satkerId="'.$satker.'" OR satkerLevel LIKE CONCAT("'.$satlev.'",".%%")) ', $sql);
+      } elseif($unit_kerja != ""){
+        $sql=str_replace('%unit_kerja%', ' AND (satkerId='.$unit_kerja.' OR satkerLevel LIKE CONCAT((SELECT satkerLevel FROM pub_satuan_kerja WHERE satkerId='.$unit_kerja.'),".%%")) ', $sql);
+      } else {
+  		  $sql=str_replace('%unit_kerja%', ' AND satkerId="-1" ' ,$sql); // Prevent search if haven't chosen
+      }
+      
+      if($pangkat_golongan != "all"){
+  		  $sql=str_replace('%pangkat_golongan%'," AND pktgolPktgolrId='".$pangkat_golongan."'",$sql);
+      }else{
+        $sql=str_replace('%pangkat_golongan%','',$sql);
+      }
+      
+      if($status != "all" && $status != "") {
+        if($status == '1') {
+            $sql = str_replace('%status1%', " INNER JOIN sdm_sk_kgb ON kgbId = id_kgb ", $sql);
+            $sql = str_replace('%status2%', '', $sql);
+        } else {
+            $sql = str_replace('%status1%', " LEFT JOIN sdm_sk_kgb ON kgbId = id_kgb ", $sql);
+            $sql = str_replace('%status2%', " AND id_kgb IS NULL ", $sql);
+        }
+      } else {
+        $sql = str_replace('%status1%', " LEFT JOIN sdm_sk_kgb ON kgbId = id_kgb ", $sql);
+        $sql = str_replace('%status2%', '', $sql);
+      }
+      
+      if($awal != "" && $akhir != ""){
+        $sql=str_replace('%awal_akhir%', sprintf(" AND (kgbTanggalAkanDatang BETWEEN '%s' AND '%s') ", $awal, $akhir), $sql);
+      }else{
+        $sql=str_replace('%awal_akhir%', '', $sql);
+      }
+      
+      $sql=str_replace('%limit%','',$sql);
+      $result=$this->Open($sql, array($awal, $akhir));
+      
+  		return sizeof($result);
+   }
+   
+   function GetDataKenaikanGaji($offset, $limit, $awal, $akhir, $unit_kerja, $pangkat_golongan, $status) {
+      $sql=$this->mSqlQueries['get_data_kenaikangaji']; 
+      
+      $result = $this->GetSatkerAndLevel();
+      if($result){
+         $satker = $result[0]['satkerId'];
+         $satlev = $result[0]['satkerLevel'];
+      } else {
+          $satker = 0;
+          $satlev = 0; 
+      }
+      
+      if($unit_kerja == "all"){
+        // All; use user's data
+        $sql=str_replace('%unit_kerja%', ' AND (satkerId="'.$satker.'" OR satkerLevel LIKE CONCAT("'.$satlev.'",".%%")) ', $sql);
+      } elseif($unit_kerja != ""){
+        $sql=str_replace('%unit_kerja%', ' AND (satkerId='.$unit_kerja.' OR satkerLevel LIKE CONCAT((SELECT satkerLevel FROM pub_satuan_kerja WHERE satkerId='.$unit_kerja.'),".%%")) ', $sql);
+      } else {
+  		  $sql=str_replace('%unit_kerja%', ' AND satkerId="-1" ' ,$sql); // Prevent search if haven't chosen
+      }
+      
+      if($pangkat_golongan != "all"){
+  		  $sql=str_replace('%pangkat_golongan%'," AND pktgolPktgolrId='".$pangkat_golongan."'",$sql);
+      }else{
+        $sql=str_replace('%pangkat_golongan%','',$sql);
+      }
+      
+      if($status != "all" && $status != "") {
+        if($status == '1') {
+            $sql = str_replace('%status1%', " INNER JOIN sdm_sk_kgb ON kgbId = id_kgb ", $sql);
+            $sql = str_replace('%status2%', '', $sql);
+        } else {
+            $sql = str_replace('%status1%', " LEFT JOIN sdm_sk_kgb ON kgbId = id_kgb ", $sql);
+            $sql = str_replace('%status2%', " AND id_kgb IS NULL ", $sql);
+        }
+      } else {
+        $sql = str_replace('%status1%', " LEFT JOIN sdm_sk_kgb ON kgbId = id_kgb ", $sql);
+        $sql = str_replace('%status2%', '', $sql);
+      }
+      
+      if($awal != "" && $akhir != ""){
+        $sql=str_replace('%awal_akhir%', sprintf(" AND (kgbTanggalAkanDatang BETWEEN '%s' AND '%s') ", $awal, $akhir), $sql);
+      }else{
+        $sql=str_replace('%awal_akhir%', '', $sql);
+      }
+      
+      $sql=str_replace('%limit%','LIMIT '.$offset.','.$limit,$sql);
+      $result=$this->Open($sql, array());
+
+      // var_dump(vsprintf($sql, array()));
+
+  		return $result;     
+   }
+   
+	function getDataKenaikanGajiById($id) {
+		$result=$this->Open($this->mSqlQueries['getDataKenaikanGajiById'], array($id));
+
+		return isset($result[0])?$result[0]:array();
+	}
+
+   function GetDataPegawai($id) {
+        $sql = $this->mSqlQueries['get_data_pegawai']; 
+
+        $userId = Security::Instance()->mAuthentication->GetCurrentUser()->GetUserId();
+
+        $result = $this->Open($this->mSqlQueries['get_satker_and_level'], array($userId));
+        if($result){
+            $satker = $result[0]['satkerId'];
+            $satlev = $result[0]['satkerLevel'];
+        } else {
+            $satker = 0;
+            $satlev = 0;
+        }
+
+        $result = $this->Open($sql, array($id, $satker, $satlev));
+
+      // var_dump(vsprintf($sql, array($id,$satker, $satlev)));
+        return $result[0];
+   }
+   
+   function CountSkKgbByKgbId($id) {
+       $result = $this->Open($this->mSqlQueries['count_sk_kgb_by_kgb_id'], array($id));
+       if(!$result) return FALSE;
+       return $result[0]['total'];
+   }
+   
+   function GetSkKgbByKgbId($id) {
+       $query = $this->mSqlQueries['get_sk_kenaikan_gaji'];
+       
+       $where = " AND id_kgb = '%s' ";
+       $query = str_replace('--where--', $where, $query);
+       $result = $this->Open($query, array($id));
+       return $result[0];
+   }
+   
+   function GetSkKgbById($id) {
+       $query = $this->mSqlQueries['get_sk_kenaikan_gaji'];
+       
+       $where = " AND id_sk = '%s' ";
+       $query = str_replace('--where--', $where, $query);
+       $result = $this->Open($query, array($id));
+       return $result[0];
+   }
+   
+   function GetSatkerAndLevel() {
+       return $this->Obj->GetSatkerAndLevel();
+   }
+   
+   
+   function Add($data) {
+      $return = $this->Execute($this->mSqlQueries['do_add'], $data);
+      return $return;
+   }
+   
+   function Update($data) {
+     $return = $this->Execute($this->mSqlQueries['do_update'], $data);
+      return $return;
+   }
+   
+   function IndonesianDate($StrDate, $StrFormat)
+	 {
+		$StrFormat = strtoupper($StrFormat);
+		switch ($StrFormat)
+		{
+			case "MM-DD-YYYY" :	list($Month, $Day, $Year) = explode("-", $StrDate);
+								break;
+			case "DD-MM-YYYY" :	list($Day, $Month, $Year) = explode("-", $StrDate);
+								break;
+			case "YYYY-MM-DD" :	list($Year, $Month, $Day) = explode("-", $StrDate);
+								break;
+			case "MM/DD/YYYY" :	list($Month, $Day, $Year) = explode("/", $StrDate);
+								break;
+			case "DD/MM/YYYY" :	list($Day, $Month, $Year) = explode("/", $StrDate);
+								break;
+			case "YYYY/MM/DD" :	list($Year, $Month, $Day) = explode("/", $StrDate);
+								break;
+		}//End switch
+
+		switch ($Month)
+		{
+			case "01" :	$StrResult = $Day." Januari ".$Year;
+						break;
+			case "02" :	$StrResult = $Day." Febuari ".$Year;
+						break;
+			case "03" :	$StrResult = $Day." Maret ".$Year;
+						break;
+			case "04" :	$StrResult = $Day." April ".$Year;
+						break;
+			case "05" :	$StrResult = $Day." Mei ".$Year;
+						break;
+			case "06" :	$StrResult = $Day." Juni ".$Year;
+						break;
+			case "07" :	$StrResult = $Day." Juli ".$Year;
+						break;
+			case "08" :	$StrResult = $Day." Agustus ".$Year;
+						break;
+			case "09" :	$StrResult = $Day." September ".$Year;
+						break;
+			case "10" :	$StrResult = $Day." Oktober ".$Year;
+						break;
+			case "11" :	$StrResult = $Day." November ".$Year;
+						break;
+			case "12" :	$StrResult = $Day." Desember ".$Year;
+						break;
+		} //end switch
+		return $StrResult;
+	}
+	
+	function IndonesianDate2($StrDate, $StrFormat)
+	 {
+		$StrFormat = strtoupper($StrFormat);
+		switch ($StrFormat)
+		{
+			case "MM-DD-YYYY" :	list($Month, $Day, $Year) = explode("-", $StrDate);
+								break;
+			case "DD-MM-YYYY" :	list($Day, $Month, $Year) = explode("-", $StrDate);
+								break;
+			case "YYYY-MM-DD" :	list($Year, $Month, $Day) = explode("-", $StrDate);
+								break;
+			case "MM/DD/YYYY" :	list($Month, $Day, $Year) = explode("/", $StrDate);
+								break;
+			case "DD/MM/YYYY" :	list($Day, $Month, $Year) = explode("/", $StrDate);
+								break;
+			case "YYYY/MM/DD" :	list($Year, $Month, $Day) = explode("/", $StrDate);
+								break;
+		}//End switch
+
+		switch ($Month)
+		{
+			case "01" :	$StrResult = $Day."-Jan-".$Year;
+						break;
+			case "02" :	$StrResult = $Day."-Feb-".$Year;
+						break;
+			case "03" :	$StrResult = $Day."-Mar-".$Year;
+						break;
+			case "04" :	$StrResult = $Day."-Apr-".$Year;
+						break;
+			case "05" :	$StrResult = $Day."-May-".$Year;
+						break;
+			case "06" :	$StrResult = $Day."-Jun-".$Year;
+						break;
+			case "07" :	$StrResult = $Day."-Jul-".$Year;
+						break;
+			case "08" :	$StrResult = $Day."-Aug-".$Year;
+						break;
+			case "09" :	$StrResult = $Day."-Sep-".$Year;
+						break;
+			case "10" :	$StrResult = $Day."-Okt-".$Year;
+						break;
+			case "11" :	$StrResult = $Day."-Nov-".$Year;
+						break;
+			case "12" :	$StrResult = $Day."-Des-".$Year;
+						break;
+		} //end switch
+		return $StrResult;
+	}
+	
+	function GetBulan($Month)
+	 {  
+	    
+			if (($Month=='1')) return "Januari ";
+			if (($Month=='2')) return "Febuari ";
+			if (($Month=='3')) return "Maret ";
+			if (($Month=='4')) return "April ";
+		  if (($Month=='5')) return "Mei ";
+			if (($Month=='6')) return "Juni ";
+			if (($Month=='7')) return "Juli ";
+		  if (($Month=='8')) return "Agustus ";
+			if (($Month=='9')) return "September ";
+			if (($Month=='10')) return "Oktober ";
+			if (($Month=='11')) return "November ";
+			if (($Month=='12')) return "Desember ";
+			
+			return "";
+	}
+	
+	function isKabisat($thn) {
+			// jika tahun habis dibagi 4, maka tahun kabisat
+			if (($thn % 4) != 0) {
+				return false;
+			} // jika tidak habis dibagi 4, maka jika habis dibagi 100 dan 400 maka tahun kabisat
+			else if ((($thn % 100) == 0) && (($thn % 400) != 0)) {
+				return false;
+			}
+			else {
+				return true;
+			}
+		}
+
+   // mendapatkan tanggal terakhir dari sutau bulan
+	function getLastDate($tahun,$bulan){
+      $kabisat = $this->isKabisat($tahun);
+      if ($kabisat == true)
+         $febLastDate = 29;
+      else
+         $febLastDate = 28;
+      
+      if (($bulan=='1')) $bln=0;
+			if (($bulan=='2')) $bln=1;
+			if (($bulan=='3')) $bln=2;
+			if (($bulan=='4')) $bln=3;
+			if (($bulan=='5')) $bln=4;
+			if (($bulan=='6')) $bln=5;
+			if (($bulan=='7')) $bln=6;
+			if (($bulan=='8')) $bln=7;
+			if (($bulan=='9')) $bln=8;
+			if (($bulan=='10')) $bln=9;
+			if (($bulan=='11')) $bln=10;
+			if (($bulan=='12')) $bln=11;
+			
+      $arrLastDate = array(31,$febLastDate,31,30,31,30,31,31,30,31,30,31);
+      for ($i=0;$i<12;$i++){
+         if ($i == $bln)  
+            //$lastDate =  $tahun.'-'.$bulan.'-'.$arrLastDate[$i];
+            $lastDate =  $arrLastDate[$i];
+      }
+      return $lastDate;
+   }
+   
+   function num_todisplay($num, $dfixed=true, $ddec=2) {
+      // ex :  2980.87 -> 2.980,87
+      if (is_numeric($num)) {
+         $check = explode(".", $num);
+         $dec = (isset($check[1])) ? strlen($check[1]) : 0;
+         if ($dfixed == true) $dec = $ddec;
+         $num = number_format($num, $dec, ',', '.');
+      }
+      return $num;
+   }
+}
+?>

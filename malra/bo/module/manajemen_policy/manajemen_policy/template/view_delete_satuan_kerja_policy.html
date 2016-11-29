@@ -1,0 +1,25 @@
+<!-- patTemplate:tmpl name="content" -->
+<div class="mainContent-fp-element-full">
+	<div class="mainContent-fp-element-full-head"><h2>Kebijakan dan Peraturan Unit Kerja</h2></div>
+	<div class="mainContent-fp-element-full-body">   
+	
+   <form name="form_policy_" id="form_policy_" action="" method="post" autocomplete=off></form>
+   <form name="form_policy" id="form_policy" action="<!-- patTemplate:gtfwgeturl module="manajemen_policy" sub="{SUB}" action="view" type="html" / -->" method="post" autocomplete=off>
+      <table class="table-form" width="100%">
+         <tr>
+            <td colspan="2" align="center"><h3>Anda yakin akan menghapus departement ini?</h3></td>
+         </tr>
+         <tr>
+            <td colspan="2"><h4>{SATKERNAMA}<h4></td>
+         </tr>
+         <tr>
+            <td colspan="2">
+               <input type="hidden" name="id" value="{SATKERPOLICYID}" />
+               <input type="submit" name="action" value="Yes" />
+               <input type="submit" name="action" value="No" />
+            </td>
+         </tr>
+      </table>
+   </form>
+</div></div>
+<!-- /patTemplate:tmpl -->

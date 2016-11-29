@@ -1,0 +1,70 @@
+<!-- patTemplate:tmpl name="content" -->
+<script language="javascript" type="text/javascript">
+function cekIsiForm(){
+    
+    var satker=document.getElementById('satker').selectedIndex;
+    
+    if (satker==0) {
+        alert('Unit Kerja Harus Dipilih');
+        document.form_policy.satker.focus();
+        return false;
+    }
+	
+	document.form_policy.actionsave.click();  
+	
+  }
+</script>
+<div class="mainContent-fp-element-full">
+	<div class="mainContent-fp-element-full-head"><h2>Kebijakan dan Peraturan Unit Kerja</h2></div>
+	<div class="mainContent-fp-element-full-body">
+	
+   <!-- patTemplate:tmpl name="message" type="simpleCondition" requiredvars="MESSAGE" -->
+      <h4>{MESSAGE}</h4>  
+   <!-- /patTemplate:tmpl -->
+   
+   <form name="form_policy_" id="form_policy_" action="" method="post" autocomplete=off enctype="multipart/form-data"></form>
+   <form name="form_policy" id="form_policy" action="<!-- patTemplate:gtfwgeturl module="manajemen_policy" sub="{SUB}" action="view" type="html" / -->" method="post" autocomplete=off enctype="multipart/form-data">
+      <table class="table-details" width="100%">
+         <tr class="subhead">
+			<th valign="center" nowrap="nowrap">Data</th>
+			<th valign="right" style="padding:0pt">
+				<div class="toolbar">
+					<a class="xhr dest_subcontent-element" href="{URL_BACK}" title="Kembali" tabindex="3"><img src="images/button-back.gif" alt="Kembali"> Kembali </a>
+				</div>
+			</th>
+		 </tr>
+		 <tr>
+            <th width="20%">Unit Kerja</th>
+            <td>
+              <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="satker"  / --> *
+            </td>
+         </tr>
+		 <tr>
+            <th>Deskripsi</th>
+            <td><textarea cols="50" rows="5" name="deskripsi">{SATKERPOLICYDESKRIPSI}</textarea></td>
+         </tr>
+         <tr>
+            <th>Tanggal</th>
+            <td>
+               <!-- patTemplate:gtfwrendermodule module="tanggal" submodule="Tanggal" action="view" name="tgl_satker_policy" / -->
+               <!--<input type="text" class="input" readonly name="tanggal_policy" value="{DATE}" readonly />
+               <a href="javascript:void(0)" onclick="if(self.gfPop)gfPop.fPopCalendar(document.form_policy.tanggal_policy,null,null);">...</a>-->
+            </td>
+         </tr>
+         <tr>
+            <th>Status</th>
+            <td><input type="checkbox" name="status" value="Aktif" size="40" {CHECKED} /> Aktif</td>
+         </tr>
+         <tr>
+            <th>&nbsp;</th>
+			<td>
+               <input type="hidden" name="id" value="{SATKERPOLICYID}" />
+               <div style="display:none"><input name="actionsave" id="actionsave" value="Save" class="buttonSubmit" type="submit" ></div>
+               <input type="button" name="actionsaveBohong" value="Simpan" onclick="cekIsiForm()" />
+               <input type="button" name="action" value="Batal" onclick="location.href='<!-- patTemplate:gtfwgeturl module="manajemen_policy" sub="SatuanKerjaPolicy" action="view" type="html" / -->';" />
+            </td>
+         </tr>
+      </table>
+   </form>
+</div></div>
+<!-- /patTemplate:tmpl -->
