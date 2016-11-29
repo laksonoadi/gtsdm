@@ -1,0 +1,106 @@
+<!-- patTemplate:tmpl name="content" -->
+<script language="javascript">
+    function resetPassword(id,userName){
+      var answer=confirm('Are you sure to reset password username : '+userName.toString()+' ?');
+      
+      if (answer==false) {
+        return false;  
+      }
+      
+      document.frmReset.id.value=id;  
+      document.frmReset.btnresetpass.click();
+    }
+</script>
+<h1>Managemen Pengguna Portal</h1>
+<br />
+<form method="POST" action="{URL_SEARCH}" class="dataquest xhr_simple_form dest_subcontent-element" id="filterbox">
+   <table>
+      <tr>
+         <th colspan="2"><h2><strong>Pencarian</strong></h2></th>
+      </tr>
+      <tr>              
+         <th width="20%"><input type="checkbox" {USER_CHECKED} value="user" name="check[user]">&nbsp; Username</th>
+         <td width="25"><input type="text" name="username" value="{USERNAME}" size="30" /></td>
+      </tr>
+      <tr>         
+         <th><input type="checkbox" {REAL_CHECKED} value="real" name="check[real]">&nbsp; Real Name</th>
+         <td><input type="text" name="realname" value="{REALNAME}" size="30" /></td>
+         
+                
+      </tr>
+      <tr>
+         <th>&nbsp;</th>
+         <td>
+            <input type="submit" name="btncari" value=" Tampilkan &raquo;" class="buttonSubmit"/>
+         </td>
+      </tr>
+   </table>
+</form>
+
+<form method="POST" name="frmReset" action="{URL_SEARCH}" >
+   <div style="display:none">
+    <input type="hidden" name="id" value="0">
+    <input type="hidden" name="status" value="reset">
+    <input type="submit" name="btnresetpass" value="" class="buttonSubmit"/>
+   </div>
+</form>
+
+<br />
+   
+   <!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+   <div class="{CLASS_PESAN}">
+      {ISI_PESAN}
+   </div>
+   <!-- /patTemplate:tmpl -->
+
+   <br />
+   
+   <div class="pageBar">
+   <!-- patTemplate:gtfwrendermodule module="paging" submodule="paging" action="view" name="paging_top"  / -->
+      <div class="toolbar"> 
+   		<a class="xhr dest_subcontent-element" href="{USER_URL_ADD}" title="Tambah Data Pengguna" tabindex="2"><img src="images/button-add.gif" alt=""> Tambah</a> 	
+      </div>
+   </div>
+   <table class="table-common" width="100%">
+      <tr>
+         <th width="5">No</th>
+         <th width="135">Aksi</th>
+         <th>Username</th>
+         <th>Nama Asli</th>
+         <th>Group</th>
+         <th>Unit</th>
+         <th>Status</th>
+      </tr>
+      <!-- patTemplate:tmpl name="data_user" type="condition" conditionvar="USER_EMPTY" -->
+         <!-- patTemplate:sub condition="YES" -->
+         <tr><td colspan="7" align="center"><em>-- Data Not Found --</em></td></tr>
+         <!-- /patTemplate:sub -->
+         <!-- patTemplate:sub condition="NO" -->
+            <!-- patTemplate:tmpl name="data_user_item" -->
+            <tr class="{USER_CLASS_NAME}">
+               <td align="center">{USER_NUMBER}</td>
+               <td class="links" align="center">
+                  <a class="xhr dest_subcontent-element" href="{USER_URL_EDIT}" title="Ubah"><img src="images/button-edit.gif" alt="Ubah"/></a>
+                  <a class="xhr dest_subcontent-element" href="{USER_URL_EDIT_STATUS}" title="{USER_AKSI_STATUS}"><img src="images/button-{USER_ICON_STATUS}.gif" alt="{USER_AKSI_STATUS}"/></a>
+                  <a class="xhr dest_subcontent-element" href="{USER_URL_DELETE}" title="Hapus"><img src="images/button-delete.gif" alt="Hapus" /></a>                                    
+                  <a href="javascript:void(0)" onclick="resetPassword({USER_USER_ID},'{USER_USER_NAME}')" title="Reset Password" tabindex="2" style="display:{USER_DISPLAY_STATUS}"><img src="images/button-reset_password.gif" alt="Reset Password"></a>                                   	
+               </td>
+               <td>{USER_USER_NAME}</td>
+               <td>{USER_REAL_NAME}</td>
+               <td>{USER_GROUP_NAME}</td>
+               <td>{USER_UNIT_NAME}</td>
+               <td>{USER_STATUS}</td>
+            </tr>
+            <!-- /patTemplate:tmpl -->
+         <!-- /patTemplate:sub -->
+      <!-- /patTemplate:tmpl -->
+   </table>
+   <br /> 
+   
+   <div class="petunjuk-area">
+      <h4>Informasi:</h4>
+      <ul>
+         <li>Pengguna bisa dicari menggunakan username atau nama asli. </li>
+      </ul>
+   </div>
+<!-- /patTemplate:tmpl -->

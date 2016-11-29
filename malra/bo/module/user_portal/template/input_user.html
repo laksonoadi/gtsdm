@@ -1,0 +1,148 @@
+<!-- patTemplate:tmpl name="content" -->
+<script name="javaScript" >
+
+   function updateGroup() {
+      document.frmInput.username.value='';
+      document.frmInput.password.value='';
+      document.frmInput.retype_password.value='';
+      document.frmInput.realname.value='';
+      GtfwAjax.replaceContentWithUrl('combo_group', '<!-- patTemplate:gtfwgeturl module="user_portal" sub="comboGroup" action="view" type="html" htmlentities="no" / -->&ascomponent=1&unit=' + document.frmInput.unit_kerja.value);
+   }
+   
+   function updatePegawai() {
+      document.frmInput.username.value='';
+      document.frmInput.password.value='';
+      document.frmInput.retype_password.value='';
+      document.frmInput.realname.value='';
+	  
+	  document.getElementById('pegawaipopup_label').value='';
+	  document.getElementById('pegawaipopup').value='';
+	  document.getElementById('username').value='';
+	  document.getElementById('password').value='';
+	  document.getElementById('retype_password').value='';
+	  document.getElementById('realname').value='';
+      /*GtfwAjax.replaceContentWithUrl('combo_pegawai', '<!-- patTemplate:gtfwgeturl module="user_portal" sub="comboPegawai" action="view" type="html" htmlentities="no" / -->&ascomponent=1&group=' + document.frmInput.group.value);*/
+   }
+   
+   function bukaPopupPegawai(xurl) {
+		var group=document.getElementById('group').value;
+		var display='{EDITDISPLAY}';
+		if (group==''){
+			alert('Group harus dipilih terlebih dahulu');
+			document.getElementById('group').focus();
+		}else if (display=='none'){
+			alert('Modus edit tidak boleh mengganti pegawai');
+		}else{
+			showPopup(xurl+'&dataGroup='+group,'Pegawai List',500, 500);
+		}
+    }
+   
+   function setUser() {
+      var indeks=document.getElementById('pegawai').selectedIndex;
+      var temp=document.getElementById('pegawai').options[indeks].text;
+      var group=document.frmInput.group.value;
+      var temp2=temp.split(' - ');
+      var nip=temp2[0];
+      var nama=temp2[1];
+      var pre='';
+      
+      if (group==59) { pre='e'; }else
+      if (group==53) { pre='a'; }else
+      if (group==60) { pre='ad';}
+      
+      document.frmInput.username.value=pre+nip;
+      document.frmInput.password.value=nip;
+      document.frmInput.retype_password.value=nip;
+      document.frmInput.realname.value=nama;
+      
+   }
+
+</script>
+<h1>Managemen Pengguna Portal</h1>
+<br />
+
+   <!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+   <div class="notebox-alert">
+      {ISI_PESAN}
+   </div>
+   <br />
+   <!-- /patTemplate:tmpl -->
+   
+   
+   <form method="POST" action="{URL_ACTION}" class="xhr_form std_form" id="frmInput" name="frmInput" >
+      <table class="table-edit" width="100%">
+         <tr class="subhead">
+            <th colspan="2">{JUDUL} User</th>
+         </tr>
+         <tr>
+            <th>Unit</th>
+            <td>
+              <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="unit_kerja"  / -->
+            *</td>
+         </tr>
+         <tr>
+            <th>Group</th>
+            <td><div id="combo_group">
+              <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="group"  / -->
+            *</div></td>
+         </tr>
+         <tr>
+            <th>Nama Pegawai</th>
+            <td><div id="combo_pegawai" style="display:none">
+              <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="pegawaicadangan"  / -->
+            </div>
+				<input type="text" name="pegawaipopup_label" id="pegawaipopup_label" value="{PEGAWAIPOPUP_LABEL}" size="40" readonly="readonly" />
+                <input type="hidden" name="pegawai" id="pegawaipopup" value="{PEGAWAIPOPUP}" />
+                <input type="button"  name="but_pegawaipopup" onclick="bukaPopupPegawai('{URL_POPUP_PEGAWAIPOPUP}')" value=" ... " /> *&nbsp;
+			</td>
+         </tr>
+         <tr>
+            <th width="150">Username</th>
+            <td><input type="text" name="username" id="username" value="{USERNAME}" size="25" maxlength="32" {READONLY} /> *
+            <input type="hidden" name="usr" value="{USR}"  />
+            <input type="hidden" name="user_id" value="{USER_ID}"  />
+            <input type="hidden" name="cari" value="{CARI}"  /></td>
+         </tr>
+         <!-- patTemplate:tmpl name="view_password" visibility="hidden" -->
+         <tr>
+            <th>Password</th>
+            <td><input type="password" name="password" id="password" size="25" maxlength="32" /> *</td>
+         </tr>
+         <tr>
+            <th>Retype Password</th>
+            <td><input type="password" name="retype_password" id="retype_password" size="25" maxlength="32" /> *</td>
+         </tr>
+         <!-- /patTemplate:tmpl -->
+         <tr>
+            <th>Nama Asli</th>
+            <td><input type="text" name="realname" id="realname" value="{REALNAME}" size="35" maxlength="100" readonly /></td>
+         </tr>
+         <tr>
+            <th>Desripsi</th>
+            <td><textarea name="deskripsi" cols="32">{DESKRIPSI}</textarea></td>
+         </tr>
+         <tr>
+            <th>Status</th>
+            <td><input type="radio" name="status" id="status_yes" value="Yes" {STATUS}/><label for="status_yes">Aktif<label>
+            <input type="radio" name="status" id="status_no" value="No" {NSTATUS}/><label for="status_no">Tidak Aktif<label></td>
+         </tr>
+         <tr class="buttons">
+            <th>&nbsp;
+            </th>
+            <td>
+               <input type="submit" name="btnsimpan" value=" Simpan " class="buttonSubmit"/>
+               <input  type="submit"  name="btnbalik" value=" Batal " class="buttonSubmit"/>
+            </td>
+         </tr>
+      </table>
+   </form>
+   
+   <br/>
+   
+   <div class="petunjuk-area">
+      <h4>Informasi:</h4>
+      <ul>
+         <li>Tanda * Dibutuhkan. </li>
+      </ul>
+   </div>
+<!-- /patTemplate:tmpl -->

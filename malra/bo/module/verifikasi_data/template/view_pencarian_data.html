@@ -1,0 +1,136 @@
+<!-- patTemplate:tmpl name="content" -->
+<div class="background-blue padding-10 text-big">PENCARIAN DATA</div>
+<div class="padding-10 clearfix">
+
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="{CLASS_PESAN}">
+            {ISI_PESAN}
+        </div>
+    </div>
+</div>
+<script>
+var prnt = document.getElementById('body-application');
+var chld = document.getElementById('popup-container');
+$("#popup-container").fadeOut(300,function(){prnt.removeChild(chld);});
+</script>
+<!-- /patTemplate:tmpl -->
+
+<div class="panel panel-default">
+    <div class="panel-heading text-big"><strong>Pencarian Data</strong></div>
+    <div class="panel-body">
+        <form method="POST" action="{URL_SEARCH}" class="form-horizontal xhr_simple_form dest_subcontent-element" id="filterbox" role="form">
+            <div class="form-group">
+                <label for="inputKeyword" class="col-sm-2 control-label">Kata Kunci</label>
+                <div class="col-sm-2">
+                    <input type="text"  required="required" name="search_keyword" value="{SEARCH_KEYWORD}" size="50" id="inputKeyword" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <input type="hidden" name="cari" value="cari"/>
+                    <input type="hidden" name="btncari" value=" Cari &raquo;" class="buttonSubmit"/>
+                    <button type="submit" class="btn btn-default btn-xs">Cari <span class="glyphicon glyphicon-search"></span></button>
+                </div>
+            </div>
+        </form>
+        <br/>
+
+        <h4>Hasil Pencarian : </h4><hr/>
+
+        <div class="col-md-12">
+   <!-- patTemplate:tmpl name="data_list_data" type="condition" conditionvar="DATA_EMPTY" -->
+      <!-- patTemplate:sub condition="YES" -->
+		<!-- patTemplate:tmpl name="data_list_data_no" -->
+		Pencarian Anda - <b>{SEARCH_KEYWORD}</b> - tidak cocok dengan data apa pun.<br/>
+		Saran:
+		<ul type="square">
+		<li>Pastikan semua kata dieja dengan benar.
+		<li>Coba kata kunci yang lain.
+		<li>Coba kata kunci yang lebih umum.
+		</ul>
+		<!-- /patTemplate:tmpl -->
+      <!-- /patTemplate:sub -->
+      <!-- patTemplate:sub condition="NO" -->
+	    <div class="pageBar">
+		<!-- patTemplate:gtfwrendermodule module="paging" submodule="paging" action="view" name="paging_top"  / -->
+		</div>
+		<br/>
+        <!-- patTemplate:tmpl name="data_list_data_item" -->
+		<!-- <br/>
+		<a class="xhr dest_subcontent-element" href="{DATA_URLDATA}" style="text-decoration:none">
+		&nbsp;<font color="blue" size="3"><b><u>{DATA_JUDUL}</u></b></font><br/>
+		</a>
+		<table>
+		<tr>
+			{DATA_ICON}
+			<td>
+			<font color="green">{DATA_NAMA} [{DATA_NIP}]</font><br/>
+			<font color="black">{DATA_URAIAN}</font><br/>
+			<font color="grey">{DATA_DOKUMEN}</font><br/>
+			</td>
+		</tr>
+		</table> -->
+		<div class="row">
+			<div>
+				<a class="xhr dest_subcontent-element" href="{DATA_URL_PEGDETAIL}" title="Lihat Detail"><strong>{DATA_NAMA}</strong></a>
+				<small class="text-muted">(NIP. {DATA_NIP})</small>
+			</div>
+			<div>{DATA_SATKER}</div>
+			<div class="col-sm-8" style="display:none">
+				<span>Mutasi: </span>
+				<div>
+					<a class="xhr dest_subcontent-element btn btn-info btn-xs" href="{DATA_URL_STATUS}">Status</a>
+					<a class="xhr dest_subcontent-element btn btn-info btn-xs" href="{DATA_URL_SATKER}">Unit Kerja</a>
+					<a class="xhr dest_subcontent-element btn btn-info btn-xs" href="{DATA_URL_PANGGOL}">Pangkat/Golongan</a>
+					<a class="xhr dest_subcontent-element btn btn-info btn-xs" href="{DATA_URL_JABFUNG}">Jabatan Fungsional</a>
+					<a class="xhr dest_subcontent-element btn btn-info btn-xs" href="{DATA_URL_JABSTRUK}">Jabatan Struktural</a>
+					<a class="xhr dest_subcontent-element btn btn-info btn-xs" href="{DATA_URL_GAJI}">Kenaikan Gaji Berkala</a>
+				</div>
+			</div>
+			<div class="col-sm-4" style="display:none">
+				<span>Riwayat: </span>
+				<div>
+					<a class="xhr dest_subcontent-element btn btn-info btn-xs" href="{DATA_URL_DIDIK}">Pendidikan</a>
+					<a class="xhr dest_subcontent-element btn btn-info btn-xs" href="{DATA_URL_LATIH}">Pelatihan</a>
+				</div>
+			</div>
+		</div>
+		<hr />
+         <!-- /patTemplate:tmpl -->
+      <!-- /patTemplate:sub -->
+   <!-- /patTemplate:tmpl -->
+</div>
+    </div>
+</div>
+
+<div id="form-additional">
+</div>
+<br/>
+
+
+</div>
+
+<script language="javascript" type="text/javascript">
+	function centangin_semua(varname, start_num, end_num) {
+		var obj = document.getElementById('cek_all');
+		var ceks;
+		if(obj.checked == false) {
+			for(i=start_num;i<=end_num;i++) {
+				ceks = document.getElementById(varname + i);
+				if(ceks) ceks.checked = false;
+			}
+		} else {
+			for(i=start_num;i<=end_num;i++) {
+				ceks = document.getElementById(varname + i);
+				if(ceks) ceks.checked = true;
+			}
+		}
+	}
+
+	function getInputForm(){
+      GtfwAjax.replaceContentWithUrl('form-additional','<!-- patTemplate:gtfwgeturl module="pangkat_golongan" sub="inputPangkatGolongan" action="view" type="html" htmlentities="no" / -->&ascomponent=1');
+   }
+</script>
+<!-- /patTemplate:tmpl -->

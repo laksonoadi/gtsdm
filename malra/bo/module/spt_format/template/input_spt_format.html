@@ -1,0 +1,62 @@
+<!-- patTemplate:tmpl name="content" -->
+<h1>{TITLE}</h1>
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+	{ISI_PESAN}
+</div>
+<!-- /patTemplate:tmpl -->
+<br />
+
+<form method="POST" action="{URL_ACTION}" id="frmInput" name="frmInput" class="xhr_form std_form" enctype="multipart/form-data">
+	<input type="hidden" name="dataId" value="{DATAID}" />
+	<table class="table-edit" width="100%">
+		<tr class="subhead">
+			<th colspan="2">{JUDUL}</th>
+		</tr>
+		<tr>
+			<th width="150">Kategori</th>
+			<td>
+				<!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="kategori"/ -->
+			*</td>
+		</tr>
+		<tr>
+			<th>File</th>
+			<td>
+				<input type="file" name="fileUpload" />
+				<br>
+				<cite>
+					File Format : doc, docx, xls, xlsx, rtf, txt
+				</cite>
+			</td>
+		</tr>
+		<tr>
+			<th>Keterangan</th>
+			<td>
+				<textarea name="keterangan">{KETERANGAN}</textarea> *
+			</td>
+		</tr>
+		<tr>
+			<th>Aktif</th>
+			<td>
+				<label><input type="radio" name="aktif" value="0" {AKTIF_CHECKED_0}> Tidak</label>
+				<label><input type="radio" name="aktif" value="1" {AKTIF_CHECKED_1}> Ya</label>
+			</td>
+		</tr>
+		<tr class="buttons">
+			<th>&nbsp;</th>
+			<td>
+				<input type="submit" name="btnsimpan" value="{BUTTONLABEL}" class="buttonSubmit"/>
+				<a href="{URL_KEMBALI}" class="xhr dest_subcontent-element button">Batal</a>
+			</td>
+		</tr>
+	</table>
+</form>
+
+<br />
+<div class="petunjuk-area">
+   <h4>Petunjuk:</h4>
+   <ul>
+      <li>Tanda * menunjukkan bahwa field tersebut harus diisi .</li>
+   </ul>
+</div>
+<!-- /patTemplate:tmpl -->

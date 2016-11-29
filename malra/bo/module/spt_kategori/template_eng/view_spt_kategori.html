@@ -1,0 +1,93 @@
+<!-- patTemplate:tmpl name="content" -->
+<script language="javascript" type="text/javascript">
+var checkAll=function(){
+	var obj = document.forms['form_list'].elements['id[]'];
+	if(obj){
+		var checked = this.checked;
+		if(obj.length){
+			for(var i=0,m=obj.length;i<m;++i){
+				obj[i].checked = checked;
+			}
+		}else obj.checked = checked;
+	}
+};
+</script>
+
+<h1>{TITLE} </h1>
+<br />
+<form method="POST" action="{URL_SEARCH}" class="dataquest xhr_simple_form dest_subcontent-element" id="filterbox">
+   <table>
+      <tr>
+         <th colspan="2"><h2><strong>Search</strong></h2></th>
+      </tr>
+      <tr>         
+         <th>Name</th>
+         <td><input type="text" name="nama" value="{NAMA}" size="30" /></td>    
+      </tr>
+      <tr>
+         <th>&nbsp;</th>
+         <td>
+            <input type="submit" name="btncari" value=" Cari &raquo;" class="buttonSubmit"/>
+         </td>
+      </tr>
+   </table>
+</form>
+
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+   {ISI_PESAN}
+</div>
+<!-- /patTemplate:tmpl -->
+<br />
+
+<div id="form-additional">
+</div>
+
+<form method="POST" action="{URL_DELETE}" id="form_list" name="form_list" class="xhr_simple_form dest_subcontent-element" >
+<div class="pageBar">
+		<!-- patTemplate:gtfwrendermodule module="paging" submodule="paging" action="view" name="paging_top"  / -->
+   <div class="toolbar"> 
+    <a class="xhr dest_subcontent-element" href="{URL_ADD}" title="Add">
+      <img src="images/button-add.gif" alt="">Add
+	</a> 	
+	<input type="submit" id="btnHapus" name="btnHapus" value="Delete" class="inputButton" />
+   </div>
+</div>
+
+<table class="table-common" width="100%">
+   <tr>
+      <th width="5"><input type="checkbox" name="cek_all" id="cek_all" value="ALL" 
+	  onclick="checkAll.call(this);" /></th>
+      <th width="10">No</th>
+      <th width="70">Aksi</th>
+      <th>Category Name</th>
+   </tr>
+   <!-- patTemplate:tmpl name="data" type="condition" conditionvar="DATA_EMPTY" -->
+      <!-- patTemplate:sub condition="YES" -->
+         <tr><td colspan="4" align="center"><em>-- Data not found --</em></td></tr>
+      <!-- /patTemplate:sub -->
+      <!-- patTemplate:sub condition="NO" -->
+         <!-- patTemplate:tmpl name="data_item" -->
+         <tr class="{CLASS_NAME}">
+            <td>
+				<input type="checkbox" name="id[]" id="id_{NO}" value="{ENCID}" /> 
+				<input type="hidden" name="name[{ENCID}]" value="{NAMA}" />
+			</td>
+            <td align="center">{NO}</td>
+            <td class="links" align="center">
+               <a href="{URL_UPDATE}" class="xhr dest_subcontent-element" title="Ubah">
+                  <img src="images/button-edit.gif" alt="Ubah"/>
+               </a>
+               <a href="{URL_DELETE}" class="xhr dest_subcontent-element" title="Hapus">
+                  <img src="images/button-delete.gif" alt="Hapus"/>
+               </a>     
+            </td>
+            <td align="left">{NAMA}</td>
+         </tr>
+         <!-- /patTemplate:tmpl -->         
+      <!-- /patTemplate:sub -->
+   <!-- /patTemplate:tmpl -->
+   
+</table>
+</form>
+<!-- /patTemplate:tmpl -->

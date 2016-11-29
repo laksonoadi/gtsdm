@@ -1,0 +1,140 @@
+<!-- patTemplate:tmpl name="content" -->
+<script language="javascript" type="text/javascript">
+	function centangin_semua(varname, start_num, end_num) {
+		var obj = document.getElementById('cek_all');
+		var ceks;
+		if(obj.checked == false) {
+			for(i=start_num;i<=end_num;i++) {
+				ceks = document.getElementById(varname + i);
+				if(ceks) ceks.checked = false;
+			}
+		} else {
+			for(i=start_num;i<=end_num;i++) {
+				ceks = document.getElementById(varname + i);
+				if(ceks) ceks.checked = true;
+			}
+		}
+	}
+	
+	function getInputForm(){
+      GtfwAjax.replaceContentWithUrl('form-additional','<!-- patTemplate:gtfwgeturl module="pangkat_golongan" sub="inputPangkatGolongan" action="view" type="html" htmlentities="no" / -->&ascomponent=1');
+   }
+</script>
+<div class="background-blue padding-10 text-big"> VERIFIKASI DATA PEGAWAI </div>
+<div class="padding-10">
+
+<div class="panel panel-default">
+    <div class="panel-heading text-big"><strong>Pencarian</strong></div>
+    <div class="panel-body">
+
+<form method="POST" action="{URL_SEARCH}" class="form-horizontal xhr_simple_form dest_subcontent-element" id="filterbox">
+            <div class="form-group">
+                <label for="nip" class="col-sm-2 control-label">Jenis Data</label>
+                <div class="col-sm-4">
+         <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="jenis_data"  / -->
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="nip" class="col-sm-2 control-label">NIP/Nama Pegawai</label>
+                <div class="col-sm-4">
+<input type="text" class="form-control input-sm" name="nip_nama" value="{KEYWORD}" size="30" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="nip" class="col-sm-2 control-label">Status Data</label>
+                <div class="col-sm-4">
+    <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="status_data"  / -->
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="nip" class="col-sm-2 control-label">Jumlah Perhalaman</label>
+                <div class="col-sm-4">
+         <!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="item_viewed"  / -->
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-default btn-xs">Cari <span class="glyphicon glyphicon-search"></span></button>
+               <input type="hidden" name="cari" value="cari"/>
+                </div>
+            </div>
+            </form>
+      </div>
+</div>
+
+
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+   {ISI_PESAN}
+</div>
+<script>
+var prnt = document.getElementById('body-application');
+var chld = document.getElementById('popup-container');
+$("#popup-container").fadeOut(300,function(){prnt.removeChild(chld);});
+</script>
+<!-- /patTemplate:tmpl -->
+
+<div id="form-additional">
+</div>
+
+<form method="POST" action="{URL_DELETE}" id="form_list" class="xhr_simple_form dest_subcontent-element" >
+<div class="row push-down-10">
+    <div class="col-md-12">
+		<!-- patTemplate:gtfwrendermodule module="paging" submodule="paging" action="view" name="paging_top"  / -->
+    </div>
+</div>
+
+
+<div class="table-responsive">
+    <table class="table table-bordered table-hover">
+   <tr>
+      <th width="8px">No</th>
+      <th >Jenis Data</th>
+	  <th >Nama [NIP]</th>
+      <th >Uraian Data</th>
+	  <th width="4%" >Status</th>
+	  <th width="7%">Dokumen Penyerta</th>
+      <th width="10%">Aksi</th>   
+   </tr>
+   <!-- patTemplate:tmpl name="data_list_data" type="condition" conditionvar="DATA_EMPTY" -->
+      <!-- patTemplate:sub condition="YES" -->
+         <tr><td colspan="7" align="center"><em>-- Data tidak ditemukan --</em></td></tr>
+      <!-- /patTemplate:sub -->
+      <!-- patTemplate:sub condition="NO" -->
+         <!-- patTemplate:tmpl name="data_list_data_item" -->
+         <tr class="{MPG_CLASS_NAME}">
+            <td align="center">{DATA_NO}</td>
+            <td align="left">{DATA_JUDUL}</td>
+			<td align="left">{DATA_NAMA}<br/>[{DATA_NIP}]</td>
+            <td align="left">{DATA_URAIAN}</td>
+			<td align="center"><img src="images/{DATA_STATUS_ICON}" alt="{DATA_STATUS_LABEL}" title="{DATA_STATUS_LABEL}"></td>
+			<td align="center">{DATA_DOKUMEN}</td>
+            <td >
+               <a href="javascript:void(0)" onclick="showPopup('{DATA_URL_UPDATE_STATUS}','Verifikasi Data',500,350);" title="Verifikasi Data" class=" btn-primary btn-sm"><img src="images/button-check.gif">Verifikasi</a>
+            </td>
+            
+         </tr>
+         <!-- /patTemplate:tmpl -->         
+      <!-- /patTemplate:sub -->
+   <!-- /patTemplate:tmpl -->
+</table>
+</div>
+</form>
+
+<div class="petunjuk-area">
+   <h4>Petunjuk:</h4>
+   <ul>
+		<li>Gunakan tombol <img src="images/button-check.gif" alt="Verifikasi"/> untuk verifikasi data. </li>
+		<li>Gunakan tombol <img src="images/button-simpan.gif" alt="Download"/> untuk mendownload dokumen. </li>
+		<li>Icon <img src="images/icon-warning-16x16.gif" alt="Tidak Ada Dokumen"/> artinya tidak ada dokumen yang dilampirkan. </li>
+		<!-- patTemplate:tmpl name="data_list_petunjuk_status" -->
+		<li>Icon <img src="images/{DATA_VERSTATICON}" alt="{DATA_VERSTATNAME}"/> artinya status data {DATA_VERSTATNAME}. </li>
+		<!-- /patTemplate:tmpl -->   
+   </ul>
+</div>
+</div>
+<!-- /patTemplate:tmpl -->

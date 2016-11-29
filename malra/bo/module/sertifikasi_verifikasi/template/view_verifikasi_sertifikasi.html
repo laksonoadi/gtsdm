@@ -1,0 +1,194 @@
+<!-- patTemplate:tmpl name="content" -->
+<script language="javascript" type="text/javascript">
+function konfirmasi() {
+	if(document.getElementById('btnbatal').value == " Reset "){
+      document.getElementById('btnbatal').type = "reset";
+      document.frmInput.onReset();
+    }else{
+      document.getElementById('btnbatal').type = "submit";
+      document.frmInput.onSubmit();
+    }
+}
+
+function centangin_semua(varname, start_num, end_num) {
+    var obj = document.getElementById('cek_all');		
+	if(obj.checked == false) {
+		for(i=start_num;i<=end_num;i++) {
+			var id=varname + i;
+			document.getElementById(id).checked = false;
+		}
+	} else {
+		for(i=start_num;i<=end_num;i++) {
+			var id=varname + i;
+			if (document.getElementById(id).style.display!='none'){
+				document.getElementById(id).checked = true;
+			}
+		}
+	}
+}
+
+function cek(){
+	nilai = document.getElementById('semua').checked;
+	if (nilai) {
+		document.getElementById('keyword').value='';
+		document.getElementById('keyword').disabled=true;
+	}else{
+		document.getElementById('keyword').disabled=false;
+	}
+}
+</script>
+
+<h1>VERIFIKASI DATA DOSEN</h1>
+<br />
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="{CLASS_PESAN}">
+   {ISI_PESAN}
+</div>
+<br />
+<!-- /patTemplate:tmpl -->
+<div class="pageBar">
+    <div class="toolbar"> 
+		<a href="{URL_EXCEL_ALL}" title="Eksport Excel" tabindex="2"><img src="images/button-excel.gif" alt="">Download Peserta Sertifikasi Semua Tahun</a>
+		<a href="{URL_EXCEL}" title="Eksport Excel" tabindex="2"><img src="images/button-excel.gif" alt="">Download Peserta Sertifikasi Tahun {SRTFKTAHUN}</a>
+	</div>
+</div>
+<form method="POST" action="{URL_SEARCH}" class="dataquest xhr_simple_form dest_subcontent-element" id="filterbox">
+   <table>
+	  <tr>
+         <th><h2><strong>Pencarian</strong></h2></th>
+      </tr>
+	  <tr>
+         <th>Tahun Sertifikasi</th>
+		 <td>
+			<!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="srtfkId_cari"  / -->*
+		 </td>
+      </tr>
+	  <tr>
+         <th></th>
+		 <td>
+		    <input type="checkbox" name="semua" id="semua" onclick="cek();" {SEMUA}>&nbsp;&nbsp;Tampilkan Semua </br>
+		 </td>
+      </tr>
+	  <tr>
+         <th>NIP/Nama/No Peserta</th>
+		 <td>
+			<input type="text" name="keyword" id="keyword" size="35" value="{KEYWORD}" {KEYWORD_DISABLED}>
+		 </td>
+      </tr>
+      <tr>              
+         <th width="30%">&nbsp;</th>
+         <td><input type="submit" name="btncari" value=" Cari &raquo;" class="buttonSubmit"/></td>
+      </tr>
+   </table>
+</form>
+<form method="POST" name="frmInput" action="{URL_AKSI}" class="xhr_form std_form" id="frmInput" enctype="multipart/form-data">
+	<input type="hidden" name="srtfkTahun" size="10" maxlength="20" value="{SRTFKTAHUN}" />
+	<input type="hidden" name="srtfkId" value="{SRTFKID}">
+    <!-- patTemplate:tmpl name="detil_pegawai" type="condition" conditionvar="DATA_EMPTY" -->
+		<!-- patTemplate:sub condition="YES" --><!-- /patTemplate:sub -->
+    	<!-- patTemplate:sub condition="NO" -->
+			<br>
+			<h2>Daftar Dosen Yang Diusulkan Menjadi Peserta Sertifikasi Dosen</h2>
+			<div class="pageBar">
+				<div class="toolbar"> 
+					<input name="btnsimpan" value=" Verifikasi " class="inputButton" type="submit">
+					<input name="btnsimpan2" value=" UnVerifikasi " class="inputButton" type="submit">
+				</div>
+			</div>
+			<input type="hidden" name="op" id="op" value="verify" id="op">
+			<table width="900px">
+			<tr>
+				<td colspan="2">
+					<table class="table-common" width="100%" id="table-komponen" >
+						<!-- patTemplate:tmpl name="header" -->
+						<tr>
+							<th rowspan="2">No</th>	
+							<th rowspan="2"><input type="checkbox" style="display:" name="cek_all" id="cek_all" value="ALL" onclick="centangin_semua('verifikasi_id_','{FIRST_NUMBER}','{LAST_NUMBER}');" /></th>	 
+							<th rowspan="2">Nomor Peserta</th>
+							<th rowspan="2">NIP/NIK</th>
+							<th rowspan="2">NIDN</th>
+							<th rowspan="2">Nama Dosen</th>
+							<th rowspan="2">TTL</th>
+							<th rowspan="2">Jabatan Akademik</th>
+							<th rowspan="2">Pangkat</th>
+							<th rowspan="2">Bidang Ilmu</th>
+							<th colspan="3">Pendidikan</th>
+							<th rowspan="2">Status</th>
+						</tr>
+						<!-- /patTemplate:tmpl -->
+						<tr>
+							<th>S1</th>
+							<th>S2</th>
+							<th>S3</th>
+						</tr>
+						<tbody id="table-pegawai">
+    						<!-- patTemplate:tmpl name="data_peserta_sertifikasi" -->
+    						<tr>
+								<td>
+									{DATA_NUMBER}
+    							</td>
+								<td align="center">
+									{DATA_SRTFKDETVERIFIKASI_STATUSI}
+    								<input type="checkbox" name="data[tambah][srtfkdetVerifikasi][{DATA_SRTFKDETPEGID}]" id="verifikasi_id_{DATA_NUMBER}" style="display:{DATA_SRTFKDETVERIFIKASIK}"/>
+									<input type="hidden" name="data[tambah][srtfkdetIsVerifikasi][{DATA_SRTFKDETPEGID}]" value="{DATA_SRTFKDETISVERIFIKASI}"/>
+    							</td>
+								<td>
+									<input type="text" size="15" name="data[tambah][srtfkdetNoPeserta][{DATA_SRTFKDETPEGID}]" value="{DATA_SRTFKDETNOPESERTA}" />
+    							</td>
+    							<td>
+									{DATA_SRTFKDETNIP}
+    							</td>
+								<td>
+									{DATA_SRTFKDETNIDN}
+    							</td>
+    							<td>
+									<input type="hidden" name="data[tambah][srtfkdetPegId][]" value="{DATA_SRTFKDETPEGID}" />
+									{DATA_SRTFKDETNAMA}
+    							</td>
+								<td>
+									{DATA_SRTFKDETTEMPATLAHIR}, {DATA_SRTFKDETTANGGALLAHIR}
+    							</td>
+								<td>
+									{DATA_SRTFKDETJABFUNGRNAMA}
+    							</td>
+								<td>
+									{DATA_SRTFKDETPKTGOLRID}
+    							</td>
+								<td>
+									{DATA_SRTFKDETBIDANGNAMA}
+    							</td>
+								<td>
+									{DATA_SRTFKDETS1}
+    							</td>
+								<td>
+									{DATA_SRTFKDETS2}
+    							</td>
+								<td>
+									{DATA_SRTFKDETS3}
+    							</td>
+								<td align="center">
+									<img src="images/{DATA_SRTFKDETVERIFIKASI_STATUS}">
+    							</td>
+    						</tr>
+    						<!-- /patTemplate:tmpl -->
+						</tbody>
+					</table>
+				</td>
+			</tr>
+		</table>
+    <!-- /patTemplate:sub -->
+<!-- /patTemplate:tmpl -->
+    				
+</form>
+<div class="petunjuk-area">
+   <h4>Petunjuk:</h4>
+   <ul>
+      <li>Cari Dosen yang ingin diverifikasi terlebih dahulu berdasarkan NIP atau Nama atau Nomor Peserta.</li>
+      <li>Proses Verifikasi adalah proses pembuatan Nomor Peserta Sertifikasi Dosen. </li>
+	  <li>Pilih Dosen yang akan diverifikasi dengan mencentang pada kolom Verify. </li>
+	  <li>Kosongkan kolom Nomor Peserta jika ingin membuat Nomor Peserta secara otomatis. </li>
+	  <li><img src="images/lamp-green.gif"> Artinya dosen sudah diverifikasi. </li>
+	  <li><img src="images/lamp-red.gif"> Artinya dosen belum diverifikasi. </li>
+   </ul>
+</div>
+<!-- /patTemplate:tmpl -->

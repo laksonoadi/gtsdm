@@ -1,0 +1,105 @@
+<!-- patTemplate:tmpl name="content" -->
+<div class="background-blue padding-10 text-big">Manajemen Pengguna</div>
+<div class="padding-10">
+
+<div class="panel panel-default">
+    <div class="panel-heading text-big"><strong>Pencarian Data</strong></div>
+    <div class="panel-body">
+        <form method="POST" action="{URL_SEARCH}" class="form-horizontal xhr_simple_form dest_subcontent-element" id="filterbox" role="form">
+            <div class="form-group">
+                <label for="awal" class="col-sm-2 control-label">User Name</label>
+                <div class="col-sm-10">
+                    <input type="text" name="username" value="{USERNAME}" />
+                    <!-- <input type="checkbox" {USER_CHECKED} value="user" name="check[user]"> -->
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="akhir" class="col-sm-2 control-label">Nama Asli</label>
+                <div class="col-sm-10">
+                    <input type="text" name="realname" value="{REALNAME}" />
+                    <!-- <input type="checkbox" {REAL_CHECKED} value="real" name="check[real]"> -->
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <input type="hidden" name="cari" value="cari" size="30" />
+                    <button type="submit" class="btn btn-default btn-xs">Cari <span class="glyphicon glyphicon-search"></span></button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="{CLASS_PESAN}">
+            {ISI_PESAN}
+        </div>
+    </div>
+</div>
+<!-- /patTemplate:tmpl -->
+
+<div class="row push-down-10">
+    <div class="col-md-6">
+        <!-- patTemplate:gtfwrendermodule module="paging" submodule="paging" action="view" name="paging_top"  / -->
+    </div>
+    <div class="col-md-6 text-right">
+            <a class="xhr dest_subcontent-element btn btn-info btn-xs" href="{USER_URL_ADD}" title="Tambah Data Pengguna" tabindex="2">
+	            <span class="glyphicon glyphicon-plus"></span> Add
+	        </a>
+    </div>
+</div>
+<div class="table-responsive">
+   <table class="table table-bordered table-hover">
+      <tr>
+         <th width="5">No</th>
+         <th width="93">Aksi</th>
+         <th>User Name</th>
+         <th>Nama Asli</th>
+         <th>Group</th>
+         <th>Unit</th>
+         <th>Status</th>
+      </tr>
+      <!-- patTemplate:tmpl name="data_user" type="condition" conditionvar="USER_EMPTY" -->
+         <!-- patTemplate:sub condition="YES" -->
+         <tr><td colspan="7" align="center"><em>-- Data tidak ditemukan --</em></td></tr>
+         <!-- /patTemplate:sub -->
+         <!-- patTemplate:sub condition="NO" -->
+            <!-- patTemplate:tmpl name="data_user_item" -->
+            <tr class="{USER_CLASS_NAME}">
+               <td align="center">{USER_NUMBER}</td>
+               <td>
+                    <div class="btn-group">
+	                        <a class="xhr dest_subcontent-element btn btn-success btn-xs" href="{USER_URL_EDIT}" title="Edit">
+		                        <span class="glyphicon glyphicon-pencil"></span>
+		                    </a>
+		                    <a class="xhr dest_subcontent-element btn btn-warning btn-xs" href="{USER_URL_UPDATEPASSWORD}" title="Ubah Password" tabindex="2">
+	                            <span class="glyphicon glyphicon-lock"></span>
+                            </a> 
+		                    <a class="xhr dest_subcontent-element btn btn-danger btn-xs" href="{USER_URL_DELETE}" title="Delete">
+	                            <span class="glyphicon glyphicon-trash"></span>
+                            </a> 
+                    </div>
+                </td>
+               <td>{USER_USER_NAME}</td>
+               <td>{USER_REAL_NAME}</td>
+               <td>{USER_GROUP_NAME}</td>
+               <td>{USER_UNIT_NAME}</td>
+               <td>{USER_STATUS}</td>
+            </tr>
+            <!-- /patTemplate:tmpl -->
+         <!-- /patTemplate:sub -->
+      <!-- /patTemplate:tmpl -->
+   </table>
+</div>
+   
+   <div class="petunjuk-area">
+      <h4>Petunjuk:</h4>
+      <ul>
+         <li>Tanda * menandakan bahwa field tersebut wajib diisi. </li>
+         <li>Username digunakan untuk login, sedangkan nama asli adalah name pengguna. </li>
+      </ul>
+   </div>
+</div>
+<!-- /patTemplate:tmpl -->

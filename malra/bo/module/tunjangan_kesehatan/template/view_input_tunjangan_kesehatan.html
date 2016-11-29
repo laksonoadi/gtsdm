@@ -1,0 +1,77 @@
+<!-- patTemplate:tmpl name="content" -->
+<h1>{LABEL_TITLE}</h1>
+
+<!-- patTemplate:tmpl name="warning_box" visibility="hidden" -->
+<div class="notebox-alert">
+   {ISI_PESAN}
+</div>
+<!-- /patTemplate:tmpl -->
+<div><h1>{TITLE}</h1></div><br>
+<form method="POST" class="xhr_form std_form" action="{URL_AKSI}" id="frm_input" name="frm_input" enctype="multipart/form-data" >
+   <table class="table-edit" width="100%">
+	  <input type="hidden" name="tunId" value="{INPUT_ID}" />
+	  <input type="hidden" name="op" value="{OP}" />
+	  
+		<tr class="subhead">
+			<th colspan="2">{LABEL_ACTION} Data Tunjangan Kesehatan</th>
+		</tr>	
+    <tr>
+			<th width="35%">Jenis Tunjangan Kesehatan</th>
+			<td>
+				<!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="jenis"  / --> *
+			</td>
+		</tr>
+    <tr>
+			<th width="35%">Status Pernikahan</th>
+			<td>
+				<!-- patTemplate:gtfwrendermodule module="combobox" submodule="combobox" action="view" name="nikah"  / --> *
+			</td>
+		</tr>	
+		<tr>
+			<th width="35%">Maksimal Klaim</th>
+			<td>
+				<input type="text" name="maks" value="{INPUT_MAKS}" size="15" tabindex='2' /> 
+			</td>
+		</tr>
+		<tr>
+			<th width="35%">Nomor Klaim</th>
+			<td>
+				<input type="text" name="klaim" value="{INPUT_KLAIM}" size="15" tabindex='2' /> 
+			</td>
+		</tr>
+	  <tr>
+			<th width="35%">Periode</th>
+			<td>
+				<input type="text" name="periode" value="{INPUT_PERIODE}" size="15" tabindex='2' /> Tahun
+			</td>
+		</tr>
+		<tr>
+			<th width="35%">Dana Asuransi (Rp)</th>
+			<td>
+				<input type="text" name="pla_uang" value="{INPUT_UANG}" size="20" tabindex='2' /> 
+			</td>
+		</tr>
+		<tr>
+			<th width="35%">Dana Asuransi (%)</th>
+			<td>
+				<input type="text" name="pla_persen" value="{INPUT_PERSEN}" size="15" tabindex='2' /> 
+			</td>
+		</tr>
+		<tr class="buttons">
+			 <th>&nbsp;   
+			 </th>
+			 <td>
+				<input type="submit" name="btnsimpan" value=" {LABEL_ACTION} " class="buttonSubmit"/>
+				   <input  type="submit"  name="btnbatal" value=" Batal " class="buttonSubmit"/>
+			 </td>
+		</tr>
+   </table>
+</form>
+
+<div class="petunjuk-area">
+   <h4>Petunjuk :</h4>
+   <ul>
+      <li>Tanda * menunjukkan bahwa field tersebut harus diisi.</li>
+   </ul>
+</div>
+<!-- /patTemplate:tmpl -->
